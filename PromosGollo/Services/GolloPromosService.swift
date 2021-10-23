@@ -61,6 +61,29 @@ class GolloService {
         }
     }
 
+    func callWebServiceGollo<T: APIRequest>(_ request: T,
+                                            completion: @escaping ResultCallback<T.Response>) {
+        let endpoint = self.endpoint(for: request)
+        let parameters = request.dictionary
+        log.debug(parameters)
+        let jsonPretty = String(data: try! JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted), encoding: .utf8 )!
+        log.debug("Endpoint: \(endpoint) \(jsonPretty)")
+
+        service.invokeService(for: endpoint, method: .post, with: parameters, "") { data, error in
+            if let error = error {
+                log.debug("Error: \(error)")
+                completion(.failure(.server(code: 0, message: error)))
+            }
+            if let object = self.parseResultGollo(of: T.Response.self, data: data) {
+                completion(.success(object))
+                log.debug("Response: \(object)")
+            } else {
+                completion(.failure(.server(code: 0, message: "Unknown error")))
+                log.debug("Error: Unknown error")
+            }
+        }
+    }
+
     fileprivate func parseResult<T: Decodable>(of type: T.Type = T.self, data: Data?) -> T? {
         guard let data = data else {
             return nil
@@ -71,6 +94,24 @@ class GolloService {
             guard let status = baseResponse.status else { return nil }
             if status {
                 return baseResponse.data
+            } else {
+                return nil
+            }
+        } catch {
+            return nil
+        }
+    }
+
+    fileprivate func parseResultGollo<T: Decodable>(of type: T.Type = T.self, data: Data?) -> T? {
+        guard let data = data else {
+            return nil
+        }
+        log.debug(data.prettyPrintedJSONString)
+        do {
+            let baseResponse = try JSONDecoder().decode(BaseResponseGollo<T>.self, from: data)
+            guard let status = baseResponse.resultado?.estado else { return nil }
+            if status == "true" {
+                return baseResponse.respuesta
             } else {
                 return nil
             }

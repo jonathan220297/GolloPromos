@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E50167EEA34F55FEEC42827 /* Pods_PromosGolloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22563712041687D20FA33666 /* Pods_PromosGolloTests.framework */; };
-		151A5F5B0B70D40D78D404C5 /* Pods_PromosGollo_PromosGolloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8373A7F9F2FBF5F37D21CFFB /* Pods_PromosGollo_PromosGolloUITests.framework */; };
+		2C20F203ABEAF0362D9650C4 /* Pods_PromosGollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F823B72178354713424CEE /* Pods_PromosGollo.framework */; };
 		4F0D962B26D91B4D0061E89E /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D962A26D91B4D0061E89E /* AuthenticationService.swift */; };
 		4F0D962E26D91BE80061E89E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D962D26D91BE80061E89E /* UserManager.swift */; };
 		4F0D963026D91BF50061E89E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D962F26D91BF50061E89E /* User.swift */; };
@@ -89,18 +88,22 @@
 		4F17323627013C7800D7924D /* Offers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F17323527013C7800D7924D /* Offers.swift */; };
 		4F17323827013D1E00D7924D /* ParentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F17323727013D1E00D7924D /* ParentModel.swift */; };
 		4F17323A27013EA900D7924D /* ThirdPartyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F17323927013EA900D7924D /* ThirdPartyViewController.swift */; };
-		4F17323E2701476200D7924D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F17323D2701476200D7924D /* Account.swift */; };
 		4F173241270147B300D7924D /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F173240270147B300D7924D /* StatusTableViewCell.swift */; };
 		4F1732432701494900D7924D /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1732422701494900D7924D /* HistoryViewController.swift */; };
 		4F3080A627121F2100F7D8DE /* BaseHeaderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */; };
 		4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46199E2700FC8300265E73 /* StatusViewController.swift */; };
-		4F59347E271FD6AD00C63A6F /* Pods_PromosGollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; };
-		4F59347F271FD6AD00C63A6F /* Pods_PromosGollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F59347F271FD6AD00C63A6F /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4F894A17270A5A900004AAB3 /* AccountsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */; };
 		4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */; };
 		4F894A1B270A60640004AAB3 /* SearchDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */; };
 		4F894A1D270A60750004AAB3 /* SearchDocumentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A1C270A60750004AAB3 /* SearchDocumentRequest.swift */; };
 		4F894A21270A620A0004AAB3 /* StatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A20270A620A0004AAB3 /* StatusRequest.swift */; };
+		4F9BF25327230EE400C6942A /* OffersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BF25227230EE400C6942A /* OffersRequest.swift */; };
+		4F9BF255272313FC00C6942A /* AccountsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BF254272313FC00C6942A /* AccountsResponse.swift */; };
+		4F9BF2592723277100C6942A /* PaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BF2582723277100C6942A /* PaymentData.swift */; };
+		4F9BF25B2723292000C6942A /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BF25A2723292000C6942A /* StatusResponse.swift */; };
+		4F9BF25D2723315800C6942A /* ThirdPartyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BF25C2723315800C6942A /* ThirdPartyResponse.swift */; };
+		4F9BF260272337E400C6942A /* ThirdPartyAccountsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BF25F272337E400C6942A /* ThirdPartyAccountsTableViewCell.swift */; };
 		4FA2767826D917E400216284 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2767726D917E400216284 /* TermsConditionsViewController.swift */; };
 		4FA2767A26D9189700216284 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2767926D9189700216284 /* LoginViewController.swift */; };
 		4FA2767C26D918A500216284 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2767B26D918A500216284 /* SignUpViewController.swift */; };
@@ -113,7 +116,6 @@
 		4FA41E0E27015AED007C93F9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA41E0D27015AED007C93F9 /* UserInfo.swift */; };
 		4FA41E1027015D38007C93F9 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA41E0F27015D38007C93F9 /* LoginData.swift */; };
 		4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4D6E2271FE56E00C117CD /* StatusViewModel.swift */; };
-		4FA4D6E5271FE5D900C117CD /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4D6E4271FE5D900C117CD /* Status.swift */; };
 		4FB0B2062710F59500A80BB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FB0B2052710F59500A80BB4 /* Localizable.strings */; };
 		4FB2582F2720DDDC0003C607 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */; };
 		4FB258312720DE150003C607 /* AppTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258302720DE150003C607 /* AppTransaction.swift */; };
@@ -146,11 +148,25 @@
 		4FE1912826DEFCA000322128 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1912426DEFCA000322128 /* ProductCollectionViewCell.swift */; };
 		4FE1912A26DEFE0200322128 /* ProductVariationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1912926DEFE0200322128 /* ProductVariationResponse.swift */; };
 		4FE1912C26DEFF3C00322128 /* ProductAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1912B26DEFF3C00322128 /* ProductAttribute.swift */; };
-		4FE1912F26DF06CC00322128 /* HomeOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1912E26DF06CC00322128 /* HomeOfferViewController.swift */; };
+		4FE1912F26DF06CC00322128 /* OfferListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1912E26DF06CC00322128 /* OfferListViewController.swift */; };
 		4FE1913126DF06F200322128 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913026DF06F200322128 /* OffersViewController.swift */; };
 		4FE1913426DF071A00322128 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913326DF071A00322128 /* FilterViewController.swift */; };
 		4FE1913626DF073400322128 /* OfferDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913526DF073400322128 /* OfferDetailViewController.swift */; };
-		4FE1913826DF075200322128 /* IncentivesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913726DF075200322128 /* IncentivesViewController.swift */; };
+		4FFC5D5327233F6200436396 /* OffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D5227233F6200436396 /* OffersViewModel.swift */; };
+		4FFC5D5527235AD200436396 /* CategoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D5427235AD200436396 /* CategoriesRequest.swift */; };
+		4FFC5D5727235AE900436396 /* CategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D5627235AE900436396 /* CategoriesResponse.swift */; };
+		4FFC5D5927236B1400436396 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D5827236B1400436396 /* BaseRequest.swift */; };
+		4FFC5D5B27236B3D00436396 /* BaseResponseGollo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D5A27236B3C00436396 /* BaseResponseGollo.swift */; };
+		4FFC5D5D27237AF100436396 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D5C27237AF100436396 /* PaymentViewController.swift */; };
+		4FFC5D5F2723818A00436396 /* PaymentConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D5E2723818A00436396 /* PaymentConfirmViewController.swift */; };
+		4FFC5D6127238DB400436396 /* OffersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D6027238DB400436396 /* OffersListViewModel.swift */; };
+		4FFC5D632723900D00436396 /* OffersListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D622723900D00436396 /* OffersListRequest.swift */; };
+		4FFC5D652723AB4000436396 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D642723AB4000436396 /* FilterTableViewCell.swift */; };
+		4FFC5D672723ABEA00436396 /* FilterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D662723ABEA00436396 /* FilterResponse.swift */; };
+		4FFC5D692723ACA200436396 /* FilterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D682723ACA200436396 /* FilterRequest.swift */; };
+		4FFC5D6B2723ACD200436396 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC5D6A2723ACD200436396 /* FilterViewModel.swift */; };
+		AFF8229802C5F51E7AAC9AE9 /* Pods_PromosGolloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C160584F7312DC886519FB /* Pods_PromosGolloTests.framework */; };
+		F489AE1C428F7F1948690915 /* Pods_PromosGollo_PromosGolloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F06B8705721C802EBBE37FD /* Pods_PromosGollo_PromosGolloUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,7 +193,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4F59347F271FD6AD00C63A6F /* Pods_PromosGollo.framework in Embed Frameworks */,
+				4F59347F271FD6AD00C63A6F /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,9 +201,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		14ED17A83B4C8A53CF185474 /* Pods-PromosGollo-PromosGolloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGollo-PromosGolloUITests.release.xcconfig"; path = "Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests.release.xcconfig"; sourceTree = "<group>"; };
-		1A2969A915D0B2C5EB4A8AFD /* Pods-PromosGollo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGollo.release.xcconfig"; path = "Target Support Files/Pods-PromosGollo/Pods-PromosGollo.release.xcconfig"; sourceTree = "<group>"; };
-		22563712041687D20FA33666 /* Pods_PromosGolloTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PromosGolloTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1585A1DEB39A09592DA2D4DD /* Pods-PromosGollo-PromosGolloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGollo-PromosGolloUITests.release.xcconfig"; path = "Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1C235C56CC4716DD058C4CE4 /* Pods-PromosGolloTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGolloTests.debug.xcconfig"; path = "Target Support Files/Pods-PromosGolloTests/Pods-PromosGolloTests.debug.xcconfig"; sourceTree = "<group>"; };
+		21F823B72178354713424CEE /* Pods_PromosGollo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PromosGollo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F06B8705721C802EBBE37FD /* Pods_PromosGollo_PromosGolloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PromosGollo_PromosGolloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0D962A26D91B4D0061E89E /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		4F0D962D26D91BE80061E89E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		4F0D962F26D91BF50061E89E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -268,7 +285,6 @@
 		4F17323527013C7800D7924D /* Offers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offers.swift; sourceTree = "<group>"; };
 		4F17323727013D1E00D7924D /* ParentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentModel.swift; sourceTree = "<group>"; };
 		4F17323927013EA900D7924D /* ThirdPartyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyViewController.swift; sourceTree = "<group>"; };
-		4F17323D2701476200D7924D /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		4F173240270147B300D7924D /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 		4F1732422701494900D7924D /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderRequest.swift; sourceTree = "<group>"; };
@@ -278,6 +294,12 @@
 		4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDocumentViewModel.swift; sourceTree = "<group>"; };
 		4F894A1C270A60750004AAB3 /* SearchDocumentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDocumentRequest.swift; sourceTree = "<group>"; };
 		4F894A20270A620A0004AAB3 /* StatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRequest.swift; sourceTree = "<group>"; };
+		4F9BF25227230EE400C6942A /* OffersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersRequest.swift; sourceTree = "<group>"; };
+		4F9BF254272313FC00C6942A /* AccountsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsResponse.swift; sourceTree = "<group>"; };
+		4F9BF2582723277100C6942A /* PaymentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentData.swift; sourceTree = "<group>"; };
+		4F9BF25A2723292000C6942A /* StatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusResponse.swift; sourceTree = "<group>"; };
+		4F9BF25C2723315800C6942A /* ThirdPartyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyResponse.swift; sourceTree = "<group>"; };
+		4F9BF25F272337E400C6942A /* ThirdPartyAccountsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyAccountsTableViewCell.swift; sourceTree = "<group>"; };
 		4FA2767726D917E400216284 /* TermsConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsViewController.swift; sourceTree = "<group>"; };
 		4FA2767926D9189700216284 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4FA2767B26D918A500216284 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -290,7 +312,6 @@
 		4FA41E0D27015AED007C93F9 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		4FA41E0F27015D38007C93F9 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		4FA4D6E2271FE56E00C117CD /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
-		4FA4D6E4271FE5D900C117CD /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		4FB0B2052710F59500A80BB4 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		4FB258302720DE150003C607 /* AppTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTransaction.swift; sourceTree = "<group>"; };
@@ -329,17 +350,28 @@
 		4FE1912426DEFCA000322128 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FE1912926DEFE0200322128 /* ProductVariationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVariationResponse.swift; sourceTree = "<group>"; };
 		4FE1912B26DEFF3C00322128 /* ProductAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAttribute.swift; sourceTree = "<group>"; };
-		4FE1912E26DF06CC00322128 /* HomeOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOfferViewController.swift; sourceTree = "<group>"; };
+		4FE1912E26DF06CC00322128 /* OfferListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferListViewController.swift; sourceTree = "<group>"; };
 		4FE1913026DF06F200322128 /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		4FE1913326DF071A00322128 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4FE1913526DF073400322128 /* OfferDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewController.swift; sourceTree = "<group>"; };
-		4FE1913726DF075200322128 /* IncentivesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncentivesViewController.swift; sourceTree = "<group>"; };
-		60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PromosGollo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8373A7F9F2FBF5F37D21CFFB /* Pods_PromosGollo_PromosGolloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PromosGollo_PromosGolloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F27704D578F47AFCD6A4E84 /* Pods-PromosGolloTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGolloTests.debug.xcconfig"; path = "Target Support Files/Pods-PromosGolloTests/Pods-PromosGolloTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A827069AB45FE22F01CFACEE /* Pods-PromosGolloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGolloTests.release.xcconfig"; path = "Target Support Files/Pods-PromosGolloTests/Pods-PromosGolloTests.release.xcconfig"; sourceTree = "<group>"; };
-		D4326D473D108AA6FD966CDA /* Pods-PromosGollo-PromosGolloUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGollo-PromosGolloUITests.debug.xcconfig"; path = "Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F4FD59EB0D1B96BF52A5F481 /* Pods-PromosGollo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGollo.debug.xcconfig"; path = "Target Support Files/Pods-PromosGollo/Pods-PromosGollo.debug.xcconfig"; sourceTree = "<group>"; };
+		4FFC5D5227233F6200436396 /* OffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewModel.swift; sourceTree = "<group>"; };
+		4FFC5D5427235AD200436396 /* CategoriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequest.swift; sourceTree = "<group>"; };
+		4FFC5D5627235AE900436396 /* CategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesResponse.swift; sourceTree = "<group>"; };
+		4FFC5D5827236B1400436396 /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
+		4FFC5D5A27236B3C00436396 /* BaseResponseGollo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseGollo.swift; sourceTree = "<group>"; };
+		4FFC5D5C27237AF100436396 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		4FFC5D5E2723818A00436396 /* PaymentConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmViewController.swift; sourceTree = "<group>"; };
+		4FFC5D6027238DB400436396 /* OffersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersListViewModel.swift; sourceTree = "<group>"; };
+		4FFC5D622723900D00436396 /* OffersListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersListRequest.swift; sourceTree = "<group>"; };
+		4FFC5D642723AB4000436396 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		4FFC5D662723ABEA00436396 /* FilterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterResponse.swift; sourceTree = "<group>"; };
+		4FFC5D682723ACA200436396 /* FilterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRequest.swift; sourceTree = "<group>"; };
+		4FFC5D6A2723ACD200436396 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		8A5EA1B2C83238F5B57FBB20 /* Pods-PromosGollo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGollo.release.xcconfig"; path = "Target Support Files/Pods-PromosGollo/Pods-PromosGollo.release.xcconfig"; sourceTree = "<group>"; };
+		8DE1BA28154CCFDE9EBEA1B6 /* Pods-PromosGollo-PromosGolloUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGollo-PromosGolloUITests.debug.xcconfig"; path = "Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A9C160584F7312DC886519FB /* Pods_PromosGolloTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PromosGolloTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACAEB1685E481C65A88A5D21 /* Pods-PromosGolloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGolloTests.release.xcconfig"; path = "Target Support Files/Pods-PromosGolloTests/Pods-PromosGolloTests.release.xcconfig"; sourceTree = "<group>"; };
+		AE904F6B5B09C540A4261191 /* Pods-PromosGollo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGollo.debug.xcconfig"; path = "Target Support Files/Pods-PromosGollo/Pods-PromosGollo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,7 +379,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F59347E271FD6AD00C63A6F /* Pods_PromosGollo.framework in Frameworks */,
+				2C20F203ABEAF0362D9650C4 /* Pods_PromosGollo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +387,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E50167EEA34F55FEEC42827 /* Pods_PromosGolloTests.framework in Frameworks */,
+				AFF8229802C5F51E7AAC9AE9 /* Pods_PromosGolloTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +395,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				151A5F5B0B70D40D78D404C5 /* Pods_PromosGollo_PromosGolloUITests.framework in Frameworks */,
+				F489AE1C428F7F1948690915 /* Pods_PromosGollo_PromosGolloUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +599,8 @@
 				4F46199E2700FC8300265E73 /* StatusViewController.swift */,
 				4F17323927013EA900D7924D /* ThirdPartyViewController.swift */,
 				4F1732422701494900D7924D /* HistoryViewController.swift */,
+				4FFC5D5C27237AF100436396 /* PaymentViewController.swift */,
+				4FFC5D5E2723818A00436396 /* PaymentConfirmViewController.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -576,6 +610,7 @@
 			children = (
 				4F17323C2701475500D7924D /* Response */,
 				4F17323B2701474D00D7924D /* Request */,
+				4F9BF2582723277100C6942A /* PaymentData.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -594,6 +629,7 @@
 		4F0D96D926DDE0700061E89E /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				4F9BF25E272337B800C6942A /* ThirdParty */,
 				4F17323F270147A900D7924D /* Status */,
 				4F0D96DA26DDE0740061E89E /* Accounts */,
 				4F0D96E126DDE2100061E89E /* Items */,
@@ -631,6 +667,7 @@
 				4F17322C27013BA100D7924D /* HeaderTableViewCell.swift */,
 				4F17322E27013BC900D7924D /* FooterTableViewCell.swift */,
 				4F17323027013C0000D7924D /* ProductTableViewCell.swift */,
+				4FFC5D642723AB4000436396 /* FilterTableViewCell.swift */,
 			);
 			path = Offers;
 			sourceTree = "<group>";
@@ -638,17 +675,10 @@
 		4F17323227013C5600D7924D /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				4F9BF25127230ED100C6942A /* Request */,
 				4F17323427013C6600D7924D /* Response */,
-				4F17323327013C5D00D7924D /* Request */,
 			);
 			path = Offers;
-			sourceTree = "<group>";
-		};
-		4F17323327013C5D00D7924D /* Request */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Request;
 			sourceTree = "<group>";
 		};
 		4F17323427013C6600D7924D /* Response */ = {
@@ -656,6 +686,8 @@
 			children = (
 				4F17323527013C7800D7924D /* Offers.swift */,
 				4F17323727013D1E00D7924D /* ParentModel.swift */,
+				4FFC5D5627235AE900436396 /* CategoriesResponse.swift */,
+				4FFC5D662723ABEA00436396 /* FilterResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -674,10 +706,11 @@
 		4F17323C2701475500D7924D /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				4F17323D2701476200D7924D /* Account.swift */,
-				4FA4D6E4271FE5D900C117CD /* Status.swift */,
 				4FB258302720DE150003C607 /* AppTransaction.swift */,
 				4FB258342720E6C40003C607 /* CustomerInfo.swift */,
+				4F9BF254272313FC00C6942A /* AccountsResponse.swift */,
+				4F9BF25A2723292000C6942A /* StatusResponse.swift */,
+				4F9BF25C2723315800C6942A /* ThirdPartyResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -699,6 +732,35 @@
 				4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */,
 			);
 			path = Payments;
+			sourceTree = "<group>";
+		};
+		4F9BF24E27230EA600C6942A /* Offers */ = {
+			isa = PBXGroup;
+			children = (
+				4FFC5D5227233F6200436396 /* OffersViewModel.swift */,
+				4FFC5D6027238DB400436396 /* OffersListViewModel.swift */,
+				4FFC5D6A2723ACD200436396 /* FilterViewModel.swift */,
+			);
+			path = Offers;
+			sourceTree = "<group>";
+		};
+		4F9BF25127230ED100C6942A /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				4F9BF25227230EE400C6942A /* OffersRequest.swift */,
+				4FFC5D5427235AD200436396 /* CategoriesRequest.swift */,
+				4FFC5D622723900D00436396 /* OffersListRequest.swift */,
+				4FFC5D682723ACA200436396 /* FilterRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		4F9BF25E272337B800C6942A /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				4F9BF25F272337E400C6942A /* ThirdPartyAccountsTableViewCell.swift */,
+			);
+			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 		4FA2766E26D9149500216284 /* Commons */ = {
@@ -731,6 +793,7 @@
 		4FA2767026D914AC00216284 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4F9BF24E27230EA600C6942A /* Offers */,
 				4F894A15270A5A750004AAB3 /* Payments */,
 				4FE190F826DEF5C100322128 /* Home */,
 				4F0D96B326DDD7810061E89E /* Menu */,
@@ -784,6 +847,8 @@
 				4F0D962C26D91B7A0061E89E /* Authentication */,
 				4F0D969226DDD3E50061E89E /* Notifications */,
 				4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */,
+				4FFC5D5827236B1400436396 /* BaseRequest.swift */,
+				4FFC5D5A27236B3C00436396 /* BaseResponseGollo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -861,7 +926,7 @@
 				4FDA3ABC26D8FE28003B2CB6 /* PromosGolloUITests */,
 				4FDA3A9926D8FE26003B2CB6 /* Products */,
 				B3D3BFB800D6166E756F8215 /* Pods */,
-				8DD7E1FBC25DCC208F1CD6A5 /* Frameworks */,
+				A5C32B1E16A954001429936E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1012,10 +1077,9 @@
 			isa = PBXGroup;
 			children = (
 				4FE1913226DF071100322128 /* Filter */,
-				4FE1912E26DF06CC00322128 /* HomeOfferViewController.swift */,
+				4FE1912E26DF06CC00322128 /* OfferListViewController.swift */,
 				4FE1913026DF06F200322128 /* OffersViewController.swift */,
 				4FE1913526DF073400322128 /* OfferDetailViewController.swift */,
-				4FE1913726DF075200322128 /* IncentivesViewController.swift */,
 			);
 			path = Offers;
 			sourceTree = "<group>";
@@ -1028,12 +1092,12 @@
 			path = Filter;
 			sourceTree = "<group>";
 		};
-		8DD7E1FBC25DCC208F1CD6A5 /* Frameworks */ = {
+		A5C32B1E16A954001429936E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */,
-				8373A7F9F2FBF5F37D21CFFB /* Pods_PromosGollo_PromosGolloUITests.framework */,
-				22563712041687D20FA33666 /* Pods_PromosGolloTests.framework */,
+				21F823B72178354713424CEE /* Pods_PromosGollo.framework */,
+				4F06B8705721C802EBBE37FD /* Pods_PromosGollo_PromosGolloUITests.framework */,
+				A9C160584F7312DC886519FB /* Pods_PromosGolloTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1041,12 +1105,12 @@
 		B3D3BFB800D6166E756F8215 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F4FD59EB0D1B96BF52A5F481 /* Pods-PromosGollo.debug.xcconfig */,
-				1A2969A915D0B2C5EB4A8AFD /* Pods-PromosGollo.release.xcconfig */,
-				D4326D473D108AA6FD966CDA /* Pods-PromosGollo-PromosGolloUITests.debug.xcconfig */,
-				14ED17A83B4C8A53CF185474 /* Pods-PromosGollo-PromosGolloUITests.release.xcconfig */,
-				9F27704D578F47AFCD6A4E84 /* Pods-PromosGolloTests.debug.xcconfig */,
-				A827069AB45FE22F01CFACEE /* Pods-PromosGolloTests.release.xcconfig */,
+				AE904F6B5B09C540A4261191 /* Pods-PromosGollo.debug.xcconfig */,
+				8A5EA1B2C83238F5B57FBB20 /* Pods-PromosGollo.release.xcconfig */,
+				8DE1BA28154CCFDE9EBEA1B6 /* Pods-PromosGollo-PromosGolloUITests.debug.xcconfig */,
+				1585A1DEB39A09592DA2D4DD /* Pods-PromosGollo-PromosGolloUITests.release.xcconfig */,
+				1C235C56CC4716DD058C4CE4 /* Pods-PromosGolloTests.debug.xcconfig */,
+				ACAEB1685E481C65A88A5D21 /* Pods-PromosGolloTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1058,13 +1122,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FDA3AC226D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "PromosGollo" */;
 			buildPhases = (
-				9A58A48E9C4B5B05D9D1F1AB /* [CP] Check Pods Manifest.lock */,
+				C52280806FEABF6826ACF239 /* [CP] Check Pods Manifest.lock */,
 				4FDA3A9426D8FE26003B2CB6 /* Sources */,
 				4FDA3A9526D8FE26003B2CB6 /* Frameworks */,
 				4FDA3A9626D8FE26003B2CB6 /* Resources */,
-				97942F0EA93ACBBED7D440CE /* [CP] Embed Pods Frameworks */,
-				6BE79D44699AF1786B336CEF /* [CP] Copy Pods Resources */,
 				4F593480271FD6AD00C63A6F /* Embed Frameworks */,
+				55567116CD93F6BF075C70BB /* [CP] Embed Pods Frameworks */,
+				944C6F7012E6D2C26D04C192 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1079,7 +1143,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FDA3AC526D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "PromosGolloTests" */;
 			buildPhases = (
-				F9D9F87BF77B576E90CC528C /* [CP] Check Pods Manifest.lock */,
+				67966BE632E3B07A7730AD67 /* [CP] Check Pods Manifest.lock */,
 				4FDA3AAA26D8FE28003B2CB6 /* Sources */,
 				4FDA3AAB26D8FE28003B2CB6 /* Frameworks */,
 				4FDA3AAC26D8FE28003B2CB6 /* Resources */,
@@ -1098,12 +1162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FDA3AC826D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "PromosGolloUITests" */;
 			buildPhases = (
-				42CAB7CA267CF2CBF5F0775D /* [CP] Check Pods Manifest.lock */,
+				EAA942C4D3F239526AB35716 /* [CP] Check Pods Manifest.lock */,
 				4FDA3AB526D8FE28003B2CB6 /* Sources */,
 				4FDA3AB626D8FE28003B2CB6 /* Frameworks */,
 				4FDA3AB726D8FE28003B2CB6 /* Resources */,
-				B41C8CAAF2644896FB5CF5AA /* [CP] Embed Pods Frameworks */,
-				48D10B744149C98A5F07A800 /* [CP] Copy Pods Resources */,
+				A77058ED77F8E79535771F89 /* [CP] Embed Pods Frameworks */,
+				C6D92A642231D57B57BEC702 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1215,63 +1279,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		42CAB7CA267CF2CBF5F0775D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PromosGollo-PromosGolloUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48D10B744149C98A5F07A800 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6BE79D44699AF1786B336CEF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo/Pods-PromosGollo-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo/Pods-PromosGollo-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PromosGollo/Pods-PromosGollo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		97942F0EA93ACBBED7D440CE /* [CP] Embed Pods Frameworks */ = {
+		55567116CD93F6BF075C70BB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1288,46 +1296,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PromosGollo/Pods-PromosGollo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9A58A48E9C4B5B05D9D1F1AB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PromosGollo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B41C8CAAF2644896FB5CF5AA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F9D9F87BF77B576E90CC528C /* [CP] Check Pods Manifest.lock */ = {
+		67966BE632E3B07A7730AD67 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1349,6 +1318,101 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		944C6F7012E6D2C26D04C192 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo/Pods-PromosGollo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo/Pods-PromosGollo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PromosGollo/Pods-PromosGollo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A77058ED77F8E79535771F89 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C52280806FEABF6826ACF239 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PromosGollo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6D92A642231D57B57BEC702 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PromosGollo-PromosGolloUITests/Pods-PromosGollo-PromosGolloUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EAA942C4D3F239526AB35716 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PromosGollo-PromosGolloUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1359,6 +1423,7 @@
 				4F0D96E026DDE1F30061E89E /* ItemsTableViewCell.swift in Sources */,
 				4FB258332720DEC30003C607 /* HistoryRequest.swift in Sources */,
 				4F0D967F26DDBBB40061E89E /* Common.swift in Sources */,
+				4F9BF260272337E400C6942A /* ThirdPartyAccountsTableViewCell.swift in Sources */,
 				4FE1912826DEFCA000322128 /* ProductCollectionViewCell.swift in Sources */,
 				4F0D965A26DDBB360061E89E /* LocalizableLabel.swift in Sources */,
 				4F0D96BF26DDD83E0061E89E /* GolloPromosService.swift in Sources */,
@@ -1368,25 +1433,33 @@
 				4F0D96D826DDDF3E0061E89E /* SearchDocumentViewController.swift in Sources */,
 				4F0D96AA26DDD6BB0061E89E /* FirebaseService.swift in Sources */,
 				4F0D964426DDBA310061E89E /* String+Extension.swift in Sources */,
+				4F9BF25B2723292000C6942A /* StatusResponse.swift in Sources */,
 				4F0D963026D91BF50061E89E /* User.swift in Sources */,
 				4FE1912A26DEFE0200322128 /* ProductVariationResponse.swift in Sources */,
 				4F0D965E26DDBB590061E89E /* CustomButton.swift in Sources */,
+				4FFC5D5327233F6200436396 /* OffersViewModel.swift in Sources */,
 				4F0D965626DDBB060061E89E /* LoadingButton.swift in Sources */,
 				4F0D96A226DDD59E0061E89E /* SideMenuViewModel.swift in Sources */,
 				4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */,
 				4FE1910A26DEF77C00322128 /* SliderTableViewCell.swift in Sources */,
+				4FFC5D6B2723ACD200436396 /* FilterViewModel.swift in Sources */,
 				4FE1911326DEFAC700322128 /* ProductsData.swift in Sources */,
 				4F0D963626DDB8770061E89E /* Badge.swift in Sources */,
 				4F0D96DE26DDE1370061E89E /* ProductDetailViewController.swift in Sources */,
 				4F0D96B526DDD78A0061E89E /* MenuViewModel.swift in Sources */,
 				4F0D965026DDBABC0061E89E /* Bundle+Extension.swift in Sources */,
+				4F9BF255272313FC00C6942A /* AccountsResponse.swift in Sources */,
+				4FFC5D672723ABEA00436396 /* FilterResponse.swift in Sources */,
 				4F0D96D326DDDF2C0061E89E /* AccountDetail.swift in Sources */,
+				4FFC5D5527235AD200436396 /* CategoriesRequest.swift in Sources */,
 				4FE1910426DEF67100322128 /* HomeConfiguration.swift in Sources */,
 				4FE190FD26DEF5FB00322128 /* HomeSection.swift in Sources */,
 				4F0D96D426DDDF2C0061E89E /* Item.swift in Sources */,
+				4FFC5D692723ACA200436396 /* FilterRequest.swift in Sources */,
 				4FA2767C26D918A500216284 /* SignUpViewController.swift in Sources */,
 				4F3080A627121F2100F7D8DE /* BaseHeaderRequest.swift in Sources */,
 				4F0D96D626DDDF2C0061E89E /* AccountResponse.swift in Sources */,
+				4FFC5D632723900D00436396 /* OffersListRequest.swift in Sources */,
 				4FB258312720DE150003C607 /* AppTransaction.swift in Sources */,
 				4F0D96B826DDD7B20061E89E /* Menu.swift in Sources */,
 				4F0D96DC26DDE0870061E89E /* AccountsTableViewCell.swift in Sources */,
@@ -1405,12 +1478,12 @@
 				4F0D963326DDB82F0061E89E /* UIViewController+Extension.swift in Sources */,
 				4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */,
 				4FA41E0E27015AED007C93F9 /* UserInfo.swift in Sources */,
+				4FFC5D5727235AE900436396 /* CategoriesResponse.swift in Sources */,
 				4F0D962B26D91B4D0061E89E /* AuthenticationService.swift in Sources */,
 				4F894A17270A5A900004AAB3 /* AccountsViewModel.swift in Sources */,
 				4FA2768326D9192900216284 /* SplashViewModel.swift in Sources */,
 				4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */,
 				4F17322D27013BA100D7924D /* HeaderTableViewCell.swift in Sources */,
-				4F17323E2701476200D7924D /* Account.swift in Sources */,
 				4F17323827013D1E00D7924D /* ParentModel.swift in Sources */,
 				4FA41E0C27015AA4007C93F9 /* Profile.swift in Sources */,
 				4FE1911C26DEFC1D00322128 /* ProductsRequest.swift in Sources */,
@@ -1424,6 +1497,7 @@
 				4F173241270147B300D7924D /* StatusTableViewCell.swift in Sources */,
 				4F0D969726DDD3E50061E89E /* NotificationsData.swift in Sources */,
 				4FA2768126D9191300216284 /* LoginViewModel.swift in Sources */,
+				4FFC5D6127238DB400436396 /* OffersListViewModel.swift in Sources */,
 				4FE1913626DF073400322128 /* OfferDetailViewController.swift in Sources */,
 				4F894A21270A620A0004AAB3 /* StatusRequest.swift in Sources */,
 				4FA2767A26D9189700216284 /* LoginViewController.swift in Sources */,
@@ -1431,27 +1505,33 @@
 				4F17322F27013BC900D7924D /* FooterTableViewCell.swift in Sources */,
 				4F0D967D26DDBBA30061E89E /* Strings.swift in Sources */,
 				4FE1913126DF06F200322128 /* OffersViewController.swift in Sources */,
-				4FA4D6E5271FE5D900C117CD /* Status.swift in Sources */,
+				4FFC5D652723AB4000436396 /* FilterTableViewCell.swift in Sources */,
 				4F0D96C226DDD89F0061E89E /* BaseResponse.swift in Sources */,
 				4F0D96B226DDD7710061E89E /* MenuViewController.swift in Sources */,
+				4F9BF25D2723315800C6942A /* ThirdPartyResponse.swift in Sources */,
 				4F0D96CB26DDDEE30061E89E /* AccountsViewController.swift in Sources */,
+				4FFC5D5F2723818A00436396 /* PaymentConfirmViewController.swift in Sources */,
 				4F0D96AD26DDD6D40061E89E /* EditProfileViewModel.swift in Sources */,
 				4F0D96D526DDDF2C0061E89E /* AccountItemResponse.swift in Sources */,
-				4FE1912F26DF06CC00322128 /* HomeOfferViewController.swift in Sources */,
+				4FE1912F26DF06CC00322128 /* OfferListViewController.swift in Sources */,
 				4F17323127013C0000D7924D /* ProductTableViewCell.swift in Sources */,
 				4F0D969B26DDD4170061E89E /* NotificationTableViewCell.swift in Sources */,
 				4F0D964A26DDBA7C0061E89E /* UIImageView+Extension.swift in Sources */,
-				4FE1913826DF075200322128 /* IncentivesViewController.swift in Sources */,
 				4FA2767F26D918EE00216284 /* TermsConditionsViewModel.swift in Sources */,
 				4FE1910F26DEF8A800322128 /* SectionViewModel.swift in Sources */,
 				4F0D964E26DDBAA80061E89E /* Array+Extension.swift in Sources */,
 				4FE1912726DEFCA000322128 /* VariationView.swift in Sources */,
+				4FFC5D5D27237AF100436396 /* PaymentViewController.swift in Sources */,
 				4F894A1B270A60640004AAB3 /* SearchDocumentViewModel.swift in Sources */,
 				4F0D965C26DDBB490061E89E /* LocalizableButton.swift in Sources */,
+				4F9BF2592723277100C6942A /* PaymentData.swift in Sources */,
+				4FFC5D5927236B1400436396 /* BaseRequest.swift in Sources */,
 				4F0D965426DDBAE20061E89E /* NSLayoutConstraint+Extension.swift in Sources */,
+				4F9BF25327230EE400C6942A /* OffersRequest.swift in Sources */,
 				4F0D968E26DDD3970061E89E /* NotificationsViewController.swift in Sources */,
 				4F0D969826DDD3E50061E89E /* NotificationRequest.swift in Sources */,
 				4F17323627013C7800D7924D /* Offers.swift in Sources */,
+				4FFC5D5B27236B3D00436396 /* BaseResponseGollo.swift in Sources */,
 				4FE190FA26DEF5CE00322128 /* HomeViewModel.swift in Sources */,
 				4FA41E1027015D38007C93F9 /* LoginData.swift in Sources */,
 				4F894A1D270A60750004AAB3 /* SearchDocumentRequest.swift in Sources */,
@@ -1634,7 +1714,7 @@
 		};
 		4FDA3AC326D8FE28003B2CB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4FD59EB0D1B96BF52A5F481 /* Pods-PromosGollo.debug.xcconfig */;
+			baseConfigurationReference = AE904F6B5B09C540A4261191 /* Pods-PromosGollo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1656,7 +1736,7 @@
 		};
 		4FDA3AC426D8FE28003B2CB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A2969A915D0B2C5EB4A8AFD /* Pods-PromosGollo.release.xcconfig */;
+			baseConfigurationReference = 8A5EA1B2C83238F5B57FBB20 /* Pods-PromosGollo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1678,7 +1758,7 @@
 		};
 		4FDA3AC626D8FE28003B2CB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F27704D578F47AFCD6A4E84 /* Pods-PromosGolloTests.debug.xcconfig */;
+			baseConfigurationReference = 1C235C56CC4716DD058C4CE4 /* Pods-PromosGolloTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1701,7 +1781,7 @@
 		};
 		4FDA3AC726D8FE28003B2CB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A827069AB45FE22F01CFACEE /* Pods-PromosGolloTests.release.xcconfig */;
+			baseConfigurationReference = ACAEB1685E481C65A88A5D21 /* Pods-PromosGolloTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1724,7 +1804,7 @@
 		};
 		4FDA3AC926D8FE28003B2CB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4326D473D108AA6FD966CDA /* Pods-PromosGollo-PromosGolloUITests.debug.xcconfig */;
+			baseConfigurationReference = 8DE1BA28154CCFDE9EBEA1B6 /* Pods-PromosGollo-PromosGolloUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1745,7 +1825,7 @@
 		};
 		4FDA3ACA26D8FE28003B2CB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14ED17A83B4C8A53CF185474 /* Pods-PromosGollo-PromosGolloUITests.release.xcconfig */;
+			baseConfigurationReference = 1585A1DEB39A09592DA2D4DD /* Pods-PromosGollo-PromosGolloUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

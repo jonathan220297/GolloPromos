@@ -7,24 +7,23 @@
 
 import Foundation
 
-struct AccountsRequest: APIRequest {
+struct OffersRequest: APIRequest {
 
-    public typealias Response = ResponseAccont
+    public typealias Response = [Offers]
 
     public var resourceName: String {
         return "Procesos"
     }
 
-    let service: BaseServiceRequestParam<AccountsServiceRequest>?
+    let service: BaseServiceRequestParam<OffersServiceRequest>?
 
     public var dictionary: [String: Any] {
         return service.map { $0.dict }!!
     }
+
 }
 
-struct AccountsServiceRequest: Codable {
-    var tipoId: String
+struct OffersServiceRequest: Codable {
     var idCliente: String
-    var empresa: String
-    var idCentro: String? = nil
+    var idCompania: String
 }

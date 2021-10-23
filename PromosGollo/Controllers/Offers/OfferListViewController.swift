@@ -1,5 +1,5 @@
 //
-//  OffersViewController.swift
+//  HomeViewController.swift
 //  PromosGollo
 //
 //  Created by Rodrigo Osegueda on 31/8/21.
@@ -8,24 +8,22 @@
 import UIKit
 import RxSwift
 
-class OffersViewController: UIViewController {
+class OfferListViewController: UIViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var offersTableView: UITableView!
+    @IBOutlet weak var filterLabel: UILabel!
 
-    lazy var viewModel: OffersViewModel = {
-        return OffersViewModel()
+    lazy var viewModel: OffersListViewModel = {
+        return OffersListViewModel()
     }()
     let bag = DisposeBag()
+
+    var filterTitle: String = ""
+    var category: CategoriesData? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureRx()
-        fetchCategories()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.title = "Ofertas"
+        fetchOffersList()
     }
 
     fileprivate func configureRx() {
@@ -41,20 +39,8 @@ class OffersViewController: UIViewController {
             .disposed(by: bag)
     }
 
-    fileprivate func fetchCategories() {
-        viewModel.fetchCategories()
-            .asObservable()
-            .subscribe(onNext: {[weak self] data in
-                guard let self = self,
-                      let data = data else { return }
-                self.viewModel.categories = data
-                self.fetchOffers()
-            })
-            .disposed(by: bag)
-    }
-
-    fileprivate func fetchOffers() {
-        viewModel.fetchOffers()
+    fileprivate func fetchOffersList() {
+        viewModel.fetchOffersList(category: String(category?.idTipoCategoriaApp ?? 0), store: nil, page: 1, query: nil)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,

@@ -9,7 +9,7 @@ import Foundation
 
 struct SearchDocumentRequest: APIRequest {
 
-    public typealias Response = CustomerInfo
+    public typealias Response = ThirdPartyData
 
     public var resourceName: String {
         return "Procesos"

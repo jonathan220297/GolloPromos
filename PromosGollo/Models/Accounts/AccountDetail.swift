@@ -1,8 +1,8 @@
 //
 //  AccountDetail.swift
-//  asesorCajero
+//  PromosGollo
 //
-//  Created by Rodrigo Osegueda on 26/5/21.
+//  Created by Rodrigo Osegueda on 26/9/21.
 //
 
 import Foundation
@@ -22,8 +22,8 @@ class AccountDetail: Codable {
     var diasAtraso: Int? = 0
     var montoCuota: Double? = 0.0
     var montoMaximoPago: Double? = 0.0
+    var dpp: Double? = 0.0
     var montoSugeridoBotonera: Double? = 0.0
     var diaPago: String?
     var descripcion: String?
-    var simboloMoneda: String? = "₡"
 }

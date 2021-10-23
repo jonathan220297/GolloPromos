@@ -2,36 +2,36 @@
 //  AccountsViewModel.swift
 //  PromosGollo
 //
-//  Created by Rodrigo Osegueda on 3/10/21.
+//  Created by Rodrigo Osegueda on 20/9/21.
 //
 
 import Foundation
 import RxRelay
 
-class SearchDocumentViewModel {
+class OffersViewModel {
     private let service = GolloService()
 
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
-    var accounts: [AccountsDetail] = []
+    var categories: [CategoriesData] = []
+    var offers: [Offers] = []
 
     var reloadTableViewData: (()->())?
 
-    func fetchCustomer(with documentType: String, documentId: String) -> BehaviorRelay<ThirdPartyData?> {
-        let apiResponse: BehaviorRelay<ThirdPartyData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(SearchDocumentRequest(service: BaseServiceRequestParam<SearchDocumentServiceRequest>(
+    func fetchCategories() -> BehaviorRelay<[CategoriesData]?> {
+        let apiResponse: BehaviorRelay<[CategoriesData]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(CategoriesRequest(service: BaseServiceRequestParam<CategoriesServiceRequest>(
             servicio: ServicioParam(
                 encabezado: Encabezado(
-                    idProceso: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue,
+                    idProceso: GOLLOAPP.OFFER_CATEGORIES_PROCESS_ID.rawValue,
                     idDevice: "",
                     idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,
                     token: "",
                     integrationId: nil),
-                parametros: SearchDocumentServiceRequest (
-                    noCia: "10",
-                    numeroIdentificacion: documentId,
-                    tipoIdentificacion: documentType
+                parametros: CategoriesServiceRequest (
+                    idCliente: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                    idCompania: "10"
                 )
             )
         ))) { response in
@@ -40,7 +40,6 @@ class SearchDocumentViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
-                    self.errorMessage.accept(error.localizedDescription)
                     print("Error: \(error.localizedDescription)")
                 }
             }
@@ -48,30 +47,28 @@ class SearchDocumentViewModel {
         return apiResponse
     }
 
-    func fetchAccounts(with documentType: String, documentId: String) -> BehaviorRelay<[AccountsDetail]?> {
-        let apiResponse: BehaviorRelay<[AccountsDetail]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(AccountsRequest(service: BaseServiceRequestParam<AccountsServiceRequest>(
+    func fetchOffers() -> BehaviorRelay<[Offers]?> {
+        let apiResponse: BehaviorRelay<[Offers]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(OffersRequest(service: BaseServiceRequestParam<OffersServiceRequest>(
             servicio: ServicioParam(
                 encabezado: Encabezado(
-                    idProceso: GOLLOAPP.ACTIVE_ACCOUNTS_PROCESS_ID.rawValue,
+                    idProceso: GOLLOAPP.OFFER_CAT_PROCESS_ID.rawValue,
                     idDevice: "",
                     idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,
                     token: "",
                     integrationId: nil),
-                parametros: AccountsServiceRequest (
-                    tipoId: documentType,
-                    idCliente: documentId,
-                    empresa: "10",
-                    idCentro: ""
+                parametros: OffersServiceRequest (
+                    idCliente: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                    idCompania: "10"
                 )
             )
         ))) { response in
             DispatchQueue.main.async {
                 switch response {
                 case .success(let response):
-                    apiResponse.accept(response.cuentas)
+                    apiResponse.accept(response)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }

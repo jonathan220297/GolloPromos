@@ -95,6 +95,7 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func serviceAction(_ sender: Any) {
+
     }
 
     fileprivate func fetchHomeConfiguration() {
@@ -130,7 +131,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
         } else {
-//            return CGFloat(viewModel.sectionsArray[indexPath.row].banner?.height ?? 150)
             return 150
         }
     }

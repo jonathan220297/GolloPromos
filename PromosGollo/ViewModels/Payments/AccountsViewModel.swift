@@ -12,18 +12,18 @@ class AccountsViewModel {
     private let service = GolloService()
 
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
-    var accounts: [AccountDetail] = []
+    var accounts: [AccountsDetail] = []
 
     var reloadTableViewData: (()->())?
 
-    func fetchAccounts(with documentType: String, documentId: String) -> BehaviorRelay<[AccountDetail]?> {
-        let apiResponse: BehaviorRelay<[AccountDetail]?> = BehaviorRelay(value: nil)
-        service.callWebService(AccountsRequest(service: BaseServiceRequestParam<AccountsServiceRequest>(
+    func fetchAccounts(with documentType: String, documentId: String) -> BehaviorRelay<[AccountsDetail]?> {
+        let apiResponse: BehaviorRelay<[AccountsDetail]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(AccountsRequest(service: BaseServiceRequestParam<AccountsServiceRequest>(
             servicio: ServicioParam(
                 encabezado: Encabezado(
-                    idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
+                    idProceso: GOLLOAPP.ACTIVE_ACCOUNTS_PROCESS_ID.rawValue,
                     idDevice: "",
-                    idUsuario: UserManager.shared.userData?.uid ?? "",
+                    idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,
                     token: "",
@@ -31,7 +31,7 @@ class AccountsViewModel {
                 parametros: AccountsServiceRequest (
                     tipoId: documentType,
                     idCliente: documentId,
-                    empresa: 10,
+                    empresa: "10",
                     idCentro: ""
                 )
             )
@@ -39,7 +39,7 @@ class AccountsViewModel {
             DispatchQueue.main.async {
                 switch response {
                 case .success(let response):
-                    apiResponse.accept(response)
+                    apiResponse.accept(response.cuentas)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }
