@@ -68,9 +68,9 @@ class GolloService {
         log.debug(data.prettyPrintedJSONString)
         do {
             let baseResponse = try JSONDecoder().decode(BaseResponse<T>.self, from: data)
-            guard let status = baseResponse.status else { return nil }
+            guard let status = baseResponse.resultado?.estado else { return nil }
             if status {
-                return baseResponse.data
+                return baseResponse.respuesta
             } else {
                 return nil
             }

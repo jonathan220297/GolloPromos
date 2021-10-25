@@ -7,10 +7,14 @@
 
 import Foundation
 
-class BaseResponse<T: Decodable>: Decodable {
-    var status: Bool?
-    var message: String?
-    var debugMessage: String?
-    var mapID: String?
-    var data: T?
+// MARK: - BaseResponse
+struct BaseResponse<T: Decodable>: Decodable {
+    let resultado: Resultado?
+    let respuesta: T?
+}
+
+// MARK: - Resultado
+struct Resultado: Decodable {
+    let estado: Bool?
+    let mensaje: String?
 }

@@ -90,3 +90,23 @@ enum GOLLOAPP: String {
     case APP_PAYMENT_HISTORY = "20"
     case ACCOUNT_PAYMENT_HISTORY = "21"
 }
+
+func getToken() -> String? {
+    guard let data = KeychainManager.load(key: "token") else {
+        return nil
+    }
+    let token = String(data: data, encoding: .utf8)
+    return token
+}
+
+func getDefaultBaseHeaderRequest(with processId: String,
+                                 integrationId: String? = nil) -> Encabezado {
+    let encabezado = Encabezado(idProceso: processId,
+                                idDevice: "",
+                                idUsuario: UserManager.shared.userData?.uid ?? "",
+                                timeStamp: String(Date().timeIntervalSince1970),
+                                idCia: 10,
+                                token: getToken() ?? "",
+                                integrationId: integrationId)
+    return encabezado
+}

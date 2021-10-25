@@ -7,39 +7,14 @@
 
 import Foundation
 
-struct LoginRequest: APIRequest {
+struct LoginRequest: Codable {
+    public let idCliente: String
+    public let nombre: String
+    public let apellido1: String
+    public let apellido2: String
+    public let tipoLogin: String
+}
 
-    public typealias Response = [LoginData]
-
-    public var resourceName: String {
-        return "Procesos"
-    }
-
-    public let clientId: String
-    public let firstName: String
-    public let lastName: String
-    public let secondLastName: String
-    public let loginType: String
-
-    public var dictionary: [String: Any] {
-        return [
-            "servicio":[
-                "encabezado": [
-                    "idProceso": GOLLOAPP.LOGIN_PROCESS_ID,
-                    "idDevice": "",
-                    "idUsuario": UserManager.shared.userData?.uid ?? "",
-                    "timeStamp": Date().timeIntervalSince1970,
-                    "idCia": 10,
-                    "token": ""
-                ],
-                "parametros": [
-                    "idCliente": clientId,
-                    "nombre": firstName,
-                    "apellido1": lastName,
-                    "apellido2": secondLastName,
-                    "tipoLogin": loginType
-                ]
-            ]
-        ]
-    }
+enum LoginType: Int {
+    case none = 0, email, google, facebook, phone, apple
 }

@@ -54,12 +54,16 @@ class LoginViewController: UIViewController {
         signUpButton.setAttributedTitle(text.withBoldText(text: "REGISTER", fontNormalText: UIFont.sansSerifDemiBold(ofSize: 15), fontBoldText: UIFont.sansSerifBold(ofSize: 15), fontColorBold: .primary), for: .normal)
     }
 
-    fileprivate func loginRequestInfo() {
-        viewModel.fetchUserInfo()
+    fileprivate func loginRequestInfo(for loginType: LoginType) {
+        viewModel.fetchUserInfo(for: loginType)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                if let vc = AppStoryboard.Home.initialViewController() {
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -109,7 +113,7 @@ class LoginViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 if self.viewModel.isEmailValid(with: self.usernameTextField.text ?? "") {
-                    self.doLogin()
+                    self.doLogin(for: .email)
                 } else {
                     self.showAlert(alertText: "GolloPromos", alertMessage: "Please enter a valid email.")
                 }
@@ -125,7 +129,7 @@ class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    func doLogin() {
+    func doLogin(for loginType: LoginType) {
         buttonLogin.showLoading()
         guard let username = usernameTextField.text,
               let password = passwordTextField.text else { return }
@@ -134,14 +138,15 @@ class LoginViewController: UIViewController {
             if let error = error {
                 self.buttonLogin.hideLoading()
                 self.showAlert(alertText: "GolloPromos", alertMessage: error)
+                do {
+                    try Auth.auth().signOut()
+                } catch let error as NSError {
+                    log.debug(error)
+                }
             }
-            self.loginRequestInfo()
             guard let user = user else { return }
             self.viewModel.setUserData(with: user)
-            if let vc = AppStoryboard.Home.initialViewController() {
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
-            }
+            self.loginRequestInfo(for: loginType)
         }
     }
 }

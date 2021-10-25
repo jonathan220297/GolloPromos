@@ -93,6 +93,8 @@
 		4F173241270147B300D7924D /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F173240270147B300D7924D /* StatusTableViewCell.swift */; };
 		4F1732432701494900D7924D /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1732422701494900D7924D /* HistoryViewController.swift */; };
 		4F3080A627121F2100F7D8DE /* BaseHeaderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */; };
+		4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */; };
+		4F37A7F027223EE000FBB46B /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37A7EF27223EE000FBB46B /* BaseRequest.swift */; };
 		4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46199E2700FC8300265E73 /* StatusViewController.swift */; };
 		4F59347E271FD6AD00C63A6F /* Pods_PromosGollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; };
 		4F59347F271FD6AD00C63A6F /* Pods_PromosGollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -272,6 +274,8 @@
 		4F173240270147B300D7924D /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 		4F1732422701494900D7924D /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderRequest.swift; sourceTree = "<group>"; };
+		4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		4F37A7EF27223EE000FBB46B /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		4F46199E2700FC8300265E73 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewModel.swift; sourceTree = "<group>"; };
 		4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsRequest.swift; sourceTree = "<group>"; };
@@ -742,7 +746,7 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		4FA2767126D914C200216284 /* StoryBoards */ = {
+		4FA2767126D914C200216284 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				4FDA3AA626D8FE27003B2CB6 /* LaunchScreen.storyboard */,
@@ -755,7 +759,7 @@
 				4F0D96C526DDD98B0061E89E /* Payments.storyboard */,
 				4F0D96C726DDD9990061E89E /* Services.storyboard */,
 			);
-			path = StoryBoards;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		4FA2767226D914CF00216284 /* Views */ = {
@@ -784,6 +788,7 @@
 				4F0D962C26D91B7A0061E89E /* Authentication */,
 				4F0D969226DDD3E50061E89E /* Notifications */,
 				4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */,
+				4F37A7EF27223EE000FBB46B /* BaseRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -793,6 +798,7 @@
 			children = (
 				4F0D962D26D91BE80061E89E /* UserManager.swift */,
 				4FE1911426DEFB0E00322128 /* DataManager.swift */,
+				4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -883,7 +889,7 @@
 				4FA2766E26D9149500216284 /* Commons */,
 				4FA2766F26D914A100216284 /* Controllers */,
 				4FA2767026D914AC00216284 /* ViewModels */,
-				4FA2767126D914C200216284 /* StoryBoards */,
+				4FA2767126D914C200216284 /* Storyboards */,
 				4FA2767226D914CF00216284 /* Views */,
 				4FA2767326D914D400216284 /* Models */,
 				4FA2767426D914D900216284 /* Manager */,
@@ -1400,6 +1406,7 @@
 				4F0D964826DDBA670061E89E /* UINavigationBar+Extension.swift in Sources */,
 				4FA2768526D9193C00216284 /* SignUpViewModel.swift in Sources */,
 				4F0D969F26DDD57A0061E89E /* SideMenuViewController.swift in Sources */,
+				4F37A7F027223EE000FBB46B /* BaseRequest.swift in Sources */,
 				4FB2582F2720DDDC0003C607 /* HistoryViewModel.swift in Sources */,
 				4FA41E0A27015A09007C93F9 /* LoginRequest.swift in Sources */,
 				4F0D963326DDB82F0061E89E /* UIViewController+Extension.swift in Sources */,
@@ -1457,6 +1464,7 @@
 				4F894A1D270A60750004AAB3 /* SearchDocumentRequest.swift in Sources */,
 				4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */,
 				4FE1913426DF071A00322128 /* FilterViewController.swift in Sources */,
+				4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */,
 				4F0D969126DDD3BE0061E89E /* NotificationsViewModel.swift in Sources */,
 				4F0D964C26DDBA8E0061E89E /* UIView+Extension.swift in Sources */,
 				4FDA3A9E26D8FE26003B2CB6 /* SceneDelegate.swift in Sources */,
