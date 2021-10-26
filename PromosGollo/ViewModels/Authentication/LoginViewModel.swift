@@ -42,9 +42,9 @@ class LoginViewModel: NSObject {
         }
     }
 
-    func fetchUserInfo(for loginType: LoginType) -> BehaviorRelay<[LoginData]?> {
-        let apiResponse: BehaviorRelay<[LoginData]?> = BehaviorRelay(value: nil)
-        service.callWebService(BaseRequest<[LoginData]>(
+    func fetchUserInfo(for loginType: LoginType) -> BehaviorRelay<LoginData?> {
+        let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<LoginData, LoginRequest>(
             service: BaseServiceRequestParam(
                 servicio: ServicioParam(
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.LOGIN_PROCESS_ID.rawValue),
@@ -61,6 +61,9 @@ class LoginViewModel: NSObject {
             DispatchQueue.main.async {
                 switch response {
                 case .success(let response):
+                    if let token = response.token {
+                        let _ = self.saveToken(with: token)
+                    }
                     apiResponse.accept(response)
                 case .failure(let error):
                     self.errorMessage.accept(error.localizedDescription)
@@ -68,5 +71,15 @@ class LoginViewModel: NSObject {
             }
         }
         return apiResponse
+    }
+    
+    func saveToken(with token: String) -> Bool {
+        if let data = token.data(using: .utf8) {
+            let status = KeychainManager.save(key: "token", data: data)
+            log.debug("Status: \(status)")
+            return true
+        } else {
+            return false
+        }
     }
 }

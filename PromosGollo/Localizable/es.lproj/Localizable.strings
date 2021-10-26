@@ -1,0 +1,132 @@
+/* 
+  Localizable.strings
+  Shoppi
+
+  Created by Jonathan  Rodriguez on 14/6/21.
+  
+*/
+
+// MainViewController
+"MainViewController_description_label" = "Thanks for choosing us! Shoppi is the best choice for local eCommerce";
+"MainViewController_continue_button" = "Continue";
+
+// LoginViewController
+"LoginViewController_loggin_button" = "INICIAR SESIÓN";
+
+// TermsConditionsController
+"TermsConditionsController_terms" = "TERMINOS Y CONDICIONES PARA EL USO DE LA PLATAFORMA TECNOLÓGICA SHOPPI
+
+I. AVISO LEGAL
+En cumplimiento del artículo 15 de la Ley de Comercio Electrónico; artículos 13-C, D, 21-A de la Ley de Protección al Consumidor, se establecen Los Términos y Condiciones entre SHOPPI y los usuarios; cuya finalidad es dar a conocer los derechos y obligaciones que tienen los consumidores y establecer las obligaciones de los proveedores que utilizan estas tecnologías para ofrecer sus productos y servicios, según las siguientes cláusulas:
+
+Identificación y Titularidad
+Shoppi es una plataforma tecnológica propiedad de Shoppi Stores, S.A. de C.V. sociedad mercantil, de nacionalidad salvadoreña, con domicilio en la Ciudad de San Salvador, departamento de San Salvador, República de el Salvador, con oficinas en World Trade Center, Torre Cuatro, colonia Escalón, San salvador.
+Tel. Contacto: +(503) 2223-4813
+Correo electrónico: customers@shoppistores.com
+Sitio Web: https://www.shoppistores.com
+
+Finalidad
+La finalidad de la plataforma es un e-Commerce, por medio de la cual Shoppi comercializa bienes y servicios, utilizando medios digitales, como páginas web, aplicaciones móviles y redes sociales, como los siguientes: Comercializar prendas de vestir y accesorios; compra y venta de productos tecnológicos; compra y venta de licores de alta calidad, electrodomésticos, artesanías, productos de zapatería y/o cualquier otro producto lícito que se encuentre en el comercio.
+
+II. CONDICIONES GENERALES DE USO
+Te damos la bienvenida a “SHOPPI” nuestra plataforma digital para el comercio Local. ¡Qué bien que estas aquí!
+Disfruta tu navegación en nuestra APP y respeta nuestros términos y condiciones.
+Te pedimos que leas detenidamente este documento antes de acceder a nuestros los servicios.
+Los términos y condiciones son un contrato entre el usuario y Shoppi Stores, S.A. de C.V.
+Este contrato expone tus derechos y responsabilidades cuando usas nuestra aplicación móvil y el resto de los servicios que ofrece SHOPPI (nos referiremos a todos estos elementos de nuestros \"Servicios\"), por lo que te pedimos que lo leas detenidamente. Al usar cualquiera de nuestros servicios, estás aceptando estas Condiciones. Si no estás de acuerdo con los Términos y Condiciones, no podrás usar nuestros Servicios. ¿Aceptas? ¡Fantástico, sigue leyendo!
+
+1. REGISTRO:
+a). Para utilizar algunos de los SERVICIOS que brinda SHOPPI a través de la APP, la persona podrá tener que registrarse como USUARIO REGISTRADO y abrir una CUENTA en la PLATAFORMA. Sin embargo, toda persona que desee obtener una CUENTA o utilizar los SERVICIOS deberá ser mayor de edad de conformidad con la LEGISLACIÓN APLICABLE (18 años) con capacidad legal para contratar, deberá brindar la información requerida para poder usar los SERVICIOS y deberá manifestar el haber leído, comprendido y aceptado los presentes Términos y Condiciones del SERVICIO, así como nuestra Política de Privacidad y Seguridad.
+b). SHOPPI requerirá, para efectos de crear la CUENTA del USUARIO REGISTRADO, la siguiente información: Nombre, dirección, número de identificación, número de teléfono móvil, así como por lo menos un método de pago válido (bien una tarjeta de crédito o bien un socio de pago aceptado).
+c). El número de teléfono móvil del USUARIO será la identificación de USUARIO REGISTRADO para efectos de acceder a SHOPPI. Por esta razón, no será posible cambiar el número de teléfono de la CUENTA
+d). Los USUARIOS deberán brindar información exacta y veraz, y así garantizar que los datos que aportan son suficientes para ser identificados y/o localizados. Cualquier imprecisión que impida identificar o localizar al USUARIO, así como cualquier información falsa brindada, facultará a SHOPPI para proceder con la cancelación de los SERVICIOS y la eliminación inmediata de la CUENTA, en el caso de USUARIOS REGISTRADOS. SHOPPI podrá proceder al cierre de la CUENTA del USUARIO REGISTRADO a su sola discreción, para lo cual únicamente debería comunicar dicha decisión al correo electrónico señalado por el USUARIO REGISTRADO en sus datos personales.
+e). SHOPPI se obliga para con el USUARIO en base a lo establecido en el literal a) del  Art. 21 de la Ley de Protección al Consumidor, en aplicar Políticas de Confidencialidad en la recolección,  almacenamiento, cesión y  manejo de los datos personales generados en el presente registro; excepto cuando sea requerida por autoridad competente.  (En este apartado en caso que SHOPPI lo considere NECESARIO se puede establecer que el usuario AUTORIZA el uso de sus datos personales para ser compartidos con otras personas naturales o jurídicas)
+
+2. LOS PRODUCTOS Y SERVICIOS QUE OFRECE SHOPPI SON LOS SIGUIENTES:
+•    Compra Venta de PRODUCTOS: Por medio de la PLATAFORMA de SHOPPI, el USUARIO podrá adquirir PRODUCTOS propios de SHOPPI y/o de SOCIOS ESTRATEGICOS que ofrezcan sus PRODUCTOS a través de la PLATAFORMA. Los PRODUCTOS podrán ser: productos tecnológicos, electrodomésticos, prendas de vestir, artesanías, productos de zapatería y/o cualquier otro producto lícito que se encuentre en el comercio, que no contravenga la legislación nacional y pueda incluirse dentro de los depósitos en los transportes asignados para el envío a través de nuestro servicio de entrega.
+•    Información: SHOOPI podrá realizar exposición de sus PRODUCTOS y SERVICIOS, en la PLATAFORMA, sobre compras realizadas, sugerencias, información de interés u otros que SHOPPI considere conveniente.
+•    Los Usuarios que realicen un pedido que incluya la adquisición y/o entrega de bebidas alcohólicas a través de la plataforma deben ser mayores de edad, habiendo cumplido los 18 años, sin incapacidades legales. Al realizar un pedido que incluya bebidas alcohólicas, el Usuario confirma que tiene al menos 18 años de edad sin incapacidades legales. SHOPPI se reserva el derecho de negarse a permitir el pedido de compra y/o entrega de alcohol a cualquier persona que no pueda probar tener al menos 18 años de edad. La presente cláusula será de idéntica aplicación a cualquier otro producto y/o servicio análogo reservado a la mayoría de edad según legislación vigente y que sea solicitado por un Usuario a través de la Plataforma.
+
+4. DELIMITACIONES Y EXCLUSIONES A LOS SERVICIOS
+•    Descripción y fotografía del producto. Las fotografías de los PRODUCTOS ofrecidos en el SITIO de la APP exhiben los colores reales correspondientes a los PRODUCTOS. Sin embargo, los colores que verá el USUARIO al acceder al SITIO de la APP, dependerán de la calibración de su monitor/dispositivo. Por lo anterior no podemos garantizar que los colores mostrados en el monitor/dispositivo de cada USUARIO sean idénticos a los del PRODUCTO. Asimismo, es fundamental que el USUARIO lea detenidamente las descripciones de los PRODUCTOS, así como las condiciones de compra antes de realizar el pedido. Esto, con el fin de entender claramente de los términos, condiciones y restricciones que pudieren aplicar a cada PRODUCTO.
+
+•    Existencias del Producto o servicio. El USUARIO entiende y acepta que la posibilidad de concretar la venta del PRODUCTO o SERVICIO depende del número de existencias del PRODUCTO que el SOCIO ESTRATEGICO o SHOPPI, según sea el caso, mantenga en inventario. Previo a la confirmación de la transacción se informará al USUARIO sobre la disponibilidad de las unidades de PRODUCTO requeridas.
+
+•    Garantía de devolución. La garantía de devolución de los PRODUCTOS que se comercialicen a través de la APP será por el término y condiciones que establezca la LEGISLACIÓN APLICABLE, la cual corre por cuenta del SOCIO ESTRATEGICO que venda el/los PRODUCTO/S O SERVICIOS.
+
+•    Derecho de retracto. El consumidor tendrá el derecho de retracto que podrá hacer valer, siempre y cuando el PRODUCTO O SERVICIO aún no haya sido prestado y el pedido u orden no haya sido elaborado por el SOCIO ESTRATEGICO; en todo caso será aplicable lo establecido en el Art. 13-A de la Ley de Protección al Consumidor.
+
+5.    PRECIOS, FORMA DE PAGO Y DESPACHO
+•    Los CARGOS de los PRODUCTOS y SERVICIOS expuestos se indican en la moneda de curso legal en el TERRITORIO NACIONAL de la República de El Salvador, en los que se realicen la/las transacciones y con todos los impuestos incluidos. Cualquier otro costo asociado a la compra, tal como, el servicio de envío a su discreción, ofrecerá a sus USUARIOS, se facturará por separado y se indicará en la orden de compra por cancelar.
+•    El USUARIO podrá realizar el pago de los CARGOS por medio de sus tarjetas aceptadas por SHOPPI. Dicho pago deberá acreditarse antes del despacho del PRODUCTO. El USUARIO se compromete a no realizar contra CARGOS en la tarjeta.
+•    Al finalizar el proceso de compra en línea, el USUARIO recibirá siempre una confirmación de la compra y una confirmación por parte del procesador de pagos a su correo electrónico registrado. La factura/ticket digital de la compra, será enviada por el mismo medio. En un plazo de 2 horas desde el momento del pago.
+•    El producto o servicio será entregado por SHOPPI en un plazo de 48 horas, contado a partir de la comprobación de la compra desde la APP.
+•    Es importante, para efectos de realizar la compra, que el USUARIO verifique todos los datos sobre los PRODUCTOS o los SERVICIOS que desea adquirir para no incurrir en errores, así mismo que ingrese en forma adecuada toda la información solicitada para la entrega del PRODUCTO o la prestación del SERVICIO, y que entienda y acepte los términos y condiciones de compra.
+•    SHOPPI no será responsabiliza por problemas derivados de fallas en el sistema del procesador de pagos y/o la entidad bancaria por medio de la cual se pretende realizar el pago, ante tal caso el cual el USUARIO deberá comunicarse con su proveedor de servicios para corregir el problema y poder efectuar la compra en cuestión.
+•    El USUARIO reconoce y acepta que los CARGOS aplicables en determinadas zonas geográficas podrán incrementar sustancialmente dependiendo de la distancia de estas zonas geográficas. No obstante, estos CARGOS se notificarán al USUARIO previo a que el haya confirmado el SERVICIO y con el fin de que se pueda tomar una decisión de consumo debidamente informada.
+•    SHOPPI se obliga en virtud del Art.13-D de la Ley de Protección al Consumidor, a reversar los pagos realizados por el consumidor, en un plazo de 15 días desde la fecha en que éste presenta su reclamo cuando: a) Ejerza su derecho de retracto; b) El producto adquirido no haya sido recibido, o el servicio contratado no haya sido prestado; c) El objeto del contrato no corresponda con lo solicitado, o resulte defectuoso; y d) Existan errores en el cobro de las transacciones por fallas en los sistemas de pago de terceros.
+
+6.    RECEPCIÓN DEL PEDIDO Y CONDICIONES DE ENTREGA
+•    El USUARIO o la persona que recibe el producto está autorizada para abrir el paquete y para revisar que el mismo se recibió en buenas condiciones. Caso contrario no deberá recibir el bien y deberá notificar en forma inmediata a SHOPPI sobre lo sucedido por los medios que SHOPPI a dispuesto para ello, para que SHOPPI pueda investigar la situación y resolver el inconveniente. SHOPPI no se hará responsable por bienes recibidos y aceptados a satisfacción por el USUARIO o quien los reciba en la dirección señalada para la entrega.
+•    La entrega de los pedidos se realizará en el domicilio de entrega designado libremente por el USUARIO, dentro del TERRITORIO NACIONAL. SHOPPI no asumirá responsabilidad alguna cuando la entrega del bien o la ejecución del SERVICIO no se pueda realizar como consecuencia de la inexactitud o falsedad de los datos facilitados por el USUARIO, por la ausencia del destinatario, o por cualquier otra causa ajena a la responsabilidad de SHOPPI.
+
+7.    LICENCIA
+•    Sujeto al cumplimiento de estos Términos y Condiciones, SHOPPI le otorga al USUARIO una licencia limitada, no exclusiva, revocable, y no transferible para:
+(i)    el acceso y uso de las Aplicaciones en su dispositivo personal solo en relación con su uso de los PRODUCTOS O SERVICIOS;
+(ii)    el acceso y uso de cualquier contenido, información y material relacionado que pueda ponerse a disposición a través de los PRODUCTOS O SERVICIOS, en cada caso solo para su uso personal, no comercial. SHOPPI y sus licenciantes se reservan cualquier derecho que no haya sido expresamente otorgado por el presente.
+
+8. TITULARIDAD
+Los PRODUCTOS Y SERVICIOS y todos los derechos referentes a estos son y permanecerán como propiedad de SHOPPI, en las formas y espacios de tiempo en los que SHOPPI determine. Ninguno de estos Términos y Condiciones ni el uso de los SERVICIOS le transfiere u otorgan ningún derecho: 1) en relación con los PRODUCTOS O SERVICIOS, excepto en cuanto a la licencia limitada otorgada anteriormente; o bien 2) a utilizar o mencionar en cualquier modo los nombres de la empresa, logotipos, nombres de PRODUCTOS Y SERVICIO, marcas comerciales o marcas de SERVICIO de SHOPPI o de sus licenciantes, o retirar cualquier nota de derechos de autor, marca registrada u otra nota de propiedad de cualquier parte de los SERVICIOS antes mencionados.
+
+9. COMUNICACIÓN CON EL USUARIO
+Todo USUARIO que se registre y/o utilice los SERVICIOS de SHOPPI y/o que nos escriba por correo electrónico, recibirá comunicaciones por esa misma vía (el correo electrónico registrado por el USUARIO) por parte de SHOPPI.
+El USUARIO acepta que SHOPPI podrá notificar, por medio del correo electrónico registrado por el USUARIO y a través de la APP, información sobre: Promociones, PRODUCTOS y SERVICIOS, notificaciones, cambios a los Términos y Condiciones, facturas electrónicas, confirmaciones de pedidos, así como cualquier otra información o notificación formal que SHOPPI necesite notificar al USUARIO.
+
+
+10. DERECHOS DE PROPIEDAD INTELECTUAL
+Los derechos de propiedad intelectual sobre los contenidos de la APP, incluyendo, pero no limitándose a: Su diseño gráfico, los signos distintivos que aparecen (marcas y nombres comerciales), los programas de ordenador subyacentes y/o software (incluidos los códigos fuente), así como los distintos elementos que integran la APP (textos, gráficos, fotografías, videos, etc.) corresponden única y exclusivamente a SHOPPI, lo que le otorga el derecho de uso y explotación de los mismos.
+Queda claramente prohibido al USUARIO la reproducción, transformación, distribución, comunicación pública, extracción para la utilización de la APP, sus contenidos y/o los signos distintivos de SHOPPI.
+
+11. ZONA DE COBERTURA GEOGRAFICA
+Los SERVICIOS de la APP se realizarán únicamente en las zonas de cobertura del TERRITORIO las cuales sean zonas de fácil acceso, SHOPPI se reserva el derecho de efectuar entregas de PRODUCTOS a zonas conflictivas o fuera del área ya establecida, las cuales quedan registradas en la zona geográfica de cobertura, la cual se validará antes de solicitar el PRODUCTO O SERVICIO.
+Previo a la confirmación de la orden, SHOPPI le notificará al USUARIO sobre la disponibilidad de SERVICIOS de entrega en el territorio donde se solicita la entrega del PRODUCTO.
+
+12. RESPONSABILIDAD CON LA UTILIZACIÓN DE PRODUCTOS Y SERVICIOS
+El USUARIO libera a SHOPPI de toda responsabilidad por daños o perjuicios ocurridos como consecuencia del mal uso o incorrecta utilización por parte del USUARIO de la PLATAFORMA de la APP y los PRODUCTOS que provee SHOPPI a través del SITIO de la APP. Así mismo, SHOPPI se reserva el derecho de rechazar una solicitud de SERVICIO, a su sola discreción y, en especial, ante la sospecha de cualquier actividad irregular o la utilización del Sitio y/o el APP para fines distintos a los aquí previstos.
+Toda la información proporcionada por el USUARIO deberá ser verdadera y exacta. Proporcionar cualquier información falsa o inexacta constituye el incumplimiento de estos Términos y Condiciones.
+13. RENUNCIA DE INDEMNIZACION POR DAÑOS Y LIMITACIONES
+•    El USUARIO reconoce y acepta que el uso de la APP se realiza en todo momento bajo su responsabilidad y riesgo. SHOPPI no será responsable por el uso indebido que pueda realizarse de la APP.
+•    El USUARIO reconoce que el uso de la red Internet supone asumir el riesgo de que sus equipos informáticos puedan ser afectados por los elementos antes mencionados. Ante tal efecto, corresponde al USUARIO, en todo caso, la disponibilidad de herramientas adecuadas para la detección y eliminación de programas electrónicos dañinos que puedan suponer un riesgo para su equipo de cómputo.
+•    SHOPPI no se hace responsable de los errores de seguridad que se puedan producir ni de los daños que puedan causarse al sistema informático del Usuario (hardware y software), a los ficheros o documentos almacenados en el mismo, como consecuencia de: La presencia de un virus en el sistema informático o terminal móvil del Usuario que sea utilizado para la conexión a los servicios y contenidos de la Plataforma; un mal funcionamiento del navegador; por el uso de versiones no actualizadas del mismo.
+•    SHOPPI no será responsable por problemas derivados de fallas en el sistema de la entidad bancaria por medio de la cual se pretende efectuar el pago, caso ante el cual el USUARIO deberá comunicarse con su proveedor de SERVICIOS para corregir el problema y poder efectuar la compra requerida.
+•    SHOPPI RENUNCIA a toda declaración y garantía, expresa, implícita, no establecida en estos términos y condiciones, incluidas las garantías implícitas de comerciabilidad, idoneidad para un fin especifico. Además, SHOPPI no hace declaración ni presta garantía alguna relativa a la fiabilidad, puntualidad, calidad, idoneidad o disponibilidad de los PRODUCTOS o cualquiera de los SERVICIOS, PRODUCTOS o bienes solicitados a través del uso de los SERVICIOS, o que los SERVICIOS no serán interrumpidos o estarán libres de errores. SHOPPI no garantiza la calidad, idoneidad, seguridad o habilidad de los TERCEROS PROVEEDORES. El USUARIO acuerda que todo riesgo derivado de su uso de los SERVICIOS y cualquier SERVICIO o PRODUCTO solicitado en relación con aquellos será únicamente suyo, en la máxima medida permitida por las leyes aplicables.
+•    SHOPPI en base al literal b), del art. 21-A de la Ley de Protección al Consumidor el adoptar sistemas de seguridad para la protección efectiva, íntegra y confiable de las transacciones, especialmente las financieras y los pagos realizados por los consumidores; caso contrario indicar que no cuenta con certificación. Siendo SHOPPI responsable de las fallas en sus sistemas.
+•    El USUARIO acuerda mantener  y responder frente a SHOPPI y sus colaboradores, directivos, empleados y agentes por cualquier reclamo, demanda, pérdida, responsabilidad y gasto (incluidos los honorarios de abogados) que deriven en concepto de indemnización por : (i) el uso de los SERVICIOS o PRODUCTOS obtenidos a través del uso de los SERVICIOS; (ii) el incumplimiento o violación de cualquiera de estos Términos y Condiciones; (iii) el uso por parte de SHOPPI de su CONTENIDO DE USUARIO; o (iv) la infracción de los derechos de cualquier tercero, incluidos TERCEROS PROVEEDORES.
+14. ACTUALIZACION Y MODIFICACION DE LA PLATAFORMA
+SHOPPI se reserva el derecho de modificar, en cualquier momento y sin previo aviso las presentes Condiciones Generales de Uso, la Política de Privacidad y la Política de Cookies. Los Usuarios deberán leer atentamente estas Condiciones Generales al acceder a la Plataforma. En cualquier caso, la aceptación de las Condiciones Generales será un paso previo e indispensable al acceso de los servicios y contenidos disponibles a través de la Plataforma de SHOPPI APP.
+Asimismo, SHOPPI se reserva el derecho de efectuar, en cualquier momento y sin necesidad de previo aviso, actualizaciones, modificaciones o eliminación de información contenida en su Plataforma en la configuración y presentación de ésta y de las condiciones de acceso, sin asumir responsabilidad alguna por ello. SHOPPI no garantiza la inexistencia de interrupciones o errores en el acceso de la Plataforma o a su contenido, ni que ésta se encuentre siempre actualizada, no obstante, SHOPPI llevará a cabo, siempre que no concurran causas que lo hagan imposible o de difícil ejecución, y tan pronto tenga noticia de los errores, desconexiones o falta de actualización en los contenidos, todas aquellas labores tendentes a subsanar los errores, restablecer la comunicación y actualizar los contenidos.
+Estos Términos y Condiciones constituyen el contrato íntegro y el entendimiento entre las partes en relación con el objeto y sustituye y reemplaza a todos los contratos o acuerdos anteriores o contemporáneos en relación con dicho objeto.
+
+15. RESOLUCIÓN DE RECLAMOS
+En cumplimiento a la ley de Protección al Consumidor,  en caso de reclamos por parte del consumidor o ante cualquier duda o consulta sobre los alcances e interpretación de los presentes términos y condiciones, podrá evacuarse mediante el correo electrónico de SHOPPI customers@shoppstores.com, quien procurará en resolver amigablemente las controversias que se surjan del presente contrato; en defecto se somete a las leyes de la materia que corresponda; la respuesta a estas consultas no implicará una modificación total o parcial de este documento, o una dispensa de su cumplimiento.
+En caso que exista un vacío en los Términos y Condiciones, o no pueda resolverse el conflicto se aplica lo dispuesto en las normas generales vigentes que regulan la materia, para nuestro caso, Ley de Protección al Consumidor en lo relativo al Comercio Electrónico y la Ley de Comercio Electrónico.
+De las reformas podemos advertir, que quienes comercializan sus productos o servicios a través de comercio electrónico, por medio de las diversas plataformas web, deberán realizar un chequeo para validar que se encuentren cumpliendo con las obligaciones mínimas previas, durante y posteriores a la contratación de bienes y/o servicios; con énfasis en aquellas que deben ser incluidas como parte integrante de las plataformas web: requisitos, especificaciones, condiciones de contratación, formatos de contratos, resumen y confirmación de pedidos.
+Otras de las obligaciones que podrían representar retos importantes a cumplir, están relacionadas a los sistemas de seguridad de la información, que si bien, no es obligatorio contar con un sistema certificado, si se es responsable de las fallas de dichos sistemas; también las relacionadas con la captura, resguardo y almacenamiento de información. Deberá considerarse las particularidades para el resguardo de la información pues los diversos componentes que demuestran los pasos para configurar el consentimiento del consumidor, serán determinantes en los procesos de reclamos que deban ser evaluados ante los procedimientos administrativos y sancionatorios a los cuales podrán verse sujeto los proveedores. En conclusión, nuestro marco regulatorio en favor de los consumidores es cada vez más robusto, lo que debe obligar a los proveedores, y no solo a quienes lo hacen por medio del comercio electrónico a realizar cuanto antes, un análisis de cumplimientos mínimos, con la finalidad de disminuir el riesgo de sanciones bajo procedimientos administrativos sanciona-torios, por una entidad, la Defensoría del Consumidor
+
+";
+"TermsConditionsController_continue_error" = "Debes de aceptar los términos y condiciones para continuar.";
+
+// SignUpViewController
+"SignUpViewController_button_title" = "CREATE NEW ACCOUNT";
+
+// Extensions
+"Extension_simple_alert_ok_button" = "Got it";
+
+// ProfileViewController
+"ProfileViewController_title" = "Perfil de usuario";
+"ProfileViewController_document_type" = "Tipo de documento";
+"ProfileViewController_document_number" = "Número de identificacion (ID o pasaporte)";
+"ProfileViewController_search_customer" = "BUSCAR CLIENTE";
+"ProfileViewController_cedula" = "Cédula";
+"ProfileViewController_cedula_juridica" = "Cédula jurídica";
+"ProfileViewController_passport" = "Pasaporte";

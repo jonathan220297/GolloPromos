@@ -5,7 +5,7 @@
 //  Created by Rodrigo Osegueda on 31/8/21.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - HomeConfigurationData
 struct HomeConfigurationData: Codable {
@@ -36,6 +36,7 @@ struct Banner: Codable {
     let backgroundColor: String?
     let columns: Int?
     let images: [ImageBanner]?
+    var uiHeight: CGFloat? = 0.0
 }
 
 // MARK: - Image

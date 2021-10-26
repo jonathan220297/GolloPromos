@@ -13,13 +13,15 @@ public class LoginData: Codable {
     let estadoCliente: Bool?
     let estadoRegistro: Bool?
     let registro: UserInfo?
+    let token: String?
 
-    public init(idCliente: String?, estadoLogin: Bool?, estadoRegistro: Bool?, estadoCliente: Bool?, registro: UserInfo?) {
+    public init(idCliente: String?, estadoLogin: Bool?, estadoRegistro: Bool?, estadoCliente: Bool?, registro: UserInfo?, token: String?) {
         self.idCliente = idCliente
         self.estadoLogin = estadoLogin
         self.estadoRegistro = estadoRegistro
         self.estadoCliente = estadoCliente
         self.registro = registro
+        self.token = token
     }
 }
 

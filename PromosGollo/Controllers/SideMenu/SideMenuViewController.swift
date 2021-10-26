@@ -10,13 +10,16 @@ import Nuke
 import RxSwift
 import RxCocoa
 import FirebaseAuth
+import SafariServices
 
 class SideMenuViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
-
+    @IBOutlet weak var termsConditionButton: UIButton!
+    @IBOutlet weak var helpButton: UIButton!
+    
     let disposeBag = DisposeBag()
 
     lazy var viewModel: SideMenuViewModel = {
@@ -55,15 +58,22 @@ class SideMenuViewController: UIViewController {
 
     // MARK: - Functions
     fileprivate func setUserData() {
-//        editProfileButton.layer.cornerRadius = 5
-//        editProfileButton.layer.borderWidth = 1
-//        editProfileButton.layer.borderColor = UIColor.black.cgColor
         if let user = viewModel.userManager.userData {
             if let displayName = user.displayName {
                 profileName.text = displayName
             } else {
                 profileName.text = user.email ?? ""
             }
+        }
+    }
+    
+    func openUrl(_ url: String) {
+        if let url = URL(string: url) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
         }
     }
 }
@@ -77,6 +87,22 @@ extension SideMenuViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         .disposed(by: disposeBag)
+        
+        termsConditionButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.openUrl("https://www.gollotienda.com/terminos-y-condiciones")
+            })
+            .disposed(by: disposeBag)
+        
+        helpButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.openUrl("https://www.gollotienda.com/contacto/")
+            })
+            .disposed(by: disposeBag)
     }
 }
 

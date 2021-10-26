@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BaseRequest<T: Codable>: APIRequest {
+struct BaseRequest<T: Codable, U: Codable>: APIRequest {
 
     public typealias Response = T
 
@@ -15,7 +15,7 @@ struct BaseRequest<T: Codable>: APIRequest {
         return "Procesos"
     }
 
-    let service: BaseServiceRequestParam<LoginRequest>?
+    let service: BaseServiceRequestParam<U>?
     
     public var dictionary: [String: Any] {
         return service.map { $0.dict }!!

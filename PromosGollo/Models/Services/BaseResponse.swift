@@ -8,13 +8,22 @@
 import Foundation
 
 // MARK: - BaseResponse
-struct BaseResponse<T: Decodable>: Decodable {
+class BaseResponse<T: Decodable>: Decodable {
+    var status: Bool?
+    var message: String?
+    var debugMessage: String?
+    var mapID: String?
+    var data: T?
+}
+
+// MARK: - BaseResponseGollo
+struct BaseResponseGollo<T: Decodable>: Decodable {
     let resultado: Resultado?
     let respuesta: T?
 }
 
 // MARK: - Resultado
 struct Resultado: Decodable {
-    let estado: Bool?
+    let estado: String?
     let mensaje: String?
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TJL-m3-XZP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TJL-m3-XZP">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +12,7 @@
         <!--Offers View Controller-->
         <scene sceneID="vva-WP-uh8">
             <objects>
-                <viewController storyboardIdentifier="offersVC" id="Xba-g1-8xg" customClass="OffersViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OffersViewController" id="Xba-g1-8xg" customClass="OffersViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9oa-Sp-ibw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,7 +56,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="50" id="GAS-Kf-YsQ" customClass="HeaderTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GAS-Kf-YsQ" id="d0E-4z-4zJ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -102,7 +102,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="155" id="LR0-Yr-qXS" customClass="ProductTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="74.5" width="414" height="155"/>
+                                        <rect key="frame" x="0.0" y="78" width="414" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LR0-Yr-qXS" id="sKJ-qe-9lN">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
@@ -181,7 +181,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="footerCell" rowHeight="30" id="jvZ-iv-gsp" customClass="FooterTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="229.5" width="414" height="30"/>
+                                        <rect key="frame" x="0.0" y="233" width="414" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jvZ-iv-gsp" id="dTJ-3b-Oy9">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
@@ -350,6 +350,7 @@
         <!--Offers-->
         <scene sceneID="Inx-qk-8bq">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZM0-t5-mfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TJL-m3-XZP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Offers" image="ic_promociones" id="Oew-oo-Clb"/>
                     <toolbarItems/>
@@ -366,7 +367,6 @@
                         <segue destination="Xba-g1-8xg" kind="relationship" relationship="rootViewController" id="uQ2-lw-vpP"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZM0-t5-mfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5235" y="120"/>
         </scene>

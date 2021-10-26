@@ -74,7 +74,7 @@ class SectionTableViewCell: UITableViewCell {
             viewModel.configureRecentView()
             viewMoreButton.tag = 0
         case LinkType.appCategory.rawValue:
-//            fetchProducts(by: section.linkValue ?? "")
+            fetchProducts(by: section.linkValue ?? "")
             viewMoreButton.tag = 1
             break
         default:
@@ -93,7 +93,8 @@ class SectionTableViewCell: UITableViewCell {
     }
     
     func fetchProducts(by category: String) {
-        viewModel.fetchProductsByCategory(with: category)
+        viewModel
+            .fetchProductsByCategory(with: category)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
@@ -102,7 +103,7 @@ class SectionTableViewCell: UITableViewCell {
                 self.productCollectionView.reloadData()
                 let content = self.viewModel.productsArray.count
                 let columns = Double(content) / 2.0
-                let cellSize = round(columns) * 300.0
+                let cellSize = round(columns) * 350.0
                 self.delegate?.sectionTableView(self, shouldReloadProductCellWith: cellSize)
             })
             .disposed(by: bag)
@@ -135,7 +136,7 @@ extension SectionTableViewCell: UICollectionViewDelegate,
         let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
         let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
         let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
-        return CGSize(width: size, height: 250)
+        return CGSize(width: size, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView,

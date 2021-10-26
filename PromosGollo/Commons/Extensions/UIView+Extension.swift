@@ -57,21 +57,12 @@ extension UIView {
     }
 
     func activityStarAnimating() {
-        let loader: UIActivityIndicatorView?
-        if #available(iOS 13.0, *) {
-            loader = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-            loader?.color = .label
-        } else {
-            // Fallback on earlier versions
-            loader = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-            loader?.color = .darkGray
-        }
-        loader?.center = CGPoint(x: self.frame.size.width  / 2, y: self.frame.size.height / 2 - 44)
-        loader?.startAnimating()
-        loader?.tag = 475647
-        if let loader = loader {
-            self.addSubview(loader)
-        }
+        let loader = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        loader.color = .darkGray
+        loader.center = CGPoint(x: self.frame.size.width  / 2, y: self.frame.size.height / 2 )
+        loader.startAnimating()
+        loader.tag = 475647
+        self.addSubview(loader)
     }
 
     func activityStarAnimating(with color: UIColor) {

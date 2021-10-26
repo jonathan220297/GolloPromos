@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "24BBE4A8-0F6D-4FB4-AE7B-510FCFE5328D"
-            shouldBeEnabled = "Yes"
+            uuid = "172C2F5C-8FC1-4C3A-9984-A220E4A2CCCB"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PromosGollo/Controllers/Authentication/LoginViewController.swift"
+            filePath = "PromosGollo/Views/Products/ProductCollectionViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "loginRequestInfo(for:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "setProductData(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

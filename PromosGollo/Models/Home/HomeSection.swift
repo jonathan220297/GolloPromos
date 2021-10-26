@@ -31,3 +31,6 @@ class HomeSection {
     }
 }
 
+enum ListLayout: Int {
+    case none = 0, oneColumn, twoColumns, threeColumns
+}

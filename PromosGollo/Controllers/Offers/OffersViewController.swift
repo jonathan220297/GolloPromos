@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import RxSwift
 
 class OffersViewController: UIViewController {
-
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var filterLabel: UILabel!
@@ -16,15 +16,21 @@ class OffersViewController: UIViewController {
     @IBOutlet weak var filterHeight: NSLayoutConstraint!
 
     @IBOutlet weak var offersTableView: UITableView!
+    
+    let bag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureRx()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.title = "Ofertas"
+        navigationItem.title = "Ofertas"
     }
 
+    // MARK: - Functions
+    func configureRx() {
+    }
 }
 
 // MARK: - Extension Table View

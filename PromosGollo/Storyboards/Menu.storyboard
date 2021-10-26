@@ -96,9 +96,6 @@
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nu-nq-YGb">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                                <connections>
-                                                                    <action selector="contactUsButtonTapped:" destination="YmW-mI-uSu" eventType="touchUpInside" id="I7o-90-sse"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -136,9 +133,6 @@
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXh-3Q-nbr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                                <connections>
-                                                                    <action selector="contactUsButtonTapped:" destination="YmW-mI-uSu" eventType="touchUpInside" id="SEf-09-5od"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -176,9 +170,6 @@
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-Df-wlO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                                <connections>
-                                                                    <action selector="contactUsButtonTapped:" destination="YmW-mI-uSu" eventType="touchUpInside" id="7ZH-FJ-ogk"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -216,9 +207,6 @@
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eG-O4-fhd">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                                <connections>
-                                                                    <action selector="contactUsButtonTapped:" destination="YmW-mI-uSu" eventType="touchUpInside" id="YYH-zK-kfK"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -257,7 +245,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0J2-uU-UQn">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                                                 <connections>
-                                                                    <action selector="contactUsButtonTapped:" destination="YmW-mI-uSu" eventType="touchUpInside" id="WLS-tK-vCx"/>
+                                                                    <segue destination="o9M-gR-RDW" kind="show" id="ntN-BZ-7hp"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -353,8 +341,10 @@
                     <navigationItem key="navigationItem" id="whX-wV-Hy1"/>
                     <connections>
                         <outlet property="editProfileButton" destination="0nu-nq-YGb" id="oq5-nX-j4P"/>
+                        <outlet property="helpButton" destination="HdB-Df-wlO" id="9Pz-il-l0a"/>
                         <outlet property="profileImageView" destination="iHA-J4-T4n" id="0bH-dn-8Tf"/>
                         <outlet property="profileName" destination="t44-kK-c8o" id="c6e-hc-Y3O"/>
+                        <outlet property="termsConditionButton" destination="CXh-3Q-nbr" id="hZa-7Z-dtB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCy-fp-mc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -420,6 +410,7 @@
                             <constraint firstItem="SA7-Vj-zMQ" firstAttribute="leading" secondItem="fQm-8o-KzF" secondAttribute="leading" constant="32" id="l1x-0N-0vG"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="buL-Xh-EMa"/>
                     <connections>
                         <outlet property="versionNumberLabel" destination="Iaz-e4-qbJ" id="2ls-F6-aQd"/>
                     </connections>

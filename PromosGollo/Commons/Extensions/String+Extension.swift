@@ -44,8 +44,10 @@ extension String {
     func currencyFormatting() -> String {
         if let value = Double(self) {
             let formatter = NumberFormatter()
-            formatter.currencySymbol = "$"
+            formatter.currencySymbol = "₡"
             formatter.numberStyle = .currency
+            formatter.currencyDecimalSeparator = ","
+            formatter.currencyGroupingSeparator = "."
             formatter.maximumFractionDigits = 2
             formatter.minimumFractionDigits = 2
             if let str = formatter.string(for: value) {
