@@ -70,13 +70,13 @@ class StatusViewController: UIViewController {
                       let data = data else { return }
                 self.showClientCreditInfo(creditInfo: data.datosCredito)
                 self.showClientTotals(totals: data.totales)
-                self.viewModel.status = data
+                self.viewModel.account = data.cuentas ?? []
                 self.tableView.reloadData()
             })
             .disposed(by: bag)
     }
 
-    fileprivate func showClientCreditInfo(creditInfo: CreditInfo?) {
+    fileprivate func showClientCreditInfo(creditInfo: CreditData?) {
         if let model = creditInfo {
             if let cmm = numberFormatter.string(from: NSNumber(value: model.cmmActual ?? 0.0)) {
                 cmmLabel.text = "₡" + " " + String(cmm)
@@ -93,8 +93,8 @@ class StatusViewController: UIViewController {
         }
     }
 
-    fileprivate func showClientTotals(totals: [Totals]) {
-        if totals.count > 0 {
+    fileprivate func showClientTotals(totals: [TotalsData]?) {
+        if let totals = totals, totals.count > 0 {
             if let initial = numberFormatter.string(from: NSNumber(value: totals[0].totalMontoInicial ?? 0.0)) {
                 initialAmountLabel.text = "₡" + " " + String(initial)
             }
@@ -114,11 +114,11 @@ class StatusViewController: UIViewController {
 
 extension StatusViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.status.cuentas.count
+        return self.viewModel.account.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let account = self.viewModel.status.cuentas[indexPath.row]
+        let account = self.viewModel.account[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell") as! StatusTableViewCell
 
         cell.setStatus(model: account, index: indexPath.row)
@@ -135,7 +135,7 @@ extension StatusViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension StatusViewController: StatusDelegate {
     func OpenItems(with index: Int) {
-        let model = self.viewModel.status.cuentas[index]
+        let model = self.viewModel.account[index]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "productDetailVC") as! ProductDetailViewController
         viewController.modalPresentationStyle = .overCurrentContext

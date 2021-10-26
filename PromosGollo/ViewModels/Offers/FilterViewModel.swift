@@ -2,37 +2,34 @@
 //  AccountsViewModel.swift
 //  PromosGollo
 //
-//  Created by Rodrigo Osegueda on 3/10/21.
+//  Created by Rodrigo Osegueda on 20/9/21.
 //
 
 import Foundation
 import RxRelay
 
-class StatusViewModel {
+class FilterViewModel {
     private let service = GolloService()
 
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
-    var account: [AccountData] = []
+    var filterData: [FilterData] = []
 
     var reloadTableViewData: (()->())?
 
-    func fetchStatus(with documentType: String, documentId: String) -> BehaviorRelay<StatusData?> {
-        let apiResponse: BehaviorRelay<StatusData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(StatusRequest(service: BaseServiceRequestParam<StatusServiceRequest>(
+    func fetchFilterStores() -> BehaviorRelay<[FilterData]?> {
+        let apiResponse: BehaviorRelay<[FilterData]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(FilterRequest(service: BaseServiceRequestParam<FilterServiceRequest>(
             servicio: ServicioParam(
                 encabezado: Encabezado(
-                    idProceso: GOLLOAPP.STATUS_PROCESS_ID.rawValue,
+                    idProceso: GOLLOAPP.OFFER_CAT_PROCESS_ID.rawValue,
                     idDevice: "",
                     idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,
                     token: "",
                     integrationId: nil),
-                parametros: StatusServiceRequest (
-                    tipoId: documentType,
-                    idCliente: documentId,
-                    empresa: 10,
-                    idCentro: "144"
+                parametros: FilterServiceRequest (
+                    idCompania: "10"
                 )
             )
         ))) { response in

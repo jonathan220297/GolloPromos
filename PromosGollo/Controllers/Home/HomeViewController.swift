@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonImageViewProfileTapped), for: .touchUpInside)
         return button
     }()
-    
+
     @IBOutlet weak var homeTableView: UITableView!
 
     lazy var viewModel: HomeViewModel = {
@@ -88,13 +88,13 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func paymentAction(_ sender: Any) {
-        if let vc = AppStoryboard.Payments.initialViewController() {
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
-        }
+        let vc = PaymentTabBarViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func serviceAction(_ sender: Any) {
+
     }
 
     fileprivate func fetchHomeConfiguration() {

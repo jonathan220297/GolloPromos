@@ -65,8 +65,6 @@ class AccountsViewController: UIViewController {
     }
 }
 
-
-
 // MARK: - Extension Table View
 extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,24 +85,22 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let model = self.viewModel.accounts[indexPath.row]
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier: "paymentVC") as! PaymentViewController
-//        viewController.modalPresentationStyle = .overCurrentContext
-//        viewController.modalTransitionStyle = .crossDissolve
-//        let payment = PaymentData()
-//        payment.currency = Constants.DEFAULT_CURRENCY_SYMBOL
-//        payment.suggestedAmount = model.montoSugeridoBotonera
-//        payment.installmentAmount = model.montoCuota
-//        payment.totalAmount = model.montoCancelarCuenta
-//        payment.idCuenta = model.idCuenta
-//        payment.numCuenta = model.numCuenta
-//        payment.type = PaymentType.ACCOUNT
-//        payment.documentId = Constants.actualClientInfo?.identificacion
-//        payment.documentType = Constants.actualClientInfo?.tipoIdentificacion
-//        payment.nombreCliente = Constants.actualClientInfo?.nombre
-//        payment.email = Constants.actualClientInfo?.correoElectronico
-//        viewController.paymentData = payment
-//        self.present(viewController, animated: true)
+        let vc = PaymentViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .fullScreen
+        let payment = PaymentData()
+        payment.currency = ""
+        payment.suggestedAmount = model.montoSugeridoBotonera
+        payment.installmentAmount = model.montoCuota
+        payment.totalAmount = model.montoCancelarCuenta
+        payment.idCuenta = model.idCuenta
+        payment.numCuenta = model.numCuenta
+        payment.type = 1
+        payment.documentId = "205080150"
+        payment.documentType = "C"
+        payment.nombreCliente = ""
+        payment.email = ""
+        vc.paymentData = payment
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

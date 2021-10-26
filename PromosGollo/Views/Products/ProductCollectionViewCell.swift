@@ -7,6 +7,11 @@
 
 import UIKit
 import Nuke
+import RxSwift
+
+protocol ProductCellDelegate {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: ProductsData)
+}
 
 class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var contentViewCell: UIView!
@@ -17,15 +22,20 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var productRealPriceLabel: UILabel!
     @IBOutlet weak var productDiscountPercentageLabel: UILabel!
     @IBOutlet weak var productDiscountPercentageView: UIView!
+    @IBOutlet weak var detailButton: UIButton!
+    
+    let bag = DisposeBag()
+    var delegate: ProductCellDelegate?
+    var dataG: ProductsData?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-//        contentViewCell.layer.cornerRadius = 10
         productDiscountPercentageView.roundCorners(corners: [.bottomRight], radius: 10)
+        configureRx()
     }
 
     func setProductData(with data: ProductsData) {
+        dataG = data
         if let url = URL(string: APDLGT.GIMGURL + (data.image ?? "")) {
             Nuke.loadImage(with: url, into: productImageView)
         }
@@ -57,4 +67,16 @@ class ProductCollectionViewCell: UICollectionViewCell {
             productDiscountPercentageLabel.text = ""
         }
     }
+    
+    func configureRx() {
+        detailButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                guard let dataG = self.dataG else { return }
+                self.delegate?.productCell(self, willMoveToDetilWith: dataG)
+            })
+            .disposed(by: bag)
+    }
 }
+

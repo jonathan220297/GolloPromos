@@ -40,6 +40,14 @@ func hexStringToUIColor (hex:String) -> UIColor {
     )
 }
 
+func convertDate(date: String) -> String? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    let date = dateFormatter.date(from: date)
+    return date?.toString(dateFormat: "MMM dd,yyyy")
+}
+
 func convertToDictionary(text: String) -> [String: Any]? {
     var json = [String : Any]()
     if let data = text.data(using: String.Encoding.utf8) {
@@ -51,6 +59,13 @@ func convertToDictionary(text: String) -> [String: Any]? {
         }
     }
     return json
+}
+
+func formatHTML(header: String, content: String) -> NSMutableAttributedString {
+    let someValue : String = content
+    let text = NSMutableAttributedString(string: header)
+    text.append(NSAttributedString(string: someValue, attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)]))
+    return text
 }
 
 let numberFormatter: NumberFormatter = {
@@ -89,6 +104,12 @@ enum GOLLOAPP: String {
     case IS_GOLLO_CUSTOMER_PROCESS_ID = "17"
     case APP_PAYMENT_HISTORY = "20"
     case ACCOUNT_PAYMENT_HISTORY = "21"
+}
+
+enum Payment: Int {
+    case PAYMENT_SUGGESTED = 1
+    case PAYMENT_INSTALLMENT = 2
+    case PAYMENT_TOTAL_PENDING = 3
 }
 
 func getToken() -> String? {
