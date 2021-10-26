@@ -12,8 +12,6 @@ class OffersViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var offersTableView: UITableView!
 
-    let bag = DisposeBag()
-
     lazy var viewModel: OffersViewModel = {
         return OffersViewModel()
     }()

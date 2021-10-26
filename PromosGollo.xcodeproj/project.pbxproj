@@ -95,6 +95,27 @@
 		4F3080A627121F2100F7D8DE /* BaseHeaderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */; };
 		4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */; };
 		4F37A7F027223EE000FBB46B /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37A7EF27223EE000FBB46B /* BaseRequest.swift */; };
+		4F3E47FE272784D5009D259D /* OfferListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E47FD272784D4009D259D /* OfferListViewController.swift */; };
+		4F3E480527278525009D259D /* OffersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E480227278525009D259D /* OffersListViewModel.swift */; };
+		4F3E480627278525009D259D /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E480327278525009D259D /* FilterViewModel.swift */; };
+		4F3E480727278525009D259D /* OffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E480427278525009D259D /* OffersViewModel.swift */; };
+		4F3E481627278536009D259D /* CategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E480C27278536009D259D /* CategoriesResponse.swift */; };
+		4F3E481727278536009D259D /* OffersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E480D27278536009D259D /* OffersResponse.swift */; };
+		4F3E481827278536009D259D /* Offers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E480E27278536009D259D /* Offers.swift */; };
+		4F3E481927278536009D259D /* FilterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E480F27278536009D259D /* FilterResponse.swift */; };
+		4F3E481A27278536009D259D /* ParentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E481027278536009D259D /* ParentModel.swift */; };
+		4F3E481B27278536009D259D /* OffersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E481227278536009D259D /* OffersRequest.swift */; };
+		4F3E481C27278536009D259D /* OffersListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E481327278536009D259D /* OffersListRequest.swift */; };
+		4F3E481D27278536009D259D /* FilterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E481427278536009D259D /* FilterRequest.swift */; };
+		4F3E481E27278536009D259D /* CategoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E481527278536009D259D /* CategoriesRequest.swift */; };
+		4F3E48222727859A009D259D /* AccountsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E48212727859A009D259D /* AccountsResponse.swift */; };
+		4F3E4826272786A5009D259D /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E4825272786A5009D259D /* StatusResponse.swift */; };
+		4F3E482A27278700009D259D /* ThirdPartyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E482927278700009D259D /* ThirdPartyResponse.swift */; };
+		4F3E482E27278796009D259D /* PaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E482D27278796009D259D /* PaymentData.swift */; };
+		4F3E4833272787D3009D259D /* ThirdPartyAccountsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E4832272787D2009D259D /* ThirdPartyAccountsTableViewCell.swift */; };
+		4F3E48382727883C009D259D /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E48362727883C009D259D /* PaymentViewController.swift */; };
+		4F3E48392727883C009D259D /* PaymentConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E48372727883C009D259D /* PaymentConfirmViewController.swift */; };
+		4F3E483D2727898D009D259D /* PaymentTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E483C2727898D009D259D /* PaymentTabBarViewController.swift */; };
 		4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46199E2700FC8300265E73 /* StatusViewController.swift */; };
 		4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47527275585007B17FE /* CGFloat+Extension.swift */; };
 		4F4EC47B2727680E007B17FE /* DocType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47A2727680E007B17FE /* DocType.swift */; };
@@ -150,7 +171,6 @@
 		4FE1912826DEFCA000322128 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1912426DEFCA000322128 /* ProductCollectionViewCell.swift */; };
 		4FE1912A26DEFE0200322128 /* ProductVariationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1912926DEFE0200322128 /* ProductVariationResponse.swift */; };
 		4FE1912C26DEFF3C00322128 /* ProductAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1912B26DEFF3C00322128 /* ProductAttribute.swift */; };
-		4FE1912F26DF06CC00322128 /* HomeOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1912E26DF06CC00322128 /* HomeOfferViewController.swift */; };
 		4FE1913126DF06F200322128 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913026DF06F200322128 /* OffersViewController.swift */; };
 		4FE1913426DF071A00322128 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913326DF071A00322128 /* FilterViewController.swift */; };
 		4FE1913626DF073400322128 /* OfferDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913526DF073400322128 /* OfferDetailViewController.swift */; };
@@ -278,6 +298,27 @@
 		4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderRequest.swift; sourceTree = "<group>"; };
 		4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		4F37A7EF27223EE000FBB46B /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
+		4F3E47FD272784D4009D259D /* OfferListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferListViewController.swift; sourceTree = "<group>"; };
+		4F3E480227278525009D259D /* OffersListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersListViewModel.swift; sourceTree = "<group>"; };
+		4F3E480327278525009D259D /* FilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		4F3E480427278525009D259D /* OffersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersViewModel.swift; sourceTree = "<group>"; };
+		4F3E480C27278536009D259D /* CategoriesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesResponse.swift; sourceTree = "<group>"; };
+		4F3E480D27278536009D259D /* OffersResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersResponse.swift; sourceTree = "<group>"; };
+		4F3E480E27278536009D259D /* Offers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offers.swift; sourceTree = "<group>"; };
+		4F3E480F27278536009D259D /* FilterResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterResponse.swift; sourceTree = "<group>"; };
+		4F3E481027278536009D259D /* ParentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentModel.swift; sourceTree = "<group>"; };
+		4F3E481227278536009D259D /* OffersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersRequest.swift; sourceTree = "<group>"; };
+		4F3E481327278536009D259D /* OffersListRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersListRequest.swift; sourceTree = "<group>"; };
+		4F3E481427278536009D259D /* FilterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRequest.swift; sourceTree = "<group>"; };
+		4F3E481527278536009D259D /* CategoriesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesRequest.swift; sourceTree = "<group>"; };
+		4F3E48212727859A009D259D /* AccountsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsResponse.swift; sourceTree = "<group>"; };
+		4F3E4825272786A5009D259D /* StatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusResponse.swift; sourceTree = "<group>"; };
+		4F3E482927278700009D259D /* ThirdPartyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartyResponse.swift; sourceTree = "<group>"; };
+		4F3E482D27278796009D259D /* PaymentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentData.swift; sourceTree = "<group>"; };
+		4F3E4832272787D2009D259D /* ThirdPartyAccountsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPartyAccountsTableViewCell.swift; sourceTree = "<group>"; };
+		4F3E48362727883C009D259D /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		4F3E48372727883C009D259D /* PaymentConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentConfirmViewController.swift; sourceTree = "<group>"; };
+		4F3E483C2727898D009D259D /* PaymentTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTabBarViewController.swift; sourceTree = "<group>"; };
 		4F46199E2700FC8300265E73 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		4F4EC47527275585007B17FE /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		4F4EC47A2727680E007B17FE /* DocType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocType.swift; sourceTree = "<group>"; };
@@ -338,7 +379,6 @@
 		4FE1912426DEFCA000322128 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FE1912926DEFE0200322128 /* ProductVariationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVariationResponse.swift; sourceTree = "<group>"; };
 		4FE1912B26DEFF3C00322128 /* ProductAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAttribute.swift; sourceTree = "<group>"; };
-		4FE1912E26DF06CC00322128 /* HomeOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOfferViewController.swift; sourceTree = "<group>"; };
 		4FE1913026DF06F200322128 /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		4FE1913326DF071A00322128 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4FE1913526DF073400322128 /* OfferDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewController.swift; sourceTree = "<group>"; };
@@ -572,11 +612,14 @@
 			isa = PBXGroup;
 			children = (
 				4F0D96CA26DDDEE30061E89E /* AccountsViewController.swift */,
-				4F0D96D726DDDF3E0061E89E /* SearchDocumentViewController.swift */,
+				4F1732422701494900D7924D /* HistoryViewController.swift */,
+				4F3E48372727883C009D259D /* PaymentConfirmViewController.swift */,
+				4F3E48362727883C009D259D /* PaymentViewController.swift */,
 				4F0D96DD26DDE1370061E89E /* ProductDetailViewController.swift */,
+				4F0D96D726DDDF3E0061E89E /* SearchDocumentViewController.swift */,
 				4F46199E2700FC8300265E73 /* StatusViewController.swift */,
 				4F17323927013EA900D7924D /* ThirdPartyViewController.swift */,
-				4F1732422701494900D7924D /* HistoryViewController.swift */,
+				4F3E483C2727898D009D259D /* PaymentTabBarViewController.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -584,6 +627,7 @@
 		4F0D96CC26DDDEF90061E89E /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				4F3E482D27278796009D259D /* PaymentData.swift */,
 				4F17323C2701475500D7924D /* Response */,
 				4F17323B2701474D00D7924D /* Request */,
 			);
@@ -604,6 +648,7 @@
 		4F0D96D926DDE0700061E89E /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				4F3E4831272787D2009D259D /* ThirdParty */,
 				4F17323F270147A900D7924D /* Status */,
 				4F0D96DA26DDE0740061E89E /* Accounts */,
 				4F0D96E126DDE2100061E89E /* Items */,
@@ -684,6 +729,9 @@
 		4F17323C2701475500D7924D /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				4F3E482927278700009D259D /* ThirdPartyResponse.swift */,
+				4F3E48212727859A009D259D /* AccountsResponse.swift */,
+				4F3E4825272786A5009D259D /* StatusResponse.swift */,
 				4F17323D2701476200D7924D /* Account.swift */,
 				4FA4D6E4271FE5D900C117CD /* Status.swift */,
 				4FB258302720DE150003C607 /* AppTransaction.swift */,
@@ -698,6 +746,56 @@
 				4F173240270147B300D7924D /* StatusTableViewCell.swift */,
 			);
 			path = Status;
+			sourceTree = "<group>";
+		};
+		4F3E480127278525009D259D /* Offers */ = {
+			isa = PBXGroup;
+			children = (
+				4F3E480227278525009D259D /* OffersListViewModel.swift */,
+				4F3E480327278525009D259D /* FilterViewModel.swift */,
+				4F3E480427278525009D259D /* OffersViewModel.swift */,
+			);
+			path = Offers;
+			sourceTree = "<group>";
+		};
+		4F3E480A27278536009D259D /* Offers */ = {
+			isa = PBXGroup;
+			children = (
+				4F3E480B27278536009D259D /* Response */,
+				4F3E481127278536009D259D /* Request */,
+			);
+			path = Offers;
+			sourceTree = "<group>";
+		};
+		4F3E480B27278536009D259D /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				4F3E480C27278536009D259D /* CategoriesResponse.swift */,
+				4F3E480D27278536009D259D /* OffersResponse.swift */,
+				4F3E480E27278536009D259D /* Offers.swift */,
+				4F3E480F27278536009D259D /* FilterResponse.swift */,
+				4F3E481027278536009D259D /* ParentModel.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		4F3E481127278536009D259D /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				4F3E481227278536009D259D /* OffersRequest.swift */,
+				4F3E481327278536009D259D /* OffersListRequest.swift */,
+				4F3E481427278536009D259D /* FilterRequest.swift */,
+				4F3E481527278536009D259D /* CategoriesRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		4F3E4831272787D2009D259D /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				4F3E4832272787D2009D259D /* ThirdPartyAccountsTableViewCell.swift */,
+			);
+			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 		4F4EC479272767ED007B17FE /* Profile */ = {
@@ -753,6 +851,7 @@
 				4FE190F826DEF5C100322128 /* Home */,
 				4F0D96B326DDD7810061E89E /* Menu */,
 				4F0D96AB26DDD6C90061E89E /* Profile */,
+				4F3E480127278525009D259D /* Offers */,
 				4F0D96A026DDD58A0061E89E /* SideMenu */,
 				4F0D968F26DDD3AC0061E89E /* Notifications */,
 				4FA2767D26D918E000216284 /* Authentication */,
@@ -798,6 +897,7 @@
 				4FE190FB26DEF5F000322128 /* Home */,
 				4F0D96CE26DDDF2C0061E89E /* Accounts */,
 				4F0D96CC26DDDEF90061E89E /* Payments */,
+				4F3E480A27278536009D259D /* Offers */,
 				4F0D96C026DDD8920061E89E /* Services */,
 				4F0D96B626DDD7A80061E89E /* Menu */,
 				4F0D962C26D91B7A0061E89E /* Authentication */,
@@ -1033,9 +1133,9 @@
 			isa = PBXGroup;
 			children = (
 				4FE1913226DF071100322128 /* Filter */,
-				4FE1912E26DF06CC00322128 /* HomeOfferViewController.swift */,
 				4FE1913026DF06F200322128 /* OffersViewController.swift */,
 				4FE1913526DF073400322128 /* OfferDetailViewController.swift */,
+				4F3E47FD272784D4009D259D /* OfferListViewController.swift */,
 				4FE1913726DF075200322128 /* IncentivesViewController.swift */,
 			);
 			path = Offers;
@@ -1381,21 +1481,29 @@
 				4FB258332720DEC30003C607 /* HistoryRequest.swift in Sources */,
 				4F0D967F26DDBBB40061E89E /* Common.swift in Sources */,
 				4FE1912826DEFCA000322128 /* ProductCollectionViewCell.swift in Sources */,
+				4F3E481C27278536009D259D /* OffersListRequest.swift in Sources */,
 				4F0D965A26DDBB360061E89E /* LocalizableLabel.swift in Sources */,
 				4F0D96BF26DDD83E0061E89E /* GolloPromosService.swift in Sources */,
 				4F0D969D26DDD4740061E89E /* NotificationDetailViewController.swift in Sources */,
 				4F0D965826DDBB210061E89E /* LocalizableTextField.swift in Sources */,
+				4F3E48222727859A009D259D /* AccountsResponse.swift in Sources */,
 				4FE1910026DEF61500322128 /* HomeConfigurationRequest.swift in Sources */,
 				4F0D96D826DDDF3E0061E89E /* SearchDocumentViewController.swift in Sources */,
 				4F0D96AA26DDD6BB0061E89E /* FirebaseService.swift in Sources */,
+				4F3E483D2727898D009D259D /* PaymentTabBarViewController.swift in Sources */,
 				4F0D964426DDBA310061E89E /* String+Extension.swift in Sources */,
 				4F0D963026D91BF50061E89E /* User.swift in Sources */,
 				4FE1912A26DEFE0200322128 /* ProductVariationResponse.swift in Sources */,
 				4F0D965E26DDBB590061E89E /* CustomButton.swift in Sources */,
+				4F3E481A27278536009D259D /* ParentModel.swift in Sources */,
+				4F3E481B27278536009D259D /* OffersRequest.swift in Sources */,
+				4F3E48382727883C009D259D /* PaymentViewController.swift in Sources */,
 				4F0D965626DDBB060061E89E /* LoadingButton.swift in Sources */,
+				4F3E480527278525009D259D /* OffersListViewModel.swift in Sources */,
 				4F0D96A226DDD59E0061E89E /* SideMenuViewModel.swift in Sources */,
 				4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */,
 				4FE1910A26DEF77C00322128 /* SliderTableViewCell.swift in Sources */,
+				4F3E482A27278700009D259D /* ThirdPartyResponse.swift in Sources */,
 				4FE1911326DEFAC700322128 /* ProductsData.swift in Sources */,
 				4F0D963626DDB8770061E89E /* Badge.swift in Sources */,
 				4F0D96DE26DDE1370061E89E /* ProductDetailViewController.swift in Sources */,
@@ -1407,12 +1515,14 @@
 				4F0D96D426DDDF2C0061E89E /* Item.swift in Sources */,
 				4FA2767C26D918A500216284 /* SignUpViewController.swift in Sources */,
 				4F3080A627121F2100F7D8DE /* BaseHeaderRequest.swift in Sources */,
+				4F3E481D27278536009D259D /* FilterRequest.swift in Sources */,
 				4F0D96D626DDDF2C0061E89E /* AccountResponse.swift in Sources */,
 				4FB258312720DE150003C607 /* AppTransaction.swift in Sources */,
 				4F0D96B826DDD7B20061E89E /* Menu.swift in Sources */,
 				4F0D96DC26DDE0870061E89E /* AccountsTableViewCell.swift in Sources */,
 				4FE1911526DEFB0E00322128 /* DataManager.swift in Sources */,
 				4FE1910D26DEF77C00322128 /* SectionTableViewCell.swift in Sources */,
+				4F3E4833272787D3009D259D /* ThirdPartyAccountsTableViewCell.swift in Sources */,
 				4F0D968326DDBE430061E89E /* UIColor+Assets.swift in Sources */,
 				4F1732432701494900D7924D /* HistoryViewController.swift in Sources */,
 				4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */,
@@ -1426,10 +1536,14 @@
 				4FB2582F2720DDDC0003C607 /* HistoryViewModel.swift in Sources */,
 				4FA41E0A27015A09007C93F9 /* LoginRequest.swift in Sources */,
 				4F0D963326DDB82F0061E89E /* UIViewController+Extension.swift in Sources */,
+				4F3E482E27278796009D259D /* PaymentData.swift in Sources */,
 				4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */,
 				4FA41E0E27015AED007C93F9 /* UserInfo.swift in Sources */,
+				4F3E48392727883C009D259D /* PaymentConfirmViewController.swift in Sources */,
 				4F0D962B26D91B4D0061E89E /* AuthenticationService.swift in Sources */,
 				4F894A17270A5A900004AAB3 /* AccountsViewModel.swift in Sources */,
+				4F3E481627278536009D259D /* CategoriesResponse.swift in Sources */,
+				4F3E481927278536009D259D /* FilterResponse.swift in Sources */,
 				4FA2768326D9192900216284 /* SplashViewModel.swift in Sources */,
 				4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */,
 				4F17322D27013BA100D7924D /* HeaderTableViewCell.swift in Sources */,
@@ -1442,6 +1556,7 @@
 				4F4EC47B2727680E007B17FE /* DocType.swift in Sources */,
 				4F0D96E426DDE5AD0061E89E /* HomeViewController.swift in Sources */,
 				4F0D964626DDBA520061E89E /* UIFont+Extension.swift in Sources */,
+				4F3E47FE272784D5009D259D /* OfferListViewController.swift in Sources */,
 				4FE1911826DEFB5500322128 /* ProductCoreData.swift in Sources */,
 				4F0D962E26D91BE80061E89E /* UserManager.swift in Sources */,
 				4FA2767826D917E400216284 /* TermsConditionsViewController.swift in Sources */,
@@ -1461,24 +1576,29 @@
 				4F0D96CB26DDDEE30061E89E /* AccountsViewController.swift in Sources */,
 				4F0D96AD26DDD6D40061E89E /* EditProfileViewModel.swift in Sources */,
 				4F0D96D526DDDF2C0061E89E /* AccountItemResponse.swift in Sources */,
-				4FE1912F26DF06CC00322128 /* HomeOfferViewController.swift in Sources */,
 				4F17323127013C0000D7924D /* ProductTableViewCell.swift in Sources */,
 				4F0D969B26DDD4170061E89E /* NotificationTableViewCell.swift in Sources */,
 				4F0D964A26DDBA7C0061E89E /* UIImageView+Extension.swift in Sources */,
 				4FE1913826DF075200322128 /* IncentivesViewController.swift in Sources */,
+				4F3E480727278525009D259D /* OffersViewModel.swift in Sources */,
+				4F3E481827278536009D259D /* Offers.swift in Sources */,
 				4FA2767F26D918EE00216284 /* TermsConditionsViewModel.swift in Sources */,
 				4FE1910F26DEF8A800322128 /* SectionViewModel.swift in Sources */,
 				4F0D964E26DDBAA80061E89E /* Array+Extension.swift in Sources */,
 				4FE1912726DEFCA000322128 /* VariationView.swift in Sources */,
 				4F894A1B270A60640004AAB3 /* SearchDocumentViewModel.swift in Sources */,
+				4F3E481E27278536009D259D /* CategoriesRequest.swift in Sources */,
 				4F0D965C26DDBB490061E89E /* LocalizableButton.swift in Sources */,
 				4F0D965426DDBAE20061E89E /* NSLayoutConstraint+Extension.swift in Sources */,
 				4F0D968E26DDD3970061E89E /* NotificationsViewController.swift in Sources */,
+				4F3E480627278525009D259D /* FilterViewModel.swift in Sources */,
 				4F0D969826DDD3E50061E89E /* NotificationRequest.swift in Sources */,
 				4F17323627013C7800D7924D /* Offers.swift in Sources */,
 				4FE190FA26DEF5CE00322128 /* HomeViewModel.swift in Sources */,
 				4FA41E1027015D38007C93F9 /* LoginData.swift in Sources */,
 				4F894A1D270A60750004AAB3 /* SearchDocumentRequest.swift in Sources */,
+				4F3E4826272786A5009D259D /* StatusResponse.swift in Sources */,
+				4F3E481727278536009D259D /* OffersResponse.swift in Sources */,
 				4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */,
 				4FE1913426DF071A00322128 /* FilterViewController.swift in Sources */,
 				4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */,

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5n-84-JB3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5n-84-JB3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Accounts View Controller-->
+        <!--Account-->
         <scene sceneID="5Eg-mh-ydi">
             <objects>
                 <viewController storyboardIdentifier="accountsVC" id="SJP-gT-CBt" customClass="AccountsViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,29 +19,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOT-vz-5QV">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCw-AL-oNP">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
                                         <subviews>
                                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7T-Mp-QCR">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_menu_accounts" translatesAutoresizingMaskIntoConstraints="NO" id="Zjb-rm-SPT">
-                                                        <rect key="frame" x="157" y="244" width="100" height="100"/>
+                                                        <rect key="frame" x="157" y="266" width="100" height="100"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="DEf-E5-zM8"/>
                                                             <constraint firstAttribute="height" constant="100" id="Gr7-PQ-bH5"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista de cuentas activas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2H-zO-odA">
-                                                        <rect key="frame" x="8" y="352" width="398" height="21"/>
+                                                        <rect key="frame" x="8" y="374" width="398" height="21"/>
                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="15"/>
                                                         <color key="textColor" red="0.1596274972" green="0.18202841280000001" blue="0.28569999340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="El cliente no posee cuentas activas!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUt-Sd-Kz9">
-                                                        <rect key="frame" x="8" y="377" width="398" height="20"/>
+                                                        <rect key="frame" x="8" y="399" width="398" height="20"/>
                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="14"/>
                                                         <color key="textColor" red="0.45152938370000001" green="0.56089949610000001" blue="0.57809406519999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -61,11 +61,11 @@
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ICT-x0-n4h">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountsCell" rowHeight="300" id="RJe-r2-vaT" customClass="AccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="414" height="300"/>
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="300"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RJe-r2-vaT" id="LUO-ng-Tjd">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -512,6 +512,7 @@
                             <constraint firstItem="jOT-vz-5QV" firstAttribute="top" secondItem="2ps-PK-xbH" secondAttribute="top" id="pLC-yc-5Jf"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Account" id="Pht-FY-MyS"/>
                     <navigationItem key="navigationItem" id="pjl-ll-hed"/>
                     <connections>
                         <outlet property="containerDataView" destination="XCw-AL-oNP" id="YTn-xI-3Go"/>
@@ -522,12 +523,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKo-qe-NIO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3681" y="-1028"/>
+            <point key="canvasLocation" x="2774" y="-942"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Payment Tab Bar View Controller-->
         <scene sceneID="AnN-aV-xCq">
             <objects>
-                <tabBarController storyboardIdentifier="mainFrameVC" automaticallyAdjustsScrollViewInsets="NO" id="B5n-84-JB3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="PaymentTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="B5n-84-JB3" customClass="PaymentTabBarViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RB9-Or-iLP">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -537,17 +538,17 @@
                         <color key="selectedImageTintColor" red="0.0" green="0.28130385279999998" blue="0.49722707269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="qY1-zy-lDl" kind="relationship" relationship="viewControllers" id="jgz-3Q-Fro"/>
-                        <segue destination="gZC-sx-hwt" kind="relationship" relationship="viewControllers" id="6Dx-B1-jlg"/>
-                        <segue destination="gFQ-a8-hc5" kind="relationship" relationship="viewControllers" id="h3Z-wI-mo5"/>
-                        <segue destination="dYw-pv-ILA" kind="relationship" relationship="viewControllers" id="dGI-7Q-J0c"/>
+                        <segue destination="SJP-gT-CBt" kind="relationship" relationship="viewControllers" id="RPE-vc-uKO"/>
+                        <segue destination="8pN-IW-yp1" kind="relationship" relationship="viewControllers" id="EuA-64-GnA"/>
+                        <segue destination="cOx-Dd-Pr4" kind="relationship" relationship="viewControllers" id="lqu-SA-2fV"/>
+                        <segue destination="5Cj-CC-Ga0" kind="relationship" relationship="viewControllers" id="SI4-gT-Ubv"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4CB-QE-CRZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1921.7391304347827" y="79.6875"/>
         </scene>
-        <!--Status View Controller-->
+        <!--Status-->
         <scene sceneID="8IP-Rz-2tR">
             <objects>
                 <viewController storyboardIdentifier="presalesVC" id="8pN-IW-yp1" customClass="StatusViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
@@ -556,7 +557,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JET-31-IvA">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Le-f5-zoI">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="490"/>
@@ -721,7 +722,7 @@
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" rowHeight="300" id="5sa-Ha-b9A" customClass="StatusTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="24.5" width="414" height="300"/>
+                                                                <rect key="frame" x="0.0" y="28" width="414" height="300"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5sa-Ha-b9A" id="LMn-X5-pAt">
                                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -1236,6 +1237,7 @@
                             <constraint firstItem="JET-31-IvA" firstAttribute="top" secondItem="Ea7-kK-oVW" secondAttribute="top" id="riD-hG-vnW"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Status" id="abh-Ga-hBY"/>
                     <navigationItem key="navigationItem" id="V82-Hf-iEV"/>
                     <connections>
                         <outlet property="accountsView" destination="nb0-ce-bYN" id="rXW-zc-d5t"/>
@@ -1256,9 +1258,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Zz-gA-vpa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3679.7101449275365" y="-240.40178571428569"/>
+            <point key="canvasLocation" x="2774" y="-232"/>
         </scene>
-        <!--Third Party View Controller-->
+        <!--Third-->
         <scene sceneID="Tn7-90-X8c">
             <objects>
                 <viewController storyboardIdentifier="statusVC" id="cOx-Dd-Pr4" customClass="ThirdPartyViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
@@ -1267,7 +1269,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Cs-Zp-uCM">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oq3-vr-fRC">
                                         <rect key="frame" x="10" y="10" width="394" height="80"/>
@@ -1393,7 +1395,7 @@
                                 </constraints>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpY-ad-GAf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ig-65-9wf">
                                         <rect key="frame" x="0.0" y="8" width="414" height="50"/>
@@ -1426,11 +1428,11 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7gw-To-P1q">
-                                        <rect key="frame" x="0.0" y="62" width="414" height="663"/>
+                                        <rect key="frame" x="0.0" y="62" width="414" height="707"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="140" id="u7D-QO-eQl" customClass="ThirdPartyAccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="414" height="140"/>
+                                                <rect key="frame" x="0.0" y="28" width="414" height="140"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u7D-QO-eQl" id="dso-0b-7rw">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
@@ -1602,6 +1604,7 @@
                             <constraint firstItem="MF7-Cf-ind" firstAttribute="trailing" secondItem="6Cs-Zp-uCM" secondAttribute="trailing" id="sXc-K5-VfF"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Third" id="gBj-03-UFQ"/>
                     <navigationItem key="navigationItem" id="Vlb-Hf-w7Q"/>
                     <connections>
                         <outlet property="customerDocumentLabel" destination="PJh-Zb-o26" id="rea-uS-XIu"/>
@@ -1616,88 +1619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="koQ-fh-Y81" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3679.7101449275365" y="443.97321428571428"/>
-        </scene>
-        <!--Cuentas-->
-        <scene sceneID="DP2-pq-cMq">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qY1-zy-lDl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cuentas" image="ic_menu_accounts" selectedImage="ic_menu_accounts" id="JOs-uG-1lt"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qfS-g0-2kd">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" name="colorPrimary"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="SJP-gT-CBt" kind="relationship" relationship="rootViewController" id="bvU-tb-Ile"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S86-wB-KRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2774" y="-1028"/>
-        </scene>
-        <!--Estatus-->
-        <scene sceneID="iWO-dT-Fuh">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gZC-sx-hwt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Estatus" image="ic_payment_status" selectedImage="ic_payment_status" id="477-xD-ZzC"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tsD-tT-pr6">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" name="colorPrimary"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="8pN-IW-yp1" kind="relationship" relationship="rootViewController" id="e3p-y2-gFm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gkf-XY-gol" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2774" y="-240"/>
-        </scene>
-        <!--Terceros-->
-        <scene sceneID="TYQ-5p-fXH">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gFQ-a8-hc5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Terceros" image="ic_third_party_payment" selectedImage="ic_third_party_payment" id="GxM-b3-Lwd"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="45e-7p-Uuv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" name="colorPrimary"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="cOx-Dd-Pr4" kind="relationship" relationship="rootViewController" id="FrU-Ll-0ic"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cs5-WJ-SG5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2774" y="444"/>
+            <point key="canvasLocation" x="2774" y="453"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="nyX-G0-ygO">
@@ -1746,7 +1668,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemsCell" rowHeight="70" id="v4Q-DZ-9Yb" customClass="ItemsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="331" height="70"/>
+                                                <rect key="frame" x="0.0" y="28" width="331" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4Q-DZ-9Yb" id="7CF-nH-RuW">
                                                     <rect key="frame" x="0.0" y="0.0" width="331" height="70"/>
@@ -1855,9 +1777,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NgV-Hx-TFl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4854" y="80"/>
+            <point key="canvasLocation" x="3948" y="88"/>
         </scene>
-        <!--History View Controller-->
+        <!--History-->
         <scene sceneID="q1D-D6-9Hw">
             <objects>
                 <viewController id="5Cj-CC-Ga0" customClass="HistoryViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
@@ -1866,7 +1788,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Hf-MQ-Ivg">
-                                <rect key="frame" x="0.0" y="88" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="70"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NZf-Mb-7kb">
                                         <rect key="frame" x="8" y="10" width="398" height="50"/>
@@ -1914,11 +1836,11 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0yg-DM-PfG">
-                                <rect key="frame" x="0.0" y="158" width="414" height="655"/>
+                                <rect key="frame" x="0.0" y="114" width="414" height="699"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" rowHeight="200" id="Csd-ax-ILD" customClass="StatusTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="200"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Csd-ax-ILD" id="BiD-eE-xY1">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -2095,6 +2017,7 @@
                             <constraint firstItem="OnM-zD-8qe" firstAttribute="bottom" secondItem="0yg-DM-PfG" secondAttribute="bottom" id="iSX-hD-dPd"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="History" id="qPb-iv-bZD"/>
                     <navigationItem key="navigationItem" id="hEp-xI-7OC"/>
                     <connections>
                         <outlet property="fromTextField" destination="qbU-jz-XUC" id="asu-ow-f2j"/>
@@ -2104,30 +2027,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pb7-Xl-kNp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3679.7101449275365" y="1165.8482142857142"/>
-        </scene>
-        <!--Historial-->
-        <scene sceneID="vlT-1K-v7A">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dYw-pv-ILA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Historial" image="ic_history" selectedImage="ic_history" id="GJS-rC-2e9"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZlC-yN-u2h">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="colorPrimary"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.9852260947" green="0.96397172880000004" blue="0.84794478340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="5Cj-CC-Ga0" kind="relationship" relationship="rootViewController" id="ZIB-Jt-oda"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Jz-LJ-h6E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2774" y="1166"/>
+            <point key="canvasLocation" x="2774" y="1175"/>
         </scene>
         <!--Payment View Controller-->
         <scene sceneID="nKd-y9-sSx">
@@ -2392,7 +2292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x1g-BW-mN6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5776.811594202899" y="79.6875"/>
+            <point key="canvasLocation" x="4871" y="88"/>
         </scene>
         <!--Payment Confirm View Controller-->
         <scene sceneID="Zad-N6-qCL">
@@ -2546,7 +2446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ffn-fc-fRf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6670" y="80"/>
+            <point key="canvasLocation" x="5764" y="88"/>
         </scene>
     </scenes>
     <resources>
@@ -2555,18 +2455,15 @@
         <image name="ic_account_payments" width="100" height="100"/>
         <image name="ic_actual_amount" width="100" height="100"/>
         <image name="ic_check" width="289.5" height="275.5"/>
-        <image name="ic_history" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_initial_amount" width="100" height="100"/>
         <image name="ic_installment_payment" width="512" height="512"/>
         <image name="ic_item_detail" width="100" height="100"/>
         <image name="ic_items" width="256" height="256"/>
         <image name="ic_menu_accounts" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_payment_amount" width="100" height="100"/>
-        <image name="ic_payment_status" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_radio-button-checked" width="128" height="128"/>
         <image name="ic_radio-button-unchecked" width="128" height="128"/>
         <image name="ic_search_user" width="50" height="50"/>
-        <image name="ic_third_party_payment" width="33.333332061767578" height="33.333332061767578"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

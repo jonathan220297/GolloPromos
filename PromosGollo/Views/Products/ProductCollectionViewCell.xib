@@ -121,6 +121,7 @@
             <size key="customSize" width="249" height="231"/>
             <connections>
                 <outlet property="contentViewCell" destination="34x-gS-LPi" id="L5w-n7-OQN"/>
+                <outlet property="detailButton" destination="oxK-7l-XDG" id="peb-dP-Qgt"/>
                 <outlet property="productDiscountPercentageLabel" destination="aNj-Wy-SMS" id="SGr-Y1-HS3"/>
                 <outlet property="productDiscountPercentageView" destination="BbW-ts-gdY" id="ZXW-NO-Kyc"/>
                 <outlet property="productDiscountPriceLabel" destination="suW-rm-9QG" id="PSH-cM-Yyf"/>

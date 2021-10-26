@@ -46,7 +46,7 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var bonoConstraint: NSLayoutConstraint!
 
     // Variables
-    var offer: Offers?
+    var offer: ProductsData?
 
     override func viewDidLoad() {
         super.viewDidLoad()

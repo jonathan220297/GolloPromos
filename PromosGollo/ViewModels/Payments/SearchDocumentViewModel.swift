@@ -18,23 +18,18 @@ class SearchDocumentViewModel {
 
     func fetchCustomer(with documentType: String, documentId: String) -> BehaviorRelay<ThirdPartyData?> {
         let apiResponse: BehaviorRelay<ThirdPartyData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(SearchDocumentRequest(service: BaseServiceRequestParam<SearchDocumentServiceRequest>(
-            servicio: ServicioParam(
-                encabezado: Encabezado(
-                    idProceso: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue,
-                    idDevice: "",
-                    idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
-                    timeStamp: String(Date().timeIntervalSince1970),
-                    idCia: 10,
-                    token: "",
-                    integrationId: nil),
-                parametros: SearchDocumentServiceRequest (
-                    noCia: "10",
-                    numeroIdentificacion: documentId,
-                    tipoIdentificacion: documentType
+        service.callWebServiceGollo(BaseRequest<ThirdPartyData, SearchDocumentServiceRequest>(
+            service: BaseServiceRequestParam<SearchDocumentServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue),
+                    parametros: SearchDocumentServiceRequest (
+                        noCia: "10",
+                        numeroIdentificacion: documentId,
+                        tipoIdentificacion: documentType
+                    )
                 )
             )
-        ))) { response in
+        )) { response in
             DispatchQueue.main.async {
                 switch response {
                 case .success(let response):
