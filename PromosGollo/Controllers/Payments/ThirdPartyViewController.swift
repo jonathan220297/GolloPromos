@@ -81,7 +81,7 @@ class ThirdPartyViewController: UIViewController {
                       let data = data else { return }
                 if let type = data.tipoIdentificacion,
                    let number = data.numeroIdentificacion {
-                    self.customerNameLabel.text = "\(String(describing: data.nombre)) \(String(describing: data.apellido1)) \(String(describing: data.apellido2))"
+                    self.customerNameLabel.text = "\(data.nombre) \(data.apellido1) \(data.apellido2)"
                     self.customerDocumentLabel.text = "Cedula: \(number)"
                     self.fetchCustomerAccounts(documentType: type, documentId: number)
                 } else {
@@ -128,10 +128,8 @@ extension ThirdPartyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let model = self.viewModel.accounts[indexPath.row]
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier: "paymentVC") as! PaymentViewController
-//        viewController.modalPresentationStyle = .overCurrentContext
-//        viewController.modalTransitionStyle = .crossDissolve
+        let vc = PaymentViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .fullScreen
         let payment = PaymentData()
         payment.currency = ""
         payment.suggestedAmount = model.montoSugeridoBotonera
@@ -139,13 +137,14 @@ extension ThirdPartyViewController: UITableViewDelegate, UITableViewDataSource {
         payment.totalAmount = model.montoCancelarCuenta
         payment.idCuenta = model.idCuenta
         payment.numCuenta = model.numCuenta
-//        payment.type = PaymentType.ACCOUNT
-//        payment.documentId = Constants.actualClientInfo?.identificacion
-//        payment.documentType = Constants.actualClientInfo?.tipoIdentificacion
-//        payment.nombreCliente = Constants.actualClientInfo?.nombre
-//        payment.email = Constants.actualClientInfo?.correoElectronico
-//        viewController.paymentData = payment
-//        self.present(viewController, animated: true)
+        payment.type = 1
+        payment.documentId = "205080150"
+        payment.documentType = "C"
+        payment.nombreCliente = ""
+        payment.email = ""
+        vc.paymentData = payment
+        vc.isThirdPayAccount = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

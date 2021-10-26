@@ -18,7 +18,7 @@ class AccountsViewModel {
 
     func fetchAccounts(with documentType: String, documentId: String) -> BehaviorRelay<[AccountsDetail]?> {
         let apiResponse: BehaviorRelay<[AccountsDetail]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[AccountsDetail], AccountsServiceRequest>(
+        service.callWebServiceGollo(BaseRequest<ResponseAccont, AccountsServiceRequest>(
             service: BaseServiceRequestParam<AccountsServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.ACTIVE_ACCOUNTS_PROCESS_ID.rawValue),
@@ -34,7 +34,7 @@ class AccountsViewModel {
             DispatchQueue.main.async {
                 switch response {
                 case .success(let response):
-                    apiResponse.accept(response)
+                    apiResponse.accept(response.cuentas)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }

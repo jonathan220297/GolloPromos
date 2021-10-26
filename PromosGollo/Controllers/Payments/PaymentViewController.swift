@@ -9,19 +9,24 @@ import UIKit
 
 class PaymentViewController: UIViewController {
 
-    @IBOutlet weak var viewGlass: UIView!
     @IBOutlet weak var viewPopup: UIView!
+    @IBOutlet weak var suggestedAmountView: UIView!
+    @IBOutlet weak var suggestedAmountHeight: NSLayoutConstraint!
     @IBOutlet weak var suggestedAmountLabel: UILabel!
     @IBOutlet weak var suggestedAmountButton: UIButton!
     @IBOutlet weak var installmentLabel: UILabel!
     @IBOutlet weak var installmentButton: UIButton!
+    @IBOutlet weak var totalPendingView: UIView!
+    @IBOutlet weak var totalPendingHeigth: NSLayoutConstraint!
     @IBOutlet weak var totalPendingLabel: UILabel!
     @IBOutlet weak var totalPendingButton: UIButton!
     @IBOutlet weak var otherAmountTextField: UITextField!
+    @IBOutlet weak var otherAmountButton: UIButton!
 
     let dateFormatter = DateFormatter()
 
     var paymentData: PaymentData? = nil
+    var isThirdPayAccount: Bool = false
     var cardTypePayment: Bool = false
     var currentAmount: Double? = 0.0
     var selectedPaymentAmount = -1
@@ -29,12 +34,8 @@ class PaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        super.viewDidLoad()
-
-        self.viewPopup.clipsToBounds = true
-
         dateFormatter.dateStyle = .long
-
+        otherAmountTextField.isEnabled = false
         showData()
     }
 
@@ -43,7 +44,7 @@ class PaymentViewController: UIViewController {
     }
 
     @IBAction func buttonAmountPaymentTapped(_ sender: UIButton) {
-        [suggestedAmountButton, installmentButton, totalPendingButton].forEach { (button) in
+        [suggestedAmountButton, installmentButton, totalPendingButton, otherAmountButton].forEach { (button) in
             button?.setImage(UIImage(named: "ic_radio-button-unchecked"), for: .normal)
         }
         if sender == suggestedAmountButton {
@@ -59,6 +60,10 @@ class PaymentViewController: UIViewController {
         if sender == totalPendingButton {
             selectedPaymentAmount = Payment.PAYMENT_TOTAL_PENDING.rawValue
             currentAmount = paymentData?.totalAmount
+            sender.setImage(UIImage(named: "ic_radio-button-checked"), for: .normal)
+        }
+        if sender == otherAmountButton {
+            otherAmountTextField.isEnabled = true
             sender.setImage(UIImage(named: "ic_radio-button-checked"), for: .normal)
         }
     }
@@ -78,15 +83,25 @@ class PaymentViewController: UIViewController {
 
     // MARK: - Functions
     fileprivate func showData() {
+        if isThirdPayAccount {
+            DispatchQueue.main.async {
+                self.suggestedAmountView.visibility = .gone
+                self.suggestedAmountHeight.constant = 0
+                self.suggestedAmountView.layoutIfNeeded()
+                self.totalPendingView.visibility = .gone
+                self.totalPendingHeigth.constant = 0
+                self.totalPendingView.layoutIfNeeded()
+            }
+        }
         if let model = paymentData {
             if let suggested = numberFormatter.string(from: NSNumber(value: model.suggestedAmount ?? 0.0)) {
-                suggestedAmountLabel.text = "₡" + " " + String(suggested)
+                suggestedAmountLabel.text = "₡" + String(suggested)
             }
             if let pending = numberFormatter.string(from: NSNumber(value: model.totalAmount ?? 0.0)) {
-                totalPendingLabel.text = "₡" + " " + String(pending)
+                totalPendingLabel.text = "₡" + String(pending)
             }
             if let installment = numberFormatter.string(from: NSNumber(value: model.installmentAmount ?? 0.0)) {
-                installmentLabel.text = "₡" + " " + String(installment)
+                installmentLabel.text = "₡" + String(installment)
             }
         }
     }

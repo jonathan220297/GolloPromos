@@ -100,6 +100,7 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
         payment.nombreCliente = ""
         payment.email = ""
         vc.paymentData = payment
+        vc.isThirdPayAccount = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
