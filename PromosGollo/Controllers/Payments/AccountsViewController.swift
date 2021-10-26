@@ -85,10 +85,8 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let model = self.viewModel.accounts[indexPath.row]
-        let storyboard = UIStoryboard(name: "Payments", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "paymentVC") as! PaymentViewController
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.modalTransitionStyle = .crossDissolve
+        let vc = PaymentViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .fullScreen
         let payment = PaymentData()
         payment.currency = ""
         payment.suggestedAmount = model.montoSugeridoBotonera
@@ -101,8 +99,8 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
         payment.documentType = "C"
         payment.nombreCliente = ""
         payment.email = ""
-        viewController.paymentData = payment
-        self.present(viewController, animated: true)
+        vc.paymentData = payment
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
