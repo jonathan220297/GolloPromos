@@ -9,9 +9,10 @@ import UIKit
 import RxSwift
 
 class OffersViewController: UIViewController {
-
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var offersTableView: UITableView!
+
+    let bag = DisposeBag()
 
     lazy var viewModel: OffersViewModel = {
         return OffersViewModel()
@@ -25,7 +26,7 @@ class OffersViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.title = "Ofertas"
+        navigationItem.title = "Ofertas"
     }
 
     fileprivate func configureRx() {

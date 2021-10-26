@@ -35,24 +35,19 @@ class SectionViewModel {
 
     func fetchProductsByCategory(with category: String) -> BehaviorRelay<[ProductsData]?> {
         let apiResponse: BehaviorRelay<[ProductsData]?> = BehaviorRelay(value: nil)
-        service.callWebService(ProductsRequest(service: BaseServiceRequestParam<ProductServiceRequest>(
-            servicio: ServicioParam(
-                encabezado: Encabezado(
-                    idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
-                    idDevice: "",
-                    idUsuario: UserManager.shared.userData?.uid ?? "",
-                    timeStamp: String(Date().timeIntervalSince1970),
-                    idCia: 10,
-                    token: "",
-                    integrationId: nil),
-                parametros: ProductServiceRequest(
-                    idCliente: "",
-                    idCompania: "10",
-                    numPagina: 1,
-                    tamanoPagina: 4
+        service.callWebServiceGollo(BaseRequest<[ProductsData], ProductServiceRequest>(
+            service: BaseServiceRequestParam<ProductServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue),
+                    parametros: ProductServiceRequest(
+                        idCliente: "",
+                        idCompania: "10",
+                        numPagina: 1,
+                        tamanoPagina: 4
+                    )
                 )
             )
-        ))) { response in
+        )) { response in
             DispatchQueue.main.async {
                 switch response {
                 case .success(let response):

@@ -8,50 +8,26 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import DropDown
 
 class EditProfileViewController: UIViewController {
 
     @IBOutlet weak var profileScrollView: UIScrollView!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var editProfileButton: UIButton!
-    @IBOutlet weak var namesTextField: UITextField!
-    @IBOutlet weak var lastNamesTextField: UITextField!
-    @IBOutlet weak var birthdayTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-
-    let disposeBag = DisposeBag()
-    let dateFormatter = DateFormatter()
-
-    var imagePicker = UIImagePickerController()
-
-    private var datePicker: UIDatePicker?
-
+    @IBOutlet weak var documentTypeLabel: UILabel!
+    @IBOutlet weak var documentTypeButton: UIButton!
+    @IBOutlet weak var documentNumberLabel: UITextField!
+    @IBOutlet weak var searchCustomerButton: UIButton!
+    
     lazy var viewModel: EditProfileViewModel = {
-        return EditProfileViewModel()
+        let vm = EditProfileViewModel()
+        vm.processDocTypes()
+        return vm
     }()
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Navigation Bar Configuration
-        let rigthButton = UIBarButtonItem(image: UIImage(named: "ic_save"), style: .plain, target: self, action: #selector(loadPhoto))
-        rigthButton.tintColor = .terracotta
-        self.navigationItem.rightBarButtonItem = rigthButton
-        self.navigationController?.navigationBar.tintColor = .white
-
-        // Date Picker
-        datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
-        datePicker?.addTarget(self, action: #selector(EditProfileViewController.dateChange(datePicker:)), for: .valueChanged)
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(EditProfileViewController.viewTapped(gestureRecognized:)))
-        view.addGestureRecognizer(tapGesture)
-
-        birthdayTextField.inputView = datePicker
-
-        // Delegate of Image Picker
-        imagePicker.delegate = self
-
+        navigationItem.title = "Perfil de usuario"
         configureRx()
 
         hideKeyboardWhenTappedAround()
@@ -59,13 +35,11 @@ class EditProfileViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        profileImageView.layer.borderColor = UIColor.white.cgColor
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
-        setUserData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,43 +47,10 @@ class EditProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
 
-    // MARK: - Functions
-    fileprivate func setUserData() {
-        if let user = viewModel.userManager.userData {
-            if let displayName = user.displayName {
-                namesTextField.text = displayName
-            }
-            if let email = user.email {
-                emailTextField.text = email
-            }
-        }
-    }
-
     // MARK: - Observers
-    @objc func dateChange(datePicker: UIDatePicker) {
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        birthdayTextField.text = dateFormatter.string(from: datePicker.date)
-    }
 
-    @objc func viewTapped(gestureRecognized: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-
-    @objc func loadPhoto() {
-        viewModel.uploadPhoto(profileImage: profileImageView.image, firstName: namesTextField.text, lastNames: lastNamesTextField.text, birthDate: datePicker?.date)
-    }
-
-}
-
-extension EditProfileViewController {
+    // MARK: - Functions
     fileprivate func configureRx() {
-        editProfileButton.rx.tap.bind {
-            self.imagePicker.sourceType = .photoLibrary
-            self.imagePicker.allowsEditing = true
-            self.present(self.imagePicker, animated: true)
-        }
-        .disposed(by: disposeBag)
-
         viewModel.errorMessage
             .asObservable()
             .subscribe(onNext: {[weak self] message in
@@ -120,17 +61,23 @@ extension EditProfileViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        documentTypeButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.configureDocumentTypeDropDown()
+            })
+            .disposed(by: disposeBag)
     }
-}
-
-
-extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
-            editProfileButton.alpha = 0
-            profileImageView.image = image
+    
+    func configureDocumentTypeDropDown() {
+        let dropDown = DropDown()
+        dropDown.anchorView = documentTypeButton
+        dropDown.dataSource = viewModel.docTypes.map { $0.name }
+        dropDown.show()
+        dropDown.selectionAction = { [self] (index: Int, item: String) in
+            documentTypeLabel.text = item
         }
-        dismiss(animated: true)
     }
 }
-

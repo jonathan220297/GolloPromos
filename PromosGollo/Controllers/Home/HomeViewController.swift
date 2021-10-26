@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonImageViewProfileTapped), for: .touchUpInside)
         return button
     }()
-    
+
     @IBOutlet weak var homeTableView: UITableView!
 
     lazy var viewModel: HomeViewModel = {
@@ -78,18 +78,18 @@ class HomeViewController: UIViewController {
         homeTableView.register(UINib(nibName: "SliderTableViewCell", bundle: nil), forCellReuseIdentifier: "SliderTableViewCell")
         homeTableView.register(UINib(nibName: "SectionTableViewCell", bundle: nil), forCellReuseIdentifier: "SectionTableViewCell")
         homeTableView.allowsSelection = false
+        viewModel.tableViewWidth = homeTableView.layer.frame.width
     }
 
     @IBAction func offersAction(_ sender: Any) {
-        if let vc = AppStoryboard.Offers.initialViewController() {
-            //vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
-        }
+        let vc = OffersViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func paymentAction(_ sender: Any) {
         if let vc = AppStoryboard.Payments.initialViewController() {
-            //vc.modalPresentationStyle = .fullScreen
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
         }
     }
@@ -99,14 +99,14 @@ class HomeViewController: UIViewController {
     }
 
     fileprivate func fetchHomeConfiguration() {
-        view.activityStopAnimatingFull()
+        view.activityStarAnimating()
         viewModel.getHomeConfiguration()
             .asObservable()
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,
                       let response = response else { return }
                 DispatchQueue.main.async {
-                    defer { self.view.activityStopAnimatingFull() }
+                    defer { self.view.activityStopAnimating() }
                     self.viewModel.configure(with: response)
                 }
             })
@@ -121,17 +121,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if viewModel.sectionsArray[indexPath.row].isSection {
-            switch viewModel.sectionsArray[indexPath.row].section?.name {
-            case SectionType.recents.rawValue:
-                return CGFloat(sectionCellSize)
-            case SectionType.products.rawValue:
-                return CGFloat(productCellSize)
-            default:
-                return 30
-            }
-
+            return CGFloat(productCellSize)
         } else {
-            return 150
+            return viewModel.sectionsArray[indexPath.row].banner?.uiHeight ?? CGFloat(0)
         }
     }
 

@@ -121,3 +121,12 @@ Otras de las obligaciones que podrían representar retos importantes a cumplir, 
 
 // Extensions
 "Extension_simple_alert_ok_button" = "Got it";
+
+// ProfileViewController
+"ProfileViewController_title" = "Profile";
+"ProfileViewController_document_type" = "Document Type";
+"ProfileViewController_document_number" = "Identification Number (ID or passport)";
+"ProfileViewController_search_customer" = "SEARCH CUSTOMER";
+"ProfileViewController_cedula" = "Cédula";
+"ProfileViewController_cedula_juridica" = "Cédula jurídica";
+"ProfileViewController_passport" = "Passport";

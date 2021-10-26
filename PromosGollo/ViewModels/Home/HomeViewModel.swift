@@ -15,6 +15,7 @@ class HomeViewModel {
     var sectionsArray: [HomeSection] = []
 
     var reloadTableViewData: (()->())?
+    var tableViewWidth: CGFloat = 0.0
 
     func getHomeConfiguration() -> BehaviorRelay<HomeConfiguration?> {
         let apiResponse: BehaviorRelay<HomeConfiguration?> = BehaviorRelay(value: nil)
@@ -56,7 +57,31 @@ class HomeViewModel {
                 sectionsArray.append(HomeSection(name: section.name ?? "", position: section.position ?? 0, section: section))
             }
         }
+        for i in 0..<sectionsArray.count {
+            if !sectionsArray[i].isSection {
+                let image = sectionsArray[i].banner?.images?.first?.image?.replacingOccurrences(of: " ", with: "%20") ?? ""
+                log.debug(image)
+                sectionsArray[i].banner?.uiHeight = fetchImageHeight(with: URL(string: image))
+            }
+        }
         self.reloadTableViewData?()
+    }
+    
+    func fetchImageHeight(with url: URL?) -> CGFloat {
+        guard let url = url else { return 0.0 }
+        if let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) {
+            if let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as Dictionary? {
+                let pixelWidth = imageProperties[kCGImagePropertyPixelWidth] as! Double
+                let pixelHeight = imageProperties[kCGImagePropertyPixelHeight] as! Double
+                let myViewWidth = self.tableViewWidth
+     
+                let ratio = myViewWidth / CGFloat(pixelWidth)
+                let scaledHeight = CGFloat(pixelHeight) * ratio
+
+                return scaledHeight
+            }
+        }
+        return 0.0
     }
 }
 
