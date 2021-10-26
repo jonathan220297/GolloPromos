@@ -81,13 +81,23 @@ class StatusViewController: UIViewController {
             if let cmm = numberFormatter.string(from: NSNumber(value: model.cmmActual ?? 0.0)) {
                 cmmLabel.text = "₡" + " " + String(cmm)
             }
+            if let cmm = model.cmmActual,
+               let cmmAvailable = model.cmmDisponible {
+                let cmmUsed = cmm - cmmAvailable
+                cmmUsedLabel.text = "₡" + " " + String(cmmUsed)
+            }
             if let cmmAvailable = numberFormatter.string(from: NSNumber(value: model.cmmDisponible ?? 0.0)) {
                 cmmAvailableLabel.text = "₡" + " " + String(cmmAvailable)
             }
-            if let lem = numberFormatter.string(from: NSNumber(value: model.cmmActual ?? 0.0)) {
+            if let lem = numberFormatter.string(from: NSNumber(value: model.lemActual ?? 0.0)) {
                 lemLabel.text = "₡" + " " + String(lem)
             }
-            if let lemAvailable = numberFormatter.string(from: NSNumber(value: model.cmmActual ?? 0.0)) {
+            if let lem = model.lemActual,
+               let lemAvailable = model.lemDisponible {
+                let lemUsed = lem - lemAvailable
+                cmmUsedLabel.text = "₡" + " " + String(lemUsed)
+            }
+            if let lemAvailable = numberFormatter.string(from: NSNumber(value: model.lemDisponible ?? 0.0)) {
                 lemAvailableLabel.text = "₡" + " " + String(lemAvailable)
             }
         }
@@ -136,12 +146,11 @@ extension StatusViewController: UITableViewDelegate, UITableViewDataSource {
 extension StatusViewController: StatusDelegate {
     func OpenItems(with index: Int) {
         let model = self.viewModel.account[index]
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "productDetailVC") as! ProductDetailViewController
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.modalTransitionStyle = .crossDissolve
-        viewController.accountType = "RE"
-        viewController.accountId = model.idCuenta ?? ""
-        self.present(viewController, animated: true)
+        let vc = ProductDetailViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        vc.accountType = "RE"
+        vc.accountId = model.idCuenta ?? ""
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

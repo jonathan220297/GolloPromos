@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5n-84-JB3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5n-84-JB3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -65,7 +65,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountsCell" rowHeight="300" id="RJe-r2-vaT" customClass="AccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="414" height="300"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="414" height="300"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RJe-r2-vaT" id="LUO-ng-Tjd">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -722,7 +722,7 @@
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" rowHeight="300" id="5sa-Ha-b9A" customClass="StatusTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="28" width="414" height="300"/>
+                                                                <rect key="frame" x="0.0" y="24.5" width="414" height="300"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5sa-Ha-b9A" id="LMn-X5-pAt">
                                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -1090,8 +1090,8 @@
                                                             </tableViewCell>
                                                         </prototypes>
                                                         <connections>
-                                                            <outlet property="dataSource" destination="cOx-Dd-Pr4" id="NOW-Gn-w4e"/>
-                                                            <outlet property="delegate" destination="cOx-Dd-Pr4" id="E4f-6P-6IZ"/>
+                                                            <outlet property="dataSource" destination="8pN-IW-yp1" id="IDV-dQ-0gS"/>
+                                                            <outlet property="delegate" destination="8pN-IW-yp1" id="Pf5-6X-uiQ"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -1432,7 +1432,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="140" id="u7D-QO-eQl" customClass="ThirdPartyAccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="140"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="140"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u7D-QO-eQl" id="dso-0b-7rw">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
@@ -1604,7 +1604,7 @@
                             <constraint firstItem="MF7-Cf-ind" firstAttribute="trailing" secondItem="6Cs-Zp-uCM" secondAttribute="trailing" id="sXc-K5-VfF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Third" id="gBj-03-UFQ"/>
+                    <tabBarItem key="tabBarItem" title="Third" image="ic_third_party_payment" id="gBj-03-UFQ"/>
                     <navigationItem key="navigationItem" id="Vlb-Hf-w7Q"/>
                     <connections>
                         <outlet property="customerDocumentLabel" destination="PJh-Zb-o26" id="rea-uS-XIu"/>
@@ -1653,7 +1653,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.1596274972" green="0.18202841280000001" blue="0.28569999340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="colorPrimary"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="oCZ-hz-CXk" secondAttribute="trailing" constant="8" id="6ta-ma-vMr"/>
                                             <constraint firstItem="NJW-2L-LVG" firstAttribute="leading" secondItem="euX-Ue-U3T" secondAttribute="leading" constant="8" id="b1w-pn-YyY"/>
@@ -1668,7 +1668,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemsCell" rowHeight="70" id="v4Q-DZ-9Yb" customClass="ItemsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="331" height="70"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="331" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4Q-DZ-9Yb" id="7CF-nH-RuW">
                                                     <rect key="frame" x="0.0" y="0.0" width="331" height="70"/>
@@ -1840,7 +1840,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" rowHeight="200" id="Csd-ax-ILD" customClass="StatusTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="200"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Csd-ax-ILD" id="BiD-eE-xY1">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -2041,7 +2041,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5M3-C9-5wU">
-                                        <rect key="frame" x="8" y="8" width="398" height="204"/>
+                                        <rect key="frame" x="8" y="16" width="398" height="204"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyR-NV-6jN">
                                                 <rect key="frame" x="0.0" y="0.0" width="398" height="45"/>
@@ -2233,7 +2233,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7S-FM-K9v">
-                                        <rect key="frame" x="72.5" y="262" width="269" height="40"/>
+                                        <rect key="frame" x="72.5" y="270" width="269" height="40"/>
                                         <color key="backgroundColor" name="colorPrimary"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="7Vn-33-Snu"/>
@@ -2256,7 +2256,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="5M3-C9-5wU" secondAttribute="trailing" constant="8" id="68O-EE-vbL"/>
-                                    <constraint firstItem="5M3-C9-5wU" firstAttribute="top" secondItem="ttl-uE-p7w" secondAttribute="top" constant="8" id="F5P-tP-d0z"/>
+                                    <constraint firstItem="5M3-C9-5wU" firstAttribute="top" secondItem="ttl-uE-p7w" secondAttribute="top" constant="16" id="F5P-tP-d0z"/>
                                     <constraint firstItem="e7S-FM-K9v" firstAttribute="centerX" secondItem="ttl-uE-p7w" secondAttribute="centerX" id="Xx4-lK-fFC"/>
                                     <constraint firstItem="e7S-FM-K9v" firstAttribute="width" secondItem="ttl-uE-p7w" secondAttribute="width" multiplier="0.65" id="ZmB-26-huX"/>
                                     <constraint firstItem="5M3-C9-5wU" firstAttribute="leading" secondItem="ttl-uE-p7w" secondAttribute="leading" constant="8" id="gxp-k2-kxG"/>
@@ -2282,11 +2282,16 @@
                     <connections>
                         <outlet property="installmentButton" destination="jEk-67-rPP" id="9ze-dw-Owf"/>
                         <outlet property="installmentLabel" destination="UoQ-Wx-Lya" id="HGd-fa-0Jk"/>
+                        <outlet property="otherAmountButton" destination="7eo-cO-czM" id="oDd-Wl-ENa"/>
                         <outlet property="otherAmountTextField" destination="JtC-az-rKv" id="HAp-dM-L79"/>
                         <outlet property="suggestedAmountButton" destination="XX4-Z4-jrH" id="cG8-ka-q04"/>
+                        <outlet property="suggestedAmountHeight" destination="bWR-7p-TIa" id="9b9-dI-lgA"/>
                         <outlet property="suggestedAmountLabel" destination="svz-Qz-qyB" id="BGK-dX-Xsy"/>
+                        <outlet property="suggestedAmountView" destination="dyR-NV-6jN" id="Pad-X9-4Uq"/>
                         <outlet property="totalPendingButton" destination="4d5-wg-GbT" id="Gp8-MR-oEb"/>
+                        <outlet property="totalPendingHeigth" destination="eKf-mf-tpk" id="VBG-eN-V7j"/>
                         <outlet property="totalPendingLabel" destination="xCO-CJ-KLB" id="U28-HH-uxJ"/>
+                        <outlet property="totalPendingView" destination="whc-LY-qBW" id="sSD-Dd-ICz"/>
                         <outlet property="viewPopup" destination="ttl-uE-p7w" id="5nt-O8-b6G"/>
                     </connections>
                 </viewController>
@@ -2303,7 +2308,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vrc-Em-anb">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="60" width="414" height="802"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wN-95-aAg">
                                         <rect key="frame" x="8" y="0.0" width="398" height="45"/>
@@ -2438,11 +2443,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Krp-o0-zul" firstAttribute="trailing" secondItem="vrc-Em-anb" secondAttribute="trailing" id="Zkh-uF-Rcm"/>
-                            <constraint firstItem="vrc-Em-anb" firstAttribute="top" secondItem="Krp-o0-zul" secondAttribute="top" id="awg-Di-PVE"/>
+                            <constraint firstItem="vrc-Em-anb" firstAttribute="top" secondItem="Krp-o0-zul" secondAttribute="top" constant="16" id="awg-Di-PVE"/>
                             <constraint firstItem="Krp-o0-zul" firstAttribute="bottom" secondItem="vrc-Em-anb" secondAttribute="bottom" id="gYb-tY-YXy"/>
                             <constraint firstItem="vrc-Em-anb" firstAttribute="leading" secondItem="Krp-o0-zul" secondAttribute="leading" id="udX-wU-iDw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="continuePaymentButton" destination="syQ-uF-Iro" id="lIc-Nm-QpY"/>
+                        <outlet property="subtotalLabel" destination="kUL-ka-bPU" id="8D4-W0-N9M"/>
+                        <outlet property="totalLabel" destination="9Bk-Pq-LMO" id="y84-l5-PXt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ffn-fc-fRf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2464,6 +2474,7 @@
         <image name="ic_radio-button-checked" width="128" height="128"/>
         <image name="ic_radio-button-unchecked" width="128" height="128"/>
         <image name="ic_search_user" width="50" height="50"/>
+        <image name="ic_third_party_payment" width="33.333332061767578" height="33.333332061767578"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
