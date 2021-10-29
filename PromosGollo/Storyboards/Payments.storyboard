@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5n-84-JB3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5n-84-JB3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -65,7 +65,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountsCell" rowHeight="300" id="RJe-r2-vaT" customClass="AccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="24.5" width="414" height="300"/>
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="300"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RJe-r2-vaT" id="LUO-ng-Tjd">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -512,7 +512,7 @@
                             <constraint firstItem="jOT-vz-5QV" firstAttribute="top" secondItem="2ps-PK-xbH" secondAttribute="top" id="pLC-yc-5Jf"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Account" id="Pht-FY-MyS"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="ic_menu_accounts" id="Pht-FY-MyS"/>
                     <navigationItem key="navigationItem" id="pjl-ll-hed"/>
                     <connections>
                         <outlet property="containerDataView" destination="XCw-AL-oNP" id="YTn-xI-3Go"/>
@@ -557,10 +557,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JET-31-IvA">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="52" width="414" height="761"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Le-f5-zoI">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="490"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Le-f5-zoI">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9WM-dd-XIW">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
@@ -678,7 +678,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nb0-ce-bYN">
-                                                <rect key="frame" x="0.0" y="140" width="414" height="25"/>
+                                                <rect key="frame" x="0.0" y="148" width="414" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuentas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMx-eP-2MV">
                                                         <rect key="frame" x="180.5" y="2.5" width="53" height="20"/>
@@ -715,14 +715,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAg-AL-3Cs">
-                                                <rect key="frame" x="0.0" y="165" width="414" height="300"/>
+                                                <rect key="frame" x="0.0" y="181" width="414" height="300"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pnv-3Y-yd3">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" rowHeight="300" id="5sa-Ha-b9A" customClass="StatusTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="24.5" width="414" height="300"/>
+                                                                <rect key="frame" x="0.0" y="28" width="414" height="300"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5sa-Ha-b9A" id="LMn-X5-pAt">
                                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -1105,7 +1105,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GW-fV-rP6">
-                                                <rect key="frame" x="0.0" y="465" width="414" height="25"/>
+                                                <rect key="frame" x="0.0" y="489" width="414" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Totales" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWq-lm-DW9">
                                                         <rect key="frame" x="183.5" y="2.5" width="47" height="20"/>
@@ -1141,8 +1141,8 @@
                                                     <constraint firstItem="lvR-Ce-GPw" firstAttribute="leading" secondItem="3GW-fV-rP6" secondAttribute="leading" id="rwG-gs-SHc"/>
                                                 </constraints>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TBn-G3-skH">
-                                                <rect key="frame" x="0.0" y="490" width="414" height="100"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TBn-G3-skH">
+                                                <rect key="frame" x="0.0" y="522" width="414" height="100"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NWb-iA-Vvz">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -1150,7 +1150,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UXn-oH-hfZ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="207" height="100"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="$ 100.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbk-5s-hKx">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbk-5s-hKx">
                                                                         <rect key="frame" x="0.0" y="0.0" width="207" height="25"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <nil key="textColor"/>
@@ -1162,13 +1162,13 @@
                                                                         <color key="textColor" red="0.1596274972" green="0.18202841280000001" blue="0.28569999340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$50.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otr-gH-DS1">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otr-gH-DS1">
                                                                         <rect key="frame" x="0.0" y="50" width="207" height="25"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo Actual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLd-jM-cOs">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo Actual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLd-jM-cOs">
                                                                         <rect key="frame" x="0.0" y="75" width="207" height="25"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                         <color key="textColor" red="0.1596274972" green="0.18202841280000001" blue="0.28569999340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1176,29 +1176,29 @@
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iJ2-58-cMT">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iJ2-58-cMT">
                                                                 <rect key="frame" x="207" y="0.0" width="207" height="100"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="$ 100.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZx-2t-XVO">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="207" height="46"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZx-2t-XVO">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="207" height="25"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monto inicial" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cc-EK-YtE">
-                                                                        <rect key="frame" x="0.0" y="46" width="207" height="17"/>
+                                                                        <rect key="frame" x="0.0" y="25" width="207" height="25"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                         <color key="textColor" red="0.1596274972" green="0.18202841280000001" blue="0.28569999340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$50.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0l-hb-ncy">
-                                                                        <rect key="frame" x="0.0" y="63" width="207" height="20"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0l-hb-ncy">
+                                                                        <rect key="frame" x="0.0" y="50" width="207" height="25"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo Actual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsa-TL-kn9">
-                                                                        <rect key="frame" x="0.0" y="83" width="207" height="17"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo Actual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsa-TL-kn9">
+                                                                        <rect key="frame" x="0.0" y="75" width="207" height="25"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                         <color key="textColor" red="0.1596274972" green="0.18202841280000001" blue="0.28569999340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -1234,13 +1234,13 @@
                             <constraint firstItem="Ea7-kK-oVW" firstAttribute="trailing" secondItem="JET-31-IvA" secondAttribute="trailing" id="IqJ-HI-g6K"/>
                             <constraint firstItem="JET-31-IvA" firstAttribute="bottom" secondItem="Ea7-kK-oVW" secondAttribute="bottom" id="WyT-Bs-BmI"/>
                             <constraint firstItem="JET-31-IvA" firstAttribute="leading" secondItem="waz-7D-5xz" secondAttribute="leading" id="p7m-py-Jb0"/>
-                            <constraint firstItem="JET-31-IvA" firstAttribute="top" secondItem="Ea7-kK-oVW" secondAttribute="top" id="riD-hG-vnW"/>
+                            <constraint firstItem="JET-31-IvA" firstAttribute="top" secondItem="Ea7-kK-oVW" secondAttribute="top" constant="8" id="riD-hG-vnW"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Status" id="abh-Ga-hBY"/>
+                    <tabBarItem key="tabBarItem" title="Status" image="ic_payment_status" id="abh-Ga-hBY"/>
                     <navigationItem key="navigationItem" id="V82-Hf-iEV"/>
                     <connections>
-                        <outlet property="accountsView" destination="nb0-ce-bYN" id="rXW-zc-d5t"/>
+                        <outlet property="accountsView" destination="CAg-AL-3Cs" id="JNn-9s-iCW"/>
                         <outlet property="cmmAvailableLabel" destination="7mC-Ub-nER" id="i25-ii-JaK"/>
                         <outlet property="cmmLabel" destination="EA5-0W-2Pc" id="RVc-dj-zjk"/>
                         <outlet property="cmmUsedLabel" destination="23F-X8-fa9" id="IFG-1e-F9K"/>
@@ -1253,7 +1253,7 @@
                         <outlet property="lemUsedLabel" destination="vdQ-NT-CSD" id="Kk9-IU-dg7"/>
                         <outlet property="paymentAmountLabel" destination="kZx-2t-XVO" id="XGz-Br-lKQ"/>
                         <outlet property="tableView" destination="Pnv-3Y-yd3" id="fEk-7F-UjE"/>
-                        <outlet property="totalsView" destination="3GW-fV-rP6" id="vjz-2E-Msy"/>
+                        <outlet property="totalsView" destination="TBn-G3-skH" id="C6I-AF-rbm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Zz-gA-vpa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1432,7 +1432,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="140" id="u7D-QO-eQl" customClass="ThirdPartyAccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="414" height="140"/>
+                                                <rect key="frame" x="0.0" y="28" width="414" height="140"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u7D-QO-eQl" id="dso-0b-7rw">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
@@ -1668,7 +1668,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemsCell" rowHeight="70" id="v4Q-DZ-9Yb" customClass="ItemsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="331" height="70"/>
+                                                <rect key="frame" x="0.0" y="28" width="331" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4Q-DZ-9Yb" id="7CF-nH-RuW">
                                                     <rect key="frame" x="0.0" y="0.0" width="331" height="70"/>
@@ -1840,7 +1840,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" rowHeight="200" id="Csd-ax-ILD" customClass="StatusTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="200"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Csd-ax-ILD" id="BiD-eE-xY1">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -2017,7 +2017,7 @@
                             <constraint firstItem="OnM-zD-8qe" firstAttribute="bottom" secondItem="0yg-DM-PfG" secondAttribute="bottom" id="iSX-hD-dPd"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="History" id="qPb-iv-bZD"/>
+                    <tabBarItem key="tabBarItem" title="History" image="ic_history" id="qPb-iv-bZD"/>
                     <navigationItem key="navigationItem" id="hEp-xI-7OC"/>
                     <connections>
                         <outlet property="fromTextField" destination="qbU-jz-XUC" id="asu-ow-f2j"/>
@@ -2465,12 +2465,14 @@
         <image name="ic_account_payments" width="100" height="100"/>
         <image name="ic_actual_amount" width="100" height="100"/>
         <image name="ic_check" width="289.5" height="275.5"/>
+        <image name="ic_history" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_initial_amount" width="100" height="100"/>
         <image name="ic_installment_payment" width="512" height="512"/>
         <image name="ic_item_detail" width="100" height="100"/>
         <image name="ic_items" width="256" height="256"/>
         <image name="ic_menu_accounts" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_payment_amount" width="100" height="100"/>
+        <image name="ic_payment_status" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_radio-button-checked" width="128" height="128"/>
         <image name="ic_radio-button-unchecked" width="128" height="128"/>
         <image name="ic_search_user" width="50" height="50"/>

@@ -26,4 +26,5 @@ struct OffersRequest: APIRequest {
 struct OffersServiceRequest: Codable {
     var idCliente: String
     var idCompania: String
+    var idCategoria: String? = nil
 }

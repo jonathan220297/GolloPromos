@@ -82,7 +82,7 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func offersAction(_ sender: Any) {
-        let vc = OffersViewController.instantiate(fromAppStoryboard: .Offers)
+        let vc = OffersTabBarViewController.instantiate(fromAppStoryboard: .Offers)
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }

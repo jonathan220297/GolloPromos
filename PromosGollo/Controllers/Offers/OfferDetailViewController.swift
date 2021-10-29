@@ -94,7 +94,7 @@ class OfferDetailViewController: UIViewController {
 
             brandLabel.attributedText = formatHTML(header: "Marca: ", content: offer.brand ?? "")
             modelLabel.attributedText = formatHTML(header: "Modelo: ", content: offer.modelo ?? "")
-            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.description ?? "")
+            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productsDataDescription ?? "")
             dateLabel.attributedText = formatHTML(header: "Fecha de Vencimiento: ", content: convertDate(date: offer.endDate ?? "") ?? "")
 
             if let original = offer.originalPrice, let final = offer.precioFinal {

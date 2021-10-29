@@ -9,7 +9,7 @@ import Foundation
 
 struct FilterRequest: APIRequest {
 
-    public typealias Response = [FilterData]
+    public typealias Response = [Store]
 
     public var resourceName: String {
         return "Procesos"

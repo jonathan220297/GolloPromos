@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FilterData: Codable {
+struct StoreData: Codable {
     var idTienda, nombre, direccion, telefono: String?
     var latitud, longitud: Double?
     var provincia, canton, distrito: String?

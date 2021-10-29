@@ -143,10 +143,6 @@ extension SectionTableViewCell: UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-//        let vc = ProductDetailViewController.instantiate(fromAppStoryboard: .Products)
-//        vc.modalPresentationStyle = .fullScreen
-//        vc.setProductId(viewModel.productsArray[indexPath.row].productID ?? "")
-//        delegate?.sectionTableView(self, moveTo: vc)
     }
 }
 
