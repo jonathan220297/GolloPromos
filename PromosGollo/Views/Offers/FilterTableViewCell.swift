@@ -10,7 +10,6 @@ import UIKit
 class FilterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelCell: UILabel!
-    @IBOutlet weak var addressLabelCell: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,9 +22,7 @@ class FilterTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setFilterData(model: FilterData) {
+    func setFilterData(model: StoreData) {
         labelCell.text = model.nombre
-        addressLabelCell.text = model.direccion
     }
-
 }

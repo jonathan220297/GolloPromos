@@ -21,3 +21,9 @@ struct Offers: Codable {
     let montoDescuento, precioFinal: Double?
     let tieneBono, tieneRegalia, tieneDescuento: String?
 }
+
+struct CategoryOffers {
+    let category: CategoriesData
+    let offers: [ProductsData]
+    let height: Int
+}
