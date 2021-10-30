@@ -8,24 +8,23 @@
 import Foundation
 import RxRelay
 
-class HistoryViewModel {
+class AccountItemsViewModel {
     private let service = GolloService()
 
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
-    var status: [AppTransaction] = []
+    var items: [Items] = []
 
     var reloadTableViewData: (()->())?
 
-    func fetchHistoryTransactions(with startDate: String, endDate: String) -> BehaviorRelay<[AppTransaction]?> {
-        let apiResponse: BehaviorRelay<[AppTransaction]?> = BehaviorRelay(value: nil)
-        service.callWebService(HistoryRequest(service: BaseServiceRequestParam<HistoryServiceRequest>(
+    func fetchAccountItems(with accountType: String, accountId: String) -> BehaviorRelay<AccountsItemResponse?> {
+        let apiResponse: BehaviorRelay<AccountsItemResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(AccountItemsRequest(service: BaseServiceRequestParam<AccountItemsServiceRequest>(
             servicio: ServicioParam(
-                encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.APP_PAYMENT_HISTORY.rawValue),
-                parametros: HistoryServiceRequest (
-                    idMovimiento: "",
-                    fechaInicial: startDate,
-                    fechaFinal: endDate,
-                    identificacionCliente: "604050942"
+                encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.ACCOUNT_ITEMS_PROCESS_ID.rawValue),
+                parametros: AccountItemsServiceRequest (
+                    empresa: "10",
+                    idCuenta: accountId,
+                    tipoMovimiento: accountType
                 )
             )
         ))) { response in

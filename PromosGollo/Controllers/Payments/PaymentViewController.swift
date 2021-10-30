@@ -50,16 +50,19 @@ class PaymentViewController: UIViewController {
         if sender == suggestedAmountButton {
             selectedPaymentAmount = Payment.PAYMENT_SUGGESTED.rawValue
             currentAmount = paymentData?.suggestedAmount
+            otherAmountTextField.isEnabled = false
             sender.setImage(UIImage(named: "ic_radio-button-checked"), for: .normal)
         }
         if sender == installmentButton {
             selectedPaymentAmount = Payment.PAYMENT_INSTALLMENT.rawValue
             currentAmount = paymentData?.installmentAmount
+            otherAmountTextField.isEnabled = false
             sender.setImage(UIImage(named: "ic_radio-button-checked"), for: .normal)
         }
         if sender == totalPendingButton {
             selectedPaymentAmount = Payment.PAYMENT_TOTAL_PENDING.rawValue
             currentAmount = paymentData?.totalAmount
+            otherAmountTextField.isEnabled = false
             sender.setImage(UIImage(named: "ic_radio-button-checked"), for: .normal)
         }
         if sender == otherAmountButton {

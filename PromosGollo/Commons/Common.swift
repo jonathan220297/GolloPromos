@@ -124,7 +124,7 @@ func getDefaultBaseHeaderRequest(with processId: String,
                                  integrationId: String? = nil) -> Encabezado {
     let encabezado = Encabezado(idProceso: processId,
                                 idDevice: "",
-                                idUsuario: UserManager.shared.userData?.uid ?? "",
+                                idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                                 timeStamp: String(Date().timeIntervalSince1970),
                                 idCia: 10,
                                 token: getToken() ?? "",

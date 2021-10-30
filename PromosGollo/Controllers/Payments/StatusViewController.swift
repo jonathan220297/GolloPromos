@@ -11,6 +11,7 @@ import RxSwift
 class StatusViewController: UIViewController {
 
     @IBOutlet weak var dataView: UIView!
+    @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var cmmLabel: UILabel!
     @IBOutlet weak var cmmUsedLabel: UILabel!
     @IBOutlet weak var cmmAvailableLabel: UILabel!
@@ -63,11 +64,15 @@ class StatusViewController: UIViewController {
     }
 
     fileprivate func fetchStatus() {
+        view.activityStarAnimating()
         viewModel.fetchStatus(with: "C", documentId: "205080150")
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                DispatchQueue.main.async {
+                    self.view.activityStopAnimating()
+                }
                 self.showClientCreditInfo(creditInfo: data.datosCredito)
                 self.showClientTotals(totals: data.totales)
                 self.viewModel.account = data.cuentas ?? []
@@ -151,6 +156,6 @@ extension StatusViewController: StatusDelegate {
         vc.modalTransitionStyle = .crossDissolve
         vc.accountType = "RE"
         vc.accountId = model.idCuenta ?? ""
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true)
     }
 }

@@ -99,11 +99,15 @@ class HistoryViewController: UIViewController {
     }
 
     fileprivate func fetchHistory(from: String, to: String) {
+        view.activityStarAnimating()
         viewModel.fetchHistoryTransactions(with: from, endDate: to)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                DispatchQueue.main.async {
+                    self.view.activityStopAnimating()
+                }
                 self.viewModel.status = data
                 self.tableView.reloadData()
             })
