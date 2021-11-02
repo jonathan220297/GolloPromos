@@ -51,6 +51,7 @@ class AccountsViewController: UIViewController {
     }
 
     fileprivate func fetchAccounts() {
+        self.view.activityStarAnimating()
         viewModel.fetchAccounts(with: "C", documentId: "205080150")
             .asObservable()
             .subscribe(onNext: {[weak self] data in
@@ -58,6 +59,9 @@ class AccountsViewController: UIViewController {
                       let data = data else { return }
                 if data.isEmpty {
                     self.dataView.alpha = 0
+                }
+                DispatchQueue.main.async {
+                    self.view.activityStopAnimating()
                 }
                 self.viewModel.accounts = data
                 self.tableView.reloadData()
@@ -109,13 +113,12 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
 extension AccountsViewController: AccountsDelegate {
     func OpenItems(with index: Int) {
         let model = self.viewModel.accounts[index]
-        let storyboard = UIStoryboard(name: "Payments", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "productDetailVC") as! ProductDetailViewController
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.modalTransitionStyle = .crossDissolve
-        viewController.accountType = "RE"
-        viewController.accountId = model.idCuenta ?? ""
-        self.present(viewController, animated: true)
+        let vc = ProductDetailViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        vc.accountType = "RE"
+        vc.accountId = model.idCuenta ?? ""
+        self.present(vc, animated: true)
     }
 }
 

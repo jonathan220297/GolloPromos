@@ -81,7 +81,11 @@ class ThirdPartyViewController: UIViewController {
                       let data = data else { return }
                 if let type = data.tipoIdentificacion,
                    let number = data.numeroIdentificacion {
-                    self.customerNameLabel.text = "\(data.nombre) \(data.apellido1) \(data.apellido2)"
+                    if let name = data.nombre,
+                       let lastName = data.apellido1,
+                       let secondLastName = data.apellido2 {
+                        self.customerNameLabel.text = name + " " + lastName + " " + secondLastName
+                    }
                     self.customerDocumentLabel.text = "Cedula: \(number)"
                     self.fetchCustomerAccounts(documentType: type, documentId: number)
                 } else {
@@ -94,11 +98,15 @@ class ThirdPartyViewController: UIViewController {
     }
 
     fileprivate func fetchCustomerAccounts(documentType: String, documentId: String) {
+        view.activityStarAnimating()
         viewModel.fetchAccounts(with: documentType, documentId: documentId)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                DispatchQueue.main.async {
+                    self.view.activityStopAnimating()
+                }
                 self.searchView.alpha = 0
                 self.dataView.alpha = 1
                 self.viewModel.accounts = data

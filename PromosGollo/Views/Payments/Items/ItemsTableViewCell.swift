@@ -24,7 +24,7 @@ class ItemsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setItem(with model: Item) {
+    func setItem(with model: Items) {
         descriptionLabel.text = model.descripcion
         modelLabel.text = "Modelo: \(model.modelo ?? "")"
         quantityLabel.text = "Cantidad: \(model.cantidad ?? 0)"
