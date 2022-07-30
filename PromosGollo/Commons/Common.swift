@@ -112,12 +112,12 @@ enum Payment: Int {
     case PAYMENT_TOTAL_PENDING = 3
 }
 
-func getToken() -> String? {
+func getToken() -> String {
     guard let data = KeychainManager.load(key: "token") else {
-        return nil
+        return ""
     }
     let token = String(data: data, encoding: .utf8)
-    return token
+    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjSXBBRExwaDJvZVRWeUkxYVBtRE5hWU84RGsyIiwiZW1wcmVzYSI6IjEwIiwidG9rZW4iOiIiLCJmdWxsTmFtZSI6IiIsInJvbGUiOiJVc2VyIiwianRpIjoiNGUyMTRkNzAtZmRkYy00MWQxLWIzNjgtYTdiOTdmODEzOThmIiwibmJmIjoxNjU5MTI0Njg0LCJleHAiOjE2NTkyMTEwODQsImlzcyI6Imh0dHA6Ly83NC4yMDguMTUwLjQ0L1Byb21vc0FQSSIsImF1ZCI6Imh0dHA6Ly83NC4yMDguMTUwLjQ0L1Byb21vc0FQSSJ9.EbxGcqfa6sSnzMwnoDLWcsZ_WbM0MKu30QJvdAnvKjc"
 }
 
 func getDefaultBaseHeaderRequest(with processId: String,
@@ -127,7 +127,7 @@ func getDefaultBaseHeaderRequest(with processId: String,
                                 idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                                 timeStamp: String(Date().timeIntervalSince1970),
                                 idCia: 10,
-                                token: getToken() ?? "",
+                                token: getToken() ,
                                 integrationId: integrationId)
     return encabezado
 }

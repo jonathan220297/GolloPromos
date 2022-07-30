@@ -44,11 +44,11 @@ class LoginViewModel: NSObject {
 
     func fetchUserInfo(for loginType: LoginType) -> BehaviorRelay<LoginData?> {
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<LoginData, LoginRequest>(
-            service: BaseServiceRequestParam(
+        service.callWebServiceGollo(BaseRequest<LoginData, LoginServiceRequest>(
+            service: BaseServiceRequestParam<LoginServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.LOGIN_PROCESS_ID.rawValue),
-                    parametros: LoginRequest(
+                    parametros: LoginServiceRequest(
                         idCliente: userManager.userData?.uid ?? "",
                         nombre: userManager.userData?.displayName ?? "",
                         apellido1: userManager.userData?.displayName ?? "",

@@ -19,6 +19,7 @@ enum AppStoryboard: String {
     case Notifications
     case Payments
     case Offers
+    case Services
     // swiftlint:enable identifier_name
 
     var instance: UIStoryboard {

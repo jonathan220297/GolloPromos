@@ -28,7 +28,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                                 <subviews>
                                                     <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="ipl-EE-hBH">
-                                                        <rect key="frame" x="4" y="3" width="361" height="50"/>
+                                                        <rect key="frame" x="4" y="3" width="369" height="50"/>
                                                         <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
@@ -36,17 +36,18 @@
                                                         </connections>
                                                     </searchBar>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrq-26-uVR">
-                                                        <rect key="frame" x="369" y="11.5" width="33" height="33"/>
+                                                        <rect key="frame" x="377" y="15.5" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Wrq-26-uVR" secondAttribute="height" multiplier="1:1" id="FlU-07-CT8"/>
                                                         </constraints>
+                                                        <color key="tintColor" red="0.0" green="0.39239364859999998" blue="0.70810222629999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="ic_filtrar"/>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.79960678510000005" green="0.83097404819999998" blue="0.85589626220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Wrq-26-uVR" secondAttribute="trailing" constant="12" id="0Fb-gF-g6r"/>
-                                                    <constraint firstItem="Wrq-26-uVR" firstAttribute="width" secondItem="tsz-sY-xiD" secondAttribute="width" multiplier="0.08" id="26k-mv-AU7"/>
+                                                    <constraint firstItem="Wrq-26-uVR" firstAttribute="width" secondItem="tsz-sY-xiD" secondAttribute="width" multiplier="0.06" id="26k-mv-AU7"/>
                                                     <constraint firstAttribute="height" constant="56" id="4oj-LA-byC"/>
                                                     <constraint firstItem="ipl-EE-hBH" firstAttribute="centerY" secondItem="tsz-sY-xiD" secondAttribute="centerY" id="Nw5-vJ-sUW"/>
                                                     <constraint firstItem="ipl-EE-hBH" firstAttribute="height" secondItem="tsz-sY-xiD" secondAttribute="height" multiplier="0.893617" id="mzR-pC-HJr"/>

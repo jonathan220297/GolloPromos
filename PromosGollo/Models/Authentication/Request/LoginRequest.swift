@@ -7,7 +7,23 @@
 
 import Foundation
 
-struct LoginRequest: Codable {
+struct LoginRequest: APIRequest {
+
+    public typealias Response = LoginData
+
+    public var resourceName: String {
+        return "Procesos/Login"
+    }
+
+    let service: BaseServiceRequestParam<LoginServiceRequest>?
+
+    public var dictionary: [String: Any] {
+        return service.map { $0.dict }!!
+    }
+
+}
+
+struct LoginServiceRequest: Codable {
     public let idCliente: String
     public let nombre: String
     public let apellido1: String

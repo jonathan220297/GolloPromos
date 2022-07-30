@@ -149,6 +149,7 @@
 		4FB258312720DE150003C607 /* AppTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258302720DE150003C607 /* AppTransaction.swift */; };
 		4FB258332720DEC30003C607 /* HistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258322720DEC30003C607 /* HistoryRequest.swift */; };
 		4FB258352720E6C40003C607 /* CustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258342720E6C40003C607 /* CustomerInfo.swift */; };
+		4FB4466928921D2E00C35A96 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4466828921D2E00C35A96 /* ServicesViewController.swift */; };
 		4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */; };
 		4FDA3A9E26D8FE26003B2CB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */; };
 		4FDA3AA026D8FE26003B2CB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9F26D8FE26003B2CB6 /* ViewController.swift */; };
@@ -367,6 +368,7 @@
 		4FB258302720DE150003C607 /* AppTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTransaction.swift; sourceTree = "<group>"; };
 		4FB258322720DEC30003C607 /* HistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRequest.swift; sourceTree = "<group>"; };
 		4FB258342720E6C40003C607 /* CustomerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfo.swift; sourceTree = "<group>"; };
+		4FB4466828921D2E00C35A96 /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		4FDA3A9826D8FE26003B2CB6 /* PromosGollo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromosGollo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -877,6 +879,7 @@
 		4FA2766F26D914A100216284 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4FB4466728921D0B00C35A96 /* Services */,
 				4FA2767626D9154200216284 /* Authentication */,
 				4F0D96E226DDE5A40061E89E /* Home */,
 				4F0D96AE26DDD7510061E89E /* Menu */,
@@ -1018,6 +1021,14 @@
 				4F4EC48027276A50007B17FE /* Localizable.strings */,
 			);
 			path = Localizable;
+			sourceTree = "<group>";
+		};
+		4FB4466728921D0B00C35A96 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4FB4466828921D2E00C35A96 /* ServicesViewController.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		4FDA3A8F26D8FE26003B2CB6 = {
@@ -1579,6 +1590,7 @@
 				4FE190FD26DEF5FB00322128 /* HomeSection.swift in Sources */,
 				4F0D96D426DDDF2C0061E89E /* Item.swift in Sources */,
 				4FA2767C26D918A500216284 /* SignUpViewController.swift in Sources */,
+				4FB4466928921D2E00C35A96 /* ServicesViewController.swift in Sources */,
 				4F3080A627121F2100F7D8DE /* BaseHeaderRequest.swift in Sources */,
 				4F3E481D27278536009D259D /* FilterRequest.swift in Sources */,
 				4F0D96D626DDDF2C0061E89E /* AccountResponse.swift in Sources */,

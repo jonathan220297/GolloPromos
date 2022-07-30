@@ -29,7 +29,7 @@ class FilterViewModel {
                         idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
-                        token: "",
+                        token: getToken(),
                         integrationId: nil),
                     parametros: FilterServiceRequest (
                         idCompania: "10"

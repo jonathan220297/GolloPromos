@@ -94,7 +94,10 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func serviceAction(_ sender: Any) {
-
+        let vc = ServicesViewController.instantiate(fromAppStoryboard: .Services)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true)
     }
 
     fileprivate func fetchHomeConfiguration() {

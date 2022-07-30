@@ -26,7 +26,7 @@ class OffersListViewModel {
                     idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,
-                    token: "",
+                    token: getToken(),
                     integrationId: nil),
                 parametros: OffersListServiceRequest (
                     idCliente: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",

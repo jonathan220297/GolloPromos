@@ -33,13 +33,13 @@ class OffersViewModel {
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_CATEGORIES_PROCESS_ID.rawValue,
                         idDevice: "",
-                        idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                        idUsuario: "cIpADLph2oeTVyI1aPmDNaYO8Dk2",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
-                        token: "",
+                        token: getToken(),
                         integrationId: nil),
                     parametros: CategoriesServiceRequest (
-                        idCliente: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                        idCliente: "cIpADLph2oeTVyI1aPmDNaYO8Dk2",
                         idCompania: "10"
                     )
                 )
@@ -68,8 +68,9 @@ class OffersViewModel {
                         idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
-                        token: "",
-                        integrationId: nil),
+                        token: getToken(),
+                        integrationId: nil
+                    ),
                     parametros: OffersServiceRequest (
                         idCliente: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                         idCompania: "10",
@@ -103,7 +104,7 @@ class OffersViewModel {
                         idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
-                        token: "",
+                        token: getToken(),
                         integrationId: nil),
                     parametros: ProductServiceRequest(
                         idCliente: "",
@@ -140,7 +141,7 @@ class OffersViewModel {
                         idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
-                        token: "",
+                        token: getToken(),
                         integrationId: nil),
                     parametros: ProductServiceRequest(
                         idCliente: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
