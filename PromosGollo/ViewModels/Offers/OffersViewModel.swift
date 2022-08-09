@@ -33,13 +33,13 @@ class OffersViewModel {
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_CATEGORIES_PROCESS_ID.rawValue,
                         idDevice: "",
-                        idUsuario: "cIpADLph2oeTVyI1aPmDNaYO8Dk2",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
                         token: getToken(),
                         integrationId: nil),
                     parametros: CategoriesServiceRequest (
-                        idCliente: "cIpADLph2oeTVyI1aPmDNaYO8Dk2",
+                        idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10"
                     )
                 )
@@ -65,14 +65,14 @@ class OffersViewModel {
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_CAT_PROCESS_ID.rawValue,
                         idDevice: "",
-                        idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
                         token: getToken(),
                         integrationId: nil
                     ),
                     parametros: OffersServiceRequest (
-                        idCliente: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                        idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",
                         idCategoria: category
                     )
@@ -101,7 +101,7 @@ class OffersViewModel {
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
                         idDevice: "",
-                        idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
                         token: getToken(),
@@ -138,13 +138,13 @@ class OffersViewModel {
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
                         idDevice: "",
-                        idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
                         token: getToken(),
                         integrationId: nil),
                     parametros: ProductServiceRequest(
-                        idCliente: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                        idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",
                         idTienda: idStore,
                         numPagina: 1,

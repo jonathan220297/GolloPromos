@@ -1,15 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Mis órdenes-->
+        <scene sceneID="gPL-oM-MAZ">
+            <objects>
+                <viewController id="mvn-dZ-Ijo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MRR-84-T7d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mis órdenes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxX-hr-Rrz">
+                                <rect key="frame" x="8" y="52" width="398" height="22.5"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUc-4i-4PS">
+                                <rect key="frame" x="4" y="78.5" width="406" height="1"/>
+                                <color key="backgroundColor" name="colorPrimaryLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="XbQ-ZB-Lid"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pwd-NV-4lw">
+                                <rect key="frame" x="0.0" y="79.5" width="414" height="733.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista de órdenes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSh-ja-0Pm">
+                                        <rect key="frame" x="8" y="357" width="398" height="20"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
+                                        <color key="textColor" name="colorPrimary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usted no ha realizado ningún perdido" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPB-DI-EjL">
+                                        <rect key="frame" x="8" y="377" width="398" height="17"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                        <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-8q-vXb">
+                                        <rect key="frame" x="152" y="244.5" width="110" height="110.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="cDm-8q-vXb" secondAttribute="height" multiplier="1:1" id="4Wg-WC-DB6"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hPB-DI-EjL" secondAttribute="trailing" constant="8" id="6gr-jw-G2f"/>
+                                    <constraint firstItem="SSh-ja-0Pm" firstAttribute="leading" secondItem="Pwd-NV-4lw" secondAttribute="leading" constant="8" id="Jyi-Ob-B2j"/>
+                                    <constraint firstAttribute="trailing" secondItem="SSh-ja-0Pm" secondAttribute="trailing" constant="8" id="SQz-mO-E7v"/>
+                                    <constraint firstItem="SSh-ja-0Pm" firstAttribute="centerY" secondItem="Pwd-NV-4lw" secondAttribute="centerY" id="YB3-RP-qpR"/>
+                                    <constraint firstItem="cDm-8q-vXb" firstAttribute="centerX" secondItem="Pwd-NV-4lw" secondAttribute="centerX" id="YK1-R5-0mB"/>
+                                    <constraint firstItem="hPB-DI-EjL" firstAttribute="leading" secondItem="Pwd-NV-4lw" secondAttribute="leading" constant="8" id="e8o-4Q-NrD"/>
+                                    <constraint firstItem="SSh-ja-0Pm" firstAttribute="top" secondItem="cDm-8q-vXb" secondAttribute="bottom" constant="2" id="jBd-4y-QPb"/>
+                                    <constraint firstItem="hPB-DI-EjL" firstAttribute="top" secondItem="SSh-ja-0Pm" secondAttribute="bottom" id="kLB-W9-Psp"/>
+                                    <constraint firstItem="cDm-8q-vXb" firstAttribute="height" secondItem="Pwd-NV-4lw" secondAttribute="height" multiplier="0.15" id="tPx-wb-sb7"/>
+                                    <constraint firstItem="SSh-ja-0Pm" firstAttribute="centerX" secondItem="Pwd-NV-4lw" secondAttribute="centerX" id="z87-cA-YhZ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4k6-fP-paw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XUc-4i-4PS" firstAttribute="leading" secondItem="4k6-fP-paw" secondAttribute="leading" constant="4" id="4zl-Cx-X3S"/>
+                            <constraint firstItem="4k6-fP-paw" firstAttribute="bottom" secondItem="Pwd-NV-4lw" secondAttribute="bottom" id="Bw6-E0-6om"/>
+                            <constraint firstItem="JxX-hr-Rrz" firstAttribute="leading" secondItem="4k6-fP-paw" secondAttribute="leading" constant="8" id="DKV-fZ-YXk"/>
+                            <constraint firstItem="JxX-hr-Rrz" firstAttribute="top" secondItem="4k6-fP-paw" secondAttribute="top" constant="8" id="HbD-i9-JFK"/>
+                            <constraint firstItem="4k6-fP-paw" firstAttribute="trailing" secondItem="Pwd-NV-4lw" secondAttribute="trailing" id="Ind-o5-Z7b"/>
+                            <constraint firstItem="XUc-4i-4PS" firstAttribute="top" secondItem="JxX-hr-Rrz" secondAttribute="bottom" constant="4" id="Mjz-7c-eaG"/>
+                            <constraint firstItem="Pwd-NV-4lw" firstAttribute="leading" secondItem="4k6-fP-paw" secondAttribute="leading" id="SaA-4I-41b"/>
+                            <constraint firstItem="4k6-fP-paw" firstAttribute="trailing" secondItem="XUc-4i-4PS" secondAttribute="trailing" constant="4" id="hv1-ri-jwd"/>
+                            <constraint firstItem="4k6-fP-paw" firstAttribute="trailing" secondItem="JxX-hr-Rrz" secondAttribute="trailing" constant="8" id="kfQ-wb-P2J"/>
+                            <constraint firstItem="Pwd-NV-4lw" firstAttribute="top" secondItem="XUc-4i-4PS" secondAttribute="bottom" id="quU-nN-xMP"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Mis órdenes" id="mEo-cU-Wve"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5B1-dH-uzs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7054" y="-555"/>
+        </scene>
+        <!--Menu-->
+        <scene sceneID="IYO-Rn-LSV">
+            <objects>
+                <viewController id="KhB-9m-oID" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="et1-i2-cQj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHW-Xh-lsd">
+                                <rect key="frame" x="8" y="52" width="398" height="22.5"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRK-6e-VgI">
+                                <rect key="frame" x="4" y="78.5" width="406" height="1"/>
+                                <color key="backgroundColor" name="colorPrimaryLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Oyc-st-1yP"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="J03-5T-Pmy">
+                                <rect key="frame" x="8" y="87.5" width="398" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sbn-RZ-eM2">
+                                        <rect key="frame" x="0.0" y="1.5" width="30" height="37.5"/>
+                                        <color key="tintColor" name="colorPrimary"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="mNb-5K-5h0"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="i5j-P7-7I2">
+                                        <rect key="frame" x="38" y="0.0" width="360" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mis productos deseados" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMH-fJ-P1j">
+                                                <rect key="frame" x="0.0" y="0.0" width="360" height="20"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Productos en mi lista de deseos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pi6-8I-WdK">
+                                                <rect key="frame" x="0.0" y="20" width="360" height="20"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                                <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="sbn-RZ-eM2" firstAttribute="centerY" secondItem="J03-5T-Pmy" secondAttribute="centerY" id="I5u-BB-Qn0"/>
+                                    <constraint firstItem="i5j-P7-7I2" firstAttribute="centerY" secondItem="J03-5T-Pmy" secondAttribute="centerY" id="hZI-vM-eux"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z2h-dP-bSW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LRK-6e-VgI" firstAttribute="top" secondItem="eHW-Xh-lsd" secondAttribute="bottom" constant="4" id="6Dz-ma-cPh"/>
+                            <constraint firstAttribute="trailing" secondItem="LRK-6e-VgI" secondAttribute="trailing" constant="4" id="R0y-R7-I7G"/>
+                            <constraint firstItem="eHW-Xh-lsd" firstAttribute="top" secondItem="Z2h-dP-bSW" secondAttribute="top" constant="8" id="SSL-w0-s3g"/>
+                            <constraint firstItem="LRK-6e-VgI" firstAttribute="top" secondItem="eHW-Xh-lsd" secondAttribute="bottom" constant="4" id="Wlt-xG-D8B"/>
+                            <constraint firstItem="J03-5T-Pmy" firstAttribute="leading" secondItem="Z2h-dP-bSW" secondAttribute="leading" constant="8" id="ZjG-J8-O3L"/>
+                            <constraint firstItem="Z2h-dP-bSW" firstAttribute="trailing" secondItem="eHW-Xh-lsd" secondAttribute="trailing" constant="8" id="feb-AQ-2TG"/>
+                            <constraint firstItem="eHW-Xh-lsd" firstAttribute="leading" secondItem="et1-i2-cQj" secondAttribute="leading" constant="8" id="phb-WD-cCi"/>
+                            <constraint firstItem="Z2h-dP-bSW" firstAttribute="trailing" secondItem="J03-5T-Pmy" secondAttribute="trailing" constant="8" id="q7Y-Qh-W8P"/>
+                            <constraint firstItem="J03-5T-Pmy" firstAttribute="top" secondItem="LRK-6e-VgI" secondAttribute="bottom" constant="8" id="qR6-Mm-bgo"/>
+                            <constraint firstItem="LRK-6e-VgI" firstAttribute="leading" secondItem="et1-i2-cQj" secondAttribute="leading" constant="4" id="tb5-i2-cOZ"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Menu" id="Nfu-Pd-C5V"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9XT-ff-jus" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7880" y="-555"/>
+        </scene>
         <!--Offers-->
         <scene sceneID="vva-WP-uh8">
             <objects>
@@ -301,6 +455,87 @@
             </objects>
             <point key="canvasLocation" x="6144.9275362318849" y="828.34821428571422"/>
         </scene>
+        <!--Carrito-->
+        <scene sceneID="XuY-pW-z72">
+            <objects>
+                <viewController id="9j4-QU-aQ3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uZt-QY-wxv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mi carrito" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oc8-er-7nx">
+                                <rect key="frame" x="8" y="52" width="398" height="22.5"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bGt-m7-02t">
+                                <rect key="frame" x="4" y="78.5" width="406" height="1"/>
+                                <color key="backgroundColor" name="colorPrimaryLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="eSh-P0-M8V"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8w-rp-gvn">
+                                <rect key="frame" x="0.0" y="79.5" width="414" height="816.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mi carrito" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sP7-lp-zvS">
+                                        <rect key="frame" x="8" y="398.5" width="398" height="20"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
+                                        <color key="textColor" name="colorPrimary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No ha agregado productos al carrito. Comience añadiendo productos para completar la compra." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9do-Py-e6v">
+                                        <rect key="frame" x="8" y="418.5" width="398" height="34"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                        <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h3Z-yW-i7N">
+                                        <rect key="frame" x="146" y="274" width="122" height="122.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="h3Z-yW-i7N" secondAttribute="height" multiplier="1:1" id="paK-DJ-wzB"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="h3Z-yW-i7N" firstAttribute="centerX" secondItem="S8w-rp-gvn" secondAttribute="centerX" id="2Yg-We-scw"/>
+                                    <constraint firstItem="9do-Py-e6v" firstAttribute="leading" secondItem="S8w-rp-gvn" secondAttribute="leading" constant="8" id="6wP-nr-f7s"/>
+                                    <constraint firstItem="9do-Py-e6v" firstAttribute="top" secondItem="sP7-lp-zvS" secondAttribute="bottom" id="8hs-np-SGx"/>
+                                    <constraint firstItem="h3Z-yW-i7N" firstAttribute="height" secondItem="S8w-rp-gvn" secondAttribute="height" multiplier="0.15" id="Bq0-qb-z0f"/>
+                                    <constraint firstItem="sP7-lp-zvS" firstAttribute="leading" secondItem="S8w-rp-gvn" secondAttribute="leading" constant="8" id="Dgj-dC-gkJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="sP7-lp-zvS" secondAttribute="trailing" constant="8" id="Q0V-RQ-Gyp"/>
+                                    <constraint firstAttribute="trailing" secondItem="9do-Py-e6v" secondAttribute="trailing" constant="8" id="VA9-WX-EE5"/>
+                                    <constraint firstItem="sP7-lp-zvS" firstAttribute="top" secondItem="h3Z-yW-i7N" secondAttribute="bottom" constant="2" id="Vne-O3-cLH"/>
+                                    <constraint firstItem="sP7-lp-zvS" firstAttribute="centerY" secondItem="S8w-rp-gvn" secondAttribute="centerY" id="c2y-WM-Xfy"/>
+                                    <constraint firstItem="sP7-lp-zvS" firstAttribute="centerX" secondItem="S8w-rp-gvn" secondAttribute="centerX" id="mPd-rB-cRZ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1Xm-nG-Mg0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="S8w-rp-gvn" secondAttribute="bottom" id="49L-TA-OMa"/>
+                            <constraint firstAttribute="trailing" secondItem="bGt-m7-02t" secondAttribute="trailing" constant="4" id="9Cs-ZC-Jtr"/>
+                            <constraint firstItem="S8w-rp-gvn" firstAttribute="top" secondItem="bGt-m7-02t" secondAttribute="bottom" id="9aa-Bb-Cxx"/>
+                            <constraint firstItem="1Xm-nG-Mg0" firstAttribute="trailing" secondItem="oc8-er-7nx" secondAttribute="trailing" constant="8" id="Bbd-u1-SS7"/>
+                            <constraint firstAttribute="trailing" secondItem="S8w-rp-gvn" secondAttribute="trailing" id="F8Y-CW-9JR"/>
+                            <constraint firstItem="bGt-m7-02t" firstAttribute="leading" secondItem="uZt-QY-wxv" secondAttribute="leading" constant="4" id="NPp-Gz-V23"/>
+                            <constraint firstItem="oc8-er-7nx" firstAttribute="leading" secondItem="1Xm-nG-Mg0" secondAttribute="leading" constant="8" id="UWf-J2-JHm"/>
+                            <constraint firstItem="S8w-rp-gvn" firstAttribute="leading" secondItem="1Xm-nG-Mg0" secondAttribute="leading" id="W1V-z6-W8f"/>
+                            <constraint firstItem="bGt-m7-02t" firstAttribute="top" secondItem="oc8-er-7nx" secondAttribute="bottom" constant="4" id="crQ-ps-6Kr"/>
+                            <constraint firstItem="S8w-rp-gvn" firstAttribute="top" secondItem="bGt-m7-02t" secondAttribute="bottom" id="hsw-67-DYe"/>
+                            <constraint firstItem="bGt-m7-02t" firstAttribute="top" secondItem="oc8-er-7nx" secondAttribute="bottom" constant="4" id="o9S-aY-Wyc"/>
+                            <constraint firstItem="oc8-er-7nx" firstAttribute="top" secondItem="1Xm-nG-Mg0" secondAttribute="top" constant="8" id="pKD-Z7-a4m"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Carrito" id="WkX-7g-jm4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aq6-2e-I5V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7054" y="828"/>
+        </scene>
         <!--Offer List View Controller-->
         <scene sceneID="JdV-7s-inR">
             <objects>
@@ -465,7 +700,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finaliza en 2 días y 23 horas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sH9-Lr-DmM">
                                                                 <rect key="frame" x="38" y="0.0" width="344" height="36.5"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
-                                                                <color key="textColor" name="colorPrimary"/>
+                                                                <color key="textColor" red="0.90400677920000005" green="0.19408547879999999" blue="0.18843609089999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -482,7 +717,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1y-9f-Jhl">
                                                                 <rect key="frame" x="38" y="0.0" width="344" height="20.5"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -499,7 +734,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOM-NB-fYo">
                                                                 <rect key="frame" x="38" y="0.0" width="344" height="21"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -577,7 +812,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xu-Mq-Lcw">
                                                                 <rect key="frame" x="38" y="0.0" width="344" height="21"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -883,6 +1118,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="Xba-g1-8xg" kind="relationship" relationship="viewControllers" id="dQ3-nk-NzD"/>
+                        <segue destination="9j4-QU-aQ3" kind="relationship" relationship="viewControllers" id="YDZ-eW-zFw"/>
+                        <segue destination="mvn-dZ-Ijo" kind="relationship" relationship="viewControllers" id="nCI-NL-Mjc"/>
+                        <segue destination="KhB-9m-oID" kind="relationship" relationship="viewControllers" id="o2Z-aS-gp2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0c7-vc-6UH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -894,6 +1132,7 @@
         <image name="clear" catalog="system" width="128" height="114"/>
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="downarrow" width="128" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="ic_filtrar" width="170.66667175292969" height="170.66667175292969"/>
         <image name="ic_marca" width="50" height="50"/>
         <image name="ic_offer_bonus" width="25" height="25"/>
@@ -907,6 +1146,9 @@
         </namedColor>
         <namedColor name="colorPrimary">
             <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorPrimaryLight">
+            <color red="0.19607843137254902" green="0.5490196078431373" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="scrollViewTexturedBackgroundColor">
             <color red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

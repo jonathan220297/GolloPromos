@@ -47,6 +47,7 @@ class OfferDetailViewController: UIViewController {
 
     // Variables
     var offer: ProductsData?
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,15 +66,23 @@ class OfferDetailViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.primary
         let rigthButton = UIBarButtonItem(image: UIImage(named: "ic_share"), style: .plain, target: self, action: #selector(share))
-        self.navigationItem.rightBarButtonItem = rigthButton
-        self.navigationItem.rightBarButtonItem?.tintColor = .white
+        let rigthButton2 = UIBarButtonItem(image: isFavorite(), style: .plain, target: self, action: #selector(saveFavorites))
+        self.navigationItem.rightBarButtonItems = [rigthButton, rigthButton2]
+        self.navigationItem.rightBarButtonItem?.tintColor = .gray
     }
+
     //MARK: - Functions
     private func showData() {
         if let offer = offer {
             let _:CGFloat = 0.0001
+
+            let options = ImageLoadingOptions(
+                placeholder: UIImage(named: "empty_image"),
+                transition: .fadeIn(duration: 0.5),
+                failureImage: UIImage(named: "empty_image")
+            )
 
             if offer.image == "" || offer.image == "NA" {
                 DispatchQueue.main.async {
@@ -83,7 +92,7 @@ class OfferDetailViewController: UIViewController {
             } else {
                 let url = URL(string: offer.image!)
                 if let url = url {
-                    Nuke.loadImage(with: url, into: offerImage)
+                    Nuke.loadImage(with: url, options: options, into: offerImage)
                 } else {
                     offerImage.image = UIImage(named: "empty_image")
                 }
@@ -167,6 +176,19 @@ class OfferDetailViewController: UIViewController {
         } else { return }
     }
 
+    private func isFavorite() -> UIImage? {
+        if let data = offer {
+            let list = defaults.object(forKey: "Favorites") as? [ProductsData] ?? [ProductsData]()
+            if list.contains(data) {
+                return UIImage(named: "ic_added_heart")
+            } else {
+                return UIImage(named: "ic_heart")
+            }
+        } else {
+            return UIImage(named: "ic_heart")
+        }
+    }
+
     @objc func share() {
         let someText:String = "https://www.gollotienda.com"
         var objectsToShare:UIImage?
@@ -180,6 +202,14 @@ class OfferDetailViewController: UIViewController {
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook, UIActivity.ActivityType.postToTwitter]
 
         self.present(activityViewController, animated: true, completion: nil)
+    }
+
+    @objc func saveFavorites() {
+        var list = defaults.object(forKey: "Favorites") as? [ProductsData] ?? [ProductsData]()
+        if let data = offer {
+            list.append(data)
+        }
+        defaults.set(list, forKey: "Favorites")
     }
 
 }

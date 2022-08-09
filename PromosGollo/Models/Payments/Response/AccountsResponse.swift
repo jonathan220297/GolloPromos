@@ -14,14 +14,15 @@ struct ResponseAccont: Codable {
 
 // MARK: - Cuenta
 struct AccountsDetail: Codable {
-    let idCuenta, tipoCuenta, empresa, idTienda: String?
+    let idCuenta, tipoCuenta, empresa, idTienda, nombreTienda: String?
     let numCuenta, fecha: String?
     let montoInicial, saldoActual: Double?
     let fechaPago: String?
     let montoCancelarCuenta, montoAtraso: Double?
-    let diasAtraso: Int?
+    let diasAtraso, montoAsistencia, totalCuotas, noCuota: Int?
     let montoCuota: Double?
-    let montoMaximoPago, dpp, montoSugeridoBotonera: Double?
-    let diaPago, descripcion: String?
+    let montoMaximoPago, dpp, montoSugeridoBotonera, montoExtragarantia: Double?
+    let diaPago: Int?
+    let descripcion, indicadorIncobrable, indicadorTasaCero: String?
 }
 

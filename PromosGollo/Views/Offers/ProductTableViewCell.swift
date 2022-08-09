@@ -18,6 +18,12 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var bonoImageView: UIImageView!
 
     func setOffers(offer: Offers) {
+        let options = ImageLoadingOptions(
+            placeholder: UIImage(named: "empty_image"),
+            transition: .fadeIn(duration: 0.5),
+            failureImage: UIImage(named: "empty_image")
+        )
+
         titleLabel.text = offer.name
         serialNumberLabel.text = offer.productCode
 
@@ -25,8 +31,8 @@ class ProductTableViewCell: UITableViewCell {
             productImage.image = UIImage(named: "empty_image")
         } else {
             let url = URL(string: offer.image!)
-            if let _ = url {
-                //productImage.kf.setImage(with: url)
+            if let url = url {
+                Nuke.loadImage(with: url, options: options, into: productImage)
             } else {
                 productImage.image = UIImage(named: "empty_image")
             }

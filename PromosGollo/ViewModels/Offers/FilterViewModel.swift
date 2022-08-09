@@ -26,11 +26,12 @@ class FilterViewModel {
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_STORES_PROCESS_ID.rawValue,
                         idDevice: "",
-                        idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
                         token: getToken(),
-                        integrationId: nil),
+                        integrationId: nil
+                    ),
                     parametros: FilterServiceRequest (
                         idCompania: "10"
                     )

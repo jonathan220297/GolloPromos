@@ -69,7 +69,7 @@ class GolloService {
         let jsonPretty = String(data: try! JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted), encoding: .utf8 )!
         log.debug("Endpoint: \(endpoint) \(jsonPretty)")
 
-        service.invokeService(for: endpoint, method: .post, with: parameters, "") { data, error in
+        service.invokeService(for: endpoint, method: .post, with: parameters, getToken()) { data, error in
             if let error = error {
                 log.debug("Error: \(error)")
                 completion(.failure(.server(code: 0, message: error)))
@@ -110,7 +110,7 @@ class GolloService {
         do {
             let baseResponse = try JSONDecoder().decode(BaseResponseGollo<T>.self, from: data)
             guard let status = baseResponse.resultado?.estado else { return nil }
-            if status {
+            if status.bool ?? false {
                 return baseResponse.respuesta
             } else {
                 return nil
