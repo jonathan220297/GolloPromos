@@ -127,6 +127,10 @@
 		4F59347F271FD6AD00C63A6F /* Pods_PromosGollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F74C8D3272C733E00FADA4D /* OffersQueryView.xib */; };
 		4F74C8D8272C7DE200FADA4D /* OffersQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C8D7272C7DE200FADA4D /* OffersQueryView.swift */; };
+		4F75A54628AEFE500001CC4D /* PaymentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A54528AEFE500001CC4D /* PaymentDataViewController.swift */; };
+		4F75A54828AEFE650001CC4D /* PaymentDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A54728AEFE650001CC4D /* PaymentDataViewModel.swift */; };
+		4F75A54B28AEFEDC0001CC4D /* SingUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A54928AEFEDC0001CC4D /* SingUpTableViewCell.swift */; };
+		4F75A54C28AEFEDC0001CC4D /* SingUpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A54A28AEFEDC0001CC4D /* SingUpTableViewCell.xib */; };
 		4F894A17270A5A900004AAB3 /* AccountsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */; };
 		4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */; };
 		4F894A1B270A60640004AAB3 /* SearchDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */; };
@@ -351,6 +355,10 @@
 		4F4EC48327276A57007B17FE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F74C8D3272C733E00FADA4D /* OffersQueryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OffersQueryView.xib; sourceTree = "<group>"; };
 		4F74C8D7272C7DE200FADA4D /* OffersQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersQueryView.swift; sourceTree = "<group>"; };
+		4F75A54528AEFE500001CC4D /* PaymentDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentDataViewController.swift; sourceTree = "<group>"; };
+		4F75A54728AEFE650001CC4D /* PaymentDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentDataViewModel.swift; sourceTree = "<group>"; };
+		4F75A54928AEFEDC0001CC4D /* SingUpTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingUpTableViewCell.swift; sourceTree = "<group>"; };
+		4F75A54A28AEFEDC0001CC4D /* SingUpTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingUpTableViewCell.xib; sourceTree = "<group>"; };
 		4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewModel.swift; sourceTree = "<group>"; };
 		4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsRequest.swift; sourceTree = "<group>"; };
 		4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDocumentViewModel.swift; sourceTree = "<group>"; };
@@ -666,6 +674,7 @@
 				4F17323927013EA900D7924D /* ThirdPartyViewController.swift */,
 				4F3E483C2727898D009D259D /* PaymentTabBarViewController.swift */,
 				4FC04C5B28AEF0B7001EF211 /* TransactionsHistoryViewController.swift */,
+				4F75A54528AEFE500001CC4D /* PaymentDataViewController.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -875,6 +884,7 @@
 				4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */,
 				4F11E040272DB38000E15003 /* AccountItemsViewModel.swift */,
 				4FC04C5D28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift */,
+				4F75A54728AEFE650001CC4D /* PaymentDataViewModel.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -1162,6 +1172,8 @@
 		4FE1910526DEF77B00322128 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4F75A54928AEFEDC0001CC4D /* SingUpTableViewCell.swift */,
+				4F75A54A28AEFEDC0001CC4D /* SingUpTableViewCell.xib */,
 				4FE1910626DEF77B00322128 /* SliderTableViewCell.swift */,
 				4FE1910726DEF77B00322128 /* SliderTableViewCell.xib */,
 				4FE1910826DEF77B00322128 /* SectionTableViewCell.xib */,
@@ -1383,6 +1395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0D967626DDBB810061E89E /* SansSerifExbFLFCond-Italic.otf in Resources */,
+				4F75A54C28AEFEDC0001CC4D /* SingUpTableViewCell.xib in Resources */,
 				4F0D967426DDBB810061E89E /* SansSerifBldFLFCond.otf in Resources */,
 				4FFD9CB8272B1FBD004778F1 /* OffersTableViewCell.xib in Resources */,
 				4F0D967726DDBB810061E89E /* SansSerifBldFLF-Italic.otf in Resources */,
@@ -1601,6 +1614,7 @@
 				4F0D963026D91BF50061E89E /* User.swift in Sources */,
 				4FE1912A26DEFE0200322128 /* ProductVariationResponse.swift in Sources */,
 				4F0D965E26DDBB590061E89E /* CustomButton.swift in Sources */,
+				4F75A54B28AEFEDC0001CC4D /* SingUpTableViewCell.swift in Sources */,
 				4F3E481A27278536009D259D /* ParentModel.swift in Sources */,
 				4F3E481B27278536009D259D /* OffersRequest.swift in Sources */,
 				4F3E48382727883C009D259D /* PaymentViewController.swift in Sources */,
@@ -1708,6 +1722,7 @@
 				4F3E481E27278536009D259D /* CategoriesRequest.swift in Sources */,
 				4F0D965C26DDBB490061E89E /* LocalizableButton.swift in Sources */,
 				4F0D965426DDBAE20061E89E /* NSLayoutConstraint+Extension.swift in Sources */,
+				4F75A54828AEFE650001CC4D /* PaymentDataViewModel.swift in Sources */,
 				4F0D968E26DDD3970061E89E /* NotificationsViewController.swift in Sources */,
 				4F3E480627278525009D259D /* FilterViewModel.swift in Sources */,
 				4F0D969826DDD3E50061E89E /* NotificationRequest.swift in Sources */,
@@ -1722,6 +1737,7 @@
 				4FE1913426DF071A00322128 /* FilterViewController.swift in Sources */,
 				4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */,
 				4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */,
+				4F75A54628AEFE500001CC4D /* PaymentDataViewController.swift in Sources */,
 				4F0D969126DDD3BE0061E89E /* NotificationsViewModel.swift in Sources */,
 				4F0D964C26DDBA8E0061E89E /* UIView+Extension.swift in Sources */,
 				4FDA3A9E26D8FE26003B2CB6 /* SceneDelegate.swift in Sources */,
