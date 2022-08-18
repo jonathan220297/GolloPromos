@@ -117,7 +117,7 @@ func getToken() -> String {
         return ""
     }
     let token = String(data: data, encoding: .utf8)
-    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjSXBBRExwaDJvZVRWeUkxYVBtRE5hWU84RGsyIiwiZW1wcmVzYSI6IjEwIiwidG9rZW4iOiIiLCJmdWxsTmFtZSI6IiIsInJvbGUiOiJVc2VyIiwianRpIjoiNjA1Y2U1OGEtOWJiOC00YmI0LTgwMDMtZWE1NmEzZDZlOTExIiwibmJmIjoxNjU5OTc2MDA0LCJleHAiOjE2NjAwNjI0MDQsImlzcyI6Imh0dHA6Ly83NC4yMDguMTUwLjQ0L1Byb21vc0FQSSIsImF1ZCI6Imh0dHA6Ly83NC4yMDguMTUwLjQ0L1Byb21vc0FQSSJ9.g6e2IT9eKQTerdkHNKq-i8zS823C_omNmhKrMavGN4o"
+    return token ?? ""
 }
 
 func getDefaultBaseHeaderRequest(with processId: String,
@@ -130,4 +130,8 @@ func getDefaultBaseHeaderRequest(with processId: String,
                                 token: getToken() ,
                                 integrationId: integrationId)
     return encabezado
+}
+
+struct Variables {
+    static var isRegisterUser = false
 }

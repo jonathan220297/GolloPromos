@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import GoogleSignIn
 import FirebaseAuth
+import XCGLogger
 
 private let minimalUsernameLength = 5
 private let minimalPasswordLength = 5
@@ -60,6 +61,7 @@ class LoginViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                Variables.isRegisterUser = data.estadoRegistro ?? false
                 if let vc = AppStoryboard.Home.initialViewController() {
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true)

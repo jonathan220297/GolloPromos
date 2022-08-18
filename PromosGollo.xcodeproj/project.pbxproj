@@ -150,6 +150,9 @@
 		4FB258332720DEC30003C607 /* HistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258322720DEC30003C607 /* HistoryRequest.swift */; };
 		4FB258352720E6C40003C607 /* CustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258342720E6C40003C607 /* CustomerInfo.swift */; };
 		4FB4466928921D2E00C35A96 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4466828921D2E00C35A96 /* ServicesViewController.swift */; };
+		4FC04C5428AE95A3001EF211 /* GenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5328AE95A3001EF211 /* GenderType.swift */; };
+		4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5628AE9C3E001EF211 /* UserRequest.swift */; };
+		4FC04C5A28AE9C74001EF211 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5928AE9C74001EF211 /* UserResponse.swift */; };
 		4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */; };
 		4FDA3A9E26D8FE26003B2CB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */; };
 		4FDA3AA026D8FE26003B2CB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9F26D8FE26003B2CB6 /* ViewController.swift */; };
@@ -369,6 +372,9 @@
 		4FB258322720DEC30003C607 /* HistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRequest.swift; sourceTree = "<group>"; };
 		4FB258342720E6C40003C607 /* CustomerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfo.swift; sourceTree = "<group>"; };
 		4FB4466828921D2E00C35A96 /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		4FC04C5328AE95A3001EF211 /* GenderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderType.swift; sourceTree = "<group>"; };
+		4FC04C5628AE9C3E001EF211 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
+		4FC04C5928AE9C74001EF211 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		4FDA3A9826D8FE26003B2CB6 /* PromosGollo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromosGollo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -847,7 +853,10 @@
 		4F4EC479272767ED007B17FE /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				4FC04C5828AE9C58001EF211 /* Response */,
+				4FC04C5528AE9C26001EF211 /* Request */,
 				4F4EC47A2727680E007B17FE /* DocType.swift */,
+				4FC04C5328AE95A3001EF211 /* GenderType.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1029,6 +1038,22 @@
 				4FB4466828921D2E00C35A96 /* ServicesViewController.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		4FC04C5528AE9C26001EF211 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				4FC04C5628AE9C3E001EF211 /* UserRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		4FC04C5828AE9C58001EF211 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				4FC04C5928AE9C74001EF211 /* UserResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		4FDA3A8F26D8FE26003B2CB6 = {
@@ -1550,6 +1575,7 @@
 			files = (
 				4F0D96E026DDE1F30061E89E /* ItemsTableViewCell.swift in Sources */,
 				4FB258332720DEC30003C607 /* HistoryRequest.swift in Sources */,
+				4FC04C5428AE95A3001EF211 /* GenderType.swift in Sources */,
 				4F74C8D8272C7DE200FADA4D /* OffersQueryView.swift in Sources */,
 				4F11E041272DB38000E15003 /* AccountItemsViewModel.swift in Sources */,
 				4F0D967F26DDBBB40061E89E /* Common.swift in Sources */,
@@ -1630,6 +1656,7 @@
 				4F17322D27013BA100D7924D /* HeaderTableViewCell.swift in Sources */,
 				4F17323E2701476200D7924D /* Account.swift in Sources */,
 				4F17323827013D1E00D7924D /* ParentModel.swift in Sources */,
+				4FC04C5A28AE9C74001EF211 /* UserResponse.swift in Sources */,
 				4FA41E0C27015AA4007C93F9 /* Profile.swift in Sources */,
 				4FE1911C26DEFC1D00322128 /* ProductsRequest.swift in Sources */,
 				4F0D96BD26DDD7F50061E89E /* MenuTableViewCell.swift in Sources */,
@@ -1685,6 +1712,7 @@
 				4F3E481727278536009D259D /* OffersResponse.swift in Sources */,
 				4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */,
 				4FE1913426DF071A00322128 /* FilterViewController.swift in Sources */,
+				4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */,
 				4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */,
 				4F0D969126DDD3BE0061E89E /* NotificationsViewModel.swift in Sources */,
 				4F0D964C26DDBA8E0061E89E /* UIView+Extension.swift in Sources */,

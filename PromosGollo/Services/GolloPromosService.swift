@@ -84,6 +84,31 @@ class GolloService {
         }
     }
 
+    func callWebServiceGolloAlternative<T: APIRequest>(_ request: T,
+                                       completion: @escaping ResultCallback<T.Response>) {
+        let endpoint = self.endpoint(for: request)
+        let parameters = request.dictionary
+        log.debug(parameters)
+        let jsonPretty = String(data: try! JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted), encoding: .utf8 )!
+        log.debug("Endpoint Alternative: \(endpoint) \(jsonPretty)")
+
+        service.invokeService(for: endpoint, method: .post, with: parameters, getToken()) { data, error in
+            if let error = error {
+                log.debug("Error: \(error)")
+                completion(.failure(.server(code: 0, message: error)))
+            }
+            if let object = self.parseResultGolloAlternative(of: T.Response.self, data: data) {
+                completion(.success(object))
+                log.debug("Response: \(object)")
+            } else {
+                completion(.failure(.server(code: 0, message: "Unknown error")))
+                log.debug("Error: Unknown error")
+            }
+        }
+    }
+
+
+
     fileprivate func parseResult<T: Decodable>(of type: T.Type = T.self, data: Data?) -> T? {
         guard let data = data else {
             return nil
@@ -121,7 +146,27 @@ class GolloService {
         }
     }
 
+    fileprivate func parseResultGolloAlternative<T: Decodable>(of type: T.Type = T.self, data: Data?) -> T? {
+        guard let data = data else {
+            return nil
+        }
+        log.debug(data.prettyPrintedJSONString)
+        do {
+            let baseResponse = try JSONDecoder().decode(BaseResponseGolloAlternative<T>.self, from: data)
+            guard let status = baseResponse.resultado?.estado else { return nil }
+            if status {
+                return baseResponse.respuesta
+            } else {
+                return nil
+            }
+        } catch let error as NSError {
+            log.debug("parseResultGollo: " + error.localizedDescription)
+            return nil
+        }
+    }
+
     private func endpoint<T: APIRequest>(for request: T) -> String {
+        print("Request name: \(request.resourceName)")
         return "\(APDLGT.GURLAPI)\(request.resourceName)"
     }
 }

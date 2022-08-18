@@ -44,8 +44,8 @@ class LoginViewModel: NSObject {
 
     func fetchUserInfo(for loginType: LoginType) -> BehaviorRelay<LoginData?> {
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(
-            BaseRequest<LoginData, LoginServiceRequest>(
+        service.callWebServiceGolloAlternative(
+            LoginRequest(
                 service: BaseServiceRequestParam<LoginServiceRequest>(
                     servicio: ServicioParam(
                         encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.LOGIN_PROCESS_ID.rawValue),
