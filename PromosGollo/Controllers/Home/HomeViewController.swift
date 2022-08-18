@@ -75,6 +75,7 @@ class HomeViewController: UIViewController {
     }
 
     fileprivate func configureTableView() {
+        homeTableView.register(UINib(nibName: "SingUpTableViewCell", bundle: nil), forCellReuseIdentifier: "SingUpTableViewCell")
         homeTableView.register(UINib(nibName: "SliderTableViewCell", bundle: nil), forCellReuseIdentifier: "SliderTableViewCell")
         homeTableView.register(UINib(nibName: "SectionTableViewCell", bundle: nil), forCellReuseIdentifier: "SectionTableViewCell")
         homeTableView.allowsSelection = false
@@ -122,7 +123,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if viewModel.sectionsArray[indexPath.row].isSection {
+        if viewModel.sectionsArray[indexPath.row].signUp != nil {
+            return 250
+        } else if viewModel.sectionsArray[indexPath.row].isSection {
             return CGFloat(productCellSize)
         } else {
             return viewModel.sectionsArray[indexPath.row].banner?.uiHeight ?? CGFloat(0)
@@ -130,11 +133,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if viewModel.sectionsArray[indexPath.row].isSection {
+        if viewModel.sectionsArray[indexPath.row].signUp != nil {
+            return getSignUpCell(tableView, cellForRowAt: indexPath)
+        } else if viewModel.sectionsArray[indexPath.row].isSection {
             return getSectionCell(tableView, cellForRowAt: indexPath)
         } else {
             return getSliderCell(tableView, cellForRowAt: indexPath)
         }
+    }
+    
+    func getSignUpCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SingUpTableViewCell", for: indexPath) as! SingUpTableViewCell
+        cell.delegate = self
+        return cell
     }
 
     func getSliderCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
@@ -171,5 +182,13 @@ extension HomeViewController: SectionDelegate {
 
     func sectionTableView(_ sectionTableViewCell: SectionTableViewCell, moveTo viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension HomeViewController: SignUpCellDelegate {
+    func presentEditProfileController() {
+        let vc = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

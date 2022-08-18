@@ -127,6 +127,10 @@
 		4F59347F271FD6AD00C63A6F /* Pods_PromosGollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F74C8D3272C733E00FADA4D /* OffersQueryView.xib */; };
 		4F74C8D8272C7DE200FADA4D /* OffersQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C8D7272C7DE200FADA4D /* OffersQueryView.swift */; };
+		4F765C5328AEE588004AC06B /* SingUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F765C5128AEE588004AC06B /* SingUpTableViewCell.swift */; };
+		4F765C5428AEE588004AC06B /* SingUpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F765C5228AEE588004AC06B /* SingUpTableViewCell.xib */; };
+		4F765C5628AEEF8B004AC06B /* PaymentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F765C5528AEEF8B004AC06B /* PaymentDataViewController.swift */; };
+		4F765C5828AEEFB6004AC06B /* PaymentDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F765C5728AEEFB6004AC06B /* PaymentDataViewModel.swift */; };
 		4F894A17270A5A900004AAB3 /* AccountsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */; };
 		4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */; };
 		4F894A1B270A60640004AAB3 /* SearchDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */; };
@@ -349,6 +353,10 @@
 		4F4EC48327276A57007B17FE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F74C8D3272C733E00FADA4D /* OffersQueryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OffersQueryView.xib; sourceTree = "<group>"; };
 		4F74C8D7272C7DE200FADA4D /* OffersQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersQueryView.swift; sourceTree = "<group>"; };
+		4F765C5128AEE588004AC06B /* SingUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpTableViewCell.swift; sourceTree = "<group>"; };
+		4F765C5228AEE588004AC06B /* SingUpTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingUpTableViewCell.xib; sourceTree = "<group>"; };
+		4F765C5528AEEF8B004AC06B /* PaymentDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDataViewController.swift; sourceTree = "<group>"; };
+		4F765C5728AEEFB6004AC06B /* PaymentDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDataViewModel.swift; sourceTree = "<group>"; };
 		4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewModel.swift; sourceTree = "<group>"; };
 		4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsRequest.swift; sourceTree = "<group>"; };
 		4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDocumentViewModel.swift; sourceTree = "<group>"; };
@@ -661,6 +669,7 @@
 				4F46199E2700FC8300265E73 /* StatusViewController.swift */,
 				4F17323927013EA900D7924D /* ThirdPartyViewController.swift */,
 				4F3E483C2727898D009D259D /* PaymentTabBarViewController.swift */,
+				4F765C5528AEEF8B004AC06B /* PaymentDataViewController.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -869,6 +878,7 @@
 				4FA4D6E2271FE56E00C117CD /* StatusViewModel.swift */,
 				4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */,
 				4F11E040272DB38000E15003 /* AccountItemsViewModel.swift */,
+				4F765C5728AEEFB6004AC06B /* PaymentDataViewModel.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -1160,6 +1170,8 @@
 				4FE1910726DEF77B00322128 /* SliderTableViewCell.xib */,
 				4FE1910826DEF77B00322128 /* SectionTableViewCell.xib */,
 				4FE1910926DEF77B00322128 /* SectionTableViewCell.swift */,
+				4F765C5128AEE588004AC06B /* SingUpTableViewCell.swift */,
+				4F765C5228AEE588004AC06B /* SingUpTableViewCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1377,6 +1389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0D967626DDBB810061E89E /* SansSerifExbFLFCond-Italic.otf in Resources */,
+				4F765C5428AEE588004AC06B /* SingUpTableViewCell.xib in Resources */,
 				4F0D967426DDBB810061E89E /* SansSerifBldFLFCond.otf in Resources */,
 				4FFD9CB8272B1FBD004778F1 /* OffersTableViewCell.xib in Resources */,
 				4F0D967726DDBB810061E89E /* SansSerifBldFLF-Italic.otf in Resources */,
@@ -1619,6 +1632,7 @@
 				4FB4466928921D2E00C35A96 /* ServicesViewController.swift in Sources */,
 				4F3080A627121F2100F7D8DE /* BaseHeaderRequest.swift in Sources */,
 				4F3E481D27278536009D259D /* FilterRequest.swift in Sources */,
+				4F765C5828AEEFB6004AC06B /* PaymentDataViewModel.swift in Sources */,
 				4F0D96D626DDDF2C0061E89E /* AccountResponse.swift in Sources */,
 				4FFD9CA4272A16D2004778F1 /* CategoryOffersTableViewModel.swift in Sources */,
 				4FFD9CCB272B6C1E004778F1 /* EmptyTableView.swift in Sources */,
@@ -1654,6 +1668,7 @@
 				4FA2768326D9192900216284 /* SplashViewModel.swift in Sources */,
 				4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */,
 				4F17322D27013BA100D7924D /* HeaderTableViewCell.swift in Sources */,
+				4F765C5628AEEF8B004AC06B /* PaymentDataViewController.swift in Sources */,
 				4F17323E2701476200D7924D /* Account.swift in Sources */,
 				4F17323827013D1E00D7924D /* ParentModel.swift in Sources */,
 				4FC04C5A28AE9C74001EF211 /* UserResponse.swift in Sources */,
@@ -1699,6 +1714,7 @@
 				4F894A1B270A60640004AAB3 /* SearchDocumentViewModel.swift in Sources */,
 				4F3E481E27278536009D259D /* CategoriesRequest.swift in Sources */,
 				4F0D965C26DDBB490061E89E /* LocalizableButton.swift in Sources */,
+				4F765C5328AEE588004AC06B /* SingUpTableViewCell.swift in Sources */,
 				4F0D965426DDBAE20061E89E /* NSLayoutConstraint+Extension.swift in Sources */,
 				4F0D968E26DDD3970061E89E /* NotificationsViewController.swift in Sources */,
 				4F3E480627278525009D259D /* FilterViewModel.swift in Sources */,

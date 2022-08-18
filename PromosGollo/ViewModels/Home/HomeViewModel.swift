@@ -39,6 +39,7 @@ class HomeViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
+                    print("error: \(error)")
                     self.errorMessage.accept(error.localizedDescription)
                 }
             }
@@ -50,6 +51,9 @@ class HomeViewModel {
         sectionsArray.removeAll()
         guard let banners = configuration.banners,
               let sections = configuration.sections else { return }
+        if !Variables.isRegisterUser {
+            sectionsArray.append(HomeSection(name: "", position: 0, signUp: true))
+        }
         for banner in banners {
             sectionsArray.append(HomeSection(name: banner.name ?? "", position: banner.position ?? 0, banner: banner))
         }

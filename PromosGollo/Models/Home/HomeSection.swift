@@ -13,6 +13,7 @@ class HomeSection {
     var isSection = false
     var banner: Banner?
     var section: Section?
+    var signUp: Bool?
 
     init(name: String, position: Int, banner: Banner) {
         self.name = name
@@ -28,6 +29,15 @@ class HomeSection {
         self.isSection = true
         self.banner = nil
         self.section = section
+    }
+    
+    init(name: String, position: Int, signUp: Bool) {
+        self.name = name
+        self.position = position
+        self.isSection = true
+        self.banner = nil
+        self.section = nil
+        self.signUp = signUp
     }
 }
 

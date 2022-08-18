@@ -131,3 +131,11 @@ Otras de las obligaciones que podrían representar retos importantes a cumplir, 
 "ProfileViewController_cedula_juridica" = "Cédula jurídica";
 "ProfileViewController_passport" = "Pasaporte";
 "ProfileViewController_update" = "ACTUALIZAR";
+
+// PaymentDataViewController
+"PaymentDataViewController_title" = "Número de tarjeta de crédito";
+"PaymentDataViewController_card_number" = "Número de tarjeta de crédito";
+"PaymentDataViewController_expiration" = "Mes de expiración";
+"PaymentDataViewController_expiration_year" = "Año de expiración";
+"PaymentDataViewController_card_name" = "Nombre";
+"PaymentDataViewController_continue_payment" = "CONTINUAR CON EL PAGO";
