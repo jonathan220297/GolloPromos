@@ -23,6 +23,8 @@ class PaymentConfirmViewController: UIViewController {
 
         subtotalLabel.text = "₡" + String(paymentAmmount)
         totalLabel.text = "₡" + String(paymentAmmount)
+        
+        configureRx()
     }
 
     fileprivate func configureRx() {
@@ -31,6 +33,9 @@ class PaymentConfirmViewController: UIViewController {
             .tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                let vc = PaymentDataViewController.instantiate(fromAppStoryboard: .Payments)
+                vc.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(vc, animated: true)
 //                let vc = CreditCardViewController.instantiate(fromAppStoryboard: .Payments)
 //                vc.modalPresentationStyle = .fullScreen
 //                vc.paymentAmmount = self.paymentAmmount!

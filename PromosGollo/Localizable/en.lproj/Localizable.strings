@@ -132,3 +132,10 @@ Otras de las obligaciones que podrían representar retos importantes a cumplir, 
 "ProfileViewController_passport" = "Passport";
 "ProfileViewController_update" = "UPDATE";
 
+// PaymentDataViewController
+"PaymentDataViewController_title" = "Credit Card Number";
+"PaymentDataViewController_card_number" = "Credit Card Number";
+"PaymentDataViewController_expiration" = "Expiration Month";
+"PaymentDataViewController_expiration_year" = "Expiration Year";
+"PaymentDataViewController_card_name" = "Name";
+"PaymentDataViewController_continue_payment" = "CONTINUE WITH PAYMENT";
