@@ -20,15 +20,7 @@ class HistoryViewModel {
         let apiResponse: BehaviorRelay<[AppTransaction]?> = BehaviorRelay(value: nil)
         service.callWebService(HistoryRequest(service: BaseServiceRequestParam<HistoryServiceRequest>(
             servicio: ServicioParam(
-                encabezado: Encabezado(
-                    idProceso: GOLLOAPP.APP_PAYMENT_HISTORY.rawValue,
-                    idDevice: "",
-                    idUsuario: UserManager.shared.userData?.uid ?? "",
-                    timeStamp: String(Date().timeIntervalSince1970),
-                    idCia: 10,
-                    token: "",
-                    integrationId: nil
-                ),
+                encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.APP_PAYMENT_HISTORY.rawValue),
                 parametros: HistoryServiceRequest (
                     idMovimiento: "",
                     fechaInicial: startDate,

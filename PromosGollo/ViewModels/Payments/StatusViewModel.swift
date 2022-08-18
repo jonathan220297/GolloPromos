@@ -12,13 +12,13 @@ class StatusViewModel {
     private let service = GolloService()
 
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
-    var status: Status = Status()
+    var account: [AccountData] = []
 
     var reloadTableViewData: (()->())?
 
-    func fetchStatus(with documentType: String, documentId: String) -> BehaviorRelay<Status?> {
-        let apiResponse: BehaviorRelay<Status?> = BehaviorRelay(value: nil)
-        service.callWebService(StatusRequest(service: BaseServiceRequestParam<StatusServiceRequest>(
+    func fetchStatus(with documentType: String, documentId: String) -> BehaviorRelay<StatusData?> {
+        let apiResponse: BehaviorRelay<StatusData?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(StatusRequest(service: BaseServiceRequestParam<StatusServiceRequest>(
             servicio: ServicioParam(
                 encabezado: Encabezado(
                     idProceso: GOLLOAPP.STATUS_PROCESS_ID.rawValue,
@@ -26,13 +26,14 @@ class StatusViewModel {
                     idUsuario: UserManager.shared.userData?.uid ?? "",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,
-                    token: "",
-                    integrationId: nil),
+                    token: getToken(),
+                    integrationId: nil
+                ),
                 parametros: StatusServiceRequest (
                     tipoId: documentType,
                     idCliente: documentId,
                     empresa: 10,
-                    idCentro: ""
+                    idCentro: "144"
                 )
             )
         ))) { response in

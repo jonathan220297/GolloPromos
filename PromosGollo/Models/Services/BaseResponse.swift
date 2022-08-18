@@ -22,8 +22,20 @@ struct BaseResponseGollo<T: Decodable>: Decodable {
     let respuesta: T?
 }
 
+// MARK: - BaseResponseGolloAlternative
+struct BaseResponseGolloAlternative<T: Decodable>: Decodable {
+    let resultado: ResultadoAlternative?
+    let respuesta: T?
+}
+
 // MARK: - Resultado
 struct Resultado: Decodable {
     let estado: String?
+    let mensaje: String?
+}
+
+// MARK: - ResultadoAlternative
+struct ResultadoAlternative: Decodable {
+    let estado: Bool
     let mensaje: String?
 }

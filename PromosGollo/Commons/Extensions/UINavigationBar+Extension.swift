@@ -17,5 +17,6 @@ extension UINavigationBar {
         navigationBarIconimageView.contentMode = .scaleAspectFit
         navigationBarIconimageView.image = UIImage(named: "logo_golloapp")
         topItem?.titleView = navigationBarIconimageView
+        barTintColor = UIColor.primary
     }
 }

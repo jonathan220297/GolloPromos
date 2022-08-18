@@ -7,26 +7,23 @@
 
 import Foundation
 
-class Offers: Codable {
-    var id: Int?
-    var productCode: String?
-    var name: String?
-    var description: String?
-    var brand: String?
-    var modelo: String?
-    var image: String?
-    var originalPrice: Double?
-    var porcDescuento: Double?
-    var product: String?
-    var productName: String?
-    var montoBono: Double?
-    var endDate: String?
-    var startDate: String?
-    var montoDescuento: Double?
-    var precioFinal: Double?
-    var tieneBono: String?
-    var tieneRegalia: String?
-    var tieneDescuento: String?
-    var tipoPromoApp: String?
-    var simboloMoneda: String?
+struct Offers: Codable {
+    let idempresa: Int?
+    let idUsuario, simboloMoneda: String?
+    let tipoPromoApp, id: Int?
+    let productCode, name, description: String?
+    let descriptionDetailBono, descriptionDetailDescuento, descriptionDetailRegalia: String?
+    let brand, modelo, image: String?
+    let originalPrice, porcDescuento: Double?
+    let product, productName: String?
+    let montoBono: Double?
+    let endDate, startDate: String?
+    let montoDescuento, precioFinal: Double?
+    let tieneBono, tieneRegalia, tieneDescuento: String?
+}
+
+struct CategoryOffers {
+    let category: CategoriesData
+    let offers: [ProductsData]
+    let height: Int
 }

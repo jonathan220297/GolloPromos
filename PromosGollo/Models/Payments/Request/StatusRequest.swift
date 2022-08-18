@@ -9,7 +9,7 @@ import Foundation
 
 struct StatusRequest: APIRequest {
 
-    public typealias Response = Status
+    public typealias Response = StatusData
 
     public var resourceName: String {
         return "Procesos"

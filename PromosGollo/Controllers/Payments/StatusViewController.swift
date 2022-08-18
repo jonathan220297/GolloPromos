@@ -11,6 +11,7 @@ import RxSwift
 class StatusViewController: UIViewController {
 
     @IBOutlet weak var dataView: UIView!
+    @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var cmmLabel: UILabel!
     @IBOutlet weak var cmmUsedLabel: UILabel!
     @IBOutlet weak var cmmAvailableLabel: UILabel!
@@ -63,38 +64,52 @@ class StatusViewController: UIViewController {
     }
 
     fileprivate func fetchStatus() {
+        view.activityStarAnimating()
         viewModel.fetchStatus(with: "C", documentId: "205080150")
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                DispatchQueue.main.async {
+                    self.view.activityStopAnimating()
+                }
                 self.showClientCreditInfo(creditInfo: data.datosCredito)
                 self.showClientTotals(totals: data.totales)
-                self.viewModel.status = data
+                self.viewModel.account = data.cuentas ?? []
                 self.tableView.reloadData()
             })
             .disposed(by: bag)
     }
 
-    fileprivate func showClientCreditInfo(creditInfo: CreditInfo?) {
+    fileprivate func showClientCreditInfo(creditInfo: CreditData?) {
         if let model = creditInfo {
             if let cmm = numberFormatter.string(from: NSNumber(value: model.cmmActual ?? 0.0)) {
                 cmmLabel.text = "₡" + " " + String(cmm)
             }
+            if let cmm = model.cmmActual,
+               let cmmAvailable = model.cmmDisponible {
+                let cmmUsed = cmm - cmmAvailable
+                cmmUsedLabel.text = "₡" + " " + String(cmmUsed)
+            }
             if let cmmAvailable = numberFormatter.string(from: NSNumber(value: model.cmmDisponible ?? 0.0)) {
                 cmmAvailableLabel.text = "₡" + " " + String(cmmAvailable)
             }
-            if let lem = numberFormatter.string(from: NSNumber(value: model.cmmActual ?? 0.0)) {
+            if let lem = numberFormatter.string(from: NSNumber(value: model.lemActual ?? 0.0)) {
                 lemLabel.text = "₡" + " " + String(lem)
             }
-            if let lemAvailable = numberFormatter.string(from: NSNumber(value: model.cmmActual ?? 0.0)) {
+            if let lem = model.lemActual,
+               let lemAvailable = model.lemDisponible {
+                let lemUsed = lem - lemAvailable
+                cmmUsedLabel.text = "₡" + " " + String(lemUsed)
+            }
+            if let lemAvailable = numberFormatter.string(from: NSNumber(value: model.lemDisponible ?? 0.0)) {
                 lemAvailableLabel.text = "₡" + " " + String(lemAvailable)
             }
         }
     }
 
-    fileprivate func showClientTotals(totals: [Totals]) {
-        if totals.count > 0 {
+    fileprivate func showClientTotals(totals: [TotalsData]?) {
+        if let totals = totals, totals.count > 0 {
             if let initial = numberFormatter.string(from: NSNumber(value: totals[0].totalMontoInicial ?? 0.0)) {
                 initialAmountLabel.text = "₡" + " " + String(initial)
             }
@@ -114,11 +129,11 @@ class StatusViewController: UIViewController {
 
 extension StatusViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.status.cuentas.count
+        return self.viewModel.account.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let account = self.viewModel.status.cuentas[indexPath.row]
+        let account = self.viewModel.account[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell") as! StatusTableViewCell
 
         cell.setStatus(model: account, index: indexPath.row)
@@ -135,13 +150,12 @@ extension StatusViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension StatusViewController: StatusDelegate {
     func OpenItems(with index: Int) {
-        let model = self.viewModel.status.cuentas[index]
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "productDetailVC") as! ProductDetailViewController
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.modalTransitionStyle = .crossDissolve
-        viewController.accountType = "RE"
-        viewController.accountId = model.idCuenta ?? ""
-        self.present(viewController, animated: true)
+        let model = self.viewModel.account[index]
+        let vc = ProductDetailViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        vc.accountType = "RE"
+        vc.accountId = model.idCuenta ?? ""
+        self.present(vc, animated: true)
     }
 }

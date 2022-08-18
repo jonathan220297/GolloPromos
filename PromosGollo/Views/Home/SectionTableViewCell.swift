@@ -127,6 +127,7 @@ extension SectionTableViewCell: UICollectionViewDelegate,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
         cell.setProductData(with: viewModel.productsArray[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -142,9 +143,14 @@ extension SectionTableViewCell: UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-//        let vc = ProductDetailViewController.instantiate(fromAppStoryboard: .Products)
-//        vc.modalPresentationStyle = .fullScreen
-//        vc.setProductId(viewModel.productsArray[indexPath.row].productID ?? "")
-//        delegate?.sectionTableView(self, moveTo: vc)
+    }
+}
+
+extension SectionTableViewCell: ProductCellDelegate {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: ProductsData) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        self.delegate?.sectionTableView(self, moveTo: vc)
     }
 }

@@ -7,7 +7,7 @@
 */
 
 // MainViewController
-"MainViewController_description_label" = "Thanks for choosing us! Shoppi is the best choice for local eCommerce";
+"MainViewController_description_label" = "Thanks for choosing us! GolloApp is the best choice for local eCommerce";
 "MainViewController_continue_button" = "Continue";
 
 // LoginViewController
@@ -130,3 +130,12 @@ Otras de las obligaciones que podrían representar retos importantes a cumplir, 
 "ProfileViewController_cedula" = "Cédula";
 "ProfileViewController_cedula_juridica" = "Cédula jurídica";
 "ProfileViewController_passport" = "Passport";
+"ProfileViewController_update" = "UPDATE";
+
+// PaymentDataViewController
+"PaymentDataViewController_title" = "Credit Card Number";
+"PaymentDataViewController_card_number" = "Credit Card Number";
+"PaymentDataViewController_expiration" = "Expiration Month";
+"PaymentDataViewController_expiration_year" = "Expiration Year";
+"PaymentDataViewController_card_name" = "Name";
+"PaymentDataViewController_continue_payment" = "CONTINUE WITH PAYMENT";

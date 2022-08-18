@@ -9,7 +9,7 @@ import Foundation
 
 struct AccountsRequest: APIRequest {
 
-    public typealias Response = [AccountDetail]
+    public typealias Response = ResponseAccont
 
     public var resourceName: String {
         return "Procesos"
@@ -20,12 +20,11 @@ struct AccountsRequest: APIRequest {
     public var dictionary: [String: Any] {
         return service.map { $0.dict }!!
     }
-
 }
 
 struct AccountsServiceRequest: Codable {
     var tipoId: String
     var idCliente: String
-    var empresa: Int
+    var empresa: String
     var idCentro: String? = nil
 }

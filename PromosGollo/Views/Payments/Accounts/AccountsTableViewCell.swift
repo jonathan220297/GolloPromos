@@ -40,7 +40,7 @@ class AccountsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setAccount(model: AccountDetail, index: Int) {
+    func setAccount(model: AccountsDetail, index: Int) {
         accountTypeLabel.text = model.tipoCuenta
         accountLabel.text = "Número de cuenta: \(model.numCuenta ?? "")"
         startDateLabel.text = "Fecha de inicio: \(model.fecha ?? "")"

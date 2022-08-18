@@ -44,32 +44,34 @@ class LoginViewModel: NSObject {
 
     func fetchUserInfo(for loginType: LoginType) -> BehaviorRelay<LoginData?> {
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<LoginData, LoginRequest>(
-            service: BaseServiceRequestParam(
-                servicio: ServicioParam(
-                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.LOGIN_PROCESS_ID.rawValue),
-                    parametros: LoginRequest(
-                        idCliente: userManager.userData?.uid ?? "",
-                        nombre: userManager.userData?.displayName ?? "",
-                        apellido1: userManager.userData?.displayName ?? "",
-                        apellido2: userManager.userData?.displayName ?? "",
-                        tipoLogin: String(loginType.rawValue)
+        service.callWebServiceGolloAlternative(
+            LoginRequest(
+                service: BaseServiceRequestParam<LoginServiceRequest>(
+                    servicio: ServicioParam(
+                        encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.LOGIN_PROCESS_ID.rawValue),
+                        parametros: LoginServiceRequest(
+                            idCliente: userManager.userData?.uid ?? "",
+                            nombre: userManager.userData?.displayName ?? "",
+                            apellido1: userManager.userData?.displayName ?? "",
+                            apellido2: userManager.userData?.displayName ?? "",
+                            tipoLogin: String(loginType.rawValue)
+                        )
                     )
                 )
             )
-        )) { response in
-            DispatchQueue.main.async {
-                switch response {
-                case .success(let response):
-                    if let token = response.token {
-                        let _ = self.saveToken(with: token)
+        ) { response in
+                DispatchQueue.main.async {
+                    switch response {
+                    case .success(let response):
+                        if let token = response.token {
+                            let _ = self.saveToken(with: token)
+                        }
+                        apiResponse.accept(response)
+                    case .failure(let error):
+                        self.errorMessage.accept(error.localizedDescription)
                     }
-                    apiResponse.accept(response)
-                case .failure(let error):
-                    self.errorMessage.accept(error.localizedDescription)
                 }
             }
-        }
         return apiResponse
     }
     
