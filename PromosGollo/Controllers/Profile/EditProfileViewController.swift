@@ -22,6 +22,8 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var documentNumberLabel: UITextField!
     @IBOutlet weak var searchCustomerButton: UIButton!
     @IBOutlet weak var searchCustomerHeight: NSLayoutConstraint!
+    @IBOutlet weak var unregisteredUserView: UIView!
+    @IBOutlet weak var registerUserButton: UIButton!
     // User data
     @IBOutlet weak var userDataStackView: UIStackView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -81,7 +83,8 @@ class EditProfileViewController: UIViewController {
             .subscribe(onNext: {[weak self] message in
                 guard let self = self else { return }
                 if !message.isEmpty {
-                    self.showRegisterData()
+                    self.view.activityStopAnimating()
+                    self.unregisteredUserView.alpha = 1
                     self.viewModel.errorMessage.accept("")
                 }
             })
@@ -108,6 +111,14 @@ class EditProfileViewController: UIViewController {
             .tap
             .subscribe(onNext: {
                 self.configureDocumentTypeDropDown()
+            })
+            .disposed(by: disposeBag)
+
+        registerUserButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.showData(with: nil)
             })
             .disposed(by: disposeBag)
 
@@ -181,6 +192,7 @@ class EditProfileViewController: UIViewController {
         searchCustomerHeight.constant = 0
         userDataStackView.alpha = 1
         profileImageView.isHidden = false
+        self.unregisteredUserView.isHidden = true
         view.layoutIfNeeded()
         if let data = data {
             nameTextField.text = data.nombre
@@ -197,10 +209,6 @@ class EditProfileViewController: UIViewController {
 
     fileprivate func saveUserData() {
 
-    }
-
-    fileprivate func showRegisterData() {
-        
     }
 
 }
