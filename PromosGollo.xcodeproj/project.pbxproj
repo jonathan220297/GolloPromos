@@ -153,6 +153,8 @@
 		4FC04C5428AE95A3001EF211 /* GenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5328AE95A3001EF211 /* GenderType.swift */; };
 		4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5628AE9C3E001EF211 /* UserRequest.swift */; };
 		4FC04C5A28AE9C74001EF211 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5928AE9C74001EF211 /* UserResponse.swift */; };
+		4FC04C5C28AEF0B7001EF211 /* TransactionsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5B28AEF0B7001EF211 /* TransactionsHistoryViewController.swift */; };
+		4FC04C5E28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5D28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift */; };
 		4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */; };
 		4FDA3A9E26D8FE26003B2CB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */; };
 		4FDA3AA026D8FE26003B2CB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9F26D8FE26003B2CB6 /* ViewController.swift */; };
@@ -375,6 +377,8 @@
 		4FC04C5328AE95A3001EF211 /* GenderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderType.swift; sourceTree = "<group>"; };
 		4FC04C5628AE9C3E001EF211 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		4FC04C5928AE9C74001EF211 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		4FC04C5B28AEF0B7001EF211 /* TransactionsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsHistoryViewController.swift; sourceTree = "<group>"; };
+		4FC04C5D28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsHistoryViewModel.swift; sourceTree = "<group>"; };
 		4FDA3A9826D8FE26003B2CB6 /* PromosGollo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromosGollo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -661,6 +665,7 @@
 				4F46199E2700FC8300265E73 /* StatusViewController.swift */,
 				4F17323927013EA900D7924D /* ThirdPartyViewController.swift */,
 				4F3E483C2727898D009D259D /* PaymentTabBarViewController.swift */,
+				4FC04C5B28AEF0B7001EF211 /* TransactionsHistoryViewController.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -869,6 +874,7 @@
 				4FA4D6E2271FE56E00C117CD /* StatusViewModel.swift */,
 				4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */,
 				4F11E040272DB38000E15003 /* AccountItemsViewModel.swift */,
+				4FC04C5D28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -1600,6 +1606,7 @@
 				4F3E48382727883C009D259D /* PaymentViewController.swift in Sources */,
 				4F0D965626DDBB060061E89E /* LoadingButton.swift in Sources */,
 				4F11E043272DB5C100E15003 /* AccountItemsRequest.swift in Sources */,
+				4FC04C5C28AEF0B7001EF211 /* TransactionsHistoryViewController.swift in Sources */,
 				4F3E480527278525009D259D /* OffersListViewModel.swift in Sources */,
 				4F0D96A226DDD59E0061E89E /* SideMenuViewModel.swift in Sources */,
 				4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */,
@@ -1631,6 +1638,7 @@
 				4F0D968326DDBE430061E89E /* UIColor+Assets.swift in Sources */,
 				4F1732432701494900D7924D /* HistoryViewController.swift in Sources */,
 				4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */,
+				4FC04C5E28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift in Sources */,
 				4FDA3AA026D8FE26003B2CB6 /* ViewController.swift in Sources */,
 				4F0D96A526DDD5F50061E89E /* EditProfileViewController.swift in Sources */,
 				4F0D965226DDBACE0061E89E /* Date+Extension.swift in Sources */,
