@@ -112,22 +112,26 @@ enum Payment: Int {
     case PAYMENT_TOTAL_PENDING = 3
 }
 
-func getToken() -> String? {
+func getToken() -> String {
     guard let data = KeychainManager.load(key: "token") else {
-        return nil
+        return ""
     }
     let token = String(data: data, encoding: .utf8)
-    return token
+    return token ?? ""
 }
 
 func getDefaultBaseHeaderRequest(with processId: String,
                                  integrationId: String? = nil) -> Encabezado {
     let encabezado = Encabezado(idProceso: processId,
                                 idDevice: "",
-                                idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                                idUsuario: UserManager.shared.userData?.uid ?? "",
                                 timeStamp: String(Date().timeIntervalSince1970),
                                 idCia: 10,
-                                token: getToken() ?? "",
+                                token: getToken() ,
                                 integrationId: integrationId)
     return encabezado
+}
+
+struct Variables {
+    static var isRegisterUser = false
 }

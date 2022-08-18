@@ -23,11 +23,12 @@ class StatusViewModel {
                 encabezado: Encabezado(
                     idProceso: GOLLOAPP.STATUS_PROCESS_ID.rawValue,
                     idDevice: "",
-                    idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                    idUsuario: UserManager.shared.userData?.uid ?? "",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,
-                    token: "",
-                    integrationId: nil),
+                    token: getToken(),
+                    integrationId: nil
+                ),
                 parametros: StatusServiceRequest (
                     tipoId: documentType,
                     idCliente: documentId,

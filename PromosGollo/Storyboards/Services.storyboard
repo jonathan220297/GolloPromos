@@ -1,30 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17122"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Services View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ServicesViewController" id="Y6W-OH-hqX" customClass="ServicesViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1uu-t9-D5i">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRT-p9-RNI">
+                                <rect key="frame" x="41.5" y="323" width="331" height="250"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gollo App" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rm0-3q-AgC">
+                                        <rect key="frame" x="8" y="80" width="315" height="34"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Esta funcionalidad todavía no está implementada" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXl-Sj-ibN">
+                                        <rect key="frame" x="8" y="138" width="315" height="45"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="evS-Ry-ve1">
+                                        <rect key="frame" x="125.5" y="-39.5" width="80" height="79"/>
+                                        <color key="tintColor" red="1" green="0.70624512429999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="88E-KZ-iG1"/>
+                                            <constraint firstAttribute="width" constant="80" id="9dy-CL-XcJ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="40"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.39239364859999998" blue="0.70810222629999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="evS-Ry-ve1" firstAttribute="top" secondItem="uRT-p9-RNI" secondAttribute="top" constant="-40" id="4Nz-CQ-sfT"/>
+                                    <constraint firstItem="Rm0-3q-AgC" firstAttribute="leading" secondItem="uRT-p9-RNI" secondAttribute="leading" constant="8" id="4mX-dK-JVg"/>
+                                    <constraint firstItem="Rm0-3q-AgC" firstAttribute="top" secondItem="evS-Ry-ve1" secondAttribute="bottom" constant="40" id="6nd-ZJ-tuL"/>
+                                    <constraint firstAttribute="trailing" secondItem="XXl-Sj-ibN" secondAttribute="trailing" constant="8" id="9dP-ew-YDg"/>
+                                    <constraint firstItem="XXl-Sj-ibN" firstAttribute="leading" secondItem="uRT-p9-RNI" secondAttribute="leading" constant="8" id="Rvm-eP-laE"/>
+                                    <constraint firstItem="evS-Ry-ve1" firstAttribute="centerX" secondItem="uRT-p9-RNI" secondAttribute="centerX" id="VHY-Aj-huC"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rm0-3q-AgC" secondAttribute="trailing" constant="8" id="pCQ-pH-wxn"/>
+                                    <constraint firstItem="XXl-Sj-ibN" firstAttribute="top" secondItem="Rm0-3q-AgC" secondAttribute="bottom" constant="24" id="qpR-8t-kFI"/>
+                                    <constraint firstAttribute="height" constant="250" id="s9R-bf-e9Z"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uRT-p9-RNI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="dug-5G-Yfe"/>
+                            <constraint firstItem="uRT-p9-RNI" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.8" id="p9q-bh-abu"/>
+                            <constraint firstItem="uRT-p9-RNI" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="znu-tx-doV"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="viewGlass" destination="1uu-t9-D5i" id="btD-Ol-KEm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="124.6376811594203" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

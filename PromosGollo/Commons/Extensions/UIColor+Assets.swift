@@ -11,6 +11,8 @@ extension UIColor {
     static let terracotta = UIColor.fromAsset(named: "Terracotta")
     static let primary = UIColor.fromAsset(named: "colorPrimary")
     static let primaryLight = UIColor.fromAsset(named: "colorPrimaryLight")
+    static let gift = UIColor.fromAsset(named: "colorGift")
+    static let bonus = UIColor.fromAsset(named: "colorBonus")
 }
 
 fileprivate extension UIColor {

@@ -50,11 +50,12 @@ class SearchDocumentViewModel {
                 encabezado: Encabezado(
                     idProceso: GOLLOAPP.ACTIVE_ACCOUNTS_PROCESS_ID.rawValue,
                     idDevice: "",
-                    idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
+                    idUsuario: UserManager.shared.userData?.uid ?? "",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,
-                    token: "",
-                    integrationId: nil),
+                    token: getToken(),
+                    integrationId: nil
+                ),
                 parametros: AccountsServiceRequest (
                     tipoId: documentType,
                     idCliente: documentId,

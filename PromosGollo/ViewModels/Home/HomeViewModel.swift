@@ -28,8 +28,9 @@ class HomeViewModel {
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
-                        token: "",
-                        integrationId: nil)
+                        token: getToken(),
+                        integrationId: nil
+                    )
                 )
             )
         )) { response in
