@@ -10,7 +10,7 @@ import RxSwift
 import RxRelay
 
 class SignUpViewModel: NSObject {
-    private let minimalPasswordLength = 5
+    private let minimalPasswordLength = 6
     private let authService = AuthenticationService()
     private let userManager = UserManager.shared
 
@@ -24,6 +24,7 @@ class SignUpViewModel: NSObject {
     var hideLoading: (()->())?
 
     var isValidForm: Observable<Bool> {
+        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{6,}"
         return Observable.combineLatest(emailSubject, emailConfirmationSubject, passwordSubject, passwordConfirmationSubject) { email, emailConfirmation, password, passwordConfirmation in
 
             guard let email = email,
@@ -41,6 +42,8 @@ class SignUpViewModel: NSObject {
                 && !(passwordConfirmation.isEmpty)
                 && password == passwordConfirmation
                 && password.count > self.minimalPasswordLength
+                && NSPredicate(format: password, passwordRegex).evaluate(with: self)
+                && NSPredicate(format: passwordConfirmation, passwordRegex).evaluate(with: self)
         }
     }
 

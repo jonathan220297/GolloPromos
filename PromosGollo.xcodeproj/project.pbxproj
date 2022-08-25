@@ -190,6 +190,8 @@
 		4FE1913426DF071A00322128 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913326DF071A00322128 /* FilterViewController.swift */; };
 		4FE1913626DF073400322128 /* OfferDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913526DF073400322128 /* OfferDetailViewController.swift */; };
 		4FE1913826DF075200322128 /* IncentivesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913726DF075200322128 /* IncentivesViewController.swift */; };
+		4FEDF8DF28B5DBEA00719245 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8DE28B5DBEA00719245 /* UITextField+Extension.swift */; };
+		4FEDF8E128B7E7BA00719245 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E028B7E7BA00719245 /* ResetPasswordViewController.swift */; };
 		4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */; };
 		4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */; };
 		4FFD9CA4272A16D2004778F1 /* CategoryOffersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */; };
@@ -424,6 +426,8 @@
 		4FE1913326DF071A00322128 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4FE1913526DF073400322128 /* OfferDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewController.swift; sourceTree = "<group>"; };
 		4FE1913726DF075200322128 /* IncentivesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncentivesViewController.swift; sourceTree = "<group>"; };
+		4FEDF8DE28B5DBEA00719245 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		4FEDF8E028B7E7BA00719245 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewCell.swift; sourceTree = "<group>"; };
 		4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryOffersTableViewCell.xib; sourceTree = "<group>"; };
 		4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewModel.swift; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 				4F0D968226DDBE430061E89E /* UIColor+Assets.swift */,
 				4F4EC47527275585007B17FE /* CGFloat+Extension.swift */,
 				4FFD9CAB272AFDCA004778F1 /* UINavigationController+Extension.swift */,
+				4FEDF8DE28B5DBEA00719245 /* UITextField+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1009,6 +1014,7 @@
 				4FA2767726D917E400216284 /* TermsConditionsViewController.swift */,
 				4FA2767926D9189700216284 /* LoginViewController.swift */,
 				4FA2767B26D918A500216284 /* SignUpViewController.swift */,
+				4FEDF8E028B7E7BA00719245 /* ResetPasswordViewController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -1628,6 +1634,7 @@
 				4FFD9CA8272AF978004778F1 /* FilterTableViewCell.swift in Sources */,
 				4F3E482A27278700009D259D /* ThirdPartyResponse.swift in Sources */,
 				4FE1911326DEFAC700322128 /* ProductsData.swift in Sources */,
+				4FEDF8E128B7E7BA00719245 /* ResetPasswordViewController.swift in Sources */,
 				4F0D963626DDB8770061E89E /* Badge.swift in Sources */,
 				4F0D96DE26DDE1370061E89E /* ProductDetailViewController.swift in Sources */,
 				4F0D96B526DDD78A0061E89E /* MenuViewModel.swift in Sources */,
@@ -1725,6 +1732,7 @@
 				4F75A54828AEFE650001CC4D /* PaymentDataViewModel.swift in Sources */,
 				4F0D968E26DDD3970061E89E /* NotificationsViewController.swift in Sources */,
 				4F3E480627278525009D259D /* FilterViewModel.swift in Sources */,
+				4FEDF8DF28B5DBEA00719245 /* UITextField+Extension.swift in Sources */,
 				4F0D969826DDD3E50061E89E /* NotificationRequest.swift in Sources */,
 				4F17323627013C7800D7924D /* Offers.swift in Sources */,
 				4FE190FA26DEF5CE00322128 /* HomeViewModel.swift in Sources */,

@@ -17,6 +17,7 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
     
@@ -29,6 +30,11 @@ class SideMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureRx()
+        if Variables.isRegisterUser {
+            profileLabel.text = "Perfil de usuario"
+        } else {
+            profileLabel.text = "Registrar usuario"
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -12,7 +12,7 @@ import FirebaseAuth
 import XCGLogger
 
 private let minimalUsernameLength = 5
-private let minimalPasswordLength = 5
+private let minimalPasswordLength = 6
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
@@ -37,6 +37,7 @@ class LoginViewController: UIViewController {
         configureViews()
         configureRx()
         hideKeyboardWhenTappedAround()
+        passwordTextField.enablePasswordToggle()
     }
 
     override func viewWillAppear(_ animated: Bool) {

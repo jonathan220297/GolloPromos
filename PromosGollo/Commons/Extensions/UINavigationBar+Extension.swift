@@ -15,7 +15,7 @@ extension UINavigationBar {
         navigationBarIconimageView.widthAnchor.constraint(equalToConstant: titleImageWidth).isActive = true
         navigationBarIconimageView.heightAnchor.constraint(equalToConstant: titleImageHeight).isActive = true
         navigationBarIconimageView.contentMode = .scaleAspectFit
-        navigationBarIconimageView.image = UIImage(named: "logo_golloapp")
+        navigationBarIconimageView.image = UIImage(named: "ic_logo_navigation_bar")
         topItem?.titleView = navigationBarIconimageView
         barTintColor = UIColor.primary
     }

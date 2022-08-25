@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if viewModel.verifyUserLogged() && !viewModel.sessionExpired() {
+        if viewModel.verifyUserLogged() {
             if let vc = AppStoryboard.Home.initialViewController() {
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true)

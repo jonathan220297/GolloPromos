@@ -120,5 +120,11 @@ extension AccountsViewController: AccountsDelegate {
         vc.accountId = model.idCuenta ?? ""
         self.present(vc, animated: true)
     }
+
+    func OpenHistory(with index: Int) {
+        let vc = TransactionsHistoryViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

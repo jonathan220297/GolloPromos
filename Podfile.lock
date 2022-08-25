@@ -367,7 +367,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
-  - GolloNetWorking (from `/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking/`)
+  - GolloNetWorking (from `/Users/jonathanrodriguez/Downloads/Gollo/Gollo_Pods/GolloNetWorking`)
   - GoogleSignIn
   - ImageSlideshow
   - ImageSlideshow/Alamofire
@@ -414,7 +414,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   GolloNetWorking:
-    :path: "/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking/"
+    :path: "/Users/jonathanrodriguez/Downloads/Gollo/Gollo_Pods/GolloNetWorking"
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -451,6 +451,6 @@ SPEC CHECKSUMS:
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 85cc767cb783fbb5e4378868b8b1909b94e4d79c
+PODFILE CHECKSUM: b062e9c05df2223d39b08594e2112e1a01c85fad
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.9.3

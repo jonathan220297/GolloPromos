@@ -9,6 +9,7 @@ import UIKit
 
 protocol AccountsDelegate {
     func OpenItems(with index: Int)
+    func OpenHistory(with index: Int)
 }
 
 class AccountsTableViewCell: UITableViewCell {
@@ -41,7 +42,6 @@ class AccountsTableViewCell: UITableViewCell {
     }
 
     func setAccount(model: AccountsDetail, index: Int) {
-        accountTypeLabel.text = model.tipoCuenta
         accountLabel.text = "Número de cuenta: \(model.numCuenta ?? "")"
         startDateLabel.text = "Fecha de inicio: \(model.fecha ?? "")"
         if let initial = numberFormatter.string(from: NSNumber(value: model.montoInicial ?? 0.0)) {
@@ -65,10 +65,13 @@ class AccountsTableViewCell: UITableViewCell {
             dayArrearsLabel.text = String(days)
         }
 
-        itemsButton.addTarget(self, action: #selector(itemsButtonTapped(_:)), for: .touchUpInside)
-        itemsButton.tag = index
+    
 
         self.progressShape(progress: 10.0)
+    }
+
+    @IBAction func historyButtonTapped(_ sender: UIButton) {
+        delegate.OpenHistory(with: sender.tag)
     }
 
     @IBAction func itemsButtonTapped(_ sender: UIButton) {
