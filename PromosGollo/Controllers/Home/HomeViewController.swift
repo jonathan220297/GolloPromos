@@ -124,7 +124,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if viewModel.sectionsArray[indexPath.row].signUp != nil {
-            return 250
+            return 150
         } else if viewModel.sectionsArray[indexPath.row].isSection {
             return CGFloat(productCellSize)
         } else {

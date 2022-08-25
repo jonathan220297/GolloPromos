@@ -10,6 +10,7 @@ import RxCocoa
 import RxSwift
 
 class SignUpViewController: UIViewController {
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailConfirmationTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -26,6 +27,8 @@ class SignUpViewController: UIViewController {
         configureViewModel()
         configureRx()
         hideKeyboardWhenTappedAround()
+        passwordTextField.enablePasswordToggle()
+        passwordConfirmationTextField.enablePasswordToggle()
     }
 }
 
