@@ -506,42 +506,28 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhc-fG-pgS">
-                                <rect key="frame" x="31" y="248" width="352" height="400"/>
+                                <rect key="frame" x="31" y="243" width="352" height="410"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restablecer contraseña" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xp0-4v-R8j">
-                                        <rect key="frame" x="8" y="80" width="336" height="34"/>
+                                        <rect key="frame" x="8" y="128" width="336" height="34"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95h-Ja-c1V">
-                                        <rect key="frame" x="12" y="138" width="328" height="112.5"/>
+                                        <rect key="frame" x="12" y="186" width="328" height="112.5"/>
                                         <string key="text">Esta opción únicamente está disponible para usuarios creados por medio de coreeo electrónico. Las instrucciones para efectuar el cambio serán enviadas a su cuenta de correo electrónico.</string>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="851-Rm-9mY">
-                                        <rect key="frame" x="136" y="-39.5" width="80" height="79"/>
-                                        <color key="tintColor" red="1" green="0.70624512429999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="XhX-iA-Xqx"/>
-                                            <constraint firstAttribute="width" constant="80" id="wgm-rf-WET"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="40"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZ4-RE-76I">
-                                        <rect key="frame" x="8" y="266.5" width="336" height="34"/>
+                                        <rect key="frame" x="8" y="314.5" width="336" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HO4-Xa-e38">
-                                        <rect key="frame" x="14" y="316.5" width="324" height="31"/>
+                                        <rect key="frame" x="14" y="364.5" width="324" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAq-qG-VCE">
                                                 <rect key="frame" x="0.0" y="0.0" width="162" height="31"/>
@@ -557,17 +543,31 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="851-Rm-9mY">
+                                        <rect key="frame" x="136" y="8.5" width="80" height="79"/>
+                                        <color key="tintColor" red="1" green="0.70624512429999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="XhX-iA-Xqx"/>
+                                            <constraint firstAttribute="width" constant="80" id="wgm-rf-WET"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="40"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.39239364859999998" blue="0.70810222629999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Xp0-4v-R8j" secondAttribute="trailing" constant="8" id="13V-IC-I8H"/>
-                                    <constraint firstItem="851-Rm-9mY" firstAttribute="top" secondItem="xhc-fG-pgS" secondAttribute="top" constant="-40" id="Bg8-US-7KX"/>
+                                    <constraint firstItem="851-Rm-9mY" firstAttribute="top" secondItem="xhc-fG-pgS" secondAttribute="top" constant="8" id="Bg8-US-7KX"/>
                                     <constraint firstItem="fZ4-RE-76I" firstAttribute="leading" secondItem="xhc-fG-pgS" secondAttribute="leading" constant="8" id="FuD-Pb-xDy"/>
                                     <constraint firstAttribute="trailing" secondItem="95h-Ja-c1V" secondAttribute="trailing" constant="12" id="K2B-Q7-rNu"/>
                                     <constraint firstAttribute="trailing" secondItem="fZ4-RE-76I" secondAttribute="trailing" constant="8" id="XWX-NM-YTV"/>
                                     <constraint firstItem="fZ4-RE-76I" firstAttribute="top" secondItem="95h-Ja-c1V" secondAttribute="bottom" constant="16" id="Y13-Rk-XNk"/>
                                     <constraint firstItem="95h-Ja-c1V" firstAttribute="top" secondItem="Xp0-4v-R8j" secondAttribute="bottom" constant="24" id="YDM-Kd-uOw"/>
-                                    <constraint firstAttribute="height" constant="400" id="bf8-xY-nZQ"/>
+                                    <constraint firstAttribute="height" constant="410" id="bf8-xY-nZQ"/>
                                     <constraint firstItem="95h-Ja-c1V" firstAttribute="leading" secondItem="xhc-fG-pgS" secondAttribute="leading" constant="12" id="cBK-1p-h5z"/>
                                     <constraint firstItem="Xp0-4v-R8j" firstAttribute="top" secondItem="851-Rm-9mY" secondAttribute="bottom" constant="40" id="cq2-MC-7rY"/>
                                     <constraint firstItem="851-Rm-9mY" firstAttribute="centerX" secondItem="xhc-fG-pgS" secondAttribute="centerX" id="ej5-kX-gYh"/>
@@ -596,6 +596,12 @@
                             <constraint firstItem="dMM-9D-liH" firstAttribute="leading" secondItem="ggg-wa-w6t" secondAttribute="leading" id="y2b-FK-Jsj"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="vxh-yw-gsy" id="Yxb-Aa-ZBo"/>
+                        <outlet property="emailTextField" destination="fZ4-RE-76I" id="e85-0n-fPs"/>
+                        <outlet property="sendEmailButton" destination="UAq-qG-VCE" id="paG-9t-QUW"/>
+                        <outlet property="viewGlass" destination="dMM-9D-liH" id="5sb-kB-9b3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMm-D2-dts" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

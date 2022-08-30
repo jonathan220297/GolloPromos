@@ -63,6 +63,8 @@ class LoginViewController: UIViewController {
                 guard let self = self,
                       let data = data else { return }
                 Variables.isRegisterUser = data.estadoRegistro ?? false
+                Variables.isLoginUser = data.estadoLogin ?? false
+                Variables.isClientUser = data.estadoCliente ?? false
                 if let vc = AppStoryboard.Home.initialViewController() {
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true)
@@ -103,6 +105,18 @@ class LoginViewController: UIViewController {
         everythingValid
             .map { $0 ? 1 : 0.4 }
             .bind(to: buttonLogin.rx.alpha)
+            .disposed(by: disposeBag)
+
+        forgotPasswordButton
+            .rx
+            .tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let vc = ResetPasswordViewController.instantiate(fromAppStoryboard: .Main)
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.modalTransitionStyle = .crossDissolve
+                self.present(vc, animated: true)
+            })
             .disposed(by: disposeBag)
 
         buttonLogin

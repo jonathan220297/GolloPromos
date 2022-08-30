@@ -48,8 +48,12 @@ class GolloService {
 
         service.invokeService(for: endpoint, method: .post, with: parameters, getToken()) { data, error in
             if let error = error {
-                log.debug("Error: \(error)")
-                completion(.failure(.server(code: 0, message: error)))
+                if error == "Token vencido" {
+                    completion(.failure(.server(code: 401, message: "Token vencido")))
+                } else {
+                    log.debug("Error: \(error)")
+                    completion(.failure(.server(code: 0, message: error)))
+                }
             }
             if let object = self.parseResult(of: T.Response.self, data: data) {
                 completion(.success(object))
@@ -74,12 +78,15 @@ class GolloService {
                 log.debug("Error: \(error)")
                 completion(.failure(.server(code: 0, message: error)))
             }
-            if let object = self.parseResultGollo(of: T.Response.self, data: data) {
-                completion(.success(object))
-                log.debug("Response: \(object)")
-            } else {
-                completion(.failure(.server(code: 0, message: "Unknown error")))
-                log.debug("Error: Unknown error")
+            self.parseResultGollo(of: T.Response.self, data: data) { result, error in
+                if let error = error {
+                    completion(.failure(.server(code: 0, message: error)))
+                }
+                if let result = result {
+                    completion(.success(result))
+                } else {
+                    completion(.failure(.server(code: 0, message: "Unknown error")))
+                }
             }
         }
     }
@@ -127,22 +134,27 @@ class GolloService {
         }
     }
     
-    fileprivate func parseResultGollo<T: Decodable>(of type: T.Type = T.self, data: Data?) -> T? {
+    fileprivate func parseResultGollo<T: Decodable>(of type: T.Type = T.self, data: Data?, completion: @escaping(_ result: T?, _ error: String?) -> Void){
         guard let data = data else {
-            return nil
+            completion(nil, "Unknown error")
+            return
         }
         log.debug(data.prettyPrintedJSONString)
         do {
             let baseResponse = try JSONDecoder().decode(BaseResponseGollo<T>.self, from: data)
-            guard let status = baseResponse.resultado?.estado else { return nil }
+            guard let status = baseResponse.resultado?.estado else {
+                completion(nil, "Unknown error")
+                return
+            }
             if status.bool ?? false {
-                return baseResponse.respuesta
+                completion(baseResponse.respuesta, nil)
             } else {
-                return nil
+                completion(nil, baseResponse.resultado?.mensaje)
             }
         } catch let error as NSError {
             log.debug("parseResultGollo: " + error.localizedDescription)
-            return nil
+            completion(nil, error.localizedDescription)
+            return
         }
     }
 

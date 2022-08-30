@@ -45,12 +45,14 @@ class EditProfileViewController: UIViewController {
         return vm
     }()
     let disposeBag = DisposeBag()
+
+    private let userManager = UserManager.shared
     var imagePicker = UIImagePickerController()
     var documentType = ""
+    var genderType = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Perfil de usuario"
         configureRx()
 
         // Delegate of Image Picker
@@ -73,8 +75,6 @@ class EditProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
 
-    // MARK: - Observers
-
 
     // MARK: - Functions
     fileprivate func configureRx() {
@@ -83,8 +83,7 @@ class EditProfileViewController: UIViewController {
             .subscribe(onNext: {[weak self] message in
                 guard let self = self else { return }
                 if !message.isEmpty {
-                    self.view.activityStopAnimating()
-                    self.unregisteredUserView.alpha = 1
+                    self.showAlert(alertText: "GolloApp", alertMessage: "El número de cédula ya esta asociado a otro usuario")
                     self.viewModel.errorMessage.accept("")
                 }
             })
@@ -170,6 +169,7 @@ class EditProfileViewController: UIViewController {
         dropDown.dataSource = viewModel.genderTypes.map { $0.name }
         dropDown.show()
         dropDown.selectionAction = { [self] (index: Int, item: String) in
+            genderType = viewModel.genderTypes[index].code
             genderTypeLabel.text = item
         }
     }
@@ -181,7 +181,12 @@ class EditProfileViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
-                self.showData(with: data)
+                if let _ = data.numeroIdentificacion, let _ = data.numeroIdentificacion {
+                    self.showData(with: data)
+                } else {
+                    self.view.activityStopAnimating()
+                    self.unregisteredUserView.alpha = 1
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -195,11 +200,38 @@ class EditProfileViewController: UIViewController {
         self.unregisteredUserView.isHidden = true
         view.layoutIfNeeded()
         if let data = data {
+            documentTypeButton.isEnabled = false
+            documentNumberLabel.isEnabled = false
+            if let name = data.nombre, name.isEmpty {
+                nameTextField.isEnabled = true
+            } else {
+                nameTextField.isEnabled = false
+            }
+            if let lastname = data.apellido1, lastname.isEmpty {
+                lastNameTextField.isEnabled = true
+            } else {
+                lastNameTextField.isEnabled = false
+            }
+            if let secondLastname = data.apellido2, secondLastname.isEmpty {
+                secondLastNameTextField.isEnabled = true
+            } else {
+                secondLastNameTextField.isEnabled = false
+            }
+            if let date = data.fechaNacimiento, !date.isEmpty {
+                birthdateTextField.text = date
+                birthdateTextField.isEnabled = false
+            } else {
+                birthdateTextField.isEnabled = true
+            }
+            if let gender = data.genero, !gender.isEmpty {
+                genderTypeLabel.text = viewModel.genderTypes.first(where: { $0.code.elementsEqual(gender) })?.name ?? ""
+                genderTypeButton.isEnabled = false
+            } else {
+                genderTypeButton.isEnabled = true
+            }
             nameTextField.text = data.nombre
             lastNameTextField.text = data.apellido1
             secondLastNameTextField.text = data.apellido2
-            birthdateTextField.text = data.fechaNacimiento
-            genderTypeLabel.text = viewModel.genderTypes.first(where: { $0.code.elementsEqual(data.genero ?? "M") })?.name ?? ""
             phoneNumberTextField.text = data.telefonoTrabajo
             mobileTextField.text = data.telefono1
             emailTextField.text = data.correoElectronico1
@@ -208,7 +240,36 @@ class EditProfileViewController: UIViewController {
     }
 
     fileprivate func saveUserData() {
-
+        let userInfo = UserInfo(
+            idCliente: UserManager.shared.userData?.uid ?? "",
+            nombre: nameTextField.text,
+            apellido1: lastNameTextField.text,
+            apellido2: secondLastNameTextField.text,
+            telefono1: phoneNumberTextField.text,
+            telefono2: mobileTextField.text,
+            tipoIdentificacion: documentType,
+            numeroIdentificacion: documentNumberLabel.text,
+            direccion: addressTextField.text,
+            latitud: nil,
+            longitud: nil,
+            correoElectronico1: emailTextField.text,
+            fechaNacimiento: birthdateTextField.text,
+            image: viewModel.convertImageToBase64String(img: userImageView.image),
+            genero: genderType
+        )
+        view.activityStarAnimating()
+        viewModel.updateUserData(with: userInfo)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let _ = data else { return }
+                Variables.isRegisterUser = true
+                Variables.isClientUser = true
+                Variables.isLoginUser = true
+                Variables.userProfile = userInfo
+                self.showAlert(alertText: "GolloApp", alertMessage: "Usuario actualizado exitosamente.")
+            })
+            .disposed(by: disposeBag)
     }
 
 }

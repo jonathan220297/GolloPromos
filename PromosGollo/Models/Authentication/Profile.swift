@@ -12,5 +12,5 @@ class Profile {
     var estadoLogin: Bool?
     var estadoRegistro: Bool?
     var estadoCliente: Bool?
-    var registro: UserInfo?
+    var userInfo: UserInfo?
 }

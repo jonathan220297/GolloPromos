@@ -1,4 +1,5 @@
 PODS:
+  - AAInfographics (7.3.0)
   - abseil/algorithm (0.20200225.0):
     - abseil/algorithm/algorithm (= 0.20200225.0)
     - abseil/algorithm/container (= 0.20200225.0)
@@ -362,12 +363,13 @@ PODS:
     - ObjcExceptionBridging
 
 DEPENDENCIES:
+  - AAInfographics (from `https://github.com/AAChartModel/AAChartKit-Swift.git`)
   - DropDown
   - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
-  - GolloNetWorking (from `/Users/jonathanrodriguez/Downloads/Gollo/Gollo_Pods/GolloNetWorking`)
+  - GolloNetWorking (from `/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking`)
   - GoogleSignIn
   - ImageSlideshow
   - ImageSlideshow/Alamofire
@@ -413,10 +415,18 @@ SPEC REPOS:
     - XCGLogger
 
 EXTERNAL SOURCES:
+  AAInfographics:
+    :git: https://github.com/AAChartModel/AAChartKit-Swift.git
   GolloNetWorking:
-    :path: "/Users/jonathanrodriguez/Downloads/Gollo/Gollo_Pods/GolloNetWorking"
+    :path: "/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking"
+
+CHECKOUT OPTIONS:
+  AAInfographics:
+    :commit: 84d2b110308f49e1fca3c0baf835d5b2ab4918ff
+    :git: https://github.com/AAChartModel/AAChartKit-Swift.git
 
 SPEC CHECKSUMS:
+  AAInfographics: ee2a7959acdd0a00243b7f5a3f03a1fa2bdf0781
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
@@ -451,6 +461,6 @@ SPEC CHECKSUMS:
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: b062e9c05df2223d39b08594e2112e1a01c85fad
+PODFILE CHECKSUM: c281cf90d75431f353475c9a212f84d3830e28b8
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.11.3

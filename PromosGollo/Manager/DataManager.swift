@@ -22,8 +22,8 @@ open class DataManager: NSObject {
 
     // Recents Views
     func retriveRecents() -> [ProductCoreData] {
-        guard let managedContext = getContext() else { return [] }
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recents")
+//        guard let managedContext = getContext() else { return [] }
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recents")
         //let sort = NSSortDescriptor(key: #keyPath(Recents.dateSaved), ascending: false)
         //fetchRequest.sortDescriptors = [sort]
         return []

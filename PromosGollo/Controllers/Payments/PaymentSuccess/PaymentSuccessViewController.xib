@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentSuccessViewController" customModule="PromosGollo" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="euL-sT-nUp" id="wML-Fq-RyZ"/>
+                <outlet property="closeButton" destination="o8R-7h-3pk" id="5rg-f3-XgB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xO-Cu-4P9">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="269"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euL-sT-nUp">
+                            <rect key="frame" x="20" y="60" width="13" height="22"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="chevron.backward" catalog="system"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pago aplicado con exito" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOa-Ob-sJ5">
+                            <rect key="frame" x="86" y="53" width="242" height="44.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_payment_success" translatesAutoresizingMaskIntoConstraints="NO" id="Xja-Vx-51k">
+                            <rect key="frame" x="62" y="129.5" width="290" height="107.5"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" name="colorPrimary"/>
+                    <constraints>
+                        <constraint firstItem="Xja-Vx-51k" firstAttribute="centerX" secondItem="7xO-Cu-4P9" secondAttribute="centerX" id="9pz-n3-NPu"/>
+                        <constraint firstItem="Xja-Vx-51k" firstAttribute="width" secondItem="7xO-Cu-4P9" secondAttribute="width" multiplier="0.7" id="IgT-tx-Dws"/>
+                        <constraint firstAttribute="bottom" secondItem="Xja-Vx-51k" secondAttribute="bottom" constant="32" id="Ime-S6-JIW"/>
+                        <constraint firstItem="euL-sT-nUp" firstAttribute="leading" secondItem="7xO-Cu-4P9" secondAttribute="leading" constant="20" id="QVj-nv-6MH"/>
+                        <constraint firstItem="Xja-Vx-51k" firstAttribute="top" secondItem="FOa-Ob-sJ5" secondAttribute="bottom" constant="32" id="d4F-3Q-vw2"/>
+                        <constraint firstItem="FOa-Ob-sJ5" firstAttribute="centerX" secondItem="7xO-Cu-4P9" secondAttribute="centerX" id="ihG-tr-jfk"/>
+                        <constraint firstItem="Xja-Vx-51k" firstAttribute="height" secondItem="7xO-Cu-4P9" secondAttribute="height" multiplier="0.4" id="syJ-hx-Vx0"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsT-sW-wfC">
+                    <rect key="frame" x="8" y="277" width="398" height="101.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="xLD-pP-YwX"/>
+                    </constraints>
+                    <string key="text">Su pago ha sido procesado exitosamente. Por favor esté pendiente de su correo y de las notificaciones que puede recibir en esta plataforma porque por esos medios le notificaremos sobre su factura electrónica.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHP-TF-8hf">
+                    <rect key="frame" x="8" y="394.5" width="398" height="95"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oCl-u1-wzb">
+                            <rect key="frame" x="8" y="31" width="35" height="33"/>
+                            <color key="tintColor" name="colorPrimary"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="oCl-u1-wzb" secondAttribute="height" multiplier="1:1" id="Flg-Zc-Qf4"/>
+                                <constraint firstAttribute="width" constant="35" id="Pb8-Am-JGf"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si tiene algún problema con su pago puede contactarnos a transferencias_cr@unicomer.com y con gusto le atenderemos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKV-zC-zRn">
+                            <rect key="frame" x="59" y="24" width="323" height="47"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98431372549019602" green="0.95686274509803915" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="oCl-u1-wzb" firstAttribute="centerY" secondItem="wHP-TF-8hf" secondAttribute="centerY" id="0jG-Jr-A7L"/>
+                        <constraint firstAttribute="trailing" secondItem="QKV-zC-zRn" secondAttribute="trailing" constant="16" id="1dV-tW-XpW"/>
+                        <constraint firstItem="QKV-zC-zRn" firstAttribute="top" secondItem="wHP-TF-8hf" secondAttribute="top" constant="24" id="DGw-ZG-mdh"/>
+                        <constraint firstItem="oCl-u1-wzb" firstAttribute="leading" secondItem="wHP-TF-8hf" secondAttribute="leading" constant="8" id="TyO-a3-aDX"/>
+                        <constraint firstItem="QKV-zC-zRn" firstAttribute="leading" secondItem="oCl-u1-wzb" secondAttribute="trailing" constant="16" id="vAA-MM-wfj"/>
+                        <constraint firstAttribute="bottom" secondItem="QKV-zC-zRn" secondAttribute="bottom" constant="24" id="wkX-Dn-d4v"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8R-7h-3pk">
+                    <rect key="frame" x="144.5" y="521.5" width="125" height="40"/>
+                    <color key="backgroundColor" name="colorPrimary"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="125" id="D3u-mm-xez"/>
+                        <constraint firstAttribute="height" constant="40" id="dkK-O0-lC1"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="CERRAR">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="7xO-Cu-4P9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="59R-6a-qU5"/>
+                <constraint firstItem="euL-sT-nUp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="5tg-mY-usF"/>
+                <constraint firstItem="wHP-TF-8hf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="AKo-lT-Ded"/>
+                <constraint firstItem="wHP-TF-8hf" firstAttribute="top" secondItem="qsT-sW-wfC" secondAttribute="bottom" constant="16" id="EX9-zW-6Pa"/>
+                <constraint firstItem="qsT-sW-wfC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="YkA-Nh-iJe"/>
+                <constraint firstItem="o8R-7h-3pk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZOg-mU-1QN"/>
+                <constraint firstItem="qsT-sW-wfC" firstAttribute="top" secondItem="7xO-Cu-4P9" secondAttribute="bottom" constant="8" id="k12-mF-rCA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7xO-Cu-4P9" secondAttribute="trailing" id="l6f-DP-lHR"/>
+                <constraint firstItem="FOa-Ob-sJ5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="9" id="lhw-kY-elF"/>
+                <constraint firstItem="7xO-Cu-4P9" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.3" id="n9q-F5-mGS"/>
+                <constraint firstItem="7xO-Cu-4P9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qqa-AK-v6O"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qsT-sW-wfC" secondAttribute="trailing" constant="8" id="uKm-N7-s4P"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wHP-TF-8hf" secondAttribute="trailing" constant="8" id="v6a-rA-tB7"/>
+                <constraint firstItem="o8R-7h-3pk" firstAttribute="top" secondItem="wHP-TF-8hf" secondAttribute="bottom" constant="32" id="yjT-hX-51g"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="112"/>
+        <image name="ic_payment_success" width="800" height="800"/>
+        <namedColor name="colorPrimary">
+            <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

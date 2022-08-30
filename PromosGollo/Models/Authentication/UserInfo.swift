@@ -8,38 +8,19 @@
 import Foundation
 
 class UserInfoData: Codable {
-    var idCliente: String
-    var nombre: String
-    var apellido1: String
+    var idCliente: String = ""
+    var nombre: String = ""
+    var apellido1: String = ""
     var apellido2: String?
-    var correoElectronico1: String?
-    var tipoIdentificacion: String
-    var numIdentificacion: String
-    var idClienteNaf: String?
-    var telefono: String?
-    var celular: String?
+    var tipoIdentificacion: String?
+    var numeroIdentificacion: String?
+    var telefono1: String?
+    var telefono2: String?
     var direccion: String?
     var latitud: Double?
     var longitud: Double?
+    var correoElectronico1: String?
     var image: String?
     var fechaNacimiento: Date?
     var genero: String?
-    var fechaIngresoTrabajo: String?
-    var salario: Double?
-    var lugarTrabajo: String?
-    var direccionTrabajo: String?
-    var telefonoTrabajo: String?
-    var otrosIngresos: Double?
-    var estadoCivil: String?
-    var nombreConyugue: String?
-    var cantidadHijosL: Int?
-    var casa: String?
-    var correoElectronico2: String?
-    var telefono1: String?
-    var telefono2: String?
-    var nacionalidad: String?
-    var tarjetasDeCredito: String?
-    var carroPropio: String?
-    var ocupacion: String?
-    var tipoOperacion: Int = 1
 }

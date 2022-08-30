@@ -21,12 +21,13 @@ class ThirdPartyViewController: UIViewController {
     @IBOutlet weak var customerDocumentLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-    var arrayDocuments = ["Tipo de documento de identidad", "C - Cédula", "J - Cédula Jurídica", "P - Pasaporte"]
     var isDocumentTypeSelected = false
     var selectedDocument = ""
 
     lazy var viewModel: SearchDocumentViewModel = {
-        return SearchDocumentViewModel()
+        let vm = SearchDocumentViewModel()
+        vm.processDocTypes()
+        return vm
     }()
     let bag = DisposeBag()
 
@@ -39,16 +40,12 @@ class ThirdPartyViewController: UIViewController {
     @IBAction func allDocumentsTapped(_ sender: Any) {
         let dropDown = DropDown()
         dropDown.anchorView = documentTypeButton
-        dropDown.dataSource = arrayDocuments
+        dropDown.dataSource = viewModel.docTypes.map { $0.name }
         dropDown.show()
         dropDown.selectionAction = { [self] (index: Int, item: String) in
+            isDocumentTypeSelected = true
+            selectedDocument = viewModel.docTypes[index].code
             documentLabel.text = item
-            if index == 0 {
-                isDocumentTypeSelected = false
-            } else {
-                isDocumentTypeSelected = true
-                selectedDocument = arrayDocuments[index - 1]
-            }
         }
     }
 
@@ -74,7 +71,7 @@ class ThirdPartyViewController: UIViewController {
     }
 
     fileprivate func fetchCustomer() {
-        viewModel.fetchCustomer(with: "C", documentId: documentTextField.text!)
+        viewModel.fetchCustomer(with: selectedDocument, documentId: documentTextField.text!)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
@@ -146,8 +143,8 @@ extension ThirdPartyViewController: UITableViewDelegate, UITableViewDataSource {
         payment.idCuenta = model.idCuenta
         payment.numCuenta = model.numCuenta
         payment.type = 1
-        payment.documentId = "205080150"
-        payment.documentType = "C"
+        payment.documentId = Variables.userProfile?.numeroIdentificacion ?? "205080150"
+        payment.documentType = Variables.userProfile?.tipoIdentificacion ?? "C"
         payment.nombreCliente = ""
         payment.email = ""
         vc.paymentData = payment

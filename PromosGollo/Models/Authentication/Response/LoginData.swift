@@ -26,19 +26,25 @@ public class LoginData: Codable {
 // MARK: - Store
 public class UserInfo: NSObject, Codable {
     let idCliente, nombre, apellido1, apellido2: String?
-    let correoElectronico1, telefono, numIdentificacion, idClienteNaf: String?
-    let tipoOperacion: Int?
+    let telefono1, telefono2, tipoIdentificacion, numeroIdentificacion, direccion: String?
+    let latitud, longitud: Double?
+    let correoElectronico1, fechaNacimiento, image, genero: String?
 
-
-    public init(idCliente: String?, nombre: String?, apellido1: String?, apellido2: String?, correoElectronico1: String?, telefono: String?, numIdentificacion: String?, idClienteNaf: String?, tipoOperacion: Int?) {
+    public init(idCliente: String?, nombre: String?, apellido1: String?, apellido2: String?, telefono1: String?, telefono2: String?, tipoIdentificacion: String?, numeroIdentificacion: String?, direccion: String?, latitud: Double?, longitud: Double?, correoElectronico1: String?, fechaNacimiento: String?, image: String?, genero: String?) {
         self.idCliente = idCliente
         self.nombre = nombre
         self.apellido1 = apellido1
         self.apellido2 = apellido2
+        self.telefono1 = telefono1
+        self.telefono2 = telefono2
+        self.tipoIdentificacion = tipoIdentificacion
+        self.numeroIdentificacion = numeroIdentificacion
+        self.direccion = direccion
+        self.latitud = latitud
+        self.longitud = longitud
         self.correoElectronico1 = correoElectronico1
-        self.telefono = telefono
-        self.numIdentificacion = numIdentificacion
-        self.idClienteNaf = idClienteNaf
-        self.tipoOperacion = tipoOperacion
+        self.fechaNacimiento = fechaNacimiento
+        self.image = image
+        self.genero = genero
     }
 }

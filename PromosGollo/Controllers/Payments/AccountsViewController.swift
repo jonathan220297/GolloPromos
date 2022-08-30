@@ -23,7 +23,7 @@ class AccountsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
-        tableView.rowHeight = 300.0
+        tableView.rowHeight = 335.0
         tableView.tableFooterView = UIView()
         fetchAccounts()
     }

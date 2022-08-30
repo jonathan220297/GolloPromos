@@ -5,6 +5,7 @@
 //  Created by Rodrigo Osegueda on 30/8/21.
 //
 
+import FirebaseAuth
 import UIKit
 import RxSwift
 import Nuke
@@ -40,6 +41,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.setupNavigationBar()
         configureViewModel()
         configureTableView()
+        configureRx()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,8 +71,32 @@ class HomeViewController: UIViewController {
             .bind { (errorMessage) in
                 if !errorMessage.isEmpty {
                     self.showAlert(alertText: "GolloPromos", alertMessage: errorMessage)
+                    self.viewModel.errorMessage.accept("")
                 }
             }
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .errorExpiredToken
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self,
+                      let value = value else { return }
+                if value {
+                    let _ = KeychainManager.delete(key: "token")
+                    let firebaseAuth = Auth.auth()
+                    do {
+                        try firebaseAuth.signOut()
+                        let story = UIStoryboard(name: "Main", bundle:nil)
+                        let vc = story.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
+                        UIApplication.shared.windows.first?.rootViewController = vc
+                        UIApplication.shared.windows.first?.makeKeyAndVisible()
+                    } catch _ as NSError {
+            //            log.error("Error signing out: \(signOutError)")
+                    }
+                    self.viewModel.errorExpiredToken.accept(nil)
+                }
+            })
             .disposed(by: disposeBag)
     }
 
