@@ -10,7 +10,6 @@ import UIKit
 class ThirdPartyAccountsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var accountLabel: UILabel!
-    @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var paymentDateLabel: UILabel!
     @IBOutlet weak var feeAmountLabel: UILabel!
 
@@ -27,7 +26,6 @@ class ThirdPartyAccountsTableViewCell: UITableViewCell {
 
     func setAccount(model: AccountsDetail, index: Int) {
         accountLabel.text = "Número de cuenta: \(model.numCuenta ?? "")"
-        startDateLabel.text = "Fecha de inicio: \(model.fecha ?? "")"
 
         paymentDateLabel.text = model.fechaPago
         if let fee = numberFormatter.string(from: NSNumber(value: model.montoCuota ?? 0.0)) {

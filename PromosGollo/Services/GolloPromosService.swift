@@ -107,8 +107,6 @@ class GolloService {
         }
     }
 
-
-
     fileprivate func parseResult<T: Decodable>(of type: T.Type = T.self, data: Data?) -> T? {
         guard let data = data else {
             return nil
@@ -135,7 +133,8 @@ class GolloService {
         do {
             let baseResponse = try JSONDecoder().decode(BaseResponseGollo<T>.self, from: data)
             guard let status = baseResponse.resultado?.estado else { return nil }
-            if status.bool ?? false {
+            guard let message = baseResponse.resultado?.mensaje else { return nil }
+            if status.bool ?? false ||  message == "Identificación no existe en la base de datos" {
                 return baseResponse.respuesta
             } else {
                 return nil

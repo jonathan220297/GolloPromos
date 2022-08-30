@@ -13,15 +13,25 @@ class SearchDocumentViewModel {
 
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     var accounts: [AccountsDetail] = []
+    var docTypes: [DocType] = []
 
     var reloadTableViewData: (()->())?
+
+    func processDocTypes() {
+        docTypes.append(DocType(code: "C", name: "ProfileViewController_cedula".localized))
+        docTypes.append(DocType(code: "J", name: "ProfileViewController_cedula_juridica".localized))
+        docTypes.append(DocType(code: "P", name: "ProfileViewController_passport".localized))
+        docTypes.append(DocType(code: "E", name: "Extranjero"))
+        docTypes.append(DocType(code: "R", name: "Residente"))
+        docTypes.append(DocType(code: "N", name: "Nite"))
+    }
 
     func fetchCustomer(with documentType: String, documentId: String) -> BehaviorRelay<ThirdPartyData?> {
         let apiResponse: BehaviorRelay<ThirdPartyData?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<ThirdPartyData, SearchDocumentServiceRequest>(
             service: BaseServiceRequestParam<SearchDocumentServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.THIRD_PARTY_CUSTOMER.rawValue),
                     parametros: SearchDocumentServiceRequest (
                         noCia: "10",
                         numeroIdentificacion: documentId,
