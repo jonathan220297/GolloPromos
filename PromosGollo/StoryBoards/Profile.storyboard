@@ -28,30 +28,30 @@
                                                 <rect key="frame" x="0.0" y="16" width="415" height="1213.5"/>
                                                 <subviews>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R61-3S-YBN">
-                                                        <rect key="frame" x="0.0" y="-231.5" width="415" height="231.5"/>
+                                                        <rect key="frame" x="0.0" y="-207.5" width="415" height="207.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iY9-lV-P3N">
-                                                                <rect key="frame" x="104" y="12" width="207.5" height="207.5"/>
+                                                                <rect key="frame" x="104" y="0.0" width="207.5" height="207.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="iY9-lV-P3N" secondAttribute="height" multiplier="1:1" id="19j-XF-NvK"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                                        <integer key="value" value="2"/>
+                                                                        <integer key="value" value="1"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxG-7i-bi3">
-                                                                <rect key="frame" x="145" y="105.5" width="125" height="20"/>
-                                                                <color key="backgroundColor" red="0.0" green="0.75236219169999996" blue="0.85795503849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <rect key="frame" x="145" y="93.5" width="125" height="20"/>
+                                                                <color key="backgroundColor" name="colorPrimary"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="QIh-HY-nl1"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
-                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Add Image" image="plus" catalog="system">
-                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -60,23 +60,23 @@
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1L-0m-RVU">
-                                                                <rect key="frame" x="276.5" y="184.5" width="30" height="30"/>
+                                                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1L-0m-RVU">
+                                                                <rect key="frame" x="276.5" y="172.5" width="40" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="30" id="lTT-Bt-qU6"/>
-                                                                    <constraint firstAttribute="width" constant="30" id="xSA-P5-tcP"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="lTT-Bt-qU6"/>
+                                                                    <constraint firstAttribute="width" constant="40" id="xSA-P5-tcP"/>
                                                                 </constraints>
-                                                                <color key="tintColor" red="0.0" green="0.75236219169999996" blue="0.85795503849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="tintColor" name="colorPrimary"/>
                                                                 <state key="normal" image="ic_edit"/>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="iY9-lV-P3N" firstAttribute="centerY" secondItem="R61-3S-YBN" secondAttribute="centerY" id="1gz-NL-5gC"/>
                                                             <constraint firstItem="QxG-7i-bi3" firstAttribute="centerY" secondItem="R61-3S-YBN" secondAttribute="centerY" id="7hw-yt-wuK"/>
                                                             <constraint firstItem="H1L-0m-RVU" firstAttribute="leading" secondItem="iY9-lV-P3N" secondAttribute="trailing" constant="-35" id="9re-42-O8f"/>
                                                             <constraint firstItem="iY9-lV-P3N" firstAttribute="centerX" secondItem="R61-3S-YBN" secondAttribute="centerX" id="BWP-g3-OJs"/>
-                                                            <constraint firstItem="iY9-lV-P3N" firstAttribute="top" secondItem="R61-3S-YBN" secondAttribute="top" constant="12" id="Gw2-Zr-ySt"/>
+                                                            <constraint firstItem="iY9-lV-P3N" firstAttribute="top" secondItem="R61-3S-YBN" secondAttribute="top" id="Gw2-Zr-ySt"/>
                                                             <constraint firstItem="H1L-0m-RVU" firstAttribute="top" secondItem="iY9-lV-P3N" secondAttribute="bottom" constant="-35" id="VHc-hr-awh"/>
                                                             <constraint firstItem="QxG-7i-bi3" firstAttribute="centerX" secondItem="R61-3S-YBN" secondAttribute="centerX" id="fBH-kd-rJ8"/>
                                                             <constraint firstItem="iY9-lV-P3N" firstAttribute="width" secondItem="R61-3S-YBN" secondAttribute="width" multiplier="0.5" id="o26-HS-ol7"/>
@@ -260,15 +260,15 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GY2-QW-KBT">
                                                                         <rect key="frame" x="8" y="8" width="367" height="90"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZWW-j6-RUz">
-                                                                                <rect key="frame" x="8" y="29" width="32" height="32"/>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_register_new_user" translatesAutoresizingMaskIntoConstraints="NO" id="ZWW-j6-RUz">
+                                                                                <rect key="frame" x="8" y="20" width="50" height="50"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="32" id="KvC-he-los"/>
-                                                                                    <constraint firstAttribute="height" constant="32" id="R16-Nq-aZq"/>
+                                                                                    <constraint firstAttribute="width" constant="50" id="KvC-he-los"/>
+                                                                                    <constraint firstAttribute="height" constant="50" id="R16-Nq-aZq"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usted no es cliente de Gollo. ¿Quiere registrarse ahora?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FE8-77-aDm">
-                                                                                <rect key="frame" x="52" y="12" width="303" height="66"/>
+                                                                                <rect key="frame" x="70" y="12" width="285" height="66"/>
                                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -954,6 +954,7 @@
     <resources>
         <image name="arrowtriangle.down.fill" catalog="system" width="128" height="124"/>
         <image name="ic_edit" width="25" height="25"/>
+        <image name="ic_register_new_user" width="256" height="256"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

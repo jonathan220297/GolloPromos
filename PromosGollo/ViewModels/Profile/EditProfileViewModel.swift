@@ -30,6 +30,9 @@ class EditProfileViewModel {
         docTypes.append(DocType(code: "C", name: "ProfileViewController_cedula".localized))
         docTypes.append(DocType(code: "J", name: "ProfileViewController_cedula_juridica".localized))
         docTypes.append(DocType(code: "P", name: "ProfileViewController_passport".localized))
+        docTypes.append(DocType(code: "E", name: "Extranjero"))
+        docTypes.append(DocType(code: "R", name: "Residente"))
+        docTypes.append(DocType(code: "N", name: "Nite"))
     }
 
     func processGenderTypes() {
@@ -70,6 +73,37 @@ class EditProfileViewModel {
             }
         }
         return apiResponse
+    }
+
+    func updateUserData(with userInfo: UserInfo) -> BehaviorRelay<SaveUserResponse?> {
+        let apiResponse: BehaviorRelay<SaveUserResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<SaveUserResponse, UserInfo>(
+            service: BaseServiceRequestParam<UserInfo>(
+                servicio: ServicioParam(
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.REGISTER_CLIENT_PROCESS_ID.rawValue),
+                    parametros: userInfo
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    self.errorMessage.accept(error.localizedDescription)
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
+
+    func convertImageToBase64String (img: UIImage?) -> String {
+        if let image = img {
+            return image.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
+        } else {
+            return ""
+        }
     }
 
 }

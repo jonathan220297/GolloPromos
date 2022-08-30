@@ -91,6 +91,7 @@ enum OFFER_TYPE: String {
 }
 
 enum GOLLOAPP: String {
+    case CURRENCY_SIMBOL = "₡"
     case LOGIN_PROCESS_ID = "01"
     case REGISTER_CLIENT_PROCESS_ID = "03"
     case HOME_PROCESS_ID = "10"
@@ -106,6 +107,7 @@ enum GOLLOAPP: String {
     case IS_GOLLO_CUSTOMER_PROCESS_ID = "17"
     case APP_PAYMENT_HISTORY = "20"
     case ACCOUNT_PAYMENT_HISTORY = "21"
+    case THIRD_PARTY_CUSTOMER = "41"
 }
 
 enum Payment: Int {
@@ -140,4 +142,7 @@ struct Variables {
     // Company
     var GOLLO_COMPANY = "10"
     var GOLLO_STORE = "144"
+    static var isClientUser = false
+    static var isLoginUser = false
+    static var userProfile: UserInfo? = nil
 }

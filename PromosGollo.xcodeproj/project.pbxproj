@@ -140,6 +140,8 @@
 		4F894A1B270A60640004AAB3 /* SearchDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */; };
 		4F894A1D270A60750004AAB3 /* SearchDocumentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A1C270A60750004AAB3 /* SearchDocumentRequest.swift */; };
 		4F894A21270A620A0004AAB3 /* StatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A20270A620A0004AAB3 /* StatusRequest.swift */; };
+		4F9B100028BDBBCD00B1FD82 /* SaveUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */; };
+		4F9B100228BDBDEA00B1FD82 /* SaveUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */; };
 		4FA2767826D917E400216284 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2767726D917E400216284 /* TermsConditionsViewController.swift */; };
 		4FA2767A26D9189700216284 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2767926D9189700216284 /* LoginViewController.swift */; };
 		4FA2767C26D918A500216284 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2767B26D918A500216284 /* SignUpViewController.swift */; };
@@ -149,7 +151,6 @@
 		4FA2768526D9193C00216284 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2768426D9193C00216284 /* SignUpViewModel.swift */; };
 		4FA41E0A27015A09007C93F9 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA41E0927015A09007C93F9 /* LoginRequest.swift */; };
 		4FA41E0C27015AA4007C93F9 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA41E0B27015AA4007C93F9 /* Profile.swift */; };
-		4FA41E0E27015AED007C93F9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA41E0D27015AED007C93F9 /* UserInfo.swift */; };
 		4FA41E1027015D38007C93F9 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA41E0F27015D38007C93F9 /* LoginData.swift */; };
 		4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4D6E2271FE56E00C117CD /* StatusViewModel.swift */; };
 		4FA4D6E5271FE5D900C117CD /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4D6E4271FE5D900C117CD /* Status.swift */; };
@@ -196,6 +197,9 @@
 		4FE1913826DF075200322128 /* IncentivesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1913726DF075200322128 /* IncentivesViewController.swift */; };
 		4FEDF8DF28B5DBEA00719245 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8DE28B5DBEA00719245 /* UITextField+Extension.swift */; };
 		4FEDF8E128B7E7BA00719245 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E028B7E7BA00719245 /* ResetPasswordViewController.swift */; };
+		4FEDF8E328B9921E00719245 /* TransactionHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E228B9921E00719245 /* TransactionHistoryRequest.swift */; };
+		4FEDF8E528B9928700719245 /* TransactionHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */; };
+		4FEDF8E828B9E5A800719245 /* TransactionHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */; };
 		4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */; };
 		4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */; };
 		4FFD9CA4272A16D2004778F1 /* CategoryOffersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */; };
@@ -374,6 +378,8 @@
 		4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDocumentViewModel.swift; sourceTree = "<group>"; };
 		4F894A1C270A60750004AAB3 /* SearchDocumentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDocumentRequest.swift; sourceTree = "<group>"; };
 		4F894A20270A620A0004AAB3 /* StatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRequest.swift; sourceTree = "<group>"; };
+		4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserRequest.swift; sourceTree = "<group>"; };
+		4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserResponse.swift; sourceTree = "<group>"; };
 		4FA2767726D917E400216284 /* TermsConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsViewController.swift; sourceTree = "<group>"; };
 		4FA2767926D9189700216284 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4FA2767B26D918A500216284 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -383,7 +389,6 @@
 		4FA2768426D9193C00216284 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		4FA41E0927015A09007C93F9 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		4FA41E0B27015AA4007C93F9 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		4FA41E0D27015AED007C93F9 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		4FA41E0F27015D38007C93F9 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		4FA4D6E2271FE56E00C117CD /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		4FA4D6E4271FE5D900C117CD /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -436,6 +441,9 @@
 		4FE1913726DF075200322128 /* IncentivesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncentivesViewController.swift; sourceTree = "<group>"; };
 		4FEDF8DE28B5DBEA00719245 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		4FEDF8E028B7E7BA00719245 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		4FEDF8E228B9921E00719245 /* TransactionHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryRequest.swift; sourceTree = "<group>"; };
+		4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryResponse.swift; sourceTree = "<group>"; };
+		4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewCell.swift; sourceTree = "<group>"; };
 		4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryOffersTableViewCell.xib; sourceTree = "<group>"; };
 		4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewModel.swift; sourceTree = "<group>"; };
@@ -490,7 +498,6 @@
 				4FA41E08270159F1007C93F9 /* Response */,
 				4F0D962F26D91BF50061E89E /* User.swift */,
 				4FA41E0B27015AA4007C93F9 /* Profile.swift */,
-				4FA41E0D27015AED007C93F9 /* UserInfo.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -717,6 +724,7 @@
 		4F0D96D926DDE0700061E89E /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				4FEDF8E628B9E59400719245 /* History */,
 				4F3E4831272787D2009D259D /* ThirdParty */,
 				4F17323F270147A900D7924D /* Status */,
 				4F0D96DA26DDE0740061E89E /* Accounts */,
@@ -800,6 +808,7 @@
 				4FB258322720DEC30003C607 /* HistoryRequest.swift */,
 				4F11E042272DB5C100E15003 /* AccountItemsRequest.swift */,
 				4F69893C28BD9EEB000FFA56 /* PaymentRequest.swift */,
+                4FEDF8E228B9921E00719245 /* TransactionHistoryRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -815,6 +824,7 @@
 				4FB258302720DE150003C607 /* AppTransaction.swift */,
 				4FB258342720E6C40003C607 /* CustomerInfo.swift */,
 				4F11E044272DB61900E15003 /* AccountsItemResponse.swift */,
+                4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */,
 				4F69893E28BDAC8D000FFA56 /* PaymentResponse.swift */,
 			);
 			path = Response;
@@ -1086,6 +1096,7 @@
 			isa = PBXGroup;
 			children = (
 				4FC04C5628AE9C3E001EF211 /* UserRequest.swift */,
+				4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1094,6 +1105,7 @@
 			isa = PBXGroup;
 			children = (
 				4FC04C5928AE9C74001EF211 /* UserResponse.swift */,
+				4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1274,6 +1286,14 @@
 				4FE1913326DF071A00322128 /* FilterViewController.swift */,
 			);
 			path = Filter;
+			sourceTree = "<group>";
+		};
+		4FEDF8E628B9E59400719245 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		4FFD9CC5272B69B4004778F1 /* Extras */ = {
@@ -1625,6 +1645,7 @@
 				4F74C8D8272C7DE200FADA4D /* OffersQueryView.swift in Sources */,
 				4F11E041272DB38000E15003 /* AccountItemsViewModel.swift in Sources */,
 				4F0D967F26DDBBB40061E89E /* Common.swift in Sources */,
+				4F9B100028BDBBCD00B1FD82 /* SaveUserRequest.swift in Sources */,
 				4FE1912826DEFCA000322128 /* ProductCollectionViewCell.swift in Sources */,
 				4F69893F28BDAC8D000FFA56 /* PaymentResponse.swift in Sources */,
 				4F3E481C27278536009D259D /* OffersListRequest.swift in Sources */,
@@ -1652,6 +1673,7 @@
 				4FC04C5C28AEF0B7001EF211 /* TransactionsHistoryViewController.swift in Sources */,
 				4F3E480527278525009D259D /* OffersListViewModel.swift in Sources */,
 				4F0D96A226DDD59E0061E89E /* SideMenuViewModel.swift in Sources */,
+				4FEDF8E328B9921E00719245 /* TransactionHistoryRequest.swift in Sources */,
 				4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */,
 				4FE1910A26DEF77C00322128 /* SliderTableViewCell.swift in Sources */,
 				4FFD9CA8272AF978004778F1 /* FilterTableViewCell.swift in Sources */,
@@ -1681,6 +1703,7 @@
 				4F3E4833272787D3009D259D /* ThirdPartyAccountsTableViewCell.swift in Sources */,
 				4F0D968326DDBE430061E89E /* UIColor+Assets.swift in Sources */,
 				4F1732432701494900D7924D /* HistoryViewController.swift in Sources */,
+				4F9B100228BDBDEA00B1FD82 /* SaveUserResponse.swift in Sources */,
 				4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */,
 				4FC04C5E28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift in Sources */,
 				4FDA3AA026D8FE26003B2CB6 /* ViewController.swift in Sources */,
@@ -1696,7 +1719,6 @@
 				4F0D963326DDB82F0061E89E /* UIViewController+Extension.swift in Sources */,
 				4F3E482E27278796009D259D /* PaymentData.swift in Sources */,
 				4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */,
-				4FA41E0E27015AED007C93F9 /* UserInfo.swift in Sources */,
 				4F3E48392727883C009D259D /* PaymentConfirmViewController.swift in Sources */,
 				4F0D962B26D91B4D0061E89E /* AuthenticationService.swift in Sources */,
 				4F894A17270A5A900004AAB3 /* AccountsViewModel.swift in Sources */,
@@ -1770,11 +1792,13 @@
 				4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */,
 				4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */,
 				4F75A54628AEFE500001CC4D /* PaymentDataViewController.swift in Sources */,
+				4FEDF8E528B9928700719245 /* TransactionHistoryResponse.swift in Sources */,
 				4F0D969126DDD3BE0061E89E /* NotificationsViewModel.swift in Sources */,
 				4F0D964C26DDBA8E0061E89E /* UIView+Extension.swift in Sources */,
 				4FDA3A9E26D8FE26003B2CB6 /* SceneDelegate.swift in Sources */,
 				4FE1912C26DEFF3C00322128 /* ProductAttribute.swift in Sources */,
 				4F0D96B026DDD75B0061E89E /* ContactUsViewController.swift in Sources */,
+				4FEDF8E828B9E5A800719245 /* TransactionHistoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
