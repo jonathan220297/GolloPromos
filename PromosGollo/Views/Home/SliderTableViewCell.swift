@@ -27,7 +27,7 @@ class SliderTableViewCell: UITableViewCell {
         guard let images = banner.images else { return }
         var imageSet: [AlamofireSource] = []
         for image in images {
-            var imageSrc = image.image?.replacingOccurrences(of: " ", with: "%20")
+            let imageSrc = image.image?.replacingOccurrences(of: " ", with: "%20")
             if let source = AlamofireSource(urlString: imageSrc ?? "") {
                 imageSet.append(source)
             }

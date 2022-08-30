@@ -12,9 +12,10 @@ struct BaseRequest<T: Codable, U: Codable>: APIRequest {
     public typealias Response = T
 
     public var resourceName: String {
-        return "Procesos"
+        return resource
     }
 
+    public var resource = "Procesos"
     let service: BaseServiceRequestParam<U>?
 
     public var dictionary: [String: Any] {

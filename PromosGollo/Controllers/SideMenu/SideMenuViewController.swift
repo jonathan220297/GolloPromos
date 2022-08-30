@@ -57,7 +57,7 @@ class SideMenuViewController: UIViewController {
             let vc = story.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
             UIApplication.shared.windows.first?.rootViewController = vc
             UIApplication.shared.windows.first?.makeKeyAndVisible()
-        } catch let signOutError as NSError {
+        } catch _ as NSError {
 //            log.error("Error signing out: \(signOutError)")
         }
     }

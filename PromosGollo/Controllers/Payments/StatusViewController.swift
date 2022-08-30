@@ -33,7 +33,7 @@ class StatusViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.rowHeight = 300.0
+        self.tableView.rowHeight = 310.0
         fetchStatus()
     }
 

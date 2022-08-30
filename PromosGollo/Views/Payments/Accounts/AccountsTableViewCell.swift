@@ -5,6 +5,7 @@
 //  Created by Rodrigo Osegueda on 30/8/21.
 //
 
+import AAInfographics
 import UIKit
 
 protocol AccountsDelegate {
@@ -23,6 +24,7 @@ class AccountsTableViewCell: UITableViewCell {
     @IBOutlet weak var currentAmountLabel: UILabel!
     @IBOutlet weak var totalPaymentLabel: UILabel!
     @IBOutlet weak var chartView: UIView!
+    @IBOutlet weak var chartInfo: UILabel!
     @IBOutlet weak var paymentDateLabel: UILabel!
     @IBOutlet weak var amountArrearsLabel: UILabel!
     @IBOutlet weak var feeAmountLabel: UILabel!
@@ -64,10 +66,20 @@ class AccountsTableViewCell: UITableViewCell {
         if let days = model.diasAtraso {
             dayArrearsLabel.text = String(days)
         }
-
-    
-
-        self.progressShape(progress: 10.0)
+        
+        let aaChartView = AAChartView()
+        aaChartView.frame = CGRect(x: 0,
+                                    y: 10,
+                                    width: 200,
+                                    height: 140)
+        self.chartView.addSubview(aaChartView)
+        let firstValue = round((model.montoInicial ?? 0.0) - (model.saldoActual ?? 0.0))
+        if let amountPaid = numberFormatter.string(from: NSNumber(value: firstValue)) {
+            let percentPaid = round((firstValue * 100) / (model.montoInicial ?? 0.0))
+            chartInfo.text = "₡" + amountPaid + " (\(percentPaid)%)"
+        }
+        let chartConfiguration = doubleLayerHalfPieChart(firstValue, model.saldoActual ?? 0.0)
+        aaChartView.aa_drawChartWithChartOptions(chartConfiguration)
     }
 
     @IBAction func historyButtonTapped(_ sender: UIButton) {
@@ -76,6 +88,34 @@ class AccountsTableViewCell: UITableViewCell {
 
     @IBAction func itemsButtonTapped(_ sender: UIButton) {
         delegate.OpenItems(with: sender.tag)
+    }
+    
+    private func doubleLayerHalfPieChart(_ firstValue: Double, _ secondValue: Double) -> AAOptions {
+        let aaChartModel = AAChartModel()
+            .chartType(.pie)
+            .dataLabelsEnabled(false)
+            .legendEnabled(false)
+            .colorsTheme(["#14c43d","#88ba94"])
+            .series([
+                AASeriesElement()
+                    .name("")
+                    .size("100%")
+                    .innerSize("70%")
+                    .borderWidth(0)
+                    .allowPointSelect(false)
+                    .data([
+                        ["", firstValue],
+                        ["", secondValue],
+                    ])
+            ])
+
+        let aaOptions = aaChartModel.aa_toAAOptions()
+
+        aaOptions.plotOptions?.pie?
+            .startAngle(-130)
+            .endAngle(130)
+
+        return aaOptions
     }
 
     func progressShape(progress: Double) {

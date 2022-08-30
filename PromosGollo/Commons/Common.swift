@@ -74,8 +74,10 @@ let numberFormatter: NumberFormatter = {
     nf.roundingMode = .halfUp
     nf.numberStyle = .decimal
     nf.usesGroupingSeparator = true
-    nf.minimumFractionDigits = 2
-    nf.maximumFractionDigits = 2
+    nf.minimumFractionDigits = 0
+    nf.maximumFractionDigits = 0
+    nf.decimalSeparator = ","
+    nf.groupingSeparator = "."
     return nf
 }()
 
@@ -134,4 +136,8 @@ func getDefaultBaseHeaderRequest(with processId: String,
 
 struct Variables {
     static var isRegisterUser = false
+    
+    // Company
+    var GOLLO_COMPANY = "10"
+    var GOLLO_STORE = "144"
 }

@@ -39,7 +39,7 @@ extension UIView {
                                                                        height: 50))
         activityIndicator.center = self.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        activityIndicator.style = .medium
         activityIndicator.color = .white
         activityIndicator.startAnimating()
         self.isUserInteractionEnabled = false

@@ -37,7 +37,7 @@ class SectionTableViewCell: UITableViewCell {
     
     // MARK: - Actions
     @IBAction func viewMoreButtonTapped(_ sender: UIButton) {
-        let tag = sender.tag
+//        let tag = sender.tag
 //        let vc = ProductsViewController.instantiate(fromAppStoryboard: .Products)
 //        vc.modalPresentationStyle = .fullScreen
 //        if tag == 0 {

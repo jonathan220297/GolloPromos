@@ -125,6 +125,10 @@
 		4F4EC47E27276A50007B17FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EC48027276A50007B17FE /* Localizable.strings */; };
 		4F59347E271FD6AD00C63A6F /* Pods_PromosGollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; };
 		4F59347F271FD6AD00C63A6F /* Pods_PromosGollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F69893D28BD9EEB000FFA56 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69893C28BD9EEB000FFA56 /* PaymentRequest.swift */; };
+		4F69893F28BDAC8D000FFA56 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69893E28BDAC8D000FFA56 /* PaymentResponse.swift */; };
+		4F69894328BDB625000FFA56 /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69894128BDB625000FFA56 /* PaymentSuccessViewController.swift */; };
+		4F69894428BDB625000FFA56 /* PaymentSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F69894228BDB625000FFA56 /* PaymentSuccessViewController.xib */; };
 		4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F74C8D3272C733E00FADA4D /* OffersQueryView.xib */; };
 		4F74C8D8272C7DE200FADA4D /* OffersQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C8D7272C7DE200FADA4D /* OffersQueryView.swift */; };
 		4F75A54628AEFE500001CC4D /* PaymentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A54528AEFE500001CC4D /* PaymentDataViewController.swift */; };
@@ -355,6 +359,10 @@
 		4F4EC47A2727680E007B17FE /* DocType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocType.swift; sourceTree = "<group>"; };
 		4F4EC47F27276A50007B17FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F4EC48327276A57007B17FE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4F69893C28BD9EEB000FFA56 /* PaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
+		4F69893E28BDAC8D000FFA56 /* PaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponse.swift; sourceTree = "<group>"; };
+		4F69894128BDB625000FFA56 /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
+		4F69894228BDB625000FFA56 /* PaymentSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentSuccessViewController.xib; sourceTree = "<group>"; };
 		4F74C8D3272C733E00FADA4D /* OffersQueryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OffersQueryView.xib; sourceTree = "<group>"; };
 		4F74C8D7272C7DE200FADA4D /* OffersQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersQueryView.swift; sourceTree = "<group>"; };
 		4F75A54528AEFE500001CC4D /* PaymentDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentDataViewController.swift; sourceTree = "<group>"; };
@@ -669,6 +677,7 @@
 		4F0D96C926DDDECA0061E89E /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				4F69894028BDB5FF000FFA56 /* PaymentSuccess */,
 				4F0D96CA26DDDEE30061E89E /* AccountsViewController.swift */,
 				4F1732422701494900D7924D /* HistoryViewController.swift */,
 				4F3E48372727883C009D259D /* PaymentConfirmViewController.swift */,
@@ -790,6 +799,7 @@
 				4F894A20270A620A0004AAB3 /* StatusRequest.swift */,
 				4FB258322720DEC30003C607 /* HistoryRequest.swift */,
 				4F11E042272DB5C100E15003 /* AccountItemsRequest.swift */,
+				4F69893C28BD9EEB000FFA56 /* PaymentRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -805,6 +815,7 @@
 				4FB258302720DE150003C607 /* AppTransaction.swift */,
 				4FB258342720E6C40003C607 /* CustomerInfo.swift */,
 				4F11E044272DB61900E15003 /* AccountsItemResponse.swift */,
+				4F69893E28BDAC8D000FFA56 /* PaymentResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -880,6 +891,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		4F69894028BDB5FF000FFA56 /* PaymentSuccess */ = {
+			isa = PBXGroup;
+			children = (
+				4F69894128BDB625000FFA56 /* PaymentSuccessViewController.swift */,
+				4F69894228BDB625000FFA56 /* PaymentSuccessViewController.xib */,
+			);
+			path = PaymentSuccess;
+			sourceTree = "<group>";
+		};
 		4F894A15270A5A750004AAB3 /* Payments */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,7 +929,6 @@
 		4FA2766F26D914A100216284 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4FB4466728921D0B00C35A96 /* Services */,
 				4FA2767626D9154200216284 /* Authentication */,
 				4F0D96E226DDE5A40061E89E /* Home */,
 				4F0D96AE26DDD7510061E89E /* Menu */,
@@ -917,6 +936,7 @@
 				4FE1912D26DF06BC00322128 /* Offers */,
 				4F0D96C926DDDECA0061E89E /* Payments */,
 				4F0D96A326DDD5E80061E89E /* Profile */,
+				4FB4466728921D0B00C35A96 /* Services */,
 				4F0D96A626DDD5FB0061E89E /* SideMenu */,
 			);
 			path = Controllers;
@@ -1420,6 +1440,7 @@
 				4F0D966F26DDBB810061E89E /* SansSerifBookFLF-Italic.otf in Resources */,
 				4FDA3AA526D8FE27003B2CB6 /* Assets.xcassets in Resources */,
 				4FE1912526DEFCA000322128 /* ProductCollectionViewCell.xib in Resources */,
+				4F69894428BDB625000FFA56 /* PaymentSuccessViewController.xib in Resources */,
 				4FDA3AA326D8FE26003B2CB6 /* Main.storyboard in Resources */,
 				4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */,
 				4F0D967526DDBB810061E89E /* SansSerifExbFLF-Italic.otf in Resources */,
@@ -1605,6 +1626,7 @@
 				4F11E041272DB38000E15003 /* AccountItemsViewModel.swift in Sources */,
 				4F0D967F26DDBBB40061E89E /* Common.swift in Sources */,
 				4FE1912826DEFCA000322128 /* ProductCollectionViewCell.swift in Sources */,
+				4F69893F28BDAC8D000FFA56 /* PaymentResponse.swift in Sources */,
 				4F3E481C27278536009D259D /* OffersListRequest.swift in Sources */,
 				4FFD9CBC272B211B004778F1 /* OffersTableViewModel.swift in Sources */,
 				4F0D965A26DDBB360061E89E /* LocalizableLabel.swift in Sources */,
@@ -1620,6 +1642,7 @@
 				4F0D963026D91BF50061E89E /* User.swift in Sources */,
 				4FE1912A26DEFE0200322128 /* ProductVariationResponse.swift in Sources */,
 				4F0D965E26DDBB590061E89E /* CustomButton.swift in Sources */,
+				4F69894328BDB625000FFA56 /* PaymentSuccessViewController.swift in Sources */,
 				4F75A54B28AEFEDC0001CC4D /* SingUpTableViewCell.swift in Sources */,
 				4F3E481A27278536009D259D /* ParentModel.swift in Sources */,
 				4F3E481B27278536009D259D /* OffersRequest.swift in Sources */,
@@ -1742,6 +1765,7 @@
 				4FFD9CB0272AFFED004778F1 /* OffersTabBarViewController.swift in Sources */,
 				4F3E481727278536009D259D /* OffersResponse.swift in Sources */,
 				4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */,
+				4F69893D28BD9EEB000FFA56 /* PaymentRequest.swift in Sources */,
 				4FE1913426DF071A00322128 /* FilterViewController.swift in Sources */,
 				4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */,
 				4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */,

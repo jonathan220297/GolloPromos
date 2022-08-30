@@ -11,6 +11,9 @@ import RxRelay
 class SectionViewModel {
     private let service = GolloService()
 
+    let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
+    let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
+    
     var productsArray: [ProductsData] = []
     var section: Section?
 
@@ -24,7 +27,7 @@ class SectionViewModel {
                 do {
                     let object = try JSONDecoder().decode(ProductsData.self, from: data)
                     products.append(object)
-                } catch let error as NSError {
+                } catch _ as NSError {
                     //log.debug("Error: \(error.localizedDescription)")
                 }
             }
@@ -54,6 +57,15 @@ class SectionViewModel {
                     apiResponse.accept(response)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
+                    switch error {
+                    case .decoding: break;
+                    case .server(code: let code, message: _):
+                        if code == 401 {
+                            self.errorExpiredToken.accept(true)
+                        } else {
+                            self.errorMessage.accept(error.localizedDescription)
+                        }
+                    }
                 //log.debug("Error: \(error.localizedDescription)")
                 }
             }

@@ -9,6 +9,10 @@ import UIKit
 import RxSwift
 import DropDown
 
+protocol PaymentDataDelegate: AnyObject {
+    func errorWhilePayment(with message: String)
+}
+
 class PaymentDataViewController: UIViewController {
     @IBOutlet weak var cardNumberTextField: UITextField!
     @IBOutlet weak var expirationMonthLabel: UILabel!
@@ -23,6 +27,7 @@ class PaymentDataViewController: UIViewController {
         return PaymentDataViewModel()
     }()
     let bag = DisposeBag()
+    weak var delegate: PaymentDataDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,16 +36,6 @@ class PaymentDataViewController: UIViewController {
         cvvTextField.delegate = self
         configureRx()
         hideKeyboardWhenTappedAround()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
     }
     
     // MARK: - Functions
@@ -68,7 +63,22 @@ class PaymentDataViewController: UIViewController {
         continueButton.rx
             .tap
             .subscribe(onNext: {
-//                self.setCardData()
+                self.makePayment()
+            })
+            .disposed(by: bag)
+        
+        viewModel
+            .errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self else { return }
+                if !error.isEmpty {
+                    self.continueButton.hideLoading()
+                    self.viewModel.errorMessage.accept("")
+                    self.navigationController?.popViewController(animated: true, completion: {
+                        self.delegate?.errorWhilePayment(with: error)
+                    })
+                }
             })
             .disposed(by: bag)
     }
@@ -96,6 +106,23 @@ class PaymentDataViewController: UIViewController {
             self.viewModel.expirationYearSubject.accept(self.viewModel.years[index])
         }
         dropDown.show()
+    }
+    
+    private func makePayment() {
+        continueButton.showLoading()
+        viewModel
+            .makeGolloPayment()
+            .asObservable()
+            .subscribe(onNext: {[weak self] response in
+                guard let self = self,
+                      let response = response else { return }
+                print(response)
+                self.continueButton.hideLoading()
+                let paymentSuccessViewController = PaymentSuccessViewController()
+                paymentSuccessViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
+            })
+            .disposed(by: bag)
     }
     
 //    fileprivate func setCardData() {
