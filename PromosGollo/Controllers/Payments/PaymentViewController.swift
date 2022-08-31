@@ -26,7 +26,8 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var otherAmountView: UIView!
     @IBOutlet weak var otherAmountTextField: UITextField!
     @IBOutlet weak var otherAmountButton: UIButton!
-
+    @IBOutlet weak var otherAmountErrorLabel: UILabel!
+    
     let dateFormatter = DateFormatter()
 
     var paymentData: PaymentData? = nil
@@ -37,7 +38,7 @@ class PaymentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureViews()
         dateFormatter.dateStyle = .long
         otherAmountTextField.isEnabled = false
         showData()
@@ -49,6 +50,15 @@ class PaymentViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
 
+    // MARK: - Observers
+    @objc func otherAmountTextFieldDidChange(_ textField: UITextField) {
+        otherAmountErrorLabel.isHidden = true
+        if let amountString = textField.text?.currencyInputFormatting() {
+            textField.text = amountString
+        }
+    }
+    
+    // MARK: - Actions
     @IBAction func buttonAmountPaymentTapped(_ sender: UIButton) {
         [suggestedAmountButton, installmentButton, totalPendingButton, otherAmountButton].forEach { (button) in
             button?.setImage(UIImage(named: "ic_radio-button-unchecked"), for: .normal)
@@ -89,13 +99,16 @@ class PaymentViewController: UIViewController {
     }
 
     @IBAction func payment(_ sender: Any) {
-        if (validateAmountData()) {
-            DispatchQueue.main.async {
-                let vc = PaymentConfirmViewController.instantiate(fromAppStoryboard: .Payments)
-                vc.modalPresentationStyle = .fullScreen
-                vc.paymentAmmount = self.currentAmount!
-                vc.paymentData = self.paymentData
-                self.navigationController?.pushViewController(vc, animated: true)
+        if otherAmountView.isHidden && validateAmountData() {
+            self.showPaymentConfirmViewController()
+        } else if !otherAmountView.isHidden {
+            guard let amount = otherAmountTextField.text else { return }
+            let amountDouble = Double(amount.replacingOccurrences(of: "₡", with: "")) ?? 0.0
+            if amountDouble > 0.0 {
+                self.currentAmount = amountDouble
+                self.showPaymentConfirmViewController()
+            } else if amount.isEmpty {
+                self.setErrorLabel(with: "Monto es requerido")
             }
         } else {
             self.showAlert(alertText: "GolloApp", alertMessage: "Seleccione monto de pago")
@@ -103,6 +116,25 @@ class PaymentViewController: UIViewController {
     }
 
     // MARK: - Functions
+    private func configureViews() {
+        otherAmountTextField.addTarget(self, action: #selector(otherAmountTextFieldDidChange), for: .editingChanged)
+    }
+    
+    private func showPaymentConfirmViewController() {
+        DispatchQueue.main.async {
+            let vc = PaymentConfirmViewController.instantiate(fromAppStoryboard: .Payments)
+            vc.modalPresentationStyle = .fullScreen
+            vc.paymentAmmount = self.currentAmount!
+            vc.paymentData = self.paymentData
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    private func setErrorLabel(with text: String) {
+        otherAmountErrorLabel.isHidden = false
+        otherAmountErrorLabel.text = text
+    }
+    
     fileprivate func showData() {
         if let model = paymentData {
             if let suggested = numberFormatter.string(from: NSNumber(value: round(model.suggestedAmount ?? 0.0))) {
@@ -149,4 +181,34 @@ class PaymentViewController: UIViewController {
         dismiss(animated: true)
     }
 
+}
+
+extension String {
+
+    // formatting text for currency textField
+    func currencyInputFormatting() -> String {
+    
+        var number: NSNumber!
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currencyAccounting
+        formatter.currencySymbol = "₡"
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+    
+        var amountWithPrefix = self
+    
+        // remove from String: "$", ".", ","
+        let regex = try! NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
+        amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.count), withTemplate: "")
+    
+        let double = (amountWithPrefix as NSString).doubleValue
+        number = NSNumber(value: (double / 100))
+    
+        // if first number is 0 or all numbers were deleted
+        guard number != 0 as NSNumber else {
+            return ""
+        }
+    
+        return formatter.string(from: number)!
+    }
 }

@@ -68,7 +68,8 @@ class HomeViewModel {
             sectionsArray.append(HomeSection(name: banner.name ?? "", position: banner.position ?? 0, banner: banner))
         }
         for section in sections {
-            if section.linkType != nil {
+            // Remove section name validation
+            if section.linkType != nil && !(section.name == "Promociones VIP") {
                 sectionsArray.append(HomeSection(name: section.name ?? "", position: section.position ?? 0, section: section))
             }
         }
