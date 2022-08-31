@@ -25,7 +25,7 @@ class StatusViewController: UIViewController {
     @IBOutlet weak var currentBalanceLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var defaultBalanceLabel: UILabel!
-
+    
     lazy var viewModel: StatusViewModel = {
         return StatusViewModel()
     }()

@@ -94,6 +94,7 @@
 		4F17323E2701476200D7924D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F17323D2701476200D7924D /* Account.swift */; };
 		4F173241270147B300D7924D /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F173240270147B300D7924D /* StatusTableViewCell.swift */; };
 		4F1732432701494900D7924D /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1732422701494900D7924D /* HistoryViewController.swift */; };
+		4F1B4ACA28C00F900027D683 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B4AC928C00F900027D683 /* GoogleService-Info.plist */; };
 		4F3080A627121F2100F7D8DE /* BaseHeaderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */; };
 		4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */; };
 		4F37A7F027223EE000FBB46B /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37A7EF27223EE000FBB46B /* BaseRequest.swift */; };
@@ -200,7 +201,6 @@
 		4FEDF8E528B9928700719245 /* TransactionHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */; };
 		4FEDF8E828B9E5A800719245 /* TransactionHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */; };
 		4FF01FF728BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF01FF628BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift */; };
-		4FF01FF928BFD1DE00CFD3E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FF01FF828BFD1DE00CFD3E8 /* GoogleService-Info.plist */; };
 		4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */; };
 		4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */; };
 		4FFD9CA4272A16D2004778F1 /* CategoryOffersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */; };
@@ -334,6 +334,7 @@
 		4F17323D2701476200D7924D /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		4F173240270147B300D7924D /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 		4F1732422701494900D7924D /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		4F1B4AC928C00F900027D683 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderRequest.swift; sourceTree = "<group>"; };
 		4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		4F37A7EF27223EE000FBB46B /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
@@ -445,7 +446,6 @@
 		4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryResponse.swift; sourceTree = "<group>"; };
 		4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		4FF01FF628BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPaymentTableViewCell.swift; sourceTree = "<group>"; };
-		4FF01FF828BFD1DE00CFD3E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewCell.swift; sourceTree = "<group>"; };
 		4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryOffersTableViewCell.xib; sourceTree = "<group>"; };
 		4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewModel.swift; sourceTree = "<group>"; };
@@ -1151,7 +1151,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4FF01FF828BFD1DE00CFD3E8 /* GoogleService-Info.plist */,
+				4F1B4AC928C00F900027D683 /* GoogleService-Info.plist */,
 			);
 			path = PromosGollo;
 			sourceTree = "<group>";
@@ -1454,7 +1454,7 @@
 				4F0D968526DDBE690061E89E /* Colors.xcassets in Resources */,
 				4F0D968B26DDD3650061E89E /* Notifications.storyboard in Resources */,
 				4F0D967826DDBB810061E89E /* SansSerifBldFLF.otf in Resources */,
-				4FF01FF928BFD1DE00CFD3E8 /* GoogleService-Info.plist in Resources */,
+				4F1B4ACA28C00F900027D683 /* GoogleService-Info.plist in Resources */,
 				4F0D967326DDBB810061E89E /* SansSerifExbFLFCond.otf in Resources */,
 				4F0D966E26DDBB810061E89E /* SansSerifFLF-DemiItalic.otf in Resources */,
 				4FE1912626DEFCA000322128 /* VariationView.xib in Resources */,

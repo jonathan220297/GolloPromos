@@ -56,6 +56,15 @@ extension String {
         }
         return ""
     }
+    
+    func removeFormatAmount() -> Double {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = "₡"
+        formatter.currencyDecimalSeparator = ","
+        formatter.currencyGroupingSeparator = "."
+        return formatter.number(from: self)?.doubleValue ?? 0.0
+    }
 
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
