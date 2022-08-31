@@ -47,7 +47,6 @@
 		4F0D968126DDBC740061E89E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0D968026DDBC740061E89E /* Home.storyboard */; };
 		4F0D968326DDBE430061E89E /* UIColor+Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D968226DDBE430061E89E /* UIColor+Assets.swift */; };
 		4F0D968526DDBE690061E89E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F0D968426DDBE690061E89E /* Colors.xcassets */; };
-		4F0D968726DDC6D90061E89E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F0D968626DDC6D80061E89E /* GoogleService-Info.plist */; };
 		4F0D968926DDCF4D0061E89E /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0D968826DDCF4D0061E89E /* Menu.storyboard */; };
 		4F0D968B26DDD3650061E89E /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0D968A26DDD3650061E89E /* Notifications.storyboard */; };
 		4F0D968E26DDD3970061E89E /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D968D26DDD3970061E89E /* NotificationsViewController.swift */; };
@@ -200,6 +199,8 @@
 		4FEDF8E328B9921E00719245 /* TransactionHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E228B9921E00719245 /* TransactionHistoryRequest.swift */; };
 		4FEDF8E528B9928700719245 /* TransactionHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */; };
 		4FEDF8E828B9E5A800719245 /* TransactionHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */; };
+		4FF01FF728BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF01FF628BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift */; };
+		4FF01FF928BFD1DE00CFD3E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FF01FF828BFD1DE00CFD3E8 /* GoogleService-Info.plist */; };
 		4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */; };
 		4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */; };
 		4FFD9CA4272A16D2004778F1 /* CategoryOffersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */; };
@@ -286,7 +287,6 @@
 		4F0D968026DDBC740061E89E /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4F0D968226DDBE430061E89E /* UIColor+Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Assets.swift"; sourceTree = "<group>"; };
 		4F0D968426DDBE690061E89E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		4F0D968626DDC6D80061E89E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F0D968826DDCF4D0061E89E /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		4F0D968A26DDD3650061E89E /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		4F0D968D26DDD3970061E89E /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
@@ -444,6 +444,8 @@
 		4FEDF8E228B9921E00719245 /* TransactionHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryRequest.swift; sourceTree = "<group>"; };
 		4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryResponse.swift; sourceTree = "<group>"; };
 		4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		4FF01FF628BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPaymentTableViewCell.swift; sourceTree = "<group>"; };
+		4FF01FF828BFD1DE00CFD3E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewCell.swift; sourceTree = "<group>"; };
 		4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryOffersTableViewCell.xib; sourceTree = "<group>"; };
 		4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewModel.swift; sourceTree = "<group>"; };
@@ -808,7 +810,7 @@
 				4FB258322720DEC30003C607 /* HistoryRequest.swift */,
 				4F11E042272DB5C100E15003 /* AccountItemsRequest.swift */,
 				4F69893C28BD9EEB000FFA56 /* PaymentRequest.swift */,
-                4FEDF8E228B9921E00719245 /* TransactionHistoryRequest.swift */,
+				4FEDF8E228B9921E00719245 /* TransactionHistoryRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -824,7 +826,7 @@
 				4FB258302720DE150003C607 /* AppTransaction.swift */,
 				4FB258342720E6C40003C607 /* CustomerInfo.swift */,
 				4F11E044272DB61900E15003 /* AccountsItemResponse.swift */,
-                4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */,
+				4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */,
 				4F69893E28BDAC8D000FFA56 /* PaymentResponse.swift */,
 			);
 			path = Response;
@@ -1149,7 +1151,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4F0D968626DDC6D80061E89E /* GoogleService-Info.plist */,
+				4FF01FF828BFD1DE00CFD3E8 /* GoogleService-Info.plist */,
 			);
 			path = PromosGollo;
 			sourceTree = "<group>";
@@ -1292,6 +1294,7 @@
 			isa = PBXGroup;
 			children = (
 				4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */,
+				4FF01FF628BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -1451,6 +1454,7 @@
 				4F0D968526DDBE690061E89E /* Colors.xcassets in Resources */,
 				4F0D968B26DDD3650061E89E /* Notifications.storyboard in Resources */,
 				4F0D967826DDBB810061E89E /* SansSerifBldFLF.otf in Resources */,
+				4FF01FF928BFD1DE00CFD3E8 /* GoogleService-Info.plist in Resources */,
 				4F0D967326DDBB810061E89E /* SansSerifExbFLFCond.otf in Resources */,
 				4F0D966E26DDBB810061E89E /* SansSerifFLF-DemiItalic.otf in Resources */,
 				4FE1912626DEFCA000322128 /* VariationView.xib in Resources */,
@@ -1476,7 +1480,6 @@
 				4FE1910B26DEF77C00322128 /* SliderTableViewCell.xib in Resources */,
 				4F0D96BC26DDD7F50061E89E /* MenuTableViewCell.xib in Resources */,
 				4F0D96C826DDD9990061E89E /* Services.storyboard in Resources */,
-				4F0D968726DDC6D90061E89E /* GoogleService-Info.plist in Resources */,
 				4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1748,6 +1751,7 @@
 				4FA2768126D9191300216284 /* LoginViewModel.swift in Sources */,
 				4FFD9CAC272AFDCA004778F1 /* UINavigationController+Extension.swift in Sources */,
 				4FE1913626DF073400322128 /* OfferDetailViewController.swift in Sources */,
+				4FF01FF728BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift in Sources */,
 				4F894A21270A620A0004AAB3 /* StatusRequest.swift in Sources */,
 				4FA2767A26D9189700216284 /* LoginViewController.swift in Sources */,
 				4F17323A27013EA900D7924D /* ThirdPartyViewController.swift in Sources */,

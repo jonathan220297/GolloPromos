@@ -862,7 +862,7 @@
                                                                 <rect key="frame" x="0.0" y="675" width="415" height="65"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJk-zw-SnR" customClass="LoadingButton" customModule="PromosGollo" customModuleProvider="target">
-                                                                        <rect key="frame" x="31" y="8" width="353" height="49"/>
+                                                                        <rect key="frame" x="31" y="4" width="353" height="57"/>
                                                                         <color key="backgroundColor" name="colorPrimary"/>
                                                                         <color key="tintColor" name="AccentColor"/>
                                                                         <state key="normal" title="ACTUALIZAR">
@@ -878,11 +878,11 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="jJk-zw-SnR" secondAttribute="bottom" constant="8" id="70V-RP-5Sy"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="jJk-zw-SnR" secondAttribute="bottom" constant="4" id="70V-RP-5Sy"/>
                                                                     <constraint firstItem="jJk-zw-SnR" firstAttribute="centerX" secondItem="MQQ-Ya-Thb" secondAttribute="centerX" id="I5c-md-oE7"/>
                                                                     <constraint firstItem="jJk-zw-SnR" firstAttribute="width" secondItem="MQQ-Ya-Thb" secondAttribute="width" multiplier="0.85" id="NT8-wy-6wD"/>
                                                                     <constraint firstAttribute="height" constant="65" id="lKQ-cm-DmG"/>
-                                                                    <constraint firstItem="jJk-zw-SnR" firstAttribute="top" secondItem="MQQ-Ya-Thb" secondAttribute="top" constant="8" id="z7m-Co-Bhp"/>
+                                                                    <constraint firstItem="jJk-zw-SnR" firstAttribute="top" secondItem="MQQ-Ya-Thb" secondAttribute="top" constant="4" id="z7m-Co-Bhp"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -921,18 +921,26 @@
                     <navigationItem key="navigationItem" id="vBI-jU-Bzk"/>
                     <connections>
                         <outlet property="addImageButton" destination="QxG-7i-bi3" id="A0a-Sk-P0B"/>
+                        <outlet property="addressRequiredLabel" destination="VIk-Tv-YGg" id="fb9-UP-VeF"/>
                         <outlet property="addressTextField" destination="dUd-V4-H14" id="z3P-dF-uHm"/>
+                        <outlet property="birthdateRequiredLabel" destination="rv5-qP-7DI" id="MnH-rt-iTH"/>
                         <outlet property="birthdateTextField" destination="Oa5-ty-mRE" id="IOQ-eH-SgY"/>
                         <outlet property="documentNumberLabel" destination="C5R-87-apl" id="jYY-bB-T4G"/>
                         <outlet property="documentTypeButton" destination="NgX-hV-UGY" id="qaV-Zb-xi0"/>
                         <outlet property="documentTypeLabel" destination="DDv-oo-fc1" id="uvn-iE-P82"/>
                         <outlet property="editImageButton" destination="H1L-0m-RVU" id="a2M-sV-kmz"/>
+                        <outlet property="emailRequiredLabel" destination="b7D-pr-vyQ" id="pCJ-fB-giQ"/>
                         <outlet property="emailTextField" destination="7OC-tL-1iz" id="cbi-0N-lTd"/>
+                        <outlet property="genderRequiredLabel" destination="207-gO-DO3" id="7SR-uO-rdj"/>
                         <outlet property="genderTypeButton" destination="gRE-8k-iGE" id="NLQ-iE-fLs"/>
                         <outlet property="genderTypeLabel" destination="Guu-de-KC8" id="2X8-TF-pXk"/>
                         <outlet property="lastNameTextField" destination="ek8-mR-QKH" id="CP2-Wd-JUZ"/>
+                        <outlet property="lastnameRequiredLabel" destination="L67-KO-EiW" id="Ln9-sw-3oo"/>
+                        <outlet property="mobileRequiredLabel" destination="gzv-c9-lGs" id="OFK-aW-7ow"/>
                         <outlet property="mobileTextField" destination="h8O-JB-DTW" id="1sb-jZ-Sb4"/>
-                        <outlet property="nameTextField" destination="ek8-mR-QKH" id="jFa-dB-ebS"/>
+                        <outlet property="nameRequiredLabel" destination="fR6-z7-o02" id="bzr-YV-kKO"/>
+                        <outlet property="nameTextField" destination="VD1-lY-Nht" id="IEW-VZ-cUl"/>
+                        <outlet property="phoneNumberRequiredLabel" destination="NDf-oJ-TFj" id="bSU-aA-KiO"/>
                         <outlet property="phoneNumberTextField" destination="wVu-09-47Y" id="Shf-hK-7zV"/>
                         <outlet property="profileImageView" destination="R61-3S-YBN" id="evx-bT-ljS"/>
                         <outlet property="profileScrollView" destination="ZTC-53-7ld" id="8NE-dx-eEI"/>
@@ -940,6 +948,7 @@
                         <outlet property="searchCustomerButton" destination="j5M-4d-vuN" id="H2W-Ex-qge"/>
                         <outlet property="searchCustomerHeight" destination="VC5-v5-FXg" id="Lso-Kg-7Gx"/>
                         <outlet property="secondLastNameTextField" destination="7y1-X6-30b" id="q5H-sR-WqO"/>
+                        <outlet property="secondLastnameRequiredLabel" destination="GJC-VT-FZm" id="FDQ-0f-b92"/>
                         <outlet property="unregisteredUserView" destination="hAf-VB-Fir" id="GnY-IX-wGL"/>
                         <outlet property="updateButton" destination="jJk-zw-SnR" id="z78-Bo-ZDO"/>
                         <outlet property="userDataStackView" destination="YdR-vX-jYc" id="zUR-8B-8xf"/>

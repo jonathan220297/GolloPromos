@@ -58,6 +58,7 @@ class StatusTableViewCell: UITableViewCell {
         if let arrears = numberFormatter.string(from: NSNumber(value: model.montoMora ?? 0.0)) {
             amountArrearsLabel.text = "₡" + String(arrears)
         }
+        dayArrearsLabel.text = "\(model.diasAtraso ?? 0)"
 
         itemsButton.addTarget(self, action: #selector(itemsButtonTapped(_:)), for: .touchUpInside)
         itemsButton.tag = index

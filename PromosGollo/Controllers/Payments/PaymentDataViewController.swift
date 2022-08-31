@@ -32,6 +32,7 @@ class PaymentDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "PaymentDataViewController_title".localized
+
         cardNumberTextField.delegate = self
         cvvTextField.delegate = self
         configureRx()

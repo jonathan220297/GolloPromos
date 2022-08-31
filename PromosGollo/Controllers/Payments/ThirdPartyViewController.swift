@@ -33,6 +33,8 @@ class ThirdPartyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Compras a crédito activas de terceros"
+
         self.tableView.rowHeight = 140.0
         configureRx()
     }
@@ -51,7 +53,7 @@ class ThirdPartyViewController: UIViewController {
 
     @IBAction func searchClient(_ sender: Any) {
         if !isDocumentTypeSelected && documentTextField.text?.isEmpty ?? true {
-            showAlert(alertText: "GolloPromos", alertMessage: "Campos Incompletos")
+            showAlert(alertText: "GolloApp", alertMessage: "Campos Incompletos")
         } else {
             self.fetchCustomer()
         }
@@ -63,7 +65,7 @@ class ThirdPartyViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
-                    self.showAlert(alertText: "GolloPromos", alertMessage: error)
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
             })
@@ -83,11 +85,12 @@ class ThirdPartyViewController: UIViewController {
                        let secondLastName = data.apellido2 {
                         self.customerNameLabel.text = name + " " + lastName + " " + secondLastName
                     }
+                    self.navigationItem.title = "Cuentas activas de terceros"
                     self.customerDocumentLabel.text = "Cedula: \(number)"
                     self.fetchCustomerAccounts(documentType: type, documentId: number)
                 } else {
                     DispatchQueue.main.async {
-                        self.showAlert(alertText: "GolloPromos", alertMessage: "Usuario no encontrado.")
+                        self.showAlert(alertText: "GolloApp", alertMessage: "Usuario no encontrado.")
                     }
                 }
             })

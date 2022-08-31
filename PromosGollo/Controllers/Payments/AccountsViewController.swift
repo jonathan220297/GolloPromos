@@ -23,13 +23,12 @@ class AccountsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
+
+        navigationItem.title = "Mis compras a crédito"
+
         tableView.rowHeight = 335.0
         tableView.tableFooterView = UIView()
         fetchAccounts()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.title = "Cuentas"
     }
 
     override func viewDidLayoutSubviews() {
@@ -43,7 +42,7 @@ class AccountsViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
-                    self.showAlert(alertText: "GolloPromos", alertMessage: error)
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
             })

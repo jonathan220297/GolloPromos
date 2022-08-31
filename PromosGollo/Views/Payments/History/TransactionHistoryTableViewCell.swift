@@ -33,13 +33,25 @@ class TranstactionHistoryTableViewCell: UITableViewCell {
     func setHistoryData(with data: Payments) {
         accountNumberLabel.text = "No. \(data.noFisico ?? "")"
         dateLabel.text = data.fecha
-        capitalLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(data.monPagoCapital ?? 0)"
-        interestLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(data.monPagoInteres ?? 0)"
-        debtLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(data.monPagoMora ?? 0)"
-        assistanceLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(data.monCuotaAsistencia ?? 0)"
+        if let capital = numberFormatter.string(from: NSNumber(value: data.monPagoCapital ?? 0)) {
+            capitalLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(capital)"
+        }
+        if let interes = numberFormatter.string(from: NSNumber(value: data.monPagoInteres ?? 0)) {
+            interestLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(interes)"
+        }
+        if let debt = numberFormatter.string(from: NSNumber(value: data.monPagoMora ?? 0)) {
+            debtLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(debt)"
+        }
+        if let assistance = numberFormatter.string(from: NSNumber(value: data.monCuotaAsistencia ?? 0)) {
+            assistanceLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(assistance)"
+        }
         assistanceNumberLabel.text = data.noCuotaAsistencia
-        taxesLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(data.montTotImpuesto ?? 0)"
-        amountLabel.text = "Monto: \(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(data.montoRecibo ?? 0)"
+        if let taxes = numberFormatter.string(from: NSNumber(value: data.montTotImpuesto ?? 0)) {
+            taxesLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(taxes)"
+        }
+        if let amount = numberFormatter.string(from: NSNumber(value: data.montoRecibo ?? 0)) {
+            amountLabel.text = "Monto: \(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(amount)"
+        }
     }
     
 }
