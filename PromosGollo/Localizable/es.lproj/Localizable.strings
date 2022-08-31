@@ -9,10 +9,10 @@
 // MainViewController
 "MainViewController_title_label" = "Bienvenidos a la app de Gollo!";
 "MainViewController_description_label" = "Ingresa para aprovechar nuestras promociones, hacer pagos e incluso pagar cuotas de terceros.";
-"MainViewController_continue_button" = "Continue";
+"MainViewController_continue_button" = "Continuar";
 
 // LoginViewController
-"LoginViewController_loggin_button" = "INICIAR SESIÓN";
+"LoginViewController_loggin_button" = "INGRESAR";
 
 // TermsConditionsController
 "TermsConditionsController_terms" = "AVISO LEGAL Y CONDICIONES GENERALES DE USO DEL GOLLO APP

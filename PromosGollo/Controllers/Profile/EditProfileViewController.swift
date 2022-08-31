@@ -27,15 +27,24 @@ class EditProfileViewController: UIViewController {
     // User data
     @IBOutlet weak var userDataStackView: UIStackView!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var nameRequiredLabel: UILabel!
     @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var lastnameRequiredLabel: UILabel!
     @IBOutlet weak var secondLastNameTextField: UITextField!
+    @IBOutlet weak var secondLastnameRequiredLabel: UILabel!
     @IBOutlet weak var birthdateTextField: UITextField!
+    @IBOutlet weak var birthdateRequiredLabel: UILabel!
     @IBOutlet weak var genderTypeLabel: UILabel!
+    @IBOutlet weak var genderRequiredLabel: UILabel!
     @IBOutlet weak var genderTypeButton: UIButton!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var phoneNumberRequiredLabel: UILabel!
     @IBOutlet weak var mobileTextField: UITextField!
+    @IBOutlet weak var mobileRequiredLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailRequiredLabel: UILabel!
     @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var addressRequiredLabel: UILabel!
     @IBOutlet weak var updateButton: LoadingButton!
 
     lazy var viewModel: EditProfileViewModel = {
@@ -75,15 +84,19 @@ class EditProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
 
-
     // MARK: - Functions
     fileprivate func configureRx() {
         viewModel.errorMessage
             .asObservable()
             .subscribe(onNext: {[weak self] message in
                 guard let self = self else { return }
+                self.view.activityStopAnimating()
                 if !message.isEmpty {
-                    self.showAlert(alertText: "GolloApp", alertMessage: "El número de cédula ya esta asociado a otro usuario")
+                    if message == "Identificación no existe en la base de datos" {
+                        self.unregisteredUserView.alpha = 1
+                    } else if self.unregisteredUserView.alpha != 1 {
+                        self.showAlert(alertText: "GolloApp", alertMessage: message)
+                    }
                     self.viewModel.errorMessage.accept("")
                 }
             })
@@ -137,12 +150,146 @@ class EditProfileViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        documentNumberLabel
+            .rx
+            .controlEvent([.editingDidBegin,.editingDidEnd])
+            .asObservable()
+            .subscribe(onNext: {
+                if self.unregisteredUserView.alpha == 1 {
+                    self.unregisteredUserView.alpha = 0
+                }
+            }).disposed(by: disposeBag)
+
+        let phoneValidation = phoneNumberTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let mobileValidation = mobileTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let emailValidation = emailTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let addressValidation = addressTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let everythingValid = Observable.combineLatest(
+            phoneValidation,
+            mobileValidation,
+            emailValidation,
+            addressValidation
+        ) { $0 && $1 && $2 && $3 }
+            .share(replay: 1)
+
+        everythingValid
+            .bind(to: updateButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        everythingValid
+            .map { $0 ? 1 : 0.4 }
+            .bind(to: updateButton.rx.alpha)
+            .disposed(by: disposeBag)
+
         updateButton
             .rx
             .tap
             .subscribe(onNext: {
                 self.saveUserData()
             })
+            .disposed(by: disposeBag)
+    }
+
+    func configureNuewUserRx() {
+        let usernameValidation = nameTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let lastnameValidation = lastNameTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let secondLastnameValidation = secondLastNameTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let birthDateValidation = birthdateTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let phoneValidation = phoneNumberTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let mobileValidation = mobileTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let emailValidation = emailTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 && $0.isValidEmail() }
+            .share(replay: 1)
+
+        let addressValidation = addressTextField
+            .rx
+            .text
+            .orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+
+        let everythingValid = Observable.combineLatest(
+            usernameValidation,
+            lastnameValidation,
+            secondLastnameValidation,
+            birthDateValidation,
+            phoneValidation,
+            mobileValidation,
+            emailValidation,
+            addressValidation
+        ) { $0 && $1 && $2 && $3 && $4 && $5 && $6 && $7 }
+            .share(replay: 1)
+
+        everythingValid
+            .bind(to: updateButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        everythingValid
+            .map { $0 ? 1 : 0.4 }
+            .bind(to: updateButton.rx.alpha)
             .disposed(by: disposeBag)
     }
 
@@ -181,10 +328,10 @@ class EditProfileViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                self.view.activityStopAnimating()
                 if let _ = data.numeroIdentificacion, let _ = data.numeroIdentificacion {
                     self.showData(with: data)
                 } else {
-                    self.view.activityStopAnimating()
                     self.unregisteredUserView.alpha = 1
                 }
             })
@@ -202,21 +349,9 @@ class EditProfileViewController: UIViewController {
         if let data = data {
             documentTypeButton.isEnabled = false
             documentNumberLabel.isEnabled = false
-            if let name = data.nombre, name.isEmpty {
-                nameTextField.isEnabled = true
-            } else {
-                nameTextField.isEnabled = false
-            }
-            if let lastname = data.apellido1, lastname.isEmpty {
-                lastNameTextField.isEnabled = true
-            } else {
-                lastNameTextField.isEnabled = false
-            }
-            if let secondLastname = data.apellido2, secondLastname.isEmpty {
-                secondLastNameTextField.isEnabled = true
-            } else {
-                secondLastNameTextField.isEnabled = false
-            }
+            nameTextField.isEnabled = false
+            lastNameTextField.isEnabled = false
+            secondLastNameTextField.isEnabled = false
             if let date = data.fechaNacimiento, !date.isEmpty {
                 birthdateTextField.text = date
                 birthdateTextField.isEnabled = false
@@ -224,6 +359,7 @@ class EditProfileViewController: UIViewController {
                 birthdateTextField.isEnabled = true
             }
             if let gender = data.genero, !gender.isEmpty {
+                genderType = gender
                 genderTypeLabel.text = viewModel.genderTypes.first(where: { $0.code.elementsEqual(gender) })?.name ?? ""
                 genderTypeButton.isEnabled = false
             } else {

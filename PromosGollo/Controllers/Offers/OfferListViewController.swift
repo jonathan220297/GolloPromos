@@ -32,7 +32,7 @@ class OfferListViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
-                    self.showAlert(alertText: "GolloPromos", alertMessage: error)
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
             })

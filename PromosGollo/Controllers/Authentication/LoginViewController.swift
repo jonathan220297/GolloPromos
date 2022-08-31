@@ -52,8 +52,8 @@ class LoginViewController: UIViewController {
 
     // MARK: - Functions
     fileprivate func configureViews() {
-        let text = "Don't have an account? REGISTER"
-        signUpButton.setAttributedTitle(text.withBoldText(text: "REGISTER", fontNormalText: UIFont.sansSerifDemiBold(ofSize: 15), fontBoldText: UIFont.sansSerifBold(ofSize: 15), fontColorBold: .primary), for: .normal)
+        let text = "No tienes una cuenta? REGISTRATE"
+        signUpButton.setAttributedTitle(text.withBoldText(text: "REGISTRATE", fontNormalText: UIFont.sansSerifDemiBold(ofSize: 15), fontBoldText: UIFont.sansSerifBold(ofSize: 15), fontColorBold: .primary), for: .normal)
     }
 
     fileprivate func loginRequestInfo(for loginType: LoginType) {
@@ -132,7 +132,7 @@ class LoginViewController: UIViewController {
                 if self.viewModel.isEmailValid(with: self.usernameTextField.text ?? "") {
                     self.doLogin(for: .email)
                 } else {
-                    self.showAlert(alertText: "GolloPromos", alertMessage: "Please enter a valid email.")
+                    self.showAlert(alertText: "GolloApp", alertMessage: "Please enter a valid email.")
                 }
             })
             .disposed(by: disposeBag)
@@ -154,7 +154,7 @@ class LoginViewController: UIViewController {
             guard let self = self else { return }
             if let error = error {
                 self.buttonLogin.hideLoading()
-                self.showAlert(alertText: "GolloPromos", alertMessage: error)
+                self.showAlert(alertText: "GolloApp", alertMessage: error)
                 do {
                     try Auth.auth().signOut()
                 } catch let error as NSError {
@@ -171,7 +171,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            self.showAlert(alertText: "GolloPromos", alertMessage: error.localizedDescription)
+            self.showAlert(alertText: "GolloApp", alertMessage: error.localizedDescription)
             return
         }
 
@@ -182,7 +182,7 @@ extension LoginViewController: GIDSignInDelegate {
         let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
         authService.signIn(with: credential) { user, error in
             if let error = error {
-                self.showAlert(alertText: "GolloPromos", alertMessage: error)
+                self.showAlert(alertText: "GolloApp", alertMessage: error)
             }
             guard let user = user else { return }
             self.viewModel.setUserData(with: user)

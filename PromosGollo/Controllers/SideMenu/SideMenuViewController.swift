@@ -64,11 +64,13 @@ class SideMenuViewController: UIViewController {
 
     // MARK: - Functions
     fileprivate func setUserData() {
-        if let user = viewModel.userManager.userData {
-            if let displayName = user.displayName {
-                profileName.text = displayName
-            } else {
-                profileName.text = user.email ?? ""
+        if Variables.isRegisterUser {
+            if let user = viewModel.userManager.userData {
+                if let displayName = user.displayName {
+                    profileName.text = displayName
+                } else {
+                    profileName.text = user.email ?? ""
+                }
             }
         }
     }

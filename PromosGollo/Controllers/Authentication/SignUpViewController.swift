@@ -40,7 +40,7 @@ extension SignUpViewController {
         }
 
         viewModel.showError = {[weak self] message in
-            self?.showAlert(alertText: "GolloPromos", alertMessage: message)
+            self?.showAlert(alertText: "GolloApp", alertMessage: message)
         }
 
         viewModel.hideLoading = {[weak self] in
@@ -71,7 +71,7 @@ extension SignUpViewController {
 
     fileprivate func showConfirmationMessage() {
         self.signUpButton.hideLoading()
-        showAlertWithActions(alertText: "Register new User", alertMessage: "Before you can login into the app, you must validate your email. Please go to your email inbox to validate your email account.") {
+        showAlertWithActions(alertText: "Verificación de correo", alertMessage: "Se enviará un enlace a tu correo electrónico para validar tu cuenta") {
             self.navigationController?.popViewController(animated: true)
         }
     }

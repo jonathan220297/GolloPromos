@@ -70,7 +70,7 @@ class HomeViewController: UIViewController {
             .asObservable()
             .bind { (errorMessage) in
                 if !errorMessage.isEmpty {
-                    self.showAlert(alertText: "GolloPromos", alertMessage: errorMessage)
+                    self.showAlert(alertText: "GolloApp", alertMessage: errorMessage)
                     self.viewModel.errorMessage.accept("")
                 }
             }

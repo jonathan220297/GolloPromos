@@ -13,6 +13,7 @@ class HistoryViewController: UIViewController {
 
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
+    @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var tableView: UITableView!
 
     let dateFormatter = DateFormatter()
@@ -28,6 +29,7 @@ class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Historial de pagos"
 
         // Date Picker
         datePickerFrom = UIDatePicker()
@@ -53,6 +55,7 @@ class HistoryViewController: UIViewController {
         fromTextField.inputView = datePickerFrom
         toTextField.inputView = datePickerTo
 
+        self.tableView.rowHeight = 200.0
         hideKeyboardWhenTappedAround()
         configureRx()
     }
@@ -76,12 +79,12 @@ class HistoryViewController: UIViewController {
         if let from = fromTextField.text,
            let to = toTextField.text {
             if from.isEmpty && to.isEmpty {
-                showAlert(alertText: "GolloPromos", alertMessage: "Fechas incompletas")
+                showAlert(alertText: "GolloApp", alertMessage: "Fechas incompletas")
             } else {
                 fetchHistory(from: from, to: to)
             }
         } else {
-            showAlert(alertText: "GolloPromos", alertMessage: "Fechas incompletas")
+            showAlert(alertText: "GolloApp", alertMessage: "Fechas incompletas")
         }
     }
 
@@ -91,7 +94,7 @@ class HistoryViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
-                    self.showAlert(alertText: "GolloPromos", alertMessage: error)
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
             })
@@ -108,9 +111,30 @@ class HistoryViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.view.activityStopAnimating()
                 }
-                self.viewModel.status = data
-                self.tableView.reloadData()
+                if !data.isEmpty {
+                    self.viewModel.status = data
+                    self.tableView.reloadData()
+                    self.emptyView.alpha = 0
+                    self.tableView.alpha = 1
+                }
             })
             .disposed(by: bag)
+    }
+}
+
+// MARK: - Extension Table View
+extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.status.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let history = self.viewModel.status[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "historyPaymentCell") as! HistoryPaymentTableViewCell
+
+        cell.setHistoryData(with: history)
+        cell.selectionStyle = .none
+
+        return cell
     }
 }

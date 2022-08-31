@@ -54,7 +54,7 @@ extension TermsConditionsViewController {
 
         buttonContinue.rx.tap.bind {
             if !self.viewModel.checkboxSelected.value {
-                self.showAlert(alertText: "GolloPromos", alertMessage: "TermsConditionsController_continue_error".localized)
+                self.showAlert(alertText: "GolloApp", alertMessage: "TermsConditionsController_continue_error".localized)
             } else {
                 print("Nice")
                 self.viewModel.setCheckboxValueToUserDefaults()

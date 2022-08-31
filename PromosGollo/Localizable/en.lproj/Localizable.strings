@@ -12,7 +12,7 @@
 "MainViewController_continue_button" = "Continue";
 
 // LoginViewController
-"LoginViewController_loggin_button" = "INICIAR SESIÓN";
+"LoginViewController_loggin_button" = "INGRESAR";
 
 // TermsConditionsController
 "TermsConditionsController_terms" = "AVISO LEGAL Y CONDICIONES GENERALES DE USO DEL GOLLO APP
@@ -142,19 +142,19 @@ Unicomer y los Usuarios, con renuncia expresa a cualquier otro fuero que pudiera
 "Extension_simple_alert_ok_button" = "Got it";
 
 // ProfileViewController
-"ProfileViewController_title" = "Profile";
-"ProfileViewController_document_type" = "Document Type";
-"ProfileViewController_document_number" = "Identification Number (ID or passport)";
-"ProfileViewController_search_customer" = "SEARCH CUSTOMER";
+"ProfileViewController_title" = "Perfil de usuario";
+"ProfileViewController_document_type" = "Tipo de documento";
+"ProfileViewController_document_number" = "Número de identificacion (ID o pasaporte)";
+"ProfileViewController_search_customer" = "BUSCAR CLIENTE";
 "ProfileViewController_cedula" = "Cédula";
 "ProfileViewController_cedula_juridica" = "Cédula jurídica";
-"ProfileViewController_passport" = "Passport";
-"ProfileViewController_update" = "UPDATE";
+"ProfileViewController_passport" = "Pasaporte";
+"ProfileViewController_update" = "ACTUALIZAR";
 
 // PaymentDataViewController
-"PaymentDataViewController_title" = "Credit Card Number";
-"PaymentDataViewController_card_number" = "Credit Card Number";
-"PaymentDataViewController_expiration" = "Expiration Month";
-"PaymentDataViewController_expiration_year" = "Expiration Year";
-"PaymentDataViewController_card_name" = "Name";
-"PaymentDataViewController_continue_payment" = "CONTINUE WITH PAYMENT";
+"PaymentDataViewController_title" = "Número de tarjeta de crédito";
+"PaymentDataViewController_card_number" = "Número de tarjeta de crédito";
+"PaymentDataViewController_expiration" = "Mes de expiración";
+"PaymentDataViewController_expiration_year" = "Año de expiración";
+"PaymentDataViewController_card_name" = "Nombre";
+"PaymentDataViewController_continue_payment" = "CONTINUAR CON EL PAGO";

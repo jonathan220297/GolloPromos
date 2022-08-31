@@ -18,14 +18,14 @@ class HistoryViewModel {
 
     func fetchHistoryTransactions(with startDate: String, endDate: String) -> BehaviorRelay<[AppTransaction]?> {
         let apiResponse: BehaviorRelay<[AppTransaction]?> = BehaviorRelay(value: nil)
-        service.callWebService(HistoryRequest(service: BaseServiceRequestParam<HistoryServiceRequest>(
+        service.callWebServiceGollo(HistoryRequest(service: BaseServiceRequestParam<HistoryServiceRequest>(
             servicio: ServicioParam(
                 encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.APP_PAYMENT_HISTORY.rawValue),
                 parametros: HistoryServiceRequest (
                     idMovimiento: "",
                     fechaInicial: startDate,
                     fechaFinal: endDate,
-                    identificacionCliente: "604050942"
+                    identificacionCliente: "204880675"
                 )
             )
         ))) { response in

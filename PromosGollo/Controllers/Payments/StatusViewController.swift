@@ -33,6 +33,8 @@ class StatusViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Estados de cuenta"
+
         self.tableView.rowHeight = 310.0
         fetchStatus()
     }
@@ -56,7 +58,7 @@ class StatusViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
-                    self.showAlert(alertText: "GolloPromos", alertMessage: error)
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
             })
@@ -89,7 +91,9 @@ class StatusViewController: UIViewController {
             if let cmm = model.cmmActual,
                let cmmAvailable = model.cmmDisponible {
                 let cmmUsed = cmm - cmmAvailable
-                cmmUsedLabel.text = "₡" + " " + String(cmmUsed)
+                if let cmmUsed = numberFormatter.string(from: NSNumber(value: cmmUsed)) {
+                    cmmUsedLabel.text = "₡" + " " + String(cmmUsed)
+                }
             }
             if let cmmAvailable = numberFormatter.string(from: NSNumber(value: model.cmmDisponible ?? 0.0)) {
                 cmmAvailableLabel.text = "₡" + " " + String(cmmAvailable)
@@ -100,7 +104,9 @@ class StatusViewController: UIViewController {
             if let lem = model.lemActual,
                let lemAvailable = model.lemDisponible {
                 let lemUsed = lem - lemAvailable
-                cmmUsedLabel.text = "₡" + " " + String(lemUsed)
+                if let lemUsed = numberFormatter.string(from: NSNumber(value: lemUsed)) {
+                    lemUsedLabel.text = "₡" + " " + String(lemUsed)
+                }
             }
             if let lemAvailable = numberFormatter.string(from: NSNumber(value: model.lemDisponible ?? 0.0)) {
                 lemAvailableLabel.text = "₡" + " " + String(lemAvailable)
