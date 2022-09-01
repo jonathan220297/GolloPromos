@@ -117,9 +117,18 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func paymentAction(_ sender: Any) {
-        let vc = PaymentTabBarViewController.instantiate(fromAppStoryboard: .Payments)
-        vc.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(vc, animated: true)
+        if Variables.isRegisterUser {
+            let vc = PaymentTabBarViewController.instantiate(fromAppStoryboard: .Payments)
+            vc.modalPresentationStyle = .fullScreen
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let signupWaringViewController = SignupWaringViewController(
+                delegate: self
+            )
+            signupWaringViewController.modalPresentationStyle = .overCurrentContext
+            signupWaringViewController.modalTransitionStyle = .crossDissolve
+            present(signupWaringViewController, animated: true)
+        }
     }
 
     @IBAction func serviceAction(_ sender: Any) {
@@ -218,5 +227,13 @@ extension HomeViewController: SignUpCellDelegate {
         let vc = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeViewController: SignupWarningDelegate {
+    func didTapSignupButton() {
+        let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+        editProfileViewController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(editProfileViewController, animated: true)
     }
 }

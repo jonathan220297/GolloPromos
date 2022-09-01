@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupWaringViewController" customModule="PromosGollo" customModuleProvider="target">
+            <connections>
+                <outlet property="closeButton" destination="sGK-gG-piI" id="sh9-8w-n6D"/>
+                <outlet property="glassView" destination="VyZ-dS-OAH" id="hvV-vR-TFw"/>
+                <outlet property="popUpView" destination="akD-pd-RRn" id="QfT-aI-yva"/>
+                <outlet property="signupButton" destination="tZ8-zo-UkB" id="8P7-1X-D9N"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VyZ-dS-OAH">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akD-pd-RRn">
+                    <rect key="frame" x="16" y="308.5" width="382" height="279"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jM1-3C-4tR">
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="120"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGK-gG-piI">
+                                    <rect key="frame" x="344" y="8" width="30" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="X">
+                                        <color key="titleColor" name="colorBonus"/>
+                                    </state>
+                                </button>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="uxS-T4-vxC">
+                                    <rect key="frame" x="16" y="24" width="72" height="72"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="uxS-T4-vxC" secondAttribute="height" multiplier="1:1" id="aVB-42-7CV"/>
+                                    </constraints>
+                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Vz9-ON-Ff8">
+                                    <rect key="frame" x="104" y="23" width="262" height="74.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registrate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fun-8I-Vem">
+                                            <rect key="frame" x="0.0" y="0.0" width="262" height="35"/>
+                                            <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="25"/>
+                                            <color key="textColor" name="colorBonus"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estas a un paso de obtener más contenido exclusivo para vos!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qd-RQ-mMV">
+                                            <rect key="frame" x="0.0" y="35" width="262" height="39.5"/>
+                                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" name="colorPrimary"/>
+                            <constraints>
+                                <constraint firstItem="uxS-T4-vxC" firstAttribute="height" secondItem="jM1-3C-4tR" secondAttribute="height" multiplier="0.6" id="Ikm-hT-e4O"/>
+                                <constraint firstItem="uxS-T4-vxC" firstAttribute="centerY" secondItem="jM1-3C-4tR" secondAttribute="centerY" id="O5p-tQ-HCL"/>
+                                <constraint firstAttribute="trailing" secondItem="sGK-gG-piI" secondAttribute="trailing" constant="8" id="Ocj-Y6-VVZ"/>
+                                <constraint firstItem="Vz9-ON-Ff8" firstAttribute="centerY" secondItem="jM1-3C-4tR" secondAttribute="centerY" id="Slg-l9-OR3"/>
+                                <constraint firstItem="Vz9-ON-Ff8" firstAttribute="leading" secondItem="uxS-T4-vxC" secondAttribute="trailing" constant="16" id="f1W-fH-lmS"/>
+                                <constraint firstAttribute="trailing" secondItem="Vz9-ON-Ff8" secondAttribute="trailing" constant="16" id="fjX-8Q-x1E"/>
+                                <constraint firstItem="uxS-T4-vxC" firstAttribute="leading" secondItem="jM1-3C-4tR" secondAttribute="leading" constant="16" id="jqc-3z-WQU"/>
+                                <constraint firstItem="sGK-gG-piI" firstAttribute="top" secondItem="jM1-3C-4tR" secondAttribute="top" constant="8" id="wiO-Bg-pg8"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registrate y accede a tus cuentas, promociones y muchos descuentos más." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yF-Ko-gjr">
+                            <rect key="frame" x="16" y="136" width="350" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="R1w-Np-UyD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZ8-zo-UkB">
+                            <rect key="frame" x="108" y="218" width="166" height="45"/>
+                            <color key="backgroundColor" name="colorPrimary"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="VRm-aB-TSB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="REGISTRATE">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="jM1-3C-4tR" secondAttribute="trailing" id="8se-Nb-XG7"/>
+                        <constraint firstItem="2yF-Ko-gjr" firstAttribute="leading" secondItem="akD-pd-RRn" secondAttribute="leading" constant="16" id="Cpj-qE-qfw"/>
+                        <constraint firstItem="tZ8-zo-UkB" firstAttribute="centerX" secondItem="akD-pd-RRn" secondAttribute="centerX" id="KRy-1x-Ozn"/>
+                        <constraint firstItem="2yF-Ko-gjr" firstAttribute="top" secondItem="jM1-3C-4tR" secondAttribute="bottom" constant="16" id="WMR-Ic-SI1"/>
+                        <constraint firstItem="tZ8-zo-UkB" firstAttribute="top" secondItem="2yF-Ko-gjr" secondAttribute="bottom" constant="32" id="bmB-S5-1Q7"/>
+                        <constraint firstItem="jM1-3C-4tR" firstAttribute="top" secondItem="akD-pd-RRn" secondAttribute="top" id="d1E-qA-IsG"/>
+                        <constraint firstItem="jM1-3C-4tR" firstAttribute="height" secondItem="akD-pd-RRn" secondAttribute="height" multiplier="0.43" id="e8Z-kf-O2j"/>
+                        <constraint firstAttribute="bottom" secondItem="tZ8-zo-UkB" secondAttribute="bottom" constant="16" id="emz-0r-dxO"/>
+                        <constraint firstAttribute="trailing" secondItem="2yF-Ko-gjr" secondAttribute="trailing" constant="16" id="pW2-7V-Dm6"/>
+                        <constraint firstItem="jM1-3C-4tR" firstAttribute="leading" secondItem="akD-pd-RRn" secondAttribute="leading" id="swA-ua-jPW"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="18"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VyZ-dS-OAH" secondAttribute="trailing" id="2oi-Sm-yBT"/>
+                <constraint firstItem="VyZ-dS-OAH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="F0p-yL-X1i"/>
+                <constraint firstItem="VyZ-dS-OAH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OJW-A1-WUa"/>
+                <constraint firstItem="akD-pd-RRn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OLN-6R-KJo"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="akD-pd-RRn" secondAttribute="trailing" constant="16" id="Rle-VE-hRg"/>
+                <constraint firstItem="akD-pd-RRn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="SwI-G9-tsi"/>
+                <constraint firstAttribute="bottom" secondItem="VyZ-dS-OAH" secondAttribute="bottom" id="nYx-r7-Rvg"/>
+                <constraint firstItem="tZ8-zo-UkB" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.4" id="ngo-3e-xk6"/>
+                <constraint firstItem="akD-pd-RRn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="sZ7-0E-JS5"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_logo" width="960" height="540"/>
+        <namedColor name="colorBonus">
+            <color red="1" green="0.70200002193450928" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorPrimary">
+            <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
