@@ -199,7 +199,7 @@
                         <barButtonItem key="rightBarButtonItem" image="ic_notification" id="yJx-y5-XVC" customClass="BadgeBarButtonItem" customModule="PromosGollo" customModuleProvider="target">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="iuP-wh-zTw" kind="presentation" id="LIs-Wl-WJi"/>
+                                <segue destination="iuP-wh-zTw" kind="show" id="LIs-Wl-WJi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -237,6 +237,9 @@
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="colorPrimary"/>
+                        </navigationBarAppearance>
                         <navigationBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="colorPrimary"/>
                             <textAttributes key="titleTextAttributes">
@@ -259,7 +262,9 @@
         <!--Notifications-->
         <scene sceneID="2cu-BZ-HTQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="Notifications" id="iuP-wh-zTw" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Notifications" id="iuP-wh-zTw" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="qzr-DL-J9J"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uls-fO-OXK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1055" y="534"/>

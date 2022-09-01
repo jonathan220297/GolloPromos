@@ -16,9 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1uu-t9-D5i">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uu-t9-D5i">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRT-p9-RNI">
@@ -74,7 +73,11 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="1uu-t9-D5i" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="85n-96-STq"/>
+                            <constraint firstAttribute="bottom" secondItem="1uu-t9-D5i" secondAttribute="bottom" id="V4u-Iw-eYS"/>
                             <constraint firstItem="uRT-p9-RNI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="dug-5G-Yfe"/>
+                            <constraint firstItem="1uu-t9-D5i" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="lPD-M9-mDt"/>
+                            <constraint firstItem="1uu-t9-D5i" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="n2x-Wg-R58"/>
                             <constraint firstItem="uRT-p9-RNI" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.8" id="p9q-bh-abu"/>
                             <constraint firstItem="uRT-p9-RNI" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="znu-tx-doV"/>
                         </constraints>
