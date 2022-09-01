@@ -33,7 +33,7 @@ class StatusViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Estados de cuenta"
+        tabBarController?.navigationItem.title = "Estados de cuenta"
 
         self.tableView.rowHeight = 310.0
         fetchStatus()
@@ -67,7 +67,7 @@ class StatusViewController: UIViewController {
 
     fileprivate func fetchStatus() {
         view.activityStarAnimating()
-        viewModel.fetchStatus(with: "C", documentId: "205080150")
+        viewModel.fetchStatus(with: Variables.userProfile?.tipoIdentificacion ?? "C", documentId: Variables.userProfile?.numeroIdentificacion ?? "205080150")
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,

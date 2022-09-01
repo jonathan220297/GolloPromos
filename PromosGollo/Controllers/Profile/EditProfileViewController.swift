@@ -56,18 +56,55 @@ class EditProfileViewController: UIViewController {
     let disposeBag = DisposeBag()
 
     private let userManager = UserManager.shared
+    let userDefaults = UserDefaults.standard
     var imagePicker = UIImagePickerController()
     var documentType = ""
     var genderType = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.title = "Perfil de usuario"
         configureRx()
 
         // Delegate of Image Picker
         imagePicker.delegate = self
 
         hideKeyboardWhenTappedAround()
+
+        if let info = Variables.userProfile {
+            let data = UserData(
+                tipoIdentificacion: info.tipoIdentificacion,
+                tarjetasDeCredito: "",
+                estadoCivil: "",
+                numeroIdentificacion: info.numeroIdentificacion,
+                nombre: info.nombre,
+                apellido1: info.apellido1,
+                apellido2: info.apellido2,
+                idRegistroBit: 0,
+                salario: 0,
+                direccion: info.direccion,
+                fechaIngresoTrabajo: "",
+                corporacion: "",
+                lugarTrabajo: "",
+                direccionTrabajo: "",
+                telefonoTrabajo: "",
+                nombreConyugue: "",
+                casa: "",
+                genero: info.genero,
+                correoElectronico1: info.correoElectronico1,
+                correoElectronico2: "",
+                telefono1: info.telefono2,
+                telefono2: info.telefono2,
+                cantidadHijos: 0,
+                fechaNacimiento: info.fechaNacimiento,
+                nacionalidad: "",
+                carroPropio: "",
+                ocupacion: "",
+                image: ""
+            )
+            showData(with: data)
+        }
     }
 
     override func viewWillLayoutSubviews() {
@@ -322,20 +359,36 @@ class EditProfileViewController: UIViewController {
     }
 
     fileprivate func fetchUserData() {
-        view.activityStarAnimating()
-        viewModel.fetchUserData(id: self.documentNumberLabel.text ?? "", type: documentType)
-            .asObservable()
-            .subscribe(onNext: {[weak self] data in
-                guard let self = self,
-                      let data = data else { return }
-                self.view.activityStopAnimating()
-                if let _ = data.numeroIdentificacion, let _ = data.numeroIdentificacion {
-                    self.showData(with: data)
-                } else {
-                    self.unregisteredUserView.alpha = 1
-                }
-            })
-            .disposed(by: disposeBag)
+        if documentType.isEmpty {
+            showAlert(alertText: "GolloApp", alertMessage: "Seleccione el tipo de documento de idendidad")
+        } else if documentNumberLabel.text?.isEmpty ?? true {
+            showAlert(alertText: "GolloApp", alertMessage: "Seleccione el tipo de documento de idendidad")
+        } else if !isValidCelular(number: documentNumberLabel.text ?? "")  {
+            showAlert(alertText: "GolloApp", alertMessage: "Cédula inválida")
+        } else {
+            view.activityStarAnimating()
+            viewModel.fetchUserData(id: self.documentNumberLabel.text ?? "", type: documentType)
+                .asObservable()
+                .subscribe(onNext: {[weak self] data in
+                    guard let self = self,
+                          let data = data else { return }
+                    self.view.activityStopAnimating()
+                    if let _ = data.numeroIdentificacion, let _ = data.numeroIdentificacion {
+                        self.showData(with: data)
+                    } else {
+                        self.unregisteredUserView.alpha = 1
+                    }
+                })
+                .disposed(by: disposeBag)
+        }
+    }
+
+    fileprivate func isValidCelular(number: String) -> Bool {
+        let range = NSRange(location: 0, length: number.utf16.count)
+        let regex = try! NSRegularExpression(pattern: "^[1-9]\\d{4}\\d{4}$")
+        let valid = regex.firstMatch(in: number, options: [], range: range) != nil
+
+        return valid
     }
 
     fileprivate func showData(with data: UserData?) {
@@ -347,7 +400,9 @@ class EditProfileViewController: UIViewController {
         self.unregisteredUserView.isHidden = true
         view.layoutIfNeeded()
         if let data = data {
+            documentTypeLabel.text = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? ""
             documentTypeButton.isEnabled = false
+            documentNumberLabel.text = data.numeroIdentificacion
             documentNumberLabel.isEnabled = false
             nameTextField.isEnabled = false
             lastNameTextField.isEnabled = false
@@ -376,6 +431,7 @@ class EditProfileViewController: UIViewController {
     }
 
     fileprivate func saveUserData() {
+        view.activityStarAnimating()
         let userInfo = UserInfo(
             idCliente: UserManager.shared.userData?.uid ?? "",
             nombre: nameTextField.text,
@@ -393,16 +449,21 @@ class EditProfileViewController: UIViewController {
             image: viewModel.convertImageToBase64String(img: userImageView.image),
             genero: genderType
         )
-        view.activityStarAnimating()
         viewModel.updateUserData(with: userInfo)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
-                      let _ = data else { return }
-                Variables.isRegisterUser = true
-                Variables.isClientUser = true
-                Variables.isLoginUser = true
+                      let data = data else { return }
+                Variables.isRegisterUser = data.estadoRegistro
+                Variables.isClientUser = data.estadoCliente
+                Variables.isLoginUser = data.estadoLogin
                 Variables.userProfile = userInfo
+                do {
+                    try self.userDefaults.setObject(userInfo, forKey: "Information")
+                } catch {
+                    print(error.localizedDescription)
+                }
+                self.view.activityStopAnimating()
                 self.showAlert(alertText: "GolloApp", alertMessage: "Usuario actualizado exitosamente.")
             })
             .disposed(by: disposeBag)

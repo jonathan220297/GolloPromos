@@ -26,6 +26,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         configureViewModel()
         configureRx()
+        configureViews()
         hideKeyboardWhenTappedAround()
         passwordTextField.enablePasswordToggle()
         passwordConfirmationTextField.enablePasswordToggle()
@@ -74,5 +75,12 @@ extension SignUpViewController {
         showAlertWithActions(alertText: "Verificación de correo", alertMessage: "Se enviará un enlace a tu correo electrónico para validar tu cuenta") {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+
+    fileprivate func configureViews() {
+        emailTextField.setUnderLine()
+        emailConfirmationTextField.setUnderLine()
+        passwordTextField.setUnderLine()
+        passwordConfirmationTextField.setUnderLine()
     }
 }

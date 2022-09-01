@@ -27,6 +27,8 @@ class SideMenuViewController: UIViewController {
         return SideMenuViewModel()
     }()
 
+    let userDefaults = UserDefaults.standard
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureRx()
@@ -57,6 +59,7 @@ class SideMenuViewController: UIViewController {
             let vc = story.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
             UIApplication.shared.windows.first?.rootViewController = vc
             UIApplication.shared.windows.first?.makeKeyAndVisible()
+            userDefaults.removeObject(forKey: "Information")
         } catch _ as NSError {
 //            log.error("Error signing out: \(signOutError)")
         }
@@ -65,12 +68,9 @@ class SideMenuViewController: UIViewController {
     // MARK: - Functions
     fileprivate func setUserData() {
         if Variables.isRegisterUser {
-            if let user = viewModel.userManager.userData {
-                if let displayName = user.displayName {
-                    profileName.text = displayName
-                } else {
-                    profileName.text = user.email ?? ""
-                }
+            if let user = Variables.userProfile?.nombre,
+               let lastname = Variables.userProfile?.apellido1 {
+                    profileName.text = "\(user) \(lastname)"
             }
         }
     }

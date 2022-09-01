@@ -32,6 +32,7 @@ class HomeViewController: UIViewController {
     }()
 
     let disposeBag = DisposeBag()
+    let userDefaults = UserDefaults.standard
 
     var sectionCellSize = 30.0
     var productCellSize = 30.0
@@ -91,6 +92,7 @@ class HomeViewController: UIViewController {
                         let vc = story.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
                         UIApplication.shared.windows.first?.rootViewController = vc
                         UIApplication.shared.windows.first?.makeKeyAndVisible()
+                        self.userDefaults.removeObject(forKey: "Information")
                     } catch _ as NSError {
             //            log.error("Error signing out: \(signOutError)")
                     }

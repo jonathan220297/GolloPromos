@@ -28,6 +28,7 @@ class TransactionsHistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.navigationItem.title = "HistoryViewController"
         self.numberLabel.text = "10"
         self.tableView.rowHeight = 240.0
         configureRx()
