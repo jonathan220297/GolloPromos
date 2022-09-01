@@ -8,5 +8,6 @@
 import Foundation
 
 class SaveUserResponse: Codable {
-    
+    let idCliente: String?
+    let estadoLogin, estadoCliente, estadoRegistro: Bool
 }

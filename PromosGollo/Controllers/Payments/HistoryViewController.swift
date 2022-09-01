@@ -29,7 +29,7 @@ class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Historial de pagos"
+        tabBarController?.navigationItem.title = "Historial de pagos"
 
         // Date Picker
         datePickerFrom = UIDatePicker()

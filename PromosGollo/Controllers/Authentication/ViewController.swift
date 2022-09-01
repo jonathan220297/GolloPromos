@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         return SplashViewModel()
     }()
 
+    let userDefaults = UserDefaults.standard
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +31,17 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if viewModel.verifyUserLogged() {
+            let userDefaults = UserDefaults.standard
+            do {
+                let myInfo = try userDefaults.getObject(forKey: "Information", castTo: UserInfo.self)
+                print(myInfo)
+                Variables.userProfile = myInfo
+                Variables.isRegisterUser = true
+                Variables.isClientUser = true
+                Variables.isLoginUser = true
+            } catch {
+                print(error.localizedDescription)
+            }
             if let vc = AppStoryboard.Home.initialViewController() {
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true)

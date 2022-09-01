@@ -7,20 +7,21 @@
 
 import Foundation
 
-public class LoginData: Codable {
+struct LoginData: Codable {
     let idCliente: String?
     let estadoLogin: Bool?
     let estadoCliente: Bool?
     let estadoRegistro: Bool?
     let token: String?
+    let registro: UserInfo?
+}
 
-    public init(idCliente: String?, estadoLogin: Bool?, estadoRegistro: Bool?, estadoCliente: Bool?, token: String?) {
-        self.idCliente = idCliente
-        self.estadoLogin = estadoLogin
-        self.estadoRegistro = estadoRegistro
-        self.estadoCliente = estadoCliente
-        self.token = token
-    }
+// MARK: - RegisterInfo
+struct RegisterInfo: Codable {
+    let idCliente, nombre, apellido1, apellido2: String?
+    let tipoIdentificacion, numeroIdentificacion, telefono, celular, direccion: String?
+    let latitud, longitud: Double?
+    let correoElectronico1, fechaNacimiento, genero, fechaIngresoTrabajo: String?
 }
 
 // MARK: - Store

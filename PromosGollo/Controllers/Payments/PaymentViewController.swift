@@ -38,6 +38,7 @@ class PaymentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Opciones de pago"
         configureViews()
         dateFormatter.dateStyle = .long
         otherAmountTextField.isEnabled = false

@@ -25,7 +25,7 @@ class HistoryViewModel {
                     idMovimiento: "",
                     fechaInicial: startDate,
                     fechaFinal: endDate,
-                    identificacionCliente: "204880675"
+                    identificacionCliente: Variables.userProfile?.numeroIdentificacion ?? "204880675"
                 )
             )
         ))) { response in

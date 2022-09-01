@@ -33,7 +33,7 @@ class ThirdPartyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Compras a crédito activas de terceros"
+        tabBarController?.navigationItem.title = "Compras a crédito activas de terceros"
 
         self.tableView.rowHeight = 140.0
         configureRx()
@@ -85,7 +85,7 @@ class ThirdPartyViewController: UIViewController {
                        let secondLastName = data.apellido2 {
                         self.customerNameLabel.text = name + " " + lastName + " " + secondLastName
                     }
-                    self.navigationItem.title = "Cuentas activas de terceros"
+                    self.tabBarController?.navigationItem.title = "Cuentas activas de terceros"
                     self.customerDocumentLabel.text = "Cedula: \(number)"
                     self.fetchCustomerAccounts(documentType: type, documentId: number)
                 } else {

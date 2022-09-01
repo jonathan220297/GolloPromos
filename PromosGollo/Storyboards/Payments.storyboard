@@ -67,7 +67,7 @@
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ICT-x0-n4h">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="sectionIndexBackgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountsCell" rowHeight="335" id="RJe-r2-vaT" customClass="AccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
@@ -105,6 +105,7 @@
                                                                                     <subviews>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_account_payments" translatesAutoresizingMaskIntoConstraints="NO" id="sO5-dn-Qg4">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                                            <color key="tintColor" name="colorPrimary"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="40" id="eo3-4t-Ykb"/>
                                                                                                 <constraint firstAttribute="width" constant="40" id="iSv-RZ-a9Y"/>
@@ -136,6 +137,7 @@
                                                                                     <subviews>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_item_detail" translatesAutoresizingMaskIntoConstraints="NO" id="naV-04-xch">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                                            <color key="tintColor" name="colorPrimary"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="40" id="EnN-Rd-t5G"/>
                                                                                                 <constraint firstAttribute="height" constant="40" id="o66-Cf-d6e"/>
@@ -176,6 +178,7 @@
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_initial_amount" translatesAutoresizingMaskIntoConstraints="NO" id="Be8-lx-BMY">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="30"/>
+                                                                                    <color key="tintColor" name="colorPrimary"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="24" id="aGc-Me-t5i"/>
                                                                                         <constraint firstAttribute="height" constant="30" id="oCV-XL-ths"/>
@@ -205,6 +208,7 @@
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_actual_amount" translatesAutoresizingMaskIntoConstraints="NO" id="Hz2-Ag-G8W">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="30"/>
+                                                                                    <color key="tintColor" name="colorPrimary"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="24" id="cp4-0k-Oxp"/>
                                                                                         <constraint firstAttribute="height" constant="30" id="tXt-Ui-GvB"/>
@@ -234,6 +238,7 @@
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_payment_amount" translatesAutoresizingMaskIntoConstraints="NO" id="cZH-LH-eQ8">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="30"/>
+                                                                                    <color key="tintColor" name="colorPrimary"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="24" id="2l3-aW-moO"/>
                                                                                         <constraint firstAttribute="height" constant="30" id="lNT-xQ-baq"/>
@@ -540,7 +545,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="85"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cantidad de transacciones" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pl9-Pu-5TX">
-                                        <rect key="frame" x="4" y="0.0" width="406" height="21"/>
+                                        <rect key="frame" x="8" y="0.0" width="398" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="fjJ-ZN-KSA"/>
                                         </constraints>
@@ -617,8 +622,8 @@
                                     <constraint firstItem="ivV-Br-pee" firstAttribute="centerX" secondItem="55K-9p-Ril" secondAttribute="centerX" id="OJH-3L-Svj"/>
                                     <constraint firstAttribute="trailing" secondItem="ivV-Br-pee" secondAttribute="trailing" constant="8" id="Wb6-S5-wkJ"/>
                                     <constraint firstItem="ivV-Br-pee" firstAttribute="leading" secondItem="55K-9p-Ril" secondAttribute="leading" constant="8" id="fn8-pT-lhp"/>
-                                    <constraint firstItem="Pl9-Pu-5TX" firstAttribute="leading" secondItem="55K-9p-Ril" secondAttribute="leading" constant="4" id="oFE-cp-SlG"/>
-                                    <constraint firstAttribute="trailing" secondItem="Pl9-Pu-5TX" secondAttribute="trailing" constant="4" id="xOT-Hh-PVb"/>
+                                    <constraint firstItem="Pl9-Pu-5TX" firstAttribute="leading" secondItem="55K-9p-Ril" secondAttribute="leading" constant="8" id="oFE-cp-SlG"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pl9-Pu-5TX" secondAttribute="trailing" constant="8" id="xOT-Hh-PVb"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFD-8v-zAv">
@@ -1164,6 +1169,7 @@
                                                                                             <subviews>
                                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_item_detail" translatesAutoresizingMaskIntoConstraints="NO" id="42J-8p-e1l">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                                                    <color key="tintColor" name="colorPrimary"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="width" constant="40" id="MDm-Wb-LPm"/>
                                                                                                         <constraint firstAttribute="height" constant="40" id="f5b-zX-ptd"/>
@@ -1203,6 +1209,7 @@
                                                                                                     <subviews>
                                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_initial_amount" translatesAutoresizingMaskIntoConstraints="NO" id="JXZ-yb-j3w">
                                                                                                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                                                                            <color key="tintColor" name="colorPrimary"/>
                                                                                                             <constraints>
                                                                                                                 <constraint firstAttribute="width" constant="24" id="Gc3-sc-l7Y"/>
                                                                                                                 <constraint firstAttribute="height" constant="24" id="Gmr-Fl-dTT"/>
@@ -1232,6 +1239,7 @@
                                                                                                     <subviews>
                                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_actual_amount" translatesAutoresizingMaskIntoConstraints="NO" id="Lbi-gg-Ixt">
                                                                                                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                                                                            <color key="tintColor" name="colorPrimary"/>
                                                                                                             <constraints>
                                                                                                                 <constraint firstAttribute="width" constant="24" id="6n0-u8-tJN"/>
                                                                                                                 <constraint firstAttribute="height" constant="24" id="8xZ-BZ-dBJ"/>
@@ -1261,6 +1269,7 @@
                                                                                                     <subviews>
                                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_payment_amount" translatesAutoresizingMaskIntoConstraints="NO" id="CKz-CT-gsy">
                                                                                                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                                                                            <color key="tintColor" name="colorPrimary"/>
                                                                                                             <constraints>
                                                                                                                 <constraint firstAttribute="width" constant="24" id="5NR-ho-oK9"/>
                                                                                                                 <constraint firstAttribute="height" constant="24" id="G20-e7-gjL"/>
@@ -1865,7 +1874,7 @@
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7gw-To-P1q">
                                         <rect key="frame" x="0.0" y="62" width="414" height="707"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="sectionIndexBackgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="140" id="u7D-QO-eQl" customClass="ThirdPartyAccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
@@ -2080,8 +2089,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euX-Ue-U3T">
                                         <rect key="frame" x="0.0" y="0.0" width="331" height="80"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_items" translatesAutoresizingMaskIntoConstraints="NO" id="NJW-2L-LVG">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_item_detail" translatesAutoresizingMaskIntoConstraints="NO" id="NJW-2L-LVG">
                                                 <rect key="frame" x="8" y="15" width="50" height="50"/>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="2lU-tj-i8A"/>
                                                     <constraint firstAttribute="height" constant="50" id="JJD-KH-Q3v"/>
@@ -3382,16 +3392,15 @@
         <image name="chevron.up" catalog="system" width="128" height="72"/>
         <image name="creditcard" catalog="system" width="128" height="88"/>
         <image name="downarrow" width="128" height="128"/>
-        <image name="ic_account_payments" width="100" height="100"/>
-        <image name="ic_actual_amount" width="100" height="100"/>
-        <image name="ic_check" width="289.5" height="275.5"/>
+        <image name="ic_account_payments" width="50" height="50"/>
+        <image name="ic_actual_amount" width="50" height="50"/>
+        <image name="ic_check" width="12" height="12"/>
         <image name="ic_history" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="ic_initial_amount" width="100" height="100"/>
+        <image name="ic_initial_amount" width="50" height="50"/>
         <image name="ic_installment_payment" width="256" height="256"/>
-        <image name="ic_item_detail" width="100" height="100"/>
-        <image name="ic_items" width="256" height="256"/>
+        <image name="ic_item_detail" width="50" height="50"/>
         <image name="ic_menu_accounts" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="ic_payment_amount" width="100" height="100"/>
+        <image name="ic_payment_amount" width="50" height="50"/>
         <image name="ic_payment_status" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_radio-button-checked" width="128" height="128"/>
         <image name="ic_radio-button-unchecked" width="128" height="128"/>

@@ -24,7 +24,7 @@ class AccountsViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
 
-        navigationItem.title = "Mis compras a crédito"
+        tabBarController?.navigationItem.title = "Mis compras a crédito"
 
         tableView.rowHeight = 335.0
         tableView.tableFooterView = UIView()
@@ -51,7 +51,7 @@ class AccountsViewController: UIViewController {
 
     fileprivate func fetchAccounts() {
         self.view.activityStarAnimating()
-        viewModel.fetchAccounts(with: "C", documentId: "205080150")
+        viewModel.fetchAccounts(with: Variables.userProfile?.tipoIdentificacion ?? "C", documentId: Variables.userProfile?.numeroIdentificacion ?? "205080150")
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,

@@ -21,6 +21,8 @@ class PaymentConfirmViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Método de pago"
+
         navigationController?.navigationBar.isHidden = false
         if let suggested = numberFormatter.string(from: NSNumber(value: round(paymentAmmount))) {
             subtotalLabel.text = "₡" + String(suggested)

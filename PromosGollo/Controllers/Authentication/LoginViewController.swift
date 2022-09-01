@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
     }()
     let authService = AuthenticationService()
     let disposeBag = DisposeBag()
+    let userDefaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,14 @@ class LoginViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                if let info = data.registro {
+                    Variables.userProfile = info
+                    do {
+                        try self.userDefaults.setObject(info, forKey: "Information")
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false

@@ -20,7 +20,7 @@ class SearchDocumentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewPopup.clipsToBounds = true
-
+        navigationItem.title = "SearchViewController"
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(closePopUp))
         tapRecognizer.numberOfTapsRequired = 1
         tapRecognizer.delegate = self
