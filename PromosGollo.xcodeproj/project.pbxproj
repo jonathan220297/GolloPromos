@@ -123,7 +123,6 @@
 		4F4EC47B2727680E007B17FE /* DocType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47A2727680E007B17FE /* DocType.swift */; };
 		4F4EC47E27276A50007B17FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EC48027276A50007B17FE /* Localizable.strings */; };
 		4F59347E271FD6AD00C63A6F /* Pods_PromosGollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; };
-		4F59347F271FD6AD00C63A6F /* Pods_PromosGollo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4F69893D28BD9EEB000FFA56 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69893C28BD9EEB000FFA56 /* PaymentRequest.swift */; };
 		4F69893F28BDAC8D000FFA56 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69893E28BDAC8D000FFA56 /* PaymentResponse.swift */; };
 		4F69894328BDB625000FFA56 /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69894128BDB625000FFA56 /* PaymentSuccessViewController.swift */; };
@@ -241,7 +240,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4F59347F271FD6AD00C63A6F /* Pods_PromosGollo.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2009,7 +2007,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96F6YR25FV;
+				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
 				INFOPLIST_FILE = PromosGollo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2017,8 +2015,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.merkers.PromosGollo;
+				MARKETING_VERSION = 0.9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2032,7 +2030,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96F6YR25FV;
+				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
 				INFOPLIST_FILE = PromosGollo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2040,8 +2038,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.merkers.PromosGollo;
+				MARKETING_VERSION = 0.9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
