@@ -65,6 +65,12 @@ class EditProfileViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Perfil de usuario"
+        let barAppearance = UINavigationBarAppearance()
+        barAppearance.backgroundColor = .primary
+        barAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+
+        navigationItem.standardAppearance = barAppearance
+        navigationItem.scrollEdgeAppearance = barAppearance
         configureRx()
 
         // Delegate of Image Picker
@@ -72,7 +78,7 @@ class EditProfileViewController: UIViewController {
 
         hideKeyboardWhenTappedAround()
 
-        if let info = Variables.userProfile {
+        if let info = Variables.userProfile, Variables.isRegisterUser {
             let data = UserData(
                 tipoIdentificacion: info.tipoIdentificacion,
                 tarjetasDeCredito: "",
@@ -201,28 +207,28 @@ class EditProfileViewController: UIViewController {
             .rx
             .text
             .orEmpty
-            .map { $0.count > 0 }
+            .map { $0.count > 0 || self.phoneNumberTextField.text?.count ?? 0 > 0 }
             .share(replay: 1)
 
         let mobileValidation = mobileTextField
             .rx
             .text
             .orEmpty
-            .map { $0.count > 0 }
+            .map { $0.count > 0 || self.mobileTextField.text?.count ?? 0 > 0 }
             .share(replay: 1)
 
         let emailValidation = emailTextField
             .rx
             .text
             .orEmpty
-            .map { $0.count > 0 }
+            .map { $0.count > 0 || self.emailTextField.text?.count ?? 0 > 0 }
             .share(replay: 1)
 
         let addressValidation = addressTextField
             .rx
             .text
             .orEmpty
-            .map { $0.count > 0 }
+            .map { $0.count > 0 || self.addressTextField.text?.count ?? 0 > 0 }
             .share(replay: 1)
 
         let everythingValid = Observable.combineLatest(
@@ -362,7 +368,7 @@ class EditProfileViewController: UIViewController {
         if documentType.isEmpty {
             showAlert(alertText: "GolloApp", alertMessage: "Seleccione el tipo de documento de idendidad")
         } else if documentNumberLabel.text?.isEmpty ?? true {
-            showAlert(alertText: "GolloApp", alertMessage: "Seleccione el tipo de documento de idendidad")
+            showAlert(alertText: "GolloApp", alertMessage: "Ingrese documento de idendidad")
         } else if !isValidCelular(number: documentNumberLabel.text ?? "")  {
             showAlert(alertText: "GolloApp", alertMessage: "Cédula inválida")
         } else {

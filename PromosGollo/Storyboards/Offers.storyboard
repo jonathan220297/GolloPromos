@@ -46,8 +46,9 @@
                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-8q-vXb">
-                                        <rect key="frame" x="152" y="244.5" width="110" height="110.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-8q-vXb">
+                                        <rect key="frame" x="152" y="246" width="110" height="108"/>
+                                        <color key="tintColor" red="0.079844074079999994" green="0.3590557606" blue="0.56809224449999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cDm-8q-vXb" secondAttribute="height" multiplier="1:1" id="4Wg-WC-DB6"/>
                                         </constraints>
@@ -83,7 +84,9 @@
                             <constraint firstItem="Pwd-NV-4lw" firstAttribute="top" secondItem="XUc-4i-4PS" secondAttribute="bottom" id="quU-nN-xMP"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Mis órdenes" id="mEo-cU-Wve"/>
+                    <tabBarItem key="tabBarItem" title="Mis órdenes" image="heart" catalog="system" id="mEo-cU-Wve">
+                        <color key="badgeColor" red="0.0" green="0.39239364859999998" blue="0.70810222629999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5B1-dH-uzs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -158,7 +161,7 @@
                             <constraint firstItem="LRK-6e-VgI" firstAttribute="leading" secondItem="et1-i2-cQj" secondAttribute="leading" constant="4" id="tb5-i2-cOZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Menu" id="Nfu-Pd-C5V"/>
+                    <tabBarItem key="tabBarItem" title="Menu" image="ic_offers_menu" id="Nfu-Pd-C5V"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9XT-ff-jus" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -296,7 +299,9 @@
                             <constraint firstItem="pRr-Tt-uTy" firstAttribute="top" secondItem="4dk-Xq-cwe" secondAttribute="top" id="WuJ-0M-Klk"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Offers" image="ic_offers_home" id="bDw-yI-8eO"/>
+                    <tabBarItem key="tabBarItem" title="Offers" image="ic_offers_home" id="bDw-yI-8eO">
+                        <color key="badgeColor" red="0.0" green="0.35540325709999998" blue="0.65242747700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="Q11-cS-LJN"/>
                     <connections>
                         <outlet property="closeFilterButton" destination="FP2-53-Yzj" id="LVL-pq-EGS"/>
@@ -491,7 +496,7 @@
                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h3Z-yW-i7N">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_cart" translatesAutoresizingMaskIntoConstraints="NO" id="h3Z-yW-i7N">
                                         <rect key="frame" x="146" y="274" width="122" height="122.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="h3Z-yW-i7N" secondAttribute="height" multiplier="1:1" id="paK-DJ-wzB"/>
@@ -530,7 +535,7 @@
                             <constraint firstItem="oc8-er-7nx" firstAttribute="top" secondItem="1Xm-nG-Mg0" secondAttribute="top" constant="8" id="pKD-Z7-a4m"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Carrito" id="WkX-7g-jm4"/>
+                    <tabBarItem key="tabBarItem" title="Carrito" image="ic_cart" id="WkX-7g-jm4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aq6-2e-I5V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1133,6 +1138,7 @@
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="downarrow" width="128" height="128"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="ic_cart" width="30" height="30"/>
         <image name="ic_filtrar" width="170.66667175292969" height="170.66667175292969"/>
         <image name="ic_marca" width="50" height="50"/>
         <image name="ic_offer_bonus" width="25" height="25"/>
@@ -1141,6 +1147,7 @@
         <image name="ic_offer_gifted_product" width="50" height="50"/>
         <image name="ic_offer_percentage" width="25" height="25"/>
         <image name="ic_offers_home" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="ic_offers_menu" width="33.333332061767578" height="33.333332061767578"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -77,7 +77,7 @@ class EditProfileViewModel {
 
     func updateUserData(with userInfo: UserInfo) -> BehaviorRelay<SaveUserResponse?> {
         let apiResponse: BehaviorRelay<SaveUserResponse?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<SaveUserResponse, UserInfo>(
+        service.callWebServiceGolloAlternative(BaseRequest<SaveUserResponse, UserInfo>(
             service: BaseServiceRequestParam<UserInfo>(
                 servicio: ServicioParam(
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.REGISTER_CLIENT_PROCESS_ID.rawValue),
