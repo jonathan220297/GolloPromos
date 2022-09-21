@@ -44,7 +44,6 @@ class OffersViewController: UIViewController {
     }
 
     // MARK: - Functions
-    
     fileprivate func configureRx() {
         viewModel.errorMessage
             .asObservable()
