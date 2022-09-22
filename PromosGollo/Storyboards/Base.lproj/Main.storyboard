@@ -375,7 +375,7 @@
                                                             <constraint firstItem="UUZ-jM-MYX" firstAttribute="leading" secondItem="Nmu-rP-21j" secondAttribute="leading" id="elO-Av-6gD"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Sign in with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="pGx-Ox-4cf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O ingresa con" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="pGx-Ox-4cf">
                                                         <rect key="frame" x="132.5" y="0.0" width="117" height="25"/>
                                                         <fontDescription key="fontDescription" name="SansSerifFLF-Demibold" family="SansSerifFLF" pointSize="15"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor"/>

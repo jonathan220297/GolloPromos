@@ -25,7 +25,7 @@ class TransactionsHistoryViewModel {
                 encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.ACCOUNT_PAYMENT_HISTORY.rawValue),
                 parametros: TransactionHistoryServiceRequest (
                     empresa: "10",
-                    idCliente: "205080150",
+                    idCliente: Variables.userProfile?.numeroIdentificacion ?? "205080150",
                     idCuenta: accountId,
                     idOrigen: "Promos",
                     numPagos: transactions,
