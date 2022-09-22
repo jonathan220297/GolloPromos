@@ -7,6 +7,8 @@
 
 import UIKit
 import Nuke
+import RxSwift
+import DropDown
 
 class OfferDetailViewController: UIViewController {
 
@@ -30,6 +32,12 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var sepView: UIView!
     @IBOutlet weak var priceHeightView: NSLayoutConstraint!
 
+    @IBOutlet weak var cartView: UIView!
+    @IBOutlet weak var serviceLabel: UILabel!
+    @IBOutlet weak var serviceButton: UIButton!
+    @IBOutlet weak var addCartButton: UIButton!
+    @IBOutlet weak var cartViewHeight: NSLayoutConstraint!
+
     @IBOutlet weak var discountView: UIView!
     @IBOutlet weak var tintView: UIView!
     @IBOutlet weak var discountLabel: UILabel!
@@ -49,6 +57,14 @@ class OfferDetailViewController: UIViewController {
     var offer: ProductsData?
     let defaults = UserDefaults.standard
 
+    lazy var viewModel: OfferDetailViewModel = {
+        return OfferDetailViewModel()
+    }()
+    let bag = DisposeBag()
+
+    var article: OfferDetail?
+    var warrantyMonth = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,7 +72,8 @@ class OfferDetailViewController: UIViewController {
         scrollImageView.minimumZoomScale = 1
         scrollImageView.maximumZoomScale = 4
 
-        showData()
+        configureRx()
+        fetchData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -74,8 +91,96 @@ class OfferDetailViewController: UIViewController {
     }
 
     //MARK: - Functions
-    private func showData() {
+    fileprivate func configureRx() {
+        viewModel.errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self else { return }
+                if !error.isEmpty {
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    self.viewModel.errorMessage.accept("")
+                }
+            })
+            .disposed(by: bag)
+
+        serviceButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.configureServiceDropDown()
+            })
+            .disposed(by: bag)
+
+        addCartButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.addToCart()
+            })
+            .disposed(by: bag)
+    }
+
+    private func fetchData() {
+        self.view.activityStartAnimatingFull()
+        if let sku = offer?.productCode {
+            viewModel.fetchOfferDetail(sku: sku)
+                .asObservable()
+                .subscribe(onNext: {[weak self] data in
+                    guard let self = self,
+                          let data = data else { return }
+                    self.showData(with: data)
+                    self.article = data
+                })
+                .disposed(by: bag)
+        }
+    }
+
+    private func addToCart() {
+        if let offer = offer, let article = article {
+            var param: [CartItemDetail] = []
+            let item = CartItemDetail(
+                cantidad: 1,
+                idLinea: 1,
+                mesesExtragar: warrantyMonth,
+                descripcion: offer.productName ?? "",
+                sku: offer.productCode ?? "",
+                descuento: 0.0,
+                montoDescuento: article.articulo?.precioDescuento ?? 0.0,
+                montoExtragar: 0.0,
+                porcDescuento: 0.0,
+                precioExtendido: (article.articulo?.precio ?? 0.0 - (article.articulo?.montoDescuento ?? 0.0)),
+                precioUnitario: article.articulo?.precio ?? 0.0
+            )
+            param.append(item)
+            viewModel.addCart(parameters: param)
+                .asObservable()
+                .subscribe(onNext: {[weak self] data in
+                    guard let self = self,
+                          let _ = data else { return }
+                    DispatchQueue.main.async {
+                        let offerServiceProtectionViewController = OfferServiceProtectionViewController()
+                        offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
+                        offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
+                        self.present(offerServiceProtectionViewController, animated: true)
+
+                    }
+                })
+                .disposed(by: bag)
+        }
+    }
+    
+    private func showData(with data: OfferDetail) {
+        self.initGolloPlus(with: data)
+        if !Variables.isRegisterUser {
+            DispatchQueue.main.async {
+                self.cartView.visibility = .gone
+                self.cartViewHeight.constant = 0
+                self.cartView.layoutIfNeeded()
+            }
+        }
+
         if let offer = offer {
+            self.view.activityStopAnimatingFull()
             let _:CGFloat = 0.0001
 
             let options = ImageLoadingOptions(
@@ -106,35 +211,55 @@ class OfferDetailViewController: UIViewController {
             descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productsDataDescription ?? "")
             dateLabel.attributedText = formatHTML(header: "Fecha de Vencimiento: ", content: convertDate(date: offer.endDate ?? "") ?? "")
 
-            if let original = offer.originalPrice, let final = offer.precioFinal {
-                if original == 0 || final == 0 {
-                    DispatchQueue.main.async {
-                        self.pricesView.alpha = 0
-                        self.sepView.alpha = 0
-                        self.pricesView.layoutIfNeeded()
-                    }
-                } else {
-                    let formatter = NumberFormatter()
-                    formatter.numberStyle = NumberFormatter.Style.decimal
+            let formatter = NumberFormatter()
+            formatter.numberStyle = NumberFormatter.Style.decimal
 
-                    let saving = original - final
-                    let savingString = formatter.string(from: NSNumber(value: saving))!
-                    savingsLabel.text = "\(offer.simboloMoneda ?? "$")\(savingString)"
+            let originalString = formatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? "$")\(originalString)")
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            originalPrice.attributedText = attributeString
 
-                    let discountString = formatter.string(from: NSNumber(value: final))!
-                    discountPriceLabel.text = "\(offer.simboloMoneda ?? "$")\(discountString)"
+            if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0,
+               let price = data.articulo?.precio, price > 0.0 {
+                let savingString = formatter.string(from: NSNumber(value: totalDiscount))!
+                savingsLabel.text = "\(offer.simboloMoneda ?? "$")\(savingString)"
 
-                    let originalString = formatter.string(from: NSNumber(value: original))!
-                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? "$")\(originalString)")
-                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-                    originalPrice.attributedText = attributeString
-                }
+                let discountString = formatter.string(from: NSNumber(value: data.articulo?.precioDescuento ?? 0.0))!
+                discountPriceLabel.text = "\(offer.simboloMoneda ?? "$")\(discountString)"
             } else {
-                DispatchQueue.main.async {
-                    self.pricesView.alpha = 0
-                    self.sepView.alpha = 0
-                }
+                self.savingsLabel.alpha = 0
+                self.discountLabel.alpha = 0
             }
+
+//            if let original = offer.originalPrice, let final = offer.precioFinal {
+//                if original == 0 || final == 0 {
+//                    DispatchQueue.main.async {
+//                        self.pricesView.alpha = 0
+//                        self.sepView.alpha = 0
+//                        self.pricesView.layoutIfNeeded()
+//                    }
+//                } else {
+//                    let formatter = NumberFormatter()
+//                    formatter.numberStyle = NumberFormatter.Style.decimal
+//
+//                    let saving = original - final
+//                    let savingString = formatter.string(from: NSNumber(value: saving))!
+//                    savingsLabel.text = "\(offer.simboloMoneda ?? "$")\(savingString)"
+//
+//                    let discountString = formatter.string(from: NSNumber(value: final))!
+//                    discountPriceLabel.text = "\(offer.simboloMoneda ?? "$")\(discountString)"
+//
+//                    let originalString = formatter.string(from: NSNumber(value: original))!
+//                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? "$")\(originalString)")
+//                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+//                    originalPrice.attributedText = attributeString
+//                }
+//            } else {
+//                DispatchQueue.main.async {
+//                    self.pricesView.alpha = 0
+//                    self.sepView.alpha = 0
+//                }
+//            }
 
             let descuento = offer.tieneDescuento?.bool
             let regalia = offer.tieneRegalia?.bool
@@ -174,6 +299,37 @@ class OfferDetailViewController: UIViewController {
             }
 
         } else { return }
+    }
+
+    private func initGolloPlus(with data: OfferDetail) {
+        var documents: [Warranty] = []
+        let lovN = Warranty(plazoMeses: 0, porcentaje: 0.0, montoExtragarantia: 0.0, impuestoExtragarantia: 0.0, titulo: "Sin gollo plus")
+        documents.append(lovN)
+        if let warranty = data.articulo?.extraGarantia {
+            for w in warranty {
+                let amount = String(w.montoExtragarantia ?? 0.0).currencyFormatting()
+                let lov = Warranty(
+                    plazoMeses: w.plazoMeses,
+                    porcentaje: w.porcentaje,
+                    montoExtragarantia: w.montoExtragarantia,
+                    impuestoExtragarantia: w.impuestoExtragarantia,
+                    titulo: "\(w.plazoMeses ?? 0) meses + \(amount)"
+                )
+                documents.append(lov)
+            }
+        }
+        viewModel.documents = documents
+    }
+
+    private func configureServiceDropDown() {
+        let dropDown = DropDown()
+        dropDown.anchorView = serviceButton
+        dropDown.dataSource = viewModel.documents.map { $0.titulo ?? "" }
+        dropDown.show()
+        dropDown.selectionAction = { [self] (index: Int, item: String) in
+            warrantyMonth = viewModel.documents[index].plazoMeses ?? 0
+            serviceLabel.text = item
+        }
     }
 
     private func isFavorite() -> UIImage? {

@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Account-->
+        <!--Cuentas-->
         <scene sceneID="5Eg-mh-ydi">
             <objects>
                 <viewController storyboardIdentifier="accountsVC" id="SJP-gT-CBt" customClass="AccountsViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
@@ -520,7 +520,7 @@
                             <constraint firstItem="jOT-vz-5QV" firstAttribute="top" secondItem="2ps-PK-xbH" secondAttribute="top" id="pLC-yc-5Jf"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Account" image="ic_menu_accounts" id="Pht-FY-MyS"/>
+                    <tabBarItem key="tabBarItem" title="Cuentas" image="ic_menu_accounts" id="Pht-FY-MyS"/>
                     <navigationItem key="navigationItem" id="pjl-ll-hed"/>
                     <connections>
                         <outlet property="containerDataView" destination="XCw-AL-oNP" id="YTn-xI-3Go"/>
@@ -961,7 +961,7 @@
             </objects>
             <point key="canvasLocation" x="1921.7391304347827" y="79.6875"/>
         </scene>
-        <!--Status-->
+        <!--Estatus-->
         <scene sceneID="8IP-Rz-2tR">
             <objects>
                 <viewController storyboardIdentifier="presalesVC" id="8pN-IW-yp1" customClass="StatusViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
@@ -1654,7 +1654,7 @@
                             <constraint firstItem="JET-31-IvA" firstAttribute="top" secondItem="Ea7-kK-oVW" secondAttribute="top" constant="8" id="riD-hG-vnW"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Status" image="ic_payment_status" id="abh-Ga-hBY"/>
+                    <tabBarItem key="tabBarItem" title="Estatus" image="ic_payment_status" id="abh-Ga-hBY"/>
                     <navigationItem key="navigationItem" id="V82-Hf-iEV"/>
                     <connections>
                         <outlet property="accountsView" destination="CAg-AL-3Cs" id="JNn-9s-iCW"/>
@@ -1678,7 +1678,7 @@
             </objects>
             <point key="canvasLocation" x="2774" y="-232"/>
         </scene>
-        <!--Third-->
+        <!--Terceros-->
         <scene sceneID="Tn7-90-X8c">
             <objects>
                 <viewController storyboardIdentifier="statusVC" id="cOx-Dd-Pr4" customClass="ThirdPartyViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
@@ -2054,7 +2054,7 @@
                             <constraint firstItem="MF7-Cf-ind" firstAttribute="trailing" secondItem="6Cs-Zp-uCM" secondAttribute="trailing" id="sXc-K5-VfF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Third" image="ic_third_party_payment" id="gBj-03-UFQ"/>
+                    <tabBarItem key="tabBarItem" title="Terceros" image="ic_third_party_payment" id="gBj-03-UFQ"/>
                     <navigationItem key="navigationItem" id="Vlb-Hf-w7Q"/>
                     <connections>
                         <outlet property="customerDocumentLabel" destination="PJh-Zb-o26" id="rea-uS-XIu"/>
@@ -2230,7 +2230,7 @@
             </objects>
             <point key="canvasLocation" x="3948" y="88"/>
         </scene>
-        <!--History-->
+        <!--Historial-->
         <scene sceneID="q1D-D6-9Hw">
             <objects>
                 <viewController id="5Cj-CC-Ga0" customClass="HistoryViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
@@ -2569,7 +2569,7 @@
                             <constraint firstItem="OnM-zD-8qe" firstAttribute="bottom" secondItem="0yg-DM-PfG" secondAttribute="bottom" id="iSX-hD-dPd"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="History" image="ic_history" id="qPb-iv-bZD"/>
+                    <tabBarItem key="tabBarItem" title="Historial" image="ic_history" id="qPb-iv-bZD"/>
                     <navigationItem key="navigationItem" id="hEp-xI-7OC"/>
                     <connections>
                         <outlet property="emptyView" destination="e8j-f5-f4f" id="r3A-ui-cSC"/>

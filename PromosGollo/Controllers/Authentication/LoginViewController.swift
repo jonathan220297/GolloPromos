@@ -10,9 +10,15 @@ import RxSwift
 import GoogleSignIn
 import FirebaseAuth
 import XCGLogger
+import CryptoKit
+import AuthenticationServices
 
 private let minimalUsernameLength = 5
 private let minimalPasswordLength = 6
+
+protocol LoginDelegate {
+    func loginViewControllerShouldDismiss(_ loginViewController: LoginViewController)
+}
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
@@ -30,6 +36,8 @@ class LoginViewController: UIViewController {
     let authService = AuthenticationService()
     let disposeBag = DisposeBag()
     let userDefaults = UserDefaults.standard
+    var currentNonce = ""
+    var delegate: LoginDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,6 +183,65 @@ class LoginViewController: UIViewController {
             self.loginRequestInfo(for: loginType)
         }
     }
+
+    func appleLoginProcess() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+
+        // Generate nonce for validation after authentication successful
+        self.currentNonce = randomNonceString()
+        // Set the SHA256 hashed nonce to ASAuthorizationAppleIDRequest
+        request.nonce = sha256(currentNonce)
+
+        // Present Apple authorization form
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: Array<Character> =
+            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+                }
+                return random
+            }
+
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+
+        return result
+    }
+
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            return String(format: "%02x", $0)
+        }.joined()
+
+        return hashString
+    }
 }
 
 extension LoginViewController: GIDSignInDelegate {
@@ -199,6 +266,66 @@ extension LoginViewController: GIDSignInDelegate {
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true)
             }
+        }
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+
+            // Save authorised user ID for future reference
+            UserDefaults.standard.set(appleIDCredential.user, forKey: "appleAuthorizedUserIdKey")
+
+            // Retrieve Apple identity token
+            guard let appleIDToken = appleIDCredential.identityToken else {
+                print("Failed to fetch identity token")
+                return
+            }
+
+            // Convert Apple identity token to string
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                print("Failed to decode identity token")
+                return
+            }
+
+            // Initialize a Firebase credential using secure nonce and Apple identity token
+            let firebaseCredential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                              idToken: idTokenString,
+                                                              rawNonce: self.currentNonce)
+
+            // Sign in with Firebase
+            authService.signIn(with: firebaseCredential) { user, error in
+                if let error = error {
+                    self.showAlert(alertText: "Shoppi", alertMessage: error)
+                }
+                guard let user = user else { return }
+                // Mak a request to set user's display name on Firebase
+                let changeRequest = user.createProfileChangeRequest()
+                changeRequest.displayName = appleIDCredential.fullName?.givenName
+                changeRequest.commitChanges(completion: { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        print("Updated display name: \(Auth.auth().currentUser!.displayName!)")
+                    }
+                })
+                self.viewModel.setUserData(with: user)
+            }
+        }
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+        log.debug("Sign in with Apple errored: \(error)")
+        let nsError = error as NSError
+        if nsError.code != 1001 {
+            self.showAlert(alertText: "Shoppi", alertMessage: "Apple ID sign in error.")
         }
     }
 }
