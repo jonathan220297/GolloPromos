@@ -77,27 +77,43 @@ class HomeViewModel {
             if !sectionsArray[i].isSection {
                 let image = sectionsArray[i].banner?.images?.first?.image?.replacingOccurrences(of: " ", with: "%20") ?? ""
                 log.debug(image)
-                sectionsArray[i].banner?.uiHeight = fetchImageHeight(with: URL(string: image))
+                downloaded(from: image) { height in
+                    self.sectionsArray[i].banner?.uiHeight = height
+                }
             }
         }
         self.reloadTableViewData?()
     }
     
-    func fetchImageHeight(with url: URL?) -> CGFloat {
-        guard let url = url else { return 0.0 }
-        if let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) {
-            if let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as Dictionary? {
-                let pixelWidth = imageProperties[kCGImagePropertyPixelWidth] as! Double
-                let pixelHeight = imageProperties[kCGImagePropertyPixelHeight] as! Double
-                let myViewWidth = self.tableViewWidth
-     
-                let ratio = myViewWidth / CGFloat(pixelWidth)
-                let scaledHeight = CGFloat(pixelHeight) * ratio
-
-                return scaledHeight
+    func downloaded(from url: URL, completion: @escaping(_ image: UIImage?) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else {
+                completion(nil)
+                return
             }
+            DispatchQueue.main.async {
+                completion(image)
+            }
+        }.resume()
+    }
+    func downloaded(from link: String, completion: @escaping(_ height: Double) -> Void) {
+        guard let url = URL(string: link) else {
+            completion(0.0)
+            return
         }
-        return 0.0
+        downloaded(from: url) { image in
+            guard let height = image?.size.height,
+                  let width = image?.size.width else { return }
+            let myViewWidth = self.tableViewWidth
+            
+            let ratio = myViewWidth / CGFloat(width)
+            let scaledHeight = CGFloat(height) * ratio
+            completion(scaledHeight)
+        }
     }
 }
-
