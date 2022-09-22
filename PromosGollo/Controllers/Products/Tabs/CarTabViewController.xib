@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CarTabViewController" customModule="PromosGollo" customModuleProvider="target">
             <connections>
                 <outlet property="carTableView" destination="fNM-Dn-5qh" id="Xwl-Cn-tk1"/>
+                <outlet property="endOrderButton" destination="XBF-MB-DVA" id="jff-LJ-euk"/>
+                <outlet property="totalLabel" destination="RHK-O4-4K0" id="QgB-u1-a0Z"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

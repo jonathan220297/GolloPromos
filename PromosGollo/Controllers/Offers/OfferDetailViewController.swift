@@ -53,6 +53,10 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var bonusView: UIView!
     @IBOutlet weak var bonoConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var carView: UIView!
+    @IBOutlet weak var carItemLabel: UILabel!
+    @IBOutlet weak var carButton: UIButton!
+    
     // Variables
     var offer: ProductsData?
     let defaults = UserDefaults.standard
@@ -74,6 +78,7 @@ class OfferDetailViewController: UIViewController {
 
         configureRx()
         fetchData()
+        configureViews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +96,10 @@ class OfferDetailViewController: UIViewController {
     }
 
     //MARK: - Functions
+    func configureViews() {
+        carView.layer.cornerRadius = 20.0
+    }
+    
     fileprivate func configureRx() {
         viewModel.errorMessage
             .asObservable()
@@ -116,6 +125,15 @@ class OfferDetailViewController: UIViewController {
             .tap
             .subscribe(onNext: {
                 self.addToCart()
+            })
+            .disposed(by: bag)
+        
+        carButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                NotificationCenter.default.post(name: Notification.Name("moveToCar"), object: nil)
+                self.navigationController?.popViewController(animated: true)
             })
             .disposed(by: bag)
     }
@@ -162,7 +180,8 @@ class OfferDetailViewController: UIViewController {
                         offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
                         offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
                         self.present(offerServiceProtectionViewController, animated: true)
-
+                        self.carView.isHidden = false
+                        self.carItemLabel.text = "\(param.count) Items(s) en el carrito"
                     }
                 })
                 .disposed(by: bag)

@@ -182,6 +182,10 @@
 		4FDA3AA826D8FE27003B2CB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA3AA626D8FE27003B2CB6 /* LaunchScreen.storyboard */; };
 		4FDA3AB326D8FE28003B2CB6 /* PromosGolloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3AB226D8FE28003B2CB6 /* PromosGolloTests.swift */; };
 		4FDA3ABE26D8FE28003B2CB6 /* PromosGolloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3ABD26D8FE28003B2CB6 /* PromosGolloUITests.swift */; };
+		4FDB6EC628DCE28E0002DA0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC528DCE28E0002DA0B /* GoogleService-Info.plist */; };
+		4FDB6ECA28DD18EA0002DA0B /* PaymentAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */; };
+		4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */; };
+		4FDB6ECD28DD1CAF0002DA0B /* PaymentAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */; };
 		4FDD105728D000700082ADB5 /* ProductsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD105528D000700082ADB5 /* ProductsTabViewController.swift */; };
 		4FDD105828D000700082ADB5 /* ProductsTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDD105628D000700082ADB5 /* ProductsTabViewController.xib */; };
 		4FDD105B28D15E910082ADB5 /* CarTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD105928D15E910082ADB5 /* CarTabViewController.swift */; };
@@ -224,7 +228,6 @@
 		4FEDF8E828B9E5A800719245 /* TransactionHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */; };
 		4FF01FF728BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF01FF628BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift */; };
 		4FFCD37028C1494500D13F38 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCD36F28C1494500D13F38 /* UserDefaults+Extensions.swift */; };
-		4FFCD37428C17F8B00D13F38 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FFCD37328C17F8B00D13F38 /* GoogleService-Info.plist */; };
 		4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */; };
 		4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */; };
 		4FFD9CA4272A16D2004778F1 /* CategoryOffersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */; };
@@ -451,6 +454,10 @@
 		4FDA3AB926D8FE28003B2CB6 /* PromosGolloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PromosGolloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3ABD26D8FE28003B2CB6 /* PromosGolloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosGolloUITests.swift; sourceTree = "<group>"; };
 		4FDA3ABF26D8FE28003B2CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FDB6EC528DCE28E0002DA0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewController.swift; sourceTree = "<group>"; };
+		4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentAddressViewController.xib; sourceTree = "<group>"; };
+		4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewModel.swift; sourceTree = "<group>"; };
 		4FDD105528D000700082ADB5 /* ProductsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTabViewController.swift; sourceTree = "<group>"; };
 		4FDD105628D000700082ADB5 /* ProductsTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductsTabViewController.xib; sourceTree = "<group>"; };
 		4FDD105928D15E910082ADB5 /* CarTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTabViewController.swift; sourceTree = "<group>"; };
@@ -493,7 +500,6 @@
 		4FEDF8E728B9E5A800719245 /* TransactionHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		4FF01FF628BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPaymentTableViewCell.swift; sourceTree = "<group>"; };
 		4FFCD36F28C1494500D13F38 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
-		4FFCD37328C17F8B00D13F38 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewCell.swift; sourceTree = "<group>"; };
 		4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryOffersTableViewCell.xib; sourceTree = "<group>"; };
 		4FFD9CA3272A16D2004778F1 /* CategoryOffersTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewModel.swift; sourceTree = "<group>"; };
@@ -735,6 +741,7 @@
 		4F0D96C926DDDECA0061E89E /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				4FDB6EC728DD18CE0002DA0B /* PaymentAddress */,
 				4F69894028BDB5FF000FFA56 /* PaymentSuccess */,
 				4F0D96CA26DDDEE30061E89E /* AccountsViewController.swift */,
 				4F1732422701494900D7924D /* HistoryViewController.swift */,
@@ -985,6 +992,7 @@
 				4F11E040272DB38000E15003 /* AccountItemsViewModel.swift */,
 				4FC04C5D28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift */,
 				4F75A54728AEFE650001CC4D /* PaymentDataViewModel.swift */,
+				4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -1242,7 +1250,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4FFCD37328C17F8B00D13F38 /* GoogleService-Info.plist */,
+				4FDB6EC528DCE28E0002DA0B /* GoogleService-Info.plist */,
 			);
 			path = PromosGollo;
 			sourceTree = "<group>";
@@ -1263,6 +1271,15 @@
 				4FDA3ABF26D8FE28003B2CB6 /* Info.plist */,
 			);
 			path = PromosGolloUITests;
+			sourceTree = "<group>";
+		};
+		4FDB6EC728DD18CE0002DA0B /* PaymentAddress */ = {
+			isa = PBXGroup;
+			children = (
+				4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */,
+				4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */,
+			);
+			path = PaymentAddress;
 			sourceTree = "<group>";
 		};
 		4FE190F826DEF5C100322128 /* Home */ = {
@@ -1584,7 +1601,6 @@
 				4FE573A728C16AEF00BBDEBC /* SignupWaringViewController.xib in Resources */,
 				4F0D967526DDBB810061E89E /* SansSerifExbFLF-Italic.otf in Resources */,
 				4F0D968126DDBC740061E89E /* Home.storyboard in Resources */,
-				4FFCD37428C17F8B00D13F38 /* GoogleService-Info.plist in Resources */,
 				4F0D96A826DDD6530061E89E /* Profile.storyboard in Resources */,
 				4F0D968926DDCF4D0061E89E /* Menu.storyboard in Resources */,
 				4F0D967026DDBB810061E89E /* SansSerifBldFLFCond-Italic.otf in Resources */,
@@ -1596,7 +1612,9 @@
 				4FCEB7E128CFF9A0009B3FDF /* OffersTabViewController.xib in Resources */,
 				4F0D96C626DDD98B0061E89E /* Payments.storyboard in Resources */,
 				4FEA90A628CFF6F300A73813 /* ProductViewController.xib in Resources */,
-                4F68373228DB7A5600462F5E /* OfferServiceProtectionViewController.xib in Resources */,
+				4F68373228DB7A5600462F5E /* OfferServiceProtectionViewController.xib in Resources */,
+				4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */,
+				4FDB6EC628DCE28E0002DA0B /* GoogleService-Info.plist in Resources */,
 				4FE1910C26DEF77C00322128 /* SectionTableViewCell.xib in Resources */,
 				4FE1910B26DEF77C00322128 /* SliderTableViewCell.xib in Resources */,
 				4F0D96BC26DDD7F50061E89E /* MenuTableViewCell.xib in Resources */,
@@ -1780,6 +1798,7 @@
 				4F0D96BF26DDD83E0061E89E /* GolloPromosService.swift in Sources */,
 				4FDD105F28D15F390082ADB5 /* OrdersTabViewController.swift in Sources */,
 				4F0D969D26DDD4740061E89E /* NotificationDetailViewController.swift in Sources */,
+				4FDB6ECD28DD1CAF0002DA0B /* PaymentAddressViewModel.swift in Sources */,
 				4F0D965826DDBB210061E89E /* LocalizableTextField.swift in Sources */,
 				4F3E48222727859A009D259D /* AccountsResponse.swift in Sources */,
 				4FE1910026DEF61500322128 /* HomeConfigurationRequest.swift in Sources */,
@@ -1804,6 +1823,7 @@
 				4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */,
 				4FCA88B528DAA08B00B1FE46 /* CarProductTableViewCell.swift in Sources */,
 				4FE1910A26DEF77C00322128 /* SliderTableViewCell.swift in Sources */,
+				4FDB6ECA28DD18EA0002DA0B /* PaymentAddressViewController.swift in Sources */,
 				4FDD106328D15FA70082ADB5 /* MenuTabViewController.swift in Sources */,
 				4FFD9CA8272AF978004778F1 /* FilterTableViewCell.swift in Sources */,
 				4F3E482A27278700009D259D /* ThirdPartyResponse.swift in Sources */,
@@ -1841,7 +1861,7 @@
 				4F0D96A526DDD5F50061E89E /* EditProfileViewController.swift in Sources */,
 				4F0D965226DDBACE0061E89E /* Date+Extension.swift in Sources */,
 				4FCEB7E028CFF9A0009B3FDF /* OffersTabViewController.swift in Sources */,
-                4F68372528DB64CD00462F5E /* OfferDetailViewModel.swift in Sources */,
+				4F68372528DB64CD00462F5E /* OfferDetailViewModel.swift in Sources */,
 				4F0D964826DDBA670061E89E /* UINavigationBar+Extension.swift in Sources */,
 				4FA2768526D9193C00216284 /* SignUpViewModel.swift in Sources */,
 				4F0D969F26DDD57A0061E89E /* SideMenuViewController.swift in Sources */,

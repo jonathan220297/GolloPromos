@@ -124,12 +124,6 @@ extension OffersTabViewController: UITableViewDelegate {
             return UIView()
         }
         cell.setCategoryInfo(with: viewModel.sections[section])
-//        cell.indexPath = indexPath
-//        cell.delegate = self
-//        cell.viewModel.category = viewModel.categoryOffers[indexPath.row]
-//        cell.setViewsData()
-//        cell.configureCollectionView()
-//        cell.configureRx()
         return cell
     }
     
@@ -141,5 +135,9 @@ extension OffersTabViewController: UITableViewDelegate {
 extension OffersTabViewController: OffersCellDelegate {
     func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: ProductsData) {
 //        openDetail(with: data)
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

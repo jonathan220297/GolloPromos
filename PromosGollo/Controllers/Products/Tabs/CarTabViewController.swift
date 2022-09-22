@@ -5,11 +5,17 @@
 //  Created by Jonathan Rodriguez on 13/9/22.
 //
 
+import RxSwift
 import UIKit
 
 class CarTabViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var carTableView: UITableView!
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var endOrderButton: UIButton!
+    
+    // MARK: - Constants
+    let bag = DisposeBag()
     
     // MARK: - Lifecycle
     init() {
@@ -23,7 +29,9 @@ class CarTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.navigationItem.title = "Car"
+        configureViews()
         configureTableView()
+        configureRx()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +45,10 @@ class CarTabViewController: UIViewController {
     }
     
     // MARK: - Functions
+    func configureViews() {
+        endOrderButton.layer.cornerRadius = 10.0
+    }
+    
     func configureTableView() {
         carTableView.register(
             UINib(
@@ -46,6 +58,20 @@ class CarTabViewController: UIViewController {
             forCellReuseIdentifier: "CarProductTableViewCell"
         )
     }
+    
+    func configureRx() {
+        endOrderButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                let paymentAddressViewController = PaymentAddressViewController(
+                    viewModel: PaymentAddressViewModel()
+                )
+                paymentAddressViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(paymentAddressViewController, animated: true)
+            })
+            .disposed(by: bag)
+    }
 }
 
 extension CarTabViewController: UITableViewDataSource {
@@ -54,7 +80,7 @@ extension CarTabViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

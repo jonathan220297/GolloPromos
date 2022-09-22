@@ -20,6 +20,7 @@ class ProductViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBar()
+        configureObservers()
     }
     
     func configureTabBar() {
@@ -53,5 +54,13 @@ class ProductViewController: UITabBarController {
             ordersTab,
             menuTab
         ]
+    }
+    
+    func configureObservers() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("moveToCar"), object: nil, queue: nil) { _ in
+            if let tabBarController = self.tabBarController {
+                tabBarController.selectedIndex = 2
+            }
+        }
     }
 }
