@@ -23,12 +23,12 @@ class PaymentAddressViewController: UIViewController {
     @IBOutlet weak var selectAddressButton: UIButton!
     @IBOutlet weak var locationPickerView: UIView!
     @IBOutlet weak var locationPickerButton: UIButton!
-    @IBOutlet weak var countryLabel: UILabel!
-    @IBOutlet weak var countryButton: UIButton!
+    @IBOutlet weak var countyLabel: UILabel!
+    @IBOutlet weak var countyButton: UIButton!
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var stateButton: UIButton!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var cityButton: UIButton!
+    @IBOutlet weak var districtLabel: UILabel!
+    @IBOutlet weak var districtButton: UIButton!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var postalCodeTextField: UITextField!
     @IBOutlet weak var saveAddressView: UIView!
@@ -57,6 +57,11 @@ class PaymentAddressViewController: UIViewController {
         configureObservers()
         configureRx()
         hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        initSpinners()
     }
     
     // MARK: - Observers
@@ -97,13 +102,6 @@ class PaymentAddressViewController: UIViewController {
                 self.showAddressListPage()
             })
             .disposed(by: bag)
-        countryButton.rx
-            .tap
-            .subscribe(onNext: {[weak self] in
-                guard let self = self else { return }
-                self.displayCountryList()
-            })
-            .disposed(by: bag)
         stateButton.rx
             .tap
             .subscribe(onNext: {[weak self] in
@@ -111,11 +109,18 @@ class PaymentAddressViewController: UIViewController {
                 self.displayStatesList()
             })
             .disposed(by: bag)
-        cityButton.rx
+        countyButton.rx
             .tap
             .subscribe(onNext: {[weak self] in
                 guard let self = self else { return }
-                self.displayCitiesList()
+                self.displayCountyList()
+            })
+            .disposed(by: bag)
+        districtButton.rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.displayDistrictList()
             })
             .disposed(by: bag)
         addressTextField.rx.text.bind(to: viewModel.addressSubject).disposed(by: bag)
@@ -192,73 +197,92 @@ class PaymentAddressViewController: UIViewController {
     }
     
     fileprivate func initSpinners() {
-//        guard let country = viewModel.countryArray.first else { return }
-//        fetchStates(with: country.code)
+        fetchStates()
     }
     
-    fileprivate func fetchStates(with country: String) {
-//        view.activityStarAnimating()
-//        viewModel.fetchStates(for: country)
-//            .asObservable()
-//            .subscribe(onNext: {[weak self] response in
-//                guard let self = self,
-//                      let firstItem = response.first else { return }
-//                self.stateLabel.text = firstItem.name
-//                self.viewModel.stateSubject.accept(firstItem.code)
-//                self.fetchCities(with: country, state: firstItem.code)
-//            })
-//            .disposed(by: bag)
+    fileprivate func fetchStates() {
+        view.activityStarAnimating()
+        viewModel
+            .fetchStates()
+            .asObservable()
+            .subscribe(onNext: {[weak self] response in
+                guard let self = self,
+                      let response = response,
+                      let firstItem = response.first else { return }
+                self.viewModel.statesArray.accept(response)
+                self.stateLabel.text = firstItem.provincia
+                self.viewModel.stateSubject.accept(firstItem.idProvincia)
+                self.fetchCities(state: firstItem.idProvincia)
+            })
+            .disposed(by: bag)
     }
     
-    fileprivate func fetchCities(with country: String, state: String) {
-//        viewModel.fetchCities(with: country, state: state)
-//            .asObservable()
-//            .subscribe(onNext: {[weak self] response in
-//                guard let self = self,
-//                      let firstItem = response.first else { return }
-//                self.cityLabel.text = firstItem.name
-//                self.viewModel.citySubject.accept(firstItem.code)
-//                self.view.activityStopAnimating()
-//            })
-//            .disposed(by: bag)
-    }
-    
-    fileprivate func displayCountryList() {
-//        let dropDown = DropDown()
-//        dropDown.anchorView = countryButton
-//        dropDown.dataSource = viewModel.countryArray.map{ $0.name }
-//        dropDown.selectionAction = {[weak self] (index: Int, item: String) in
-//            guard let self = self else { return }
-//            self.countryLabel.text = item
-//            self.viewModel.countrySubject.accept(self.viewModel.countryArray[index].code)
-//            self.fetchStates(with: self.viewModel.countryArray[index].code)
-//        }
-//        dropDown.show()
+    fileprivate func fetchCities(state: String) {
+        viewModel
+            .fetchCities(state: state)
+            .asObservable()
+            .subscribe(onNext: {[weak self] response in
+                guard let self = self,
+                      let response = response,
+                      let firstItem = response.provincias.first,
+                      let firstCounty = firstItem.cantones.first,
+                      let firstDistrict = firstCounty.distritos.first else { return }
+                self.viewModel.citiesArray.accept(firstItem.cantones)
+                self.viewModel.districtArray.accept(firstCounty.distritos)
+                self.countyLabel.text = firstCounty.canton
+                self.viewModel.countySubject.accept(firstItem.idProvincia)
+                self.districtLabel.text = firstDistrict.distrito
+                self.viewModel.districtSubject.accept(firstDistrict.idDistrito)
+                self.view.activityStopAnimating()
+            })
+            .disposed(by: bag)
     }
     
     fileprivate func displayStatesList() {
-//        let dropDown = DropDown()
-//        dropDown.anchorView = stateButton
-//        dropDown.dataSource = viewModel.statesArray.value.map{ $0.name }
-//        dropDown.selectionAction = {[weak self] (index: Int, item: String) in
-//            guard let self = self else { return }
-//            self.stateLabel.text = item
-//            self.viewModel.stateSubject.accept(self.viewModel.statesArray.value[index].code)
-//            self.fetchCities(with: self.viewModel.countrySubject.value ?? "", state: self.viewModel.statesArray.value[index].code)
-//        }
-//        dropDown.show()
+        let dropDown = DropDown()
+        dropDown.anchorView = stateButton
+        dropDown.dataSource = viewModel.statesArray.value.map{ $0.provincia }
+        dropDown.selectionAction = {[weak self] (index: Int, item: String) in
+            guard let self = self else { return }
+            self.stateLabel.text = item
+            self.viewModel.stateSubject.accept(self.viewModel.statesArray.value[index].idProvincia)
+            self.fetchCities(state: self.viewModel.statesArray.value[index].idProvincia)
+        }
+        dropDown.show()
     }
     
-    fileprivate func displayCitiesList() {
-//        let dropDown = DropDown()
-//        dropDown.anchorView = cityButton
-//        dropDown.dataSource = viewModel.citiesArray.value.map{ $0.name }
-//        dropDown.selectionAction = {[weak self] (index: Int, item: String) in
-//            guard let self = self else { return }
-//            self.cityLabel.text = item
-//            self.viewModel.citySubject.accept(self.viewModel.citiesArray.value[index].code)
-//        }
-//        dropDown.show()
+    fileprivate func displayCountyList() {
+        let dropDown = DropDown()
+        dropDown.anchorView = countyButton
+        dropDown.dataSource = viewModel.citiesArray.value.map{ $0.canton }
+        dropDown.selectionAction = {[weak self] (index: Int, item: String) in
+            guard let self = self else { return }
+            self.countyLabel.text = item
+            self.viewModel.countySubject.accept(self.viewModel.citiesArray.value[index].idCanton)
+            self.fetchDistrictList(with: self.viewModel.citiesArray.value[index].idCanton)
+        }
+        dropDown.show()
+    }
+    
+    fileprivate func displayDistrictList() {
+        let dropDown = DropDown()
+        dropDown.anchorView = districtButton
+        dropDown.dataSource = viewModel.districtArray.value.map{ $0.distrito }
+        dropDown.selectionAction = {[weak self] (index: Int, item: String) in
+            guard let self = self else { return }
+            self.districtLabel.text = item
+            self.viewModel.districtSubject.accept(self.viewModel.districtArray.value[index].idDistrito)
+        }
+        dropDown.show()
+    }
+    
+    fileprivate func fetchDistrictList(with countyId: String) {
+        guard let county = viewModel.citiesArray.value.first(where: { county in
+            county.idCanton == countyId
+        }), let district = county.distritos.first else { return }
+        self.viewModel.districtArray.accept(county.distritos)
+        self.viewModel.districtSubject.accept(district.idDistrito)
+        self.districtLabel.text = district.distrito
     }
     
     fileprivate func prepareAddressInfo() {

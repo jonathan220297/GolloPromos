@@ -28,7 +28,39 @@ struct AddOfferCartServiceRequest: Codable {
     var idCliente: String
 }
 
-struct CartItemDetail: Codable {
+class CartItemDetail: Codable {
+    init(idCarItem: UUID? = nil, urlImage: String? = nil, cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double) {
+        self.idCarItem = idCarItem
+        self.urlImage = urlImage
+        self.cantidad = cantidad
+        self.idLinea = idLinea
+        self.mesesExtragar = mesesExtragar
+        self.descripcion = descripcion
+        self.sku = sku
+        self.descuento = descuento
+        self.montoDescuento = montoDescuento
+        self.montoExtragar = montoExtragar
+        self.porcDescuento = porcDescuento
+        self.precioExtendido = precioExtendido
+        self.precioUnitario = precioUnitario
+    }
+    
+    init(cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double) {
+        self.cantidad = cantidad
+        self.idLinea = idLinea
+        self.mesesExtragar = mesesExtragar
+        self.descripcion = descripcion
+        self.sku = sku
+        self.descuento = descuento
+        self.montoDescuento = montoDescuento
+        self.montoExtragar = montoExtragar
+        self.porcDescuento = porcDescuento
+        self.precioExtendido = precioExtendido
+        self.precioUnitario = precioUnitario
+    }
+    
+    var idCarItem: UUID?
+    var urlImage: String?
     var cantidad, idLinea, mesesExtragar: Int
     var descripcion, sku: String
     var descuento, montoDescuento, montoExtragar, porcDescuento, precioExtendido, precioUnitario: Double

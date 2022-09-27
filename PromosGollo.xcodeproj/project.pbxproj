@@ -186,6 +186,12 @@
 		4FDB6ECA28DD18EA0002DA0B /* PaymentAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */; };
 		4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */; };
 		4FDB6ECD28DD1CAF0002DA0B /* PaymentAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */; };
+		4FDB6ED028E364A00002DA0B /* PromosGollo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ECE28E364A00002DA0B /* PromosGollo.xcdatamodeld */; };
+		4FDB6ED228E3661E0002DA0B /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ED128E3661E0002DA0B /* CoreDataService.swift */; };
+		4FDB6ED428E385B30002DA0B /* CarTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ED328E385B30002DA0B /* CarTabViewModel.swift */; };
+		4FDB6ED628E3AF9B0002DA0B /* StateListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ED528E3AF9B0002DA0B /* StateListRequest.swift */; };
+		4FDB6ED828E3B02A0002DA0B /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ED728E3B02A0002DA0B /* State.swift */; };
+		4FDB6EDA28E3B3790002DA0B /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ED928E3B3790002DA0B /* City.swift */; };
 		4FDD105728D000700082ADB5 /* ProductsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD105528D000700082ADB5 /* ProductsTabViewController.swift */; };
 		4FDD105828D000700082ADB5 /* ProductsTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDD105628D000700082ADB5 /* ProductsTabViewController.xib */; };
 		4FDD105B28D15E910082ADB5 /* CarTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD105928D15E910082ADB5 /* CarTabViewController.swift */; };
@@ -458,6 +464,12 @@
 		4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewController.swift; sourceTree = "<group>"; };
 		4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentAddressViewController.xib; sourceTree = "<group>"; };
 		4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewModel.swift; sourceTree = "<group>"; };
+		4FDB6ECF28E364A00002DA0B /* PromosGollo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PromosGollo.xcdatamodel; sourceTree = "<group>"; };
+		4FDB6ED128E3661E0002DA0B /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		4FDB6ED328E385B30002DA0B /* CarTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTabViewModel.swift; sourceTree = "<group>"; };
+		4FDB6ED528E3AF9B0002DA0B /* StateListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateListRequest.swift; sourceTree = "<group>"; };
+		4FDB6ED728E3B02A0002DA0B /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		4FDB6ED928E3B3790002DA0B /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		4FDD105528D000700082ADB5 /* ProductsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTabViewController.swift; sourceTree = "<group>"; };
 		4FDD105628D000700082ADB5 /* ProductsTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductsTabViewController.xib; sourceTree = "<group>"; };
 		4FDD105928D15E910082ADB5 /* CarTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTabViewController.swift; sourceTree = "<group>"; };
@@ -867,6 +879,7 @@
 				4F11E042272DB5C100E15003 /* AccountItemsRequest.swift */,
 				4F69893C28BD9EEB000FFA56 /* PaymentRequest.swift */,
 				4FEDF8E228B9921E00719245 /* TransactionHistoryRequest.swift */,
+				4FDB6ED528E3AF9B0002DA0B /* StateListRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -884,6 +897,8 @@
 				4F11E044272DB61900E15003 /* AccountsItemResponse.swift */,
 				4FEDF8E428B9928700719245 /* TransactionHistoryResponse.swift */,
 				4F69893E28BDAC8D000FFA56 /* PaymentResponse.swift */,
+				4FDB6ED728E3B02A0002DA0B /* State.swift */,
+				4FDB6ED928E3B3790002DA0B /* City.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1109,6 +1124,7 @@
 				4F0D962A26D91B4D0061E89E /* AuthenticationService.swift */,
 				4F0D96A926DDD6BB0061E89E /* FirebaseService.swift */,
 				4F0D96BE26DDD83E0061E89E /* GolloPromosService.swift */,
+				4FDB6ED128E3661E0002DA0B /* CoreDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1190,6 +1206,7 @@
 			isa = PBXGroup;
 			children = (
 				4FCA88B128DA26F500B1FE46 /* OffersTabViewModel.swift */,
+				4FDB6ED328E385B30002DA0B /* CarTabViewModel.swift */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -1251,6 +1268,7 @@
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
 				4FDB6EC528DCE28E0002DA0B /* GoogleService-Info.plist */,
+				4FDB6ECE28E364A00002DA0B /* PromosGollo.xcdatamodeld */,
 			);
 			path = PromosGollo;
 			sourceTree = "<group>";
@@ -1793,6 +1811,7 @@
 				4F68372728DB666900462F5E /* OfferDetailRequest.swift in Sources */,
 				4F69893F28BDAC8D000FFA56 /* PaymentResponse.swift in Sources */,
 				4F3E481C27278536009D259D /* OffersListRequest.swift in Sources */,
+				4FDB6EDA28E3B3790002DA0B /* City.swift in Sources */,
 				4FFD9CBC272B211B004778F1 /* OffersTableViewModel.swift in Sources */,
 				4F0D965A26DDBB360061E89E /* LocalizableLabel.swift in Sources */,
 				4F0D96BF26DDD83E0061E89E /* GolloPromosService.swift in Sources */,
@@ -1835,7 +1854,9 @@
 				4F0D96B526DDD78A0061E89E /* MenuViewModel.swift in Sources */,
 				4F0D965026DDBABC0061E89E /* Bundle+Extension.swift in Sources */,
 				4F0D96D326DDDF2C0061E89E /* AccountDetail.swift in Sources */,
+				4FDB6ED028E364A00002DA0B /* PromosGollo.xcdatamodeld in Sources */,
 				4FE1910426DEF67100322128 /* HomeConfiguration.swift in Sources */,
+				4FDB6ED828E3B02A0002DA0B /* State.swift in Sources */,
 				4FE190FD26DEF5FB00322128 /* HomeSection.swift in Sources */,
 				4F0D96D426DDDF2C0061E89E /* Item.swift in Sources */,
 				4FA2767C26D918A500216284 /* SignUpViewController.swift in Sources */,
@@ -1886,6 +1907,7 @@
 				4F17323E2701476200D7924D /* Account.swift in Sources */,
 				4F17323827013D1E00D7924D /* ParentModel.swift in Sources */,
 				4FC04C5A28AE9C74001EF211 /* UserResponse.swift in Sources */,
+				4FDB6ED628E3AF9B0002DA0B /* StateListRequest.swift in Sources */,
 				4FA41E0C27015AA4007C93F9 /* Profile.swift in Sources */,
 				4FE1911C26DEFC1D00322128 /* ProductsRequest.swift in Sources */,
 				4F0D96BD26DDD7F50061E89E /* MenuTableViewCell.swift in Sources */,
@@ -1910,6 +1932,7 @@
 				4FA2767A26D9189700216284 /* LoginViewController.swift in Sources */,
 				4F68372928DB66C900462F5E /* OfferDetail.swift in Sources */,
 				4F17323A27013EA900D7924D /* ThirdPartyViewController.swift in Sources */,
+				4FDB6ED228E3661E0002DA0B /* CoreDataService.swift in Sources */,
 				4F17322F27013BC900D7924D /* FooterTableViewCell.swift in Sources */,
 				4F0D967D26DDBBA30061E89E /* Strings.swift in Sources */,
 				4FE1913126DF06F200322128 /* OffersViewController.swift in Sources */,
@@ -1925,6 +1948,7 @@
 				4FE1913826DF075200322128 /* IncentivesViewController.swift in Sources */,
 				4F3E480727278525009D259D /* OffersViewModel.swift in Sources */,
 				4F3E481827278536009D259D /* Offers.swift in Sources */,
+				4FDB6ED428E385B30002DA0B /* CarTabViewModel.swift in Sources */,
 				4FA2767F26D918EE00216284 /* TermsConditionsViewModel.swift in Sources */,
 				4FE1910F26DEF8A800322128 /* SectionViewModel.swift in Sources */,
 				4F0D964E26DDBAA80061E89E /* Array+Extension.swift in Sources */,
@@ -2314,6 +2338,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4FDB6ECE28E364A00002DA0B /* PromosGollo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4FDB6ECF28E364A00002DA0B /* PromosGollo.xcdatamodel */,
+			);
+			currentVersion = 4FDB6ECF28E364A00002DA0B /* PromosGollo.xcdatamodel */;
+			path = PromosGollo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4FDA3A9026D8FE26003B2CB6 /* Project object */;
 }

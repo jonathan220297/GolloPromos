@@ -35,7 +35,9 @@ class ProductViewController: UITabBarController {
         productsTab.title = "Products"
         productsTab.tabBarItem.image = UIImage(named: "ic_product")
         
-        let carTab = CarTabViewController()
+        let carTab = CarTabViewController(
+            viewModel: CarTabViewModel()
+        )
         carTab.title = "Car"
         carTab.tabBarItem.image = UIImage(named: "ic_car")
         

@@ -11,14 +11,18 @@ import UIKit
 class CarTabViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var carTableView: UITableView!
+    @IBOutlet weak var totalItemsLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var endOrderButton: UIButton!
+    @IBOutlet weak var emptyCarButton: UIButton!
     
     // MARK: - Constants
+    let viewModel: CarTabViewModel
     let bag = DisposeBag()
     
     // MARK: - Lifecycle
-    init() {
+    init(viewModel: CarTabViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: "CarTabViewController", bundle: nil)
     }
     
@@ -37,6 +41,7 @@ class CarTabViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.navigationController?.navigationBar.isHidden = true
+        fetchCarItems()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,6 +76,31 @@ class CarTabViewController: UIViewController {
                 self.navigationController?.pushViewController(paymentAddressViewController, animated: true)
             })
             .disposed(by: bag)
+        
+        emptyCarButton
+            .rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                if CoreDataService().deleteAllItems() {
+                    self.viewModel.car.removeAll()
+                    self.carTableView.reloadData()
+                }
+            })
+            .disposed(by: bag)
+    }
+    
+    func fetchCarItems() {
+        viewModel.car = CoreDataService().fetchCarItems()
+        carTableView.reloadData()
+        totalItemsLabel.text = "Tienes \(viewModel.car.count) item(s) en el carrito"
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.decimal
+        var total = 0.0
+        for item in viewModel.car {
+            total += (item.precioUnitario * Double(item.cantidad))
+        }
+        totalLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
     }
 }
 
@@ -80,7 +110,7 @@ extension CarTabViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.car.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,6 +121,19 @@ extension CarTabViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CarProductTableViewCell", for: indexPath) as? CarProductTableViewCell else {
             return UITableViewCell()
         }
+        cell.setProductData(with: viewModel.car[indexPath.row])
+        cell.indexPath = indexPath
+        cell.delegate = self
+        cell.selectionStyle = .none
         return cell
+    }
+}
+
+extension CarTabViewController: CarProductDelegate {
+    func deleteItem(at indexPath: IndexPath) {
+        guard let id = viewModel.car[indexPath.row].idCarItem else { return }
+        if CoreDataService().deleteCarItem(with: id) {
+            fetchCarItems()
+        }
     }
 }

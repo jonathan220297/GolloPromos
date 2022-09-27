@@ -10,15 +10,14 @@ import RxSwift
 import RxRelay
 
 class PaymentAddressViewModel {
-//    private let service = ShoppiService()
+    private let service = GolloService()
     let userManager = UserManager.shared
-//    let paymentManager = PaymentManager.shared
     
     var itemsArray: [String] = []
-    var documentTypeArray: [String] = ["DUI", "Passport"]
-//    var countryArray: [Country] = []
-//    var statesArray: BehaviorRelay<[StatesReponse]> = BehaviorRelay(value: [])
-//    var citiesArray: BehaviorRelay<[CityResponse]> = BehaviorRelay(value: [])
+    var documentTypeArray: [String] = ["Cedula"]
+    var statesArray: BehaviorRelay<[State]> = BehaviorRelay(value: [])
+    var citiesArray: BehaviorRelay<[County]> = BehaviorRelay(value: [])
+    var districtArray: BehaviorRelay<[District]> = BehaviorRelay(value: [])
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     let firstNameSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let lastNameSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
@@ -28,7 +27,8 @@ class PaymentAddressViewModel {
     let identificationNumberSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let countrySubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let stateSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
-    let citySubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
+    let countySubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
+    let districtSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let addressSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let postalCodeSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let latitudeSubject: BehaviorRelay<Double?> = BehaviorRelay(value: nil)
@@ -56,20 +56,20 @@ class PaymentAddressViewModel {
     }
     
     var isValidSecondPartForm: Observable<Bool> {
-        return Observable.combineLatest(identificationNumberSubject, countrySubject, stateSubject, citySubject, addressSubject) { identificationNumber, country, state, city, address in
+        return Observable.combineLatest(identificationNumberSubject, stateSubject, countySubject, districtSubject, addressSubject) { identificationNumber, state, county, district, address in
             
             guard let identificationNumber = identificationNumber,
-                  let country = country,
                   let state = state,
-                  let city = city,
+                  let county = county,
+                  let district = district,
                   let address = address else {
                 return false
             }
             
             return !(identificationNumber.isEmpty)
-                && !(country.isEmpty)
                 && !(state.isEmpty)
-                && !(city.isEmpty)
+                && !(county.isEmpty)
+                && !(district.isEmpty)
                 && !(address.isEmpty)
         }
     }
@@ -80,40 +80,69 @@ class PaymentAddressViewModel {
         }
     }
     
-//    func configureCountryArray() {
-//        countryArray.append(Country(name: "El Salvador", code: "SV"))
-//    }
-    
-//    func fetchStates(for country: String) -> BehaviorRelay<[StatesReponse]> {
-//        service.callWebService(StatesRequest(
-//            country: country
-//        )) { (response) in
-//            switch response {
-//            case .success(let data):
-//                self.statesArray.accept(data)
-//            case .failure(let error):
-//                log.debug("Error: \(error.localizedDescription)")
-//                self.errorMessage.accept(error.localizedDescription)
-//            }
-//        }
-//        return statesArray
-//    }
-//
-//    func fetchCities(with country: String, state: String) -> BehaviorRelay<[CityResponse]> {
-//        service.callWebService(CityRequest(
-//            country: country,
-//            state: state
-//        )) { (response) in
-//            switch response {
-//            case .success(let data):
-//                self.citiesArray.accept(data)
-//            case .failure(let error):
-//                log.debug("Error: \(error.localizedDescription)")
-//                self.errorMessage.accept(error.localizedDescription)
-//            }
-//        }
-//        return citiesArray
-//    }
+    func fetchStates() -> BehaviorRelay<[State]?> {
+        let apiResponse: BehaviorRelay<[State]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGolloAlternative(BaseRequest<[State], StateListRequest>(
+            service: BaseServiceRequestParam<StateListRequest>(
+                servicio: ServicioParam(
+                    encabezado: Encabezado(
+                        idProceso: GOLLOAPP.STATES_CITIES.rawValue,
+                        idDevice: "",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        timeStamp: String(Date().timeIntervalSince1970),
+                        idCia: 10,
+                        token: getToken(),
+                        integrationId: nil),
+                    parametros: StateListRequest(
+                        idProvincia: "",
+                        idCanton: ""
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
+
+    func fetchCities(state: String) -> BehaviorRelay<Provincias?> {
+        let apiResponse: BehaviorRelay<Provincias?> = BehaviorRelay(value: nil)
+        service.callWebServiceGolloAlternative(BaseRequest<Provincias, StateListRequest>(
+            service: BaseServiceRequestParam<StateListRequest>(
+                servicio: ServicioParam(
+                    encabezado: Encabezado(
+                        idProceso: GOLLOAPP.STATES_CITIES.rawValue,
+                        idDevice: "",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        timeStamp: String(Date().timeIntervalSince1970),
+                        idCia: 10,
+                        token: getToken(),
+                        integrationId: nil),
+                    parametros: StateListRequest(
+                        idProvincia: state,
+                        idCanton: ""
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
     
 //    func prepareAddressInfoForPayment() {
 //        let firstName = firstNameSubject.value
@@ -140,7 +169,7 @@ class PaymentAddressViewModel {
     func isValidAddress() -> Bool {
         guard let country = countrySubject.value,
               let state = stateSubject.value,
-              let city = citySubject.value,
+              let city = countySubject.value,
               let address = addressSubject.value else { return false }
         
         return !(country.isEmpty)

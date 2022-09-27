@@ -24,22 +24,11 @@
                             <constraint firstAttribute="width" secondItem="l9m-Gr-U4E" secondAttribute="height" multiplier="15:12" id="yV8-Qw-6FJ"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24X-mX-D5Z">
-                        <rect key="frame" x="447" y="8" width="35" height="35"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="Efq-qG-RgT"/>
-                            <constraint firstAttribute="height" constant="35" id="yUk-Cs-6xq"/>
-                        </constraints>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" title="X">
-                            <color key="titleColor" systemColor="secondaryLabelColor"/>
-                        </state>
-                    </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Z9k-wf-MU3">
                         <rect key="frame" x="203.66666666666666" y="16" width="270.33333333333337" height="222"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JUEGO COMEDOR 6 S" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJd-yP-iSb">
-                                <rect key="frame" x="0.0" y="0.0" width="270.33333333333331" height="24"/>
+                                <rect key="frame" x="0.0" y="0.0" width="270.33333333333331" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="9JR-gB-Emt"/>
                                 </constraints>
@@ -48,7 +37,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S86-D0-OMN">
-                                <rect key="frame" x="0.0" y="32" width="270.33333333333331" height="18"/>
+                                <rect key="frame" x="0.0" y="58" width="270.33333333333331" height="18"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqF-6N-oON">
                                         <rect key="frame" x="0.0" y="0.0" width="131" height="18"/>
@@ -64,17 +53,17 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xj3-FF-WZa">
-                                <rect key="frame" x="0.0" y="58" width="270.33333333333331" height="18"/>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xj3-FF-WZa">
+                                <rect key="frame" x="0.0" y="80" width="270.33333333333331" height="0.0"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gollo plus 24 meses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0G-uN-ZOw">
-                                        <rect key="frame" x="0.0" y="0.0" width="182.66666666666666" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="182.66666666666666" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$650.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoK-wL-eHr">
-                                        <rect key="frame" x="190.66666666666666" y="0.0" width="79.666666666666657" height="18"/>
+                                        <rect key="frame" x="190.66666666666666" y="0.0" width="79.666666666666657" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -212,18 +201,40 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3i0-9r-bDQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="270.33333333333331" height="35"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="nGE-Qe-N43" firstAttribute="centerY" secondItem="GL4-wP-2mW" secondAttribute="centerY" id="0Vf-zw-6y7"/>
+                                    <constraint firstItem="3i0-9r-bDQ" firstAttribute="top" secondItem="GL4-wP-2mW" secondAttribute="top" id="4vJ-7T-wW3"/>
                                     <constraint firstItem="Fsd-wY-Y2i" firstAttribute="centerY" secondItem="GL4-wP-2mW" secondAttribute="centerY" id="4wG-9Y-QcM"/>
                                     <constraint firstItem="nGE-Qe-N43" firstAttribute="leading" secondItem="Fsd-wY-Y2i" secondAttribute="trailing" constant="8" id="Fce-gF-ryt"/>
+                                    <constraint firstAttribute="trailing" secondItem="3i0-9r-bDQ" secondAttribute="trailing" id="dxQ-gf-ICK"/>
+                                    <constraint firstItem="3i0-9r-bDQ" firstAttribute="leading" secondItem="GL4-wP-2mW" secondAttribute="leading" id="nOg-gh-0iZ"/>
                                     <constraint firstAttribute="height" constant="35" id="ndN-bq-59V"/>
                                     <constraint firstItem="Fsd-wY-Y2i" firstAttribute="leading" secondItem="GL4-wP-2mW" secondAttribute="leading" id="pjA-kt-CZM"/>
+                                    <constraint firstAttribute="bottom" secondItem="3i0-9r-bDQ" secondAttribute="bottom" id="xfb-VF-1c1"/>
                                 </constraints>
                             </view>
                         </subviews>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24X-mX-D5Z">
+                        <rect key="frame" x="447" y="8" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="Efq-qG-RgT"/>
+                            <constraint firstAttribute="height" constant="35" id="yUk-Cs-6xq"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="X">
+                            <color key="titleColor" systemColor="secondaryLabelColor"/>
+                        </state>
+                        <connections>
+                            <action selector="deleteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3eJ-sl-afi"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="24X-mX-D5Z" secondAttribute="trailing" constant="8" id="AVL-4v-YwQ"/>
@@ -238,6 +249,21 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addWarrantyButton" destination="3i0-9r-bDQ" id="NuW-WJ-rNv"/>
+                <outlet property="addWarrantyView" destination="GL4-wP-2mW" id="4kg-Wq-RI7"/>
+                <outlet property="deleteItemButton" destination="24X-mX-D5Z" id="Nsq-6r-8D4"/>
+                <outlet property="minusButton" destination="0qj-V4-o0g" id="txB-AC-XUA"/>
+                <outlet property="plusButton" destination="nq2-0Q-NR8" id="NcL-VL-QTD"/>
+                <outlet property="productImageView" destination="l9m-Gr-U4E" id="MVZ-DU-9Kt"/>
+                <outlet property="productNameLabel" destination="zJd-yP-iSb" id="fZ1-Ey-wT4"/>
+                <outlet property="productPriceLabel" destination="AiA-8u-FB8" id="a4h-6k-Jq2"/>
+                <outlet property="quantityTextField" destination="yhX-ny-VWp" id="Tma-Mc-Y96"/>
+                <outlet property="totalAmountLabel" destination="jTj-vh-7bl" id="G87-gq-aGA"/>
+                <outlet property="warrantyAmountLabel" destination="IoK-wL-eHr" id="QnI-tx-OmX"/>
+                <outlet property="warrantyNameLabel" destination="G0G-uN-ZOw" id="oze-wd-xhY"/>
+                <outlet property="warrantyStackView" destination="xj3-FF-WZa" id="x0K-El-e8S"/>
+            </connections>
             <point key="canvasLocation" x="126.15384615384615" y="-49.763033175355446"/>
         </tableViewCell>
     </objects>

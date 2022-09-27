@@ -75,6 +75,9 @@ class OfferDetailViewController: UIViewController {
         // Zoom
         scrollImageView.minimumZoomScale = 1
         scrollImageView.maximumZoomScale = 4
+        
+        tabBarController?.navigationItem.hidesBackButton = false
+        tabBarController?.navigationController?.navigationBar.tintColor = .white
 
         configureRx()
         fetchData()
@@ -157,10 +160,11 @@ class OfferDetailViewController: UIViewController {
         if let offer = offer, let article = article {
             var param: [CartItemDetail] = []
             let item = CartItemDetail(
+                urlImage: offer.image,
                 cantidad: 1,
                 idLinea: 1,
                 mesesExtragar: warrantyMonth,
-                descripcion: offer.productName ?? "",
+                descripcion: offer.name ?? "",
                 sku: offer.productCode ?? "",
                 descuento: 0.0,
                 montoDescuento: article.articulo?.precioDescuento ?? 0.0,
@@ -176,12 +180,13 @@ class OfferDetailViewController: UIViewController {
                     guard let self = self,
                           let _ = data else { return }
                     DispatchQueue.main.async {
+                        CoreDataService().addCarItems(with: param)
                         let offerServiceProtectionViewController = OfferServiceProtectionViewController()
                         offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
                         offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
                         self.present(offerServiceProtectionViewController, animated: true)
                         self.carView.isHidden = false
-                        self.carItemLabel.text = "\(param.count) Items(s) en el carrito"
+                        self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
                     }
                 })
                 .disposed(by: bag)

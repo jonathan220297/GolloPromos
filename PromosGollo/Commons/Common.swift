@@ -108,6 +108,7 @@ enum GOLLOAPP: String {
     case APP_PAYMENT_HISTORY = "20"
     case ACCOUNT_PAYMENT_HISTORY = "21"
     case ADD_TO_CART_PROCESS_ID = "22"
+    case STATES_CITIES = "24"
     case OFFER_DETAIL_PROCESS_ID = "29"
     case THIRD_PARTY_CUSTOMER = "41"
 }
