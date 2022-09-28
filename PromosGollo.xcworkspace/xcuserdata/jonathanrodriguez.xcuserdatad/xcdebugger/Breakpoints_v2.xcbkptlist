@@ -3,4 +3,54 @@
    uuid = "D514D747-9A16-446B-9912-E1D448DF4E7B"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3FA5AB45-5EF9-4163-A9E3-8499888CF6CA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PromosGollo/ViewModels/Payments/ShippingMethodViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "processShops(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3FA5AB45-5EF9-4163-A9E3-8499888CF6CA - 7a2e8ed0c0340fcb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PromosGollo.ShippingMethodViewModel.processShops(with: Swift.String) -&gt; ()"
+                  moduleName = "PromosGollo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloPromos/PromosGollo/ViewModels/Payments/ShippingMethodViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "62">
+               </Location>
+               <Location
+                  uuid = "3FA5AB45-5EF9-4163-A9E3-8499888CF6CA - 5a9b198e8103ae68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (PromosGollo.ShopData) -&gt; Swift.Bool in PromosGollo.ShippingMethodViewModel.processShops(with: Swift.String) -&gt; ()"
+                  moduleName = "PromosGollo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloPromos/PromosGollo/ViewModels/Payments/ShippingMethodViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "79">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

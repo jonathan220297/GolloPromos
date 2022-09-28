@@ -103,4 +103,22 @@ class CoreDataService {
             return false
         }
     }
+    
+    func updateProductQuantity(for productID: UUID, _ quantity: Int) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CarProduct")
+        request.predicate = NSPredicate(format: "idCarProduct == %@", productID as CVarArg)
+        do {
+            let result = try context.fetch(request)
+            if let item = result.first as? NSManagedObject {
+                item.setValue(quantity, forKey: "quantity")
+            }
+            try context.save()
+            return true
+        } catch let error as NSError {
+            print("Error deleteCarItem: " + error.localizedDescription)
+            return false
+        }
+    }
 }

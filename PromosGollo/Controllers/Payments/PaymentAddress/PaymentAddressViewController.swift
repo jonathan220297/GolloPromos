@@ -57,11 +57,12 @@ class PaymentAddressViewController: UIViewController {
         configureObservers()
         configureRx()
         hideKeyboardWhenTappedAround()
+        initSpinners()
+        setUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        initSpinners()
     }
     
     // MARK: - Observers
@@ -83,6 +84,23 @@ class PaymentAddressViewController: UIViewController {
     }
     
     // MARK: - Functions
+    fileprivate func setUserData() {
+        firstNameTextField.text = Variables.userProfile?.nombre
+        viewModel.firstNameSubject.accept(Variables.userProfile?.nombre)
+        lastNameTextField.text = Variables.userProfile?.apellido1
+        viewModel.lastNameSubject.accept(Variables.userProfile?.apellido1)
+        emailTextField.text = Variables.userProfile?.correoElectronico1
+        viewModel.emailSubject.accept(Variables.userProfile?.correoElectronico1)
+        phoneNumberTextField.text = Variables.userProfile?.telefono1
+        viewModel.phoneNumberSubject.accept(Variables.userProfile?.telefono1)
+        if let document = viewModel.documentTypeArray.first {
+            self.documentTypeLabel.text = document
+            self.viewModel.documentTypeSubject.accept(document)
+        }
+        identificationNumberTextField.text = Variables.userProfile?.numeroIdentificacion
+        viewModel.identificationNumberSubject.accept(Variables.userProfile?.numeroIdentificacion)
+    }
+    
     fileprivate func configureRx() {
         firstNameTextField.rx.text.bind(to: viewModel.firstNameSubject).disposed(by: bag)
         lastNameTextField.rx.text.bind(to: viewModel.lastNameSubject).disposed(by: bag)
@@ -135,7 +153,7 @@ class PaymentAddressViewController: UIViewController {
         saveAddressButton.rx
             .tap
             .subscribe(onNext: {
-//                self.saveAddress()
+                self.saveAddress()
             })
             .disposed(by: bag)
         viewModel.isFormValid.bind(to: continueButton.rx.isEnabled).disposed(by: bag)
@@ -148,16 +166,6 @@ class PaymentAddressViewController: UIViewController {
                 self.prepareAddressInfo()
             })
             .disposed(by: bag)
-        
-//        viewModel.paymentAddressSubject
-//            .asObservable()
-//            .subscribe(onNext: {[weak self] address in
-//                guard let self = self,
-//                      let _ = address else { return }
-//                self.viewModel.setPaymentAddressToManager()
-//                self.showShippingMethodsPage()
-//            })
-//            .disposed(by: bag)
     }
     
     fileprivate func configureViews() {
@@ -286,58 +294,54 @@ class PaymentAddressViewController: UIViewController {
     }
     
     fileprivate func prepareAddressInfo() {
-//        viewModel.prepareAddressInfoForPayment()
+        viewModel.prepareAddressInfoForPayment()
+        showShippingMethodsPage()
     }
     
     fileprivate func showShippingMethodsPage() {
-//        let vc = ShippingMethodViewController.instantiate(fromAppStoryboard: .Payment)
-//        vc.modalPresentationStyle = .fullScreen
-//        navigationController?.pushViewController(vc, animated: true)
+        let shippingMethodViewController = ShippingMethodViewController(
+            viewModel: ShippingMethodViewModel()
+        )
+        shippingMethodViewController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(shippingMethodViewController, animated: true)
     }
     
     fileprivate func showAddressListPage() {
-//        let vc = AddressViewController.instantiate(fromAppStoryboard: .Payment)
-//        vc.modalPresentationStyle = .fullScreen
-//        vc.delegate = self
-//        navigationController?.pushViewController(vc, animated: true)
+        let addressListViewController = AddressListViewController(
+            viewModel: AddressListViewModel(),
+            delegate: self
+        )
+        addressListViewController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(addressListViewController, animated: true)
     }
     
-//    fileprivate func setAddressFromList(with data: AddressListResponse) {
-//        countryLabel.text = data.country
-//        viewModel.countrySubject.accept(data.countryCode)
-//        stateLabel.text = data.state
-//        viewModel.stateSubject.accept(data.stateCode)
-//        cityLabel.text = data.city
-//        viewModel.citySubject.accept(data.cityCode)
-//        addressTextField.text = data.address
-//        viewModel.addressSubject.accept(data.address)
-//        postalCodeTextField.text = data.postalCode
-//        viewModel.postalCodeSubject.accept(data.postalCode)
-//        viewModel.latitudeSubject.accept(data.latitude)
-//        viewModel.longitudeSubject.accept(data.longitude)
-//    }
-    
-//    fileprivate func saveAddress() {
-//        if viewModel.userManager.isUserLoggedIn() {
-//            if viewModel.isValidAddress() {
-//                viewModel.saveAddress()
-//                    .asObservable()
-//                    .subscribe(onNext: { success in
-//                        if success {
-//                            log.debug("Done")
-//                            let banner = NotificationBanner(title: "Shoppi", subtitle: "PersonalInfoViewController_address_saved".localized, style: .success)
-//                            banner.show()
-//                        }
-//                    })
-//                    .disposed(by: bag)
-//            } else {
-//                log.debug("Addres incomplete")
-//                let banner = NotificationBanner(title: "Shoppi", subtitle: "PersonalInfoViewController_address_incomplete".localized, style: .warning)
-//                banner.show()
-//            }
-//        } else {
-//            let banner = NotificationBanner(title: "Shoppi", subtitle: "PersonalInfoViewController_login_to_save_address".localized, style: .warning)
-//            banner.show()
-//        }
-//    }
+    fileprivate func saveAddress() {
+        viewModel
+            .saveAddress()
+            .asObservable()
+            .subscribe(onNext: {[weak self] response in
+                guard let self = self else { return }
+                self.showAlert(alertText: "GolloApp", alertMessage: "Dirección guardada correctamente")
+            })
+            .disposed(by: bag)
+    }
+}
+
+extension PaymentAddressViewController: AddressListDelegate {
+    func didSelectAddress(address: UserAddress) {
+        let stateSelected = viewModel.statesArray.value.first { state in
+            state.idProvincia == address.idProvincia
+        }
+        viewModel.stateSubject.accept(stateSelected?.idProvincia ?? "")
+        stateLabel.text = stateSelected?.provincia ?? ""
+        let countySelected = viewModel.citiesArray.value.first { county in
+            county.idCanton == address.idCanton
+        }
+        viewModel.countySubject.accept(countySelected?.idCanton ?? "")
+        countyLabel.text = countySelected?.canton ?? ""
+        viewModel.districtSubject.accept(address.idDistrito)
+        districtLabel.text = address.distritoDesc
+        addressTextField.text = address.direccionExacta
+        postalCodeTextField.text = address.codigoPostal
+    }
 }

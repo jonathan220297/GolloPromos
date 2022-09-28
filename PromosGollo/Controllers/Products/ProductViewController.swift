@@ -40,6 +40,9 @@ class ProductViewController: UITabBarController {
         )
         carTab.title = "Car"
         carTab.tabBarItem.image = UIImage(named: "ic_car")
+        let carCount = CoreDataService().fetchCarItems().count
+        carTab.tabBarItem.badgeValue = String(carCount)
+        carTab.tabBarItem.badgeColor = UIColor.red
         
         let ordersTab = OrdersTabViewController()
         ordersTab.title = "My orders"
