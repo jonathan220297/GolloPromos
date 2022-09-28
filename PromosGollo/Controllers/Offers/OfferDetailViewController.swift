@@ -53,6 +53,10 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var bonusView: UIView!
     @IBOutlet weak var bonoConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var carView: UIView!
+    @IBOutlet weak var carItemLabel: UILabel!
+    @IBOutlet weak var carButton: UIButton!
+    
     // Variables
     var offer: ProductsData?
     let defaults = UserDefaults.standard
@@ -71,9 +75,13 @@ class OfferDetailViewController: UIViewController {
         // Zoom
         scrollImageView.minimumZoomScale = 1
         scrollImageView.maximumZoomScale = 4
+        
+        tabBarController?.navigationItem.hidesBackButton = false
+        tabBarController?.navigationController?.navigationBar.tintColor = .white
 
         configureRx()
         fetchData()
+        configureViews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +99,10 @@ class OfferDetailViewController: UIViewController {
     }
 
     //MARK: - Functions
+    func configureViews() {
+        carView.layer.cornerRadius = 20.0
+    }
+    
     fileprivate func configureRx() {
         viewModel.errorMessage
             .asObservable()
@@ -118,6 +130,15 @@ class OfferDetailViewController: UIViewController {
                 self.addToCart()
             })
             .disposed(by: bag)
+        
+        carButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                NotificationCenter.default.post(name: Notification.Name("moveToCar"), object: nil)
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
     }
 
     private func fetchData() {
@@ -139,10 +160,11 @@ class OfferDetailViewController: UIViewController {
         if let offer = offer, let article = article {
             var param: [CartItemDetail] = []
             let item = CartItemDetail(
+                urlImage: offer.image,
                 cantidad: 1,
                 idLinea: 1,
                 mesesExtragar: warrantyMonth,
-                descripcion: offer.productName ?? "",
+                descripcion: offer.name ?? "",
                 sku: offer.productCode ?? "",
                 descuento: 0.0,
                 montoDescuento: article.articulo?.precioDescuento ?? 0.0,
@@ -158,11 +180,13 @@ class OfferDetailViewController: UIViewController {
                     guard let self = self,
                           let _ = data else { return }
                     DispatchQueue.main.async {
+                        CoreDataService().addCarItems(with: param)
                         let offerServiceProtectionViewController = OfferServiceProtectionViewController()
                         offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
                         offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
                         self.present(offerServiceProtectionViewController, animated: true)
-
+                        self.carView.isHidden = false
+                        self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
                     }
                 })
                 .disposed(by: bag)

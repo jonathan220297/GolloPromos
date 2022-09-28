@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,35 +19,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mis órdenes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxX-hr-Rrz">
-                                <rect key="frame" x="8" y="52" width="398" height="22.5"/>
+                                <rect key="frame" x="8" y="56" width="398" height="22.5"/>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUc-4i-4PS">
-                                <rect key="frame" x="4" y="78.5" width="406" height="1"/>
+                                <rect key="frame" x="4" y="82.5" width="406" height="1"/>
                                 <color key="backgroundColor" name="colorPrimaryLight"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="XbQ-ZB-Lid"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pwd-NV-4lw">
-                                <rect key="frame" x="0.0" y="79.5" width="414" height="733.5"/>
+                                <rect key="frame" x="0.0" y="83.5" width="414" height="729.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista de órdenes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSh-ja-0Pm">
-                                        <rect key="frame" x="8" y="357" width="398" height="20"/>
+                                        <rect key="frame" x="8" y="355" width="398" height="20"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                         <color key="textColor" name="colorPrimary"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usted no ha realizado ningún perdido" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPB-DI-EjL">
-                                        <rect key="frame" x="8" y="377" width="398" height="17"/>
+                                        <rect key="frame" x="8" y="375" width="398" height="17"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-8q-vXb">
-                                        <rect key="frame" x="152" y="246" width="110" height="108"/>
+                                        <rect key="frame" x="152.5" y="245" width="109" height="107"/>
                                         <color key="tintColor" red="0.079844074079999994" green="0.3590557606" blue="0.56809224449999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cDm-8q-vXb" secondAttribute="height" multiplier="1:1" id="4Wg-WC-DB6"/>
@@ -101,20 +101,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHW-Xh-lsd">
-                                <rect key="frame" x="8" y="52" width="398" height="22.5"/>
+                                <rect key="frame" x="8" y="56" width="398" height="22.5"/>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRK-6e-VgI">
-                                <rect key="frame" x="4" y="78.5" width="406" height="1"/>
+                                <rect key="frame" x="4" y="82.5" width="406" height="1"/>
                                 <color key="backgroundColor" name="colorPrimaryLight"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Oyc-st-1yP"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="J03-5T-Pmy">
-                                <rect key="frame" x="8" y="87.5" width="398" height="40"/>
+                                <rect key="frame" x="8" y="91.5" width="398" height="40"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sbn-RZ-eM2">
                                         <rect key="frame" x="0.0" y="1.5" width="30" height="37.5"/>
@@ -176,7 +176,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRr-Tt-uTy">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="765"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbs-JA-tNn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -273,7 +273,7 @@
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ij-kJ-Mse">
-                                        <rect key="frame" x="0.0" y="156" width="414" height="613"/>
+                                        <rect key="frame" x="0.0" y="156" width="414" height="609"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -328,14 +328,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77W-Vk-Whg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Pkt-ee-bF9">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wI2-hV-RxZ">
-                                        <rect key="frame" x="16" y="51" width="382" height="40"/>
+                                        <rect key="frame" x="16" y="56" width="382" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Provincias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8c-Ra-DIp">
                                                 <rect key="frame" x="0.0" y="0.0" width="78" height="40"/>
@@ -390,11 +390,11 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bu6-i6-00S">
-                                        <rect key="frame" x="0.0" y="95" width="414" height="647"/>
+                                        <rect key="frame" x="0.0" y="100" width="414" height="638"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterTableViewCell" rowHeight="50" id="iKL-79-1J7" customClass="FilterTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="414" height="50"/>
+                                                <rect key="frame" x="0.0" y="50" width="414" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iKL-79-1J7" id="lfm-Za-Aym">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -469,35 +469,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mi carrito" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oc8-er-7nx">
-                                <rect key="frame" x="8" y="52" width="398" height="22.5"/>
+                                <rect key="frame" x="8" y="56" width="398" height="22.5"/>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bGt-m7-02t">
-                                <rect key="frame" x="4" y="78.5" width="406" height="1"/>
+                                <rect key="frame" x="4" y="82.5" width="406" height="1"/>
                                 <color key="backgroundColor" name="colorPrimaryLight"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="eSh-P0-M8V"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8w-rp-gvn">
-                                <rect key="frame" x="0.0" y="79.5" width="414" height="816.5"/>
+                                <rect key="frame" x="0.0" y="83.5" width="414" height="812.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mi carrito" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sP7-lp-zvS">
-                                        <rect key="frame" x="8" y="398.5" width="398" height="20"/>
+                                        <rect key="frame" x="8" y="396.5" width="398" height="20"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                         <color key="textColor" name="colorPrimary"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No ha agregado productos al carrito. Comience añadiendo productos para completar la compra." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9do-Py-e6v">
-                                        <rect key="frame" x="8" y="418.5" width="398" height="34"/>
+                                        <rect key="frame" x="8" y="416.5" width="398" height="34"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_cart" translatesAutoresizingMaskIntoConstraints="NO" id="h3Z-yW-i7N">
-                                        <rect key="frame" x="146" y="274" width="122" height="122.5"/>
+                                        <rect key="frame" x="146" y="272.5" width="122" height="122"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="h3Z-yW-i7N" secondAttribute="height" multiplier="1:1" id="paK-DJ-wzB"/>
                                         </constraints>
@@ -550,7 +550,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C3v-SU-xuX">
-                                <rect key="frame" x="0.0" y="44" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="70"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="KjI-S3-exx">
                                         <rect key="frame" x="8" y="3.5" width="398" height="63"/>
@@ -571,7 +571,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCD-pY-uur">
-                                <rect key="frame" x="0.0" y="114" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5a-9c-u41">
                                         <rect key="frame" x="50" y="20" width="314" height="0.0"/>
@@ -602,7 +602,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oOT-me-Vtr">
-                                <rect key="frame" x="0.0" y="158" width="414" height="704"/>
+                                <rect key="frame" x="0.0" y="162" width="414" height="700"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -635,7 +635,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jxh-Nd-aIO">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCd-lf-cMI">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
@@ -1155,12 +1155,50 @@
                                     <constraint firstItem="aCd-lf-cMI" firstAttribute="leading" secondItem="jxh-Nd-aIO" secondAttribute="leading" id="xLU-Zb-Dkk"/>
                                 </constraints>
                             </scrollView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hx9-lt-REM">
+                                <rect key="frame" x="203" y="806" width="195" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_cart" translatesAutoresizingMaskIntoConstraints="NO" id="aPy-su-CYM">
+                                        <rect key="frame" x="8" y="10.5" width="35" height="19"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="aPy-su-CYM" secondAttribute="height" multiplier="15:8" id="2MK-Lc-wgK"/>
+                                            <constraint firstAttribute="width" constant="35" id="Mm7-id-Q04"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Item(s) en el carrito" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjB-hu-b6g">
+                                        <rect key="frame" x="59" y="13" width="120" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8X0-FQ-0M7">
+                                        <rect key="frame" x="0.0" y="0.0" width="195" height="40"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="colorBonus"/>
+                                <constraints>
+                                    <constraint firstItem="aPy-su-CYM" firstAttribute="leading" secondItem="Hx9-lt-REM" secondAttribute="leading" constant="8" id="1Tt-zr-7Hj"/>
+                                    <constraint firstAttribute="trailing" secondItem="CjB-hu-b6g" secondAttribute="trailing" constant="16" id="6g5-ig-3pL"/>
+                                    <constraint firstItem="aPy-su-CYM" firstAttribute="centerY" secondItem="Hx9-lt-REM" secondAttribute="centerY" id="7iR-yy-1FU"/>
+                                    <constraint firstItem="CjB-hu-b6g" firstAttribute="leading" secondItem="aPy-su-CYM" secondAttribute="trailing" constant="16" id="G97-eR-iMV"/>
+                                    <constraint firstAttribute="height" constant="40" id="GSB-0j-VgM"/>
+                                    <constraint firstAttribute="bottom" secondItem="8X0-FQ-0M7" secondAttribute="bottom" id="TMu-hj-ruM"/>
+                                    <constraint firstItem="8X0-FQ-0M7" firstAttribute="leading" secondItem="Hx9-lt-REM" secondAttribute="leading" id="WOS-Fo-aDk"/>
+                                    <constraint firstItem="CjB-hu-b6g" firstAttribute="centerY" secondItem="Hx9-lt-REM" secondAttribute="centerY" id="c3O-Hr-Cco"/>
+                                    <constraint firstAttribute="trailing" secondItem="8X0-FQ-0M7" secondAttribute="trailing" id="md4-10-bPy"/>
+                                    <constraint firstItem="8X0-FQ-0M7" firstAttribute="top" secondItem="Hx9-lt-REM" secondAttribute="top" id="vi0-xv-e6S"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sx7-hX-XMD"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="jxh-Nd-aIO" firstAttribute="leading" secondItem="sx7-hX-XMD" secondAttribute="leading" id="W8x-6N-E98"/>
                             <constraint firstItem="sx7-hX-XMD" firstAttribute="trailing" secondItem="jxh-Nd-aIO" secondAttribute="trailing" id="fkU-Hg-wxJ"/>
+                            <constraint firstItem="sx7-hX-XMD" firstAttribute="trailing" secondItem="Hx9-lt-REM" secondAttribute="trailing" constant="16" id="jNv-Kq-2O9"/>
+                            <constraint firstItem="sx7-hX-XMD" firstAttribute="bottom" secondItem="Hx9-lt-REM" secondAttribute="bottom" constant="16" id="nug-fy-TiZ"/>
                             <constraint firstItem="sx7-hX-XMD" firstAttribute="bottom" secondItem="jxh-Nd-aIO" secondAttribute="bottom" id="tfG-Er-QId"/>
                             <constraint firstItem="jxh-Nd-aIO" firstAttribute="top" secondItem="sx7-hX-XMD" secondAttribute="top" id="vTT-3c-qdw"/>
                         </constraints>
@@ -1171,6 +1209,9 @@
                         <outlet property="bonusLabel" destination="TBs-L9-0S5" id="3NT-dc-P1m"/>
                         <outlet property="bonusView" destination="L2T-HC-VDw" id="an1-1s-Ofn"/>
                         <outlet property="brandLabel" destination="1Xu-Mq-Lcw" id="wEg-Vh-Dhp"/>
+                        <outlet property="carButton" destination="8X0-FQ-0M7" id="dyv-PK-ub2"/>
+                        <outlet property="carItemLabel" destination="CjB-hu-b6g" id="xWl-O8-1y1"/>
+                        <outlet property="carView" destination="Hx9-lt-REM" id="RbY-0o-E14"/>
                         <outlet property="cartView" destination="WzY-Ob-kqK" id="vD4-dr-21b"/>
                         <outlet property="cartViewHeight" destination="fr4-gY-4O5" id="Y6W-gs-O9k"/>
                         <outlet property="dateLabel" destination="sH9-Lr-DmM" id="Bbd-fR-lso"/>
@@ -1230,9 +1271,9 @@
     </scenes>
     <resources>
         <image name="clear" catalog="system" width="128" height="114"/>
-        <image name="clock" catalog="system" width="128" height="121"/>
+        <image name="clock" catalog="system" width="128" height="123"/>
         <image name="downarrow" width="128" height="128"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="ic_cart" width="30" height="30"/>
         <image name="ic_filtrar" width="170.66667175292969" height="170.66667175292969"/>
         <image name="ic_marca" width="50" height="50"/>
@@ -1245,6 +1286,9 @@
         <image name="ic_offers_menu" width="33.333332061767578" height="33.333332061767578"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorBonus">
+            <color red="1" green="0.70200002193450928" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colorPrimary">
             <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

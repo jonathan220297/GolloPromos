@@ -47,6 +47,13 @@ class CategoryOffersTableViewCell: UITableViewCell {
         offersCollectionView.reloadData()
     }
     
+    func setCategoryInfo(with data: OfferSection) {
+        if let url = URL(string: data.urlImage) {
+            Nuke.loadImage(with: url, into: categoryImageView)
+        }
+        categoryNameLabel.text = data.name
+    }
+    
     func setViewsData() {
         if let url = URL(string: viewModel.category?.category.urlImagen ?? "") {
             Nuke.loadImage(with: url, into: categoryImageView)

@@ -132,10 +132,22 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func serviceAction(_ sender: Any) {
-        let vc = ServicesViewController.instantiate(fromAppStoryboard: .Services)
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true)
+//        let vc = ServicesViewController.instantiate(fromAppStoryboard: .Services)
+//        vc.modalPresentationStyle = .overCurrentContext
+//        vc.modalTransitionStyle = .crossDissolve
+//        self.present(vc, animated: true)
+        let productViewController = ProductViewController()
+        let navController = UINavigationController(rootViewController: productViewController)
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.primary
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navController.navigationBar.standardAppearance = appearance
+        navController.navigationBar.scrollEdgeAppearance = appearance
+        navController.modalPresentationStyle = .overCurrentContext
+        navController.modalTransitionStyle = .crossDissolve
+        present(navController, animated: true)
     }
 
     fileprivate func fetchHomeConfiguration() {

@@ -7,113 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "59CBEF44-82E6-4781-9BDD-07C2EED4613B"
+            uuid = "3FA5AB45-5EF9-4163-A9E3-8499888CF6CA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PromosGollo/Services/GolloPromosService.swift"
+            filePath = "PromosGollo/ViewModels/Payments/ShippingMethodViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "callWebServiceGollo(_:completion:)"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "processShops(with:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "59CBEF44-82E6-4781-9BDD-07C2EED4613B - 99b3584fe93afb0d"
+                  uuid = "3FA5AB45-5EF9-4163-A9E3-8499888CF6CA - 7a2e8ed0c0340fcb"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in PromosGollo.GolloService.callWebServiceGollo&lt;&#x3c4;_0_0 where &#x3c4;_0_0: PromosGollo.APIRequest&gt;(_: &#x3c4;_0_0, completion: (Swift.Result&lt;&#x3c4;_0_0.Response, PromosGollo.ParseServerError&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "PromosGollo.ShippingMethodViewModel.processShops(with: Swift.String) -&gt; ()"
                   moduleName = "PromosGollo"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloPromos/PromosGollo/Services/GolloPromosService.swift"
+                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloPromos/PromosGollo/ViewModels/Payments/ShippingMethodViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "464">
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "62">
                </Location>
                <Location
-                  uuid = "59CBEF44-82E6-4781-9BDD-07C2EED4613B - 99b3584fe93afb0d"
+                  uuid = "3FA5AB45-5EF9-4163-A9E3-8499888CF6CA - 5a9b198e8103ae68"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in PromosGollo.GolloService.callWebServiceGollo&lt;&#x3c4;_0_0 where &#x3c4;_0_0: PromosGollo.APIRequest&gt;(_: &#x3c4;_0_0, completion: (Swift.Result&lt;&#x3c4;_0_0.Response, PromosGollo.ParseServerError&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 (PromosGollo.ShopData) -&gt; Swift.Bool in PromosGollo.ShippingMethodViewModel.processShops(with: Swift.String) -&gt; ()"
                   moduleName = "PromosGollo"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloPromos/PromosGollo/Services/GolloPromosService.swift"
+                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloPromos/PromosGollo/ViewModels/Payments/ShippingMethodViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
                   endingLineNumber = "77"
-                  offsetFromSymbolStart = "503">
+                  offsetFromSymbolStart = "79">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E1FE4F08-2731-4920-A33C-53163DC6282B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PromosGollo/Services/GolloPromosService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "parseResultGollo(of:data:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8D0D0B2F-7DF7-413C-A329-1D3085E974FB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PromosGollo/Services/GolloPromosService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "parseResultGollo(of:data:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7BB53A6D-DAF2-4BEC-88D3-059295A733B1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PromosGollo/Controllers/Payments/PaymentViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "otherAmountTextFieldDidChange(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E8649C33-E94B-4A1B-97B3-FFA2B2E85809"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PromosGollo/Controllers/Payments/PaymentViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "payment(_:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

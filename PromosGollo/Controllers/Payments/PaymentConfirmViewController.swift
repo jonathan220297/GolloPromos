@@ -11,6 +11,10 @@ import RxSwift
 class PaymentConfirmViewController: UIViewController {
 
     @IBOutlet weak var subtotalLabel: UILabel!
+    @IBOutlet weak var shippingStackView: UIStackView!
+    @IBOutlet weak var shippingLabel: UILabel!
+    @IBOutlet weak var bonoStackView: UIStackView!
+    @IBOutlet weak var bonoLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var continuePaymentButton: UIButton!
 
@@ -18,17 +22,21 @@ class PaymentConfirmViewController: UIViewController {
     var paymentAmmount: Double = 0.0
 
     var bag = DisposeBag()
+    
+    lazy var viewModel: PaymentConfirmViewModel = {
+        let vm = PaymentConfirmViewModel()
+        return vm
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Método de pago"
-
         navigationController?.navigationBar.isHidden = false
-        if let suggested = numberFormatter.string(from: NSNumber(value: round(paymentAmmount))) {
-            subtotalLabel.text = "₡" + String(suggested)
-            totalLabel.text = "₡" + String(suggested)
+        if viewModel.isAccountPayment {
+            configureAccountPayment()
+        } else {
+            configureProductPayment()
         }
-        
         configureRx()
     }
 
@@ -42,10 +50,31 @@ class PaymentConfirmViewController: UIViewController {
                 vc.modalPresentationStyle = .fullScreen
                 vc.viewModel.paymentData = self.paymentData
                 vc.viewModel.paymentAmount = self.paymentAmmount
+                vc.viewModel.isAccountPayment = self.viewModel.isAccountPayment
                 vc.delegate = self
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: bag)
+    }
+    
+    fileprivate func configureAccountPayment() {
+        if let suggested = numberFormatter.string(from: NSNumber(value: round(paymentAmmount))) {
+            subtotalLabel.text = "₡" + String(suggested)
+            totalLabel.text = "₡" + String(suggested)
+        }
+    }
+    
+    fileprivate func configureProductPayment() {
+        if let subtotal = numberFormatter.string(from: NSNumber(value: round(viewModel.subTotal))),
+           let shipping = numberFormatter.string(from: NSNumber(value: round(viewModel.shipping))),
+           let bono = numberFormatter.string(from: NSNumber(value: round(viewModel.bonus))) {
+            subtotalLabel.text = "₡" + String(subtotal)
+            shippingStackView.isHidden = false
+            shippingLabel.text = "₡" + String(shipping)
+            bonoStackView.isHidden = false
+            bonoLabel.text = "₡" + String(bono)
+            totalLabel.text = "₡" + String(subtotal)
+        }
     }
 }
 

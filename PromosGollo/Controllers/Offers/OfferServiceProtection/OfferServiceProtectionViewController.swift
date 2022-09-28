@@ -9,7 +9,8 @@ import RxSwift
 import UIKit
 
 class OfferServiceProtectionViewController: UIViewController {
-
+    @IBOutlet weak var closeButton: UIButton!
+    
     let bag = DisposeBag()
 
     // MARK: - Lifecycle
@@ -23,6 +24,18 @@ class OfferServiceProtectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureRx()
     }
 
+    
+    // MARK: - Functions
+    func configureRx() {
+        closeButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.dismiss(animated: true)
+            })
+            .disposed(by: bag)
+    }
 }

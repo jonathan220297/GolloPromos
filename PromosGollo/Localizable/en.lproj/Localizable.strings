@@ -158,3 +158,22 @@ Unicomer y los Usuarios, con renuncia expresa a cualquier otro fuero que pudiera
 "PaymentDataViewController_expiration_year" = "Año de expiración";
 "PaymentDataViewController_card_name" = "Nombre";
 "PaymentDataViewController_continue_payment" = "CONTINUAR CON EL PAGO";
+
+// PersonalInfoViewController
+"PersonalInfoViewController_title" = "Personal Info";
+"PersonalInfoViewController_first_name" = "First Name";
+"PersonalInfoViewController_last_name" = "Last Name";
+"PersonalInfoViewController_email" = "Email";
+"PersonalInfoViewController_phone_number" = "Phone Number";
+"PersonalInfoViewController_document_type" = "Document Type";
+"PersonalInfoViewController_identification_number" = "Identification Number (ID or passport)";
+"PersonalInfoViewController_select_address" = "SELECT ADDRESS";
+"PersonalInfoViewController_country" = "Country";
+"PersonalInfoViewController_state" = "State";
+"PersonalInfoViewController_city" = "City";
+"PersonalInfoViewController_address" = "Address";
+"PersonalInfoViewController_save_address" = "SAVE ADDRESS";
+"PersonalInfoViewController_continue" = "CONTINUE WITH DELIVERY";
+"PersonalInfoViewController_address_saved" = "Address saved";
+"PersonalInfoViewController_address_incomplete" = "Address incomplete";
+"PersonalInfoViewController_login_to_save_address" = "Login to save the address";
