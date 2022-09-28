@@ -24,7 +24,10 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var modelLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var savingHeader: UILabel!
     @IBOutlet weak var savingsLabel: UILabel!
+    @IBOutlet weak var priceDivider: UIView!
     @IBOutlet weak var discountPriceLabel: UILabel!
     @IBOutlet weak var originalPrice: UILabel!
 
@@ -93,9 +96,9 @@ class OfferDetailViewController: UIViewController {
 
         self.navigationController?.navigationBar.tintColor = UIColor.primary
         let rigthButton = UIBarButtonItem(image: UIImage(named: "ic_share"), style: .plain, target: self, action: #selector(share))
-        let rigthButton2 = UIBarButtonItem(image: isFavorite(), style: .plain, target: self, action: #selector(saveFavorites))
+        let rigthButton2 = UIBarButtonItem(image: UIImage(named: "ic_added_heart"), style: .plain, target: self, action: #selector(saveFavorites))
         self.navigationItem.rightBarButtonItems = [rigthButton, rigthButton2]
-        self.navigationItem.rightBarButtonItem?.tintColor = .gray
+        self.navigationItem.rightBarButtonItem?.tintColor = .white
     }
 
     //MARK: - Functions
@@ -181,12 +184,14 @@ class OfferDetailViewController: UIViewController {
                           let _ = data else { return }
                     DispatchQueue.main.async {
                         CoreDataService().addCarItems(with: param)
-                        let offerServiceProtectionViewController = OfferServiceProtectionViewController()
-                        offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
-                        offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
-                        self.present(offerServiceProtectionViewController, animated: true)
-                        self.carView.isHidden = false
-                        self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
+                        if self.warrantyMonth != 0 {
+                            let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
+                            offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
+                            offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
+                            self.present(offerServiceProtectionViewController, animated: true)
+                            self.carView.isHidden = false
+                            self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
+                        }
                     }
                 })
                 .disposed(by: bag)
@@ -235,22 +240,22 @@ class OfferDetailViewController: UIViewController {
             descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productsDataDescription ?? "")
             dateLabel.attributedText = formatHTML(header: "Fecha de Vencimiento: ", content: convertDate(date: offer.endDate ?? "") ?? "")
 
-            let formatter = NumberFormatter()
-            formatter.numberStyle = NumberFormatter.Style.decimal
-
-            let originalString = formatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
+            let originalString = numberFormatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? "$")\(originalString)")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-            originalPrice.attributedText = attributeString
 
             if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0,
                let price = data.articulo?.precio, price > 0.0 {
-                let savingString = formatter.string(from: NSNumber(value: totalDiscount))!
+                let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
                 savingsLabel.text = "\(offer.simboloMoneda ?? "$")\(savingString)"
 
-                let discountString = formatter.string(from: NSNumber(value: data.articulo?.precioDescuento ?? 0.0))!
+                let discountString = numberFormatter.string(from: NSNumber(value: data.articulo?.precioDescuento ?? 0.0))!
                 discountPriceLabel.text = "\(offer.simboloMoneda ?? "$")\(discountString)"
+                self.originalPrice.attributedText = attributeString
             } else {
+                self.originalPrice.text = "\(offer.simboloMoneda ?? "$")\(originalString)"
+                self.savingHeader.alpha = 0
+                self.priceDivider.alpha = 0
                 self.savingsLabel.alpha = 0
                 self.discountLabel.alpha = 0
             }
@@ -289,8 +294,8 @@ class OfferDetailViewController: UIViewController {
             let regalia = offer.tieneRegalia?.bool
             let bono = offer.tieneBono?.bool
 
-            if descuento! {
-                discountLabel.text = "\(offer.simboloMoneda ?? "$")\(offer.montoDescuento ?? 0)"
+            if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0 {
+                discountLabel.text = "\(offer.simboloMoneda ?? "$")\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
             } else {
                 DispatchQueue.main.async {
                     self.tintView.visibility = .gone
@@ -311,8 +316,8 @@ class OfferDetailViewController: UIViewController {
                 }
             }
 
-            if bono! {
-                bonusLabel.text = "\(offer.simboloMoneda ?? "")\(offer.montoBono ?? 0)"
+            if let bonus = data.articulo?.montoBonoProveedor, bonus > 0.0 {
+                bonusLabel.text = "\(offer.simboloMoneda ?? "")\(numberFormatter.string(from: NSNumber(value: bonus))!)"
             } else {
                 DispatchQueue.main.async {
                     self.tintViewBonus.visibility = .gone

@@ -159,6 +159,9 @@
 		4FA41E1027015D38007C93F9 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA41E0F27015D38007C93F9 /* LoginData.swift */; };
 		4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4D6E2271FE56E00C117CD /* StatusViewModel.swift */; };
 		4FA4D6E5271FE5D900C117CD /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4D6E4271FE5D900C117CD /* Status.swift */; };
+		4FADF58A28E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FADF58828E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.swift */; };
+		4FADF58B28E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FADF58928E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.xib */; };
+		4FADF58D28E4AC3E00DF9F29 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FADF58C28E4AC3E00DF9F29 /* GoogleService-Info.plist */; };
 		4FB2582F2720DDDC0003C607 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */; };
 		4FB258312720DE150003C607 /* AppTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258302720DE150003C607 /* AppTransaction.swift */; };
 		4FB258332720DEC30003C607 /* HistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258322720DEC30003C607 /* HistoryRequest.swift */; };
@@ -182,7 +185,6 @@
 		4FDA3AA826D8FE27003B2CB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA3AA626D8FE27003B2CB6 /* LaunchScreen.storyboard */; };
 		4FDA3AB326D8FE28003B2CB6 /* PromosGolloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3AB226D8FE28003B2CB6 /* PromosGolloTests.swift */; };
 		4FDA3ABE26D8FE28003B2CB6 /* PromosGolloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3ABD26D8FE28003B2CB6 /* PromosGolloUITests.swift */; };
-		4FDB6EC628DCE28E0002DA0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC528DCE28E0002DA0B /* GoogleService-Info.plist */; };
 		4FDB6ECA28DD18EA0002DA0B /* PaymentAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */; };
 		4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */; };
 		4FDB6ECD28DD1CAF0002DA0B /* PaymentAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */; };
@@ -431,6 +433,9 @@
 		4FA41E0F27015D38007C93F9 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		4FA4D6E2271FE56E00C117CD /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		4FA4D6E4271FE5D900C117CD /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		4FADF58828E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferServiceProtectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		4FADF58928E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferServiceProtectionCollectionViewCell.xib; sourceTree = "<group>"; };
+		4FADF58C28E4AC3E00DF9F29 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		4FB258302720DE150003C607 /* AppTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTransaction.swift; sourceTree = "<group>"; };
 		4FB258322720DEC30003C607 /* HistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRequest.swift; sourceTree = "<group>"; };
@@ -460,7 +465,6 @@
 		4FDA3AB926D8FE28003B2CB6 /* PromosGolloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PromosGolloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3ABD26D8FE28003B2CB6 /* PromosGolloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosGolloUITests.swift; sourceTree = "<group>"; };
 		4FDA3ABF26D8FE28003B2CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FDB6EC528DCE28E0002DA0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewController.swift; sourceTree = "<group>"; };
 		4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentAddressViewController.xib; sourceTree = "<group>"; };
 		4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewModel.swift; sourceTree = "<group>"; };
@@ -830,6 +834,7 @@
 		4F17322B27013B9300D7924D /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				4FADF58728E4A27600DF9F29 /* OfferServiceProtection */,
 				4FFD9CA7272AF977004778F1 /* FilterTableViewCell.swift */,
 				4F17322C27013BA100D7924D /* HeaderTableViewCell.swift */,
 				4F17322E27013BC900D7924D /* FooterTableViewCell.swift */,
@@ -1168,6 +1173,15 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		4FADF58728E4A27600DF9F29 /* OfferServiceProtection */ = {
+			isa = PBXGroup;
+			children = (
+				4FADF58828E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.swift */,
+				4FADF58928E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.xib */,
+			);
+			path = OfferServiceProtection;
+			sourceTree = "<group>";
+		};
 		4FB0B2042710F59500A80BB4 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
@@ -1267,7 +1281,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4FDB6EC528DCE28E0002DA0B /* GoogleService-Info.plist */,
+				4FADF58C28E4AC3E00DF9F29 /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* PromosGollo.xcdatamodeld */,
 			);
 			path = PromosGollo;
@@ -1615,6 +1629,7 @@
 				4FE1912526DEFCA000322128 /* ProductCollectionViewCell.xib in Resources */,
 				4F69894428BDB625000FFA56 /* PaymentSuccessViewController.xib in Resources */,
 				4FDA3AA326D8FE26003B2CB6 /* Main.storyboard in Resources */,
+				4FADF58B28E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.xib in Resources */,
 				4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */,
 				4FE573A728C16AEF00BBDEBC /* SignupWaringViewController.xib in Resources */,
 				4F0D967526DDBB810061E89E /* SansSerifExbFLF-Italic.otf in Resources */,
@@ -1632,13 +1647,13 @@
 				4FEA90A628CFF6F300A73813 /* ProductViewController.xib in Resources */,
 				4F68373228DB7A5600462F5E /* OfferServiceProtectionViewController.xib in Resources */,
 				4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */,
-				4FDB6EC628DCE28E0002DA0B /* GoogleService-Info.plist in Resources */,
 				4FE1910C26DEF77C00322128 /* SectionTableViewCell.xib in Resources */,
 				4FE1910B26DEF77C00322128 /* SliderTableViewCell.xib in Resources */,
 				4F0D96BC26DDD7F50061E89E /* MenuTableViewCell.xib in Resources */,
 				4FDD106028D15F390082ADB5 /* OrdersTabViewController.xib in Resources */,
 				4F0D96C826DDD9990061E89E /* Services.storyboard in Resources */,
 				4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */,
+				4FADF58D28E4AC3E00DF9F29 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1846,6 +1861,7 @@
 				4FDD106328D15FA70082ADB5 /* MenuTabViewController.swift in Sources */,
 				4FFD9CA8272AF978004778F1 /* FilterTableViewCell.swift in Sources */,
 				4F3E482A27278700009D259D /* ThirdPartyResponse.swift in Sources */,
+				4FADF58A28E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.swift in Sources */,
 				4FE1911326DEFAC700322128 /* ProductsData.swift in Sources */,
 				4FEDF8E128B7E7BA00719245 /* ResetPasswordViewController.swift in Sources */,
 				4F0D963626DDB8770061E89E /* Badge.swift in Sources */,
