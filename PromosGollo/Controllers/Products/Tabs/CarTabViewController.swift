@@ -69,6 +69,8 @@ class CarTabViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
+                self.viewModel.setItemsToCarManager()
+                self.viewModel.carManager.total = self.viewModel.total
                 let paymentAddressViewController = PaymentAddressViewController(
                     viewModel: PaymentAddressViewModel()
                 )
@@ -100,6 +102,7 @@ class CarTabViewController: UIViewController {
         for item in viewModel.car {
             total += (item.precioUnitario * Double(item.cantidad))
         }
+        viewModel.total = total
         totalLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
     }
 }
@@ -133,6 +136,13 @@ extension CarTabViewController: CarProductDelegate {
     func deleteItem(at indexPath: IndexPath) {
         guard let id = viewModel.car[indexPath.row].idCarItem else { return }
         if CoreDataService().deleteCarItem(with: id) {
+            fetchCarItems()
+        }
+    }
+    
+    func updateQuantity(at indexPath: IndexPath, _ quantity: Int) {
+        guard let id = viewModel.car[indexPath.row].idCarItem else { return }
+        if CoreDataService().updateProductQuantity(for: id, quantity) {
             fetchCarItems()
         }
     }

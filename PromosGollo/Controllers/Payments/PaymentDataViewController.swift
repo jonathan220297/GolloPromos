@@ -64,7 +64,11 @@ class PaymentDataViewController: UIViewController {
         continueButton.rx
             .tap
             .subscribe(onNext: {
-                self.makePayment()
+                if self.viewModel.isAccountPayment {
+                    self.makeAccountPayment()
+                } else {
+                    self.makeProductPayment()
+                }
             })
             .disposed(by: bag)
         
@@ -109,10 +113,28 @@ class PaymentDataViewController: UIViewController {
         dropDown.show()
     }
     
-    private func makePayment() {
+    private func makeAccountPayment() {
         continueButton.showLoading()
         viewModel
             .makeGolloPayment()
+            .asObservable()
+            .subscribe(onNext: {[weak self] response in
+                guard let self = self,
+                      let response = response else { return }
+                print(response)
+                self.continueButton.hideLoading()
+                let paymentSuccessViewController = PaymentSuccessViewController()
+                paymentSuccessViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
+            })
+            .disposed(by: bag)
+    }
+    
+    private func makeProductPayment() {
+        viewModel.setCardData()
+        continueButton.showLoading()
+        viewModel
+            .makeProductPayment()
             .asObservable()
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,

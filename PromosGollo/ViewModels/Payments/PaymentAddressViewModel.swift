@@ -12,6 +12,7 @@ import RxRelay
 class PaymentAddressViewModel {
     private let service = GolloService()
     let userManager = UserManager.shared
+    let carManager = CarManager.shared
     
     var itemsArray: [String] = []
     var documentTypeArray: [String] = ["Cedula"]
@@ -33,7 +34,6 @@ class PaymentAddressViewModel {
     let postalCodeSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let latitudeSubject: BehaviorRelay<Double?> = BehaviorRelay(value: nil)
     let longitudeSubject: BehaviorRelay<Double?> = BehaviorRelay(value: nil)
-//    let paymentAddressSubject: BehaviorRelay<PaymentAddress?> = BehaviorRelay(value: nil)
     
     var isValidFirstPartForm: Observable<Bool> {
         return Observable.combineLatest(firstNameSubject, lastNameSubject, emailSubject, phoneNumberSubject, documentTypeSubject) { firstName, lastName, email, phonenumber, document in
@@ -144,27 +144,44 @@ class PaymentAddressViewModel {
         return apiResponse
     }
     
-//    func prepareAddressInfoForPayment() {
-//        let firstName = firstNameSubject.value
-//        let lastName = lastNameSubject.value
-//        let email = emailSubject.value
-//        let phoneNumber = phoneNumberSubject.value
-//        let documentType = documentTypeSubject.value
-//        let identificationNumber = identificationNumberSubject.value
-//        let country = countrySubject.value
-//        let state = stateSubject.value
-//        let city = citySubject.value
-//        let address = addressSubject.value
-//        let postalCode = postalCodeSubject.value
-//        let latitude = latitudeSubject.value
-//        let longitude = longitudeSubject.value
-//        let paymentAddress = PaymentAddress(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, documentType: documentType, identificationNumber: identificationNumber, country: country, state: state, city: city, address: address, postalCode: postalCode, latitude: latitude, longitude: longitude, items: itemsArray)
-//        paymentAddressSubject.accept(paymentAddress)
-//    }
-    
-//    func setPaymentAddressToManager() {
-//        paymentManager.paymentAddress = paymentAddressSubject.value
-//    }
+    func prepareAddressInfoForPayment() {
+        let firstName = firstNameSubject.value
+        let lastName = lastNameSubject.value
+        let email = emailSubject.value
+        let phoneNumber = phoneNumberSubject.value
+        let documentType = documentTypeSubject.value
+        let identificationNumber = identificationNumberSubject.value
+        let state = stateSubject.value
+        let county = countySubject.value
+        let district = districtSubject.value
+        let address = addressSubject.value
+        let postalCode = postalCodeSubject.value
+        let latitude = latitudeSubject.value
+        let longitude = longitudeSubject.value
+        let deliveryInfo = DeliveryInfo(
+            codigoFlete: "-1",
+            coordenadaX: 0.0,
+            coordenadaY: 0.0,
+            direccion: address ?? "",
+            email: email ?? "",
+            fechaEntrega: "",
+            firstName: firstName ?? "",
+            horaEntrega: "",
+            idCanton: county ?? "",
+            idDistrito: district ?? "",
+            idProvincia: state ?? "",
+            idReceptor: identificationNumber ?? "",
+            lastName: lastName ?? "",
+            lugarDespacho: "",
+            montoFlete: 0,
+            nomReceptor: (firstName ?? "") + " " + (lastName ?? ""),
+            postalCode: postalCode ?? "",
+            telReceptor: phoneNumber ?? "",
+            tipoEntrega: "",
+            tipoIDRecep: "C"
+        )
+        carManager.deliveryInfo = deliveryInfo
+    }
     
     func isValidAddress() -> Bool {
         guard let country = countrySubject.value,
@@ -178,28 +195,41 @@ class PaymentAddressViewModel {
             && !(address.isEmpty)
     }
     
-//    func saveAddress() -> BehaviorRelay<Bool> {
-//        let apiResponse: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-//        let userId = getUserId()
-//        service.callWebService(AddAddressRequest(
-//            userId: userId ?? "",
-//            country: countrySubject.value ?? "",
-//            state: stateSubject.value ?? "",
-//            city: citySubject.value ?? "",
-//            address: addressSubject.value ?? "",
-//            postalCode: postalCodeSubject.value ?? "",
-//            latitude: latitudeSubject.value ?? 0.0,
-//            longitude: longitudeSubject.value ?? 0.0
-//        )) { response in
-//            switch response {
-//            case .success(_):
-//                apiResponse.accept(true)
-//            case .failure(let error):
-//                self.errorMessage.accept(error.localizedDescription)
-//                apiResponse.accept(false)
-//            }
-//        }
-//
-//        return apiResponse
-//    }
+    func saveAddress() -> BehaviorRelay<Bool?> {
+        let apiResponse: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
+        service.callWebServiceGolloAlternative(BaseRequest<Bool?, SaveUserAddressRequest>(
+            service: BaseServiceRequestParam<SaveUserAddressRequest>(
+                servicio: ServicioParam(
+                    encabezado: Encabezado(
+                        idProceso: GOLLOAPP.SAVE_ADDRESS.rawValue,
+                        idDevice: "",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        timeStamp: String(Date().timeIntervalSince1970),
+                        idCia: 10,
+                        token: getToken(),
+                        integrationId: nil),
+                    parametros: SaveUserAddressRequest(
+                        idCliente: Variables.userProfile?.idCliente ?? "",
+                        idProvincia: stateSubject.value ?? "",
+                        idCanton: countySubject.value ?? "",
+                        idDistrito: districtSubject.value ?? "",
+                        direccionExacta: addressSubject.value ?? "",
+                        codigoPostal: postalCodeSubject.value ?? "",
+                        GPS_X: 0.0,
+                        GPS_Y: 0.0
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
 }

@@ -19,6 +19,9 @@ class PaymentDataViewModel {
     //    private let service = ShoppiService()
     //    let paymentManager = PaymentManager.shared
     private let service = GolloService()
+    private let carManager = CarManager.shared
+    
+    var isAccountPayment = true
     
     var paymentData: PaymentData?
     var paymentAmount = 0.0
@@ -116,6 +119,63 @@ class PaymentDataViewModel {
                         }
                     }
                     //log.debug("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
+    
+    func setCardData() {
+        guard let cardNumber = cardNumberSubject.value,
+              let expiryMonth = expirationNumberSubject.value,
+              let expiryYear = expirationYearSubject.value,
+              let cardHolderName = cardNameSubject.value,
+              let cvv = cardCvvSubject.value else { return }
+        let expiryDate = String(expiryMonth) + "/" + String(expiryYear)
+        carManager.paymentMethod.append(
+            PaymentMethod(
+               codAutorizacion: cvv,
+               fechaExp: expiryDate,
+               idFormaPago: "30",
+               montoPago: carManager.total,
+               noLineaRelacionada: 0,
+               nomTarjeta: cardHolderName,
+               numTarjeta: cardNumber,
+               tipoPlazoTarjeta: "11723675",
+               tipoTarjeta: "",
+               totalCuotas: 0
+           )
+        )
+    }
+    
+    func makeProductPayment() -> BehaviorRelay<PaymentOrderResponse?> {
+        guard let deliveryInfo = carManager.deliveryInfo,
+              let clientID = Variables.userProfile?.idCliente else { return BehaviorRelay<PaymentOrderResponse?>(value: nil) }
+        let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(
+            BaseRequest<PaymentOrderResponse?, OrderData>(
+                resource: "Procesos",
+                service: BaseServiceRequestParam<OrderData>(
+                    servicio: ServicioParam(
+                        encabezado: getDefaultBaseHeaderRequest(
+                            with: GOLLOAPP.PRODUCT_PAYMENT.rawValue
+                        ),
+                        parametros: OrderData(
+                            detalle: carManager.car,
+                            formaPago: carManager.paymentMethod,
+                            idCliente: clientID,
+                            infoEntrega: deliveryInfo
+                        )
+                    )
+                )
+            )
+        ) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    self.errorMessage.accept(error.localizedDescription)
                 }
             }
         }

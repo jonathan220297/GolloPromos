@@ -112,6 +112,9 @@
                                                                 <state key="normal" title="-">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="minusButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vg5-CU-Ahg"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemGray4Color"/>
@@ -148,6 +151,9 @@
                                                                 <state key="normal" title="+">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="plusButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Rac-ue-93y"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemGray4Color"/>

@@ -11,6 +11,7 @@ import UIKit
 
 protocol CarProductDelegate: AnyObject {
     func deleteItem(at indexPath: IndexPath)
+    func updateQuantity(at indexPath: IndexPath, _ quantity: Int)
 }
 
 class CarProductTableViewCell: UITableViewCell {
@@ -32,19 +33,32 @@ class CarProductTableViewCell: UITableViewCell {
     var indexPath: IndexPath = IndexPath(row: 0, section: 0)
     weak var delegate: CarProductDelegate?
     let bag = DisposeBag()
+    var quantity = 0
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureRx()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    // MARK: - Actions
     @IBAction func deleteButtonTapped(_ sender: Any) {
         self.delegate?.deleteItem(at: self.indexPath)
+    }
+    
+    @IBAction func minusButtonTapped(_ sender: Any) {
+        if quantity > 1 {
+            quantity -= 1
+        }
+        delegate?.updateQuantity(at: indexPath, quantity)
+    }
+    
+    @IBAction func plusButtonTapped(_ sender: Any) {
+        quantity += 1
+        delegate?.updateQuantity(at: indexPath, quantity)
     }
     
     // MARK: - Functions
@@ -57,16 +71,7 @@ class CarProductTableViewCell: UITableViewCell {
         productNameLabel.text = data.descripcion
         productPriceLabel.text = "₡" + formatter.string(from: NSNumber(value: data.precioUnitario))!
         totalAmountLabel.text = "₡" + formatter.string(from: NSNumber(value: data.precioUnitario))!
-    }
-    
-    func configureRx() {
-        addWarrantyButton
-            .rx
-            .tap
-            .subscribe(onNext: {[weak self] in
-                guard let self = self else { return }
-                self.delegate?.deleteItem(at: self.indexPath)
-            })
-            .disposed(by: bag)
+        quantity = data.cantidad
+        quantityTextField.text = String(quantity)
     }
 }
