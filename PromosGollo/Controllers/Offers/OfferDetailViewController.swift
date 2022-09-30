@@ -71,6 +71,7 @@ class OfferDetailViewController: UIViewController {
 
     var article: OfferDetail?
     var warrantyMonth = 0
+    var warrantyAmount = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +97,7 @@ class OfferDetailViewController: UIViewController {
 
         self.navigationController?.navigationBar.tintColor = UIColor.primary
         let rigthButton = UIBarButtonItem(image: UIImage(named: "ic_share"), style: .plain, target: self, action: #selector(share))
-        let rigthButton2 = UIBarButtonItem(image: UIImage(named: "ic_added_heart"), style: .plain, target: self, action: #selector(saveFavorites))
+        let rigthButton2 = UIBarButtonItem(image: UIImage(named: "ic_heart"), style: .plain, target: self, action: #selector(saveFavorites))
         self.navigationItem.rightBarButtonItems = [rigthButton, rigthButton2]
         self.navigationItem.rightBarButtonItem?.tintColor = .white
     }
@@ -169,9 +170,9 @@ class OfferDetailViewController: UIViewController {
                 mesesExtragar: warrantyMonth,
                 descripcion: offer.name ?? "",
                 sku: offer.productCode ?? "",
-                descuento: 0.0,
-                montoDescuento: article.articulo?.precioDescuento ?? 0.0,
-                montoExtragar: 0.0,
+                descuento: article.articulo?.precioDescuento ?? 0.0,
+                montoDescuento: article.articulo?.montoDescuento ?? 0.0,
+                montoExtragar: warrantyAmount,
                 porcDescuento: 0.0,
                 precioExtendido: (article.articulo?.precio ?? 0.0 - (article.articulo?.montoDescuento ?? 0.0)),
                 precioUnitario: article.articulo?.precio ?? 0.0
@@ -183,14 +184,14 @@ class OfferDetailViewController: UIViewController {
                     guard let self = self,
                           let _ = data else { return }
                     DispatchQueue.main.async {
-                        CoreDataService().addCarItems(with: param)
-                        if self.warrantyMonth != 0 {
+                        CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
+                        self.carView.isHidden = false
+                        self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
+                        if self.warrantyMonth == 0 {
                             let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
                             offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
                             offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
                             self.present(offerServiceProtectionViewController, animated: true)
-                            self.carView.isHidden = false
-                            self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
                         }
                     }
                 })
@@ -260,39 +261,7 @@ class OfferDetailViewController: UIViewController {
                 self.discountLabel.alpha = 0
             }
 
-//            if let original = offer.originalPrice, let final = offer.precioFinal {
-//                if original == 0 || final == 0 {
-//                    DispatchQueue.main.async {
-//                        self.pricesView.alpha = 0
-//                        self.sepView.alpha = 0
-//                        self.pricesView.layoutIfNeeded()
-//                    }
-//                } else {
-//                    let formatter = NumberFormatter()
-//                    formatter.numberStyle = NumberFormatter.Style.decimal
-//
-//                    let saving = original - final
-//                    let savingString = formatter.string(from: NSNumber(value: saving))!
-//                    savingsLabel.text = "\(offer.simboloMoneda ?? "$")\(savingString)"
-//
-//                    let discountString = formatter.string(from: NSNumber(value: final))!
-//                    discountPriceLabel.text = "\(offer.simboloMoneda ?? "$")\(discountString)"
-//
-//                    let originalString = formatter.string(from: NSNumber(value: original))!
-//                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? "$")\(originalString)")
-//                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-//                    originalPrice.attributedText = attributeString
-//                }
-//            } else {
-//                DispatchQueue.main.async {
-//                    self.pricesView.alpha = 0
-//                    self.sepView.alpha = 0
-//                }
-//            }
-
-            let descuento = offer.tieneDescuento?.bool
             let regalia = offer.tieneRegalia?.bool
-            let bono = offer.tieneBono?.bool
 
             if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0 {
                 discountLabel.text = "\(offer.simboloMoneda ?? "$")\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
@@ -357,6 +326,7 @@ class OfferDetailViewController: UIViewController {
         dropDown.show()
         dropDown.selectionAction = { [self] (index: Int, item: String) in
             warrantyMonth = viewModel.documents[index].plazoMeses ?? 0
+            warrantyAmount = viewModel.documents[index].montoExtragarantia ?? 0.0
             serviceLabel.text = item
         }
     }

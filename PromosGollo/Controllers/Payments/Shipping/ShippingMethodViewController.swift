@@ -40,10 +40,6 @@ class ShippingMethodViewController: UIViewController {
         configureViews()
         configureTableView()
         configureRx()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchShops()
     }
     

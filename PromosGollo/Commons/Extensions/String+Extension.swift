@@ -66,6 +66,20 @@ extension String {
         return formatter.number(from: self)?.doubleValue ?? 0.0
     }
 
+    func convertDateFormater(with format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+
+        guard let date = dateFormatter.date(from: self) else { return "" }
+
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        let timeStamp = dateFormatter.string(from: date)
+
+        return timeStamp
+    }
+
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
         do {

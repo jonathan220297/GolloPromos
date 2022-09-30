@@ -111,6 +111,8 @@ enum GOLLOAPP: String {
     case STATES_CITIES = "24"
     case PRODUCT_PAYMENT = "26"
     case OFFER_DETAIL_PROCESS_ID = "29"
+    case ORDERS_PROCESS_ID = "30"
+    case ORDER_DETAIL_PROCESS_ID = "31"
     case SAVE_ADDRESS = "32"
     case ADDRESS_LIST = "34"
     case DELETE_ADDRESS = "35"

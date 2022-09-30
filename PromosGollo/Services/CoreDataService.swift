@@ -9,10 +9,11 @@ import CoreData
 import UIKit
 
 class CoreDataService {
-    func addCarItems(with items: [CartItemDetail]) {
+    func addCarItems(with items: [CartItemDetail], warranty: [Warranty]) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "CarProduct", in: context)
+        let warrantyEntity = NSEntityDescription.entity(forEntityName: "ProductWarranty", in: context)
         for item in items {
             let carItem = NSManagedObject(entity: entity!, insertInto: context)
             carItem.setValue(UUID(), forKey: "idCarProduct")
@@ -28,6 +29,15 @@ class CoreDataService {
             carItem.setValue(item.precioUnitario, forKey: "unitPrice")
             carItem.setValue(item.mesesExtragar, forKey: "warranty")
             carItem.setValue(item.montoExtragar, forKey: "warrantyAmount")
+            for w in warranty {
+                let carWarranty = NSManagedObject(entity: warrantyEntity!, insertInto: context)
+                carWarranty.setValue(w.plazoMeses ?? 0, forKey: "months")
+                carWarranty.setValue(w.impuestoExtragarantia ?? 0.0, forKey: "taxes")
+                carWarranty.setValue(w.montoExtragarantia ?? 0.0, forKey: "amount")
+                carWarranty.setValue(w.porcentaje ?? 0.0, forKey: "percentage")
+                carWarranty.setValue(w.titulo ?? "", forKey: "title")
+                carWarranty.setValue(w, forKey: "carProduct")
+            }
         }
         do {
             try context.save()
@@ -113,6 +123,44 @@ class CoreDataService {
             let result = try context.fetch(request)
             if let item = result.first as? NSManagedObject {
                 item.setValue(quantity, forKey: "quantity")
+            }
+            try context.save()
+            return true
+        } catch let error as NSError {
+            print("Error deleteCarItem: " + error.localizedDescription)
+            return false
+        }
+    }
+
+    func addGolloPlus(for productID: UUID, month: Int, amount: Double) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CarProduct")
+        request.predicate = NSPredicate(format: "idCarProduct == %@", productID as CVarArg)
+        do {
+            let result = try context.fetch(request)
+            if let item = result.first as? NSManagedObject {
+                item.setValue(month, forKey: "warranty")
+                item.setValue(amount, forKey: "warrantyAmount")
+            }
+            try context.save()
+            return true
+        } catch let error as NSError {
+            print("Error deleteCarItem: " + error.localizedDescription)
+            return false
+        }
+    }
+
+    func removeGolloPlus(for productID: UUID) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CarProduct")
+        request.predicate = NSPredicate(format: "idCarProduct == %@", productID as CVarArg)
+        do {
+            let result = try context.fetch(request)
+            if let item = result.first as? NSManagedObject {
+                item.setValue(0, forKey: "warranty")
+                item.setValue(0.0, forKey: "warrantyAmount")
             }
             try context.save()
             return true

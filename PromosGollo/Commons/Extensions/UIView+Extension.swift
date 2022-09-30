@@ -40,7 +40,7 @@ extension UIView {
         activityIndicator.center = self.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .medium
-        activityIndicator.color = .white
+        activityIndicator.color = .primary
         activityIndicator.startAnimating()
         self.isUserInteractionEnabled = false
 

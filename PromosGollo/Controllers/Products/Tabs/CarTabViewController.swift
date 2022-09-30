@@ -100,7 +100,7 @@ class CarTabViewController: UIViewController {
         formatter.numberStyle = NumberFormatter.Style.decimal
         var total = 0.0
         for item in viewModel.car {
-            total += (item.precioUnitario * Double(item.cantidad))
+            total += (item.precioUnitario * Double(item.cantidad)) + item.montoExtragar
         }
         viewModel.total = total
         totalLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
@@ -128,6 +128,7 @@ extension CarTabViewController: UITableViewDataSource {
         cell.indexPath = indexPath
         cell.delegate = self
         cell.selectionStyle = .none
+
         return cell
     }
 }
@@ -143,6 +144,24 @@ extension CarTabViewController: CarProductDelegate {
     func updateQuantity(at indexPath: IndexPath, _ quantity: Int) {
         guard let id = viewModel.car[indexPath.row].idCarItem else { return }
         if CoreDataService().updateProductQuantity(for: id, quantity) {
+            fetchCarItems()
+        }
+    }
+
+    func addGolloPlus(at indexPath: IndexPath) {
+        let _ = viewModel.car[indexPath.row]
+        var documents: [Warranty] = []
+        let lovN = Warranty(plazoMeses: 0, porcentaje: 0.0, montoExtragarantia: 0.0, impuestoExtragarantia: 0.0, titulo: "Sin gollo plus")
+        documents.append(lovN)
+        let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: documents)
+        offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
+        offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
+        self.present(offerServiceProtectionViewController, animated: true)
+    }
+
+    func removeGolloPlus(at indexPath: IndexPath) {
+        guard let id = viewModel.car[indexPath.row].idCarItem else { return }
+        if CoreDataService().removeGolloPlus(for: id) {
             fetchCarItems()
         }
     }
