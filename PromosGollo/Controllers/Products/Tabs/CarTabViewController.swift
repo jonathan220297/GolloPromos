@@ -149,11 +149,10 @@ extension CarTabViewController: CarProductDelegate {
     }
 
     func addGolloPlus(at indexPath: IndexPath) {
-        let _ = viewModel.car[indexPath.row]
-        var documents: [Warranty] = []
-        let lovN = Warranty(plazoMeses: 0, porcentaje: 0.0, montoExtragarantia: 0.0, impuestoExtragarantia: 0.0, titulo: "Sin gollo plus")
-        documents.append(lovN)
-        let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: documents)
+        guard let id = viewModel.car[indexPath.row].idCarItem else { return }
+        var warranties = CoreDataService().fetchCarWarranty(with: id)
+        let sorted = warranties.sorted { $0.plazoMeses ?? 0 < $1.plazoMeses ?? 0 }
+        let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: sorted)
         offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
         offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
         self.present(offerServiceProtectionViewController, animated: true)

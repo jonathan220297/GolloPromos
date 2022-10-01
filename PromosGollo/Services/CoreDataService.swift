@@ -16,7 +16,8 @@ class CoreDataService {
         let warrantyEntity = NSEntityDescription.entity(forEntityName: "ProductWarranty", in: context)
         for item in items {
             let carItem = NSManagedObject(entity: entity!, insertInto: context)
-            carItem.setValue(UUID(), forKey: "idCarProduct")
+            let id = UUID()
+            carItem.setValue(id, forKey: "idCarProduct")
             carItem.setValue(item.urlImage, forKey: "urlImage")
             carItem.setValue(item.descripcion, forKey: "descriptionItem")
             carItem.setValue(item.descuento, forKey: "discount")
@@ -36,7 +37,8 @@ class CoreDataService {
                 carWarranty.setValue(w.montoExtragarantia ?? 0.0, forKey: "amount")
                 carWarranty.setValue(w.porcentaje ?? 0.0, forKey: "percentage")
                 carWarranty.setValue(w.titulo ?? "", forKey: "title")
-                carWarranty.setValue(w, forKey: "carProduct")
+                carWarranty.setValue(id, forKey: "idCarProduct")
+                carItem.setValue(NSSet(object: carWarranty), forKey: "productWarranty")
             }
         }
         do {
@@ -68,13 +70,40 @@ class CoreDataService {
                         montoExtragar: data.value(forKey: "warrantyAmount") as? Double ?? 0.0,
                         porcDescuento: data.value(forKey: "discountPercentage") as? Double ?? 0.0,
                         precioExtendido: data.value(forKey: "extendedPrice") as? Double ?? 0.0,
-                        precioUnitario: data.value(forKey: "unitPrice") as? Double ?? 0.0
+                        precioUnitario: data.value(forKey: "unitPrice") as? Double ?? 0.0,
+                        warranty: data.value(forKey: "productWarranty") as? [Warranty] ?? []
                     )
                 )
             }
             return car
         } catch let error as NSError {
             print("Error fetchCarItems: " + error.localizedDescription)
+            return []
+        }
+    }
+
+    func fetchCarWarranty(with id: UUID) -> [Warranty] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ProductWarranty")
+        request.predicate = NSPredicate(format: "idCarProduct == %@", id as CVarArg)
+        do {
+            let result = try context.fetch(request)
+            var warranty: [Warranty] = []
+            for data in result as! [NSManagedObject] {
+                warranty.append(
+                    Warranty(
+                        plazoMeses: data.value(forKey: "months") as? Int ?? 0,
+                        porcentaje: data.value(forKey: "percentage") as? Double ?? 0.0,
+                        montoExtragarantia: data.value(forKey: "amount") as? Double ?? 0.0,
+                        impuestoExtragarantia: data.value(forKey: "taxes") as? Double ?? 0.0,
+                        titulo: data.value(forKey: "title") as? String ?? ""
+                    )
+                )
+            }
+            return warranty
+        } catch let error as NSError {
+            print("Error fetchWarranties: " + error.localizedDescription)
             return []
         }
     }
