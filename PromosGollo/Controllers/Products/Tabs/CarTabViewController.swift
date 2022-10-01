@@ -150,9 +150,11 @@ extension CarTabViewController: CarProductDelegate {
 
     func addGolloPlus(at indexPath: IndexPath) {
         guard let id = viewModel.car[indexPath.row].idCarItem else { return }
-        var warranties = CoreDataService().fetchCarWarranty(with: id)
+        let warranties = CoreDataService().fetchCarWarranty(with: id)
         let sorted = warranties.sorted { $0.plazoMeses ?? 0 < $1.plazoMeses ?? 0 }
         let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: sorted)
+        offerServiceProtectionViewController.delegate = self
+        offerServiceProtectionViewController.selectedId = id
         offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
         offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
         self.present(offerServiceProtectionViewController, animated: true)
@@ -162,6 +164,17 @@ extension CarTabViewController: CarProductDelegate {
         guard let id = viewModel.car[indexPath.row].idCarItem else { return }
         if CoreDataService().removeGolloPlus(for: id) {
             fetchCarItems()
+        }
+    }
+}
+
+extension CarTabViewController: OfferServiceProtectionDelegate {
+    func protectionSelected(with id: UUID, month: Int, amount: Double) {
+        if CoreDataService().addGolloPlus(for: id, month: 0, amount: 0.0) {
+            print("Updating item")
+            fetchCarItems()
+        } else {
+            showAlert(alertText: "GolloApp", alertMessage: "Intentelo de nuevo.")
         }
     }
 }

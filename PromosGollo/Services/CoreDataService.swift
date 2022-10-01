@@ -175,7 +175,7 @@ class CoreDataService {
             try context.save()
             return true
         } catch let error as NSError {
-            print("Error deleteCarItem: " + error.localizedDescription)
+            print("Error error adding GolloPlus: " + error.localizedDescription)
             return false
         }
     }

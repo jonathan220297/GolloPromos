@@ -8,6 +8,10 @@
 import RxSwift
 import UIKit
 
+protocol OfferServiceProtectionDelegate: AnyObject {
+    func protectionSelected(with id: UUID, month: Int, amount: Double)
+}
+
 class OfferServiceProtectionViewController: UIViewController {
     
     @IBOutlet weak var closeButton: UIButton!
@@ -17,6 +21,8 @@ class OfferServiceProtectionViewController: UIViewController {
     let bag = DisposeBag()
     var services: [Warranty] = []
     var selectedWarranty: Warranty?
+    var delegate: OfferServiceProtectionDelegate?
+    var selectedId: UUID?
 
     var lastIndexActive: IndexPath = [1, 0]
 
@@ -50,6 +56,19 @@ class OfferServiceProtectionViewController: UIViewController {
             .tap
             .subscribe(onNext: {
                 self.dismiss(animated: true)
+            })
+            .disposed(by: bag)
+
+        addServiceProtectionButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                if let warranty = self.selectedWarranty, let id = self.selectedId {
+                    self.delegate?.protectionSelected(with: id, month: warranty.plazoMeses ?? 0, amount: warranty.montoExtragarantia ?? 0.0)
+                    self.dismiss(animated: true)
+                } else {
+                    self.showAlert(alertText: "GolloApp", alertMessage: "Selecciona un GolloPlus")
+                }
             })
             .disposed(by: bag)
     }
