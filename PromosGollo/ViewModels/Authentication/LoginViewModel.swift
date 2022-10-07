@@ -41,6 +41,18 @@ class LoginViewModel: NSObject {
             }
         }
     }
+    
+    func signIn(with credential: AuthCredential, completion: @escaping(_ user: User?, _ error: String?) -> Void) {
+        authService.signIn(with: credential) { user, error in
+            if let error = error {
+                self.hideLoading?()
+                completion(nil, error)
+                return
+            }
+            guard let user = user else { return }
+            completion(user, nil)
+        }
+    }
 
     func fetchUserInfo(for loginType: LoginType) -> BehaviorRelay<LoginData?> {
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
