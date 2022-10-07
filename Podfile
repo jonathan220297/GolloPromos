@@ -13,7 +13,8 @@ target 'PromosGollo' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
-  pod 'FBSDKLoginKit'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
   pod 'GoogleSignIn'
   pod 'ImageSlideshow'
   pod "ImageSlideshow/Alamofire"

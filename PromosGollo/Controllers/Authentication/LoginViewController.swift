@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 import GoogleSignIn
 import FirebaseAuth
+import FacebookCore
+import FacebookLogin
 import XCGLogger
 import CryptoKit
 import AuthenticationServices
@@ -161,6 +163,24 @@ class LoginViewController: UIViewController {
                 GIDSignIn.sharedInstance().signIn()
             })
             .disposed(by: disposeBag)
+                
+        facebookLoginButton
+                .rx
+                .tap
+                .subscribe(onNext: {[weak self] in
+                    guard let self = self else { return }
+                    self.facebookLoginProcess()
+                })
+                .disposed(by: disposeBag)
+                
+        appleLoginButton
+                .rx
+                .tap
+                .subscribe(onNext: {[weak self] in
+                    guard let self = self else { return }
+                    self.appleLoginProcess()
+                })
+                .disposed(by: disposeBag)
     }
 
     func doLogin(for loginType: LoginType) {
@@ -183,7 +203,45 @@ class LoginViewController: UIViewController {
             self.loginRequestInfo(for: loginType)
         }
     }
+    
+    func facebookLoginProcess() {
+        let loginManager = LoginManager()
+        let readPermissions: [Permission] = [.publicProfile, .email]
+        loginManager.logIn(permissions: readPermissions, viewController: self, completion: didReceiveFacebookLoginResult)
+    }
 
+    private func didReceiveFacebookLoginResult(loginResult: LoginResult) {
+        switch loginResult {
+        case .success:
+            didLoginWithFacebook()
+        case .failed(_): break
+        default: break
+        }
+    }
+
+    fileprivate func didLoginWithFacebook() {
+        // Successful log in with Facebook
+        if let accessToken = AccessToken.current {
+            viewModel.signIn(with: FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)) {[weak self] user, error in
+                guard let self = self else { return }
+                if let error = error {
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    do {
+                        try Auth.auth().signOut()
+                    } catch let error as NSError {
+                        log.debug(error)
+                    }
+                }
+                guard let user = user else { return }
+                self.viewModel.setUserData(with: user)
+                if let vc = AppStoryboard.Home.initialViewController() {
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
+            }
+        }
+    }
+    
     func appleLoginProcess() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
@@ -316,6 +374,10 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                     }
                 })
                 self.viewModel.setUserData(with: user)
+                if let vc = AppStoryboard.Home.initialViewController() {
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
             }
         }
     }
