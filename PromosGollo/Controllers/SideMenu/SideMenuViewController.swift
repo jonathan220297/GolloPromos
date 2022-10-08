@@ -16,6 +16,7 @@ class SideMenuViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var profileEmailLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
@@ -45,12 +46,6 @@ class SideMenuViewController: UIViewController {
     }
 
     // MARK: - Actions
-    @IBAction func contactUsButtonTapped(_ sender: Any) {
-        let vc = ContactUsViewController.instantiate(fromAppStoryboard: .Menu)
-        vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-
     @IBAction func logoutButtonTapped(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
@@ -63,6 +58,14 @@ class SideMenuViewController: UIViewController {
         } catch _ as NSError {
 //            log.error("Error signing out: \(signOutError)")
         }
+    }
+
+    @IBAction func openCategoriesTapped(_ sender: Any) {
+        let categoriesViewController = CategoriesViewController(
+            viewModel: CategoriesViewModel()
+        )
+        categoriesViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(categoriesViewController, animated: true)
     }
 
     // MARK: - Functions

@@ -89,22 +89,23 @@ class OfferDetailViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.title = "Detalle de Promoción"
+        //self.navigationItem.title = "Detalle de Promoción"
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
-        self.navigationController?.navigationBar.tintColor = UIColor.primary
-        let rigthButton = UIBarButtonItem(image: UIImage(named: "ic_share"), style: .plain, target: self, action: #selector(share))
-        let rigthButton2 = UIBarButtonItem(image: UIImage(named: "ic_heart"), style: .plain, target: self, action: #selector(saveFavorites))
-        self.navigationItem.rightBarButtonItems = [rigthButton, rigthButton2]
-        self.navigationItem.rightBarButtonItem?.tintColor = .white
     }
 
     //MARK: - Functions
     func configureViews() {
         carView.layer.cornerRadius = 20.0
+
+        self.navigationController?.navigationBar.tintColor = UIColor.primary
+        let rigthButton = UIBarButtonItem(image: UIImage(named: "ic_share"), style: .plain, target: self, action: #selector(share))
+        rigthButton.tintColor = .white
+        let rigthButton2 = UIBarButtonItem(image: UIImage(named: "ic_heart"), style: .plain, target: self, action: #selector(saveFavorites))
+        rigthButton2.tintColor = .white
+        self.navigationItem.rightBarButtonItems = [rigthButton, rigthButton2]
     }
     
     fileprivate func configureRx() {
@@ -360,11 +361,11 @@ class OfferDetailViewController: UIViewController {
     }
 
     @objc func saveFavorites() {
-        var list = defaults.object(forKey: "Favorites") as? [ProductsData] ?? [ProductsData]()
-        if let data = offer {
-            list.append(data)
-        }
-        defaults.set(list, forKey: "Favorites")
+//        var list = defaults.object(forKey: "Favorites") as? [ProductsData] ?? [ProductsData]()
+//        if let data = offer {
+//            list.append(data)
+//        }
+//        defaults.set(list, forKey: "Favorites")
     }
 
 }

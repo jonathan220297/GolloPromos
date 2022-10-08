@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuTabViewController" customModule="PromosGollo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="PromosGollo" customModuleProvider="target">
             <connections>
-                <outlet property="menuTabTableView" destination="zWM-0f-LIt" id="PyI-xZ-Mbo"/>
+                <outlet property="mainTableView" destination="a18-su-S6R" id="MHY-L6-tbg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,24 +20,24 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zWM-0f-LIt">
-                    <rect key="frame" x="8" y="55" width="374" height="747"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="a18-su-S6R">
+                    <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="TEN-aU-l5s"/>
-                        <outlet property="delegate" destination="-1" id="He2-8K-LwZ"/>
+                        <outlet property="dataSource" destination="-1" id="0n7-s2-DG4"/>
+                        <outlet property="delegate" destination="-1" id="aHh-fB-ygO"/>
                     </connections>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zWM-0f-LIt" secondAttribute="trailing" constant="8" id="cYG-4m-Ty1"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="zWM-0f-LIt" secondAttribute="bottom" constant="8" id="iWa-Yq-t2c"/>
-                <constraint firstItem="zWM-0f-LIt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="oWe-TV-3Pj"/>
-                <constraint firstItem="zWM-0f-LIt" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="qG6-Nl-vp5"/>
+                <constraint firstItem="a18-su-S6R" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="9QX-ZB-GUk"/>
+                <constraint firstItem="a18-su-S6R" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ctb-vw-UEJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="a18-su-S6R" secondAttribute="trailing" id="jhy-MB-cfi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="a18-su-S6R" secondAttribute="bottom" id="v4R-h8-OwT"/>
             </constraints>
-            <point key="canvasLocation" x="140" y="21"/>
+            <point key="canvasLocation" x="52" y="21"/>
         </view>
     </objects>
     <resources>

@@ -23,7 +23,7 @@ class MenuTabTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setMenuData(with data: MenuTabData) {
+    func setMenuData(with data: ItemTabData) {
         itemImageView.image = UIImage(named: data.image)
         titleLabel.text = data.title
         subtitleLabel.text = data.subtitle

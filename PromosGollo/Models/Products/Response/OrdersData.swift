@@ -13,7 +13,8 @@ struct OrdersData: Codable {
 }
 
 struct Order: Codable {
-    let idEmpresa, idOrden, idMovimiento: Int?
-    let idCliente, estadoOrden, fechaOrden, condicionVenta, codigoCupon, descripcionCupon: String?
-    let usuarioInclusion, fechaInclusion, usuarioBitacora, fechaBitacora, ordenNaf: String?
+    let idOrden, idMovimiento: Int?
+    let idEmpresa, idCliente, condicionVenta, estadoOrden, ordenNaf: String?
+    let fechaInclusion, fechaOrden, fechaBitacora: String?
+    let usuarioInclusion, usuarioBitacora, descripcionCupon, codigoCupon: String?
 }

@@ -8,5 +8,11 @@
 import Foundation
 
 struct MenuTabData: Codable {
+    let title: String
+    let items: [ItemTabData]
+}
+
+struct ItemTabData: Codable {
+    let id: Int
     let image, title, subtitle: String
 }

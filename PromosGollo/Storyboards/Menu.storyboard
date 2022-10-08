@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YLQ-jY-Kxa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YLQ-jY-Kxa">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -37,7 +37,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="aX1-5W-wnh"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -109,8 +109,48 @@
                                                             <constraint firstItem="0nu-nq-YGb" firstAttribute="top" secondItem="QuI-4i-bEo" secondAttribute="top" id="vst-Pg-7dB"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFD-nm-wYN">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIL-Zu-fqN">
                                                         <rect key="frame" x="0.0" y="66" width="414" height="50"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_menu_home" translatesAutoresizingMaskIntoConstraints="NO" id="dgx-VT-8fh">
+                                                                <rect key="frame" x="24" y="12.5" width="25" height="25"/>
+                                                                <color key="tintColor" name="colorPrimary"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="dgx-VT-8fh" secondAttribute="height" multiplier="1:1" id="82h-K0-61Q"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="Isn-0p-eSx"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categorias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqa-w4-QrY">
+                                                                <rect key="frame" x="65" y="8" width="341" height="34"/>
+                                                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
+                                                                <color key="textColor" name="LavenderPurple"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-YC-Mwc">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                                                <connections>
+                                                                    <action selector="openCategoriesTapped:" destination="YmW-mI-uSu" eventType="touchUpInside" id="bfO-Yh-Koh"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="gJd-YC-Mwc" firstAttribute="leading" secondItem="QIL-Zu-fqN" secondAttribute="leading" id="2bB-VR-1Ea"/>
+                                                            <constraint firstAttribute="trailing" secondItem="gJd-YC-Mwc" secondAttribute="trailing" id="5JR-h6-RaZ"/>
+                                                            <constraint firstItem="dgx-VT-8fh" firstAttribute="leading" secondItem="QIL-Zu-fqN" secondAttribute="leading" constant="24" id="8MO-3o-01D"/>
+                                                            <constraint firstItem="gJd-YC-Mwc" firstAttribute="top" secondItem="QIL-Zu-fqN" secondAttribute="top" id="9VN-9e-ZRG"/>
+                                                            <constraint firstAttribute="trailing" secondItem="tqa-w4-QrY" secondAttribute="trailing" constant="8" id="AtC-qJ-Ty7"/>
+                                                            <constraint firstItem="tqa-w4-QrY" firstAttribute="centerY" secondItem="QIL-Zu-fqN" secondAttribute="centerY" id="LjP-cV-Vl3"/>
+                                                            <constraint firstAttribute="bottom" secondItem="tqa-w4-QrY" secondAttribute="bottom" constant="8" id="T3Y-FG-Ycs"/>
+                                                            <constraint firstItem="dgx-VT-8fh" firstAttribute="centerY" secondItem="QIL-Zu-fqN" secondAttribute="centerY" id="Tar-v4-fBi"/>
+                                                            <constraint firstItem="tqa-w4-QrY" firstAttribute="top" secondItem="QIL-Zu-fqN" secondAttribute="top" constant="8" id="lxa-rv-9wQ"/>
+                                                            <constraint firstAttribute="height" constant="50" id="t3E-06-SmY"/>
+                                                            <constraint firstAttribute="bottom" secondItem="gJd-YC-Mwc" secondAttribute="bottom" id="x1U-nu-xui"/>
+                                                            <constraint firstItem="tqa-w4-QrY" firstAttribute="leading" secondItem="dgx-VT-8fh" secondAttribute="trailing" constant="16" id="zqN-Sd-VkY"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFD-nm-wYN">
+                                                        <rect key="frame" x="0.0" y="132" width="414" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_terms" translatesAutoresizingMaskIntoConstraints="NO" id="5VQ-tc-BpJ">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>
@@ -147,7 +187,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umS-s4-alO">
-                                                        <rect key="frame" x="0.0" y="132" width="414" height="50"/>
+                                                        <rect key="frame" x="0.0" y="198" width="414" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_help" translatesAutoresizingMaskIntoConstraints="NO" id="7XR-7l-3aA">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>
@@ -183,43 +223,6 @@
                                                             <constraint firstAttribute="bottom" secondItem="HdB-Df-wlO" secondAttribute="bottom" id="yfe-Gj-jGQ"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBa-vv-56N">
-                                                        <rect key="frame" x="0.0" y="198" width="414" height="50"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_configuration" translatesAutoresizingMaskIntoConstraints="NO" id="qiB-fA-Mx2">
-                                                                <rect key="frame" x="24" y="12.5" width="25" height="25"/>
-                                                                <color key="tintColor" name="colorPrimary"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="25" id="eZ0-Tv-bZi"/>
-                                                                    <constraint firstAttribute="width" secondItem="qiB-fA-Mx2" secondAttribute="height" multiplier="1:1" id="tXn-ao-jE5"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configuración" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNG-i7-A22">
-                                                                <rect key="frame" x="65" y="8" width="341" height="34"/>
-                                                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
-                                                                <color key="textColor" name="LavenderPurple"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eG-O4-fhd">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstItem="dNG-i7-A22" firstAttribute="top" secondItem="qBa-vv-56N" secondAttribute="top" constant="8" id="356-yv-hJI"/>
-                                                            <constraint firstItem="dNG-i7-A22" firstAttribute="centerY" secondItem="qBa-vv-56N" secondAttribute="centerY" id="51k-wG-yYV"/>
-                                                            <constraint firstItem="8eG-O4-fhd" firstAttribute="top" secondItem="qBa-vv-56N" secondAttribute="top" id="6qv-fA-OqQ"/>
-                                                            <constraint firstItem="qiB-fA-Mx2" firstAttribute="leading" secondItem="qBa-vv-56N" secondAttribute="leading" constant="24" id="6tg-Lq-SNO"/>
-                                                            <constraint firstAttribute="bottom" secondItem="dNG-i7-A22" secondAttribute="bottom" constant="8" id="8s6-sR-5pn"/>
-                                                            <constraint firstItem="qiB-fA-Mx2" firstAttribute="centerY" secondItem="qBa-vv-56N" secondAttribute="centerY" id="IJw-VX-vnT"/>
-                                                            <constraint firstAttribute="trailing" secondItem="8eG-O4-fhd" secondAttribute="trailing" id="JAW-RE-Waa"/>
-                                                            <constraint firstItem="8eG-O4-fhd" firstAttribute="leading" secondItem="qBa-vv-56N" secondAttribute="leading" id="MZ8-a4-waN"/>
-                                                            <constraint firstItem="dNG-i7-A22" firstAttribute="leading" secondItem="qiB-fA-Mx2" secondAttribute="trailing" constant="16" id="Uu6-s1-XXT"/>
-                                                            <constraint firstAttribute="trailing" secondItem="dNG-i7-A22" secondAttribute="trailing" constant="8" id="Yox-7P-bIK"/>
-                                                            <constraint firstAttribute="height" constant="50" id="eKQ-Vu-jPw"/>
-                                                            <constraint firstAttribute="bottom" secondItem="8eG-O4-fhd" secondAttribute="bottom" id="rCN-NL-nn6"/>
-                                                        </constraints>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyn-b8-YYB">
                                                         <rect key="frame" x="0.0" y="264" width="414" height="50"/>
                                                         <subviews>
@@ -231,7 +234,7 @@
                                                                     <constraint firstAttribute="width" constant="25" id="XVm-Mc-Q1e"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41R-dQ-fRL">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Información" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41R-dQ-fRL">
                                                                 <rect key="frame" x="65" y="8" width="341" height="34"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                 <color key="textColor" name="LavenderPurple"/>
@@ -337,6 +340,7 @@
                     <connections>
                         <outlet property="editProfileButton" destination="0nu-nq-YGb" id="oq5-nX-j4P"/>
                         <outlet property="helpButton" destination="HdB-Df-wlO" id="9Pz-il-l0a"/>
+                        <outlet property="profileEmailLabel" destination="ZJJ-QJ-3JT" id="PZG-ik-AfM"/>
                         <outlet property="profileImageView" destination="iHA-J4-T4n" id="0bH-dn-8Tf"/>
                         <outlet property="profileLabel" destination="pFV-18-TNT" id="QUU-4Q-lJL"/>
                         <outlet property="profileName" destination="t44-kK-c8o" id="c6e-hc-Y3O"/>
@@ -437,10 +441,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_configuration" width="100" height="100"/>
         <image name="ic_contact" width="100" height="100"/>
         <image name="ic_help" width="100" height="100"/>
         <image name="ic_logout" width="100" height="100"/>
+        <image name="ic_menu_home" width="25" height="25"/>
         <image name="ic_terms" width="100" height="100"/>
         <image name="ic_user_profile" width="100" height="100"/>
         <image name="logo_golloapp" width="1452" height="654"/>
