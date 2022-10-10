@@ -10,7 +10,7 @@ import Nuke
 import RxSwift
 
 protocol CategoryOffersDelegate {
-    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: ProductsData)
+    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: Product)
     func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldReloadOffersForCategoryAt indexPath: IndexPath)
 }
 
@@ -113,7 +113,7 @@ extension CategoryOffersTableViewCell: UICollectionViewDelegate,
 }
 
 extension CategoryOffersTableViewCell: ProductCellDelegate {
-    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: ProductsData) {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         delegate?.categoryOffers(self, shouldMoveToDetailWith: data)
     }
 }

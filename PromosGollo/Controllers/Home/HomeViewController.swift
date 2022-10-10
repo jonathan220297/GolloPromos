@@ -12,21 +12,11 @@ import Nuke
 import ImageSlideshow
 
 class HomeViewController: UITabBarController {
-
-    lazy var idealButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "defaultImage"), for: .normal)
-        button.imageView?.layer.cornerRadius = 16
-        button.imageView?.backgroundColor = .white
-        button.imageView?.contentMode = .scaleAspectFill
-        button.imageView?.layer.borderWidth = 1.5
-        button.imageView?.layer.borderColor = UIColor.white.cgColor
-        button.addTarget(self, action: #selector(buttonImageViewProfileTapped), for: .touchUpInside)
-        return button
-    }()
-
-    @IBOutlet weak var homeTableView: UITableView!
-
+    // MARK: - IBOutlets
+    @IBOutlet var carBarButton: UIBarButtonItem!
+    
+    let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBar()
@@ -38,6 +28,14 @@ class HomeViewController: UITabBarController {
             self.present(vc, animated: true, completion: nil)
         }
     }
+    
+    @objc func menuButtonTapped() {
+        
+    }
+    
+    @objc func carButtonTapped() {
+        
+    }
 
     // MARK: - Functions
     func configureTabBar() {
@@ -46,7 +44,7 @@ class HomeViewController: UITabBarController {
             viewModel: HomeViewModel()
         )
         mainTab.title = "Inicio"
-        mainTab.tabBarItem.image = UIImage(named: "")
+        mainTab.tabBarItem.image = UIImage(systemName: "house.fill")
 
         let offersTab = OffersTabViewController(
             viewModel: OffersTabViewModel()
@@ -70,7 +68,27 @@ class HomeViewController: UITabBarController {
             ordersTab,
             menuTab
         ]
+        
+        carBarButton
+            .rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                let carTab = CarTabViewController(
+                    viewModel: CarTabViewModel()
+                )
+                carTab.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(carTab, animated: true)
+            })
+            .disposed(by: bag)
     }
+    
+//    func configureNavigationBarButtons() {
+//        let menuButton = UIBarButtonItem(image: UIImage(systemName: "menucard.fill"), style: .plain, target: self, action: #selector(menuButtonTapped))
+//        let carButton = UIBarButtonItem(image: UIImage(systemName: "bag.fill"), style: .plain, target: self, action: #selector(carButtonTapped))
+//        tabBarController?.navigationController?.navigationItem.leftBarButtonItem = menuButton
+//        tabBarController?.navigationController?.navigationItem.leftBarButtonItem = carButton
+//    }
 
     func configureObservers() {
         NotificationCenter.default.addObserver(forName: Notification.Name("moveToCar"), object: nil, queue: nil) { _ in

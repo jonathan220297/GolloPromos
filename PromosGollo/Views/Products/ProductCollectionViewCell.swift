@@ -10,7 +10,7 @@ import Nuke
 import RxSwift
 
 protocol ProductCellDelegate {
-    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: ProductsData)
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product)
 }
 
 class ProductCollectionViewCell: UICollectionViewCell {
@@ -26,7 +26,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     let bag = DisposeBag()
     var delegate: ProductCellDelegate?
-    var dataG: ProductsData?
+    var dataG: Product?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,7 +36,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         configureRx()
     }
 
-    func setProductData(with data: ProductsData) {
+    func setProductData(with data: Product) {
         dataG = data
 
         let options = ImageLoadingOptions(
@@ -101,7 +101,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
             .disposed(by: bag)
     }
 
-    func showGift(with data: ProductsData) {
+    func showGift(with data: Product) {
         productRealPriceLabel.text = ""
         productRealPriceLabel.isHidden = true
         productDiscountPercentageView.isHidden = false
@@ -109,7 +109,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         productDiscountPercentageLabel.text = "Gift"
     }
 
-    func showBono(with data: ProductsData) {
+    func showBono(with data: Product) {
         productRealPriceLabel.text = ""
         productRealPriceLabel.isHidden = true
         productDiscountPercentageView.isHidden = false

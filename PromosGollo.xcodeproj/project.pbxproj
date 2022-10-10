@@ -125,6 +125,7 @@
 		4F3E7C8428F21D7000221684 /* CategoriesFilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E7C8328F21D7000221684 /* CategoriesFilterData.swift */; };
 		4F3E7C8628F2317500221684 /* CategoryFilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E7C8528F2317500221684 /* CategoryFilteredList.swift */; };
 		4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46199E2700FC8300265E73 /* StatusViewController.swift */; };
+		4F4BF8E028F4C8C80059E178 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F4BF8DF28F4C8C80059E178 /* GoogleService-Info.plist */; };
 		4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47527275585007B17FE /* CGFloat+Extension.swift */; };
 		4F4EC47B2727680E007B17FE /* DocType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47A2727680E007B17FE /* DocType.swift */; };
 		4F4EC47E27276A50007B17FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EC48027276A50007B17FE /* Localizable.strings */; };
@@ -196,7 +197,6 @@
 		4FA4D6E5271FE5D900C117CD /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4D6E4271FE5D900C117CD /* Status.swift */; };
 		4FADF58A28E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FADF58828E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.swift */; };
 		4FADF58B28E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FADF58928E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.xib */; };
-		4FADF58D28E4AC3E00DF9F29 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FADF58C28E4AC3E00DF9F29 /* GoogleService-Info.plist */; };
 		4FB2582F2720DDDC0003C607 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */; };
 		4FB258312720DE150003C607 /* AppTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258302720DE150003C607 /* AppTransaction.swift */; };
 		4FB258332720DEC30003C607 /* HistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258322720DEC30003C607 /* HistoryRequest.swift */; };
@@ -448,6 +448,7 @@
 		4F3E7C8328F21D7000221684 /* CategoriesFilterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFilterData.swift; sourceTree = "<group>"; };
 		4F3E7C8528F2317500221684 /* CategoryFilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilteredList.swift; sourceTree = "<group>"; };
 		4F46199E2700FC8300265E73 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		4F4BF8DF28F4C8C80059E178 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F4EC47527275585007B17FE /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		4F4EC47A2727680E007B17FE /* DocType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocType.swift; sourceTree = "<group>"; };
 		4F4EC47F27276A50007B17FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -519,7 +520,6 @@
 		4FA4D6E4271FE5D900C117CD /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		4FADF58828E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferServiceProtectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FADF58928E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferServiceProtectionCollectionViewCell.xib; sourceTree = "<group>"; };
-		4FADF58C28E4AC3E00DF9F29 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FB2582E2720DDDC0003C607 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		4FB258302720DE150003C607 /* AppTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTransaction.swift; sourceTree = "<group>"; };
 		4FB258322720DEC30003C607 /* HistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRequest.swift; sourceTree = "<group>"; };
@@ -1452,7 +1452,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4FADF58C28E4AC3E00DF9F29 /* GoogleService-Info.plist */,
+				4F4BF8DF28F4C8C80059E178 /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* PromosGollo.xcdatamodeld */,
 			);
 			path = PromosGollo;
@@ -1855,10 +1855,10 @@
 				4FA0B87828E3C6EB00395361 /* AddressTableViewCell.xib in Resources */,
 				4F678D7428E7BD6100C8E8B3 /* MenuTabTableViewCell.xib in Resources */,
 				4F3E7C7B28F21C5A00221684 /* CategoriesViewController.xib in Resources */,
+				4F4BF8E028F4C8C80059E178 /* GoogleService-Info.plist in Resources */,
 				4FDD106028D15F390082ADB5 /* OrdersTabViewController.xib in Resources */,
 				4F0D96C826DDD9990061E89E /* Services.storyboard in Resources */,
 				4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */,
-				4FADF58D28E4AC3E00DF9F29 /* GoogleService-Info.plist in Resources */,
 				4F7C5F3A28E641CC00123072 /* ProductOrderDetailTableViewCell.xib in Resources */,
 				4F678D8028E7C5C600C8E8B3 /* WhishesTableViewCell.xib in Resources */,
 			);

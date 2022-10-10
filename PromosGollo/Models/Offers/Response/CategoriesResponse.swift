@@ -11,5 +11,5 @@ struct CategoriesData: Codable {
     let idTipoCategoriaApp: Int?
     let descripcion, urlImagen: String
     let cantidad, idTaxonomia: Int?
-    let productos: [ProductsData]
+    let productos: [Product]
 }

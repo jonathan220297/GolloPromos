@@ -8,5 +8,5 @@
 import Foundation
 
 class OffersTableViewModel {
-    var offersArray: [ProductsData] = []
+    var offersArray: [Product] = []
 }

@@ -61,7 +61,7 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var carButton: UIButton!
     
     // Variables
-    var offer: ProductsData?
+    var offer: Product?
     let defaults = UserDefaults.standard
 
     lazy var viewModel: OfferDetailViewModel = {
@@ -239,23 +239,23 @@ class OfferDetailViewController: UIViewController {
 
             brandLabel.attributedText = formatHTML(header: "Marca: ", content: offer.brand ?? "")
             modelLabel.attributedText = formatHTML(header: "Modelo: ", content: offer.modelo ?? "")
-            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productsDataDescription ?? "")
+            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productName ?? "")
             dateLabel.attributedText = formatHTML(header: "Fecha de Vencimiento: ", content: convertDate(date: offer.endDate ?? "") ?? "")
 
             let originalString = numberFormatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? "$")\(originalString)")
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? .empty)\(originalString)")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
 
             if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0,
                let price = data.articulo?.precio, price > 0.0 {
                 let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
-                savingsLabel.text = "\(offer.simboloMoneda ?? "$")\(savingString)"
+                savingsLabel.text = "\(offer.simboloMoneda ?? .empty)\(savingString)"
 
                 let discountString = numberFormatter.string(from: NSNumber(value: data.articulo?.precioDescuento ?? 0.0))!
-                discountPriceLabel.text = "\(offer.simboloMoneda ?? "$")\(discountString)"
+                discountPriceLabel.text = "\(offer.simboloMoneda ?? .empty)\(discountString)"
                 self.originalPrice.attributedText = attributeString
             } else {
-                self.originalPrice.text = "\(offer.simboloMoneda ?? "$")\(originalString)"
+                self.originalPrice.text = "\(offer.simboloMoneda ?? .empty)\(originalString)"
                 self.savingHeader.alpha = 0
                 self.priceDivider.alpha = 0
                 self.savingsLabel.alpha = 0
@@ -265,7 +265,7 @@ class OfferDetailViewController: UIViewController {
             let regalia = offer.tieneRegalia?.bool
 
             if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0 {
-                discountLabel.text = "\(offer.simboloMoneda ?? "$")\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
+                discountLabel.text = "\(offer.simboloMoneda ?? .empty)\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
             } else {
                 DispatchQueue.main.async {
                     self.tintView.visibility = .gone
@@ -287,7 +287,7 @@ class OfferDetailViewController: UIViewController {
             }
 
             if let bonus = data.articulo?.montoBonoProveedor, bonus > 0.0 {
-                bonusLabel.text = "\(offer.simboloMoneda ?? "")\(numberFormatter.string(from: NSNumber(value: bonus))!)"
+                bonusLabel.text = "\(offer.simboloMoneda ?? .empty)\(numberFormatter.string(from: NSNumber(value: bonus))!)"
             } else {
                 DispatchQueue.main.async {
                     self.tintViewBonus.visibility = .gone
@@ -334,8 +334,10 @@ class OfferDetailViewController: UIViewController {
 
     private func isFavorite() -> UIImage? {
         if let data = offer {
-            let list = defaults.object(forKey: "Favorites") as? [ProductsData] ?? [ProductsData]()
-            if list.contains(data) {
+            let list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
+            if list.contains(where: { dataO in
+                dataO.id == data.id
+            }) {
                 return UIImage(named: "ic_added_heart")
             } else {
                 return UIImage(named: "ic_heart")
@@ -361,7 +363,7 @@ class OfferDetailViewController: UIViewController {
     }
 
     @objc func saveFavorites() {
-//        var list = defaults.object(forKey: "Favorites") as? [ProductsData] ?? [ProductsData]()
+//        var list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
 //        if let data = offer {
 //            list.append(data)
 //        }

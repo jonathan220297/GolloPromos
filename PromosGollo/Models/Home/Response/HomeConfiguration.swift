@@ -29,37 +29,47 @@ struct HomeConfiguration: Codable {
 
 // MARK: - Banner
 struct Banner: Codable {
-    let name: String?
-    let position: Int?
-    let isSlider, autoPlay: Bool?
-    let height: Int?
-    let backgroundColor: String?
-    let columns: Int?
+//    let name: String?
+//    let position: Int?
+//    let isSlider, autoPlay: Bool?
+//    let height: Int?
+//    let backgroundColor: String?
+//    let columns: Int?
+//    let images: [ImageBanner]?
+    let autoPlay: Bool?
+    let position, height, columns: Int?
     let images: [ImageBanner]?
+    let isSlider: Bool?
+    let name: String?
     var uiHeight: CGFloat? = 0.0
 }
 
 // MARK: - Image
 struct ImageBanner: Codable {
-    let linkType: Int?
+    let padding: Int?
     let linkValue: String?
     let image: String?
-    let padding: Int?
+    let linkType: Int?
 }
 
 // MARK: - Home
 struct Home: Codable {
+    let showSearch, showMenu, showLogo: Bool?
     let layout: String?
-    let showMenu, showSearch, showLogo: Bool?
 }
 
 // MARK: - Section
 struct Section: Codable {
+//    let name: String?
+//    let sectionType, listLayout, itemsToShow, position: Int?
+//    let category: Int?
+//    let linkValue: String?
+//    let linkType: Int?
+    let linkTax, position, itemsToShow, linkType: Int?
+    let sectionType: Int?
+    let linkValue: Int?
     let name: String?
-    let sectionType, listLayout, itemsToShow, position: Int?
-    let category: Int?
-    let linkValue: String?
-    let linkType: Int?
+    let productos: [Product]?
 }
 
 enum SectionType: String {
@@ -69,4 +79,44 @@ enum SectionType: String {
 
 enum LinkType: Int {
     case none = 0, category, product, url, appCategory, productData
+}
+
+// MARK: - Producto
+struct Product: Codable {
+    let productCode: String?
+    let descriptionDetailDescuento, descriptionDetailRegalia: String?
+    let originalPrice: Double?
+    let image: String?
+    let montoBono, porcDescuento: Double?
+    let brand: String?
+    let descriptionDetailBono: String?
+    let tieneBono, name, modelo: String?
+    let endDate: String?
+    let tieneRegalia: String?
+    let simboloMoneda: SimboloMoneda?
+    let id: Int?
+    let montoDescuento: Double?
+    let idUsuario: IDUsuario?
+    let product: String?
+    let idEmpresa: Int?
+    let startDate: String?
+    let precioFinal: Double?
+    let productName, tieneDescuento: String?
+    let tipoPromoApp: Int?
+    let productoDescription: String?
+
+    enum CodingKeys: String, CodingKey {
+        case productCode, descriptionDetailDescuento, descriptionDetailRegalia, originalPrice, image, montoBono, porcDescuento, brand, descriptionDetailBono, tieneBono, name, modelo, endDate, tieneRegalia, simboloMoneda, id, montoDescuento, idUsuario, product
+        case idEmpresa = "IdEmpresa"
+        case startDate, precioFinal, productName, tieneDescuento, tipoPromoApp
+        case productoDescription = "description"
+    }
+}
+
+enum IDUsuario: String, Codable {
+    case user = "user"
+}
+
+enum SimboloMoneda: String, Codable {
+    case empty = "¢"
 }

@@ -24,6 +24,6 @@ struct Offers: Codable {
 
 struct CategoryOffers {
     let category: CategoriesData
-    let offers: [ProductsData]
+    let offers: [Product]
     let height: Int
 }

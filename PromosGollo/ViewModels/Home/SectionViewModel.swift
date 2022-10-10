@@ -14,18 +14,18 @@ class SectionViewModel {
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
     
-    var productsArray: [ProductsData] = []
+    var productsArray: [Product] = []
     var section: Section?
 
     var reloadCollectionView: (()->())?
 
     func configureRecentView() {
         let productsCD = DataManager.sharedInstance.retriveRecents()
-        var products: [ProductsData] = []
+        var products: [Product] = []
         for product in productsCD {
             if let data = product.json.data(using: .utf8) {
                 do {
-                    let object = try JSONDecoder().decode(ProductsData.self, from: data)
+                    let object = try JSONDecoder().decode(Product.self, from: data)
                     products.append(object)
                 } catch _ as NSError {
                     //log.debug("Error: \(error.localizedDescription)")
@@ -36,9 +36,9 @@ class SectionViewModel {
         reloadCollectionView?()
     }
 
-    func fetchProductsByCategory(with category: String) -> BehaviorRelay<[ProductsData]?> {
-        let apiResponse: BehaviorRelay<[ProductsData]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[ProductsData], ProductServiceRequest>(
+    func fetchProductsByCategory(with category: Int) -> BehaviorRelay<[Product]?> {
+        let apiResponse: BehaviorRelay<[Product]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<[Product], ProductServiceRequest>(
             service: BaseServiceRequestParam<ProductServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue),

@@ -132,7 +132,7 @@ extension OffersTabViewController: UITableViewDelegate {
 }
 
 extension OffersTabViewController: OffersCellDelegate {
-    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: ProductsData) {
+    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
         vc.modalPresentationStyle = .fullScreen

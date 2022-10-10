@@ -23,14 +23,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView hidden="YES" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IWI-0s-ALz">
-                                <rect key="frame" x="0.0" y="92" width="414" height="658.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="qip-J4-0qN"/>
-                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="mfV-by-Ted"/>
-                                </connections>
-                            </tableView>
                             <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fc-hC-nLP">
                                 <rect key="frame" x="0.0" y="750.5" width="414" height="62.5"/>
                                 <subviews>
@@ -218,15 +210,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8Fc-hC-nLP" secondAttribute="trailing" id="29y-8J-VjE"/>
-                            <constraint firstItem="IWI-0s-ALz" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="7P3-wv-bCd"/>
-                            <constraint firstItem="8Fc-hC-nLP" firstAttribute="top" secondItem="IWI-0s-ALz" secondAttribute="bottom" id="Xtq-cf-cB4"/>
-                            <constraint firstItem="IWI-0s-ALz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZPQ-6M-xWP"/>
-                            <constraint firstItem="IWI-0s-ALz" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="bmT-ps-IYv"/>
                             <constraint firstItem="8Fc-hC-nLP" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="eXq-Yz-nxo"/>
-                            <constraint firstItem="IWI-0s-ALz" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="gkg-xN-6nO"/>
                             <constraint firstItem="8Fc-hC-nLP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="iRG-sX-NMX"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="8Fc-hC-nLP" secondAttribute="bottom" id="kud-YU-daz"/>
-                            <constraint firstItem="IWI-0s-ALz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="wKc-3n-GnB"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -240,14 +226,11 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_car" id="yJx-y5-XVC" customClass="BadgeBarButtonItem" customModule="PromosGollo" customModuleProvider="target">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <segue destination="iuP-wh-zTw" kind="show" id="LIs-Wl-WJi"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="homeTableView" destination="IWI-0s-ALz" id="1i3-Ln-ACx"/>
+                        <outlet property="carBarButton" destination="yJx-y5-XVC" id="6wQ-Eb-vMe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
