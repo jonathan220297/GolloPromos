@@ -11,6 +11,10 @@ import RxSwift
 import Nuke
 import ImageSlideshow
 
+protocol HomeDelegate: AnyObject {
+    func showOfferDetail(_ offerDetail: UIViewController)
+}
+
 class HomeViewController: UITabBarController {
     // MARK: - IBOutlets
     @IBOutlet var carBarButton: UIBarButtonItem!
@@ -28,14 +32,6 @@ class HomeViewController: UITabBarController {
             self.present(vc, animated: true, completion: nil)
         }
     }
-    
-    @objc func menuButtonTapped() {
-        
-    }
-    
-    @objc func carButtonTapped() {
-        
-    }
 
     // MARK: - Functions
     func configureTabBar() {
@@ -43,8 +39,12 @@ class HomeViewController: UITabBarController {
         let mainTab = MainViewController(
             viewModel: HomeViewModel()
         )
-        mainTab.title = "Inicio"
-        mainTab.tabBarItem.image = UIImage(systemName: "house.fill")
+        let navigationMain = UINavigationController(rootViewController: mainTab)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        navigationMain.navigationBar.standardAppearance = getNavBarAppareance()
+        navigationMain.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
+        navigationMain.title = "Inicio"
+        navigationMain.tabBarItem.image = UIImage(systemName: "house.fill")
 
         let offersTab = OffersTabViewController(
             viewModel: OffersTabViewModel()
@@ -55,40 +55,28 @@ class HomeViewController: UITabBarController {
         let ordersTab = OrdersTabViewController(
             viewModel: OrdersTabViewModel()
         )
-        ordersTab.title = "Ordenes"
-        ordersTab.tabBarItem.image = UIImage(named: "ic_bag")
+        let navigationOrders = UINavigationController(rootViewController: ordersTab)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        navigationOrders.navigationBar.standardAppearance = getNavBarAppareance()
+        navigationOrders.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
+        navigationOrders.title = "Ordenes"
+        navigationOrders.tabBarItem.image = UIImage(named: "ic_bag")
 
         let menuTab = MenuTabViewController()
-        menuTab.title = "Más"
-        menuTab.tabBarItem.image = UIImage(named: "ic_menu_home")
+        let navigationMenu = UINavigationController(rootViewController: menuTab)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        navigationMenu.navigationBar.standardAppearance = getNavBarAppareance()
+        navigationMenu.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
+        navigationMenu.title = "Más"
+        navigationMenu.tabBarItem.image = UIImage(named: "ic_menu_home")
 
         viewControllers = [
-            mainTab,
-            offersTab,
-            ordersTab,
-            menuTab
+            navigationMain,
+            navigationOffers,
+            navigationOrders,
+            navigationMenu
         ]
-        
-        carBarButton
-            .rx
-            .tap
-            .subscribe(onNext: {[weak self] in
-                guard let self = self else { return }
-                let carTab = CarTabViewController(
-                    viewModel: CarTabViewModel()
-                )
-                carTab.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(carTab, animated: true)
-            })
-            .disposed(by: bag)
     }
-    
-//    func configureNavigationBarButtons() {
-//        let menuButton = UIBarButtonItem(image: UIImage(systemName: "menucard.fill"), style: .plain, target: self, action: #selector(menuButtonTapped))
-//        let carButton = UIBarButtonItem(image: UIImage(systemName: "bag.fill"), style: .plain, target: self, action: #selector(carButtonTapped))
-//        tabBarController?.navigationController?.navigationItem.leftBarButtonItem = menuButton
-//        tabBarController?.navigationController?.navigationItem.leftBarButtonItem = carButton
-//    }
 
     func configureObservers() {
         NotificationCenter.default.addObserver(forName: Notification.Name("moveToCar"), object: nil, queue: nil) { _ in
@@ -98,6 +86,20 @@ class HomeViewController: UITabBarController {
         }
     }
 
+    func getNavBarAppareance() -> UINavigationBarAppearance {
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.backgroundColor = .primary
+        // Create button appearance, with the custom color
+        let buttonAppearance = UIBarButtonItemAppearance(style: .plain)
+        buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+
+        // Apply button appearance
+        navBarAppearance.buttonAppearance = buttonAppearance
+        return navBarAppearance
+    }
 }
 
 extension HomeViewController: SignUpCellDelegate {

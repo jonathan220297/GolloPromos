@@ -40,6 +40,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+        configureNavBar()
         fetchHomeConfiguration()
     }
 
@@ -50,8 +51,7 @@ class MainViewController: UIViewController {
             self.mainTableView.reloadData()
         }
     }
-
-
+    
     fileprivate func configureRx() {
         viewModel.errorMessage
             .asObservable()
@@ -177,6 +177,7 @@ extension MainViewController: SectionDelegate {
     }
 
     func sectionTableView(_ sectionTableViewCell: SectionTableViewCell, moveTo viewController: UIViewController) {
+        viewController.hidesBottomBarWhenPushed = false
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

@@ -73,24 +73,23 @@ class SectionTableViewCell: UITableViewCell {
         case LinkType.none.rawValue:
             viewModel.configureRecentView()
             viewMoreButton.tag = 0
-//        case LinkType.appCategory.rawValue:
-////            fetchProducts(by: section.linkValue ?? 0)
-//            self.viewModel.productsArray = section.productos ?? []
-//            self.productCollectionView.reloadData()
-//            let content = self.viewModel.productsArray.count
-//            let columns = Double(content) / 2.0
-//            let cellSize = round(columns) * 350.0
-//            self.delegate?.sectionTableView(self, shouldReloadProductCellWith: cellSize)
-//            viewMoreButton.tag = 1
             break
         default:
             self.viewModel.productsArray = section.productos ?? []
-            self.productCollectionView.reloadData()
-            let content = self.viewModel.productsArray.count
-            let columns = Double(content) / 2.0
-            let cellSize = round(columns) * 350.0
-            self.delegate?.sectionTableView(self, shouldReloadProductCellWith: cellSize)
-            viewMoreButton.tag = 1
+            if !viewModel.productsArray.isEmpty {
+                self.productCollectionView.reloadData()
+                let itemsToShow = section.productos?.count ?? 0
+                let columns = Double(itemsToShow) / 2
+                let cellSize = round(columns) * 350
+                self.delegate?.sectionTableView(self, shouldReloadProductCellWith: cellSize)
+//                let content = self.viewModel.productsArray.count
+//                let columns = Double(content) / 2.0
+//                let cellSize = round(columns) * 350.0
+//                self.delegate?.sectionTableView(self, shouldReloadProductCellWith: cellSize)
+                viewMoreButton.tag = 1
+            } else {
+                self.delegate?.sectionTableView(self, shouldReloadProductCellWith: 0.0)
+            }
             break
         }
     }
@@ -99,9 +98,9 @@ class SectionTableViewCell: UITableViewCell {
         productCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         productCollectionView.delegate = self
         productCollectionView.dataSource = self
-        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        productCollectionView.collectionViewLayout = layout
+//        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+//        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+//        productCollectionView.collectionViewLayout = layout
         productCollectionView.isScrollEnabled = false
     }
     
