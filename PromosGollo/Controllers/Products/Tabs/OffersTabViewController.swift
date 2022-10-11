@@ -28,6 +28,7 @@ class OffersTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
         configureTableView()
     }
     

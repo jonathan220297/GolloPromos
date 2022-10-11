@@ -5,6 +5,7 @@
 //  Created by Rodrigo Osegueda on 30/8/21.
 //
 
+import SideMenu
 import UIKit
 
 /// Enum to list each storyboard.
@@ -163,5 +164,31 @@ extension UIViewController {
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+
+extension UIViewController {
+    @objc func menuButtonTapped() {
+        if let vc = AppStoryboard.Menu.initialViewController() {
+            self.present(vc, animated: true)
+        }
+    }
+    
+    @objc func carButtonTapped() {
+        let carTab = CarTabViewController(
+            viewModel: CarTabViewModel()
+        )
+        carTab.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(carTab, animated: true)
+    }
+    
+    func configureNavBar() {
+        let menuButton = UIBarButtonItem(image: UIImage(named: "ic_menu"), style: .plain, target: self, action: #selector(menuButtonTapped))
+        menuButton.tintColor = .white
+        let carButton = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(carButtonTapped))
+        carButton.tintColor = .white
+        self.navigationItem.leftBarButtonItem = menuButton
+        self.navigationItem.rightBarButtonItem = carButton
     }
 }

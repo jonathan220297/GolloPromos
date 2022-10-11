@@ -28,6 +28,7 @@ class OrdersTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.navigationItem.title = "My orders"
+        configureNavBar()
         configureTableView()
     }
 
