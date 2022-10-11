@@ -224,7 +224,7 @@ class OffersViewController: UIViewController {
             .disposed(by: bag)
     }
     
-    func openDetail(with data: ProductsData) {
+    func openDetail(with data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
         vc.modalPresentationStyle = .fullScreen
@@ -302,7 +302,7 @@ extension OffersViewController: UISearchBarDelegate {
 }
 
 extension OffersViewController: CategoryOffersDelegate {
-    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: ProductsData) {
+    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: Product) {
         openDetail(with: data)
     }
     
@@ -328,7 +328,7 @@ extension OffersViewController: FilterOffersDelegate {
 }
 
 extension OffersViewController: OffersCellDelegate {
-    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: ProductsData) {
+    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
         openDetail(with: data)
     }
 }

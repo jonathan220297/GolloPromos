@@ -12,9 +12,7 @@ import RxSwift
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var emailConfirmationTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var passwordConfirmationTextField: UITextField!
     @IBOutlet weak var signUpButton: LoadingButton!
 
     lazy var viewModel: SignUpViewModel = {
@@ -29,7 +27,6 @@ class SignUpViewController: UIViewController {
         configureViews()
         hideKeyboardWhenTappedAround()
         passwordTextField.enablePasswordToggle()
-        passwordConfirmationTextField.enablePasswordToggle()
     }
 }
 
@@ -52,9 +49,7 @@ extension SignUpViewController {
 
     fileprivate func configureRx() {
         emailTextField.rx.text.bind(to: viewModel.emailSubject).disposed(by: disposeBag)
-        emailConfirmationTextField.rx.text.bind(to: viewModel.emailConfirmationSubject).disposed(by: disposeBag)
         passwordTextField.rx.text.bind(to: viewModel.passwordSubject).disposed(by: disposeBag)
-        passwordConfirmationTextField.rx.text.bind(to: viewModel.passwordConfirmationSubject).disposed(by: disposeBag)
         viewModel.isValidForm.bind(to: signUpButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.isValidForm.map { $0 ? 1 : 0.4 }.bind(to: signUpButton.rx.alpha).disposed(by: disposeBag)
         signUpButton
@@ -79,8 +74,6 @@ extension SignUpViewController {
 
     fileprivate func configureViews() {
         emailTextField.setUnderLine()
-        emailConfirmationTextField.setUnderLine()
         passwordTextField.setUnderLine()
-        passwordConfirmationTextField.setUnderLine()
     }
 }

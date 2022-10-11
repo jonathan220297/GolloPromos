@@ -24,7 +24,10 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var modelLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var savingHeader: UILabel!
     @IBOutlet weak var savingsLabel: UILabel!
+    @IBOutlet weak var priceDivider: UIView!
     @IBOutlet weak var discountPriceLabel: UILabel!
     @IBOutlet weak var originalPrice: UILabel!
 
@@ -58,7 +61,7 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var carButton: UIButton!
     
     // Variables
-    var offer: ProductsData?
+    var offer: Product?
     let defaults = UserDefaults.standard
 
     lazy var viewModel: OfferDetailViewModel = {
@@ -68,6 +71,7 @@ class OfferDetailViewController: UIViewController {
 
     var article: OfferDetail?
     var warrantyMonth = 0
+    var warrantyAmount = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,22 +89,23 @@ class OfferDetailViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.title = "Detalle de Promoción"
+        //self.navigationItem.title = "Detalle de Promoción"
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
-        self.navigationController?.navigationBar.tintColor = UIColor.primary
-        let rigthButton = UIBarButtonItem(image: UIImage(named: "ic_share"), style: .plain, target: self, action: #selector(share))
-        let rigthButton2 = UIBarButtonItem(image: isFavorite(), style: .plain, target: self, action: #selector(saveFavorites))
-        self.navigationItem.rightBarButtonItems = [rigthButton, rigthButton2]
-        self.navigationItem.rightBarButtonItem?.tintColor = .gray
     }
 
     //MARK: - Functions
     func configureViews() {
         carView.layer.cornerRadius = 20.0
+
+        self.navigationController?.navigationBar.tintColor = UIColor.primary
+        let rigthButton = UIBarButtonItem(image: UIImage(named: "ic_share"), style: .plain, target: self, action: #selector(share))
+        rigthButton.tintColor = .white
+        let rigthButton2 = UIBarButtonItem(image: UIImage(named: "ic_heart"), style: .plain, target: self, action: #selector(saveFavorites))
+        rigthButton2.tintColor = .white
+        self.navigationItem.rightBarButtonItems = [rigthButton, rigthButton2]
     }
     
     fileprivate func configureRx() {
@@ -166,9 +171,9 @@ class OfferDetailViewController: UIViewController {
                 mesesExtragar: warrantyMonth,
                 descripcion: offer.name ?? "",
                 sku: offer.productCode ?? "",
-                descuento: 0.0,
-                montoDescuento: article.articulo?.precioDescuento ?? 0.0,
-                montoExtragar: 0.0,
+                descuento: article.articulo?.precioDescuento ?? 0.0,
+                montoDescuento: article.articulo?.montoDescuento ?? 0.0,
+                montoExtragar: warrantyAmount,
                 porcDescuento: 0.0,
                 precioExtendido: (article.articulo?.precio ?? 0.0 - (article.articulo?.montoDescuento ?? 0.0)),
                 precioUnitario: article.articulo?.precio ?? 0.0
@@ -180,13 +185,15 @@ class OfferDetailViewController: UIViewController {
                     guard let self = self,
                           let _ = data else { return }
                     DispatchQueue.main.async {
-                        CoreDataService().addCarItems(with: param)
-                        let offerServiceProtectionViewController = OfferServiceProtectionViewController()
-                        offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
-                        offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
-                        self.present(offerServiceProtectionViewController, animated: true)
+                        CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
                         self.carView.isHidden = false
                         self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
+                        if self.warrantyMonth == 0 {
+                            let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
+                            offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
+                            offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
+                            self.present(offerServiceProtectionViewController, animated: true)
+                        }
                     }
                 })
                 .disposed(by: bag)
@@ -232,65 +239,33 @@ class OfferDetailViewController: UIViewController {
 
             brandLabel.attributedText = formatHTML(header: "Marca: ", content: offer.brand ?? "")
             modelLabel.attributedText = formatHTML(header: "Modelo: ", content: offer.modelo ?? "")
-            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productsDataDescription ?? "")
+            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productName ?? "")
             dateLabel.attributedText = formatHTML(header: "Fecha de Vencimiento: ", content: convertDate(date: offer.endDate ?? "") ?? "")
 
-            let formatter = NumberFormatter()
-            formatter.numberStyle = NumberFormatter.Style.decimal
-
-            let originalString = formatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? "$")\(originalString)")
+            let originalString = numberFormatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? .empty)\(originalString)")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-            originalPrice.attributedText = attributeString
 
             if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0,
                let price = data.articulo?.precio, price > 0.0 {
-                let savingString = formatter.string(from: NSNumber(value: totalDiscount))!
-                savingsLabel.text = "\(offer.simboloMoneda ?? "$")\(savingString)"
+                let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
+                savingsLabel.text = "\(offer.simboloMoneda ?? .empty)\(savingString)"
 
-                let discountString = formatter.string(from: NSNumber(value: data.articulo?.precioDescuento ?? 0.0))!
-                discountPriceLabel.text = "\(offer.simboloMoneda ?? "$")\(discountString)"
+                let discountString = numberFormatter.string(from: NSNumber(value: data.articulo?.precioDescuento ?? 0.0))!
+                discountPriceLabel.text = "\(offer.simboloMoneda ?? .empty)\(discountString)"
+                self.originalPrice.attributedText = attributeString
             } else {
+                self.originalPrice.text = "\(offer.simboloMoneda ?? .empty)\(originalString)"
+                self.savingHeader.alpha = 0
+                self.priceDivider.alpha = 0
                 self.savingsLabel.alpha = 0
                 self.discountLabel.alpha = 0
             }
 
-//            if let original = offer.originalPrice, let final = offer.precioFinal {
-//                if original == 0 || final == 0 {
-//                    DispatchQueue.main.async {
-//                        self.pricesView.alpha = 0
-//                        self.sepView.alpha = 0
-//                        self.pricesView.layoutIfNeeded()
-//                    }
-//                } else {
-//                    let formatter = NumberFormatter()
-//                    formatter.numberStyle = NumberFormatter.Style.decimal
-//
-//                    let saving = original - final
-//                    let savingString = formatter.string(from: NSNumber(value: saving))!
-//                    savingsLabel.text = "\(offer.simboloMoneda ?? "$")\(savingString)"
-//
-//                    let discountString = formatter.string(from: NSNumber(value: final))!
-//                    discountPriceLabel.text = "\(offer.simboloMoneda ?? "$")\(discountString)"
-//
-//                    let originalString = formatter.string(from: NSNumber(value: original))!
-//                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? "$")\(originalString)")
-//                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-//                    originalPrice.attributedText = attributeString
-//                }
-//            } else {
-//                DispatchQueue.main.async {
-//                    self.pricesView.alpha = 0
-//                    self.sepView.alpha = 0
-//                }
-//            }
-
-            let descuento = offer.tieneDescuento?.bool
             let regalia = offer.tieneRegalia?.bool
-            let bono = offer.tieneBono?.bool
 
-            if descuento! {
-                discountLabel.text = "\(offer.simboloMoneda ?? "$")\(offer.montoDescuento ?? 0)"
+            if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0 {
+                discountLabel.text = "\(offer.simboloMoneda ?? .empty)\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
             } else {
                 DispatchQueue.main.async {
                     self.tintView.visibility = .gone
@@ -311,8 +286,8 @@ class OfferDetailViewController: UIViewController {
                 }
             }
 
-            if bono! {
-                bonusLabel.text = "\(offer.simboloMoneda ?? "")\(offer.montoBono ?? 0)"
+            if let bonus = data.articulo?.montoBonoProveedor, bonus > 0.0 {
+                bonusLabel.text = "\(offer.simboloMoneda ?? .empty)\(numberFormatter.string(from: NSNumber(value: bonus))!)"
             } else {
                 DispatchQueue.main.async {
                     self.tintViewBonus.visibility = .gone
@@ -352,14 +327,17 @@ class OfferDetailViewController: UIViewController {
         dropDown.show()
         dropDown.selectionAction = { [self] (index: Int, item: String) in
             warrantyMonth = viewModel.documents[index].plazoMeses ?? 0
+            warrantyAmount = viewModel.documents[index].montoExtragarantia ?? 0.0
             serviceLabel.text = item
         }
     }
 
     private func isFavorite() -> UIImage? {
         if let data = offer {
-            let list = defaults.object(forKey: "Favorites") as? [ProductsData] ?? [ProductsData]()
-            if list.contains(data) {
+            let list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
+            if list.contains(where: { dataO in
+                dataO.id == data.id
+            }) {
                 return UIImage(named: "ic_added_heart")
             } else {
                 return UIImage(named: "ic_heart")
@@ -385,11 +363,11 @@ class OfferDetailViewController: UIViewController {
     }
 
     @objc func saveFavorites() {
-        var list = defaults.object(forKey: "Favorites") as? [ProductsData] ?? [ProductsData]()
-        if let data = offer {
-            list.append(data)
-        }
-        defaults.set(list, forKey: "Favorites")
+//        var list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
+//        if let data = offer {
+//            list.append(data)
+//        }
+//        defaults.set(list, forKey: "Favorites")
     }
 
 }

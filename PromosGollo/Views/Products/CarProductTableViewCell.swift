@@ -12,6 +12,8 @@ import UIKit
 protocol CarProductDelegate: AnyObject {
     func deleteItem(at indexPath: IndexPath)
     func updateQuantity(at indexPath: IndexPath, _ quantity: Int)
+    func addGolloPlus(at indexPath: IndexPath)
+    func removeGolloPlus(at indexPath: IndexPath)
 }
 
 class CarProductTableViewCell: UITableViewCell {
@@ -23,6 +25,7 @@ class CarProductTableViewCell: UITableViewCell {
     @IBOutlet weak var warrantyStackView: UIStackView!
     @IBOutlet weak var warrantyNameLabel: UILabel!
     @IBOutlet weak var warrantyAmountLabel: UILabel!
+    @IBOutlet weak var removeWarrantyButton: UIButton!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var quantityTextField: UITextField!
@@ -60,7 +63,14 @@ class CarProductTableViewCell: UITableViewCell {
         quantity += 1
         delegate?.updateQuantity(at: indexPath, quantity)
     }
+
+    @IBAction func addWarrantyButtonTapped(_ sender: Any) {
+        delegate?.addGolloPlus(at: indexPath)
+    }
     
+    @IBAction func removeWarrantyButtonTapped(_ sender: Any) {
+        delegate?.removeGolloPlus(at: indexPath)
+    }
     // MARK: - Functions
     func setProductData(with data: CartItemDetail) {
         let formatter = NumberFormatter()
@@ -70,8 +80,21 @@ class CarProductTableViewCell: UITableViewCell {
         }
         productNameLabel.text = data.descripcion
         productPriceLabel.text = "₡" + formatter.string(from: NSNumber(value: data.precioUnitario))!
-        totalAmountLabel.text = "₡" + formatter.string(from: NSNumber(value: data.precioUnitario))!
+
         quantity = data.cantidad
         quantityTextField.text = String(quantity)
+
+        if data.mesesExtragar != 0 {
+            warrantyNameLabel.text = "Gollo plus \(data.mesesExtragar) meses"
+            warrantyAmountLabel.text = "₡" + formatter.string(from: NSNumber(value: data.montoExtragar))!
+            warrantyStackView.isHidden = false
+            addWarrantyView.isHidden = true
+            let total = data.precioUnitario + data.montoExtragar
+            totalAmountLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
+        } else {
+            warrantyStackView.isHidden = true
+            addWarrantyView.isHidden = false
+            totalAmountLabel.text = "₡" + formatter.string(from: NSNumber(value: data.precioUnitario))!
+        }
     }
 }

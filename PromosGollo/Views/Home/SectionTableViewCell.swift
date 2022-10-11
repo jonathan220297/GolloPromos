@@ -73,11 +73,24 @@ class SectionTableViewCell: UITableViewCell {
         case LinkType.none.rawValue:
             viewModel.configureRecentView()
             viewMoreButton.tag = 0
-        case LinkType.appCategory.rawValue:
-            fetchProducts(by: section.linkValue ?? "")
-            viewMoreButton.tag = 1
+//        case LinkType.appCategory.rawValue:
+////            fetchProducts(by: section.linkValue ?? 0)
+//            self.viewModel.productsArray = section.productos ?? []
+//            self.productCollectionView.reloadData()
+//            let content = self.viewModel.productsArray.count
+//            let columns = Double(content) / 2.0
+//            let cellSize = round(columns) * 350.0
+//            self.delegate?.sectionTableView(self, shouldReloadProductCellWith: cellSize)
+//            viewMoreButton.tag = 1
             break
         default:
+            self.viewModel.productsArray = section.productos ?? []
+            self.productCollectionView.reloadData()
+            let content = self.viewModel.productsArray.count
+            let columns = Double(content) / 2.0
+            let cellSize = round(columns) * 350.0
+            self.delegate?.sectionTableView(self, shouldReloadProductCellWith: cellSize)
+            viewMoreButton.tag = 1
             break
         }
     }
@@ -92,14 +105,14 @@ class SectionTableViewCell: UITableViewCell {
         productCollectionView.isScrollEnabled = false
     }
     
-    func fetchProducts(by category: String) {
+    func fetchProducts(by category: Int) {
         viewModel
             .fetchProductsByCategory(with: category)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
-                self.viewModel.productsArray = data
+//                self.viewModel.productsArray = data
                 self.productCollectionView.reloadData()
                 let content = self.viewModel.productsArray.count
                 let columns = Double(content) / 2.0
@@ -147,7 +160,7 @@ extension SectionTableViewCell: UICollectionViewDelegate,
 }
 
 extension SectionTableViewCell: ProductCellDelegate {
-    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: ProductsData) {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
         vc.modalPresentationStyle = .fullScreen

@@ -6,10 +6,18 @@
 //
 
 import UIKit
+import RxSwift
 
 class OrdersTabViewController: UIViewController {
+
+    @IBOutlet weak var ordersTableView: UITableView!
     
-    init() {
+    // MARK: - Constants
+    let viewModel: OrdersTabViewModel
+    let bag = DisposeBag()
+
+    init(viewModel: OrdersTabViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: "OrdersTabViewController", bundle: nil)
     }
     
@@ -20,5 +28,67 @@ class OrdersTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.navigationItem.title = "My orders"
+        configureTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchOrders()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.navigationItem.leftBarButtonItem = nil
+    }
+
+    func configureTableView() {
+        ordersTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersTableViewCell")
+    }
+
+    func fetchOrders() {
+        view.activityStarAnimating()
+        viewModel.fetchOrders()
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                self.view.activityStopAnimating()
+                self.viewModel.orders = data.ordenes
+                self.ordersTableView.reloadData()
+            })
+            .disposed(by: bag)
+    }
+}
+
+extension OrdersTabViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.orders.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return getOfferCell(tableView, cellForRowAt: indexPath)
+    }
+
+    func getOfferCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrdersTableViewCell", for: indexPath) as? OrdersTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.setOrderData(with: viewModel.orders[indexPath.row])
+        cell.selectionStyle = .none
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let orderDetailTabViewController = OrderDetailTabViewController(
+            viewModel: OrderDetailTabViewModel(),
+            orderId: String(viewModel.orders[indexPath.row].idOrden ?? 0)
+        )
+        orderDetailTabViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(orderDetailTabViewController, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
 }

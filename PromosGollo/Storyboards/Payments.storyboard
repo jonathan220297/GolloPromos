@@ -18,7 +18,7 @@
         <!--Cuentas-->
         <scene sceneID="5Eg-mh-ydi">
             <objects>
-                <viewController storyboardIdentifier="accountsVC" id="SJP-gT-CBt" customClass="AccountsViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountsViewController" id="SJP-gT-CBt" customClass="AccountsViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NSd-CJ-mdi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -964,7 +964,7 @@
         <!--Estatus-->
         <scene sceneID="8IP-Rz-2tR">
             <objects>
-                <viewController storyboardIdentifier="presalesVC" id="8pN-IW-yp1" customClass="StatusViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StatusViewController" id="8pN-IW-yp1" customClass="StatusViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="waz-7D-5xz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1681,7 +1681,7 @@
         <!--Terceros-->
         <scene sceneID="Tn7-90-X8c">
             <objects>
-                <viewController storyboardIdentifier="statusVC" id="cOx-Dd-Pr4" customClass="ThirdPartyViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThirdPartyViewController" id="cOx-Dd-Pr4" customClass="ThirdPartyViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hiD-0J-B2N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2233,7 +2233,7 @@
         <!--Historial-->
         <scene sceneID="q1D-D6-9Hw">
             <objects>
-                <viewController id="5Cj-CC-Ga0" customClass="HistoryViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryViewController" id="5Cj-CC-Ga0" customClass="HistoryViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uE7-OM-LNF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol OffersCellDelegate {
-    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: ProductsData)
+    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product)
 }
 
 class OffersTableViewCell: UITableViewCell {
@@ -79,7 +79,7 @@ extension OffersTableViewCell: UICollectionViewDelegate,
 }
 
 extension OffersTableViewCell: ProductCellDelegate {
-    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: ProductsData) {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         delegate?.offerssCell(self, shouldMoveToDetailWith: data)
     }
 }

@@ -28,13 +28,11 @@ class OffersTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Offers"
         configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureBarButtons()
         fetchCategories()
     }
     
@@ -67,8 +65,9 @@ class OffersTabViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                self.view.activityStopAnimating()
                 self.viewModel.categories = data
-                self.fetchOffers()
+                self.offersTableView.reloadData()
             })
             .disposed(by: bag)
     }
@@ -92,11 +91,11 @@ class OffersTabViewController: UIViewController {
 
 extension OffersTabViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sections.count
+        return viewModel.categories.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.sections[section].offers.count > 0 ? 1 : 0
+        return viewModel.categories[section].productos.count > 0 ? 1 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,7 +103,7 @@ extension OffersTabViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.sections[indexPath.section].offers.count > 2 ? 650 : 320
+        return viewModel.categories[indexPath.section].productos.count > 2 ? 650 : 320
     }
     
     func getOfferCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,7 +111,7 @@ extension OffersTabViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.delegate = self
-        cell.viewModel.offersArray = viewModel.sections[indexPath.section].offers
+        cell.viewModel.offersArray = viewModel.categories[indexPath.section].productos
         cell.configureCollectionView()
         return cell
     }
@@ -123,7 +122,7 @@ extension OffersTabViewController: UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryOffersTableViewCell") as? CategoryOffersTableViewCell else {
             return UIView()
         }
-        cell.setCategoryInfo(with: viewModel.sections[section])
+        cell.setCategoryInfo(with: viewModel.categories[section])
         return cell
     }
     
@@ -133,8 +132,7 @@ extension OffersTabViewController: UITableViewDelegate {
 }
 
 extension OffersTabViewController: OffersCellDelegate {
-    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: ProductsData) {
-//        openDetail(with: data)
+    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
         vc.modalPresentationStyle = .fullScreen

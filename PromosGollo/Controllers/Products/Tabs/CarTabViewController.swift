@@ -100,7 +100,7 @@ class CarTabViewController: UIViewController {
         formatter.numberStyle = NumberFormatter.Style.decimal
         var total = 0.0
         for item in viewModel.car {
-            total += (item.precioUnitario * Double(item.cantidad))
+            total += (item.precioUnitario * Double(item.cantidad)) + item.montoExtragar
         }
         viewModel.total = total
         totalLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
@@ -128,6 +128,7 @@ extension CarTabViewController: UITableViewDataSource {
         cell.indexPath = indexPath
         cell.delegate = self
         cell.selectionStyle = .none
+
         return cell
     }
 }
@@ -144,6 +145,36 @@ extension CarTabViewController: CarProductDelegate {
         guard let id = viewModel.car[indexPath.row].idCarItem else { return }
         if CoreDataService().updateProductQuantity(for: id, quantity) {
             fetchCarItems()
+        }
+    }
+
+    func addGolloPlus(at indexPath: IndexPath) {
+        guard let id = viewModel.car[indexPath.row].idCarItem else { return }
+        let warranties = CoreDataService().fetchCarWarranty(with: id)
+        let sorted = warranties.sorted { $0.plazoMeses ?? 0 < $1.plazoMeses ?? 0 }
+        let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: sorted)
+        offerServiceProtectionViewController.delegate = self
+        offerServiceProtectionViewController.selectedId = id
+        offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
+        offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
+        self.present(offerServiceProtectionViewController, animated: true)
+    }
+
+    func removeGolloPlus(at indexPath: IndexPath) {
+        guard let id = viewModel.car[indexPath.row].idCarItem else { return }
+        if CoreDataService().removeGolloPlus(for: id) {
+            fetchCarItems()
+        }
+    }
+}
+
+extension CarTabViewController: OfferServiceProtectionDelegate {
+    func protectionSelected(with id: UUID, month: Int, amount: Double) {
+        if CoreDataService().addGolloPlus(for: id, month: 0, amount: 0.0) {
+            print("Updating item")
+            fetchCarItems()
+        } else {
+            showAlert(alertText: "GolloApp", alertMessage: "Intentelo de nuevo.")
         }
     }
 }

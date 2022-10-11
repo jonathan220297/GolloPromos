@@ -13,8 +13,8 @@ class OffersViewModel {
 
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     var categories: [CategoriesData] = []
-    var offers: [ProductsData] = []
-    var offersFilteres: [ProductsData] = []
+    var offers: [Product] = []
+    var offersFilteres: [Product] = []
     
     var categoryOffers: [CategoryOffers] = []
     var filterSelected = false
@@ -22,8 +22,8 @@ class OffersViewModel {
     var idStore: String? = nil
     var reloadTableViewData: (()->())?
     
-    var offersQuery: [ProductsData] = []
-    var offersQueryFiltered: [ProductsData] = []
+    var offersQuery: [Product] = []
+    var offersQueryFiltered: [Product] = []
 
     func fetchCategories() -> BehaviorRelay<[CategoriesData]?> {
         let apiResponse: BehaviorRelay<[CategoriesData]?> = BehaviorRelay(value: nil)
@@ -57,9 +57,9 @@ class OffersViewModel {
         return apiResponse
     }
 
-    func fetchOffers(with category: String? = nil) -> BehaviorRelay<[ProductsData]?> {
-        let apiResponse: BehaviorRelay<[ProductsData]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[ProductsData], OffersServiceRequest>(
+    func fetchOffers(with category: String? = nil) -> BehaviorRelay<[Product]?> {
+        let apiResponse: BehaviorRelay<[Product]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<[Product], OffersServiceRequest>(
             service: BaseServiceRequestParam<OffersServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
@@ -93,9 +93,9 @@ class OffersViewModel {
     
     func fetchQueryOffers(with query: String? = nil,
                           _ idStore: String? = nil,
-                          _ idCategory: String? = nil) -> BehaviorRelay<[ProductsData]?> {
-        let apiResponse: BehaviorRelay<[ProductsData]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[ProductsData], ProductServiceRequest>(
+                          _ idCategory: String? = nil) -> BehaviorRelay<[Product]?> {
+        let apiResponse: BehaviorRelay<[Product]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<[Product], ProductServiceRequest>(
             service: BaseServiceRequestParam<ProductServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
@@ -130,9 +130,9 @@ class OffersViewModel {
         return apiResponse
     }
     
-    func fetchOffersStores(with idStore: String) -> BehaviorRelay<[ProductsData]?> {
-        let apiResponse: BehaviorRelay<[ProductsData]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[ProductsData], ProductServiceRequest>(
+    func fetchOffersStores(with idStore: String) -> BehaviorRelay<[Product]?> {
+        let apiResponse: BehaviorRelay<[Product]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<[Product], ProductServiceRequest>(
             service: BaseServiceRequestParam<ProductServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
@@ -172,7 +172,7 @@ class OffersViewModel {
                 o.tipoPromoApp == category.idTipoCategoriaApp
             }
             if offersCat.count > 0 {
-                var offers: [ProductsData] = []
+                var offers: [Product] = []
                 if offersCat.count > 4 {
                     offers = Array(offersCat[0..<4])
                 } else {

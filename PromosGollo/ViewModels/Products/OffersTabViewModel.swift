@@ -9,7 +9,7 @@ import Foundation
 import RxRelay
 
 class OfferSection {
-    init(name: String, urlImage: String, offers: [ProductsData]) {
+    init(name: String, urlImage: String, offers: [Product]) {
         self.name = name
         self.urlImage = urlImage
         self.offers = offers
@@ -17,7 +17,7 @@ class OfferSection {
     
     let name: String
     let urlImage: String
-    var offers: [ProductsData]
+    var offers: [Product]
 }
 
 class OffersTabViewModel {
@@ -26,8 +26,8 @@ class OffersTabViewModel {
     var sections: [OfferSection] = []
     
     var categories: [CategoriesData] = []
-    var offers: [ProductsData] = []
-    var offersFiltered: [ProductsData] = []
+    var offers: [Product] = []
+    var offersFiltered: [Product] = []
     
     var categoryOffers: [CategoryOffers] = []
     
@@ -65,9 +65,9 @@ class OffersTabViewModel {
         return apiResponse
     }
 
-    func fetchOffers(with category: String? = nil) -> BehaviorRelay<[ProductsData]?> {
-        let apiResponse: BehaviorRelay<[ProductsData]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[ProductsData], OffersServiceRequest>(
+    func fetchOffers(with category: String? = nil) -> BehaviorRelay<[Product]?> {
+        let apiResponse: BehaviorRelay<[Product]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<[Product], OffersServiceRequest>(
             service: BaseServiceRequestParam<OffersServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
@@ -106,7 +106,7 @@ class OffersTabViewModel {
                 o.tipoPromoApp == category.idTipoCategoriaApp
             }
             if offersCat.count > 0 {
-                var offers: [ProductsData] = []
+                var offers: [Product] = []
                 if offersCat.count > 4 {
                     offers = Array(offersCat[0..<4])
                 } else {
@@ -122,11 +122,11 @@ class OffersTabViewModel {
         completion(true)
     }
     
-    func processOffers(with offers: [ProductsData]) {
+    func processOffers(with offers: [Product]) {
         sections.removeAll()
         for i in 0..<categories.count {
             if categories[i].idTipoCategoriaApp != 0 {
-                var offersToSave: [ProductsData] = []
+                var offersToSave: [Product] = []
                 for offer in offers {
                     if offer.tipoPromoApp == categories[i].idTipoCategoriaApp {
                         offersToSave.append(offer)

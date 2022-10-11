@@ -9,7 +9,7 @@ import Foundation
 
 struct ProductsRequest: APIRequest {
 
-    public typealias Response = [ProductsData]
+    public typealias Response = [Product]
     
     public var resourceName: String {
         return "Procesos"
