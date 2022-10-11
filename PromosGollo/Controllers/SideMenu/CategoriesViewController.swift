@@ -83,6 +83,8 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.backgroundView?.backgroundColor = .primary
+        
         if indexPath.row == 0 {
             cell.textLabel?.text = categories[indexPath.section].name
         } else {
@@ -95,6 +97,8 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+
+        _ = categories[indexPath.section]
 
         categories[indexPath.section].isOpened = !categories[indexPath.section].isOpened
         tableView.reloadSections([indexPath.section], with: .none)

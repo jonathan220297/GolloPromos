@@ -170,8 +170,7 @@ extension CarTabViewController: CarProductDelegate {
 
 extension CarTabViewController: OfferServiceProtectionDelegate {
     func protectionSelected(with id: UUID, month: Int, amount: Double) {
-        if CoreDataService().addGolloPlus(for: id, month: 0, amount: 0.0) {
-            print("Updating item")
+        if CoreDataService().addGolloPlus(for: id, month: month, amount: amount) {
             fetchCarItems()
         } else {
             showAlert(alertText: "GolloApp", alertMessage: "Intentelo de nuevo.")

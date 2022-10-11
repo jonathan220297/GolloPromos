@@ -19,8 +19,8 @@ struct OrderDetail: Codable {
 }
 
 struct OrderInformation: Codable {
-    let idEmpresa, idOrden, idMovimiento, totalLineas: Int?
-    let idCliente, estadoOrden, fechaOrden, condicionVenta, codigoCupon, descripcionCupon, numOrdenTienda: String?
+    let idOrden, idMovimiento, totalLineas: Int?
+    let idEmpresa, idCliente, estadoOrden, fechaOrden, condicionVenta, codigoCupon, descripcionCupon, numOrdenTienda: String?
     let montoBruto, montoDescuento, montoExtragarantia: Double?
 }
 
@@ -38,7 +38,8 @@ struct DeliveryType: Codable {
 }
 
 struct OrderDetailInformation: Codable {
-    let sku, descripcion, codRegalia, urlImagen: String?
-    let idLinea, cantidad, mesesExtragar, esRegalia: Int?
-    let precioUnitario, descuento, precioExtendido, montoExtragar, porcDescuento, montoDescuento: Double?
+    let porcDescuento, montoDescuento, precioUnitario, descuento: Double?
+    let montoExtragar, mesesExtragar, precioExtendido: Double?
+    let urlImagen, codRegalia, sku, descripcion: String?
+    let cantidad, idLinea, esRegalia: Int?
 }

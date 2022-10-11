@@ -124,8 +124,15 @@
 		4F3E7C8228F21D5B00221684 /* CategoriesFilterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E7C8128F21D5B00221684 /* CategoriesFilterRequest.swift */; };
 		4F3E7C8428F21D7000221684 /* CategoriesFilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E7C8328F21D7000221684 /* CategoriesFilterData.swift */; };
 		4F3E7C8628F2317500221684 /* CategoryFilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E7C8528F2317500221684 /* CategoryFilteredList.swift */; };
+		4F410E0F28F4E07A00387871 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F410E0E28F4E07A00387871 /* GoogleService-Info.plist */; };
+		4F410E1228F5CDE000387871 /* OffersFilteredListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F410E1028F5CDE000387871 /* OffersFilteredListViewController.swift */; };
+		4F410E1328F5CDE000387871 /* OffersFilteredListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F410E1128F5CDE000387871 /* OffersFilteredListViewController.xib */; };
+		4F410E1528F5CDF900387871 /* OffersFilteredListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F410E1428F5CDF900387871 /* OffersFilteredListViewModel.swift */; };
+		4F410E1728F5CF2300387871 /* OfferFilteredListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F410E1628F5CF2300387871 /* OfferFilteredListRequest.swift */; };
+		4F410E1B28F611F400387871 /* CategoriesFilterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F410E1A28F611F400387871 /* CategoriesFilterList.swift */; };
+		4F410E1E28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F410E1C28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift */; };
+		4F410E1F28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F410E1D28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib */; };
 		4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46199E2700FC8300265E73 /* StatusViewController.swift */; };
-		4F4BF8E028F4C8C80059E178 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F4BF8DF28F4C8C80059E178 /* GoogleService-Info.plist */; };
 		4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47527275585007B17FE /* CGFloat+Extension.swift */; };
 		4F4EC47B2727680E007B17FE /* DocType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47A2727680E007B17FE /* DocType.swift */; };
 		4F4EC47E27276A50007B17FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EC48027276A50007B17FE /* Localizable.strings */; };
@@ -447,8 +454,15 @@
 		4F3E7C8128F21D5B00221684 /* CategoriesFilterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFilterRequest.swift; sourceTree = "<group>"; };
 		4F3E7C8328F21D7000221684 /* CategoriesFilterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFilterData.swift; sourceTree = "<group>"; };
 		4F3E7C8528F2317500221684 /* CategoryFilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilteredList.swift; sourceTree = "<group>"; };
+		4F410E0E28F4E07A00387871 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4F410E1028F5CDE000387871 /* OffersFilteredListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersFilteredListViewController.swift; sourceTree = "<group>"; };
+		4F410E1128F5CDE000387871 /* OffersFilteredListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OffersFilteredListViewController.xib; sourceTree = "<group>"; };
+		4F410E1428F5CDF900387871 /* OffersFilteredListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersFilteredListViewModel.swift; sourceTree = "<group>"; };
+		4F410E1628F5CF2300387871 /* OfferFilteredListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferFilteredListRequest.swift; sourceTree = "<group>"; };
+		4F410E1A28F611F400387871 /* CategoriesFilterList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFilterList.swift; sourceTree = "<group>"; };
+		4F410E1C28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFilteredListCollectionViewCell.swift; sourceTree = "<group>"; };
+		4F410E1D28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesFilteredListCollectionViewCell.xib; sourceTree = "<group>"; };
 		4F46199E2700FC8300265E73 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
-		4F4BF8DF28F4C8C80059E178 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F4EC47527275585007B17FE /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		4F4EC47A2727680E007B17FE /* DocType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocType.swift; sourceTree = "<group>"; };
 		4F4EC47F27276A50007B17FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1388,6 +1402,7 @@
 				4F7C5F2328E6163100123072 /* OrdersTabViewModel.swift */,
 				4F7C5F3128E6214800123072 /* OrderDetailTabViewModel.swift */,
 				4F678D7728E7C0C300C8E8B3 /* MenuTabViewModel.swift */,
+				4F410E1428F5CDF900387871 /* OffersFilteredListViewModel.swift */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -1452,7 +1467,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4F4BF8DF28F4C8C80059E178 /* GoogleService-Info.plist */,
+				4F410E0E28F4E07A00387871 /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* PromosGollo.xcdatamodeld */,
 			);
 			path = PromosGollo;
@@ -1572,6 +1587,8 @@
 				4FE1911B26DEFC1D00322128 /* ProductsRequest.swift */,
 				4F7C5F2528E6168D00123072 /* OrdersRequest.swift */,
 				4F7C5F3328E621A300123072 /* OrderDetailRequest.swift */,
+				4F410E1628F5CF2300387871 /* OfferFilteredListRequest.swift */,
+				4F410E1A28F611F400387871 /* CategoriesFilterList.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1593,6 +1610,8 @@
 				4F678D7228E7BD6100C8E8B3 /* MenuTabTableViewCell.xib */,
 				4F678D7D28E7C5C600C8E8B3 /* WhishesTableViewCell.swift */,
 				4F678D7E28E7C5C600C8E8B3 /* WhishesTableViewCell.xib */,
+				4F410E1C28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift */,
+				4F410E1D28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -1643,6 +1662,8 @@
 				4FCEB7DD28CFF82E009B3FDF /* Tabs */,
 				4FEA90A328CFF6F300A73813 /* ProductViewController.swift */,
 				4FEA90A428CFF6F300A73813 /* ProductViewController.xib */,
+				4F410E1028F5CDE000387871 /* OffersFilteredListViewController.swift */,
+				4F410E1128F5CDE000387871 /* OffersFilteredListViewController.xib */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -1812,6 +1833,7 @@
 				4F0D967A26DDBB810061E89E /* SansSerifFLF.otf in Resources */,
 				4F0D967226DDBB810061E89E /* SansSerifBookFLF.otf in Resources */,
 				4F7C5F3028E620B700123072 /* OrderDetailTabViewController.xib in Resources */,
+				4F410E1328F5CDE000387871 /* OffersFilteredListViewController.xib in Resources */,
 				4F0D968526DDBE690061E89E /* Colors.xcassets in Resources */,
 				4F0D968B26DDD3650061E89E /* Notifications.storyboard in Resources */,
 				4F0D967826DDBB810061E89E /* SansSerifBldFLF.otf in Resources */,
@@ -1854,8 +1876,9 @@
 				4F0D96BC26DDD7F50061E89E /* MenuTableViewCell.xib in Resources */,
 				4FA0B87828E3C6EB00395361 /* AddressTableViewCell.xib in Resources */,
 				4F678D7428E7BD6100C8E8B3 /* MenuTabTableViewCell.xib in Resources */,
+				4F410E1F28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib in Resources */,
 				4F3E7C7B28F21C5A00221684 /* CategoriesViewController.xib in Resources */,
-				4F4BF8E028F4C8C80059E178 /* GoogleService-Info.plist in Resources */,
+				4F410E0F28F4E07A00387871 /* GoogleService-Info.plist in Resources */,
 				4FDD106028D15F390082ADB5 /* OrdersTabViewController.xib in Resources */,
 				4F0D96C826DDD9990061E89E /* Services.storyboard in Resources */,
 				4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */,
@@ -2043,6 +2066,7 @@
 				4F0D969D26DDD4740061E89E /* NotificationDetailViewController.swift in Sources */,
 				4FDB6ECD28DD1CAF0002DA0B /* PaymentAddressViewModel.swift in Sources */,
 				4F0D965826DDBB210061E89E /* LocalizableTextField.swift in Sources */,
+				4F410E1728F5CF2300387871 /* OfferFilteredListRequest.swift in Sources */,
 				4F3E48222727859A009D259D /* AccountsResponse.swift in Sources */,
 				4FE1910026DEF61500322128 /* HomeConfigurationRequest.swift in Sources */,
 				4FE86E5E28E40934008E58F1 /* ShopData.swift in Sources */,
@@ -2106,6 +2130,7 @@
 				4F0D96DC26DDE0870061E89E /* AccountsTableViewCell.swift in Sources */,
 				4FA0B88028E3D56700395361 /* DeleteAddress.swift in Sources */,
 				4FE1911526DEFB0E00322128 /* DataManager.swift in Sources */,
+				4F410E1528F5CDF900387871 /* OffersFilteredListViewModel.swift in Sources */,
 				4FE1910D26DEF77C00322128 /* SectionTableViewCell.swift in Sources */,
 				4F678D7328E7BD6100C8E8B3 /* MenuTabTableViewCell.swift in Sources */,
 				4F3E4833272787D3009D259D /* ThirdPartyAccountsTableViewCell.swift in Sources */,
@@ -2140,6 +2165,7 @@
 				4F3E481627278536009D259D /* CategoriesResponse.swift in Sources */,
 				4FE86E5C28E408CB008E58F1 /* ShopsListRequest.swift in Sources */,
 				4F68372D28DB6E6200462F5E /* OfferCartDetail.swift in Sources */,
+				4F410E1B28F611F400387871 /* CategoriesFilterList.swift in Sources */,
 				4F3E481927278536009D259D /* FilterResponse.swift in Sources */,
 				4FA2768326D9192900216284 /* SplashViewModel.swift in Sources */,
 				4F7C5F2828E6171600123072 /* OrdersData.swift in Sources */,
@@ -2172,6 +2198,7 @@
 				4F0D969726DDD3E50061E89E /* NotificationsData.swift in Sources */,
 				4FE86E6428E40F76008E58F1 /* ShippingMethodData.swift in Sources */,
 				4FDD105728D000700082ADB5 /* ProductsTabViewController.swift in Sources */,
+				4F410E1E28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift in Sources */,
 				4FE86E6228E40BAC008E58F1 /* CarManager.swift in Sources */,
 				4FA0B87A28E3C8D200395361 /* AddressListRequest.swift in Sources */,
 				4FA2768126D9191300216284 /* LoginViewModel.swift in Sources */,
@@ -2198,6 +2225,7 @@
 				4F17323127013C0000D7924D /* ProductTableViewCell.swift in Sources */,
 				4F0D969B26DDD4170061E89E /* NotificationTableViewCell.swift in Sources */,
 				4F7C5F3628E621E400123072 /* OrderDetailData.swift in Sources */,
+				4F410E1228F5CDE000387871 /* OffersFilteredListViewController.swift in Sources */,
 				4F0D964A26DDBA7C0061E89E /* UIImageView+Extension.swift in Sources */,
 				4FE1913826DF075200322128 /* IncentivesViewController.swift in Sources */,
 				4F3E480727278525009D259D /* OffersViewModel.swift in Sources */,

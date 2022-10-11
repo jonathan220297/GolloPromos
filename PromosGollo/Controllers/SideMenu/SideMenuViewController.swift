@@ -75,6 +75,12 @@ class SideMenuViewController: UIViewController {
                let lastname = Variables.userProfile?.apellido1 {
                     profileName.text = "\(user) \(lastname)"
             }
+            if let email = Variables.userProfile?.correoElectronico1 {
+                profileEmailLabel.text = email
+            }
+            if let url = URL(string: Variables.userProfile?.image ?? "") {
+                Nuke.loadImage(with: url, into: profileImageView)
+            }
         }
     }
     

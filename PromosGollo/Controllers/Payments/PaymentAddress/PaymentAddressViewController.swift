@@ -142,7 +142,6 @@ class PaymentAddressViewController: UIViewController {
             })
             .disposed(by: bag)
         addressTextField.rx.text.bind(to: viewModel.addressSubject).disposed(by: bag)
-        postalCodeTextField.rx.text.bind(to: viewModel.postalCodeSubject).disposed(by: bag)
         locationPickerButton.rx
             .tap
             .subscribe(onNext: {[weak self] in

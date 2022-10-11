@@ -49,7 +49,7 @@ class HomeViewController: UITabBarController {
         let offersTab = OffersTabViewController(
             viewModel: OffersTabViewModel()
         )
-        offersTab.title = "Productos"
+        offersTab.title = "Ofertas"
         offersTab.tabBarItem.image = UIImage(named: "ic_offer")
 
         let ordersTab = OrdersTabViewController(

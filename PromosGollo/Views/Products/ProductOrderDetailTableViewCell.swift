@@ -29,6 +29,8 @@ class ProductOrderDetailTableViewCell: UITableViewCell {
     func setProductData(with data: OrderDetailInformation) {
         if let url = URL(string: data.urlImagen ?? "") {
             Nuke.loadImage(with: url, into: productImageView)
+        } else {
+            productImageView.image = UIImage(named: "empty_image")
         }
         titleLabel.text = data.descripcion ?? ""
         subtitleLabel.attributedText = formatHTML(header: "Cantidad: ", content: "\(data.cantidad ?? 0)")

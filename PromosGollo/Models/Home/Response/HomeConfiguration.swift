@@ -107,7 +107,7 @@ struct Product: Codable {
 
     enum CodingKeys: String, CodingKey {
         case productCode, descriptionDetailDescuento, descriptionDetailRegalia, originalPrice, image, montoBono, porcDescuento, brand, descriptionDetailBono, tieneBono, name, modelo, endDate, tieneRegalia, simboloMoneda, id, montoDescuento, idUsuario, product
-        case idEmpresa = "IdEmpresa"
+        case idEmpresa = "IdEmpresa, idempresa"
         case startDate, precioFinal, productName, tieneDescuento, tipoPromoApp
         case productoDescription = "description"
     }

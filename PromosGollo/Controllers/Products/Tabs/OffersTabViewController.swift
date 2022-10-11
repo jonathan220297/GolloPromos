@@ -123,11 +123,26 @@ extension OffersTabViewController: UITableViewDelegate {
             return UIView()
         }
         cell.setCategoryInfo(with: viewModel.categories[section])
+        cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+}
+
+extension OffersTabViewController: CategoryOffersDelegate {
+    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: Product) {
+
+    }
+
+    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldReloadOffersForCategoryAt indexPath: IndexPath) {
+        let offersFilteredListViewController = OffersFilteredListViewController(
+            viewModel: OffersFilteredListViewModel()
+        )
+        offersFilteredListViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
     }
 }
 
