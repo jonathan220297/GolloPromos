@@ -95,6 +95,34 @@ class OfferDetailViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
+    
+    // MARK: - Observers
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func share() {
+        let someText:String = "https://www.gollotienda.com"
+        var objectsToShare:UIImage?
+        if let image = self.offerImage.image {
+            objectsToShare = image
+        }
+        let sharedObjects:[Any] = [objectsToShare as Any, someText]
+        let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook, UIActivity.ActivityType.postToTwitter]
+
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+
+    @objc func saveFavorites() {
+//        var list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
+//        if let data = offer {
+//            list.append(data)
+//        }
+//        defaults.set(list, forKey: "Favorites")
+    }
 
     //MARK: - Functions
     func configureViews() {
@@ -106,6 +134,10 @@ class OfferDetailViewController: UIViewController {
         let rigthButton2 = UIBarButtonItem(image: UIImage(named: "ic_heart"), style: .plain, target: self, action: #selector(saveFavorites))
         rigthButton2.tintColor = .white
         self.navigationItem.rightBarButtonItems = [rigthButton, rigthButton2]
+        
+        let leftButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        leftButton.tintColor = .white
+        self.navigationItem.leftBarButtonItem = leftButton
     }
     
     fileprivate func configureRx() {
@@ -346,30 +378,6 @@ class OfferDetailViewController: UIViewController {
             return UIImage(named: "ic_heart")
         }
     }
-
-    @objc func share() {
-        let someText:String = "https://www.gollotienda.com"
-        var objectsToShare:UIImage?
-        if let image = self.offerImage.image {
-            objectsToShare = image
-        }
-        let sharedObjects:[Any] = [objectsToShare as Any, someText]
-        let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-
-        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook, UIActivity.ActivityType.postToTwitter]
-
-        self.present(activityViewController, animated: true, completion: nil)
-    }
-
-    @objc func saveFavorites() {
-//        var list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
-//        if let data = offer {
-//            list.append(data)
-//        }
-//        defaults.set(list, forKey: "Favorites")
-    }
-
 }
 
 extension OfferDetailViewController: UIScrollViewDelegate {

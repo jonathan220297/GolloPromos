@@ -24,6 +24,7 @@ class MenuTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.navigationItem.title = "Menu"
+        configureNavBar()
         configureTableView()
     }
 
