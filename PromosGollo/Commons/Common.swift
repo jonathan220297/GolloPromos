@@ -118,6 +118,7 @@ enum GOLLOAPP: String {
     case DELETE_ADDRESS = "35"
     case THIRD_PARTY_CUSTOMER = "41"
     case CATEGORIES_FILTER_PROCESS_ID = "43"
+    case FILTERED_PRODUCTS_PROCESS_ID = "44"
 }
 
 enum Payment: Int {

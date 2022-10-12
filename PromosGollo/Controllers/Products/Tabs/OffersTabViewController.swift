@@ -35,6 +35,7 @@ class OffersTabViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchCategories()
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -124,11 +125,35 @@ extension OffersTabViewController: UITableViewDelegate {
             return UIView()
         }
         cell.setCategoryInfo(with: viewModel.categories[section])
+        cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+}
+
+extension OffersTabViewController: CategoryOffersDelegate {
+    func showAllOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToList indexPath: Int) {
+        let offersFilteredListViewController = OffersFilteredListViewController(
+            viewModel: OffersFilteredListViewModel(),
+            category: indexPath,
+            taxonomy: -1
+        )
+        offersFilteredListViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
+    }
+
+    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: Product) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldReloadOffersForCategoryAt indexPath: IndexPath) {
+        print("\(indexPath.row) - \(indexPath.section)")
     }
 }
 

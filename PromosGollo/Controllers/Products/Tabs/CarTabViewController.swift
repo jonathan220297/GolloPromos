@@ -32,7 +32,7 @@ class CarTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Car"
+        tabBarController?.navigationItem.title = "Mi carrito"
         configureViews()
         configureTableView()
         configureRx()
@@ -41,6 +41,7 @@ class CarTabViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
         fetchCarItems()
     }
     
@@ -69,13 +70,19 @@ class CarTabViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.viewModel.setItemsToCarManager()
-                self.viewModel.carManager.total = self.viewModel.total
-                let paymentAddressViewController = PaymentAddressViewController(
-                    viewModel: PaymentAddressViewModel()
-                )
-                paymentAddressViewController.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(paymentAddressViewController, animated: true)
+                if Variables.isRegisterUser {
+                    self.viewModel.setItemsToCarManager()
+                    self.viewModel.carManager.total = self.viewModel.total
+                    let paymentAddressViewController = PaymentAddressViewController(
+                        viewModel: PaymentAddressViewModel()
+                    )
+                    paymentAddressViewController.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(paymentAddressViewController, animated: true)
+                } else {
+                    let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+                    editProfileViewController.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(editProfileViewController, animated: true)
+                }
             })
             .disposed(by: bag)
         
@@ -170,8 +177,7 @@ extension CarTabViewController: CarProductDelegate {
 
 extension CarTabViewController: OfferServiceProtectionDelegate {
     func protectionSelected(with id: UUID, month: Int, amount: Double) {
-        if CoreDataService().addGolloPlus(for: id, month: 0, amount: 0.0) {
-            print("Updating item")
+        if CoreDataService().addGolloPlus(for: id, month: month, amount: amount) {
             fetchCarItems()
         } else {
             showAlert(alertText: "GolloApp", alertMessage: "Intentelo de nuevo.")

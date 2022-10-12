@@ -28,6 +28,11 @@ class MenuTabViewController: UIViewController {
         configureTableView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+
     func configureTableView() {
         var firstItems: [ItemTabData] = []
         let accounts = ItemTabData(id: 1, image: "ic_menu_accounts", title: "Mis compras a crédito", subtitle: "Abonos y consultas a compras activas de crédito")
@@ -89,24 +94,48 @@ extension MenuTabViewController: UITableViewDataSource, UITableViewDelegate {
 
         switch id {
         case 1:
-            let accountsViewController = AccountsViewController.instantiate(fromAppStoryboard: .Payments)
-            accountsViewController.modalPresentationStyle = .fullScreen
-            self.navigationController?.pushViewController(accountsViewController, animated: true)
+            if Variables.isRegisterUser {
+                let accountsViewController = AccountsViewController.instantiate(fromAppStoryboard: .Payments)
+                accountsViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(accountsViewController, animated: true)
+            } else {
+                let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+                editProfileViewController.modalPresentationStyle = .fullScreen
+                navigationController?.pushViewController(editProfileViewController, animated: true)
+            }
 
         case 2:
-            let statusViewController = StatusViewController.instantiate(fromAppStoryboard: .Payments)
-            statusViewController.modalPresentationStyle = .fullScreen
-            self.navigationController?.pushViewController(statusViewController, animated: true)
+            if Variables.isRegisterUser {
+                let statusViewController = StatusViewController.instantiate(fromAppStoryboard: .Payments)
+                statusViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(statusViewController, animated: true)
+            } else {
+                let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+                editProfileViewController.modalPresentationStyle = .fullScreen
+                navigationController?.pushViewController(editProfileViewController, animated: true)
+            }
 
         case 3:
-            let thirdPartyViewController = ThirdPartyViewController.instantiate(fromAppStoryboard: .Payments)
-            thirdPartyViewController.modalPresentationStyle = .fullScreen
-            self.navigationController?.pushViewController(thirdPartyViewController, animated: true)
+            if Variables.isRegisterUser {
+                let thirdPartyViewController = ThirdPartyViewController.instantiate(fromAppStoryboard: .Payments)
+                thirdPartyViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(thirdPartyViewController, animated: true)
+            } else {
+                let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+                editProfileViewController.modalPresentationStyle = .fullScreen
+                navigationController?.pushViewController(editProfileViewController, animated: true)
+            }
 
         case 4:
-            let historyViewController = HistoryViewController.instantiate(fromAppStoryboard: .Payments)
-            historyViewController.modalPresentationStyle = .fullScreen
-            self.navigationController?.pushViewController(historyViewController, animated: true)
+            if Variables.isRegisterUser {
+                let historyViewController = HistoryViewController.instantiate(fromAppStoryboard: .Payments)
+                historyViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(historyViewController, animated: true)
+            } else {
+                let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+                editProfileViewController.modalPresentationStyle = .fullScreen
+                navigationController?.pushViewController(editProfileViewController, animated: true)
+            }
 
         case 5:
             let wishesViewController = WishesViewController()

@@ -83,6 +83,9 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .primary
+        cell.textLabel?.textColor = .white
+        
         if indexPath.row == 0 {
             cell.textLabel?.text = categories[indexPath.section].name
         } else {
@@ -96,8 +99,18 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        categories[indexPath.section].isOpened = !categories[indexPath.section].isOpened
-        tableView.reloadSections([indexPath.section], with: .none)
+        if categories[indexPath.section].isOpened && indexPath.row > 0 {
+            let offersFilteredListViewController = OffersFilteredListViewController(
+                viewModel: OffersFilteredListViewModel(),
+                category: nil,
+                taxonomy: categories[indexPath.section].categories[indexPath.row - 1].id
+            )
+            offersFilteredListViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
+        } else {
+            categories[indexPath.section].isOpened = !categories[indexPath.section].isOpened
+            tableView.reloadSections([indexPath.section], with: .none)
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

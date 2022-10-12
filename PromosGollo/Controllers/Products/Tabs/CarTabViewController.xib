@@ -29,16 +29,10 @@
                     <rect key="frame" x="0.0" y="47" width="390" height="50"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Eb7-Gu-GQJ">
-                            <rect key="frame" x="16" y="5" width="267" height="40.333333333333336"/>
+                            <rect key="frame" x="16" y="18" width="267" height="14.333333333333336"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mi carrito" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-mP-9Jh">
-                                    <rect key="frame" x="0.0" y="0.0" width="267" height="18"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiene 1 item en el carrito" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUu-F6-PJE">
-                                    <rect key="frame" x="0.0" y="25.999999999999996" width="267" height="14.333333333333332"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="267" height="14.333333333333334"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

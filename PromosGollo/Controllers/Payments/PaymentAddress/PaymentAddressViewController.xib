@@ -52,15 +52,15 @@
                     <rect key="frame" x="0.0" y="47" width="390" height="797"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udK-YK-G8t">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="1052"/>
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="973"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="UNW-Dm-Ees">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="1052"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="973"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jw-TH-ohc">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="75"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7T8-GP-KJc" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7T8-GP-KJc" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="xCw-HE-Ptr"/>
@@ -105,7 +105,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Is-6T-tvt">
                                             <rect key="frame" x="0.0" y="79" width="390" height="75"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9I-99-597" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9I-99-597" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="anW-dC-WKC"/>
@@ -150,7 +150,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="el6-yF-SSs">
                                             <rect key="frame" x="0.0" y="158" width="390" height="75"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSn-ui-0n8" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSn-ui-0n8" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="8hE-in-mby"/>
@@ -195,7 +195,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0m-g3-ypd">
                                             <rect key="frame" x="0.0" y="237" width="390" height="75"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izZ-BB-fXw" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izZ-BB-fXw" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="9jZ-Pl-3Qg"/>
@@ -240,7 +240,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVa-h7-GNq">
                                             <rect key="frame" x="0.0" y="316" width="390" height="75"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Document Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nf-Dr-eev" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Document Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nf-Dr-eev" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Os5-iU-Ryn"/>
@@ -301,7 +301,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWz-pd-56I">
                                             <rect key="frame" x="0.0" y="395" width="390" height="75"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identification Number (ID or passport)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPO-aa-CT6" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identification Number (ID or passport)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPO-aa-CT6" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="GKM-dq-Acw"/>
@@ -356,7 +356,7 @@
                                                                 <constraint firstAttribute="width" secondItem="DCC-yu-2yU" secondAttribute="height" multiplier="1:1" id="6Cg-AM-g1A"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT ADDRESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DM1-YE-yjx" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT ADDRESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DM1-YE-yjx" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                             <rect key="frame" x="47.333333333333343" y="8" width="198" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" name="colorPrimary"/>
@@ -469,7 +469,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9HQ-Vm-acQ">
                                             <rect key="frame" x="0.0" y="533" width="390" height="75"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfg-gf-Ang" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfg-gf-Ang" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="KPT-Bo-Ooq"/>
@@ -652,7 +652,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFG-H5-yFR">
                                             <rect key="frame" x="0.0" y="770" width="390" height="75"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFi-at-F1J" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFi-at-F1J" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="1PH-rH-0k9"/>
@@ -694,8 +694,8 @@
                                                 <constraint firstItem="cFi-at-F1J" firstAttribute="top" secondItem="sFG-H5-yFR" secondAttribute="top" constant="8" id="x18-gI-PQQ"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-ZY-47e">
-                                            <rect key="frame" x="0.0" y="849" width="390" height="75"/>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-ZY-47e">
+                                            <rect key="frame" x="0.0" y="847" width="390" height="75"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postal Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sq3-6l-b10">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
@@ -737,7 +737,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0SX-bE-HEw">
-                                            <rect key="frame" x="0.0" y="928" width="390" height="55"/>
+                                            <rect key="frame" x="0.0" y="849" width="390" height="55"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6a0-Mw-PkM">
                                                     <rect key="frame" x="68.333333333333329" y="8" width="253.33333333333337" height="39"/>
@@ -749,7 +749,7 @@
                                                                 <constraint firstAttribute="width" secondItem="08j-FX-F2F" secondAttribute="height" multiplier="1:1" id="RJy-JT-7hw"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAVE ADDRESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGD-cd-fTv" customClass="LocalizableLabel" customModule="Shoppi" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAVE ADDRESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGD-cd-fTv" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
                                                             <rect key="frame" x="47.333333333333343" y="8" width="198" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" name="colorPrimary"/>
@@ -800,9 +800,9 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcl-eR-C5V">
-                                            <rect key="frame" x="0.0" y="987" width="390" height="65"/>
+                                            <rect key="frame" x="0.0" y="908" width="390" height="65"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nq-bl-uED" customClass="LocalizableButton" customModule="Shoppi" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nq-bl-uED" customClass="LocalizableButton" customModule="PromosGollo" customModuleProvider="target">
                                                     <rect key="frame" x="19.666666666666657" y="8" width="351" height="49"/>
                                                     <color key="backgroundColor" name="colorPrimary"/>
                                                     <fontDescription key="fontDescription" name="SansSerifFLF-Demibold" family="SansSerifFLF" pointSize="17"/>
