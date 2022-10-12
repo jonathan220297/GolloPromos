@@ -28,6 +28,11 @@ class MenuTabViewController: UIViewController {
         configureTableView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+
     func configureTableView() {
         var firstItems: [ItemTabData] = []
         let accounts = ItemTabData(id: 1, image: "ic_menu_accounts", title: "Mis compras a crédito", subtitle: "Abonos y consultas a compras activas de crédito")

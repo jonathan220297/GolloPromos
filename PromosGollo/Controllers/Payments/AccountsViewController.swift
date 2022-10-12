@@ -22,7 +22,7 @@ class AccountsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
 
         tabBarController?.navigationItem.title = "Mis compras a crédito"
 

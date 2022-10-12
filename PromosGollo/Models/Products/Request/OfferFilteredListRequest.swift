@@ -24,6 +24,7 @@ struct OfferFilteredListRequest: APIRequest {
 
 struct OfferFilteredListServiceRequest: Codable {
     var idCategoria: String? = nil
+    var orden: Int? = nil
     var idCliente, idCompania: String
     var idTaxonomia, numPagina, tamanoPagina: Int
 }

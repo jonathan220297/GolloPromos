@@ -41,6 +41,7 @@ class CarTabViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
         fetchCarItems()
     }
     

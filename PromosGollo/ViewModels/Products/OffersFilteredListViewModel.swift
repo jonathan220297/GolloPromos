@@ -48,7 +48,7 @@ class OffersFilteredListViewModel {
         return apiResponse
     }
 
-    func fetchFilteredProducts(with categoryId: String?, taxonomy: Int = -1) -> BehaviorRelay<[Offers]?> {
+    func fetchFilteredProducts(with categoryId: String?, taxonomy: Int = -1, order: Int? = nil) -> BehaviorRelay<[Offers]?> {
         let apiResponse: BehaviorRelay<[Offers]?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<[Offers], OfferFilteredListServiceRequest>(
             service: BaseServiceRequestParam<OfferFilteredListServiceRequest>(
@@ -64,6 +64,7 @@ class OffersFilteredListViewModel {
                     ),
                     parametros: OfferFilteredListServiceRequest (
                         idCategoria: categoryId,
+                        orden: order,
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",
                         idTaxonomia: taxonomy,

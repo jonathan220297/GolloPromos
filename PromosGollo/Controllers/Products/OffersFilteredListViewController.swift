@@ -25,6 +25,7 @@ class OffersFilteredListViewController: UIViewController {
     // MARK: - Variables
     var lastIndexActive: IndexPath = [1, 0]
     var selectedPosition: Int = 0
+    var selectedTaxonomy: Int = -1
 
     // MARK: - Lifecycle
     init(viewModel: OffersFilteredListViewModel, category: Int?, taxonomy: Int) {
@@ -90,7 +91,7 @@ class OffersFilteredListViewController: UIViewController {
             .disposed(by: bag)
     }
 
-    fileprivate func fetchOffers(with taxonomy: Int = -1) {
+    fileprivate func fetchOffers(with taxonomy: Int = -1, order: Int? = nil) {
         var filterCategory: String?
         if let category = category {
             filterCategory = String(category)
@@ -98,7 +99,7 @@ class OffersFilteredListViewController: UIViewController {
             filterCategory = nil
         }
         viewModel
-            .fetchFilteredProducts(with: filterCategory, taxonomy: taxonomy)
+            .fetchFilteredProducts(with: filterCategory, taxonomy: taxonomy, order: order)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
@@ -153,6 +154,7 @@ class OffersFilteredListViewController: UIViewController {
         dropDown.selectionAction = { [self] (index: Int, item: String) in
             selectedPosition = index
             optionLabel.text = item
+            self.fetchOffers(with: selectedTaxonomy, order: selectedPosition + 1)
         }
     }
 
@@ -178,6 +180,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
             selected.cellView.layer.masksToBounds = true
             selected.cellView.layoutSubviews()
 
+            self.selectedTaxonomy = viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1
             self.fetchOffers(with: viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1)
 
             let previous = collectionView.cellForItem(at: lastIndexActive) as? CategoriesFilteredListCollectionViewCell
@@ -201,7 +204,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
 
 extension OffersFilteredListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.products.count > 0 ? 1 : 0
+        return viewModel.products.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

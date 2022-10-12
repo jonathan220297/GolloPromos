@@ -33,7 +33,8 @@ class ThirdPartyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Compras a crédito activas de terceros"
+        self.tabBarController?.navigationItem.title = "Compras a crédito activas de terceros"
+        self.tabBarController?.tabBar.isHidden = true
 
         self.tableView.rowHeight = 140.0
         configureRx()
