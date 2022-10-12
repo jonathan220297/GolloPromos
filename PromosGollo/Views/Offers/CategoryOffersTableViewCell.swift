@@ -12,6 +12,7 @@ import RxSwift
 protocol CategoryOffersDelegate {
     func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: Product)
     func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldReloadOffersForCategoryAt indexPath: IndexPath)
+    func showAllOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToList indexPath: Int)
 }
 
 class CategoryOffersTableViewCell: UITableViewCell {
@@ -29,7 +30,6 @@ class CategoryOffersTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureRx()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -53,6 +53,13 @@ class CategoryOffersTableViewCell: UITableViewCell {
             Nuke.loadImage(with: url, into: categoryImageView)
         }
         categoryNameLabel.text = data.descripcion
+        categoryOffersViewMoreButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.delegate?.showAllOffers(self, shouldMoveToList: data.idTipoCategoriaApp ?? 0)
+            })
+            .disposed(by: bag)
     }
     
     func setViewsData() {

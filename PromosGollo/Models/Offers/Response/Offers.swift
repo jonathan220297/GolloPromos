@@ -10,7 +10,7 @@ import Foundation
 struct Offers: Codable {
     let idempresa: Int?
     let idUsuario, simboloMoneda: String?
-    let tipoPromoApp, id: Int?
+    let id: Int?
     let productCode, name, description: String?
     let descriptionDetailBono, descriptionDetailDescuento, descriptionDetailRegalia: String?
     let brand, modelo, image: String?

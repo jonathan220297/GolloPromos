@@ -22,7 +22,7 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jTR-bq-EJj">
                     <rect key="frame" x="8" y="55" width="374" height="747"/>
-                    <color key="backgroundColor" name="colorPrimaryLight"/>
+                    <color key="backgroundColor" name="colorPrimary"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ZrG-R5-1LK"/>
                         <outlet property="delegate" destination="-1" id="fqC-lk-hP3"/>
@@ -30,7 +30,7 @@
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" name="colorPrimaryLight"/>
+            <color key="backgroundColor" name="colorPrimary"/>
             <constraints>
                 <constraint firstItem="jTR-bq-EJj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="5vL-uq-adO"/>
                 <constraint firstItem="jTR-bq-EJj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="RYe-kM-3Fc"/>
@@ -41,8 +41,8 @@
         </view>
     </objects>
     <resources>
-        <namedColor name="colorPrimaryLight">
-            <color red="0.19607843137254902" green="0.5490196078431373" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="colorPrimary">
+            <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

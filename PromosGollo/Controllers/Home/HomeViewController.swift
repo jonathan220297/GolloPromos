@@ -49,8 +49,12 @@ class HomeViewController: UITabBarController {
         let offersTab = OffersTabViewController(
             viewModel: OffersTabViewModel()
         )
-        offersTab.title = "Ofertas"
-        offersTab.tabBarItem.image = UIImage(named: "ic_offer")
+        let navigationOffers = UINavigationController(rootViewController: offersTab)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        navigationOffers.navigationBar.standardAppearance = getNavBarAppareance()
+        navigationOffers.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
+        navigationOffers.title = "Ofertas"
+        navigationOffers.tabBarItem.image = UIImage(named: "ic_offer")
 
         let ordersTab = OrdersTabViewController(
             viewModel: OrdersTabViewModel()

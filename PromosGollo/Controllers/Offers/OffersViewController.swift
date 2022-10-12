@@ -302,6 +302,10 @@ extension OffersViewController: UISearchBarDelegate {
 }
 
 extension OffersViewController: CategoryOffersDelegate {
+    func showAllOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToList indexPath: Int) {
+        
+    }
+
     func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: Product) {
         openDetail(with: data)
     }

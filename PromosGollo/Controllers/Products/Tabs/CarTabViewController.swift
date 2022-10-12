@@ -32,7 +32,7 @@ class CarTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Car"
+        tabBarController?.navigationItem.title = "Mi carrito"
         configureViews()
         configureTableView()
         configureRx()
@@ -69,13 +69,19 @@ class CarTabViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.viewModel.setItemsToCarManager()
-                self.viewModel.carManager.total = self.viewModel.total
-                let paymentAddressViewController = PaymentAddressViewController(
-                    viewModel: PaymentAddressViewModel()
-                )
-                paymentAddressViewController.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(paymentAddressViewController, animated: true)
+                if Variables.isRegisterUser {
+                    self.viewModel.setItemsToCarManager()
+                    self.viewModel.carManager.total = self.viewModel.total
+                    let paymentAddressViewController = PaymentAddressViewController(
+                        viewModel: PaymentAddressViewModel()
+                    )
+                    paymentAddressViewController.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(paymentAddressViewController, animated: true)
+                } else {
+                    let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+                    editProfileViewController.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(editProfileViewController, animated: true)
+                }
             })
             .disposed(by: bag)
         

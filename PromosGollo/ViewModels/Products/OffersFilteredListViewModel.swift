@@ -14,7 +14,7 @@ class OffersFilteredListViewModel {
     var categories: [CategoriesFilterData] = []
     var products: [Product] = []
 
-    func fetchFilteredCategories() -> BehaviorRelay<[CategoriesFilterData]?> {
+    func fetchFilteredCategories(with categoryId: String?, taxonomy: Int = -1) -> BehaviorRelay<[CategoriesFilterData]?> {
         let apiResponse: BehaviorRelay<[CategoriesFilterData]?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<[CategoriesFilterData], CategoriesFilteredListServiceRequest>(
             service: BaseServiceRequestParam<CategoriesFilteredListServiceRequest>(
@@ -29,9 +29,9 @@ class OffersFilteredListViewModel {
                         integrationId: nil
                     ),
                     parametros: CategoriesFilteredListServiceRequest (
-                        idCategoria: "1",
+                        idCategoria: categoryId,
                         idCompania: "10",
-                        idTaxonomia: -1
+                        idTaxonomia: taxonomy
                     )
                 )
             )
@@ -48,9 +48,9 @@ class OffersFilteredListViewModel {
         return apiResponse
     }
 
-    func fetchFilteredProducts() -> BehaviorRelay<[Product]?> {
-        let apiResponse: BehaviorRelay<[Product]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[Product], OfferFilteredListServiceRequest>(
+    func fetchFilteredProducts(with categoryId: String?, taxonomy: Int = -1) -> BehaviorRelay<[Offers]?> {
+        let apiResponse: BehaviorRelay<[Offers]?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<[Offers], OfferFilteredListServiceRequest>(
             service: BaseServiceRequestParam<OfferFilteredListServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
@@ -63,10 +63,10 @@ class OffersFilteredListViewModel {
                         integrationId: nil
                     ),
                     parametros: OfferFilteredListServiceRequest (
-                        idCategoria: "1",
+                        idCategoria: categoryId,
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",
-                        idTaxonomia: -1,
+                        idTaxonomia: taxonomy,
                         numPagina: 1,
                         tamanoPagina: 30
                     )

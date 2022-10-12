@@ -8,7 +8,8 @@
 import Foundation
 
 struct OfferFilteredListRequest: APIRequest {
-    public typealias Response = [Product]
+
+    public typealias Response = [Offers]
 
     public var resourceName: String {
         return "Procesos"
@@ -22,6 +23,7 @@ struct OfferFilteredListRequest: APIRequest {
 }
 
 struct OfferFilteredListServiceRequest: Codable {
-    var idCategoria, idCliente, idCompania: String
+    var idCategoria: String? = nil
+    var idCliente, idCompania: String
     var idTaxonomia, numPagina, tamanoPagina: Int
 }

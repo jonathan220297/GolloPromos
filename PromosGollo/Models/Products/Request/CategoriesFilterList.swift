@@ -22,6 +22,7 @@ struct CategoriesFilteredListRequest: APIRequest {
 }
 
 struct CategoriesFilteredListServiceRequest: Codable {
-    var idCategoria, idCompania: String
+    var idCategoria: String? = nil
+    var idCompania: String
     var idTaxonomia: Int
 }

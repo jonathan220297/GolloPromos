@@ -156,6 +156,7 @@
 		4F69893F28BDAC8D000FFA56 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69893E28BDAC8D000FFA56 /* PaymentResponse.swift */; };
 		4F69894328BDB625000FFA56 /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69894128BDB625000FFA56 /* PaymentSuccessViewController.swift */; };
 		4F69894428BDB625000FFA56 /* PaymentSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F69894228BDB625000FFA56 /* PaymentSuccessViewController.xib */; };
+		4F6E5ADE28F64D580044B66B /* OffersFilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E5ADD28F64D580044B66B /* OffersFilterData.swift */; };
 		4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F74C8D3272C733E00FADA4D /* OffersQueryView.xib */; };
 		4F74C8D8272C7DE200FADA4D /* OffersQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C8D7272C7DE200FADA4D /* OffersQueryView.swift */; };
 		4F75A54628AEFE500001CC4D /* PaymentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A54528AEFE500001CC4D /* PaymentDataViewController.swift */; };
@@ -486,6 +487,7 @@
 		4F69893E28BDAC8D000FFA56 /* PaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponse.swift; sourceTree = "<group>"; };
 		4F69894128BDB625000FFA56 /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
 		4F69894228BDB625000FFA56 /* PaymentSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentSuccessViewController.xib; sourceTree = "<group>"; };
+		4F6E5ADD28F64D580044B66B /* OffersFilterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersFilterData.swift; sourceTree = "<group>"; };
 		4F74C8D3272C733E00FADA4D /* OffersQueryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OffersQueryView.xib; sourceTree = "<group>"; };
 		4F74C8D7272C7DE200FADA4D /* OffersQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersQueryView.swift; sourceTree = "<group>"; };
 		4F75A54528AEFE500001CC4D /* PaymentDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentDataViewController.swift; sourceTree = "<group>"; };
@@ -1569,6 +1571,7 @@
 				4FE1912926DEFE0200322128 /* ProductVariationResponse.swift */,
 				4F7C5F2728E6171600123072 /* OrdersData.swift */,
 				4F7C5F3528E621E400123072 /* OrderDetailData.swift */,
+				4F6E5ADD28F64D580044B66B /* OffersFilterData.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -2224,6 +2227,7 @@
 				4F0D96D526DDDF2C0061E89E /* AccountItemResponse.swift in Sources */,
 				4F17323127013C0000D7924D /* ProductTableViewCell.swift in Sources */,
 				4F0D969B26DDD4170061E89E /* NotificationTableViewCell.swift in Sources */,
+				4F6E5ADE28F64D580044B66B /* OffersFilterData.swift in Sources */,
 				4F7C5F3628E621E400123072 /* OrderDetailData.swift in Sources */,
 				4F410E1228F5CDE000387871 /* OffersFilteredListViewController.swift in Sources */,
 				4F0D964A26DDBA7C0061E89E /* UIImageView+Extension.swift in Sources */,
@@ -2459,16 +2463,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H4L6H2334F;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
 				INFOPLIST_FILE = PromosGollo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Gollo App";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp99;
+				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2482,16 +2488,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H4L6H2334F;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
 				INFOPLIST_FILE = PromosGollo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Gollo App";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp99;
+				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

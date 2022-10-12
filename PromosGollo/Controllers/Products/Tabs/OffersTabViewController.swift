@@ -134,16 +134,25 @@ extension OffersTabViewController: UITableViewDelegate {
 }
 
 extension OffersTabViewController: CategoryOffersDelegate {
-    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: Product) {
-
-    }
-
-    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldReloadOffersForCategoryAt indexPath: IndexPath) {
+    func showAllOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToList indexPath: Int) {
         let offersFilteredListViewController = OffersFilteredListViewController(
-            viewModel: OffersFilteredListViewModel()
+            viewModel: OffersFilteredListViewModel(),
+            category: indexPath,
+            taxonomy: -1
         )
         offersFilteredListViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
+    }
+
+    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldMoveToDetailWith data: Product) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func categoryOffers(_ categoryOffersTableViewCell: CategoryOffersTableViewCell, shouldReloadOffersForCategoryAt indexPath: IndexPath) {
+        print("\(indexPath.row) - \(indexPath.section)")
     }
 }
 

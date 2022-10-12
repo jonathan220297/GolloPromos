@@ -39,21 +39,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swh-qU-Mf6">
                     <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mis órdenes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBc-XF-Ll1">
-                            <rect key="frame" x="8" y="7.9999999999999982" width="374" height="19.333333333333329"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiH-K1-OUu">
-                            <rect key="frame" x="4" y="35.333333333333329" width="382" height="1"/>
-                            <color key="backgroundColor" red="0.079844074079999994" green="0.3590557606" blue="0.56809224449999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="1" id="03J-Wy-0F8"/>
-                            </constraints>
-                        </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="12d-Az-SbN">
-                            <rect key="frame" x="0.0" y="44.333333333333314" width="390" height="718.66666666666674"/>
+                            <rect key="frame" x="8" y="8" width="374" height="747"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="ki0-C5-anF"/>
                                 <outlet property="delegate" destination="-1" id="RaT-9p-FwE"/>
@@ -62,16 +49,10 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="JBc-XF-Ll1" firstAttribute="leading" secondItem="swh-qU-Mf6" secondAttribute="leading" constant="8" id="7bb-3U-ZCD"/>
-                        <constraint firstItem="fiH-K1-OUu" firstAttribute="leading" secondItem="swh-qU-Mf6" secondAttribute="leading" constant="4" id="EQy-y1-nCR"/>
-                        <constraint firstAttribute="bottom" secondItem="12d-Az-SbN" secondAttribute="bottom" id="FNF-ZI-5Xd"/>
-                        <constraint firstItem="fiH-K1-OUu" firstAttribute="top" secondItem="JBc-XF-Ll1" secondAttribute="bottom" constant="8" id="FUc-b3-nAc"/>
-                        <constraint firstAttribute="trailing" secondItem="JBc-XF-Ll1" secondAttribute="trailing" constant="8" id="ch1-xc-XJo"/>
-                        <constraint firstItem="12d-Az-SbN" firstAttribute="top" secondItem="fiH-K1-OUu" secondAttribute="bottom" constant="8" id="kNQ-hH-qvI"/>
-                        <constraint firstAttribute="trailing" secondItem="12d-Az-SbN" secondAttribute="trailing" id="uPK-SW-nr8"/>
-                        <constraint firstAttribute="trailing" secondItem="fiH-K1-OUu" secondAttribute="trailing" constant="4" id="xhS-Js-JbJ"/>
-                        <constraint firstItem="JBc-XF-Ll1" firstAttribute="top" secondItem="swh-qU-Mf6" secondAttribute="top" constant="8" id="xtQ-Fg-z46"/>
-                        <constraint firstItem="12d-Az-SbN" firstAttribute="leading" secondItem="swh-qU-Mf6" secondAttribute="leading" id="y9d-U8-atN"/>
+                        <constraint firstAttribute="bottom" secondItem="12d-Az-SbN" secondAttribute="bottom" constant="8" id="FNF-ZI-5Xd"/>
+                        <constraint firstItem="12d-Az-SbN" firstAttribute="top" secondItem="swh-qU-Mf6" secondAttribute="top" constant="8" id="MQZ-Os-nja"/>
+                        <constraint firstAttribute="trailing" secondItem="12d-Az-SbN" secondAttribute="trailing" constant="8" id="uPK-SW-nr8"/>
+                        <constraint firstItem="12d-Az-SbN" firstAttribute="leading" secondItem="swh-qU-Mf6" secondAttribute="leading" constant="8" id="y9d-U8-atN"/>
                     </constraints>
                 </view>
             </subviews>
