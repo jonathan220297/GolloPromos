@@ -56,6 +56,7 @@ class ThirdPartyViewController: UIViewController {
         if !isDocumentTypeSelected && documentTextField.text?.isEmpty ?? true {
             showAlert(alertText: "GolloApp", alertMessage: "Campos Incompletos")
         } else {
+            self.hideKeyboardWhenTappedAround()
             self.fetchCustomer()
         }
     }
@@ -66,6 +67,7 @@ class ThirdPartyViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
+                    self.view.activityStopAnimatingFull()
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
@@ -74,11 +76,14 @@ class ThirdPartyViewController: UIViewController {
     }
 
     fileprivate func fetchCustomer() {
-        viewModel.fetchCustomer(with: selectedDocument, documentId: documentTextField.text!)
+        self.view.activityStartAnimatingFull()
+        viewModel
+            .fetchCustomer(with: selectedDocument, documentId: documentTextField.text!)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                self.view.activityStopAnimatingFull()
                 if let type = data.tipoIdentificacion,
                    let number = data.numeroIdentificacion {
                     if let name = data.nombre,
