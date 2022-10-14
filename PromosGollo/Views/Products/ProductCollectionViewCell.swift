@@ -36,7 +36,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
         configureRx()
     }
 
-    func setProductData(with data: Product) {
+    func setProductData(with data: Product?) {
+        guard let data = data else { return }
         dataG = data
 
         let options = ImageLoadingOptions(

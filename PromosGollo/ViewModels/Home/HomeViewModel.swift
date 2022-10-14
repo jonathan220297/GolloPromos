@@ -17,6 +17,9 @@ class HomeViewModel {
 
     var reloadTableViewData: (()->())?
     var tableViewWidth: CGFloat = 0.0
+    
+    var sections: [MasterSection] = []
+    var configuration: HomeConfiguration?
 
     func getHomeConfiguration() -> BehaviorRelay<HomeConfiguration?> {
         let apiResponse: BehaviorRelay<HomeConfiguration?> = BehaviorRelay(value: nil)
@@ -80,6 +83,35 @@ class HomeViewModel {
                 downloaded(from: image) { height in
                     self.sectionsArray[i].banner?.uiHeight = height
                 }
+            }
+        }
+        self.reloadTableViewData?()
+    }
+    
+    func configureSections() {
+        if let banners = configuration?.banners {
+            for banner in banners {
+                self.sections.append(
+                    MasterSection(
+                        position: banner.position,
+                        name: nil,
+                        height: Double(banner.height ?? 0) * 0.2,
+                        banner: banner,
+                        product: nil
+                    )
+                )            }
+        }
+        if let configSection = configuration?.sections {
+            for section in configSection {
+                sections.append(
+                    MasterSection(
+                        position: section.position,
+                        name: section.name,
+                        height: 0,
+                        banner: nil,
+                        product: section.productos
+                    )
+                )
             }
         }
         self.reloadTableViewData?()
