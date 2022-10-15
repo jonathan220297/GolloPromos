@@ -134,8 +134,8 @@ class OffersTabViewModel {
                 }
                 sections.append(
                     OfferSection(
-                        name: categories[i].descripcion,
-                        urlImage: categories[i].urlImagen,
+                        name: categories[i].descripcion ?? "",
+                        urlImage: categories[i].urlImagen ?? "",
                         offers: Array(offersToSave.prefix(4))
                     )
                 )

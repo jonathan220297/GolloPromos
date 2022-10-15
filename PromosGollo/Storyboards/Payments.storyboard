@@ -3100,10 +3100,10 @@
                                 <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFY-LC-B32">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="365"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="495"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gCs-tk-36W">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="365"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="495"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPE-us-kK1">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
@@ -3364,8 +3364,24 @@
                                                             <constraint firstItem="Dfj-lk-2qo" firstAttribute="top" secondItem="hq7-MG-7Fx" secondAttribute="bottom" constant="3" id="sCy-p0-WUm"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irm-oc-BdM">
+                                                        <rect key="frame" x="0.0" y="300" width="414" height="130"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cvv" translatesAutoresizingMaskIntoConstraints="NO" id="f1G-s7-UXx">
+                                                                <rect key="frame" x="8" y="8" width="398" height="114"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="f1G-s7-UXx" firstAttribute="top" secondItem="irm-oc-BdM" secondAttribute="top" constant="8" id="Plq-Vs-0sS"/>
+                                                            <constraint firstAttribute="trailing" secondItem="f1G-s7-UXx" secondAttribute="trailing" constant="8" id="Uk0-VU-j2m"/>
+                                                            <constraint firstItem="f1G-s7-UXx" firstAttribute="leading" secondItem="irm-oc-BdM" secondAttribute="leading" constant="8" id="WTL-fL-X9F"/>
+                                                            <constraint firstAttribute="bottom" secondItem="f1G-s7-UXx" secondAttribute="bottom" constant="8" id="dCt-wh-dvs"/>
+                                                            <constraint firstAttribute="height" constant="130" id="rgd-d7-4JS"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jbm-fG-aTU">
-                                                        <rect key="frame" x="0.0" y="300" width="414" height="65"/>
+                                                        <rect key="frame" x="0.0" y="430" width="414" height="65"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxP-T0-7lT" customClass="LoadingButton" customModule="PromosGollo" customModuleProvider="target">
                                                                 <rect key="frame" x="20.5" y="8" width="373" height="49"/>
@@ -3443,6 +3459,7 @@
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="chevron.up" catalog="system" width="128" height="70"/>
         <image name="creditcard" catalog="system" width="128" height="88"/>
+        <image name="cvv" width="1620" height="419"/>
         <image name="downarrow" width="128" height="128"/>
         <image name="ic_account_payments" width="50" height="50"/>
         <image name="ic_actual_amount" width="50" height="50"/>

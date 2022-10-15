@@ -38,6 +38,7 @@ class PaymentConfirmViewController: UIViewController {
             configureProductPayment()
         }
         configureRx()
+        fetchPaymentMehtods()
     }
 
     fileprivate func configureRx() {
@@ -53,6 +54,20 @@ class PaymentConfirmViewController: UIViewController {
                 vc.viewModel.isAccountPayment = self.viewModel.isAccountPayment
                 vc.delegate = self
                 self.navigationController?.pushViewController(vc, animated: true)
+            })
+            .disposed(by: bag)
+    }
+
+    fileprivate func fetchPaymentMehtods() {
+        view.activityStartAnimatingFull()
+        viewModel
+            .fetchPaymentMethods()
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                print(data)
+                self.view.activityStopAnimatingFull()
             })
             .disposed(by: bag)
     }

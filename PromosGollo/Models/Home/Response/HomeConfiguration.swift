@@ -96,7 +96,7 @@ struct Product: Codable {
     let simboloMoneda: SimboloMoneda?
     let id: Int?
     let montoDescuento: Double?
-    let idUsuario: IDUsuario?
+    let idUsuario: String?
     let product: String?
     let idEmpresa: Int?
     let startDate: String?
@@ -111,10 +111,6 @@ struct Product: Codable {
         case startDate, precioFinal, productName, tieneDescuento, tipoPromoApp
         case productoDescription = "description"
     }
-}
-
-enum IDUsuario: String, Codable {
-    case user = "user"
 }
 
 enum SimboloMoneda: String, Codable {

@@ -32,7 +32,7 @@ class CarTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Mi carrito"
+        navigationItem.title = "Mi carrito"
         configureViews()
         configureTableView()
         configureRx()
@@ -107,6 +107,7 @@ class CarTabViewController: UIViewController {
         formatter.numberStyle = NumberFormatter.Style.decimal
         var total = 0.0
         for item in viewModel.car {
+            print("ViewModel car data: \(item.idCarItem)")
             total += (item.precioUnitario * Double(item.cantidad)) + item.montoExtragar
         }
         viewModel.total = total

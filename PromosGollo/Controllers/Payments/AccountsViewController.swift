@@ -24,7 +24,7 @@ class AccountsViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
 
-        tabBarController?.navigationItem.title = "Mis compras a crédito"
+        navigationItem.title = "Mis compras a crédito"
 
         tableView.rowHeight = 335.0
         tableView.tableFooterView = UIView()

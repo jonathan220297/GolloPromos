@@ -102,7 +102,7 @@ class OfferDetailViewController: UIViewController {
     }
     
     @objc func share() {
-        let someText:String = "https://www.gollotienda.com"
+        let someText:String = "Oferta: \(offer?.productName ?? "")\nSKU: \(offer?.productCode ?? "")\n\nPrecio Original: \(originalPrice.text ?? "")"
         var objectsToShare:UIImage?
         if let image = self.offerImage.image {
             objectsToShare = image
@@ -275,19 +275,19 @@ class OfferDetailViewController: UIViewController {
             dateLabel.attributedText = formatHTML(header: "Fecha de Vencimiento: ", content: convertDate(date: offer.endDate ?? "") ?? "")
 
             let originalString = numberFormatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(offer.simboloMoneda ?? .empty)\(originalString)")
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
 
             if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0,
                let price = data.articulo?.precio, price > 0.0 {
                 let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
-                savingsLabel.text = "\(offer.simboloMoneda ?? .empty)\(savingString)"
+                savingsLabel.text = "\("₡")\(savingString)"
 
                 let discountString = numberFormatter.string(from: NSNumber(value: data.articulo?.precioDescuento ?? 0.0))!
-                discountPriceLabel.text = "\(offer.simboloMoneda ?? .empty)\(discountString)"
+                discountPriceLabel.text = "\("₡")\(discountString)"
                 self.originalPrice.attributedText = attributeString
             } else {
-                self.originalPrice.text = "\(offer.simboloMoneda ?? .empty)\(originalString)"
+                self.originalPrice.text = "\("₡")\(originalString)"
                 self.savingHeader.alpha = 0
                 self.priceDivider.alpha = 0
                 self.savingsLabel.alpha = 0
@@ -297,7 +297,7 @@ class OfferDetailViewController: UIViewController {
             let regalia = offer.tieneRegalia?.bool
 
             if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0 {
-                discountLabel.text = "\(offer.simboloMoneda ?? .empty)\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
+                discountLabel.text = "\("₡")\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
             } else {
                 DispatchQueue.main.async {
                     self.tintView.visibility = .gone

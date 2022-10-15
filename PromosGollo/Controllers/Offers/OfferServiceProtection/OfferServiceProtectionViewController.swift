@@ -63,8 +63,8 @@ class OfferServiceProtectionViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                if let warranty = self.selectedWarranty, let id = self.selectedId {
-                    self.delegate?.protectionSelected(with: id, month: warranty.plazoMeses ?? 0, amount: warranty.montoExtragarantia ?? 0.0)
+                if let warranty = self.selectedWarranty {
+                    self.delegate?.protectionSelected(with: self.selectedId ?? UUID(), month: warranty.plazoMeses ?? 0, amount: warranty.montoExtragarantia ?? 0.0)
                     self.dismiss(animated: true)
                 } else {
                     self.showAlert(alertText: "GolloApp", alertMessage: "Selecciona un GolloPlus")

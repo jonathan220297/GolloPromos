@@ -887,7 +887,7 @@
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kg-GQ-wEc">
                                                                 <rect key="frame" x="20" y="92" width="342" height="40"/>
-                                                                <color key="backgroundColor" name="AccentColor"/>
+                                                                <color key="backgroundColor" red="1" green="0.70624512429999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="yar-Mw-PcS"/>
                                                                 </constraints>
@@ -1284,7 +1284,7 @@
         <image name="ic_offer_gift" width="25" height="25"/>
         <image name="ic_offer_gifted_product" width="50" height="50"/>
         <image name="ic_offer_percentage" width="25" height="25"/>
-        <image name="ic_offers_home" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="ic_offers_home" width="50" height="50"/>
         <image name="ic_offers_menu" width="33.333332061767578" height="33.333332061767578"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

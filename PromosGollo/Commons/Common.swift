@@ -110,6 +110,7 @@ enum GOLLOAPP: String {
     case ADD_TO_CART_PROCESS_ID = "22"
     case STATES_CITIES = "24"
     case PRODUCT_PAYMENT = "26"
+    case FREIGHTS_PROCESS_ID = "28"
     case OFFER_DETAIL_PROCESS_ID = "29"
     case ORDERS_PROCESS_ID = "30"
     case ORDER_DETAIL_PROCESS_ID = "31"
@@ -119,6 +120,7 @@ enum GOLLOAPP: String {
     case THIRD_PARTY_CUSTOMER = "41"
     case CATEGORIES_FILTER_PROCESS_ID = "43"
     case FILTERED_PRODUCTS_PROCESS_ID = "44"
+    case PAYMENT_METHODS_PROCESS_ID = "45"
 }
 
 enum Payment: Int {

@@ -33,7 +33,7 @@ class ThirdPartyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.navigationItem.title = "Compras a crédito activas de terceros"
+        navigationItem.title = "Compras a crédito activas de terceros"
         self.tabBarController?.tabBar.isHidden = true
 
         self.tableView.rowHeight = 140.0
@@ -83,7 +83,6 @@ class ThirdPartyViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
-                self.view.activityStopAnimatingFull()
                 if let type = data.tipoIdentificacion,
                    let number = data.numeroIdentificacion {
                     if let name = data.nombre,
@@ -104,14 +103,13 @@ class ThirdPartyViewController: UIViewController {
     }
 
     fileprivate func fetchCustomerAccounts(documentType: String, documentId: String) {
-        view.activityStarAnimating()
         viewModel.fetchAccounts(with: documentType, documentId: documentId)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
                 DispatchQueue.main.async {
-                    self.view.activityStopAnimating()
+                    self.view.activityStopAnimatingFull()
                 }
                 self.searchView.alpha = 0
                 self.dataView.alpha = 1

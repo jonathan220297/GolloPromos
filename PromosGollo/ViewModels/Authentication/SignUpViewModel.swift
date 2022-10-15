@@ -24,12 +24,10 @@ class SignUpViewModel: NSObject {
     var hideLoading: (()->())?
 
     var isValidForm: Observable<Bool> {
-        return Observable.combineLatest(emailSubject, emailConfirmationSubject, passwordSubject, passwordConfirmationSubject) { email, emailConfirmation, password, passwordConfirmation in
+        return Observable.combineLatest(emailSubject, passwordSubject) { email, password in
 
             guard let email = email,
-                  let emailConfirmation = emailConfirmation,
-                  let password = password,
-                  let passwordConfirmation = passwordConfirmation else {
+                  let password = password else {
                 return false
             }
 
@@ -37,17 +35,13 @@ class SignUpViewModel: NSObject {
             let regex = try! NSRegularExpression(pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{6,}")
             let valid = regex.firstMatch(in: password, options: [], range: range) != nil
 
-            let rangeConfirmation = NSRange(location: 0, length: passwordConfirmation.utf16.count)
+            let rangeConfirmation = NSRange(location: 0, length: password.utf16.count)
             let regexConfirmation = try! NSRegularExpression(pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{6,}")
-            let validConfirmation = regexConfirmation.firstMatch(in: passwordConfirmation, options: [], range: rangeConfirmation) != nil
+            let validConfirmation = regexConfirmation.firstMatch(in: password, options: [], range: rangeConfirmation) != nil
 
             return !(email.isEmpty)
-                && !(emailConfirmation.isEmpty)
                 && email.isValidEmail()
-                && email == emailConfirmation
                 && !(password.isEmpty)
-                && !(passwordConfirmation.isEmpty)
-                && password == passwordConfirmation
                 && password.count > self.minimalPasswordLength
                 && valid
                 && validConfirmation

@@ -315,7 +315,7 @@ extension OffersViewController: CategoryOffersDelegate {
         viewFilter.isHidden = !viewFilter.isHidden
         viewModel.filterSelected = true
         viewModel.idCategory = String(viewModel.categoryOffers[indexPath.row].category.idTipoCategoriaApp ?? 0)
-        filterNameLabel.text = "Category = " + (viewModel.categoryOffers[indexPath.row].category.descripcion)
+        filterNameLabel.text = "Category = " + (viewModel.categoryOffers[indexPath.row].category.descripcion ?? "")
         fetchOffers(with: String(viewModel.categoryOffers[indexPath.row].category.idTipoCategoriaApp ?? 0))
     }
 }

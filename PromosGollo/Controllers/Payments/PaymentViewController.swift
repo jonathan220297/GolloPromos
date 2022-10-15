@@ -104,7 +104,7 @@ class PaymentViewController: UIViewController {
             self.showPaymentConfirmViewController()
         } else if !otherAmountView.isHidden {
             guard let amount = otherAmountTextField.text else { return }
-            let amountDouble = Double(amount.replacingOccurrences(of: "₡", with: "")) ?? 0.0
+            let amountDouble = Double(amount.replacingOccurrences(of: "₡", with: "").replacingOccurrences(of: ",", with: "")) ?? 0.0
             if amountDouble > 0.0 {
                 self.currentAmount = amountDouble
                 self.showPaymentConfirmViewController()
