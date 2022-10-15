@@ -22,11 +22,17 @@ class ShippingMethodViewController: UIViewController {
     
     // MARK: - Constants
     var viewModel: ShippingMethodViewModel
+    var state: String?
+    var county: String?
+    var district: String?
     let bag = DisposeBag()
     
     // MARK: - Lifecycle
-    init(viewModel: ShippingMethodViewModel) {
+    init(viewModel: ShippingMethodViewModel, state: String?, county: String?, district: String?) {
         self.viewModel = viewModel
+        self.state = state
+        self.county = county
+        self.district = district
         super.init(nibName: "ShippingMethodViewController", bundle: nil)
     }
     
@@ -41,6 +47,7 @@ class ShippingMethodViewController: UIViewController {
         configureTableView()
         configureRx()
         fetchShops()
+        fetchDeliveryMethods()
     }
     
     // MARK: - Functions
@@ -115,6 +122,37 @@ class ShippingMethodViewController: UIViewController {
                 self.stateLabel.text = self.viewModel.states.first ?? ""
             })
             .disposed(by: bag)
+    }
+
+    fileprivate func fetchDeliveryMethods() {
+        if let state = state, let county = county, let district = district {
+            viewModel
+                .fetchDeliveryMethods(
+                    idState: state,
+                    idCounty: county,
+                    idDistrict: district
+                )
+                .asObservable()
+                .subscribe(onNext: {[weak self] response in
+                    guard let self = self,
+                          let response = response else { return }
+                    if !response.fletes.isEmpty {
+                        if let store = response.fletes.first {
+                            self.viewModel.methods.insert(
+                                ShippingMethodData(
+                                    shippingType: store.nombre ?? "",
+                                    shippingDescription: store.descripcion ?? "",
+                                    cost: store.monto ?? 0.0
+                                ),
+                                at: 0
+                            )
+                            self.shippingMethodsTableView.reloadData()
+                            self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height
+                        }
+                    }
+                })
+                .disposed(by: bag)
+        }
     }
     
     fileprivate func displayStatesList() {

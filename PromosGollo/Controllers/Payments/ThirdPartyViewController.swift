@@ -33,7 +33,7 @@ class ThirdPartyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.navigationItem.title = "Compras a crédito activas de terceros"
+        navigationItem.title = "Compras a crédito activas de terceros"
         self.tabBarController?.tabBar.isHidden = true
 
         self.tableView.rowHeight = 140.0
@@ -56,6 +56,7 @@ class ThirdPartyViewController: UIViewController {
         if !isDocumentTypeSelected && documentTextField.text?.isEmpty ?? true {
             showAlert(alertText: "GolloApp", alertMessage: "Campos Incompletos")
         } else {
+            self.hideKeyboardWhenTappedAround()
             self.fetchCustomer()
         }
     }
@@ -66,6 +67,7 @@ class ThirdPartyViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
+                    self.view.activityStopAnimatingFull()
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
@@ -74,7 +76,9 @@ class ThirdPartyViewController: UIViewController {
     }
 
     fileprivate func fetchCustomer() {
-        viewModel.fetchCustomer(with: selectedDocument, documentId: documentTextField.text!)
+        self.view.activityStartAnimatingFull()
+        viewModel
+            .fetchCustomer(with: selectedDocument, documentId: documentTextField.text!)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
@@ -99,14 +103,13 @@ class ThirdPartyViewController: UIViewController {
     }
 
     fileprivate func fetchCustomerAccounts(documentType: String, documentId: String) {
-        view.activityStarAnimating()
         viewModel.fetchAccounts(with: documentType, documentId: documentId)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
                 DispatchQueue.main.async {
-                    self.view.activityStopAnimating()
+                    self.view.activityStopAnimatingFull()
                 }
                 self.searchView.alpha = 0
                 self.dataView.alpha = 1

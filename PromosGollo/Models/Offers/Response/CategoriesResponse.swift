@@ -9,7 +9,7 @@ import Foundation
 
 struct CategoriesData: Codable {
     let idTipoCategoriaApp: Int?
-    let descripcion, urlImagen: String
+    let descripcion, urlImagen: String?
     let cantidad, idTaxonomia: Int?
     let productos: [Product]
 }

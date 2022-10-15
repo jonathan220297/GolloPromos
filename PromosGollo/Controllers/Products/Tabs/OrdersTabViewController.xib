@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrdersTabViewController" customModule="PromosGollo" customModuleProvider="target">
             <connections>
+                <outlet property="dataView" destination="swh-qU-Mf6" id="qHD-uE-ftm"/>
+                <outlet property="emptyView" destination="zmq-Is-7r8" id="JPc-xn-Tyt"/>
                 <outlet property="ordersTableView" destination="12d-Az-SbN" id="df4-xQ-hbC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmq-Is-7r8">
-                    <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mis ordenes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2g-pg-FEI">
-                            <rect key="frame" x="148.66666666666666" y="371" width="93" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tienes ordenes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2g-pg-FEI">
+                            <rect key="frame" x="125.66666666666667" y="411.66666666666669" width="138.66666666666663" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -37,10 +39,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swh-qU-Mf6">
-                    <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="12d-Az-SbN">
-                            <rect key="frame" x="8" y="8" width="374" height="747"/>
+                            <rect key="frame" x="8" y="8" width="374" height="828"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="ki0-C5-anF"/>
                                 <outlet property="delegate" destination="-1" id="RaT-9p-FwE"/>

@@ -126,7 +126,7 @@ class OffersFilteredListViewController: UIViewController {
                             simboloMoneda: SimboloMoneda.empty,
                             id: o.id,
                             montoDescuento: o.montoDescuento,
-                            idUsuario: IDUsuario.user,
+                            idUsuario: o.idUsuario,
                             product: o.product,
                             idEmpresa: o.idempresa,
                             startDate: o.startDate,
@@ -154,7 +154,7 @@ class OffersFilteredListViewController: UIViewController {
         dropDown.selectionAction = { [self] (index: Int, item: String) in
             selectedPosition = index
             optionLabel.text = item
-            self.fetchOffers(with: selectedTaxonomy, order: selectedPosition + 1)
+            self.fetchOffers(with: taxonomy, order: selectedPosition + 1)
         }
     }
 

@@ -10,6 +10,8 @@ import RxSwift
 
 class OrdersTabViewController: UIViewController {
 
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var dataView: UIView!
     @IBOutlet weak var ordersTableView: UITableView!
     
     // MARK: - Constants
@@ -54,6 +56,13 @@ class OrdersTabViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                if data.ordenes.isEmpty {
+                    self.emptyView.alpha = 1
+                    self.dataView.alpha = 0
+                } else {
+                    self.emptyView.alpha = 0
+                    self.dataView.alpha = 1
+                }
                 self.view.activityStopAnimating()
                 self.viewModel.orders = data.ordenes
                 self.ordersTableView.reloadData()

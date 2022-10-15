@@ -33,7 +33,7 @@ class StatusViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Estados de cuenta"
+        navigationItem.title = "Estados de cuenta"
         self.tabBarController?.tabBar.isHidden = true
 
         self.tableView.rowHeight = 310.0

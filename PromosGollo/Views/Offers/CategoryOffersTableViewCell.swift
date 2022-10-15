@@ -49,7 +49,7 @@ class CategoryOffersTableViewCell: UITableViewCell {
     }
     
     func setCategoryInfo(with data: CategoriesData) {
-        if let url = URL(string: data.urlImagen) {
+        if let url = URL(string: data.urlImagen ?? "") {
             Nuke.loadImage(with: url, into: categoryImageView)
         }
         categoryNameLabel.text = data.descripcion

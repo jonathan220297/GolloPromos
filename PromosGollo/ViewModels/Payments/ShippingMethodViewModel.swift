@@ -60,6 +60,37 @@ class ShippingMethodViewModel {
         }
         return apiResponse
     }
+
+    func fetchDeliveryMethods(idState: String, idCounty: String, idDistrict: String) -> BehaviorRelay<DeliveryMethodsResponse?> {
+        let apiResponse: BehaviorRelay<DeliveryMethodsResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(
+            BaseRequest<DeliveryMethodsResponse?, DeliveryMethodsServiceRequest>(
+                resource: "Procesos",
+                service: BaseServiceRequestParam<DeliveryMethodsServiceRequest>(
+                    servicio: ServicioParam(
+                        encabezado: getDefaultBaseHeaderRequest(
+                            with: GOLLOAPP.FREIGHTS_PROCESS_ID.rawValue
+                        ),
+                        parametros: DeliveryMethodsServiceRequest(
+                            idCanton: idCounty,
+                            idDistrito: idDistrict,
+                            idProvincia: idState
+                        )
+                    )
+                )
+            )
+        ) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
     
     func processStates(with data: [ShopData]) {
         for item in data {

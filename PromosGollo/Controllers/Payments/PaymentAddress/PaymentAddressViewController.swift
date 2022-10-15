@@ -50,7 +50,7 @@ class PaymentAddressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "PersonalInfoViewController_title".localized
+        navigationItem.title = "Info. personal"
         tabBarController?.navigationItem.hidesBackButton = false
         tabBarController?.navigationController?.navigationBar.tintColor = .white
         configureViews()
@@ -237,7 +237,7 @@ class PaymentAddressViewController: UIViewController {
                 self.viewModel.citiesArray.accept(firstItem.cantones)
                 self.viewModel.districtArray.accept(firstCounty.distritos)
                 self.countyLabel.text = firstCounty.canton
-                self.viewModel.countySubject.accept(firstItem.idProvincia)
+                self.viewModel.countySubject.accept(firstCounty.idCanton)
                 self.districtLabel.text = firstDistrict.distrito
                 self.viewModel.districtSubject.accept(firstDistrict.idDistrito)
                 self.view.activityStopAnimating()
@@ -299,7 +299,10 @@ class PaymentAddressViewController: UIViewController {
     
     fileprivate func showShippingMethodsPage() {
         let shippingMethodViewController = ShippingMethodViewController(
-            viewModel: ShippingMethodViewModel()
+            viewModel: ShippingMethodViewModel(),
+            state: viewModel.stateSubject.value,
+            county: viewModel.countySubject.value,
+            district: viewModel.districtSubject.value
         )
         shippingMethodViewController.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(shippingMethodViewController, animated: true)
