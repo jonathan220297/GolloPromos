@@ -136,6 +136,7 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
     func getProductCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
         cell.setProductData(with: viewModel.sections[indexPath.section].product?[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -161,5 +162,14 @@ extension HomeTabViewController: UICollectionViewDelegate {
 extension HomeTabViewController: HomeSectionDelegate {
     func moreButtonTapped(at indexPath: IndexPath) {
         print("tapped: \(indexPath)")
+    }
+}
+
+extension HomeTabViewController: ProductCellDelegate {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

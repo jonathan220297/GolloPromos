@@ -89,6 +89,7 @@ class HomeViewModel {
     }
     
     func configureSections() {
+        self.sections.removeAll()
         if let banners = configuration?.banners {
             for banner in banners {
                 self.sections.append(

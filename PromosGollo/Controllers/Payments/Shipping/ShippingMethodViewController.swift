@@ -12,8 +12,10 @@ import UIKit
 class ShippingMethodViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var shippingMethodsTableView: UITableView!
+    @IBOutlet weak var stateView: UIView!
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var stateButton: UIButton!
+    @IBOutlet weak var shopView: UIView!
     @IBOutlet weak var shopLabel: UILabel!
     @IBOutlet weak var shopButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
@@ -68,6 +70,24 @@ class ShippingMethodViewController: UIViewController {
     }
     
     fileprivate func configureRx() {
+        viewModel
+            .errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self,
+                let error = error, !error.isEmpty else { return }
+                self.view.activityStopAnimating()
+                self.viewModel.methods.removeAll()
+                self.viewModel.setShippingMethods(true)
+                self.viewModel.methodSelected = self.viewModel.methods.first
+                self.shippingMethodsTableView.reloadData()
+                self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + 35
+                self.stateView.isHidden = false
+                self.shopView.isHidden = false
+                self.continueButton.isHidden = false
+            })
+            .disposed(by: bag)
+        
         stateButton
             .rx
             .tap
@@ -91,20 +111,32 @@ class ShippingMethodViewController: UIViewController {
             .tap
             .subscribe(onNext: {[weak self] in
                 guard let self = self else { return }
-                if self.viewModel.shopSelected != nil {
-                    self.viewModel.processShippingMethod()
-                    let vc = PaymentConfirmViewController.instantiate(fromAppStoryboard: .Payments)
-                    vc.modalPresentationStyle = .fullScreen
-                    vc.viewModel.isAccountPayment = false
-                    vc.viewModel.subTotal = self.viewModel.carManager.total
-                    vc.viewModel.shipping = 0.0
-                    vc.viewModel.bonus = 0.0
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    self.showAlert(alertText: "GolloApp", alertMessage: "Debes seleccionar una tienda")
+                if self.viewModel.methods.count == 1 {
+                    if self.viewModel.shopSelected != nil {
+                        self.moveToPaymentMethod()
+                    } else {
+                        self.showAlert(alertText: "GolloApp", alertMessage: "Debes seleccionar una tienda")
+                    }
+                } else if self.viewModel.methods.count > 1 {
+                    if self.viewModel.methodSelected != nil {
+                        self.moveToPaymentMethod()
+                    } else {
+                        self.showAlert(alertText: "GolloApp", alertMessage: "Debes seleccionar un método de envío")
+                    }
                 }
             })
             .disposed(by: bag)
+    }
+    
+    fileprivate func moveToPaymentMethod() {
+        self.viewModel.processShippingMethod()
+        let vc = PaymentConfirmViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .fullScreen
+        vc.viewModel.isAccountPayment = false
+        vc.viewModel.subTotal = self.viewModel.carManager.total
+        vc.viewModel.shipping = self.viewModel.methodSelected?.cost ?? 0.0
+        vc.viewModel.bonus = 0.0
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     fileprivate func fetchShops() {
@@ -125,6 +157,7 @@ class ShippingMethodViewController: UIViewController {
     }
 
     fileprivate func fetchDeliveryMethods() {
+        view.activityStarAnimating()
         if let state = state, let county = county, let district = district {
             viewModel
                 .fetchDeliveryMethods(
@@ -136,19 +169,35 @@ class ShippingMethodViewController: UIViewController {
                 .subscribe(onNext: {[weak self] response in
                     guard let self = self,
                           let response = response else { return }
-                    if !response.fletes.isEmpty {
-                        if let store = response.fletes.first {
+                    self.view.activityStopAnimating()
+                    if let fletes = response.fletes, !fletes.isEmpty {
+                        if let store = fletes.first {
+                            self.viewModel.setShippingMethods(false)
                             self.viewModel.methods.insert(
                                 ShippingMethodData(
                                     shippingType: store.nombre ?? "",
                                     shippingDescription: store.descripcion ?? "",
-                                    cost: store.monto ?? 0.0
+                                    cost: store.monto ?? 0.0,
+                                    selected: false
                                 ),
                                 at: 0
                             )
                             self.shippingMethodsTableView.reloadData()
-                            self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height
+                            self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + 100
+                            self.stateView.isHidden = true
+                            self.shopView.isHidden = true
+                            self.continueButton.isHidden = false
+                        } else {
+                            self.viewModel.setShippingMethods(true)
+                            self.stateView.isHidden = false
+                            self.shopView.isHidden = false
+                            self.continueButton.isHidden = false
                         }
+                    } else {
+                        self.viewModel.setShippingMethods(true)
+                        self.stateView.isHidden = false
+                        self.shopView.isHidden = false
+                        self.continueButton.isHidden = false
                     }
                 })
                 .disposed(by: bag)
@@ -162,6 +211,7 @@ class ShippingMethodViewController: UIViewController {
         dropDown.selectionAction = {[weak self] (index: Int, item: String) in
             guard let self = self else { return }
             self.stateLabel.text = item
+            self.viewModel.stateSelected = item
             self.viewModel.processShops(with: item)
             self.shopLabel.text = self.viewModel.shops.first?.nombre ?? ""
             self.viewModel.shopSelected = self.viewModel.shops.first
@@ -200,9 +250,22 @@ extension ShippingMethodViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.setMethodData(with: viewModel.methods[indexPath.row])
+        cell.delegate = self
+        cell.indexPath = indexPath
         cell.selectionStyle = .none
         return cell
     }
 }
 
 extension ShippingMethodViewController: UITableViewDelegate { }
+
+extension ShippingMethodViewController: ShippingMethodCellDelegate {
+    func didSelectMethod(at indexPath: IndexPath) {
+        for i in 0..<viewModel.methods.count {
+            viewModel.methods[i].selected = false
+        }
+        viewModel.methods[indexPath.row].selected = true
+        shippingMethodsTableView.reloadData()
+        viewModel.methodSelected = viewModel.methods[indexPath.row]
+    }
+}

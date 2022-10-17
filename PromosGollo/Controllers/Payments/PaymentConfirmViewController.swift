@@ -10,6 +10,7 @@ import RxSwift
 
 class PaymentConfirmViewController: UIViewController {
 
+    @IBOutlet weak var paymentMethodsTableView: UITableView!
     @IBOutlet weak var subtotalLabel: UILabel!
     @IBOutlet weak var shippingStackView: UIStackView!
     @IBOutlet weak var shippingLabel: UILabel!
@@ -18,6 +19,8 @@ class PaymentConfirmViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var continuePaymentButton: UIButton!
 
+    @IBOutlet weak var paymentMethodsTableViewHeightConstaint: NSLayoutConstraint!
+    
     var paymentData: PaymentData?
     var paymentAmmount: Double = 0.0
 
@@ -38,7 +41,18 @@ class PaymentConfirmViewController: UIViewController {
             configureProductPayment()
         }
         configureRx()
+        configureTableView()
         fetchPaymentMehtods()
+    }
+    
+    fileprivate func configureTableView() {
+        paymentMethodsTableView.register(
+            UINib(
+                nibName: "PaymentMethodTableViewCell",
+                bundle: nil
+            ),
+            forCellReuseIdentifier: "PaymentMethodTableViewCell"
+        )
     }
 
     fileprivate func configureRx() {
@@ -47,13 +61,21 @@ class PaymentConfirmViewController: UIViewController {
             .tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                let vc = PaymentDataViewController.instantiate(fromAppStoryboard: .Payments)
-                vc.modalPresentationStyle = .fullScreen
-                vc.viewModel.paymentData = self.paymentData
-                vc.viewModel.paymentAmount = self.paymentAmmount
-                vc.viewModel.isAccountPayment = self.viewModel.isAccountPayment
-                vc.delegate = self
-                self.navigationController?.pushViewController(vc, animated: true)
+                if let methodSelected = self.viewModel.methodSelected {
+                    if methodSelected.indTarjeta == 1 {
+                        let vc = PaymentDataViewController.instantiate(fromAppStoryboard: .Payments)
+                        vc.modalPresentationStyle = .fullScreen
+                        vc.viewModel.paymentData = self.paymentData
+                        vc.viewModel.paymentAmount = self.paymentAmmount
+                        vc.viewModel.isAccountPayment = self.viewModel.isAccountPayment
+                        vc.delegate = self
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        
+                    }
+                } else {
+                    self.showAlert(alertText: "GolloApp", alertMessage: "Debes elegir un método de pago para continuar")
+                }
             })
             .disposed(by: bag)
     }
@@ -68,6 +90,9 @@ class PaymentConfirmViewController: UIViewController {
                       let data = data else { return }
                 print(data)
                 self.view.activityStopAnimatingFull()
+                self.viewModel.methods = data
+                self.paymentMethodsTableView.reloadData()
+                self.paymentMethodsTableViewHeightConstaint.constant = self.paymentMethodsTableView.contentSize.height + 40
             })
             .disposed(by: bag)
     }
@@ -96,5 +121,40 @@ class PaymentConfirmViewController: UIViewController {
 extension PaymentConfirmViewController: PaymentDataDelegate {
     func errorWhilePayment(with message: String) {
         showAlert(alertText: "Error", alertMessage: message)
+    }
+}
+
+extension PaymentConfirmViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.methods.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return getPaymentMethodsCell(tableView, cellForRowAt: indexPath)
+    }
+    
+    func getPaymentMethodsCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMethodTableViewCell", for: indexPath) as? PaymentMethodTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.setMethodData(with: viewModel.methods[indexPath.row])
+        cell.delegate = self
+        cell.indexPath = indexPath
+        return cell
+    }
+}
+
+extension PaymentConfirmViewController: PaymentMethodCellDelegate {
+    func didSelectPaymentMethod(at indexPath: IndexPath) {
+        for i in 0..<viewModel.methods.count {
+            viewModel.methods[i].selected = false
+        }
+        viewModel.methods[indexPath.row].selected = true
+        viewModel.methodSelected = viewModel.methods[indexPath.row]
+        paymentMethodsTableView.reloadData()
     }
 }

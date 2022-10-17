@@ -59,7 +59,8 @@ extension UIView {
     func activityStarAnimating() {
         let loader = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
         loader.color = .darkGray
-        loader.center = CGPoint(x: self.frame.size.width  / 2, y: self.frame.size.height / 2 )
+//        loader.center = CGPoint(x: self.frame.size.width  / 2, y: self.frame.size.height / 2 )
+        loader.center = self.center
         loader.startAnimating()
         loader.tag = 475647
         self.addSubview(loader)

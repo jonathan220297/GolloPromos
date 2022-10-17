@@ -9,7 +9,7 @@ import Foundation
 
 struct DeliveryMethodsResponse: Codable {
     let idProvincia, idCanton, idDistrito: String?
-    let fletes: [Freight]
+    let fletes: [Freight]?
 }
 
 struct Freight: Codable {
