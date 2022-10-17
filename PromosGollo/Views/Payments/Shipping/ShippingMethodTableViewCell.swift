@@ -7,12 +7,19 @@
 
 import UIKit
 
+protocol ShippingMethodCellDelegate: AnyObject {
+    func didSelectMethod(at indexPath: IndexPath)
+}
+
 class ShippingMethodTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var checkBoxButton: UIButton!
     @IBOutlet weak var shippingNameLabel: UILabel!
     @IBOutlet weak var shippingDescriptionLabel: UILabel!
     @IBOutlet weak var shippingCostLabel: UILabel!
+    
+    weak var delegate: ShippingMethodCellDelegate?
+    var indexPath = IndexPath(row: 0, section: 0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +32,7 @@ class ShippingMethodTableViewCell: UITableViewCell {
     
     // MARK: - Actions
     @IBAction func checkBoxButtonTapped(_ sender: Any) {
+        self.delegate?.didSelectMethod(at: indexPath)
     }
     
     // MARK: - Functions
@@ -34,5 +42,11 @@ class ShippingMethodTableViewCell: UITableViewCell {
         shippingNameLabel.text = data.shippingType
         shippingDescriptionLabel.text = data.shippingDescription
         shippingCostLabel.text = "₡" + formatter.string(from: NSNumber(value: data.cost))!
+        checkBoxButton.setImage(
+            UIImage(
+                named: data.selected ? "ic_radio-button-checked" : "ic_radio-button-unchecked"
+            ),
+            for: .normal
+        )
     }
 }

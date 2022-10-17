@@ -11,6 +11,9 @@ import RxRelay
 class PaymentConfirmViewModel {
     private let service = GolloService()
     
+    var methods: [PaymentMethodResponse] = []
+    var methodSelected: PaymentMethodResponse?
+    
     var subTotal = 0.0
     var shipping = 0.0
     var bonus = 0.0

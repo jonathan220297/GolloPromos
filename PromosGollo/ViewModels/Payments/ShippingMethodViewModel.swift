@@ -17,17 +17,18 @@ class ShippingMethodViewModel {
     var states: [String] = []
     var shops: [ShopData] = []
     var shopSelected: ShopData?
+    var stateSelected = ""
+    var methodSelected: ShippingMethodData?
     
-    init() {
-        setShippingMethods()
-    }
+    let errorMessage = BehaviorRelay<String?>(value: nil)
     
-    func setShippingMethods() {
+    func setShippingMethods(_ selected: Bool) {
         methods.append(
             ShippingMethodData(
                 shippingType: "Recoger en tienda",
                 shippingDescription: "Recoger sus productos en cualquiera de nuestras tiendas en todo el país",
-                cost: 0.0
+                cost: 0.0,
+                selected: selected
             )
         )
     }
@@ -85,7 +86,7 @@ class ShippingMethodViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    self.errorMessage.accept(error.errorDescription)
                 }
             }
         }

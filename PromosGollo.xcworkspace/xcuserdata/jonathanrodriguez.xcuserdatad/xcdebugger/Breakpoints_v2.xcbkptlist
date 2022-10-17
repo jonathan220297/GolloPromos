@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8A53B07C-9269-4540-97A1-1B5BCF8A7FD1"
+            uuid = "105B8AD0-5414-4F15-99E8-680DA6FB9CA1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PromosGollo/Views/Home/SectionCollectionViewCell.swift"
+            filePath = "PromosGollo/Controllers/Payments/Shipping/ShippingMethodViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "setSectionName(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "088E9158-2A39-4516-8F2E-B4745FAC0E6C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PromosGollo/Controllers/Home/HomeTabViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "configureRx()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

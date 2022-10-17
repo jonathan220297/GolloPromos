@@ -11,4 +11,5 @@ struct ShippingMethodData {
     var shippingType: String
     var shippingDescription: String
     var cost: Double
+    var selected = false
 }
