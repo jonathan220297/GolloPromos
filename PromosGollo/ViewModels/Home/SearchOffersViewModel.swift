@@ -13,13 +13,13 @@ class SearchOffersViewModel {
     
     var products: [Product] = []
 
-    func fetchFilteredProducts(with categoryId: String?, taxonomy: Int = -1, order: Int? = nil) -> BehaviorRelay<[Offers]?> {
+    func fetchFilteredProducts(with searchText: String? = nil) -> BehaviorRelay<[Offers]?> {
         let apiResponse: BehaviorRelay<[Offers]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[Offers], OfferFilteredListServiceRequest>(
-            service: BaseServiceRequestParam<OfferFilteredListServiceRequest>(
+        service.callWebServiceGollo(BaseRequest<[Offers], SearchOffersServiceRequest>(
+            service: BaseServiceRequestParam<SearchOffersServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
-                        idProceso: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue,
+                        idProceso: GOLLOAPP.SEARCH_PRODUCTS_PROCESS_ID.rawValue,
                         idDevice: "",
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
@@ -27,14 +27,13 @@ class SearchOffersViewModel {
                         token: getToken(),
                         integrationId: nil
                     ),
-                    parametros: OfferFilteredListServiceRequest (
-                        idCategoria: categoryId,
-                        orden: order,
+                    parametros: SearchOffersServiceRequest (
+                        busqueda: searchText,
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",
-                        idTaxonomia: taxonomy,
+                        idTaxonomia: -1,
                         numPagina: 1,
-                        tamanoPagina: 30
+                        tamanoPagina: 40
                     )
                 )
             )

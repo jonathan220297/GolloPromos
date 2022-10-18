@@ -20,21 +20,33 @@ class NotificationsViewModel {
 
     func fetchNotifications() -> BehaviorRelay<[NotificationsData]?> {
         let apiResponse: BehaviorRelay<[NotificationsData]?> = BehaviorRelay(value: nil)
-        service.callWebService(NotificationsRequest(
-            enterprise: 10,
-            user: userManager.userData?.uid ?? "",
-            notificationType: 1,
-            page: page,
-            perPage: 10,
-            search: "",
-            notificationId: ""
+        service.callWebServiceGollo(BaseRequest<[NotificationsData], NotificationsServiceRequest>(
+            service: BaseServiceRequestParam<NotificationsServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: Encabezado(
+                        idProceso: GOLLOAPP.NOTIFICATIONS_PROCESS_ID.rawValue,
+                        idDevice: "",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        timeStamp: String(Date().timeIntervalSince1970),
+                        idCia: 10,
+                        token: getToken(),
+                        integrationId: nil
+                    ),
+                    parametros: NotificationsServiceRequest (
+                        idCliente: UserManager.shared.userData?.uid ?? "",
+                        idCompania: "10",
+                        numPagina: 1,
+                        tamanoPagina: 40
+                    )
+                )
+            )
         )) { response in
             DispatchQueue.main.async {
                 switch response {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
-                    self.errorMessage.accept(error.localizedDescription)
+                    print("Error: \(error.localizedDescription)")
                 }
             }
         }

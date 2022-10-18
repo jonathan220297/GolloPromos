@@ -119,7 +119,15 @@ class ShippingMethodViewController: UIViewController {
                     }
                 } else if self.viewModel.methods.count > 1 {
                     if self.viewModel.methodSelected != nil {
-                        self.moveToPaymentMethod()
+                        if self.viewModel.methodSelected?.shippingType == "Recoger en tienda" {
+                            if self.viewModel.shopSelected != nil {
+                                self.moveToPaymentMethod()
+                            } else {
+                                self.showAlert(alertText: "GolloApp", alertMessage: "Debes seleccionar una tienda")
+                            }
+                        } else {
+                            self.moveToPaymentMethod()
+                        }
                     } else {
                         self.showAlert(alertText: "GolloApp", alertMessage: "Debes seleccionar un método de envío")
                     }
@@ -169,7 +177,6 @@ class ShippingMethodViewController: UIViewController {
                 .subscribe(onNext: {[weak self] response in
                     guard let self = self,
                           let response = response else { return }
-                    self.view.activityStopAnimating()
                     if let fletes = response.fletes, !fletes.isEmpty {
                         if let store = fletes.first {
                             self.viewModel.setShippingMethods(false)
@@ -199,6 +206,7 @@ class ShippingMethodViewController: UIViewController {
                         self.shopView.isHidden = false
                         self.continueButton.isHidden = false
                     }
+                    self.view.activityStopAnimating()
                 })
                 .disposed(by: bag)
         }
@@ -264,8 +272,18 @@ extension ShippingMethodViewController: ShippingMethodCellDelegate {
         for i in 0..<viewModel.methods.count {
             viewModel.methods[i].selected = false
         }
+
         viewModel.methods[indexPath.row].selected = true
         shippingMethodsTableView.reloadData()
         viewModel.methodSelected = viewModel.methods[indexPath.row]
+        if let method = viewModel.methods.first, method.selected {
+            self.stateView.isHidden = true
+            self.shopView.isHidden = true
+            self.continueButton.isHidden = false
+        } else {
+            self.stateView.isHidden = false
+            self.shopView.isHidden = false
+            self.continueButton.isHidden = false
+        }
     }
 }

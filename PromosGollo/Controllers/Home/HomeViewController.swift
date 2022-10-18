@@ -119,7 +119,7 @@ extension HomeViewController: SignUpCellDelegate {
     func presentEditProfileController() {
         let vc = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
         vc.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

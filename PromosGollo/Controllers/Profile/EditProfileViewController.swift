@@ -60,11 +60,14 @@ class EditProfileViewController: UIViewController {
     var imagePicker = UIImagePickerController()
     var documentType = ""
     var genderType = ""
+    var sideMenuAcction = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Perfil de usuario"
+        self.navigationItem.title = "Perfil de usuario"
+        self.tabBarController?.tabBar.isHidden = true
+
         let barAppearance = UINavigationBarAppearance()
         barAppearance.backgroundColor = .primary
         barAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
@@ -119,12 +122,15 @@ class EditProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
+        if sideMenuAcction {
+            self.tabBarController?.navigationController?.navigationBar.isHidden = false
+            self.tabBarController?.tabBar.isHidden = false
+        }
     }
 
     // MARK: - Functions
@@ -348,8 +354,8 @@ class EditProfileViewController: UIViewController {
         dropDown.dataSource = viewModel.docTypes.map { $0.name }
         dropDown.show()
         dropDown.selectionAction = { [self] (index: Int, item: String) in
-            documentType = viewModel.docTypes[index].code
-            documentTypeLabel.text = item
+            self.documentType = viewModel.docTypes[index].code
+            self.documentTypeLabel.text = item
         }
     }
 
@@ -359,8 +365,8 @@ class EditProfileViewController: UIViewController {
         dropDown.dataSource = viewModel.genderTypes.map { $0.name }
         dropDown.show()
         dropDown.selectionAction = { [self] (index: Int, item: String) in
-            genderType = viewModel.genderTypes[index].code
-            genderTypeLabel.text = item
+            self.genderType = viewModel.genderTypes[index].code
+            self.genderTypeLabel.text = item
         }
     }
 
@@ -369,7 +375,7 @@ class EditProfileViewController: UIViewController {
             showAlert(alertText: "GolloApp", alertMessage: "Seleccione el tipo de documento de idendidad")
         } else if documentNumberLabel.text?.isEmpty ?? true {
             showAlert(alertText: "GolloApp", alertMessage: "Ingrese documento de idendidad")
-        } else if !isValidCelular(number: documentNumberLabel.text ?? "")  {
+        } else if documentType == "C" && !isValidCelular(number: documentNumberLabel.text ?? "")  {
             showAlert(alertText: "GolloApp", alertMessage: "Cédula inválida")
         } else {
             view.activityStarAnimating()

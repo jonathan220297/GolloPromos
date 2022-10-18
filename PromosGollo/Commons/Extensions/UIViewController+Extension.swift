@@ -182,6 +182,14 @@ extension UIViewController {
         carTab.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(carTab, animated: true)
     }
+
+    @objc func searchButtonTapped() {
+        let searchOffersViewController = SearchOffersViewController(
+            viewModel: SearchOffersViewModel()
+        )
+        searchOffersViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(searchOffersViewController, animated: true)
+    }
     
     func configureNavBar() {
         let menuButton = UIBarButtonItem(image: UIImage(named: "ic_menu"), style: .plain, target: self, action: #selector(menuButtonTapped))
@@ -203,6 +211,12 @@ extension UIViewController {
         searchLabel.textColor = .gray
         searchLabel.text = "Buscar en Gollo"
         searchView.addSubview(searchLabel)
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(searchButtonTapped))
+
+        searchView.addGestureRecognizer(tap)
+        searchView.isUserInteractionEnabled = true
+
         self.navigationItem.titleView = searchView
     }
 }

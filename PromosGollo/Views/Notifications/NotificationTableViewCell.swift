@@ -10,24 +10,11 @@ import Nuke
 
 class NotificationTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var imageCell: UIImageView!
     @IBOutlet weak var titleCell: UILabel!
     @IBOutlet weak var contentCell: UILabel!
     @IBOutlet weak var dateCell: UILabel!
 
     func setNotification(notification: NotificationsData) {
-        if let image = notification.image {
-            let url : String = image
-            let urlStr : String = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            if let convertedURL : URL = URL(string: urlStr) {
-                Nuke.loadImage(with: convertedURL, into: imageCell)
-            } else {
-                imageCell.image = UIImage(named: "empty_image")
-            }
-        } else {
-            imageCell.image = UIImage(named: "empty_image")
-        }
-
         titleCell.text = notification.title
         contentCell.text = notification.message
 
