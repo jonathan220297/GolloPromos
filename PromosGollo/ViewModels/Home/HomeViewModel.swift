@@ -110,6 +110,7 @@ class HomeViewModel {
                         name: section.name,
                         height: 0,
                         banner: nil,
+                        link: section.linkValue,
                         product: section.productos
                     )
                 )

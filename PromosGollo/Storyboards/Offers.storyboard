@@ -653,6 +653,31 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="398" height="175"/>
                                                         <color key="tintColor" red="0.0" green="0.71626287700000002" blue="0.8547027707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Yh3-MS-07c">
+                                                        <rect key="frame" x="338" y="4" width="56" height="24"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DcI-Jo-SEv">
+                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="24" id="Cug-o5-hq4"/>
+                                                                    <constraint firstAttribute="height" constant="24" id="hlO-Kf-cJq"/>
+                                                                </constraints>
+                                                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" image="ic_heart"/>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOV-h1-Cc0">
+                                                                <rect key="frame" x="32" y="0.0" width="24" height="24"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="24" id="Bg1-Ot-ZQx"/>
+                                                                    <constraint firstAttribute="height" constant="24" id="Znh-WN-2Fn"/>
+                                                                </constraints>
+                                                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" image="ic_share"/>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -660,6 +685,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="bgx-hy-v19" secondAttribute="trailing" id="9sT-3b-rXL"/>
                                                     <constraint firstItem="bgx-hy-v19" firstAttribute="leading" secondItem="Zfq-Da-1cg" secondAttribute="leading" id="Fba-nZ-9Ax"/>
                                                     <constraint firstItem="beL-p9-q8Z" firstAttribute="centerX" secondItem="Zfq-Da-1cg" secondAttribute="centerX" id="Gbp-ws-D2F"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Yh3-MS-07c" secondAttribute="trailing" constant="4" id="Nfc-eH-RZ4"/>
                                                     <constraint firstItem="bgx-hy-v19" firstAttribute="centerY" secondItem="Zfq-Da-1cg" secondAttribute="centerY" id="TWg-eT-r7y"/>
                                                     <constraint firstItem="bgx-hy-v19" firstAttribute="centerX" secondItem="Zfq-Da-1cg" secondAttribute="centerX" id="Zc5-Px-sFS"/>
                                                     <constraint firstAttribute="bottom" secondItem="beL-p9-q8Z" secondAttribute="bottom" id="fjO-fT-T6F"/>
@@ -668,6 +694,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="bgx-hy-v19" secondAttribute="bottom" id="kXd-z9-NOu"/>
                                                     <constraint firstItem="beL-p9-q8Z" firstAttribute="leading" secondItem="Zfq-Da-1cg" secondAttribute="leading" id="ngR-Xu-L1r"/>
                                                     <constraint firstItem="beL-p9-q8Z" firstAttribute="top" secondItem="Zfq-Da-1cg" secondAttribute="top" id="npF-HR-0DS"/>
+                                                    <constraint firstItem="Yh3-MS-07c" firstAttribute="top" secondItem="Zfq-Da-1cg" secondAttribute="top" constant="4" id="taC-h6-MKG"/>
                                                     <constraint firstItem="beL-p9-q8Z" firstAttribute="centerY" secondItem="Zfq-Da-1cg" secondAttribute="centerY" id="yMc-rB-0TN"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -1220,6 +1247,7 @@
                         <outlet property="discountLabel" destination="u4Q-3g-h89" id="FIk-74-Vc3"/>
                         <outlet property="discountPriceLabel" destination="ibR-du-NuD" id="5Qf-1N-bJN"/>
                         <outlet property="discountView" destination="5S1-YC-jLi" id="YVA-QM-ZZe"/>
+                        <outlet property="favoriteButton" destination="DcI-Jo-SEv" id="yDP-uC-fdE"/>
                         <outlet property="giftConstraint" destination="s4y-iC-DHj" id="cPJ-ne-MBK"/>
                         <outlet property="giftLabel" destination="vdx-MT-ABY" id="99u-hz-drm"/>
                         <outlet property="giftView" destination="Nad-pp-LlG" id="zVJ-Kk-eNL"/>
@@ -1238,6 +1266,7 @@
                         <outlet property="serialLabel" destination="O9a-yj-d3o" id="BQ7-48-e1V"/>
                         <outlet property="serviceButton" destination="O4s-wo-IWa" id="MqL-L0-bpW"/>
                         <outlet property="serviceLabel" destination="nho-cc-hQH" id="ND7-BZ-lm6"/>
+                        <outlet property="shareButton" destination="WOV-h1-Cc0" id="cEa-4k-GvS"/>
                         <outlet property="tintView" destination="5a9-UN-DpY" id="tQl-iQ-smk"/>
                         <outlet property="tintViewBonus" destination="otT-I6-Ath" id="IJi-cX-CqD"/>
                         <outlet property="tintViewGift" destination="hiK-S4-DGk" id="BMd-y4-uTY"/>
@@ -1278,6 +1307,7 @@
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="ic_cart" width="30" height="30"/>
         <image name="ic_filtrar" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="ic_heart" width="16.666666030883789" height="16.666666030883789"/>
         <image name="ic_marca" width="50" height="50"/>
         <image name="ic_offer_bonus" width="25" height="25"/>
         <image name="ic_offer_description" width="50" height="50"/>
@@ -1286,6 +1316,7 @@
         <image name="ic_offer_percentage" width="25" height="25"/>
         <image name="ic_offers_home" width="50" height="50"/>
         <image name="ic_offers_menu" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="ic_share" width="16.666666030883789" height="16.666666030883789"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

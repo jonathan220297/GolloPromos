@@ -32,23 +32,24 @@
                                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7T-Mp-QCR">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="765"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_menu_accounts" translatesAutoresizingMaskIntoConstraints="NO" id="Zjb-rm-SPT">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_payments" translatesAutoresizingMaskIntoConstraints="NO" id="Zjb-rm-SPT">
                                                         <rect key="frame" x="157" y="264" width="100" height="100"/>
+                                                        <color key="tintColor" name="colorPrimary"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="DEf-E5-zM8"/>
                                                             <constraint firstAttribute="height" constant="100" id="Gr7-PQ-bH5"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista de cuentas activas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2H-zO-odA">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista de compras a crédito" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2H-zO-odA">
                                                         <rect key="frame" x="8" y="372" width="398" height="21"/>
                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="15"/>
-                                                        <color key="textColor" red="0.1596274972" green="0.18202841280000001" blue="0.28569999340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" name="colorPrimary"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="El cliente no posee cuentas activas!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUt-Sd-Kz9">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tienes compras a crédito" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUt-Sd-Kz9">
                                                         <rect key="frame" x="8" y="397" width="398" height="20"/>
                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="14"/>
-                                                        <color key="textColor" red="0.45152938370000001" green="0.56089949610000001" blue="0.57809406519999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -1816,7 +1817,7 @@
                                 <rect key="frame" x="0.0" y="48" width="414" height="765"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ig-65-9wf">
-                                        <rect key="frame" x="0.0" y="8" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sqa-Dd-D18">
                                                 <rect key="frame" x="0.0" y="8" width="414" height="34"/>
@@ -1846,17 +1847,17 @@
                                         </constraints>
                                     </view>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mse-JC-78F">
-                                        <rect key="frame" x="0.0" y="58" width="414" height="707"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="715"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="creditcard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ube-Dx-PQs">
-                                                <rect key="frame" x="136.5" y="284.5" width="141" height="137.5"/>
+                                                <rect key="frame" x="135.5" y="287.5" width="143" height="139.5"/>
                                                 <color key="tintColor" red="0.0" green="0.39239364859999998" blue="0.70810222629999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ube-Dx-PQs" secondAttribute="height" multiplier="1:1" id="z1M-cd-imk"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4R-Qu-rFq">
-                                                <rect key="frame" x="8" y="428" width="398" height="20.5"/>
+                                                <rect key="frame" x="8" y="433" width="398" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1873,7 +1874,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7gw-To-P1q">
-                                        <rect key="frame" x="0.0" y="62" width="414" height="703"/>
+                                        <rect key="frame" x="0.0" y="54" width="414" height="711"/>
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="sectionIndexBackgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
@@ -2029,7 +2030,7 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="7gw-To-P1q" secondAttribute="bottom" id="87V-us-oRb"/>
                                     <constraint firstAttribute="bottom" secondItem="mse-JC-78F" secondAttribute="bottom" id="H8U-1i-yMS"/>
-                                    <constraint firstItem="0ig-65-9wf" firstAttribute="top" secondItem="EpY-ad-GAf" secondAttribute="top" constant="8" id="Hua-Tc-BJs"/>
+                                    <constraint firstItem="0ig-65-9wf" firstAttribute="top" secondItem="EpY-ad-GAf" secondAttribute="top" id="Hua-Tc-BJs"/>
                                     <constraint firstItem="0ig-65-9wf" firstAttribute="leading" secondItem="EpY-ad-GAf" secondAttribute="leading" id="PWi-S9-ITZ"/>
                                     <constraint firstAttribute="trailing" secondItem="mse-JC-78F" secondAttribute="trailing" id="QmB-jJ-VTV"/>
                                     <constraint firstItem="mse-JC-78F" firstAttribute="top" secondItem="0ig-65-9wf" secondAttribute="bottom" id="VDU-A9-T0n"/>
@@ -3437,6 +3438,7 @@
         <image name="ic_menu_accounts" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_payment_amount" width="50" height="50"/>
         <image name="ic_payment_status" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="ic_payments" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_radio-button-unchecked" width="128" height="128"/>
         <image name="ic_search_user" width="50" height="50"/>
         <image name="ic_third_party_payment" width="33.333332061767578" height="33.333332061767578"/>

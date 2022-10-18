@@ -161,12 +161,27 @@ extension HomeTabViewController: UICollectionViewDelegate {
 
 extension HomeTabViewController: HomeSectionDelegate {
     func moreButtonTapped(at indexPath: IndexPath) {
-        print("tapped: \(indexPath)")
+        let offersFilteredListViewController = OffersFilteredListViewController(
+            viewModel: OffersFilteredListViewModel(),
+            category: viewModel.sections[indexPath.section].link,
+            taxonomy: -1
+        )
+        offersFilteredListViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
     }
 }
 
 extension HomeTabViewController: ProductCellDelegate {
     func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeTabViewController: OffersCellDelegate {
+    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
         vc.modalPresentationStyle = .fullScreen

@@ -5,16 +5,16 @@
 //  Created by Rodrigo Osegueda on 14/10/22.
 //
 
-
 import UIKit
 import RxSwift
 import DropDown
 
 class SearchOffersViewController: UIViewController {
 
+    @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     // MARK: - Constants
     let viewModel: SearchOffersViewModel
     let bag = DisposeBag()
@@ -36,7 +36,7 @@ class SearchOffersViewController: UIViewController {
 
     // MARK: - Functions
     func configureTableView() {
-        self.tableView.register(UINib(nibName: "OffersTableViewCell", bundle: nil), forCellReuseIdentifier: "OffersTableViewCell")
+        self.collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
     }
 
     fileprivate func fetchOffers(with searchText: String? = nil) {
@@ -81,10 +81,14 @@ class SearchOffersViewController: UIViewController {
                     products.append(p)
                 }
                 self.viewModel.products = products
-                self.tableView.reloadData()
+                self.collectionView.reloadData()
 
                 if data.isEmpty {
-                    self.tableView.isHidden = true
+                    self.emptyView.alpha = 1
+                    self.collectionView.alpha = 0
+                } else {
+                    self.emptyView.alpha = 0
+                    self.collectionView.alpha = 1
                 }
             })
             .disposed(by: bag)
@@ -92,42 +96,57 @@ class SearchOffersViewController: UIViewController {
 
 }
 
-extension SearchOffersViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            self.tableView.isHidden = true
-        } else {
-            fetchOffers(with: searchText.lowercased())
-        }
+extension SearchOffersViewController: UICollectionViewDelegate,
+                                            UICollectionViewDataSource,
+                                            UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
-}
 
-extension SearchOffersViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.products.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return getOfferCell(tableView, cellForRowAt: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return getProductCell(collectionView, cellForItemAt: indexPath)
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.products.count > 2 ? 650 : 320
-    }
-
-    func getOfferCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OffersTableViewCell", for: indexPath) as? OffersTableViewCell else {
-            return UITableViewCell()
-        }
+    func getProductCell(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
+        cell.setProductData(with: viewModel.products[indexPath.row])
         cell.delegate = self
-        cell.viewModel.offersArray = viewModel.products
-        cell.configureCollectionView()
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+        let size: CGFloat = (collectionView.frame.size.width - space) / 2.0
+        return CGSize(width: size, height: 300)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = viewModel.products[indexPath.row]
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension SearchOffersViewController: OffersCellDelegate {
     func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension SearchOffersViewController: ProductCellDelegate {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
         vc.modalPresentationStyle = .fullScreen

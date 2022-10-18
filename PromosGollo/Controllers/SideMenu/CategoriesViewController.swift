@@ -28,6 +28,7 @@ class CategoriesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureAlternativeNavBar()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         fetchCategories()
     }
@@ -84,7 +85,12 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .primary
+        cell.tintColor = .white
         cell.textLabel?.textColor = .white
+        if !(categories[indexPath.section].isOpened && indexPath.row > 0) {
+            let chevronImageView = UIImageView(image: UIImage(named: "ic_right_arrow"))
+            cell.accessoryView = chevronImageView
+        }
         
         if indexPath.row == 0 {
             cell.textLabel?.text = categories[indexPath.section].name

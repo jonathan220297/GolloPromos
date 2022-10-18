@@ -20,7 +20,7 @@
                 <outlet property="collectionView" destination="uCd-hM-ljK" id="MuS-3L-eQu"/>
                 <outlet property="optionButton" destination="5tc-FA-jjw" id="Pra-Ur-ZfJ"/>
                 <outlet property="optionLabel" destination="gl2-qT-QHi" id="RQm-bW-k7R"/>
-                <outlet property="tableView" destination="AGL-Yd-vc4" id="BiU-sx-qh2"/>
+                <outlet property="productCollectionView" destination="orK-JS-mOE" id="dql-lv-9re"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -109,25 +109,31 @@
                         </view>
                     </subviews>
                 </stackView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="AGL-Yd-vc4">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="orK-JS-mOE">
                     <rect key="frame" x="8" y="170" width="374" height="632"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c0O-mr-VGf">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="U7O-gT-DWO"/>
-                        <outlet property="delegate" destination="-1" id="pEh-B1-GJy"/>
+                        <outlet property="dataSource" destination="-1" id="1bY-Eb-Nmj"/>
+                        <outlet property="delegate" destination="-1" id="qDZ-Tc-Rzs"/>
                     </connections>
-                </tableView>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="orK-JS-mOE" secondAttribute="bottom" constant="8" id="3as-zr-FAV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="orK-JS-mOE" secondAttribute="trailing" constant="8" id="4rn-c1-r5m"/>
                 <constraint firstItem="cMU-Vz-lMU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="A4w-J8-kzd"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AGL-Yd-vc4" secondAttribute="bottom" constant="8" id="Kyw-Ur-p3T"/>
-                <constraint firstItem="AGL-Yd-vc4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="TyX-y0-vEj"/>
+                <constraint firstItem="orK-JS-mOE" firstAttribute="top" secondItem="cMU-Vz-lMU" secondAttribute="bottom" constant="8" id="I1S-60-k5y"/>
                 <constraint firstItem="cMU-Vz-lMU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="YWK-yW-Z4W"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AGL-Yd-vc4" secondAttribute="trailing" constant="8" id="dCh-gv-x7G"/>
+                <constraint firstItem="orK-JS-mOE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="aaF-fr-ELb"/>
                 <constraint firstAttribute="trailing" secondItem="cMU-Vz-lMU" secondAttribute="trailing" id="sDL-j6-Tlq"/>
-                <constraint firstItem="AGL-Yd-vc4" firstAttribute="top" secondItem="cMU-Vz-lMU" secondAttribute="bottom" constant="8" id="w1F-OR-OF6"/>
             </constraints>
             <point key="canvasLocation" x="60" y="20.616113744075829"/>
         </view>
