@@ -159,7 +159,7 @@ class PaymentAddressViewModel {
         let latitude = latitudeSubject.value
         let longitude = longitudeSubject.value
         let deliveryInfo = DeliveryInfo(
-            codigoFlete: "-1",
+            codigoFlete: carManager.shippingMethod?.cargoCode ?? "-1",
             coordenadaX: 0.0,
             coordenadaY: 0.0,
             direccion: address ?? "",
@@ -173,7 +173,7 @@ class PaymentAddressViewModel {
             idReceptor: identificationNumber ?? "",
             lastName: lastName ?? "",
             lugarDespacho: "",
-            montoFlete: 0,
+            montoFlete: carManager.shippingMethod?.cost ?? 0.0,
             nomReceptor: (firstName ?? "") + " " + (lastName ?? ""),
             postalCode: postalCode ?? "",
             telReceptor: phoneNumber ?? "",

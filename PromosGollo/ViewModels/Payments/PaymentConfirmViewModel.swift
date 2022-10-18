@@ -10,6 +10,7 @@ import RxRelay
 
 class PaymentConfirmViewModel {
     private let service = GolloService()
+    let carManager = CarManager.shared
     
     var methods: [PaymentMethodResponse] = []
     var methodSelected: PaymentMethodResponse?
@@ -18,6 +19,8 @@ class PaymentConfirmViewModel {
     var shipping = 0.0
     var bonus = 0.0
     var isAccountPayment = true
+    
+    let errorMessage = BehaviorRelay<String?>(value: nil)
 
     func fetchPaymentMethods() -> BehaviorRelay<[PaymentMethodResponse]?> {
         let apiResponse: BehaviorRelay<[PaymentMethodResponse]?> = BehaviorRelay(value: nil)
@@ -50,5 +53,53 @@ class PaymentConfirmViewModel {
         return apiResponse
     }
 
-
+    func sendOrder() -> BehaviorRelay<SendOrderResponse?> {
+        guard let deliveryInfo = carManager.deliveryInfo,
+              let clientID = Variables.userProfile?.numeroIdentificacion else {
+            return BehaviorRelay<SendOrderResponse?>(value: nil)
+        }
+        carManager.paymentMethod.append(
+            PaymentMethod(
+               codAutorizacion: "",
+               fechaExp: "",
+               idFormaPago: methodSelected?.idFormaPago ?? "",
+               montoPago: carManager.total,
+               noLineaRelacionada: 0,
+               nomTarjeta: "",
+               numTarjeta: "",
+               tipoPlazoTarjeta: "",
+               tipoTarjeta: "",
+               totalCuotas: 0
+           )
+        )
+        let apiResponse: BehaviorRelay<SendOrderResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(
+            BaseRequest<SendOrderResponse?, OrderData>(
+                resource: "Transacciones",
+                service: BaseServiceRequestParam<OrderData>(
+                    servicio: ServicioParam(
+                        encabezado: getDefaultBaseHeaderRequest(
+                            with: GOLLOAPP.PRODUCT_PAYMENT.rawValue
+                        ),
+                        parametros: OrderData(
+                            detalle: carManager.car,
+                            formaPago: carManager.paymentMethod,
+                            idCliente: clientID,
+                            infoEntrega: deliveryInfo
+                        )
+                    )
+                )
+            )
+        ) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    self.errorMessage.accept(error.localizedDescription)
+                }
+            }
+        }
+        return apiResponse
+    }
 }

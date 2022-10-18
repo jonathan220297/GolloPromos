@@ -34,8 +34,8 @@ class CarTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Mi carrito"
-        tabBarController?.navigationItem.hidesBackButton = false
-        tabBarController?.navigationController?.navigationBar.tintColor = .white
+        navigationItem.hidesBackButton = false
+        navigationController?.navigationBar.tintColor = .white
         configureViews()
         configureTableView()
         configureRx()

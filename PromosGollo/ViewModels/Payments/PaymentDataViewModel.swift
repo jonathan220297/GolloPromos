@@ -150,7 +150,7 @@ class PaymentDataViewModel {
     
     func makeProductPayment() -> BehaviorRelay<PaymentOrderResponse?> {
         guard let deliveryInfo = carManager.deliveryInfo,
-              let clientID = Variables.userProfile?.idCliente else { return BehaviorRelay<PaymentOrderResponse?>(value: nil) }
+              let clientID = Variables.userProfile?.numeroIdentificacion else { return BehaviorRelay<PaymentOrderResponse?>(value: nil) }
         let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(
             BaseRequest<PaymentOrderResponse?, OrderData>(

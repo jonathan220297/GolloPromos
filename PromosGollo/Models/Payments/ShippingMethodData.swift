@@ -8,6 +8,7 @@
 import Foundation
 
 struct ShippingMethodData {
+    var cargoCode: String
     var shippingType: String
     var shippingDescription: String
     var cost: Double

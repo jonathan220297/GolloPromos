@@ -86,6 +86,7 @@
 		4F11E043272DB5C100E15003 /* AccountItemsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11E042272DB5C100E15003 /* AccountItemsRequest.swift */; };
 		4F11E045272DB61900E15003 /* AccountsItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11E044272DB61900E15003 /* AccountsItemResponse.swift */; };
 		4F135C5F28FDF6C0007303D1 /* SearchOffersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F135C5E28FDF6C0007303D1 /* SearchOffersRequest.swift */; };
+		4F14C1C228FE2E2400337E2A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F14C1C128FE2E2400337E2A /* GoogleService-Info.plist */; };
 		4F17322D27013BA100D7924D /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F17322C27013BA100D7924D /* HeaderTableViewCell.swift */; };
 		4F17322F27013BC900D7924D /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F17322E27013BC900D7924D /* FooterTableViewCell.swift */; };
 		4F17323127013C0000D7924D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F17323027013C0000D7924D /* ProductTableViewCell.swift */; };
@@ -147,6 +148,7 @@
 		4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47527275585007B17FE /* CGFloat+Extension.swift */; };
 		4F4EC47B2727680E007B17FE /* DocType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47A2727680E007B17FE /* DocType.swift */; };
 		4F4EC47E27276A50007B17FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EC48027276A50007B17FE /* Localizable.strings */; };
+		4F4ED0C728FEF461003B8A97 /* SendOrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4ED0C628FEF461003B8A97 /* SendOrderResponse.swift */; };
 		4F57B79928F9F19E00CFBD01 /* SearchOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57B79728F9F19E00CFBD01 /* SearchOffersViewController.swift */; };
 		4F57B79A28F9F19E00CFBD01 /* SearchOffersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F57B79828F9F19E00CFBD01 /* SearchOffersViewController.xib */; };
 		4F57B79C28F9F1B600CFBD01 /* SearchOffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57B79B28F9F1B600CFBD01 /* SearchOffersViewModel.swift */; };
@@ -234,7 +236,6 @@
 		4FCA88B228DA26F500B1FE46 /* OffersTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA88B128DA26F500B1FE46 /* OffersTabViewModel.swift */; };
 		4FCA88B528DAA08B00B1FE46 /* CarProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA88B328DAA08B00B1FE46 /* CarProductTableViewCell.swift */; };
 		4FCA88B628DAA08B00B1FE46 /* CarProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCA88B428DAA08B00B1FE46 /* CarProductTableViewCell.xib */; };
-		4FCAECDA28FDBE7000F13864 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FCAECD928FDBE7000F13864 /* GoogleService-Info.plist */; };
 		4FCC3F7A28F1D4F00063C9C9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC3F7828F1D4F00063C9C9 /* MainViewController.swift */; };
 		4FCC3F7B28F1D4F00063C9C9 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCC3F7928F1D4F00063C9C9 /* MainViewController.xib */; };
 		4FCEB7E028CFF9A0009B3FDF /* OffersTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEB7DE28CFF9A0009B3FDF /* OffersTabViewController.swift */; };
@@ -434,6 +435,7 @@
 		4F11E042272DB5C100E15003 /* AccountItemsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountItemsRequest.swift; sourceTree = "<group>"; };
 		4F11E044272DB61900E15003 /* AccountsItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsItemResponse.swift; sourceTree = "<group>"; };
 		4F135C5E28FDF6C0007303D1 /* SearchOffersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOffersRequest.swift; sourceTree = "<group>"; };
+		4F14C1C128FE2E2400337E2A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F17322C27013BA100D7924D /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		4F17322E27013BC900D7924D /* FooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		4F17323027013C0000D7924D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 		4F4EC47A2727680E007B17FE /* DocType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocType.swift; sourceTree = "<group>"; };
 		4F4EC47F27276A50007B17FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F4EC48327276A57007B17FE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4F4ED0C628FEF461003B8A97 /* SendOrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendOrderResponse.swift; sourceTree = "<group>"; };
 		4F57B79728F9F19E00CFBD01 /* SearchOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOffersViewController.swift; sourceTree = "<group>"; };
 		4F57B79828F9F19E00CFBD01 /* SearchOffersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchOffersViewController.xib; sourceTree = "<group>"; };
 		4F57B79B28F9F1B600CFBD01 /* SearchOffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOffersViewModel.swift; sourceTree = "<group>"; };
@@ -582,7 +585,6 @@
 		4FCA88B128DA26F500B1FE46 /* OffersTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTabViewModel.swift; sourceTree = "<group>"; };
 		4FCA88B328DAA08B00B1FE46 /* CarProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarProductTableViewCell.swift; sourceTree = "<group>"; };
 		4FCA88B428DAA08B00B1FE46 /* CarProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarProductTableViewCell.xib; sourceTree = "<group>"; };
-		4FCAECD928FDBE7000F13864 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FCC3F7828F1D4F00063C9C9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4FCC3F7928F1D4F00063C9C9 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		4FCEB7DE28CFF9A0009B3FDF /* OffersTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTabViewController.swift; sourceTree = "<group>"; };
@@ -1078,6 +1080,7 @@
 				4FE86E6C28E4A1D4008E58F1 /* PaymentOrderResponse.swift */,
 				4F194C1828FA967B0011653D /* PaymentMethodResponse.swift */,
 				4F194C1C28FB046E0011653D /* DeliveryMethodsResponse.swift */,
+				4F4ED0C628FEF461003B8A97 /* SendOrderResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1521,7 +1524,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4FCAECD928FDBE7000F13864 /* GoogleService-Info.plist */,
+				4F14C1C128FE2E2400337E2A /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* PromosGollo.xcdatamodeld */,
 			);
 			path = PromosGollo;
@@ -1912,7 +1915,7 @@
 				4FE1912526DEFCA000322128 /* ProductCollectionViewCell.xib in Resources */,
 				4F678D7C28E7C3FF00C8E8B3 /* WishesViewController.xib in Resources */,
 				4FA0B87128E3C48700395361 /* AddressListViewController.xib in Resources */,
-				4FCAECDA28FDBE7000F13864 /* GoogleService-Info.plist in Resources */,
+				4F14C1C228FE2E2400337E2A /* GoogleService-Info.plist in Resources */,
 				4F317A9C28F9E038005BA675 /* SectionCollectionViewCell.xib in Resources */,
 				4F69894428BDB625000FFA56 /* PaymentSuccessViewController.xib in Resources */,
 				4FDA3AA326D8FE26003B2CB6 /* Main.storyboard in Resources */,
@@ -2307,6 +2310,7 @@
 				4F410E1228F5CDE000387871 /* OffersFilteredListViewController.swift in Sources */,
 				4F0D964A26DDBA7C0061E89E /* UIImageView+Extension.swift in Sources */,
 				4FE1913826DF075200322128 /* IncentivesViewController.swift in Sources */,
+				4F4ED0C728FEF461003B8A97 /* SendOrderResponse.swift in Sources */,
 				4F3E480727278525009D259D /* OffersViewModel.swift in Sources */,
 				4F3E481827278536009D259D /* Offers.swift in Sources */,
 				4FDB6ED428E385B30002DA0B /* CarTabViewModel.swift in Sources */,
@@ -2541,7 +2545,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
+				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
 				INFOPLIST_FILE = PromosGollo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Gollo App";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2566,7 +2570,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
+				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
 				INFOPLIST_FILE = PromosGollo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Gollo App";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
