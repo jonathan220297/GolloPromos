@@ -12,6 +12,8 @@ class CarManager {
     
     var total = 0.0
     var car: [OrderItem] = []
+    var shippingMethod: ShippingMethodData?
+    var paymentMethodSelected: PaymentMethodResponse?
     var paymentMethod: [PaymentMethod] = []
     var deliveryInfo: DeliveryInfo?
 }

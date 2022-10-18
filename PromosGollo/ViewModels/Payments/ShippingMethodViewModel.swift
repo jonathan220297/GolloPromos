@@ -25,6 +25,7 @@ class ShippingMethodViewModel {
     func setShippingMethods(_ selected: Bool) {
         methods.append(
             ShippingMethodData(
+                cargoCode: "-1",
                 shippingType: "Recoger en tienda",
                 shippingDescription: "Recoger sus productos en cualquiera de nuestras tiendas en todo el país",
                 cost: 0.0,
@@ -113,7 +114,10 @@ class ShippingMethodViewModel {
     }
     
     func processShippingMethod() {
+        carManager.shippingMethod = methodSelected
         carManager.deliveryInfo?.lugarDespacho = shopSelected?.idTienda ?? ""
         carManager.deliveryInfo?.tipoEntrega = "20"
+        carManager.deliveryInfo?.codigoFlete = carManager.shippingMethod?.cargoCode ?? "-1"
+        carManager.deliveryInfo?.montoFlete = carManager.shippingMethod?.cost ?? 0.0
     }
 }

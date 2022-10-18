@@ -68,12 +68,26 @@ class PaymentConfirmViewController: UIViewController {
     }
 
     fileprivate func configureRx() {
+        viewModel
+            .errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self,
+                      let error = error else { return }
+                if !error.isEmpty {
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    self.viewModel.errorMessage.accept(nil)
+                }
+            })
+            .disposed(by: bag)
+        
         continuePaymentButton
             .rx
             .tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 if let methodSelected = self.viewModel.methodSelected {
+                    self.viewModel.carManager.paymentMethodSelected = methodSelected
                     if methodSelected.indTarjeta == 1 {
                         let vc = PaymentDataViewController.instantiate(fromAppStoryboard: .Payments)
                         vc.modalPresentationStyle = .fullScreen
@@ -83,7 +97,7 @@ class PaymentConfirmViewController: UIViewController {
                         vc.delegate = self
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {
-                        
+                        self.sendOrder()
                     }
                 } else {
                     self.showAlert(alertText: "GolloApp", alertMessage: "Debes elegir un método de pago para continuar")
@@ -102,7 +116,7 @@ class PaymentConfirmViewController: UIViewController {
                       let data = data else { return }
                 print(data)
                 self.view.activityStopAnimatingFull()
-                self.viewModel.methods = data
+                self.viewModel.methods = self.viewModel.isAccountPayment ? data.filter { $0.indTarjeta == 1 } : data
                 self.paymentMethodsTableView.reloadData()
                 self.paymentMethodsTableViewHeightConstaint.constant = self.paymentMethodsTableView.contentSize.height + 40
             })
@@ -127,6 +141,18 @@ class PaymentConfirmViewController: UIViewController {
             bonoLabel.text = "₡" + String(bono)
             totalLabel.text = "₡" + String(subtotal)
         }
+    }
+    
+    fileprivate func sendOrder() {
+        viewModel
+            .sendOrder()
+            .asObservable()
+            .subscribe(onNext: {[weak self] response in
+                guard let self = self,
+                      let response = response else { return }
+                log.debug(response)
+            })
+            .disposed(by: bag)
     }
 }
 
@@ -162,6 +188,11 @@ extension PaymentConfirmViewController: UITableViewDataSource {
 
 extension PaymentConfirmViewController: PaymentMethodCellDelegate {
     func didSelectPaymentMethod(at indexPath: IndexPath) {
+        if let cardIndex = viewModel.methods[indexPath.row].indTarjeta, cardIndex == 1 {
+            continuePaymentButton.setTitle("CONTINUAR CON EL PAGO", for: .normal)
+        } else {
+            continuePaymentButton.setTitle("ENVIAR ORDEN", for: .normal)
+        }
         for i in 0..<viewModel.methods.count {
             viewModel.methods[i].selected = false
         }

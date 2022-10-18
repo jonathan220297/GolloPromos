@@ -42,7 +42,7 @@ struct DeliveryInfo: Codable {
     var direccion, email, fechaEntrega, firstName: String
     var horaEntrega, idCanton, idDistrito, idProvincia: String
     var idReceptor, lastName, lugarDespacho: String
-    var montoFlete: Int
+    var montoFlete: Double
     var nomReceptor, postalCode, telReceptor, tipoEntrega: String
     var tipoIDRecep: String
 

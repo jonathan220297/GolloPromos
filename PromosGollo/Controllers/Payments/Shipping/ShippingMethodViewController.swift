@@ -88,7 +88,7 @@ class ShippingMethodViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self,
                 let error = error, !error.isEmpty else { return }
-                self.view.activityStopAnimating()
+                self.view.activityStopAnimatingFull()
                 self.viewModel.methods.removeAll()
                 self.viewModel.setShippingMethods(true)
                 self.viewModel.methodSelected = self.viewModel.methods.first
@@ -160,14 +160,14 @@ class ShippingMethodViewController: UIViewController {
     }
     
     fileprivate func fetchShops() {
-        view.activityStarAnimating()
+        view.activityStartAnimatingFull()
         viewModel
             .fetchShops()
             .asObservable()
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,
                       let response = response else { return }
-                self.view.activityStopAnimating()
+                self.view.activityStopAnimatingFull()
                 self.viewModel.data = response
                 self.viewModel.processStates(with: response)
                 self.viewModel.processShops(with: self.viewModel.states.first ?? "")
@@ -177,7 +177,7 @@ class ShippingMethodViewController: UIViewController {
     }
 
     fileprivate func fetchDeliveryMethods() {
-        view.activityStarAnimating()
+        view.activityStartAnimatingFull()
         if let state = state, let county = county, let district = district {
             viewModel
                 .fetchDeliveryMethods(
@@ -194,6 +194,7 @@ class ShippingMethodViewController: UIViewController {
                             self.viewModel.setShippingMethods(false)
                             self.viewModel.methods.insert(
                                 ShippingMethodData(
+                                    cargoCode: store.codigoFlete ?? "",
                                     shippingType: store.nombre ?? "",
                                     shippingDescription: store.descripcion ?? "",
                                     cost: store.monto ?? 0.0,
@@ -218,7 +219,7 @@ class ShippingMethodViewController: UIViewController {
                         self.shopView.isHidden = false
                         self.continueButton.isHidden = false
                     }
-                    self.view.activityStopAnimating()
+                    self.view.activityStopAnimatingFull()
                 })
                 .disposed(by: bag)
         }

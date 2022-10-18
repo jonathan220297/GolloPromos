@@ -304,8 +304,10 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            self.showAlert(alertText: "GolloApp", alertMessage: error.localizedDescription)
+        if let error = error as? NSError {
+            if error.code != -5 {
+                self.showAlert(alertText: "GolloApp", alertMessage: error.localizedDescription)
+            }
             return
         }
 

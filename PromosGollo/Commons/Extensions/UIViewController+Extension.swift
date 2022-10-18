@@ -198,7 +198,9 @@ extension UIViewController {
     func configureNavBar() {
         let menuButton = UIBarButtonItem(image: UIImage(named: "ic_menu"), style: .plain, target: self, action: #selector(menuButtonTapped))
         menuButton.tintColor = .white
-        let carButton = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(carButtonTapped))
+        let carButton = Badge(with: UIImage(named: "ic_cart"))
+        carButton.tapAction = carButtonTapped
+        carButton.setBadge(with: CoreDataService().fetchCarItems().count)
         carButton.tintColor = .white
         self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = carButton
@@ -227,7 +229,9 @@ extension UIViewController {
     func configureAlternativeNavBar() {
         let menuButton = UIBarButtonItem(image: UIImage(named: "ic_back_arrow"), style: .plain, target: self, action: #selector(backViewButtonTapped))
         menuButton.tintColor = .white
-        let carButton = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(carButtonTapped))
+        let carButton = Badge(with: UIImage(named: "ic_cart"))
+        carButton.tapAction = carButtonTapped
+        carButton.setBadge(with: CoreDataService().fetchCarItems().count)
         carButton.tintColor = .white
         self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = carButton
