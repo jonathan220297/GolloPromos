@@ -12,7 +12,7 @@ import DropDown
 class OffersFilteredListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var productCollectionView: UICollectionView!
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var optionButton: UIButton!
     
@@ -46,6 +46,7 @@ class OffersFilteredListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureAlternativeNavBar()
         fetchCategories()
         fetchOffers(with: taxonomy)
         configureRx()
@@ -54,7 +55,7 @@ class OffersFilteredListViewController: UIViewController {
     // MARK: - Functions
     func configureTableView() {
         self.collectionView.register(UINib(nibName: "CategoriesFilteredListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoriesFilteredListCell")
-        self.tableView.register(UINib(nibName: "OffersTableViewCell", bundle: nil), forCellReuseIdentifier: "OffersTableViewCell")
+        self.productCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
     }
 
     fileprivate func configureRx() {
@@ -139,7 +140,7 @@ class OffersFilteredListViewController: UIViewController {
                         products.append(p)
                     }
                     self.viewModel.products = products
-                    self.tableView.reloadData()
+                    self.productCollectionView.reloadData()
                 }
             })
             .disposed(by: bag)
@@ -160,74 +161,93 @@ class OffersFilteredListViewController: UIViewController {
 
 }
 
-extension OffersFilteredListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension OffersFilteredListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.categories.count
+        if collectionView == self.collectionView {
+            return viewModel.categories.count
+        } else if collectionView == self.productCollectionView {
+            return viewModel.products.count
+        }
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesFilteredListCell", for: indexPath) as! CategoriesFilteredListCollectionViewCell
-        cell.titleLabel.text = viewModel.categories[indexPath.row].nombre
+        if collectionView == self.collectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesFilteredListCell", for: indexPath) as! CategoriesFilteredListCollectionViewCell
+            cell.titleLabel.text = viewModel.categories[indexPath.row].nombre
+            return cell
+        } else {
+            return getProductCell(collectionView, cellForItemAt: indexPath)
+        }
+    }
+
+    func getProductCell(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
+        cell.setProductData(with: viewModel.products[indexPath.row])
+        cell.delegate = self
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.collectionView {
+            return CGSize(width: 140, height: 35)
+        } else {
+            let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+            let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+            let size: CGFloat = (collectionView.frame.size.width - space) / 2.0
+            return CGSize(width: size, height: 300)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if self.lastIndexActive != indexPath {
-            let selected = collectionView.cellForItem(at: indexPath) as! CategoriesFilteredListCollectionViewCell
-            selected.titleLabel.textColor = .white
-            selected.cellView.backgroundColor = .primaryLight
-            selected.cellView.layer.cornerRadius = 10
-            selected.cellView.layer.masksToBounds = true
-            selected.cellView.layoutSubviews()
-
-            self.selectedTaxonomy = viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1
-            self.fetchOffers(with: viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1)
-
-            let previous = collectionView.cellForItem(at: lastIndexActive) as? CategoriesFilteredListCollectionViewCell
-            previous?.titleLabel.textColor = UIColor { tc in
-                switch tc.userInterfaceStyle {
-                case .dark:
-                    return UIColor.primary
-                default:
-                    return UIColor.white
+        if collectionView == self.collectionView {
+            if self.lastIndexActive != indexPath {
+                let selected = collectionView.cellForItem(at: indexPath) as! CategoriesFilteredListCollectionViewCell
+                selected.titleLabel.textColor = .white
+                selected.cellView.backgroundColor = .primaryLight
+                selected.cellView.layer.cornerRadius = 10
+                selected.cellView.layer.masksToBounds = true
+                selected.cellView.layoutSubviews()
+                selected.cellView.layoutIfNeeded()
+                
+                self.selectedTaxonomy = viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1
+                self.fetchOffers(with: viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1)
+                
+                let previous = collectionView.cellForItem(at: lastIndexActive) as? CategoriesFilteredListCollectionViewCell
+                previous?.titleLabel.textColor = UIColor { tc in
+                    switch tc.userInterfaceStyle {
+                    case .dark:
+                        return UIColor.primary
+                    default:
+                        return UIColor.white
+                    }
                 }
+                previous?.cellView.backgroundColor = .primary
+                selected.cellView.layer.cornerRadius = 10
+                selected.cellView.layer.masksToBounds = true
+                selected.cellView.layoutSubviews()
+                selected.cellView.layoutIfNeeded()
+                
+                self.lastIndexActive = indexPath
             }
-            previous?.cellView.backgroundColor = .primary
-            selected.cellView.layer.cornerRadius = 10
-            selected.cellView.layer.masksToBounds = true
-            selected.cellView.layoutSubviews()
-
-            self.lastIndexActive = indexPath
         }
-    }
-}
-
-extension OffersFilteredListViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.products.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return getOfferCell(tableView, cellForRowAt: indexPath)
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.products.count > 2 ? 650 : 320
-    }
-
-    func getOfferCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OffersTableViewCell", for: indexPath) as? OffersTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.delegate = self
-        cell.viewModel.offersArray = viewModel.products
-        cell.configureCollectionView()
-        return cell
     }
 }
 
 extension OffersFilteredListViewController: OffersCellDelegate {
     func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension OffersFilteredListViewController: ProductCellDelegate {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
         vc.modalPresentationStyle = .fullScreen

@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,20 +23,39 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmq-Is-7r8">
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmq-Is-7r8">
                     <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tienes ordenes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2g-pg-FEI">
-                            <rect key="frame" x="125.66666666666667" y="371" width="138.66666666666663" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bag" translatesAutoresizingMaskIntoConstraints="NO" id="jLy-Cg-hx2">
+                            <rect key="frame" x="149.33333333333334" y="273.33333333333331" width="91.333333333333343" height="91.666666666666686"/>
+                            <color key="tintColor" name="colorPrimary"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="jLy-Cg-hx2" secondAttribute="height" multiplier="1:1" id="8et-cT-E5C"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista de órdenes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2g-pg-FEI">
+                            <rect key="frame" x="139.33333333333334" y="373" width="111.66666666666666" height="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.39239364859999998" blue="0.70810222629999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usted no ha realizado ningún pedido!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmL-jA-6U6">
+                            <rect key="frame" x="8" y="394" width="374" height="14.333333333333314"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="BmL-jA-6U6" firstAttribute="leading" secondItem="zmq-Is-7r8" secondAttribute="leading" constant="8" id="Bg6-Km-36f"/>
+                        <constraint firstItem="jLy-Cg-hx2" firstAttribute="centerX" secondItem="zmq-Is-7r8" secondAttribute="centerX" id="FJQ-oM-cyq"/>
                         <constraint firstItem="P2g-pg-FEI" firstAttribute="centerY" secondItem="zmq-Is-7r8" secondAttribute="centerY" id="VOX-2l-Tfu"/>
+                        <constraint firstItem="jLy-Cg-hx2" firstAttribute="height" secondItem="zmq-Is-7r8" secondAttribute="height" multiplier="0.12" id="Vdv-17-TK6"/>
+                        <constraint firstItem="P2g-pg-FEI" firstAttribute="top" secondItem="jLy-Cg-hx2" secondAttribute="bottom" constant="8" id="atz-md-2KA"/>
+                        <constraint firstAttribute="trailing" secondItem="BmL-jA-6U6" secondAttribute="trailing" constant="8" id="eBT-MJ-aV4"/>
                         <constraint firstItem="P2g-pg-FEI" firstAttribute="centerX" secondItem="zmq-Is-7r8" secondAttribute="centerX" id="ffi-Ii-7UA"/>
+                        <constraint firstItem="BmL-jA-6U6" firstAttribute="top" secondItem="P2g-pg-FEI" secondAttribute="bottom" constant="4" id="shw-fE-mgx"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swh-qU-Mf6">
@@ -74,6 +94,10 @@
         </view>
     </objects>
     <resources>
+        <image name="ic_bag" width="25" height="25"/>
+        <namedColor name="colorPrimary">
+            <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

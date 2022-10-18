@@ -53,7 +53,7 @@ class HomeViewController: UITabBarController {
         navigationMain.navigationBar.standardAppearance = getNavBarAppareance()
         navigationMain.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
         navigationMain.title = "Inicio"
-        navigationMain.tabBarItem.image = UIImage(systemName: "house.fill")
+        navigationMain.tabBarItem.image = UIImage(named: "ic_new_home")
 
         let offersTab = OffersTabViewController(
             viewModel: OffersTabViewModel()

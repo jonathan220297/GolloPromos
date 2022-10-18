@@ -15,7 +15,8 @@ class CarTabViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var endOrderButton: UIButton!
     @IBOutlet weak var emptyCarButton: UIButton!
-    
+    @IBOutlet weak var emptyView: UIView!
+
     // MARK: - Constants
     let viewModel: CarTabViewModel
     let bag = DisposeBag()
@@ -104,13 +105,19 @@ class CarTabViewController: UIViewController {
     
     func fetchCarItems() {
         viewModel.car = CoreDataService().fetchCarItems()
+
+        if viewModel.car.isEmpty {
+            self.emptyView.alpha = 1
+        } else {
+            self.emptyView.alpha = 0
+        }
+
         carTableView.reloadData()
         totalItemsLabel.text = "Tienes \(viewModel.car.count) item(s) en el carrito"
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.decimal
         var total = 0.0
         for item in viewModel.car {
-            print("ViewModel car data: \(item.idCarItem)")
             total += (item.precioUnitario * Double(item.cantidad)) + item.montoExtragar
         }
         viewModel.total = total

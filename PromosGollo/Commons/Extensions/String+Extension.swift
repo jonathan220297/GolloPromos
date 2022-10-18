@@ -80,6 +80,16 @@ extension String {
         return timeStamp
     }
 
+    func formatStringDateGollo() -> String {
+        let word = self
+        if let index = word.range(of: " ")?.lowerBound {
+            let substring = word[..<index]
+            return String(substring)
+        } else {
+            return self
+        }
+    }
+
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
         do {

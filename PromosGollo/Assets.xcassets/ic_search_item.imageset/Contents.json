@@ -5,11 +5,11 @@
       "scale" : "1x"
     },
     {
+      "filename" : "ic_search_item.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ic_payments.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

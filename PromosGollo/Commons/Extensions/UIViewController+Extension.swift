@@ -190,6 +190,10 @@ extension UIViewController {
         searchOffersViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(searchOffersViewController, animated: true)
     }
+
+    @objc func backViewButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     func configureNavBar() {
         let menuButton = UIBarButtonItem(image: UIImage(named: "ic_menu"), style: .plain, target: self, action: #selector(menuButtonTapped))
@@ -199,6 +203,35 @@ extension UIViewController {
         self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = carButton
         
+        let searchView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width * 0.65, height: 25))
+        searchView.backgroundColor = .white
+        searchView.layer.cornerRadius = 5.0
+        let searchImageView = UIImageView(frame: CGRect(x: 8, y: 4, width: 15, height: 15))
+        searchImageView.image = UIImage(systemName: "magnifyingglass")
+        searchView.addSubview(searchImageView)
+        searchImageView.tintColor = .gray
+        let searchLabel = UILabel(frame: CGRect(x: 28, y: 2, width: self.view.frame.size.width * 0.4, height: 21))
+        searchLabel.font = UIFont.systemFont(ofSize: 13)
+        searchLabel.textColor = .gray
+        searchLabel.text = "Buscar en Gollo"
+        searchView.addSubview(searchLabel)
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(searchButtonTapped))
+
+        searchView.addGestureRecognizer(tap)
+        searchView.isUserInteractionEnabled = true
+
+        self.navigationItem.titleView = searchView
+    }
+
+    func configureAlternativeNavBar() {
+        let menuButton = UIBarButtonItem(image: UIImage(named: "ic_back_arrow"), style: .plain, target: self, action: #selector(backViewButtonTapped))
+        menuButton.tintColor = .white
+        let carButton = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(carButtonTapped))
+        carButton.tintColor = .white
+        self.navigationItem.leftBarButtonItem = menuButton
+        self.navigationItem.rightBarButtonItem = carButton
+
         let searchView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width * 0.65, height: 25))
         searchView.backgroundColor = .white
         searchView.layer.cornerRadius = 5.0

@@ -51,6 +51,18 @@ class PaymentViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+    }
+
     // MARK: - Observers
     @objc func otherAmountTextFieldDidChange(_ textField: UITextField) {
         otherAmountErrorLabel.isHidden = true

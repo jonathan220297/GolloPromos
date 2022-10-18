@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="carTableView" destination="fNM-Dn-5qh" id="Xwl-Cn-tk1"/>
                 <outlet property="emptyCarButton" destination="aP6-b6-zIX" id="jKW-Zc-VDX"/>
+                <outlet property="emptyView" destination="ybK-7u-eiD" id="6PC-xK-2D0"/>
                 <outlet property="endOrderButton" destination="XBF-MB-DVA" id="jff-LJ-euk"/>
                 <outlet property="totalItemsLabel" destination="qUu-F6-PJE" id="a8d-8C-d5l"/>
                 <outlet property="totalLabel" destination="RHK-O4-4K0" id="QgB-u1-a0Z"/>
@@ -120,27 +121,82 @@
                         <constraint firstItem="XBF-MB-DVA" firstAttribute="top" secondItem="b7e-m3-D77" secondAttribute="bottom" constant="8" id="yhx-wF-YMT"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybK-7u-eiD">
+                    <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LK4-un-F5W">
+                            <rect key="frame" x="4" y="4" width="382" height="1"/>
+                            <color key="backgroundColor" white="0.30575770549999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.30575770549999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="emg-U8-rI1"/>
+                            </constraints>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_car" translatesAutoresizingMaskIntoConstraints="NO" id="AFZ-Zj-Fsy">
+                            <rect key="frame" x="149.33333333333334" y="335.66666666666669" width="91.333333333333343" height="91.666666666666686"/>
+                            <color key="tintColor" name="colorPrimary"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="AFZ-Zj-Fsy" secondAttribute="height" multiplier="1:1" id="7p7-5w-928"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mi carrito" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpZ-P9-CdY">
+                            <rect key="frame" x="8" y="435.33333333333331" width="374" height="20.333333333333314"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" name="colorPrimary"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Todavía no has ingresado ningún artículo al carrito. Comienza a agregar articulos para completar tu compra." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b9-K3-LZB">
+                            <rect key="frame" x="8" y="459.66666666666669" width="374" height="28.666666666666686"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="7b9-K3-LZB" firstAttribute="top" secondItem="NpZ-P9-CdY" secondAttribute="bottom" constant="4" id="93t-Tv-kFR"/>
+                        <constraint firstAttribute="trailing" secondItem="NpZ-P9-CdY" secondAttribute="trailing" constant="8" id="DoK-Aw-tHZ"/>
+                        <constraint firstAttribute="trailing" secondItem="LK4-un-F5W" secondAttribute="trailing" constant="4" id="WCE-sB-yPe"/>
+                        <constraint firstAttribute="trailing" secondItem="7b9-K3-LZB" secondAttribute="trailing" constant="8" id="b5x-Gg-q7q"/>
+                        <constraint firstItem="AFZ-Zj-Fsy" firstAttribute="centerX" secondItem="ybK-7u-eiD" secondAttribute="centerX" id="esr-iA-nH0"/>
+                        <constraint firstItem="AFZ-Zj-Fsy" firstAttribute="height" secondItem="ybK-7u-eiD" secondAttribute="height" multiplier="0.12" id="fGV-EC-Dul"/>
+                        <constraint firstItem="AFZ-Zj-Fsy" firstAttribute="centerY" secondItem="ybK-7u-eiD" secondAttribute="centerY" id="jnM-oE-AIe"/>
+                        <constraint firstItem="LK4-un-F5W" firstAttribute="top" secondItem="ybK-7u-eiD" secondAttribute="top" constant="4" id="mHr-lu-uvL"/>
+                        <constraint firstItem="LK4-un-F5W" firstAttribute="leading" secondItem="ybK-7u-eiD" secondAttribute="leading" constant="4" id="mZg-rT-fke"/>
+                        <constraint firstItem="NpZ-P9-CdY" firstAttribute="top" secondItem="AFZ-Zj-Fsy" secondAttribute="bottom" constant="8" id="q5e-Oq-Mfl"/>
+                        <constraint firstItem="NpZ-P9-CdY" firstAttribute="leading" secondItem="ybK-7u-eiD" secondAttribute="leading" constant="8" id="sls-cD-Lys"/>
+                        <constraint firstItem="7b9-K3-LZB" firstAttribute="leading" secondItem="ybK-7u-eiD" secondAttribute="leading" constant="8" id="xbO-90-Q92"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ybK-7u-eiD" secondAttribute="trailing" id="81h-HD-PM3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Sgg-yg-qp3" secondAttribute="trailing" id="9N4-Vj-6mb"/>
                 <constraint firstItem="fNM-Dn-5qh" firstAttribute="top" secondItem="mcp-Gb-Tw4" secondAttribute="bottom" constant="8" id="B87-mL-yrn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ybK-7u-eiD" secondAttribute="bottom" id="G2Q-sL-phD"/>
                 <constraint firstItem="mcp-Gb-Tw4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="KAm-4z-7mV"/>
+                <constraint firstItem="ybK-7u-eiD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Kdg-rA-NGP"/>
                 <constraint firstItem="Sgg-yg-qp3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OpH-aw-Ptu"/>
                 <constraint firstItem="mcp-Gb-Tw4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OvC-Jp-grH"/>
                 <constraint firstItem="fNM-Dn-5qh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Qyf-fc-avW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mcp-Gb-Tw4" secondAttribute="trailing" id="SHJ-gX-whH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fNM-Dn-5qh" secondAttribute="trailing" id="lDE-Mw-sSy"/>
                 <constraint firstItem="Sgg-yg-qp3" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="rvT-qw-43O"/>
+                <constraint firstItem="ybK-7u-eiD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="t7j-QH-scq"/>
                 <constraint firstItem="Sgg-yg-qp3" firstAttribute="top" secondItem="fNM-Dn-5qh" secondAttribute="bottom" id="xkB-7z-zDm"/>
             </constraints>
             <point key="canvasLocation" x="140" y="20.616113744075829"/>
         </view>
     </objects>
     <resources>
+        <image name="ic_car" width="25" height="25"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorPrimary">
+            <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="separatorColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

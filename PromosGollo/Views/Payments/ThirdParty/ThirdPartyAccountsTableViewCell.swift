@@ -27,7 +27,10 @@ class ThirdPartyAccountsTableViewCell: UITableViewCell {
     func setAccount(model: AccountsDetail, index: Int) {
         accountLabel.text = "Número de cuenta: \(model.numCuenta ?? "")"
 
-        paymentDateLabel.text = model.fechaPago
+        if let date = model.fechaPago {
+            paymentDateLabel.text = date.formatStringDateGollo()
+        }
+
         if let fee = numberFormatter.string(from: NSNumber(value: model.montoCuota ?? 0.0)) {
             feeAmountLabel.text = "₡" + String(fee)
         }

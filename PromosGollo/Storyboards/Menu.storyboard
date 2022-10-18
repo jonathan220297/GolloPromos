@@ -111,7 +111,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIL-Zu-fqN">
                                                         <rect key="frame" x="0.0" y="54" width="414" height="50"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_menu_home" translatesAutoresizingMaskIntoConstraints="NO" id="dgx-VT-8fh">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_menu_categories" translatesAutoresizingMaskIntoConstraints="NO" id="dgx-VT-8fh">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>
                                                                 <color key="tintColor" name="colorPrimary"/>
                                                                 <constraints>
@@ -437,7 +437,7 @@
     <resources>
         <image name="ic_help" width="100" height="100"/>
         <image name="ic_logout" width="100" height="100"/>
-        <image name="ic_menu_home" width="25" height="25"/>
+        <image name="ic_menu_categories" width="50" height="50"/>
         <image name="ic_notification" width="25" height="25"/>
         <image name="ic_terms" width="100" height="100"/>
         <image name="ic_user_profile" width="100" height="100"/>

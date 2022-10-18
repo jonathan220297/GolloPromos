@@ -16,7 +16,9 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var offerImage: UIImageView!
     @IBOutlet weak var imageConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    
     @IBOutlet weak var modelView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var serialLabel: UILabel!
@@ -76,6 +78,8 @@ class OfferDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureAlternativeNavBar()
+        
         // Zoom
         scrollImageView.minimumZoomScale = 1
         scrollImageView.maximumZoomScale = 4
@@ -101,7 +105,7 @@ class OfferDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func share() {
+    fileprivate func shareContent() {
         let someText:String = "Oferta: \(offer?.productName ?? "")\nSKU: \(offer?.productCode ?? "")\n\nPrecio Original: \(originalPrice.text ?? "")"
         var objectsToShare:UIImage?
         if let image = self.offerImage.image {
@@ -116,7 +120,7 @@ class OfferDetailViewController: UIViewController {
         self.present(activityViewController, animated: true, completion: nil)
     }
 
-    @objc func saveFavorites() {
+    fileprivate func saveFavorite() {
 //        var list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
 //        if let data = offer {
 //            list.append(data)
@@ -127,17 +131,6 @@ class OfferDetailViewController: UIViewController {
     //MARK: - Functions
     func configureViews() {
         carView.layer.cornerRadius = 20.0
-
-        self.navigationController?.navigationBar.tintColor = UIColor.primary
-        let rigthButton = UIBarButtonItem(image: UIImage(named: "ic_share"), style: .plain, target: self, action: #selector(share))
-        rigthButton.tintColor = .white
-        let rigthButton2 = UIBarButtonItem(image: UIImage(named: "ic_heart"), style: .plain, target: self, action: #selector(saveFavorites))
-        rigthButton2.tintColor = .white
-        self.navigationItem.rightBarButtonItems = [rigthButton, rigthButton2]
-        
-        let leftButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        leftButton.tintColor = .white
-        self.navigationItem.leftBarButtonItem = leftButton
     }
     
     fileprivate func configureRx() {
@@ -149,6 +142,22 @@ class OfferDetailViewController: UIViewController {
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
+            })
+            .disposed(by: bag)
+
+        favoriteButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.configureServiceDropDown()
+            })
+            .disposed(by: bag)
+
+        shareButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.configureServiceDropDown()
             })
             .disposed(by: bag)
 
@@ -220,7 +229,7 @@ class OfferDetailViewController: UIViewController {
                         CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
                         self.carView.isHidden = false
                         self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
-                        if self.warrantyMonth == 0 {
+                        if self.viewModel.documents.count > 0 && self.warrantyMonth == 0 {
                             let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
                             offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
                             offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve

@@ -40,6 +40,11 @@ class ThirdPartyViewController: UIViewController {
         configureRx()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
     @IBAction func allDocumentsTapped(_ sender: Any) {
         let dropDown = DropDown()
         dropDown.anchorView = documentTypeButton
@@ -90,7 +95,8 @@ class ThirdPartyViewController: UIViewController {
                        let secondLastName = data.apellido2 {
                         self.customerNameLabel.text = name + " " + lastName + " " + secondLastName
                     }
-                    self.tabBarController?.navigationItem.title = "Cuentas activas de terceros"
+
+                    self.navigationItem.title = "Cuentas activas de terceros"
                     self.customerDocumentLabel.text = "Cedula: \(number)"
                     self.fetchCustomerAccounts(documentType: type, documentId: number)
                 } else {
@@ -143,7 +149,7 @@ extension ThirdPartyViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = PaymentViewController.instantiate(fromAppStoryboard: .Payments)
         vc.modalPresentationStyle = .fullScreen
         let payment = PaymentData()
-        payment.currency = ""
+        payment.currency = GOLLOAPP.CURRENCY_SIMBOL.rawValue
         payment.suggestedAmount = model.montoSugeridoBotonera
         payment.installmentAmount = model.montoCuota
         payment.totalAmount = model.montoCancelarCuenta
@@ -152,8 +158,8 @@ extension ThirdPartyViewController: UITableViewDelegate, UITableViewDataSource {
         payment.type = 1
         payment.documentId = Variables.userProfile?.numeroIdentificacion ?? "205080150"
         payment.documentType = Variables.userProfile?.tipoIdentificacion ?? "C"
-        payment.nombreCliente = ""
-        payment.email = ""
+        payment.nombreCliente = "\(Variables.userProfile?.nombre ?? "") \(Variables.userProfile?.apellido1 ?? "")"
+        payment.email = Variables.userProfile?.correoElectronico1 ?? ""
         vc.paymentData = payment
         vc.isThirdPayAccount = true
         self.navigationController?.pushViewController(vc, animated: true)

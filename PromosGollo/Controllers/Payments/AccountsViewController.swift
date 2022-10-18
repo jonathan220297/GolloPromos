@@ -22,13 +22,17 @@ class AccountsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.isHidden = true
 
         navigationItem.title = "Mis compras a crédito"
 
         tableView.rowHeight = 335.0
         tableView.tableFooterView = UIView()
         fetchAccounts()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     override func viewDidLayoutSubviews() {
@@ -57,7 +61,11 @@ class AccountsViewController: UIViewController {
                 guard let self = self,
                       let data = data else { return }
                 if data.isEmpty {
+                    self.emptyDataView.alpha = 1
                     self.dataView.alpha = 0
+                } else {
+                    self.emptyDataView.alpha = 0
+                    self.dataView.alpha = 1
                 }
                 DispatchQueue.main.async {
                     self.view.activityStopAnimating()
@@ -92,17 +100,17 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = PaymentViewController.instantiate(fromAppStoryboard: .Payments)
         vc.modalPresentationStyle = .fullScreen
         let payment = PaymentData()
-        payment.currency = ""
+        payment.currency = GOLLOAPP.CURRENCY_SIMBOL.rawValue
         payment.suggestedAmount = model.montoSugeridoBotonera
         payment.installmentAmount = model.montoCuota
         payment.totalAmount = model.montoCancelarCuenta
         payment.idCuenta = model.idCuenta
         payment.numCuenta = model.numCuenta
         payment.type = 1
-        payment.documentId = "205080150"
-        payment.documentType = "C"
-        payment.nombreCliente = ""
-        payment.email = ""
+        payment.documentId = Variables.userProfile?.numeroIdentificacion ?? "205080150"
+        payment.documentType = Variables.userProfile?.tipoIdentificacion ?? "C"
+        payment.nombreCliente = "\(Variables.userProfile?.nombre ?? "") \(Variables.userProfile?.apellido1 ?? "")"
+        payment.email = Variables.userProfile?.correoElectronico1 ?? ""
         vc.paymentData = payment
         vc.isThirdPayAccount = false
         self.navigationController?.pushViewController(vc, animated: true)

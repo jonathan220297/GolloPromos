@@ -30,7 +30,7 @@ class OrdersTableViewCell: UITableViewCell {
         orderNumberLabel.attributedText = formatHTML(header: "Número de order: ", content: data.ordenNaf ?? "")
         statusLabel.attributedText = formatHTML(header: "Status: ", content: "Ingresado")
         if let date = data.fechaOrden {
-            dateLabel.attributedText = formatHTML(header: "Fecha pedido: ", content: date)
+            dateLabel.attributedText = formatHTML(header: "Fecha pedido: ", content: date.formatStringDateGollo())
         }
     }
 }

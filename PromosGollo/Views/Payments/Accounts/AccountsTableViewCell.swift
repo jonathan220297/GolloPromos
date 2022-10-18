@@ -45,7 +45,9 @@ class AccountsTableViewCell: UITableViewCell {
 
     func setAccount(model: AccountsDetail, index: Int) {
         accountLabel.text = "Número de cuenta: \(model.numCuenta ?? "")"
-        startDateLabel.text = "Fecha de inicio: \(model.fecha ?? "")"
+        if let date = model.fecha {
+            startDateLabel.text = "Fecha de inicio: \(date.formatStringDateGollo())"
+        }
         if let initial = numberFormatter.string(from: NSNumber(value: model.montoInicial ?? 0.0)) {
             initialAmountLabel.text = "₡" + String(initial)
         }
@@ -56,7 +58,9 @@ class AccountsTableViewCell: UITableViewCell {
             totalPaymentLabel.text = "₡" + String(total)
         }
 
-        paymentDateLabel.text = model.fechaPago
+        if let paymentDate = model.fechaPago {
+            paymentDateLabel.text = paymentDate.formatStringDateGollo()
+        }
         if let fee = numberFormatter.string(from: NSNumber(value: model.montoCuota ?? 0.0)) {
             feeAmountLabel.text = "₡" + String(fee)
         }
