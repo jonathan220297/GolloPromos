@@ -14,24 +14,16 @@ struct NotificationsRequest: APIRequest {
     public var resourceName: String {
         return "Procesos"
     }
-    
-    public let enterprise: Int
-    public let user: String
-    public let notificationType: Int
-    public let page: Int
-    public let perPage: Int
-    public let search: String
-    public let notificationId: String
-    
+
+    let service: BaseServiceRequestParam<NotificationsServiceRequest>?
+
     public var dictionary: [String: Any] {
-        return [
-            "idEmpresa": enterprise,
-            "usuario": user,
-            "idTipoNotificacion": notificationType,
-            "numPagina": page,
-            "tamanoPagina": perPage,
-            "busqueda": search,
-            "idNotificacion": notificationId
-        ]
+        return service.map { $0.dict }!!
     }
 }
+
+struct NotificationsServiceRequest: Codable {
+    var idCliente, idCompania: String
+    var numPagina, tamanoPagina: Int
+}
+

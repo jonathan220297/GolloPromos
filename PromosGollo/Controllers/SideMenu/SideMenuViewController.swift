@@ -46,6 +46,12 @@ class SideMenuViewController: UIViewController {
     }
 
     // MARK: - Actions
+    @IBAction func notificationsButtonTapped(_ sender: Any) {
+        let vc = NotificationsViewController.instantiate(fromAppStoryboard: .Notifications)
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     @IBAction func logoutButtonTapped(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
@@ -100,6 +106,7 @@ extension SideMenuViewController {
     fileprivate func configureRx() {
         editProfileButton.rx.tap.bind {
             let vc = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+            vc.sideMenuAcction = true
             vc.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(vc, animated: true)
         }

@@ -60,7 +60,14 @@ class LoginViewModel: NSObject {
             LoginRequest(
                 service: BaseServiceRequestParam<LoginServiceRequest>(
                     servicio: ServicioParam(
-                        encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.LOGIN_PROCESS_ID.rawValue),
+                        encabezado: Encabezado(
+                            idProceso: GOLLOAPP.LOGIN_PROCESS_ID.rawValue,
+                            idDevice: "",
+                            idUsuario: UserManager.shared.userData?.uid ?? "",
+                            timeStamp: String(Date().timeIntervalSince1970),
+                            idCia: 10,
+                            token: "",
+                            integrationId: nil),
                         parametros: LoginServiceRequest(
                             idCliente: userManager.userData?.uid ?? "",
                             nombre: userManager.userData?.displayName ?? "",

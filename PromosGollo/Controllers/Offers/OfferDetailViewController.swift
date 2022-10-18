@@ -234,13 +234,6 @@ class OfferDetailViewController: UIViewController {
     
     private func showData(with data: OfferDetail) {
         self.initGolloPlus(with: data)
-        if !Variables.isRegisterUser {
-            DispatchQueue.main.async {
-                self.cartView.visibility = .gone
-                self.cartViewHeight.constant = 0
-                self.cartView.layoutIfNeeded()
-            }
-        }
 
         if let offer = offer {
             self.view.activityStopAnimatingFull()

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Respuesta
 struct OrdersData: Codable {
-    let ordenes: [Order]
+    let ordenes: [Order]?
 }
 
 struct Order: Codable {

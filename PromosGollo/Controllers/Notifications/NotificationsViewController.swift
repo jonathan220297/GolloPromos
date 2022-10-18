@@ -51,7 +51,8 @@ class NotificationsViewController: UIViewController {
     }
 
     fileprivate func fetchNotifications() {
-        viewModel.fetchNotifications()
+        viewModel
+            .fetchNotifications()
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,

@@ -49,7 +49,8 @@ class CarTabViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - Functions

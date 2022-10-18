@@ -11,6 +11,8 @@ import RxRelay
 class OrdersTabViewModel {
     private let service = GolloService()
 
+    let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
+    
     var orders: [Order] = []
 
     func fetchOrders() -> BehaviorRelay<OrdersData?> {
@@ -37,6 +39,7 @@ class OrdersTabViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
+                    self.errorMessage.accept("\(error.localizedDescription)")
                     print("Error: \(error.localizedDescription)")
                 }
             }

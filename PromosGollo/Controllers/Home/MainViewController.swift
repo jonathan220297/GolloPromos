@@ -32,6 +32,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = false
         configureViewModel()
         configureTableView()
         configureRx()
@@ -39,7 +40,7 @@ class MainViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
         configureNavBar()
         fetchHomeConfiguration()

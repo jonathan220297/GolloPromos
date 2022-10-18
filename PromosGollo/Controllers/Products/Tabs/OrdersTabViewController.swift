@@ -45,6 +45,19 @@ class OrdersTabViewController: UIViewController {
         tabBarController?.navigationItem.leftBarButtonItem = nil
     }
 
+    fileprivate func configureRx() {
+        viewModel.errorMessage
+            .asObservable()
+            .bind { (errorMessage) in
+                if !errorMessage.isEmpty {
+                    self.emptyView.alpha = 1
+                    self.dataView.alpha = 0
+                    self.viewModel.errorMessage.accept("")
+                }
+            }
+            .disposed(by: bag)
+    }
+
     func configureTableView() {
         ordersTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersTableViewCell")
     }
@@ -56,16 +69,16 @@ class OrdersTabViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
-                if data.ordenes.isEmpty {
-                    self.emptyView.alpha = 1
-                    self.dataView.alpha = 0
-                } else {
+                if let orders = data.ordenes, !orders.isEmpty {
+                    self.viewModel.orders = orders
+                    self.ordersTableView.reloadData()
                     self.emptyView.alpha = 0
                     self.dataView.alpha = 1
+                } else {
+                    self.emptyView.alpha = 1
+                    self.dataView.alpha = 0
                 }
                 self.view.activityStopAnimating()
-                self.viewModel.orders = data.ordenes
-                self.ordersTableView.reloadData()
             })
             .disposed(by: bag)
     }

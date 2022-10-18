@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BNP-9x-DdO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BNP-9x-DdO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsy-nQ-HT3">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsy-nQ-HT3">
                                 <rect key="frame" x="50" y="336" width="314" height="224"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_notification" translatesAutoresizingMaskIntoConstraints="NO" id="vlA-Ci-501">
@@ -54,7 +54,7 @@
                                     <constraint firstItem="0kY-5a-HwM" firstAttribute="leading" secondItem="hsy-nQ-HT3" secondAttribute="leading" id="w3f-Yo-UcA"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeL-OW-p7M">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeL-OW-p7M">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="s83-1T-sK2">
@@ -73,59 +73,55 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NotificationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SystemTableViewCell" rowHeight="75" id="jCB-jc-b8H" customClass="NotificationTableViewCell" customModule="PromosGollo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="414" height="75"/>
+                                                <rect key="frame" x="0.0" y="50" width="414" height="75"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jCB-jc-b8H" id="Spj-tI-Fo6">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ylu-5B-zkh" customClass="CircularImage" customModule="PromosGollo" customModuleProvider="target">
-                                                            <rect key="frame" x="12" y="6.5" width="62" height="62"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aYG-4B-Cds">
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="75"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qN1-ir-Eiw">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="25"/>
+                                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="12"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TU-tI-T8o">
+                                                                    <rect key="frame" x="0.0" y="25" width="374" height="25"/>
+                                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOi-AC-ETl">
+                                                                    <rect key="frame" x="0.0" y="50" width="374" height="25"/>
+                                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="12"/>
+                                                                    <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p2h-yS-0o7">
+                                                            <rect key="frame" x="382" y="25.5" width="24" height="24"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="ylu-5B-zkh" secondAttribute="height" multiplier="1:1" id="cXB-BR-165"/>
+                                                                <constraint firstAttribute="width" constant="24" id="Ca1-bH-0le"/>
+                                                                <constraint firstAttribute="height" constant="24" id="Ovg-Ny-FfE"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qN1-ir-Eiw">
-                                                            <rect key="frame" x="78" y="4" width="0.0" height="17"/>
-                                                            <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="12"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TU-tI-T8o">
-                                                            <rect key="frame" x="78" y="21" width="314" height="17"/>
-                                                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOi-AC-ETl">
-                                                            <rect key="frame" x="78" y="42" width="332" height="17"/>
-                                                            <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="12"/>
-                                                            <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="ylu-5B-zkh" firstAttribute="centerY" secondItem="Spj-tI-Fo6" secondAttribute="centerY" id="4JD-Jy-PHU"/>
-                                                        <constraint firstItem="cOi-AC-ETl" firstAttribute="top" secondItem="9TU-tI-T8o" secondAttribute="bottom" constant="4" id="FE0-VZ-cxF"/>
-                                                        <constraint firstItem="cOi-AC-ETl" firstAttribute="height" secondItem="Spj-tI-Fo6" secondAttribute="height" multiplier="0.226667" id="IZ1-ch-QmA"/>
-                                                        <constraint firstItem="ylu-5B-zkh" firstAttribute="leading" secondItem="Spj-tI-Fo6" secondAttribute="leadingMargin" constant="-8" id="KfN-SX-gcc"/>
-                                                        <constraint firstItem="9TU-tI-T8o" firstAttribute="leading" secondItem="ylu-5B-zkh" secondAttribute="trailing" constant="4" id="Lk2-3c-i02"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="9TU-tI-T8o" secondAttribute="trailing" constant="2" id="TEZ-Q7-LyN"/>
-                                                        <constraint firstItem="9TU-tI-T8o" firstAttribute="height" secondItem="Spj-tI-Fo6" secondAttribute="height" multiplier="0.226667" id="YA1-aR-Xt2"/>
-                                                        <constraint firstItem="9TU-tI-T8o" firstAttribute="top" secondItem="qN1-ir-Eiw" secondAttribute="bottom" id="aUO-yp-sVY"/>
-                                                        <constraint firstItem="ylu-5B-zkh" firstAttribute="width" secondItem="Spj-tI-Fo6" secondAttribute="width" multiplier="0.15" id="foT-8u-BGT"/>
-                                                        <constraint firstItem="qN1-ir-Eiw" firstAttribute="height" secondItem="Spj-tI-Fo6" secondAttribute="height" multiplier="0.226667" id="j9m-fS-ioR"/>
-                                                        <constraint firstItem="cOi-AC-ETl" firstAttribute="leading" secondItem="ylu-5B-zkh" secondAttribute="trailing" constant="4" id="qe2-2d-2iE"/>
-                                                        <constraint firstItem="qN1-ir-Eiw" firstAttribute="top" secondItem="Spj-tI-Fo6" secondAttribute="top" constant="4" id="rtF-U3-p3x"/>
-                                                        <constraint firstItem="qN1-ir-Eiw" firstAttribute="leading" secondItem="ylu-5B-zkh" secondAttribute="trailing" constant="4" id="ugK-IU-CI4"/>
-                                                        <constraint firstAttribute="trailing" secondItem="cOi-AC-ETl" secondAttribute="trailing" constant="4" id="v0U-4G-rde"/>
+                                                        <constraint firstItem="p2h-yS-0o7" firstAttribute="centerY" secondItem="Spj-tI-Fo6" secondAttribute="centerY" id="Kmq-rU-RUV"/>
+                                                        <constraint firstAttribute="bottom" secondItem="aYG-4B-Cds" secondAttribute="bottom" id="YzY-Fg-W01"/>
+                                                        <constraint firstItem="aYG-4B-Cds" firstAttribute="leading" secondItem="Spj-tI-Fo6" secondAttribute="leading" id="c1O-qq-rd6"/>
+                                                        <constraint firstItem="p2h-yS-0o7" firstAttribute="leading" secondItem="aYG-4B-Cds" secondAttribute="trailing" constant="8" id="hoz-Rv-4jO"/>
+                                                        <constraint firstItem="aYG-4B-Cds" firstAttribute="top" secondItem="Spj-tI-Fo6" secondAttribute="top" id="xKd-H5-fRb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="p2h-yS-0o7" secondAttribute="trailing" constant="8" id="z7X-U7-CdJ"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="contentCell" destination="9TU-tI-T8o" id="1cq-TH-wkg"/>
                                                     <outlet property="dateCell" destination="cOi-AC-ETl" id="7In-wl-I6U"/>
-                                                    <outlet property="imageCell" destination="ylu-5B-zkh" id="vcc-yz-W0g"/>
                                                     <outlet property="titleCell" destination="qN1-ir-Eiw" id="wNd-bR-wFf"/>
                                                 </connections>
                                             </tableViewCell>
@@ -179,7 +175,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biq-Ie-1eM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="848"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bse-wN-H74">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="526"/>
