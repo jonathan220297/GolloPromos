@@ -234,10 +234,7 @@ class LoginViewController: UIViewController {
                 }
                 guard let user = user else { return }
                 self.viewModel.setUserData(with: user)
-                if let vc = AppStoryboard.Home.initialViewController() {
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
-                }
+                self.loginRequestInfo(for: .facebook)
             }
         }
     }
@@ -322,10 +319,7 @@ extension LoginViewController: GIDSignInDelegate {
             }
             guard let user = user else { return }
             self.viewModel.setUserData(with: user)
-            if let vc = AppStoryboard.Home.initialViewController() {
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
-            }
+            self.loginRequestInfo(for: .google)
         }
     }
 }
@@ -376,10 +370,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                     }
                 })
                 self.viewModel.setUserData(with: user)
-                if let vc = AppStoryboard.Home.initialViewController() {
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
-                }
+                self.loginRequestInfo(for: .apple)
+//                if let vc = AppStoryboard.Home.initialViewController() {
+//                    vc.modalPresentationStyle = .fullScreen
+//                    self.present(vc, animated: true)
+//                }
             }
         }
     }
@@ -388,8 +383,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         // Handle error.
         log.debug("Sign in with Apple errored: \(error)")
         let nsError = error as NSError
-        if nsError.code != 1001 {
-            self.showAlert(alertText: "Shoppi", alertMessage: "Apple ID sign in error.")
+        switch nsError.code {
+        case 1001, 1000:
+            break
+        default:
+            self.showAlert(alertText: "GolloApp", alertMessage: "Apple ID sign in error.")
         }
     }
 }

@@ -32,6 +32,7 @@ class PaymentViewController: UIViewController {
 
     var paymentData: PaymentData? = nil
     var isThirdPayAccount: Bool = false
+    var antiLaunderingAmount: Double = 0.0
     var cardTypePayment: Bool = false
     var currentAmount: Double? = 0.0
     var selectedPaymentAmount = -1
@@ -113,13 +114,21 @@ class PaymentViewController: UIViewController {
 
     @IBAction func payment(_ sender: Any) {
         if otherAmountView.isHidden && validateAmountData() {
-            self.showPaymentConfirmViewController()
+            if self.isThirdPayAccount && self.currentAmount! > self.antiLaunderingAmount {
+                self.showProvenanceViewController()
+            } else {
+                self.showPaymentConfirmViewController()
+            }
         } else if !otherAmountView.isHidden {
             guard let amount = otherAmountTextField.text else { return }
             let amountDouble = Double(amount.replacingOccurrences(of: "₡", with: "").replacingOccurrences(of: ",", with: "")) ?? 0.0
             if amountDouble > 0.0 {
                 self.currentAmount = amountDouble
-                self.showPaymentConfirmViewController()
+                if self.isThirdPayAccount && self.currentAmount! > self.antiLaunderingAmount {
+                    self.showProvenanceViewController()
+                } else {
+                    self.showPaymentConfirmViewController()
+                }
             } else if amount.isEmpty {
                 self.setErrorLabel(with: "Monto es requerido")
             }
@@ -142,7 +151,19 @@ class PaymentViewController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
+
+    private func showProvenanceViewController() {
+        DispatchQueue.main.async {
+            let provenanceViewController = ProvenanceViewController(
+                viewModel: ProvenanceViewModel(),
+                paymentData: self.paymentData,
+                currentAmount: self.currentAmount
+            )
+            provenanceViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(provenanceViewController, animated: true)
+        }
+    }
+
     private func setErrorLabel(with text: String) {
         otherAmountErrorLabel.isHidden = false
         otherAmountErrorLabel.text = text
