@@ -16,10 +16,8 @@ enum MovementType: String {
 }
 
 class PaymentDataViewModel {
-    //    private let service = ShoppiService()
-    //    let paymentManager = PaymentManager.shared
     private let service = GolloService()
-    private let carManager = CarManager.shared
+    let carManager = CarManager.shared
     
     var isAccountPayment = true
     
@@ -143,7 +141,9 @@ class PaymentDataViewModel {
                numTarjeta: cardNumber,
                tipoPlazoTarjeta: "11723675",
                tipoTarjeta: "",
-               totalCuotas: 0
+               totalCuotas: 0,
+               indTarjeta: carManager.paymentMethodSelected?.indTarjeta ?? 0,
+               indPrincipal: carManager.paymentMethodSelected?.indPrincipal ?? 0
            )
         )
     }

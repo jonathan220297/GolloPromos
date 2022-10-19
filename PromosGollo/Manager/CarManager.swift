@@ -16,4 +16,13 @@ class CarManager {
     var paymentMethodSelected: PaymentMethodResponse?
     var paymentMethod: [PaymentMethod] = []
     var deliveryInfo: DeliveryInfo?
+    
+    func emptyCar() -> Bool {
+        car.removeAll()
+        shippingMethod = nil
+        paymentMethodSelected = nil
+        paymentMethod.removeAll()
+        deliveryInfo = nil
+        return CoreDataService().deleteAllItems()
+    }
 }

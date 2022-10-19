@@ -29,13 +29,13 @@ class HomeTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
         configureCollectionView()
         configureViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureNavBar()
         fetchHomeConfiguration()
     }
     
@@ -156,7 +156,12 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
 }
 
 extension HomeTabViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = viewModel.sections[indexPath.section].product?[indexPath.row]
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension HomeTabViewController: HomeSectionDelegate {

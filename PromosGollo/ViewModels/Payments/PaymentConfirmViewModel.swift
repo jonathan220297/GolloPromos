@@ -53,10 +53,30 @@ class PaymentConfirmViewModel {
         return apiResponse
     }
 
-    func sendOrder() -> BehaviorRelay<SendOrderResponse?> {
+    func sendOrder() -> BehaviorRelay<PaymentOrderResponse?> {
         guard let deliveryInfo = carManager.deliveryInfo,
               let clientID = Variables.userProfile?.numeroIdentificacion else {
-            return BehaviorRelay<SendOrderResponse?>(value: nil)
+            return BehaviorRelay<PaymentOrderResponse?>(value: nil)
+        }
+        for item in carManager.car {
+            if item.montoBonoProveedor > 0.0 {
+                carManager.paymentMethod.append(
+                    PaymentMethod(
+                       codAutorizacion: "",
+                       fechaExp: "",
+                       idFormaPago: "90",
+                       montoPago: item.montoBonoProveedor,
+                       noLineaRelacionada: 0,
+                       nomTarjeta: "",
+                       numTarjeta: "",
+                       tipoPlazoTarjeta: "",
+                       tipoTarjeta: "",
+                       totalCuotas: 0,
+                       indTarjeta: 0,
+                       indPrincipal: 0
+                   )
+                )
+            }
         }
         carManager.paymentMethod.append(
             PaymentMethod(
@@ -69,12 +89,14 @@ class PaymentConfirmViewModel {
                numTarjeta: "",
                tipoPlazoTarjeta: "",
                tipoTarjeta: "",
-               totalCuotas: 0
+               totalCuotas: 0,
+               indTarjeta: methodSelected?.indTarjeta ?? 0,
+               indPrincipal: methodSelected?.indPrincipal ?? 0
            )
         )
-        let apiResponse: BehaviorRelay<SendOrderResponse?> = BehaviorRelay(value: nil)
+        let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(
-            BaseRequest<SendOrderResponse?, OrderData>(
+            BaseRequest<PaymentOrderResponse?, OrderData>(
                 resource: "Transacciones",
                 service: BaseServiceRequestParam<OrderData>(
                     servicio: ServicioParam(

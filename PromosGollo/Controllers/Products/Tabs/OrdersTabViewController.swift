@@ -30,12 +30,12 @@ class OrdersTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.navigationItem.title = "My orders"
-        configureNavBar()
         configureTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureNavBar()
         fetchOrders()
         self.tabBarController?.tabBar.isHidden = false
     }

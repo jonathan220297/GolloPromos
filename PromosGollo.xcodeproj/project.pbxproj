@@ -153,6 +153,8 @@
 		4F57B79A28F9F19E00CFBD01 /* SearchOffersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F57B79828F9F19E00CFBD01 /* SearchOffersViewController.xib */; };
 		4F57B79C28F9F1B600CFBD01 /* SearchOffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57B79B28F9F1B600CFBD01 /* SearchOffersViewModel.swift */; };
 		4F59347E271FD6AD00C63A6F /* Pods_PromosGollo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA94B4531B0F52F62EFDA4 /* Pods_PromosGollo.framework */; };
+		4F660FBF28FF890E0095464B /* ProductCardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F660FBE28FF890E0095464B /* ProductCardDetail.swift */; };
+		4F660FC1290068920095464B /* PaymentSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F660FC0290068920095464B /* PaymentSuccessViewModel.swift */; };
 		4F678D7328E7BD6100C8E8B3 /* MenuTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F678D7128E7BD6100C8E8B3 /* MenuTabTableViewCell.swift */; };
 		4F678D7428E7BD6100C8E8B3 /* MenuTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F678D7228E7BD6100C8E8B3 /* MenuTabTableViewCell.xib */; };
 		4F678D7628E7BEF600C8E8B3 /* MenuTabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F678D7528E7BEF600C8E8B3 /* MenuTabData.swift */; };
@@ -502,6 +504,8 @@
 		4F57B79728F9F19E00CFBD01 /* SearchOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOffersViewController.swift; sourceTree = "<group>"; };
 		4F57B79828F9F19E00CFBD01 /* SearchOffersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchOffersViewController.xib; sourceTree = "<group>"; };
 		4F57B79B28F9F1B600CFBD01 /* SearchOffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOffersViewModel.swift; sourceTree = "<group>"; };
+		4F660FBE28FF890E0095464B /* ProductCardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardDetail.swift; sourceTree = "<group>"; };
+		4F660FC0290068920095464B /* PaymentSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewModel.swift; sourceTree = "<group>"; };
 		4F678D7128E7BD6100C8E8B3 /* MenuTabTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabTableViewCell.swift; sourceTree = "<group>"; };
 		4F678D7228E7BD6100C8E8B3 /* MenuTabTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTabTableViewCell.xib; sourceTree = "<group>"; };
 		4F678D7528E7BEF600C8E8B3 /* MenuTabData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabData.swift; sourceTree = "<group>"; };
@@ -1111,6 +1115,7 @@
 			children = (
 				4F3E480B27278536009D259D /* Response */,
 				4F3E481127278536009D259D /* Request */,
+				4F660FBE28FF890E0095464B /* ProductCardDetail.swift */,
 			);
 			path = Offers;
 			sourceTree = "<group>";
@@ -1219,6 +1224,7 @@
 				4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */,
 				4FA0B87228E3C69600395361 /* AddressListViewModel.swift */,
 				4FE86E6A28E497D5008E58F1 /* PaymentConfirmViewModel.swift */,
+				4F660FC0290068920095464B /* PaymentSuccessViewModel.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -2129,6 +2135,7 @@
 				4F3E481C27278536009D259D /* OffersListRequest.swift in Sources */,
 				4FDB6EDA28E3B3790002DA0B /* City.swift in Sources */,
 				4FFD9CBC272B211B004778F1 /* OffersTableViewModel.swift in Sources */,
+				4F660FBF28FF890E0095464B /* ProductCardDetail.swift in Sources */,
 				4F0D965A26DDBB360061E89E /* LocalizableLabel.swift in Sources */,
 				4F678D7B28E7C3FF00C8E8B3 /* WishesViewController.swift in Sources */,
 				4F0D96BF26DDD83E0061E89E /* GolloPromosService.swift in Sources */,
@@ -2281,6 +2288,7 @@
 				4FDD105728D000700082ADB5 /* ProductsTabViewController.swift in Sources */,
 				4F410E1E28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift in Sources */,
 				4FE86E6228E40BAC008E58F1 /* CarManager.swift in Sources */,
+				4F660FC1290068920095464B /* PaymentSuccessViewModel.swift in Sources */,
 				4FA0B87A28E3C8D200395361 /* AddressListRequest.swift in Sources */,
 				4FA2768126D9191300216284 /* LoginViewModel.swift in Sources */,
 				4FFD9CAC272AFDCA004778F1 /* UINavigationController+Extension.swift in Sources */,
