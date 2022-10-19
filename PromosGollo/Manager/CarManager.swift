@@ -16,6 +16,9 @@ class CarManager {
     var paymentMethodSelected: PaymentMethodResponse?
     var paymentMethod: [PaymentMethod] = []
     var deliveryInfo: DeliveryInfo?
+    var nationality: String?
+    var kinship: String?
+    var fundsSource: String?
     
     func emptyCar() -> Bool {
         car.removeAll()
@@ -23,6 +26,9 @@ class CarManager {
         paymentMethodSelected = nil
         paymentMethod.removeAll()
         deliveryInfo = nil
+        nationality = nil
+        kinship = nil
+        fundsSource = nil
         return CoreDataService().deleteAllItems()
     }
 }

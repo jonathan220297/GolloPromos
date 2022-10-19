@@ -10,6 +10,7 @@ import RxRelay
 
 class ProvenanceViewModel {
     private let service = GolloService()
+    let carManager = CarManager.shared
 
     var natilonalities: [Nationalities] = []
     var relationship: [Relationship] = []
@@ -46,5 +47,11 @@ class ProvenanceViewModel {
             }
         }
         return apiResponse
+    }
+    
+    func setDataToCar() {
+        carManager.nationality = nationalitySubject.value
+        carManager.kinship = relationshipSubject.value
+        carManager.fundsSource = originSubject.value
     }
 }

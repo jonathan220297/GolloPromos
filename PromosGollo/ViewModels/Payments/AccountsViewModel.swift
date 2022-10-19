@@ -36,7 +36,7 @@ class AccountsViewModel {
                 case .success(let response):
                     apiResponse.accept(response.cuentas)
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    self.errorMessage.accept(error.localizedDescription)
                 }
             }
         }

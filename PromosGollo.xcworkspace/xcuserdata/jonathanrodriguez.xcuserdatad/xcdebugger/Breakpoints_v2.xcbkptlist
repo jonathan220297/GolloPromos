@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F7F026E5-2D10-4AF0-981A-89D613337865"
+            uuid = "5FC018DD-CBD7-442E-9EE7-886C9E9D3363"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PromosGollo/Controllers/Payments/PaymentSuccess/PaymentSuccessViewController.swift"
+            filePath = "PromosGollo/Services/GolloPromosService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "configureViews()"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "callWebServiceGollo(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

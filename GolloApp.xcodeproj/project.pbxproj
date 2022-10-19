@@ -192,6 +192,7 @@
 		4F7C5F3628E621E400123072 /* OrderDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C5F3528E621E400123072 /* OrderDetailData.swift */; };
 		4F7C5F3928E641CC00123072 /* ProductOrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C5F3728E641CC00123072 /* ProductOrderDetailTableViewCell.swift */; };
 		4F7C5F3A28E641CC00123072 /* ProductOrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7C5F3828E641CC00123072 /* ProductOrderDetailTableViewCell.xib */; };
+		4F7F51D42900AAA700565F62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7F51D32900AAA700565F62 /* GoogleService-Info.plist */; };
 		4F894A17270A5A900004AAB3 /* AccountsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */; };
 		4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */; };
 		4F894A1B270A60640004AAB3 /* SearchDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */; };
@@ -210,7 +211,6 @@
 		4FA0B87C28E3C95400395361 /* AddressListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0B87B28E3C95400395361 /* AddressListResponse.swift */; };
 		4FA0B87E28E3CF7B00395361 /* SaveUserAddressRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0B87D28E3CF7B00395361 /* SaveUserAddressRequest.swift */; };
 		4FA0B88028E3D56700395361 /* DeleteAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0B87F28E3D56700395361 /* DeleteAddress.swift */; };
-		4FA1C41C28FF068C0067E415 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1C41B28FF068C0067E415 /* GoogleService-Info.plist */; };
 		4FA2767826D917E400216284 /* TermsConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2767726D917E400216284 /* TermsConditionsViewController.swift */; };
 		4FA2767A26D9189700216284 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2767926D9189700216284 /* LoginViewController.swift */; };
 		4FA2767C26D918A500216284 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2767B26D918A500216284 /* SignUpViewController.swift */; };
@@ -548,6 +548,7 @@
 		4F7C5F3528E621E400123072 /* OrderDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailData.swift; sourceTree = "<group>"; };
 		4F7C5F3728E641CC00123072 /* ProductOrderDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 		4F7C5F3828E641CC00123072 /* ProductOrderDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductOrderDetailTableViewCell.xib; sourceTree = "<group>"; };
+		4F7F51D32900AAA700565F62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewModel.swift; sourceTree = "<group>"; };
 		4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsRequest.swift; sourceTree = "<group>"; };
 		4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDocumentViewModel.swift; sourceTree = "<group>"; };
@@ -566,7 +567,6 @@
 		4FA0B87B28E3C95400395361 /* AddressListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListResponse.swift; sourceTree = "<group>"; };
 		4FA0B87D28E3CF7B00395361 /* SaveUserAddressRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserAddressRequest.swift; sourceTree = "<group>"; };
 		4FA0B87F28E3D56700395361 /* DeleteAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAddress.swift; sourceTree = "<group>"; };
-		4FA1C41B28FF068C0067E415 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FA1C41D28FF07810067E415 /* PromosGollo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PromosGollo.entitlements; sourceTree = "<group>"; };
 		4FA2767726D917E400216284 /* TermsConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsViewController.swift; sourceTree = "<group>"; };
 		4FA2767926D9189700216284 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -599,7 +599,7 @@
 		4FCC3F7928F1D4F00063C9C9 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		4FCEB7DE28CFF9A0009B3FDF /* OffersTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTabViewController.swift; sourceTree = "<group>"; };
 		4FCEB7DF28CFF9A0009B3FDF /* OffersTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OffersTabViewController.xib; sourceTree = "<group>"; };
-		4FDA3A9826D8FE26003B2CB6 /* PromosGollo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromosGollo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FDA3A9826D8FE26003B2CB6 /* GolloApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolloApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4FDA3A9F26D8FE26003B2CB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -607,10 +607,10 @@
 		4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FDA3AA726D8FE27003B2CB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FDA3AA926D8FE27003B2CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FDA3AAE26D8FE28003B2CB6 /* PromosGolloTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PromosGolloTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FDA3AAE26D8FE28003B2CB6 /* GolloAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolloAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3AB226D8FE28003B2CB6 /* PromosGolloTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosGolloTests.swift; sourceTree = "<group>"; };
 		4FDA3AB426D8FE28003B2CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FDA3AB926D8FE28003B2CB6 /* PromosGolloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PromosGolloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FDA3AB926D8FE28003B2CB6 /* GolloAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolloAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3ABD26D8FE28003B2CB6 /* PromosGolloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosGolloUITests.swift; sourceTree = "<group>"; };
 		4FDA3ABF26D8FE28003B2CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewController.swift; sourceTree = "<group>"; };
@@ -1239,7 +1239,7 @@
 				4FA0B87228E3C69600395361 /* AddressListViewModel.swift */,
 				4FE86E6A28E497D5008E58F1 /* PaymentConfirmViewModel.swift */,
 				4F660FC0290068920095464B /* PaymentSuccessViewModel.swift */,
-                4FF1C6D528FF71FA00456164 /* ProvenanceViewModel.swift */,
+				4FF1C6D528FF71FA00456164 /* ProvenanceViewModel.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -1521,9 +1521,9 @@
 		4FDA3A9926D8FE26003B2CB6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FDA3A9826D8FE26003B2CB6 /* PromosGollo.app */,
-				4FDA3AAE26D8FE28003B2CB6 /* PromosGolloTests.xctest */,
-				4FDA3AB926D8FE28003B2CB6 /* PromosGolloUITests.xctest */,
+				4FDA3A9826D8FE26003B2CB6 /* GolloApp.app */,
+				4FDA3AAE26D8FE28003B2CB6 /* GolloAppTests.xctest */,
+				4FDA3AB926D8FE28003B2CB6 /* GolloAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1546,7 +1546,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4FA1C41B28FF068C0067E415 /* GoogleService-Info.plist */,
+				4F7F51D32900AAA700565F62 /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* PromosGollo.xcdatamodeld */,
 			);
 			path = PromosGollo;
@@ -1808,9 +1808,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FDA3A9726D8FE26003B2CB6 /* PromosGollo */ = {
+		4FDA3A9726D8FE26003B2CB6 /* GolloApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FDA3AC226D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "PromosGollo" */;
+			buildConfigurationList = 4FDA3AC226D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "GolloApp" */;
 			buildPhases = (
 				9A58A48E9C4B5B05D9D1F1AB /* [CP] Check Pods Manifest.lock */,
 				4FDA3A9426D8FE26003B2CB6 /* Sources */,
@@ -1824,14 +1824,14 @@
 			);
 			dependencies = (
 			);
-			name = PromosGollo;
+			name = GolloApp;
 			productName = PromosGollo;
-			productReference = 4FDA3A9826D8FE26003B2CB6 /* PromosGollo.app */;
+			productReference = 4FDA3A9826D8FE26003B2CB6 /* GolloApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4FDA3AAD26D8FE28003B2CB6 /* PromosGolloTests */ = {
+		4FDA3AAD26D8FE28003B2CB6 /* GolloAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FDA3AC526D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "PromosGolloTests" */;
+			buildConfigurationList = 4FDA3AC526D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "GolloAppTests" */;
 			buildPhases = (
 				F9D9F87BF77B576E90CC528C /* [CP] Check Pods Manifest.lock */,
 				4FDA3AAA26D8FE28003B2CB6 /* Sources */,
@@ -1843,14 +1843,14 @@
 			dependencies = (
 				4FDA3AB026D8FE28003B2CB6 /* PBXTargetDependency */,
 			);
-			name = PromosGolloTests;
+			name = GolloAppTests;
 			productName = PromosGolloTests;
-			productReference = 4FDA3AAE26D8FE28003B2CB6 /* PromosGolloTests.xctest */;
+			productReference = 4FDA3AAE26D8FE28003B2CB6 /* GolloAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4FDA3AB826D8FE28003B2CB6 /* PromosGolloUITests */ = {
+		4FDA3AB826D8FE28003B2CB6 /* GolloAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FDA3AC826D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "PromosGolloUITests" */;
+			buildConfigurationList = 4FDA3AC826D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "GolloAppUITests" */;
 			buildPhases = (
 				42CAB7CA267CF2CBF5F0775D /* [CP] Check Pods Manifest.lock */,
 				4FDA3AB526D8FE28003B2CB6 /* Sources */,
@@ -1864,9 +1864,9 @@
 			dependencies = (
 				4FDA3ABB26D8FE28003B2CB6 /* PBXTargetDependency */,
 			);
-			name = PromosGolloUITests;
+			name = GolloAppUITests;
 			productName = PromosGolloUITests;
-			productReference = 4FDA3AB926D8FE28003B2CB6 /* PromosGolloUITests.xctest */;
+			productReference = 4FDA3AB926D8FE28003B2CB6 /* GolloAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -1891,7 +1891,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4FDA3A9326D8FE26003B2CB6 /* Build configuration list for PBXProject "PromosGollo" */;
+			buildConfigurationList = 4FDA3A9326D8FE26003B2CB6 /* Build configuration list for PBXProject "GolloApp" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1905,9 +1905,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FDA3A9726D8FE26003B2CB6 /* PromosGollo */,
-				4FDA3AAD26D8FE28003B2CB6 /* PromosGolloTests */,
-				4FDA3AB826D8FE28003B2CB6 /* PromosGolloUITests */,
+				4FDA3A9726D8FE26003B2CB6 /* GolloApp */,
+				4FDA3AAD26D8FE28003B2CB6 /* GolloAppTests */,
+				4FDA3AB826D8FE28003B2CB6 /* GolloAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1946,7 +1946,6 @@
 				4FE1912526DEFCA000322128 /* ProductCollectionViewCell.xib in Resources */,
 				4F678D7C28E7C3FF00C8E8B3 /* WishesViewController.xib in Resources */,
 				4FA0B87128E3C48700395361 /* AddressListViewController.xib in Resources */,
-				4FA1C41C28FF068C0067E415 /* GoogleService-Info.plist in Resources */,
 				4F317A9C28F9E038005BA675 /* SectionCollectionViewCell.xib in Resources */,
 				4F69894428BDB625000FFA56 /* PaymentSuccessViewController.xib in Resources */,
 				4FDA3AA326D8FE26003B2CB6 /* Main.storyboard in Resources */,
@@ -1983,6 +1982,7 @@
 				4FDD106028D15F390082ADB5 /* OrdersTabViewController.xib in Resources */,
 				4F57B79A28F9F19E00CFBD01 /* SearchOffersViewController.xib in Resources */,
 				4F0D96C826DDD9990061E89E /* Services.storyboard in Resources */,
+				4F7F51D42900AAA700565F62 /* GoogleService-Info.plist in Resources */,
 				4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */,
 				4F7C5F3A28E641CC00123072 /* ProductOrderDetailTableViewCell.xib in Resources */,
 				4F678D8028E7C5C600C8E8B3 /* WhishesTableViewCell.xib in Resources */,
@@ -2419,12 +2419,12 @@
 /* Begin PBXTargetDependency section */
 		4FDA3AB026D8FE28003B2CB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FDA3A9726D8FE26003B2CB6 /* PromosGollo */;
+			target = 4FDA3A9726D8FE26003B2CB6 /* GolloApp */;
 			targetProxy = 4FDA3AAF26D8FE28003B2CB6 /* PBXContainerItemProxy */;
 		};
 		4FDA3ABB26D8FE28003B2CB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FDA3A9726D8FE26003B2CB6 /* PromosGollo */;
+			target = 4FDA3A9726D8FE26003B2CB6 /* GolloApp */;
 			targetProxy = 4FDA3ABA26D8FE28003B2CB6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2645,7 +2645,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PromosGollo.app/PromosGollo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GolloApp.app/GolloApp";
 			};
 			name = Debug;
 		};
@@ -2668,7 +2668,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PromosGollo.app/PromosGollo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GolloApp.app/GolloApp";
 			};
 			name = Release;
 		};
@@ -2717,7 +2717,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FDA3A9326D8FE26003B2CB6 /* Build configuration list for PBXProject "PromosGollo" */ = {
+		4FDA3A9326D8FE26003B2CB6 /* Build configuration list for PBXProject "GolloApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FDA3AC026D8FE28003B2CB6 /* Debug */,
@@ -2726,7 +2726,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FDA3AC226D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "PromosGollo" */ = {
+		4FDA3AC226D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "GolloApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FDA3AC326D8FE28003B2CB6 /* Debug */,
@@ -2735,7 +2735,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FDA3AC526D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "PromosGolloTests" */ = {
+		4FDA3AC526D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "GolloAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FDA3AC626D8FE28003B2CB6 /* Debug */,
@@ -2744,7 +2744,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FDA3AC826D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "PromosGolloUITests" */ = {
+		4FDA3AC826D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "GolloAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FDA3AC926D8FE28003B2CB6 /* Debug */,

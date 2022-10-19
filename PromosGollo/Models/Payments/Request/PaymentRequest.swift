@@ -23,7 +23,7 @@ struct PaymentRequest: APIRequest {
 }
 
 class PaymentServiceRequest: Codable {
-    init(integrationId: String?, idTienda: String = Variables().GOLLO_COMPANY, tipoIdCliente: String, identificacionCliente: String, tipoMovimiento: String, tipoDocMovimiento: String, numeroMovimiento: String, terminalId: String, monto: Double, tipoPago: String, numeroTarjeta: String, tipoPlazoTarjeta: String, moneda: String, nombreTarjetaHabiente: String, codigoSeguridad: String, fechaVencimiento: String) {
+    init(integrationId: String?, idTienda: String = Variables().GOLLO_COMPANY, tipoIdCliente: String, identificacionCliente: String, tipoMovimiento: String, tipoDocMovimiento: String, numeroMovimiento: String, terminalId: String, monto: Double, tipoPago: String, numeroTarjeta: String, tipoPlazoTarjeta: String, moneda: String, nombreTarjetaHabiente: String, codigoSeguridad: String, fechaVencimiento: String, pagoTerceros: ThirdPartyPayment? = nil) {
         self.integrationId = integrationId
         self.idTienda = idTienda
         self.tipoIdCliente = tipoIdCliente
@@ -40,6 +40,7 @@ class PaymentServiceRequest: Codable {
         self.nombreTarjetaHabiente = nombreTarjetaHabiente
         self.codigoSeguridad = codigoSeguridad
         self.fechaVencimiento = fechaVencimiento
+        self.pagoTerceros = pagoTerceros
     }
     
     var integrationId: String?
@@ -58,4 +59,17 @@ class PaymentServiceRequest: Codable {
     var nombreTarjetaHabiente: String // "Luis Rodriguez",
     var codigoSeguridad: String
     var fechaVencimiento: String //"05/2028"
+    var pagoTerceros: ThirdPartyPayment?
+}
+
+struct ThirdPartyPayment: Codable {
+    var nationality: String?
+    var sourceFunds: String?
+    var kinship: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case nationality = "nacionalida"
+        case sourceFunds = "origenFondos"
+        case kinship = "parentesco"
+    }
 }
