@@ -24,13 +24,13 @@ class MenuTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.navigationItem.title = "Menu"
-        configureNavBar()
         configureTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        configureNavBar()
     }
 
     func configureTableView() {

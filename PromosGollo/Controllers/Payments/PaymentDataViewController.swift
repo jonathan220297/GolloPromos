@@ -132,10 +132,16 @@ class PaymentDataViewController: UIViewController {
             .asObservable()
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,
-                      let response = response else { return }
-                print(response)
+                      let response = response,
+                      let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
+                let _ = self.viewModel.carManager.emptyCar()
                 self.continueButton.hideLoading()
-                let paymentSuccessViewController = PaymentSuccessViewController()
+                let paymentSuccessViewController = PaymentSuccessViewController(
+                    viewModel: PaymentSuccessViewModel(
+                        paymentMethodSelected: paymentMethodSelected,
+                        accountPaymentResponse: response
+                    )
+                )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
             })
@@ -150,10 +156,17 @@ class PaymentDataViewController: UIViewController {
             .asObservable()
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,
-                      let response = response else { return }
+                      let response = response,
+                      let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 print(response)
+                let _ = self.viewModel.carManager.emptyCar()
                 self.continueButton.hideLoading()
-                let paymentSuccessViewController = PaymentSuccessViewController()
+                let paymentSuccessViewController = PaymentSuccessViewController(
+                    viewModel: PaymentSuccessViewModel(
+                        paymentMethodSelected: paymentMethodSelected,
+                        productPaymentResponse: response
+                    )
+                )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
             })

@@ -29,7 +29,8 @@ class CarTabViewModel {
                     precioExtendido: item.precioExtendido,
                     precioUnitario: item.precioUnitario,
                     sku: item.sku,
-                    tipoSku: 1
+                    tipoSku: 1,
+                    montoBonoProveedor: item.montoBonoProveedor ?? 0.0
                 )
             )
         }

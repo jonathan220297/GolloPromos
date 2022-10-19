@@ -28,6 +28,7 @@ class AccountsViewController: UIViewController {
         tableView.rowHeight = 335.0
         tableView.tableFooterView = UIView()
         fetchAccounts()
+        configureRx()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -46,8 +47,11 @@ class AccountsViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
+                    self.view.activityStopAnimating()
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
+                    self.tableView.alpha = 0
+                    self.emptyDataView.alpha = 1
                 }
             })
             .disposed(by: bag)
@@ -62,10 +66,10 @@ class AccountsViewController: UIViewController {
                       let data = data else { return }
                 if data.isEmpty {
                     self.emptyDataView.alpha = 1
-                    self.dataView.alpha = 0
+                    self.tableView.alpha = 0
                 } else {
                     self.emptyDataView.alpha = 0
-                    self.dataView.alpha = 1
+                    self.tableView.alpha = 111
                 }
                 DispatchQueue.main.async {
                     self.view.activityStopAnimating()

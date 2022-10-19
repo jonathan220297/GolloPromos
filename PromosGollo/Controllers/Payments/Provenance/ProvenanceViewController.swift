@@ -147,6 +147,7 @@ class ProvenanceViewController: UIViewController {
 
     private func showPaymentConfirmViewController() {
         DispatchQueue.main.async {
+            self.viewModel.setDataToCar()
             let vc = PaymentConfirmViewController.instantiate(fromAppStoryboard: .Payments)
             vc.modalPresentationStyle = .fullScreen
             vc.paymentAmmount = self.currentAmount ?? 0.0

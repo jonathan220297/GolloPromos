@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FDA3A9726D8FE26003B2CB6"
-               BuildableName = "PromosGollo.app"
-               BlueprintName = "PromosGollo"
-               ReferencedContainer = "container:PromosGollo.xcodeproj">
+               BuildableName = "GolloApp.app"
+               BlueprintName = "GolloApp"
+               ReferencedContainer = "container:GolloApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FDA3AAD26D8FE28003B2CB6"
-               BuildableName = "PromosGolloTests.xctest"
-               BlueprintName = "PromosGolloTests"
-               ReferencedContainer = "container:PromosGollo.xcodeproj">
+               BuildableName = "GolloAppTests.xctest"
+               BlueprintName = "GolloAppTests"
+               ReferencedContainer = "container:GolloApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FDA3AB826D8FE28003B2CB6"
-               BuildableName = "PromosGolloUITests.xctest"
-               BlueprintName = "PromosGolloUITests"
-               ReferencedContainer = "container:PromosGollo.xcodeproj">
+               BuildableName = "GolloAppUITests.xctest"
+               BlueprintName = "GolloAppUITests"
+               ReferencedContainer = "container:GolloApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FDA3A9726D8FE26003B2CB6"
-            BuildableName = "PromosGollo.app"
-            BlueprintName = "PromosGollo"
-            ReferencedContainer = "container:PromosGollo.xcodeproj">
+            BuildableName = "GolloApp.app"
+            BlueprintName = "GolloApp"
+            ReferencedContainer = "container:GolloApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FDA3A9726D8FE26003B2CB6"
-            BuildableName = "PromosGollo.app"
-            BlueprintName = "PromosGollo"
-            ReferencedContainer = "container:PromosGollo.xcodeproj">
+            BuildableName = "GolloApp.app"
+            BlueprintName = "GolloApp"
+            ReferencedContainer = "container:GolloApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

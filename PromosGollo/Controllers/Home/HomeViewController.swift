@@ -36,15 +36,6 @@ class HomeViewController: UITabBarController {
     // MARK: - Functions
     func configureTabBar() {
         //Offers
-//        let mainTab = MainViewController(
-//            viewModel: HomeViewModel()
-//        )
-//        let navigationMain = UINavigationController(rootViewController: mainTab)
-//        UINavigationBar.appearance().tintColor = UIColor.white
-//        navigationMain.navigationBar.standardAppearance = getNavBarAppareance()
-//        navigationMain.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
-//        navigationMain.title = "Inicio"
-//        navigationMain.tabBarItem.image = UIImage(systemName: "house.fill")
         let homeTab = HomeTabViewController(
             viewModel: HomeViewModel()
         )

@@ -16,10 +16,8 @@ enum MovementType: String {
 }
 
 class PaymentDataViewModel {
-    //    private let service = ShoppiService()
-    //    let paymentManager = PaymentManager.shared
     private let service = GolloService()
-    private let carManager = CarManager.shared
+    let carManager = CarManager.shared
     
     var isAccountPayment = true
     
@@ -72,6 +70,14 @@ class PaymentDataViewModel {
     
     func makeGolloPayment() -> BehaviorRelay<PaymentResponse?> {
         let expiryDate = String(expirationNumberSubject.value ?? 0) + "/" + String(expirationYearSubject.value ?? 0)
+        var thirdPayment: ThirdPartyPayment?
+        if let nationality = carManager.nationality, !nationality.isEmpty {
+            thirdPayment = ThirdPartyPayment(
+                nationality: carManager.nationality,
+                sourceFunds: carManager.fundsSource,
+                kinship: carManager.kinship
+            )
+        }
         let request = PaymentServiceRequest(
             integrationId: nil,
             idTienda: "014",
@@ -88,7 +94,8 @@ class PaymentDataViewModel {
             moneda: "CRC",
             nombreTarjetaHabiente: cardNameSubject.value ?? "",
             codigoSeguridad: cardCvvSubject.value ?? "",
-            fechaVencimiento: expiryDate
+            fechaVencimiento: expiryDate,
+            pagoTerceros: thirdPayment
         )
         
         let apiResponse: BehaviorRelay<PaymentResponse?> = BehaviorRelay(value: nil)
@@ -143,7 +150,9 @@ class PaymentDataViewModel {
                numTarjeta: cardNumber,
                tipoPlazoTarjeta: "11723675",
                tipoTarjeta: "",
-               totalCuotas: 0
+               totalCuotas: 0,
+               indTarjeta: carManager.paymentMethodSelected?.indTarjeta ?? 0,
+               indPrincipal: carManager.paymentMethodSelected?.indPrincipal ?? 0
            )
         )
     }

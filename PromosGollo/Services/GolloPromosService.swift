@@ -81,8 +81,7 @@ class GolloService {
             self.parseResultGollo(of: T.Response.self, data: data) { result, error in
                 if let error = error {
                     completion(.failure(.server(code: 0, message: error)))
-                }
-                if let result = result {
+                } else if let result = result {
                     completion(.success(result))
                 } else {
                     completion(.failure(.server(code: 0, message: "Unknown error")))

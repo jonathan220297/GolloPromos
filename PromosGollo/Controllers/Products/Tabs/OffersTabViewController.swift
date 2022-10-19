@@ -28,13 +28,13 @@ class OffersTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
         configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        configureNavBar()
         fetchCategories()
     }
     

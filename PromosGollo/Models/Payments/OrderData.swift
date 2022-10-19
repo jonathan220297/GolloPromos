@@ -24,6 +24,7 @@ struct OrderItem: Codable {
     let precioExtendido, precioUnitario: Double
     let sku: String
     let tipoSku: Int
+    let montoBonoProveedor: Double
 }
 
 // MARK: - PaymentMethod
@@ -33,6 +34,7 @@ struct PaymentMethod: Codable {
     let noLineaRelacionada: Int
     let nomTarjeta, numTarjeta, tipoPlazoTarjeta, tipoTarjeta: String
     let totalCuotas: Int
+    let indTarjeta, indPrincipal: Int
 }
 
 // MARK: - DeliveryInfo

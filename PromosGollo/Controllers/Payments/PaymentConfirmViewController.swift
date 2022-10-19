@@ -149,8 +149,17 @@ class PaymentConfirmViewController: UIViewController {
             .asObservable()
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,
-                      let response = response else { return }
-                log.debug(response)
+                      let response = response,
+                      let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
+                let _ = self.viewModel.carManager.emptyCar()
+                let paymentSuccessViewController = PaymentSuccessViewController(
+                    viewModel: PaymentSuccessViewModel(
+                        paymentMethodSelected: paymentMethodSelected,
+                        productPaymentResponse: response
+                    )
+                )
+                paymentSuccessViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
             })
             .disposed(by: bag)
     }
