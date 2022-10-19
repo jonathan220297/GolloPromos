@@ -1,13 +1,13 @@
 //
-//  PromosGolloUITests.swift
-//  PromosGolloUITests
+//  GolloAppUITests.swift
+//  GolloAppUITests
 //
 //  Created by Rodrigo Osegueda on 27/8/21.
 //
 
 import XCTest
 
-class PromosGolloUITests: XCTestCase {
+class GolloAppUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
