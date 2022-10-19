@@ -246,8 +246,8 @@
 		4FDA3AA326D8FE26003B2CB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA3AA126D8FE26003B2CB6 /* Main.storyboard */; };
 		4FDA3AA526D8FE27003B2CB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */; };
 		4FDA3AA826D8FE27003B2CB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA3AA626D8FE27003B2CB6 /* LaunchScreen.storyboard */; };
-		4FDA3AB326D8FE28003B2CB6 /* PromosGolloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3AB226D8FE28003B2CB6 /* PromosGolloTests.swift */; };
-		4FDA3ABE26D8FE28003B2CB6 /* PromosGolloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3ABD26D8FE28003B2CB6 /* PromosGolloUITests.swift */; };
+		4FDA3AB326D8FE28003B2CB6 /* GolloAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3AB226D8FE28003B2CB6 /* GolloAppTests.swift */; };
+		4FDA3ABE26D8FE28003B2CB6 /* GolloAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3ABD26D8FE28003B2CB6 /* GolloAppUITests.swift */; };
 		4FDB6ECA28DD18EA0002DA0B /* PaymentAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */; };
 		4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */; };
 		4FDB6ECD28DD1CAF0002DA0B /* PaymentAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */; };
@@ -610,10 +610,10 @@
 		4FDA3AA726D8FE27003B2CB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FDA3AA926D8FE27003B2CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDA3AAE26D8FE28003B2CB6 /* GolloAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolloAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FDA3AB226D8FE28003B2CB6 /* PromosGolloTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosGolloTests.swift; sourceTree = "<group>"; };
+		4FDA3AB226D8FE28003B2CB6 /* GolloAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolloAppTests.swift; sourceTree = "<group>"; };
 		4FDA3AB426D8FE28003B2CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDA3AB926D8FE28003B2CB6 /* GolloAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolloAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FDA3ABD26D8FE28003B2CB6 /* PromosGolloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosGolloUITests.swift; sourceTree = "<group>"; };
+		4FDA3ABD26D8FE28003B2CB6 /* GolloAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolloAppUITests.swift; sourceTree = "<group>"; };
 		4FDA3ABF26D8FE28003B2CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewController.swift; sourceTree = "<group>"; };
 		4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentAddressViewController.xib; sourceTree = "<group>"; };
@@ -1515,9 +1515,9 @@
 		4FDA3A8F26D8FE26003B2CB6 = {
 			isa = PBXGroup;
 			children = (
-				4FDA3A9A26D8FE26003B2CB6 /* PromosGollo */,
-				4FDA3AB126D8FE28003B2CB6 /* PromosGolloTests */,
-				4FDA3ABC26D8FE28003B2CB6 /* PromosGolloUITests */,
+				4FDA3A9A26D8FE26003B2CB6 /* GolloApp */,
+				4FDA3AB126D8FE28003B2CB6 /* GolloAppTests */,
+				4FDA3ABC26D8FE28003B2CB6 /* GolloAppUITests */,
 				4FDA3A9926D8FE26003B2CB6 /* Products */,
 				B3D3BFB800D6166E756F8215 /* Pods */,
 				8DD7E1FBC25DCC208F1CD6A5 /* Frameworks */,
@@ -1534,7 +1534,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4FDA3A9A26D8FE26003B2CB6 /* PromosGollo */ = {
+		4FDA3A9A26D8FE26003B2CB6 /* GolloApp */ = {
 			isa = PBXGroup;
 			children = (
 				4FA1C41D28FF07810067E415 /* PromosGollo.entitlements */,
@@ -1555,25 +1555,25 @@
 				4F7F51D32900AAA700565F62 /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* PromosGollo.xcdatamodeld */,
 			);
-			path = PromosGollo;
+			path = GolloApp;
 			sourceTree = "<group>";
 		};
-		4FDA3AB126D8FE28003B2CB6 /* PromosGolloTests */ = {
+		4FDA3AB126D8FE28003B2CB6 /* GolloAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				4FDA3AB226D8FE28003B2CB6 /* PromosGolloTests.swift */,
+				4FDA3AB226D8FE28003B2CB6 /* GolloAppTests.swift */,
 				4FDA3AB426D8FE28003B2CB6 /* Info.plist */,
 			);
-			path = PromosGolloTests;
+			path = GolloAppTests;
 			sourceTree = "<group>";
 		};
-		4FDA3ABC26D8FE28003B2CB6 /* PromosGolloUITests */ = {
+		4FDA3ABC26D8FE28003B2CB6 /* GolloAppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				4FDA3ABD26D8FE28003B2CB6 /* PromosGolloUITests.swift */,
+				4FDA3ABD26D8FE28003B2CB6 /* GolloAppUITests.swift */,
 				4FDA3ABF26D8FE28003B2CB6 /* Info.plist */,
 			);
-			path = PromosGolloUITests;
+			path = GolloAppUITests;
 			sourceTree = "<group>";
 		};
 		4FDB6EC728DD18CE0002DA0B /* PaymentAddress */ = {
@@ -1829,7 +1829,6 @@
 				4FDA3A9526D8FE26003B2CB6 /* Frameworks */,
 				4FDA3A9626D8FE26003B2CB6 /* Resources */,
 				97942F0EA93ACBBED7D440CE /* [CP] Embed Pods Frameworks */,
-				6BE79D44699AF1786B336CEF /* [CP] Copy Pods Resources */,
 				4F593480271FD6AD00C63A6F /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -1869,7 +1868,6 @@
 				4FDA3AB626D8FE28003B2CB6 /* Frameworks */,
 				4FDA3AB726D8FE28003B2CB6 /* Resources */,
 				B41C8CAAF2644896FB5CF5AA /* [CP] Embed Pods Frameworks */,
-				48D10B744149C98A5F07A800 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2038,40 +2036,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48D10B744149C98A5F07A800 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6BE79D44699AF1786B336CEF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GolloApp/Pods-GolloApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GolloApp/Pods-GolloApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GolloApp/Pods-GolloApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		97942F0EA93ACBBED7D440CE /* [CP] Embed Pods Frameworks */ = {
@@ -2414,7 +2378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FDA3AB326D8FE28003B2CB6 /* PromosGolloTests.swift in Sources */,
+				4FDA3AB326D8FE28003B2CB6 /* GolloAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2422,7 +2386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FDA3ABE26D8FE28003B2CB6 /* PromosGolloUITests.swift in Sources */,
+				4FDA3ABE26D8FE28003B2CB6 /* GolloAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2597,7 +2561,7 @@
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
-				INFOPLIST_FILE = PromosGollo/Info.plist;
+				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Gollo App";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2623,7 +2587,7 @@
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
-				INFOPLIST_FILE = PromosGollo/Info.plist;
+				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Gollo App";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
