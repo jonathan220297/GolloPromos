@@ -95,7 +95,7 @@ class OrderDetailTabViewController: UIViewController {
         referenceLabel.text = "Número de referencia: \(order.orden.idOrden ?? 0)"
         orderLabel.text = "Número de orden: \(order.orden.numOrdenTienda ?? "")"
         if let date = order.orden.fechaOrden {
-            createLabel.text = "Fecha pedido: \(date.formatStringDateGollo())"
+            createLabel.text = "Fecha pedido: \(convertDate(date: date) ?? date)"
         }
         productsLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: productsAmount)) ?? "")"
         deliveryLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (shippingItem?.precioExtendido ?? 0.0))) ?? "")"
