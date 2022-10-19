@@ -4,7 +4,7 @@
 # ignore all warnings from all pods
 inhibit_all_warnings!
 
-target 'PromosGollo' do
+target 'GolloApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
@@ -28,12 +28,12 @@ target 'PromosGollo' do
   
   pod 'GolloNetWorking', :path => '/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking'
   
-  target 'PromosGolloTests' do
+  target 'GolloAppTests' do
     inherit! :search_paths
     # Pods for testing
   end
   
-  target 'PromosGolloUITests' do
+  target 'GolloAppUITests' do
     # Pods for testing
   end
   
