@@ -123,6 +123,7 @@ enum GOLLOAPP: String {
     case FILTERED_PRODUCTS_PROCESS_ID = "44"
     case PAYMENT_METHODS_PROCESS_ID = "45"
     case NOTIFICATIONS_PROCESS_ID = "48"
+    case PROVENANCE_PROCESS_ID = "50"
 }
 
 enum Payment: Int {

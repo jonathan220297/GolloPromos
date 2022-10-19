@@ -13,7 +13,7 @@ struct ThirdPartyData: Codable {
     let apellido1, telefono2, direccionTrabajo, lugarTrabajo: String?
     let idRegistroBit, otrosIngresos: Int?
     let numeroIdentificacion, corporacion: String?
-    let salario: Double?
+    let salario, montoMinAntilavado: Double?
     let telefonoTrabajo, casa, genero, nombre: String?
     let correoElectronico1, correoElectronico2, ocupacion, nombreConyugue: String?
     let cantidadHijos: Int?

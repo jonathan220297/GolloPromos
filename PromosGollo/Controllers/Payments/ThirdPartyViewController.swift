@@ -23,6 +23,7 @@ class ThirdPartyViewController: UIViewController {
 
     var isDocumentTypeSelected = false
     var selectedDocument = ""
+    var antiLaunderingAmount: Double? = 0.0
 
     lazy var viewModel: SearchDocumentViewModel = {
         let vm = SearchDocumentViewModel()
@@ -96,6 +97,7 @@ class ThirdPartyViewController: UIViewController {
                         self.customerNameLabel.text = name + " " + lastName + " " + secondLastName
                     }
 
+                    self.antiLaunderingAmount = data.montoMinAntilavado ?? 0.0
                     self.navigationItem.title = "Cuentas activas de terceros"
                     self.customerDocumentLabel.text = "Cedula: \(number)"
                     self.fetchCustomerAccounts(documentType: type, documentId: number)
@@ -162,6 +164,7 @@ extension ThirdPartyViewController: UITableViewDelegate, UITableViewDataSource {
         payment.email = Variables.userProfile?.correoElectronico1 ?? ""
         vc.paymentData = payment
         vc.isThirdPayAccount = true
+        vc.antiLaunderingAmount = self.antiLaunderingAmount ?? 0.0
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
