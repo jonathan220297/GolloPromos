@@ -32,7 +32,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         productDiscountPercentageView.clipsToBounds = true
         productDiscountPercentageView.layer.cornerRadius = 10
-        productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMinYCorner]
+        productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMaxYCorner]
         configureRx()
     }
 
@@ -52,7 +52,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         productNameLabel.text = data.brand ?? ""
         productTypeLabel.text = data.name ?? ""
-        productDiscountPriceLabel.text = String(data.precioFinal ?? 0.0).currencyFormatting()
+        productDiscountPriceLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: data.precioFinal ?? 0.0))!)" 
 
         if data.tieneRegalia?.bool ?? false {
             showGift(with: data)
@@ -103,19 +103,25 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
 
     func showGift(with data: Product) {
+        productDiscountPercentageView.clipsToBounds = true
+        productDiscountPercentageView.layer.cornerRadius = 10
+        productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         productRealPriceLabel.text = ""
         productRealPriceLabel.isHidden = true
         productDiscountPercentageView.isHidden = false
-        productDiscountPercentageView.backgroundColor = UIColor.gift
-        productDiscountPercentageLabel.text = "Gift"
+        productDiscountPercentageView.backgroundColor = UIColor.primary
+        productDiscountPercentageLabel.text = "Regalía"
     }
 
     func showBono(with data: Product) {
+        productDiscountPercentageView.clipsToBounds = true
+        productDiscountPercentageView.layer.cornerRadius = 10
+        productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         productRealPriceLabel.text = ""
         productRealPriceLabel.isHidden = true
         productDiscountPercentageView.isHidden = false
         productDiscountPercentageView.backgroundColor = UIColor.bonus
-        productDiscountPercentageLabel.text = "Bonus"
+        productDiscountPercentageLabel.text = "Bono"
     }
 }
 

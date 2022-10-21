@@ -35,9 +35,9 @@ class MenuTabViewController: UIViewController {
 
     func configureTableView() {
         var firstItems: [ItemTabData] = []
-        let accounts = ItemTabData(id: 1, image: "ic_menu_accounts", title: "Mis compras a crédito", subtitle: "Abonos y consultas a compras activas de crédito")
+        let accounts = ItemTabData(id: 1, image: "ic_menu_accounts", title: "Pago de cuotas", subtitle: "Abonos y consultas a compras activas de crédito")
         let status = ItemTabData(id: 2, image: "ic_payment_status", title: "Estados de cuentas", subtitle: "Estado de cuentas a la fecha")
-        let third = ItemTabData(id: 3, image: "ic_third_party_payment", title: "Compras a crédito activas de terceros", subtitle: "Abonos a compras activas de crédito de otras personas")
+        let third = ItemTabData(id: 3, image: "ic_third_party_payment", title: "Pago de cuotas de Terceros", subtitle: "Abonos a compras activas de crédito de otras personas")
         let history = ItemTabData(id: 4, image: "ic_history", title: "Historial de pagos", subtitle: "Historial de pagos realizados por este App")
         firstItems.append(accounts)
         firstItems.append(status)

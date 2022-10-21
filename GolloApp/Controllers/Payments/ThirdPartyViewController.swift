@@ -34,7 +34,7 @@ class ThirdPartyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Compras a crédito activas de terceros"
+        navigationItem.title = "Pago de cuotas de Terceros"
         self.tabBarController?.tabBar.isHidden = true
 
         self.tableView.rowHeight = 140.0

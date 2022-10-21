@@ -13,6 +13,7 @@ target 'GolloApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
+  pod 'FirebaseAnalytics'
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'GoogleSignIn'

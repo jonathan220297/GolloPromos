@@ -96,6 +96,17 @@ class SearchOffersViewController: UIViewController {
 
 }
 
+extension SearchOffersViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" && searchText.count >= 3 {
+            fetchOffers(with: searchText.lowercased())
+        } else {
+            self.emptyView.alpha = 1
+            self.collectionView.alpha = 0
+        }
+    }
+}
+
 extension SearchOffersViewController: UICollectionViewDelegate,
                                             UICollectionViewDataSource,
                                             UICollectionViewDelegateFlowLayout {

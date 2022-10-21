@@ -76,6 +76,10 @@ class EditProfileViewController: UIViewController {
         navigationItem.scrollEdgeAppearance = barAppearance
         configureRx()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
         // Delegate of Image Picker
         imagePicker.delegate = self
 
@@ -134,6 +138,14 @@ class EditProfileViewController: UIViewController {
     }
 
     // MARK: - Functions
+    @objc func keyboardWillShow(sender: NSNotification) {
+         self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
+    }
+
     fileprivate func configureRx() {
         viewModel.errorMessage
             .asObservable()
@@ -150,6 +162,14 @@ class EditProfileViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+
+        phoneNumberTextField.rx.text.bind(to: viewModel.phonenumberSubject).disposed(by: disposeBag)
+        mobileTextField.rx.text.bind(to: viewModel.mobileNumberSubject).disposed(by: disposeBag)
+        emailTextField.rx.text.bind(to: viewModel.emailSubject).disposed(by: disposeBag)
+        addressTextField.rx.text.bind(to: viewModel.addressSubject).disposed(by: disposeBag)
+
+        viewModel.isValidForm.bind(to: updateButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.isValidForm.map { $0 ? 1 : 0.4 }.bind(to: updateButton.rx.alpha).disposed(by: disposeBag)
 
         addImageButton
             .rx
@@ -209,51 +229,6 @@ class EditProfileViewController: UIViewController {
                 }
             }).disposed(by: disposeBag)
 
-        let phoneValidation = phoneNumberTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 || self.phoneNumberTextField.text?.count ?? 0 > 0 }
-            .share(replay: 1)
-
-        let mobileValidation = mobileTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 || self.mobileTextField.text?.count ?? 0 > 0 }
-            .share(replay: 1)
-
-        let emailValidation = emailTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 || self.emailTextField.text?.count ?? 0 > 0 }
-            .share(replay: 1)
-
-        let addressValidation = addressTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 || self.addressTextField.text?.count ?? 0 > 0 }
-            .share(replay: 1)
-
-        let everythingValid = Observable.combineLatest(
-            phoneValidation,
-            mobileValidation,
-            emailValidation,
-            addressValidation
-        ) { $0 && $1 && $2 && $3 }
-            .share(replay: 1)
-
-        everythingValid
-            .bind(to: updateButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        everythingValid
-            .map { $0 ? 1 : 0.4 }
-            .bind(to: updateButton.rx.alpha)
-            .disposed(by: disposeBag)
-
         updateButton
             .rx
             .tap
@@ -264,82 +239,17 @@ class EditProfileViewController: UIViewController {
     }
 
     func configureNuewUserRx() {
-        let usernameValidation = nameTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 }
-            .share(replay: 1)
+        nameTextField.rx.text.bind(to: viewModel.nameSubject).disposed(by: disposeBag)
+        lastNameTextField.rx.text.bind(to: viewModel.lastnameSubject).disposed(by: disposeBag)
+        secondLastNameTextField.rx.text.bind(to: viewModel.secondLastnameSubject).disposed(by: disposeBag)
+        birthdateTextField.rx.text.bind(to: viewModel.birthDateSubject).disposed(by: disposeBag)
+        phoneNumberTextField.rx.text.bind(to: viewModel.phonenumberSubject).disposed(by: disposeBag)
+        mobileTextField.rx.text.bind(to: viewModel.mobileNumberSubject).disposed(by: disposeBag)
+        emailTextField.rx.text.bind(to: viewModel.emailSubject).disposed(by: disposeBag)
+        addressTextField.rx.text.bind(to: viewModel.addressSubject).disposed(by: disposeBag)
 
-        let lastnameValidation = lastNameTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 }
-            .share(replay: 1)
-
-        let secondLastnameValidation = secondLastNameTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 }
-            .share(replay: 1)
-
-        let birthDateValidation = birthdateTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 }
-            .share(replay: 1)
-
-        let phoneValidation = phoneNumberTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 }
-            .share(replay: 1)
-
-        let mobileValidation = mobileTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 }
-            .share(replay: 1)
-
-        let emailValidation = emailTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 && $0.isValidEmail() }
-            .share(replay: 1)
-
-        let addressValidation = addressTextField
-            .rx
-            .text
-            .orEmpty
-            .map { $0.count > 0 }
-            .share(replay: 1)
-
-        let everythingValid = Observable.combineLatest(
-            usernameValidation,
-            lastnameValidation,
-            secondLastnameValidation,
-            birthDateValidation,
-            phoneValidation,
-            mobileValidation,
-            emailValidation,
-            addressValidation
-        ) { $0 && $1 && $2 && $3 && $4 && $5 && $6 && $7 }
-            .share(replay: 1)
-
-        everythingValid
-            .bind(to: updateButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        everythingValid
-            .map { $0 ? 1 : 0.4 }
-            .bind(to: updateButton.rx.alpha)
-            .disposed(by: disposeBag)
+        viewModel.isValidNewForm.bind(to: updateButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.isValidNewForm.map { $0 ? 1 : 0.4 }.bind(to: updateButton.rx.alpha).disposed(by: disposeBag)
     }
 
     func changeImage() {
@@ -367,6 +277,7 @@ class EditProfileViewController: UIViewController {
         dropDown.selectionAction = { [self] (index: Int, item: String) in
             self.genderType = viewModel.genderTypes[index].code
             self.genderTypeLabel.text = item
+            viewModel.genderSubject.accept(item)
         }
     }
 
@@ -421,6 +332,7 @@ class EditProfileViewController: UIViewController {
             secondLastNameTextField.isEnabled = false
             if let date = data.fechaNacimiento, !date.isEmpty {
                 birthdateTextField.text = date
+                viewModel.birthDateSubject.accept(date)
                 birthdateTextField.isEnabled = false
             } else {
                 birthdateTextField.isEnabled = true
@@ -428,17 +340,25 @@ class EditProfileViewController: UIViewController {
             if let gender = data.genero, !gender.isEmpty {
                 genderType = gender
                 genderTypeLabel.text = viewModel.genderTypes.first(where: { $0.code.elementsEqual(gender) })?.name ?? ""
+                viewModel.genderSubject.accept(viewModel.genderTypes.first(where: { $0.code.elementsEqual(gender) })?.name)
                 genderTypeButton.isEnabled = false
             } else {
                 genderTypeButton.isEnabled = true
             }
             nameTextField.text = data.nombre
+            viewModel.nameSubject.accept(data.nombre)
             lastNameTextField.text = data.apellido1
+            viewModel.lastnameSubject.accept(data.apellido1)
             secondLastNameTextField.text = data.apellido2
+            viewModel.secondLastnameSubject.accept(data.apellido2)
             phoneNumberTextField.text = data.telefonoTrabajo
+            viewModel.phonenumberSubject.accept(data.telefonoTrabajo)
             mobileTextField.text = data.telefono1
+            viewModel.mobileNumberSubject.accept(data.telefono1)
             emailTextField.text = data.correoElectronico1
+            viewModel.emailSubject.accept(data.correoElectronico1)
             addressTextField.text = data.direccion
+            viewModel.addressSubject.accept(data.direccion)
         }
     }
 

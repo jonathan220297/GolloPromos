@@ -56,6 +56,7 @@ class OfferDetailViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
+                    self.errorMessage.accept(error.localizedDescription)
                     print("Error: \(error.localizedDescription)")
                 }
             }
