@@ -29,7 +29,7 @@ struct AddOfferCartServiceRequest: Codable {
 }
 
 class CartItemDetail: Codable {
-    init(idCarItem: UUID? = nil, urlImage: String? = nil, cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double, montoBonoProveedor: Double?, warranty: [Warranty] = []) {
+    init(idCarItem: UUID? = nil, urlImage: String? = nil, cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double, montoBonoProveedor: Double?, codRegalia: String?, descRegalia: String?, warranty: [Warranty] = []) {
         self.idCarItem = idCarItem
         self.urlImage = urlImage
         self.cantidad = cantidad
@@ -44,10 +44,12 @@ class CartItemDetail: Codable {
         self.precioExtendido = precioExtendido
         self.precioUnitario = precioUnitario
         self.montoBonoProveedor = montoBonoProveedor
+        self.codRegalia = codRegalia
+        self.descRegalia = descRegalia
         self.warranty = warranty
     }
     
-    init(cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double, montoBonoProveedor: Double?) {
+    init(cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double, montoBonoProveedor: Double?, codRegalia: String?, descRegalia: String?) {
         self.cantidad = cantidad
         self.idLinea = idLinea
         self.mesesExtragar = mesesExtragar
@@ -60,6 +62,8 @@ class CartItemDetail: Codable {
         self.precioExtendido = precioExtendido
         self.montoBonoProveedor = montoBonoProveedor
         self.precioUnitario = precioUnitario
+        self.codRegalia = codRegalia
+        self.descRegalia = descRegalia
     }
     
     var idCarItem: UUID?
@@ -68,6 +72,8 @@ class CartItemDetail: Codable {
     var descripcion, sku: String
     var descuento, montoDescuento, montoExtragar, porcDescuento, precioExtendido, precioUnitario: Double
     var montoBonoProveedor: Double?
+    var codRegalia: String?
+    var descRegalia: String?
     var warranty: [Warranty]?
 }
 

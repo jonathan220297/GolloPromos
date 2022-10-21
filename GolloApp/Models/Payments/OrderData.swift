@@ -25,6 +25,8 @@ struct OrderItem: Codable {
     let sku: String
     let tipoSku: Int
     let montoBonoProveedor: Double
+    let codRegalia: String?
+    let descRegalia: String?
 }
 
 // MARK: - PaymentMethod

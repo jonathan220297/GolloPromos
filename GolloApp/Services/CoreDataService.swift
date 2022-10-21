@@ -31,6 +31,8 @@ class CoreDataService {
             carItem.setValue(item.mesesExtragar, forKey: "warranty")
             carItem.setValue(item.montoExtragar, forKey: "warrantyAmount")
             carItem.setValue(item.montoBonoProveedor, forKey: "providerBonusAmount")
+            carItem.setValue(item.codRegalia, forKey: "codRegalia")
+            carItem.setValue(item.descRegalia, forKey: "descRegalia")
             for w in warranty {
                 let carWarranty = NSManagedObject(entity: warrantyEntity!, insertInto: context)
                 carWarranty.setValue(w.plazoMeses ?? 0, forKey: "months")
@@ -73,6 +75,8 @@ class CoreDataService {
                         precioExtendido: data.value(forKey: "extendedPrice") as? Double ?? 0.0,
                         precioUnitario: data.value(forKey: "unitPrice") as? Double ?? 0.0,
                         montoBonoProveedor: data.value(forKey: "providerBonusAmount") as? Double ?? 0.0,
+                        codRegalia: data.value(forKey: "codRegalia") as? String ?? "",
+                        descRegalia: data.value(forKey: "descRegalia") as? String ?? "",
                         warranty: data.value(forKey: "productWarranty") as? [Warranty] ?? []
                     )
                 )

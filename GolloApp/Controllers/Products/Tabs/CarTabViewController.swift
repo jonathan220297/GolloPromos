@@ -75,6 +75,7 @@ class CarTabViewController: UIViewController {
             .tap
             .subscribe(onNext: {
                 if Variables.isRegisterUser {
+                    let _ = self.viewModel.carManager.emptyCar()
                     self.viewModel.setItemsToCarManager()
                     self.viewModel.carManager.total = self.viewModel.total
                     let paymentAddressViewController = PaymentAddressViewController(
