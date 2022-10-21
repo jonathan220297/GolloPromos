@@ -59,13 +59,13 @@ class PaymentConfirmViewModel {
             return BehaviorRelay<PaymentOrderResponse?>(value: nil)
         }
         for item in carManager.car {
-            if item.montoBonoProveedor > 0.0 {
+            if let montoBonoProveedor = item.montoBonoProveedor, montoBonoProveedor > 0.0 {
                 carManager.paymentMethod.append(
                     PaymentMethod(
                        codAutorizacion: "",
                        fechaExp: "",
                        idFormaPago: "90",
-                       montoPago: item.montoBonoProveedor,
+                       montoPago: item.montoBonoProveedor ?? 0.0,
                        noLineaRelacionada: 0,
                        nomTarjeta: "",
                        numTarjeta: "",

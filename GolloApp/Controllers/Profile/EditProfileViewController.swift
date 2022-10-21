@@ -64,27 +64,58 @@ class EditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
+        configureObservers()
+        configureRx()
+        configureUserData()
+        hideKeyboardWhenTappedAround()
+        imagePicker.delegate = self
+    }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        if sideMenuAcction {
+            self.tabBarController?.navigationController?.navigationBar.isHidden = false
+            self.tabBarController?.tabBar.isHidden = false
+        }
+    }
+
+    // MARK: - Observers
+    @objc func keyboardWillShow(sender: NSNotification) {
+         self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
+    }
+    
+    // MARK: - Functions
+    func configureNavigationBar() {
         self.navigationItem.title = "Perfil de usuario"
         self.tabBarController?.tabBar.isHidden = true
-
         let barAppearance = UINavigationBarAppearance()
         barAppearance.backgroundColor = .primary
         barAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-
         navigationItem.standardAppearance = barAppearance
         navigationItem.scrollEdgeAppearance = barAppearance
-        configureRx()
-
+    }
+    
+    func configureObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-
-        // Delegate of Image Picker
-        imagePicker.delegate = self
-
-        hideKeyboardWhenTappedAround()
-
+    }
+    
+    fileprivate func configureUserData() {
+        viewModel.isUpdating = (Variables.userProfile != nil && Variables.isRegisterUser)
         if let info = Variables.userProfile, Variables.isRegisterUser {
             let data = UserData(
                 tipoIdentificacion: info.tipoIdentificacion,
@@ -120,32 +151,6 @@ class EditProfileViewController: UIViewController {
         }
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        self.tabBarController?.tabBar.isHidden = true
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        if sideMenuAcction {
-            self.tabBarController?.navigationController?.navigationBar.isHidden = false
-            self.tabBarController?.tabBar.isHidden = false
-        }
-    }
-
-    // MARK: - Functions
-    @objc func keyboardWillShow(sender: NSNotification) {
-         self.view.frame.origin.y = -150 // Move view 150 points upward
-    }
-
-    @objc func keyboardWillHide(sender: NSNotification) {
-         self.view.frame.origin.y = 0 // Move view to original position
-    }
-
     fileprivate func configureRx() {
         viewModel.errorMessage
             .asObservable()
@@ -163,6 +168,7 @@ class EditProfileViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        birthdateTextField.rx.text.bind(to: viewModel.birthDateSubject).disposed(by: disposeBag)
         phoneNumberTextField.rx.text.bind(to: viewModel.phonenumberSubject).disposed(by: disposeBag)
         mobileTextField.rx.text.bind(to: viewModel.mobileNumberSubject).disposed(by: disposeBag)
         emailTextField.rx.text.bind(to: viewModel.emailSubject).disposed(by: disposeBag)
@@ -236,20 +242,6 @@ class EditProfileViewController: UIViewController {
                 self.saveUserData()
             })
             .disposed(by: disposeBag)
-    }
-
-    func configureNuewUserRx() {
-        nameTextField.rx.text.bind(to: viewModel.nameSubject).disposed(by: disposeBag)
-        lastNameTextField.rx.text.bind(to: viewModel.lastnameSubject).disposed(by: disposeBag)
-        secondLastNameTextField.rx.text.bind(to: viewModel.secondLastnameSubject).disposed(by: disposeBag)
-        birthdateTextField.rx.text.bind(to: viewModel.birthDateSubject).disposed(by: disposeBag)
-        phoneNumberTextField.rx.text.bind(to: viewModel.phonenumberSubject).disposed(by: disposeBag)
-        mobileTextField.rx.text.bind(to: viewModel.mobileNumberSubject).disposed(by: disposeBag)
-        emailTextField.rx.text.bind(to: viewModel.emailSubject).disposed(by: disposeBag)
-        addressTextField.rx.text.bind(to: viewModel.addressSubject).disposed(by: disposeBag)
-
-        viewModel.isValidNewForm.bind(to: updateButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.isValidNewForm.map { $0 ? 1 : 0.4 }.bind(to: updateButton.rx.alpha).disposed(by: disposeBag)
     }
 
     func changeImage() {
