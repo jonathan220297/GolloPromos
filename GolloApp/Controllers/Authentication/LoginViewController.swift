@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import GoogleSignIn
+import Firebase
 import FirebaseAuth
 import FacebookCore
 import FacebookLogin
@@ -43,8 +44,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        GIDSignIn.sharedInstance().presentingViewController = self
-        GIDSignIn.sharedInstance().delegate = self
         configureViews()
         configureRx()
         hideKeyboardWhenTappedAround()
@@ -156,11 +155,34 @@ class LoginViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        let signInConfig = GIDConfiguration(clientID: FirebaseApp.app()?.options.clientID ?? "")
         googleLoginButton
             .rx
             .tap
             .subscribe(onNext: { _ in
-                GIDSignIn.sharedInstance().signIn()
+                GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) {[weak self] user, error in
+                    guard let self = self else { return }
+                    if let error = error as? NSError {
+                        if error.code != -5 {
+                            self.showAlert(alertText: "GolloApp", alertMessage: error.localizedDescription)
+                        }
+                        return
+                    }
+
+                    guard let auth = user?.authentication, let idToken = auth.idToken else {
+                        return
+                    }
+
+                    let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: auth.accessToken)
+                    self.authService.signIn(with: credential) { user, error in
+                        if let error = error {
+                            self.showAlert(alertText: "GolloApp", alertMessage: error)
+                        }
+                        guard let user = user else { return }
+                        self.viewModel.setUserData(with: user)
+                        self.loginRequestInfo(for: .google)
+                    }
+                }
             })
             .disposed(by: disposeBag)
                 
@@ -296,31 +318,6 @@ class LoginViewController: UIViewController {
         }.joined()
 
         return hashString
-    }
-}
-
-extension LoginViewController: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error as? NSError {
-            if error.code != -5 {
-                self.showAlert(alertText: "GolloApp", alertMessage: error.localizedDescription)
-            }
-            return
-        }
-
-        guard let auth = user.authentication else {
-            return
-        }
-
-        let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
-        authService.signIn(with: credential) { user, error in
-            if let error = error {
-                self.showAlert(alertText: "GolloApp", alertMessage: error)
-            }
-            guard let user = user else { return }
-            self.viewModel.setUserData(with: user)
-            self.loginRequestInfo(for: .google)
-        }
     }
 }
 

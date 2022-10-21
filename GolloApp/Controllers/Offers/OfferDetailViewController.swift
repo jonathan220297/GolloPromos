@@ -210,7 +210,9 @@ class OfferDetailViewController: UIViewController {
                 porcDescuento: 0.0,
                 precioExtendido: (article.articulo?.precio ?? 0.0 - (article.articulo?.montoDescuento ?? 0.0)),
                 precioUnitario: article.articulo?.precio ?? 0.0,
-                montoBonoProveedor: article.articulo?.montoBonoProveedor ?? 0.0
+                montoBonoProveedor: article.articulo?.montoBonoProveedor ?? 0.0,
+                codRegalia: article.articulo?.regalias?.codigo,
+                descRegalia: article.articulo?.regalias?.descripcion
             )
             param.append(item)
             viewModel.addCart(parameters: param)
