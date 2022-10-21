@@ -93,6 +93,7 @@ class OfferDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureAlternativeNavBar()
+        carView.isHidden = CarManager().car.isEmpty
     }
     
     // MARK: - Observers

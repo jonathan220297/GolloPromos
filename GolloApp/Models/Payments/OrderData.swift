@@ -24,7 +24,7 @@ struct OrderItem: Codable {
     let precioExtendido, precioUnitario: Double
     let sku: String
     let tipoSku: Int
-    let montoBonoProveedor: Double
+    let montoBonoProveedor: Double?
     let codRegalia: String?
     let descRegalia: String?
 }

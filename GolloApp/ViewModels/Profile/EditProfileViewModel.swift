@@ -18,6 +18,7 @@ class EditProfileViewModel {
     var docTypes: [DocType] = []
     var genderTypes: [GenderType] = []
     var data: UserData? = nil
+    var isUpdating = false
 
     let nameSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let lastnameSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
@@ -30,27 +31,6 @@ class EditProfileViewModel {
     let addressSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
 
     var isValidForm: Observable<Bool> {
-        return Observable.combineLatest(phonenumberSubject,
-                                        mobileNumberSubject,
-                                        emailSubject,
-                                        addressSubject) { phoneNumber, mobileNumber, email, address in
-
-            guard let phoneNumber = phoneNumber,
-                  let mobileNumber = mobileNumber,
-                  let email = email,
-                  let address = address else {
-                return false
-            }
-
-            return !(phoneNumber.isEmpty)
-            && !(mobileNumber.isEmpty)
-            && !(email.isEmpty)
-            && email.isValidEmail()
-            && !(address.isEmpty)
-        }
-    }
-
-    var isValidNewForm: Observable<Bool> {
         return Observable.combineLatest(nameSubject,
                                         lastnameSubject,
                                         birthDateSubject,
@@ -59,27 +39,42 @@ class EditProfileViewModel {
                                         mobileNumberSubject,
                                         emailSubject,
                                         addressSubject) { name, lastname, birthDate, gender, phoneNumber, mobileNumber, email, address in
+            if self.isUpdating {
+                guard let email = email,
+                      let address = address else {
+                    return false
+                }
+                if let phoneNumber = phoneNumber,
+                    !phoneNumber.isEmpty,
+                    !email.isEmpty,
+                    !address.isEmpty {
+                    return true
+                } else if let mobileNumber = mobileNumber,
+                            !mobileNumber.isEmpty,
+                            !email.isEmpty,
+                            !address.isEmpty {
+                    return true
+                }
+            } else {
+                guard let name = name,
+                      let lastname = lastname,
+                      let birthDate = birthDate,
+                      let gender = gender,
+                      let email = email,
+                      let address = address else {
+                    return false
+                }
 
-            guard let name = name,
-                  let lastname = lastname,
-                  let birthDate = birthDate,
-                  let gender = gender,
-                  let phoneNumber = phoneNumber,
-                  let mobileNumber = mobileNumber,
-                  let email = email,
-                  let address = address else {
-                return false
+                return !(name.isEmpty)
+                && !(lastname.isEmpty)
+                && !(birthDate.isEmpty)
+                && !(gender.isEmpty)
+                && ((phoneNumber != nil && !phoneNumber!.isEmpty) || (mobileNumber != nil && !mobileNumber!.isEmpty))
+                && !(email.isEmpty)
+                && email.isValidEmail()
+                && !(address.isEmpty)
             }
-
-            return !(name.isEmpty)
-            && !(lastname.isEmpty)
-            && !(birthDate.isEmpty)
-            && !(gender.isEmpty)
-            && !(phoneNumber.isEmpty)
-            && !(mobileNumber.isEmpty)
-            && !(email.isEmpty)
-            && email.isValidEmail()
-            && !(address.isEmpty)
+            return false
         }
     }
     

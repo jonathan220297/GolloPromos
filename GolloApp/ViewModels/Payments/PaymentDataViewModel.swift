@@ -36,6 +36,18 @@ class PaymentDataViewModel {
     let cardNameSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let cardCvvSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M/yyyy"
+        return formatter
+    }()
+    
+    let dateFormatterCardExpiryDate: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/yyyy"
+        return formatter
+    }()
+    
     var isValidForm: Observable<Bool> {
         return Observable.combineLatest(cardNumberSubject,
                                         expirationNumberSubject,
@@ -138,11 +150,13 @@ class PaymentDataViewModel {
               let expiryYear = expirationYearSubject.value,
               let cardHolderName = cardNameSubject.value,
               let cvv = cardCvvSubject.value else { return }
-        let expiryDate = String(expiryMonth) + "/" + String(expiryYear)
+        let expiryDateString = String(expiryMonth) + "/" + String(expiryYear)
+        let expiryDate = dateFormatter.date(from: expiryDateString)
+        let expiryDatePretty = dateFormatterCardExpiryDate.string(from: expiryDate ?? Date())
         carManager.paymentMethod.append(
             PaymentMethod(
                codAutorizacion: cvv,
-               fechaExp: expiryDate,
+               fechaExp: expiryDatePretty,
                idFormaPago: "30",
                montoPago: carManager.total,
                noLineaRelacionada: 0,
@@ -163,7 +177,7 @@ class PaymentDataViewModel {
         let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(
             BaseRequest<PaymentOrderResponse?, OrderData>(
-                resource: "Procesos",
+                resource: "Transacciones",
                 service: BaseServiceRequestParam<OrderData>(
                     servicio: ServicioParam(
                         encabezado: getDefaultBaseHeaderRequest(
