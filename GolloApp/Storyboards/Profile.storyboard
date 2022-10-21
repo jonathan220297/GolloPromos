@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,13 +13,13 @@
         <!--Edit Profile View Controller-->
         <scene sceneID="F4S-1r-Y6J">
             <objects>
-                <viewController storyboardIdentifier="EditProfileViewController" id="YaQ-ht-dxu" customClass="EditProfileViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileViewController" id="YaQ-ht-dxu" customClass="EditProfileViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oJ8-42-PfI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZTC-53-7ld">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGs-Ql-rKy">
                                         <rect key="frame" x="0.0" y="0.0" width="415" height="1245.5"/>
@@ -85,7 +85,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjd-ur-pps">
                                                         <rect key="frame" x="0.0" y="0.0" width="415" height="75"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tipo de documento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tby-7L-RHc" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tipo de documento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tby-7L-RHc" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="0.0" width="399" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="Lhp-FS-q8I"/>
@@ -170,7 +170,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yH0-IP-Lwd">
                                                         <rect key="frame" x="0.0" y="83" width="415" height="70"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Número de documento (ID o pasaporte)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFg-1P-gKs" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Número de documento (ID o pasaporte)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFg-1P-gKs" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="0.0" width="399" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="gZV-hS-him"/>
@@ -227,7 +227,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JjU-A6-FqP">
                                                         <rect key="frame" x="0.0" y="161" width="415" height="65"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5M-4d-vuN" customClass="LoadingButton" customModule="PromosGollo" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5M-4d-vuN" customClass="LoadingButton" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="31" y="8" width="353" height="49"/>
                                                                 <color key="backgroundColor" name="colorPrimary"/>
                                                                 <color key="tintColor" name="AccentColor"/>
@@ -362,7 +362,7 @@
                                                                             <constraint firstAttribute="height" constant="34" id="QWt-Ox-Vsa"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                                                     </textField>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDN-9e-Ma9">
                                                                         <rect key="frame" x="8" y="59" width="399" height="1"/>
@@ -416,7 +416,7 @@
                                                                             <constraint firstAttribute="height" constant="34" id="Agd-kf-of8"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                                                     </textField>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNN-gB-nyH">
                                                                         <rect key="frame" x="8" y="59" width="399" height="1"/>
@@ -470,7 +470,7 @@
                                                                             <constraint firstAttribute="height" constant="34" id="ihA-yO-hpG"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                                                     </textField>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UyC-Xt-vE0">
                                                                         <rect key="frame" x="8" y="59" width="399" height="1"/>
@@ -660,7 +660,7 @@
                                                                             <constraint firstAttribute="height" constant="34" id="ZfI-eW-GNq"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" textContentType="tel"/>
                                                                     </textField>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uD-uA-Jjg">
                                                                         <rect key="frame" x="8" y="59" width="399" height="1"/>
@@ -714,7 +714,7 @@
                                                                             <constraint firstAttribute="height" constant="34" id="G83-gr-Fxs"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" textContentType="tel"/>
                                                                     </textField>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="452-PF-bLP">
                                                                         <rect key="frame" x="8" y="59" width="399" height="1"/>
@@ -768,7 +768,7 @@
                                                                             <constraint firstAttribute="height" constant="34" id="Bbd-JO-1jl"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                                                     </textField>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2b-Gc-X7A">
                                                                         <rect key="frame" x="8" y="59" width="399" height="1"/>
@@ -861,7 +861,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQQ-Ya-Thb">
                                                                 <rect key="frame" x="0.0" y="675" width="415" height="65"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJk-zw-SnR" customClass="LoadingButton" customModule="PromosGollo" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJk-zw-SnR" customClass="LoadingButton" customModule="GolloApp" customModuleProvider="target">
                                                                         <rect key="frame" x="31" y="4" width="353" height="57"/>
                                                                         <color key="backgroundColor" name="colorPrimary"/>
                                                                         <color key="tintColor" name="AccentColor"/>
@@ -961,7 +961,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrowtriangle.down.fill" catalog="system" width="128" height="124"/>
+        <image name="arrowtriangle.down.fill" catalog="system" width="128" height="120"/>
         <image name="ic_edit" width="25" height="25"/>
         <image name="ic_register_new_user" width="256" height="256"/>
         <image name="plus" catalog="system" width="128" height="113"/>

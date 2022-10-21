@@ -170,7 +170,7 @@
         <!--Offers-->
         <scene sceneID="vva-WP-uh8">
             <objects>
-                <viewController storyboardIdentifier="OffersViewController" id="Xba-g1-8xg" customClass="OffersViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OffersViewController" id="Xba-g1-8xg" customClass="OffersViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9oa-Sp-ibw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -322,7 +322,7 @@
         <!--Filter View Controller-->
         <scene sceneID="10f-YM-wUb">
             <objects>
-                <viewController storyboardIdentifier="FilterViewController" id="989-M7-E3e" customClass="FilterViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilterViewController" id="989-M7-E3e" customClass="FilterViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="609-Df-kGM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -393,7 +393,7 @@
                                         <rect key="frame" x="0.0" y="100" width="414" height="638"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterTableViewCell" rowHeight="50" id="iKL-79-1J7" customClass="FilterTableViewCell" customModule="PromosGollo" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterTableViewCell" rowHeight="50" id="iKL-79-1J7" customClass="FilterTableViewCell" customModule="GolloApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="414" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iKL-79-1J7" id="lfm-Za-Aym">
@@ -544,7 +544,7 @@
         <!--Offer List View Controller-->
         <scene sceneID="JdV-7s-inR">
             <objects>
-                <viewController storyboardIdentifier="OfferListViewController" id="aJq-FV-evy" customClass="OfferListViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OfferListViewController" id="aJq-FV-evy" customClass="OfferListViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cn3-YZ-Z23">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -629,7 +629,7 @@
         <!--Offer Detail View Controller-->
         <scene sceneID="M2c-Am-t9k">
             <objects>
-                <viewController storyboardIdentifier="OfferDetailViewController" id="ibH-nn-DXi" customClass="OfferDetailViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OfferDetailViewController" id="ibH-nn-DXi" customClass="OfferDetailViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uoZ-yW-bCn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1009,7 +1009,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descuento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QB4-kH-vHh">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="de descuento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QB4-kH-vHh">
                                                                 <rect key="frame" x="155" y="0.0" width="147" height="32.5"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                 <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
@@ -1280,7 +1280,7 @@
         <!--Offers Tab Bar View Controller-->
         <scene sceneID="XTO-3I-f1g">
             <objects>
-                <tabBarController storyboardIdentifier="OffersTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="7eN-Cu-jkH" customClass="OffersTabBarViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="OffersTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="7eN-Cu-jkH" customClass="OffersTabBarViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zYG-es-OaR">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

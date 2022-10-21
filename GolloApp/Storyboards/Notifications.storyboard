@@ -13,7 +13,7 @@
         <!--Notifications View Controller-->
         <scene sceneID="Xnf-dK-Hol">
             <objects>
-                <viewController storyboardIdentifier="NotificationsViewController" id="BNP-9x-DdO" customClass="NotificationsViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationsViewController" id="BNP-9x-DdO" customClass="NotificationsViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OGB-tj-Kab">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,48 +72,58 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NotificationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SystemTableViewCell" rowHeight="75" id="jCB-jc-b8H" customClass="NotificationTableViewCell" customModule="PromosGollo" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NotificationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SystemTableViewCell" rowHeight="75" id="jCB-jc-b8H" customClass="NotificationTableViewCell" customModule="GolloApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="414" height="75"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jCB-jc-b8H" id="Spj-tI-Fo6">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hVx-UC-xgU">
+                                                            <rect key="frame" x="8" y="17.5" width="40" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="E9q-x8-hEF"/>
+                                                                <constraint firstAttribute="width" constant="40" id="a6Z-Yc-VGe"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="p2h-yS-0o7">
+                                                            <rect key="frame" x="382" y="25.5" width="24" height="24"/>
+                                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="24" id="Ca1-bH-0le"/>
+                                                                <constraint firstAttribute="height" constant="24" id="Ovg-Ny-FfE"/>
+                                                            </constraints>
+                                                        </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aYG-4B-Cds">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="75"/>
+                                                            <rect key="frame" x="56" y="0.0" width="318" height="75"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qN1-ir-Eiw">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="318" height="25"/>
                                                                     <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TU-tI-T8o">
-                                                                    <rect key="frame" x="0.0" y="25" width="374" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="25" width="318" height="25"/>
                                                                     <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOi-AC-ETl">
-                                                                    <rect key="frame" x="0.0" y="50" width="374" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="50" width="318" height="25"/>
                                                                     <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="12"/>
                                                                     <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p2h-yS-0o7">
-                                                            <rect key="frame" x="382" y="25.5" width="24" height="24"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="24" id="Ca1-bH-0le"/>
-                                                                <constraint firstAttribute="height" constant="24" id="Ovg-Ny-FfE"/>
-                                                            </constraints>
-                                                        </imageView>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="p2h-yS-0o7" firstAttribute="centerY" secondItem="Spj-tI-Fo6" secondAttribute="centerY" id="Kmq-rU-RUV"/>
+                                                        <constraint firstItem="hVx-UC-xgU" firstAttribute="centerY" secondItem="Spj-tI-Fo6" secondAttribute="centerY" id="NUu-26-wn0"/>
+                                                        <constraint firstItem="aYG-4B-Cds" firstAttribute="leading" secondItem="hVx-UC-xgU" secondAttribute="trailing" constant="8" id="NWz-G3-lg7"/>
                                                         <constraint firstAttribute="bottom" secondItem="aYG-4B-Cds" secondAttribute="bottom" id="YzY-Fg-W01"/>
-                                                        <constraint firstItem="aYG-4B-Cds" firstAttribute="leading" secondItem="Spj-tI-Fo6" secondAttribute="leading" id="c1O-qq-rd6"/>
+                                                        <constraint firstItem="hVx-UC-xgU" firstAttribute="leading" secondItem="Spj-tI-Fo6" secondAttribute="leading" constant="8" id="cMT-GC-Uuy"/>
                                                         <constraint firstItem="p2h-yS-0o7" firstAttribute="leading" secondItem="aYG-4B-Cds" secondAttribute="trailing" constant="8" id="hoz-Rv-4jO"/>
                                                         <constraint firstItem="aYG-4B-Cds" firstAttribute="top" secondItem="Spj-tI-Fo6" secondAttribute="top" id="xKd-H5-fRb"/>
                                                         <constraint firstAttribute="trailing" secondItem="p2h-yS-0o7" secondAttribute="trailing" constant="8" id="z7X-U7-CdJ"/>
@@ -169,7 +179,7 @@
         <!--Notification Detail View Controller-->
         <scene sceneID="HSP-bS-HHS">
             <objects>
-                <viewController storyboardIdentifier="NotificationDetailViewController" id="pO9-mn-5wu" customClass="NotificationDetailViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationDetailViewController" id="pO9-mn-5wu" customClass="NotificationDetailViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DWZ-km-1U3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -316,6 +326,7 @@
     <resources>
         <image name="ic_navigate" width="50" height="50"/>
         <image name="ic_notification" width="25" height="25"/>
+        <image name="ic_right_arrow" width="25" height="25"/>
         <namedColor name="PrimaryColor">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

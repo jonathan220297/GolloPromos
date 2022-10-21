@@ -7,6 +7,7 @@
 
 import UIKit
 import RxRelay
+import RxSwift
 
 class EditProfileViewModel {
     private let service = GolloService()
@@ -17,6 +18,70 @@ class EditProfileViewModel {
     var docTypes: [DocType] = []
     var genderTypes: [GenderType] = []
     var data: UserData? = nil
+
+    let nameSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let lastnameSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let secondLastnameSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let birthDateSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let genderSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let phonenumberSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let mobileNumberSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let emailSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let addressSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+
+    var isValidForm: Observable<Bool> {
+        return Observable.combineLatest(phonenumberSubject,
+                                        mobileNumberSubject,
+                                        emailSubject,
+                                        addressSubject) { phoneNumber, mobileNumber, email, address in
+
+            guard let phoneNumber = phoneNumber,
+                  let mobileNumber = mobileNumber,
+                  let email = email,
+                  let address = address else {
+                return false
+            }
+
+            return !(phoneNumber.isEmpty)
+            && !(mobileNumber.isEmpty)
+            && !(email.isEmpty)
+            && email.isValidEmail()
+            && !(address.isEmpty)
+        }
+    }
+
+    var isValidNewForm: Observable<Bool> {
+        return Observable.combineLatest(nameSubject,
+                                        lastnameSubject,
+                                        birthDateSubject,
+                                        genderSubject,
+                                        phonenumberSubject,
+                                        mobileNumberSubject,
+                                        emailSubject,
+                                        addressSubject) { name, lastname, birthDate, gender, phoneNumber, mobileNumber, email, address in
+
+            guard let name = name,
+                  let lastname = lastname,
+                  let birthDate = birthDate,
+                  let gender = gender,
+                  let phoneNumber = phoneNumber,
+                  let mobileNumber = mobileNumber,
+                  let email = email,
+                  let address = address else {
+                return false
+            }
+
+            return !(name.isEmpty)
+            && !(lastname.isEmpty)
+            && !(birthDate.isEmpty)
+            && !(gender.isEmpty)
+            && !(phoneNumber.isEmpty)
+            && !(mobileNumber.isEmpty)
+            && !(email.isEmpty)
+            && email.isValidEmail()
+            && !(address.isEmpty)
+        }
+    }
     
     func uploadPhoto(profileImage: UIImage?, firstName: String?, lastNames: String?, birthDate: Date?) {
         firebaseService.uploadPhoto(with: userManager.userData?.uid ?? "ShoppiImage", userManager.userData?.email ?? "", profileImage: profileImage, firstName: firstName, lastNames: lastNames, birthDate: birthDate) {[weak self] error in

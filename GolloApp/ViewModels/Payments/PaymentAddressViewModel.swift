@@ -175,7 +175,6 @@ class PaymentAddressViewModel {
             lugarDespacho: "",
             montoFlete: carManager.shippingMethod?.cost ?? 0.0,
             nomReceptor: (firstName ?? "") + " " + (lastName ?? ""),
-            postalCode: postalCode ?? "",
             telReceptor: phoneNumber ?? "",
             tipoEntrega: "",
             tipoIDRecep: "C"

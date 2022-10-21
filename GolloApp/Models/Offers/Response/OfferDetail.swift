@@ -15,8 +15,13 @@ struct Article : Codable {
     let sku, codigoReferencia, codigo, nombre, especificaciones: String?
     let urlImagen, marca, modelo: String?
     let precio, montoDescuento, montoBonoProveedor, precioDescuento: Double?
+    let regalias: Royalties?
     let stock: [Stock]?
     let extraGarantia: [Warranty]?
+}
+
+struct Royalties: Codable {
+    let descripcion, codigo: String?
 }
 
 struct Stock: Codable {

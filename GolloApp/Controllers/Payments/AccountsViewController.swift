@@ -23,7 +23,7 @@ class AccountsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Mis compras a crédito"
+        navigationItem.title = "Pago de cuotas"
 
         tableView.rowHeight = 335.0
         tableView.tableFooterView = UIView()

@@ -77,8 +77,6 @@ class OfferDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        configureAlternativeNavBar()
         
         // Zoom
         scrollImageView.minimumZoomScale = 1
@@ -93,11 +91,8 @@ class OfferDetailViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        //self.navigationItem.title = "Detalle de Promoción"
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+        super.viewWillAppear(animated)
+        configureAlternativeNavBar()
     }
     
     // MARK: - Observers
@@ -121,11 +116,8 @@ class OfferDetailViewController: UIViewController {
     }
 
     fileprivate func saveFavorite() {
-//        var list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
-//        if let data = offer {
-//            list.append(data)
-//        }
-//        defaults.set(list, forKey: "Favorites")
+        self.favoriteButton.setImage(UIImage(named: "ic_added_heart"), for: .normal)
+        self.showAlert(alertText: "GolloApp", alertMessage: "Favorito guardado correctamente.")
     }
 
     //MARK: - Functions
@@ -149,7 +141,7 @@ class OfferDetailViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.configureServiceDropDown()
+                self.saveFavorite()
             })
             .disposed(by: bag)
 
@@ -157,7 +149,7 @@ class OfferDetailViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.configureServiceDropDown()
+                self.shareContent()
             })
             .disposed(by: bag)
 
@@ -195,8 +187,8 @@ class OfferDetailViewController: UIViewController {
                 .subscribe(onNext: {[weak self] data in
                     guard let self = self,
                           let data = data else { return }
-                    self.showData(with: data)
                     self.article = data
+                    self.showData(with: data)
                 })
                 .disposed(by: bag)
         }
@@ -230,6 +222,7 @@ class OfferDetailViewController: UIViewController {
                         CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
                         self.carView.isHidden = false
                         self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
+                        self.configureAlternativeNavBar()
                         if self.viewModel.documents.count > 0 && self.warrantyMonth == 0 {
                             let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
                             offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
@@ -297,8 +290,6 @@ class OfferDetailViewController: UIViewController {
                 self.discountLabel.alpha = 0
             }
 
-            let regalia = offer.tieneRegalia?.bool
-
             if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0 {
                 discountLabel.text = "\("₡")\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
             } else {
@@ -310,8 +301,8 @@ class OfferDetailViewController: UIViewController {
                 }
             }
 
-            if regalia! {
-                giftLabel.text = "\(offer.product ?? "") - \(offer.productName ?? "")"
+            if let royalties = article?.articulo?.regalias {
+                giftLabel.text = "\(royalties.codigo ?? "") - \(royalties.descripcion ?? "")"
             } else {
                 DispatchQueue.main.async {
                     self.tintViewGift.visibility = .gone
@@ -322,7 +313,7 @@ class OfferDetailViewController: UIViewController {
             }
 
             if let bonus = data.articulo?.montoBonoProveedor, bonus > 0.0 {
-                bonusLabel.text = "\(offer.simboloMoneda ?? .empty)\(numberFormatter.string(from: NSNumber(value: bonus))!)"
+                bonusLabel.text = "\("₡")\(numberFormatter.string(from: NSNumber(value: bonus))!)"
             } else {
                 DispatchQueue.main.async {
                     self.tintViewBonus.visibility = .gone
@@ -351,6 +342,11 @@ class OfferDetailViewController: UIViewController {
                 )
                 documents.append(lov)
             }
+        }
+        if let first = documents.first {
+            warrantyMonth = first.plazoMeses ?? 0
+            warrantyAmount = first.montoExtragarantia ?? 0.0
+            serviceLabel.text = first.titulo
         }
         viewModel.documents = documents
     }

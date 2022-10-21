@@ -98,6 +98,7 @@ class CarTabViewController: UIViewController {
                 if CoreDataService().deleteAllItems() {
                     self.viewModel.car.removeAll()
                     self.carTableView.reloadData()
+                    self.emptyView.alpha = 1
                 }
             })
             .disposed(by: bag)

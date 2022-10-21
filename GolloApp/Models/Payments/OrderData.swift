@@ -45,7 +45,8 @@ struct DeliveryInfo: Codable {
     var horaEntrega, idCanton, idDistrito, idProvincia: String
     var idReceptor, lastName, lugarDespacho: String
     var montoFlete: Double
-    var nomReceptor, postalCode, telReceptor, tipoEntrega: String
+    var nomReceptor, telReceptor, tipoEntrega: String
+    var postalCode: String? = nil
     var tipoIDRecep: String
 
     enum CodingKeys: String, CodingKey {

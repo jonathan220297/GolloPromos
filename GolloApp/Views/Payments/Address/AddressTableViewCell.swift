@@ -13,6 +13,7 @@ protocol AddressDelegate: AnyObject {
 
 class AddressTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var countyLabel: UILabel!
     @IBOutlet weak var districtLabel: UILabel!
@@ -39,6 +40,7 @@ class AddressTableViewCell: UITableViewCell {
     
     // MARK: - Functions
     func setAddressData(with data: UserAddress) {
+        addressLabel.text = "Direccion: " + data.direccionExacta
         stateLabel.text = "Provincia: " + data.provinciaDesc
         countyLabel.text = "Cantón: " + data.cantonDesc
         districtLabel.text = "Distrito: " + data.distritoDesc

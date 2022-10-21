@@ -76,9 +76,11 @@ class PaymentSuccessViewController: UIViewController {
     func configureViews() {
         if viewModel.accountPaymentResponse != nil {
             titleLabel.text = "Pago aplicado con exito"
+            successImage.image = UIImage(named: "ic_payment_success")
             orderNumberLabel.isHidden = true
         } else if let productPaymentResponse = viewModel.productPaymentResponse {
             titleLabel.text = "Orden confirmada"
+            successImage.image = UIImage(named: "ic_order_confirmation")
             orderNumberLabel.isHidden = false
             let orderString = "Número de orden: " + (productPaymentResponse.orderId ?? "")
             orderNumberLabel.attributedText = orderString.withBoldText(

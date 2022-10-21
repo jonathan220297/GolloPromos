@@ -17,10 +17,14 @@ class HistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     let dateFormatter = DateFormatter()
+    let alternativeFormatter = DateFormatter()
     var imagePicker = UIImagePickerController()
 
     private var datePickerFrom: UIDatePicker?
     private var datePickerTo: UIDatePicker?
+
+    var fromDateSelected: String? = ""
+    var toDateSelected: String? = ""
 
     lazy var viewModel: HistoryViewModel = {
         return HistoryViewModel()
@@ -64,12 +68,18 @@ class HistoryViewController: UIViewController {
     // MARK: - Observers
     @objc func dateChangeFrom(datePicker: UIDatePicker) {
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        fromTextField.text = dateFormatter.string(from: datePicker.date)
+        alternativeFormatter.dateFormat = "dd/MM/yyyy"
+
+        fromDateSelected = dateFormatter.string(from: datePicker.date)
+        fromTextField.text = alternativeFormatter.string(from: datePicker.date)
     }
 
     @objc func dateChangeTo(datePicker: UIDatePicker) {
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        toTextField.text = dateFormatter.string(from: datePicker.date)
+        DateFormatter().dateFormat = "dd/MM/yyyy"
+
+        toDateSelected = dateFormatter.string(from: datePicker.date)
+        toTextField.text = alternativeFormatter.string(from: datePicker.date)
     }
 
     @objc func viewTapped(gestureRecognized: UITapGestureRecognizer) {
@@ -77,8 +87,8 @@ class HistoryViewController: UIViewController {
     }
 
     @IBAction func searchHistoryByDate(_ sender: Any) {
-        if let from = fromTextField.text,
-           let to = toTextField.text {
+        if let from = fromDateSelected,
+           let to = toDateSelected {
             if from.isEmpty && to.isEmpty {
                 showAlert(alertText: "GolloApp", alertMessage: "Fechas incompletas")
             } else {

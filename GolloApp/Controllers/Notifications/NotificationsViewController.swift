@@ -101,7 +101,7 @@ extension NotificationsViewController: UITableViewDataSource, UITableViewDelegat
         let vc = NotificationDetailViewController.instantiate(fromAppStoryboard: .Notifications)
         vc.modalPresentationStyle = .fullScreen
         vc.notification = n
-        navigationController?.pushViewController(vc, animated: true)
+        //navigationController?.pushViewController(vc, animated: true)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
