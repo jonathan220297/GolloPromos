@@ -352,6 +352,7 @@ extension PaymentAddressViewController: AddressListDelegate {
         viewModel.districtSubject.accept(address.idDistrito)
         districtLabel.text = address.distritoDesc
         addressTextField.text = address.direccionExacta
+        viewModel.addressSubject.accept(address.direccionExacta)
         postalCodeTextField.text = address.codigoPostal
     }
 }

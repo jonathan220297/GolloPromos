@@ -32,6 +32,7 @@ class SearchOffersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        self.searchBar.endEditing(true)
     }
 
     // MARK: - Functions
@@ -104,6 +105,10 @@ extension SearchOffersViewController: UISearchBarDelegate {
             self.emptyView.alpha = 1
             self.collectionView.alpha = 0
         }
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 

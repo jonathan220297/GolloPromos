@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import DropDown
+import Nuke
 
 class EditProfileViewController: UIViewController {
 
@@ -54,6 +55,7 @@ class EditProfileViewController: UIViewController {
         return vm
     }()
     let disposeBag = DisposeBag()
+    let datePicker = UIDatePicker()
 
     private let userManager = UserManager.shared
     let userDefaults = UserDefaults.standard
@@ -67,9 +69,11 @@ class EditProfileViewController: UIViewController {
         configureNavigationBar()
         configureObservers()
         configureRx()
+        createDatePicker()
         configureUserData()
         hideKeyboardWhenTappedAround()
         imagePicker.delegate = self
+        documentNumberLabel.delegate = self
     }
 
     override func viewWillLayoutSubviews() {
@@ -90,12 +94,25 @@ class EditProfileViewController: UIViewController {
     }
 
     // MARK: - Observers
-    @objc func keyboardWillShow(sender: NSNotification) {
-         self.view.frame.origin.y = -150 // Move view 150 points upward
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 && self.searchCustomerButton.visibility == UIView.Visibility.gone {
+                self.view.frame.origin.y -= keyboardSize.height - 50
+            }
+        }
     }
 
-    @objc func keyboardWillHide(sender: NSNotification) {
-         self.view.frame.origin.y = 0 // Move view to original position
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+
+    @objc func donePressed() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        birthdateTextField.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
     }
     
     // MARK: - Functions
@@ -110,8 +127,19 @@ class EditProfileViewController: UIViewController {
     }
     
     func configureObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    func createDatePicker() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        toolbar.setItems([doneButton], animated: true)
+        birthdateTextField.inputAccessoryView = toolbar
+        birthdateTextField.inputView = datePicker
+        datePicker.datePickerMode = .date
     }
     
     fileprivate func configureUserData() {
@@ -314,8 +342,17 @@ class EditProfileViewController: UIViewController {
         profileImageView.isHidden = false
         self.unregisteredUserView.isHidden = true
         view.layoutIfNeeded()
+        let options = ImageLoadingOptions(
+            placeholder: UIImage(named: "empty_image"),
+            transition: .fadeIn(duration: 0.5),
+            failureImage: UIImage(named: "empty_image")
+        )
         if let data = data {
-            documentTypeLabel.text = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? ""
+            if let url = URL(string: data.image ?? "") {
+                Nuke.loadImage(with: url, options: options, into: userImageView)
+            }
+            documentTypeLabel.text = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "C"
+            documentType = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "C"
             documentTypeButton.isEnabled = false
             documentNumberLabel.text = data.numeroIdentificacion
             documentNumberLabel.isEnabled = false
@@ -323,8 +360,8 @@ class EditProfileViewController: UIViewController {
             lastNameTextField.isEnabled = false
             secondLastNameTextField.isEnabled = false
             if let date = data.fechaNacimiento, !date.isEmpty {
-                birthdateTextField.text = date
-                viewModel.birthDateSubject.accept(date)
+                birthdateTextField.text = date.convertDateFormater(with: "dd/MM/yyyy")
+                viewModel.birthDateSubject.accept(date.convertDateFormater(with: "dd/MM/yyyy"))
                 birthdateTextField.isEnabled = false
             } else {
                 birthdateTextField.isEnabled = true
@@ -345,8 +382,8 @@ class EditProfileViewController: UIViewController {
             viewModel.secondLastnameSubject.accept(data.apellido2)
             phoneNumberTextField.text = data.telefonoTrabajo
             viewModel.phonenumberSubject.accept(data.telefonoTrabajo)
-            mobileTextField.text = data.telefono1
-            viewModel.mobileNumberSubject.accept(data.telefono1)
+            mobileTextField.text = data.telefono2
+            viewModel.mobileNumberSubject.accept(data.telefono2)
             emailTextField.text = data.correoElectronico1
             viewModel.emailSubject.accept(data.correoElectronico1)
             addressTextField.text = data.direccion
@@ -403,5 +440,12 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         addImageButton.alpha = 0
         editImageButton.alpha = 1
         dismiss(animated: true)
+    }
+}
+
+extension EditProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 }

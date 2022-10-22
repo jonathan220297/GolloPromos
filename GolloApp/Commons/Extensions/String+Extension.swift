@@ -68,7 +68,7 @@ extension String {
 
     func convertDateFormater(with format: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
 
         guard let date = dateFormatter.date(from: self) else { return "" }
