@@ -22,6 +22,7 @@ class CarProductTableViewCell: UITableViewCell {
     @IBOutlet weak var deleteItemButton: UIButton!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
+    @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var warrantyStackView: UIStackView!
     @IBOutlet weak var warrantyNameLabel: UILabel!
     @IBOutlet weak var warrantyAmountLabel: UILabel!
@@ -79,7 +80,11 @@ class CarProductTableViewCell: UITableViewCell {
             Nuke.loadImage(with: url, into: productImageView)
         }
         productNameLabel.text = data.descripcion
-        productPriceLabel.text = "₡" + formatter.string(from: NSNumber(value: data.precioUnitario))!
+        productPriceLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: data.precioUnitario))!
+
+        if data.montoDescuento > 0.0 {
+            discountLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: data.montoDescuento))!)"
+        }
 
         quantity = data.cantidad
         quantityTextField.text = String(quantity)
@@ -90,11 +95,11 @@ class CarProductTableViewCell: UITableViewCell {
             warrantyStackView.isHidden = false
             addWarrantyView.isHidden = true
             let total = data.precioUnitario + data.montoExtragar
-            totalAmountLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
+            totalAmountLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: total))!
         } else {
             warrantyStackView.isHidden = true
             addWarrantyView.isHidden = false
-            totalAmountLabel.text = "₡" + formatter.string(from: NSNumber(value: data.precioUnitario))!
+            totalAmountLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: data.precioUnitario))!
         }
     }
 }

@@ -17,6 +17,7 @@ class ResetPasswordViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
 
     let disposeBag = DisposeBag()
+    var keyboardShowing: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +28,37 @@ class ResetPasswordViewController: UIViewController {
         self.viewGlass.addGestureRecognizer(tapRecognizer)
         self.viewGlass.isUserInteractionEnabled = true
 
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+
         configureRx()
+        emailTextField.delegate = self
     }
 
     // MARK: - Observers
     @objc func closePopUp() {
-        dismiss(animated: true)
+        if !keyboardShowing {
+            dismiss(animated: true)
+        } else {
+            hideKeyboardWhenTappedAround()
+        }
+    }
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.keyboardShowing = true
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height - 150
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.keyboardShowing = false
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
 
     // MARK: - Functions
@@ -75,4 +101,11 @@ extension ResetPasswordViewController: UIGestureRecognizerDelegate {
         }
         return false
     }
+}
+
+extension ResetPasswordViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return true
+        }
 }

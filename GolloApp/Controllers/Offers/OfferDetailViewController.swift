@@ -93,7 +93,7 @@ class OfferDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureAlternativeNavBar()
-        carView.isHidden = CarManager().car.isEmpty
+        carView.isHidden = true
     }
     
     // MARK: - Observers
@@ -223,7 +223,6 @@ class OfferDetailViewController: UIViewController {
                           let _ = data else { return }
                     DispatchQueue.main.async {
                         CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
-                        self.carView.isHidden = false
                         self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
                         self.configureAlternativeNavBar()
                         if self.viewModel.documents.count > 0 && self.warrantyMonth == 0 {

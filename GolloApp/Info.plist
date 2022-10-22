@@ -94,5 +94,7 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>Gollo App utilizará los datos de la aplicación para mostrarte mejores promociones y descuentos.</string>
 </dict>
 </plist>

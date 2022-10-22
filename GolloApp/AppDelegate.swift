@@ -11,6 +11,9 @@ import FirebaseCore
 import GoogleSignIn
 import CoreData
 import XCGLogger
+import AppTrackingTransparency
+import AdSupport
+import FacebookCore
 
 let log = XCGLogger.default
 
@@ -23,12 +26,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+
         FirebaseApp.configure()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+                    self?.requestTracking()
+        }
         return true
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return GIDSignIn.sharedInstance.handle(url)
+    }
+
+    func requestTracking() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { (status) in
+                switch status{
+                case .authorized:
+                    Settings.isAutoLogAppEventsEnabled = true
+                    Settings.isAdvertiserIDCollectionEnabled = true
+                    break
+                case .denied:
+                    Settings.isAutoLogAppEventsEnabled = false
+                    Settings.isAdvertiserIDCollectionEnabled = false
+                    break
+                default:
+                    break
+                }
+            })
+        }
     }
 
     // MARK: - Core Data stack
