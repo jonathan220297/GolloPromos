@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "277"
             endingLineNumber = "277"
-            landmarkName = "fetchUserData()"
+            landmarkName = "changeImage()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
             endingLineNumber = "119"
-            landmarkName = "configureUserData()"
+            landmarkName = "configureNavigationBar()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -82,6 +82,102 @@
             endingLineNumber = "42"
             landmarkName = "isValidForm"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BCDB79DB-777B-4CD3-BE0E-3CD17FFCB83B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "isValidForm"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "BCDB79DB-777B-4CD3-BE0E-3CD17FFCB83B - 10a6fd5e2c420fd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool in GolloApp.SignUpViewModel.isValidForm.getter : RxSwift.Observable&lt;Swift.Bool&gt;"
+                  moduleName = "GolloApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "319">
+               </Location>
+               <Location
+                  uuid = "BCDB79DB-777B-4CD3-BE0E-3CD17FFCB83B - 10a6fd5e2c420fd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool in GolloApp.SignUpViewModel.isValidForm.getter : RxSwift.Observable&lt;Swift.Bool&gt;"
+                  moduleName = "GolloApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "367">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7CBAA38A-C601-4F27-BC31-BAE7F516EFCF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "isValidForm"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7CBAA38A-C601-4F27-BC31-BAE7F516EFCF - 10a6fd5e2c420fd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool in GolloApp.SignUpViewModel.isValidForm.getter : RxSwift.Observable&lt;Swift.Bool&gt;"
+                  moduleName = "GolloApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "319">
+               </Location>
+               <Location
+                  uuid = "7CBAA38A-C601-4F27-BC31-BAE7F516EFCF - 10a6fd5e2c420fd3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool in GolloApp.SignUpViewModel.isValidForm.getter : RxSwift.Observable&lt;Swift.Bool&gt;"
+                  moduleName = "GolloApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "367">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

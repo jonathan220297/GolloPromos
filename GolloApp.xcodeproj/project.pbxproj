@@ -190,7 +190,6 @@
 		4F7C5F3628E621E400123072 /* OrderDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C5F3528E621E400123072 /* OrderDetailData.swift */; };
 		4F7C5F3928E641CC00123072 /* ProductOrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C5F3728E641CC00123072 /* ProductOrderDetailTableViewCell.swift */; };
 		4F7C5F3A28E641CC00123072 /* ProductOrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7C5F3828E641CC00123072 /* ProductOrderDetailTableViewCell.xib */; };
-		4F85128929031DBC00A0E35A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F85128829031DBC00A0E35A /* GoogleService-Info.plist */; };
 		4F894A17270A5A900004AAB3 /* AccountsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */; };
 		4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */; };
 		4F894A1B270A60640004AAB3 /* SearchDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */; };
@@ -315,6 +314,7 @@
 		4FF1C6D628FF71FA00456164 /* ProvenanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1C6D528FF71FA00456164 /* ProvenanceViewModel.swift */; };
 		4FF1C6D828FF72C900456164 /* ProvenanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1C6D728FF72C900456164 /* ProvenanceRequest.swift */; };
 		4FF1C6DA28FF782100456164 /* ProvenanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1C6D928FF782100456164 /* ProvenanceResponse.swift */; };
+		4FF412572905B3F800F32955 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FF412562905B3F800F32955 /* GoogleService-Info.plist */; };
 		4FFCD37028C1494500D13F38 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCD36F28C1494500D13F38 /* UserDefaults+Extensions.swift */; };
 		4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */; };
 		4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */; };
@@ -550,7 +550,6 @@
 		4F7C5F3528E621E400123072 /* OrderDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailData.swift; sourceTree = "<group>"; };
 		4F7C5F3728E641CC00123072 /* ProductOrderDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 		4F7C5F3828E641CC00123072 /* ProductOrderDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductOrderDetailTableViewCell.xib; sourceTree = "<group>"; };
-		4F85128829031DBC00A0E35A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F894A16270A5A900004AAB3 /* AccountsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewModel.swift; sourceTree = "<group>"; };
 		4F894A18270A5AAB0004AAB3 /* AccountsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsRequest.swift; sourceTree = "<group>"; };
 		4F894A1A270A60640004AAB3 /* SearchDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDocumentViewModel.swift; sourceTree = "<group>"; };
@@ -682,6 +681,7 @@
 		4FF1C6D528FF71FA00456164 /* ProvenanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvenanceViewModel.swift; sourceTree = "<group>"; };
 		4FF1C6D728FF72C900456164 /* ProvenanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvenanceRequest.swift; sourceTree = "<group>"; };
 		4FF1C6D928FF782100456164 /* ProvenanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvenanceResponse.swift; sourceTree = "<group>"; };
+		4FF412562905B3F800F32955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FFCD36F28C1494500D13F38 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewCell.swift; sourceTree = "<group>"; };
 		4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryOffersTableViewCell.xib; sourceTree = "<group>"; };
@@ -1552,7 +1552,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4F85128829031DBC00A0E35A /* GoogleService-Info.plist */,
+				4FF412562905B3F800F32955 /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* GolloApp.xcdatamodeld */,
 			);
 			path = GolloApp;
@@ -1992,7 +1992,7 @@
 				4FDD106028D15F390082ADB5 /* OrdersTabViewController.xib in Resources */,
 				4F57B79A28F9F19E00CFBD01 /* SearchOffersViewController.xib in Resources */,
 				4F0D96C826DDD9990061E89E /* Services.storyboard in Resources */,
-				4F85128929031DBC00A0E35A /* GoogleService-Info.plist in Resources */,
+				4FF412572905B3F800F32955 /* GoogleService-Info.plist in Resources */,
 				4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */,
 				4F7C5F3A28E641CC00123072 /* ProductOrderDetailTableViewCell.xib in Resources */,
 				4F678D8028E7C5C600C8E8B3 /* WhishesTableViewCell.xib in Resources */,
