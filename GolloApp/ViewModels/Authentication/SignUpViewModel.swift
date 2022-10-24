@@ -18,6 +18,7 @@ class SignUpViewModel: NSObject {
     let emailConfirmationSubject = BehaviorRelay<String?>(value: "")
     let passwordSubject = BehaviorRelay<String?>(value: "")
     let passwordConfirmationSubject = BehaviorRelay<String?>(value: "")
+    let passwordErrorSubject = BehaviorRelay<Bool?>(value: nil)
 
     var showConfirmationMessage: (() -> ())?
     var showError: ((_ message: String) -> ())?
@@ -38,6 +39,10 @@ class SignUpViewModel: NSObject {
             let rangeConfirmation = NSRange(location: 0, length: password.utf16.count)
             let regexConfirmation = try! NSRegularExpression(pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{6,}")
             let validConfirmation = regexConfirmation.firstMatch(in: password, options: [], range: rangeConfirmation) != nil
+            
+            if !password.isEmpty {
+                self.passwordErrorSubject.accept(!(valid && validConfirmation))
+            }
 
             return !(email.isEmpty)
                 && email.isValidEmail()

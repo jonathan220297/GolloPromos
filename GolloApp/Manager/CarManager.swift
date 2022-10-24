@@ -31,4 +31,15 @@ class CarManager {
         fundsSource = nil
         return CoreDataService().deleteAllItems()
     }
+    
+    func emptyCarWithCoreData() {
+        car.removeAll()
+        shippingMethod = nil
+        paymentMethodSelected = nil
+        paymentMethod.removeAll()
+        deliveryInfo = nil
+        nationality = nil
+        kinship = nil
+        fundsSource = nil
+    }
 }

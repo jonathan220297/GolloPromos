@@ -13,6 +13,7 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var signUpButton: LoadingButton!
 
     lazy var viewModel: SignUpViewModel = {
@@ -24,7 +25,6 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         configureViewModel()
         configureRx()
-        configureViews()
         hideKeyboardWhenTappedAround()
         passwordTextField.enablePasswordToggle()
     }
@@ -63,6 +63,21 @@ extension SignUpViewController {
                 self.viewModel.signUp(with: email, password)
             })
             .disposed(by: disposeBag)
+        
+        viewModel
+            .passwordErrorSubject
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self, let value = value else { return }
+                if value {
+                    self.passwordErrorLabel.isHidden = false
+                    self.passwordErrorLabel.text = "La clave debe tener al menos una letra mayúscula, una letra minúscula, un número, un caracter especial (@#$%^&+=), no debe poseer espacios en blanco y debe poseer un mínimo de 6 caracteres"
+                } else {
+                    self.passwordErrorLabel.isHidden = true
+                    self.passwordErrorLabel.text = ""
+                }
+            })
+            .disposed(by: disposeBag)
     }
 
     fileprivate func showConfirmationMessage() {
@@ -70,10 +85,5 @@ extension SignUpViewController {
         showAlertWithActions(alertText: "Verificación de correo", alertMessage: "Se enviará un enlace a tu correo electrónico para validar tu cuenta") {
             self.navigationController?.popViewController(animated: true)
         }
-    }
-
-    fileprivate func configureViews() {
-        emailTextField.setUnderLine()
-        passwordTextField.setUnderLine()
     }
 }
