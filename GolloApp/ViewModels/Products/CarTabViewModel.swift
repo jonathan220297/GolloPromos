@@ -15,12 +15,13 @@ class CarTabViewModel {
     
     func setItemsToCarManager() {
         //OrderItem
+        var i = 1
         for item in car {
             carManager.car.append(
                 OrderItem(
                     cantidad: item.cantidad,
                     mesesExtragar: item.mesesExtragar,
-                    idLinea: item.idLinea,
+                    idLinea: i,
                     descripcion: item.descripcion,
                     descuento: item.mesesExtragar,
                     montoDescuento: item.montoDescuento,
@@ -35,6 +36,7 @@ class CarTabViewModel {
                     descRegalia: item.descRegalia
                 )
             )
+            i += 1
         }
     }
 }

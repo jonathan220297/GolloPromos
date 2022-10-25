@@ -111,7 +111,7 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
         if viewModel.sections[section].banner != nil {
             return CGSize(width: collectionView.bounds.width, height: 0)
         } else if let products = viewModel.sections[section].product, !products.isEmpty {
-            return CGSize(width: collectionView.bounds.width, height: 50)
+            return CGSize(width: collectionView.bounds.width, height: 55)
         } else {
             return CGSize(width: collectionView.bounds.width, height: 0)
         }

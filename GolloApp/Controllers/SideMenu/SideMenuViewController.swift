@@ -32,6 +32,7 @@ class SideMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViews()
         configureRx()
         if Variables.isRegisterUser {
             profileLabel.text = "Perfil de usuario"
@@ -75,6 +76,10 @@ class SideMenuViewController: UIViewController {
     }
 
     // MARK: - Functions
+    fileprivate func configureViews() {
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+    }
+    
     fileprivate func setUserData() {
         if Variables.isRegisterUser {
             if let user = Variables.userProfile?.nombre,
@@ -84,8 +89,13 @@ class SideMenuViewController: UIViewController {
             if let email = Variables.userProfile?.correoElectronico1 {
                 profileEmailLabel.text = email
             }
-            if let url = URL(string: Variables.userProfile?.image ?? "") {
-                Nuke.loadImage(with: url, into: profileImageView)
+            if let decodedData = Data(base64Encoded: Variables.userProfile?.image ?? ""),
+               let decodedimage = UIImage(data: decodedData) {
+                profileImageView.image = decodedimage
+            } else {
+                if let url = URL(string: Variables.userProfile?.image ?? "") {
+                    Nuke.loadImage(with: url, into: profileImageView)
+                }
             }
         }
     }
