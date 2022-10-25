@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchOffersViewController" customModule="PromosGollo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchOffersViewController" customModule="GolloApp" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="wNL-Q4-w9J" id="Lqd-lw-Rhl"/>
                 <outlet property="emptyView" destination="Pij-yK-bct" id="wbQ-aO-eq8"/>
@@ -44,7 +44,7 @@
                                         <constraint firstAttribute="width" secondItem="IDX-UM-PTB" secondAttribute="height" multiplier="1:1" id="rha-PC-ehQ"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Búsqueda de productos!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb8-im-HuV">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Búsqueda de productos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb8-im-HuV">
                                     <rect key="frame" x="8" y="411.66666666666663" width="374" height="14.333333333333314"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>

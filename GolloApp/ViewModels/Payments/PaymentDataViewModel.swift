@@ -92,7 +92,7 @@ class PaymentDataViewModel {
         }
         let request = PaymentServiceRequest(
             integrationId: nil,
-            idTienda: "014",
+            idTienda: "205",
             tipoIdCliente: MovementType.fee.rawValue,
             identificacionCliente: paymentData?.documentId ?? "205080150",
             tipoMovimiento: "C",

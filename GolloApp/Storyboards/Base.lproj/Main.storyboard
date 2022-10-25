@@ -38,7 +38,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="fat-g5-6zp">
                                         <rect key="frame" x="31" y="0.0" width="352" height="134.5"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenidos a la app de Gollo!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vy-yT-4dG" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Bienvenidos a la app de Gollo!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vy-yT-4dG" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                         <rect key="frame" x="8" y="150.5" width="398" height="25.5"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="18"/>
                                         <nil key="textColor"/>
@@ -68,8 +68,8 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresa para aprovechar nuestras promociones, hacer pagos e incluso pagar cuotas de terceros." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70k-MS-skT" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="184" width="398" height="34"/>
-                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                        <rect key="frame" x="12" y="188" width="390" height="39.5"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -87,9 +87,9 @@
                                     <constraint firstItem="DVK-tJ-mSb" firstAttribute="centerX" secondItem="NkY-zh-4o6" secondAttribute="centerX" id="Q9z-Ft-ZGV"/>
                                     <constraint firstItem="9vy-yT-4dG" firstAttribute="leading" secondItem="NkY-zh-4o6" secondAttribute="leading" constant="8" id="QEU-of-Ge1"/>
                                     <constraint firstItem="9vy-yT-4dG" firstAttribute="top" secondItem="fat-g5-6zp" secondAttribute="bottom" constant="16" id="ceS-z9-wU9"/>
-                                    <constraint firstItem="70k-MS-skT" firstAttribute="leading" secondItem="NkY-zh-4o6" secondAttribute="leading" constant="8" id="hWB-qH-yqg"/>
-                                    <constraint firstItem="70k-MS-skT" firstAttribute="top" secondItem="9vy-yT-4dG" secondAttribute="bottom" constant="8" id="hzk-LD-eIk"/>
-                                    <constraint firstAttribute="trailing" secondItem="70k-MS-skT" secondAttribute="trailing" constant="8" id="tGs-dR-S62"/>
+                                    <constraint firstItem="70k-MS-skT" firstAttribute="leading" secondItem="NkY-zh-4o6" secondAttribute="leading" constant="12" id="hWB-qH-yqg"/>
+                                    <constraint firstItem="70k-MS-skT" firstAttribute="top" secondItem="9vy-yT-4dG" secondAttribute="bottom" constant="12" id="hzk-LD-eIk"/>
+                                    <constraint firstAttribute="trailing" secondItem="70k-MS-skT" secondAttribute="trailing" constant="12" id="tGs-dR-S62"/>
                                     <constraint firstItem="fat-g5-6zp" firstAttribute="top" secondItem="NkY-zh-4o6" secondAttribute="top" id="wyC-Fm-cBf"/>
                                     <constraint firstAttribute="trailing" secondItem="9vy-yT-4dG" secondAttribute="trailing" constant="8" id="ygM-Ht-qlm"/>
                                 </constraints>
@@ -161,7 +161,7 @@
                                         <color key="tintColor" name="LavenderPurple"/>
                                         <state key="normal" image="ic_unchecked_checkbox"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acepto que he leído y entendido los terminos y condiciones de GolloApp" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpi-4B-F7O">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acepto que he leído y entendido los terminos y condiciones." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpi-4B-F7O">
                                         <rect key="frame" x="38" y="8" width="336" height="29.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="5Qa-h5-Z8V"/>
@@ -516,7 +516,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95h-Ja-c1V">
                                         <rect key="frame" x="14" y="186" width="324" height="78.5"/>
-                                        <string key="text">Esta opción únicamente está disponible para usuarios creados por medio de coreeo electrónico. Las instrucciones para efectuar el cambio serán enviadas a su cuenta de correo electrónico.</string>
+                                        <string key="text">Esta opción únicamente está disponible para usuarios creados por medio de correo electrónico. Las instrucciones para efectuar el cambio serán enviadas a su cuenta de correo electrónico.</string>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -621,10 +621,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="St1-0w-pj7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="361"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crea un nuevo usuario con tu correo electrónico" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ula-d0-kGV">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creá un nuevo usuario con tu correo electrónico." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ula-d0-kGV">
                                                 <rect key="frame" x="16" y="16" width="382" height="37"/>
                                                 <fontDescription key="fontDescription" name="SansSerifFLF-Demibold" family="SansSerifFLF" pointSize="20"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.30575770549999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eyf-Ag-0xh">

@@ -157,6 +157,15 @@ extension OffersTabViewController: CategoryOffersDelegate {
     }
 }
 
+extension OffersTabViewController: ProductCellDelegate {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 extension OffersTabViewController: OffersCellDelegate {
     func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)

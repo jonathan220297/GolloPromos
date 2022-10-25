@@ -18,7 +18,7 @@
         <!--Cuentas-->
         <scene sceneID="5Eg-mh-ydi">
             <objects>
-                <viewController storyboardIdentifier="AccountsViewController" id="SJP-gT-CBt" customClass="AccountsViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountsViewController" id="SJP-gT-CBt" customClass="AccountsViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NSd-CJ-mdi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,7 +71,7 @@
                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="sectionIndexBackgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountsCell" rowHeight="335" id="RJe-r2-vaT" customClass="AccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountsCell" rowHeight="335" id="RJe-r2-vaT" customClass="AccountsTableViewCell" customModule="GolloApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="50" width="414" height="335"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RJe-r2-vaT" id="LUO-ng-Tjd">
@@ -537,7 +537,7 @@
         <!--Transactions History View Controller-->
         <scene sceneID="R1k-Z0-oJ8">
             <objects>
-                <viewController storyboardIdentifier="TransactionsHistoryViewController" id="6lJ-1P-E1G" customClass="TransactionsHistoryViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TransactionsHistoryViewController" id="6lJ-1P-E1G" customClass="TransactionsHistoryViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pn3-V8-S8G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -638,7 +638,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="729"/>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionHistoryCell" rowHeight="240" id="uBk-Ha-z0E" customClass="TranstactionHistoryTableViewCell" customModule="PromosGollo" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionHistoryCell" rowHeight="240" id="uBk-Ha-z0E" customClass="TranstactionHistoryTableViewCell" customModule="GolloApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="414" height="240"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uBk-Ha-z0E" id="YhP-ff-AFC">
@@ -942,7 +942,7 @@
         <!--Payment Tab Bar View Controller-->
         <scene sceneID="AnN-aV-xCq">
             <objects>
-                <tabBarController storyboardIdentifier="PaymentTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="B5n-84-JB3" customClass="PaymentTabBarViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="PaymentTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="B5n-84-JB3" customClass="PaymentTabBarViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RB9-Or-iLP">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -965,7 +965,7 @@
         <!--Estatus-->
         <scene sceneID="8IP-Rz-2tR">
             <objects>
-                <viewController storyboardIdentifier="StatusViewController" id="8pN-IW-yp1" customClass="StatusViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StatusViewController" id="8pN-IW-yp1" customClass="StatusViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="waz-7D-5xz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1135,7 +1135,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" rowHeight="330" id="5sa-Ha-b9A" customClass="StatusTableViewCell" customModule="PromosGollo" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" rowHeight="330" id="5sa-Ha-b9A" customClass="StatusTableViewCell" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="50" width="414" height="330"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5sa-Ha-b9A" id="LMn-X5-pAt">
@@ -1682,7 +1682,7 @@
         <!--Terceros-->
         <scene sceneID="Tn7-90-X8c">
             <objects>
-                <viewController storyboardIdentifier="ThirdPartyViewController" id="cOx-Dd-Pr4" customClass="ThirdPartyViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThirdPartyViewController" id="cOx-Dd-Pr4" customClass="ThirdPartyViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hiD-0J-B2N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1878,7 +1878,7 @@
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="sectionIndexBackgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="140" id="u7D-QO-eQl" customClass="ThirdPartyAccountsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="140" id="u7D-QO-eQl" customClass="ThirdPartyAccountsTableViewCell" customModule="GolloApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="414" height="140"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u7D-QO-eQl" id="dso-0b-7rw">
@@ -2075,7 +2075,7 @@
         <!--Product Detail View Controller-->
         <scene sceneID="nyX-G0-ygO">
             <objects>
-                <viewController storyboardIdentifier="ProductDetailViewController" id="asq-sJ-6oF" customClass="ProductDetailViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductDetailViewController" id="asq-sJ-6oF" customClass="ProductDetailViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oao-C7-C8k">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2119,7 +2119,7 @@
                                         <rect key="frame" x="0.0" y="80" width="331" height="245"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemsCell" rowHeight="70" id="v4Q-DZ-9Yb" customClass="ItemsTableViewCell" customModule="PromosGollo" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemsCell" rowHeight="70" id="v4Q-DZ-9Yb" customClass="ItemsTableViewCell" customModule="GolloApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="331" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4Q-DZ-9Yb" id="7CF-nH-RuW">
@@ -2234,7 +2234,7 @@
         <!--Historial-->
         <scene sceneID="q1D-D6-9Hw">
             <objects>
-                <viewController storyboardIdentifier="HistoryViewController" id="5Cj-CC-Ga0" customClass="HistoryViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryViewController" id="5Cj-CC-Ga0" customClass="HistoryViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uE7-OM-LNF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2296,7 +2296,7 @@
                                             <constraint firstAttribute="width" secondItem="BEe-HV-hge" secondAttribute="height" multiplier="1:1" id="CWF-RZ-wAb"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Histoial de pagos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xk-Te-gyX">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Observaciones" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xk-Te-gyX">
                                         <rect key="frame" x="8" y="411" width="398" height="22.5"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="16"/>
                                         <color key="textColor" name="colorPrimary"/>
@@ -2326,7 +2326,7 @@
                                 <rect key="frame" x="0.0" y="118" width="414" height="695"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyPaymentCell" rowHeight="200" id="Csd-ax-ILD" customClass="HistoryPaymentTableViewCell" customModule="PromosGollo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyPaymentCell" rowHeight="200" id="Csd-ax-ILD" customClass="HistoryPaymentTableViewCell" customModule="GolloApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Csd-ax-ILD" id="BiD-eE-xY1">
@@ -2586,7 +2586,7 @@
         <!--Payment View Controller-->
         <scene sceneID="nKd-y9-sSx">
             <objects>
-                <viewController storyboardIdentifier="PaymentViewController" id="Tps-Tw-g68" customClass="PaymentViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentViewController" id="Tps-Tw-g68" customClass="PaymentViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EcJ-MI-0Rf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2881,7 +2881,7 @@
         <!--Payment Confirm View Controller-->
         <scene sceneID="Zad-N6-qCL">
             <objects>
-                <viewController storyboardIdentifier="PaymentConfirmViewController" id="z7S-3q-abl" customClass="PaymentConfirmViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentConfirmViewController" id="z7S-3q-abl" customClass="PaymentConfirmViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jDM-O0-5xm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3058,7 +3058,7 @@
         <!--Payment Data View Controller-->
         <scene sceneID="Sje-l3-RKg">
             <objects>
-                <viewController storyboardIdentifier="PaymentDataViewController" id="Yva-EC-s1E" customClass="PaymentDataViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentDataViewController" id="Yva-EC-s1E" customClass="PaymentDataViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xeN-GP-bn8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3075,7 +3075,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPE-us-kK1">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwp-hN-inf" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwp-hN-inf" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="8" width="398" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="rZf-qo-ZAe"/>
@@ -3123,7 +3123,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Y7-KX-EV5">
                                                                 <rect key="frame" x="0.0" y="0.0" width="203" height="75"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTc-rY-VCX" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTc-rY-VCX" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                                         <rect key="frame" x="8" y="8" width="187" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="q9w-Wn-VpH"/>
@@ -3184,7 +3184,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PP4-qC-FoQ">
                                                                 <rect key="frame" x="211" y="0.0" width="203" height="75"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzF-me-YWR" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzF-me-YWR" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                                         <rect key="frame" x="8" y="8" width="187" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="nas-Jd-cc6"/>
@@ -3247,7 +3247,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zN1-3m-nzK">
                                                         <rect key="frame" x="0.0" y="150" width="414" height="75"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKH-Kb-tdh" customClass="LocalizableLabel" customModule="PromosGollo" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKH-Kb-tdh" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="8" width="398" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="LPA-rV-pyf"/>
@@ -3350,7 +3350,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jbm-fG-aTU">
                                                         <rect key="frame" x="0.0" y="430" width="414" height="65"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxP-T0-7lT" customClass="LoadingButton" customModule="PromosGollo" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxP-T0-7lT" customClass="LoadingButton" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="20.5" y="8" width="373" height="49"/>
                                                                 <color key="backgroundColor" name="colorPrimary"/>
                                                                 <fontDescription key="fontDescription" name="SansSerifFLF-Demibold" family="SansSerifFLF" pointSize="17"/>

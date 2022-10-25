@@ -233,6 +233,11 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
                 
                 self.lastIndexActive = indexPath
             }
+        } else if collectionView == self.productCollectionView {
+            let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+            vc.offer = viewModel.products[indexPath.row]
+            vc.modalPresentationStyle = .fullScreen
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

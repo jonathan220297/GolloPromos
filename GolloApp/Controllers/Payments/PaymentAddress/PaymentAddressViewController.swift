@@ -114,6 +114,7 @@ class PaymentAddressViewController: UIViewController {
         lastNameTextField.rx.text.bind(to: viewModel.lastNameSubject).disposed(by: bag)
         emailTextField.rx.text.bind(to: viewModel.emailSubject).disposed(by: bag)
         phoneNumberTextField.rx.text.bind(to: viewModel.phoneNumberSubject).disposed(by: bag)
+        addressTextField.rx.text.bind(to: viewModel.addressSubject).disposed(by: bag)
         documentTypeButton.rx
             .tap
             .subscribe(onNext: {[weak self] in
