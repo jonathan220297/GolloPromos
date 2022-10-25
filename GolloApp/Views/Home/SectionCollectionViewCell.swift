@@ -13,6 +13,7 @@ protocol HomeSectionDelegate: AnyObject {
 }
 
 class SectionCollectionViewCell: UICollectionReusableView {
+    @IBOutlet weak var upperDividerView: UIView!
     @IBOutlet weak var sectionNameLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
     

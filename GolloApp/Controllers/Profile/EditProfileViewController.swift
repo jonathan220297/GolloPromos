@@ -173,7 +173,7 @@ class EditProfileViewController: UIViewController {
                 nacionalidad: "",
                 carroPropio: "",
                 ocupacion: "",
-                image: ""
+                image: Variables.userProfile?.image
             )
             showData(with: data)
         }
@@ -348,13 +348,21 @@ class EditProfileViewController: UIViewController {
             failureImage: UIImage(named: "empty_image")
         )
         if let data = data {
-            if let url = URL(string: data.image ?? "") {
-                Nuke.loadImage(with: url, options: options, into: userImageView)
-            } else if let strBase64 = data.image, !strBase64.isEmpty {
-                if let decodedData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions(rawValue: 0)) {
-                    let decodedImage: UIImage = UIImage(data: decodedData as Data)!
-                    print(decodedImage)
-                    self.userImageView.image = decodedImage
+//            if let url = URL(string: data.image ?? "") {
+//                Nuke.loadImage(with: url, options: options, into: userImageView)
+//            } else if let strBase64 = data.image, !strBase64.isEmpty {
+//                if let decodedData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions(rawValue: 0)) {
+//                    let decodedImage: UIImage = UIImage(data: decodedData as Data)!
+//                    print(decodedImage)
+//                    self.userImageView.image = decodedImage
+//                }
+//            }
+            if let decodedData = Data(base64Encoded: Variables.userProfile?.image ?? ""),
+               let decodedimage = UIImage(data: decodedData) {
+                userImageView.image = decodedimage
+            } else {
+                if let url = URL(string: Variables.userProfile?.image ?? "") {
+                    Nuke.loadImage(with: url, into: userImageView)
                 }
             }
             documentTypeLabel.text = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "C"
