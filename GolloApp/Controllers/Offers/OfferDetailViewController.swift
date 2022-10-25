@@ -201,7 +201,7 @@ class OfferDetailViewController: UIViewController {
             let item = CartItemDetail(
                 urlImage: offer.image,
                 cantidad: 1,
-                idLinea: 1,
+                idLinea: CoreDataService().fetchCarItems().count + 1,
                 mesesExtragar: warrantyMonth,
                 descripcion: offer.name ?? "",
                 sku: offer.productCode ?? "",
@@ -225,7 +225,7 @@ class OfferDetailViewController: UIViewController {
                         CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
                         self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
                         self.configureAlternativeNavBar()
-                        if self.viewModel.documents.count > 0 && self.warrantyMonth == 0 {
+                        if self.viewModel.documents.count > 1 && self.warrantyMonth == 0 {
                             let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
                             offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
                             offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve

@@ -7,8 +7,8 @@
 */
 
 // MainViewController
-"MainViewController_title_label" = "Bienvenidos a la app de Gollo!";
-"MainViewController_description_label" = "Ingresa para aprovechar nuestras promociones, hacer pagos e incluso pagar cuotas de terceros.";
+"MainViewController_title_label" = "¡Bienvenidos a la app de Gollo!";
+"MainViewController_description_label" = "Ingresá para aprovechar nuestras promociones, hacer pagos e incluso pagar cuotas de terceros.";
 "MainViewController_continue_button" = "Continue";
 
 // LoginViewController
@@ -144,7 +144,7 @@ Unicomer y los Usuarios, con renuncia expresa a cualquier otro fuero que pudiera
 // ProfileViewController
 "ProfileViewController_title" = "Perfil de usuario";
 "ProfileViewController_document_type" = "Tipo de documento";
-"ProfileViewController_document_number" = "Número de identificacion (ID o pasaporte)";
+"ProfileViewController_document_number" = "Número de documento (ID o pasaporte)";
 "ProfileViewController_search_customer" = "BUSCAR CLIENTE";
 "ProfileViewController_cedula" = "Cédula";
 "ProfileViewController_cedula_juridica" = "Cédula jurídica";

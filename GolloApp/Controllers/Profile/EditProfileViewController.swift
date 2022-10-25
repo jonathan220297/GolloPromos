@@ -350,6 +350,12 @@ class EditProfileViewController: UIViewController {
         if let data = data {
             if let url = URL(string: data.image ?? "") {
                 Nuke.loadImage(with: url, options: options, into: userImageView)
+            } else if let strBase64 = data.image, !strBase64.isEmpty {
+                if let decodedData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions(rawValue: 0)) {
+                    let decodedImage: UIImage = UIImage(data: decodedData as Data)!
+                    print(decodedImage)
+                    self.userImageView.image = decodedImage
+                }
             }
             documentTypeLabel.text = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "C"
             documentType = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "C"

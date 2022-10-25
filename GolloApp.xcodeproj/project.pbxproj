@@ -247,6 +247,7 @@
 		4FDA3AA826D8FE27003B2CB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDA3AA626D8FE27003B2CB6 /* LaunchScreen.storyboard */; };
 		4FDA3AB326D8FE28003B2CB6 /* GolloAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3AB226D8FE28003B2CB6 /* GolloAppTests.swift */; };
 		4FDA3ABE26D8FE28003B2CB6 /* GolloAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3ABD26D8FE28003B2CB6 /* GolloAppUITests.swift */; };
+		4FDB4A412906EFB700078072 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FDB4A402906EFB700078072 /* GoogleService-Info.plist */; };
 		4FDB6ECA28DD18EA0002DA0B /* PaymentAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */; };
 		4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */; };
 		4FDB6ECD28DD1CAF0002DA0B /* PaymentAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */; };
@@ -314,7 +315,6 @@
 		4FF1C6D628FF71FA00456164 /* ProvenanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1C6D528FF71FA00456164 /* ProvenanceViewModel.swift */; };
 		4FF1C6D828FF72C900456164 /* ProvenanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1C6D728FF72C900456164 /* ProvenanceRequest.swift */; };
 		4FF1C6DA28FF782100456164 /* ProvenanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1C6D928FF782100456164 /* ProvenanceResponse.swift */; };
-		4FF412572905B3F800F32955 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FF412562905B3F800F32955 /* GoogleService-Info.plist */; };
 		4FFCD37028C1494500D13F38 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCD36F28C1494500D13F38 /* UserDefaults+Extensions.swift */; };
 		4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */; };
 		4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */; };
@@ -614,6 +614,7 @@
 		4FDA3AB926D8FE28003B2CB6 /* GolloAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolloAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3ABD26D8FE28003B2CB6 /* GolloAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolloAppUITests.swift; sourceTree = "<group>"; };
 		4FDA3ABF26D8FE28003B2CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FDB4A402906EFB700078072 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FDB6EC828DD18EA0002DA0B /* PaymentAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewController.swift; sourceTree = "<group>"; };
 		4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentAddressViewController.xib; sourceTree = "<group>"; };
 		4FDB6ECC28DD1CAF0002DA0B /* PaymentAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddressViewModel.swift; sourceTree = "<group>"; };
@@ -681,7 +682,6 @@
 		4FF1C6D528FF71FA00456164 /* ProvenanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvenanceViewModel.swift; sourceTree = "<group>"; };
 		4FF1C6D728FF72C900456164 /* ProvenanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvenanceRequest.swift; sourceTree = "<group>"; };
 		4FF1C6D928FF782100456164 /* ProvenanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvenanceResponse.swift; sourceTree = "<group>"; };
-		4FF412562905B3F800F32955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FFCD36F28C1494500D13F38 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		4FFD9C9D272A145F004778F1 /* CategoryOffersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOffersTableViewCell.swift; sourceTree = "<group>"; };
 		4FFD9C9E272A145F004778F1 /* CategoryOffersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryOffersTableViewCell.xib; sourceTree = "<group>"; };
@@ -1552,7 +1552,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4FF412562905B3F800F32955 /* GoogleService-Info.plist */,
+				4FDB4A402906EFB700078072 /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* GolloApp.xcdatamodeld */,
 			);
 			path = GolloApp;
@@ -1992,7 +1992,7 @@
 				4FDD106028D15F390082ADB5 /* OrdersTabViewController.xib in Resources */,
 				4F57B79A28F9F19E00CFBD01 /* SearchOffersViewController.xib in Resources */,
 				4F0D96C826DDD9990061E89E /* Services.storyboard in Resources */,
-				4FF412572905B3F800F32955 /* GoogleService-Info.plist in Resources */,
+				4FDB4A412906EFB700078072 /* GoogleService-Info.plist in Resources */,
 				4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */,
 				4F7C5F3A28E641CC00123072 /* ProductOrderDetailTableViewCell.xib in Resources */,
 				4F678D8028E7C5C600C8E8B3 /* WhishesTableViewCell.xib in Resources */,
@@ -2558,7 +2558,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
@@ -2584,7 +2584,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;

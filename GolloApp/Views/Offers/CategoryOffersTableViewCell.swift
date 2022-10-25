@@ -125,3 +125,9 @@ extension CategoryOffersTableViewCell: ProductCellDelegate {
         delegate?.categoryOffers(self, shouldMoveToDetailWith: data)
     }
 }
+
+extension CategoryOffersTableViewCell: OffersCellDelegate {
+    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
+        delegate?.categoryOffers(self, shouldMoveToDetailWith: data)
+    }
+}

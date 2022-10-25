@@ -160,7 +160,7 @@ class EditProfileViewModel {
 
     func convertImageToBase64String (img: UIImage?) -> String {
         if let image = img {
-            return image.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
+            return image.jpegData(compressionQuality: 0.25)?.base64EncodedString() ?? ""
         } else {
             return ""
         }
