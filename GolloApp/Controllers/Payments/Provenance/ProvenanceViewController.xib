@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProvenanceViewController" customModule="PromosGollo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProvenanceViewController" customModule="GolloApp" customModuleProvider="target">
             <connections>
                 <outlet property="goToPaymentButton" destination="7By-wu-pED" id="rmv-4z-riL"/>
                 <outlet property="nationalityButton" destination="1IW-jp-p3z" id="Bzf-an-dx2"/>
@@ -96,7 +96,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37t-WO-WuK">
                             <rect key="frame" x="0.0" y="79" width="390" height="75"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prentesco" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ri7-OF-zC8">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parentesco" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ri7-OF-zC8">
                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="4pm-5c-Y6t"/>

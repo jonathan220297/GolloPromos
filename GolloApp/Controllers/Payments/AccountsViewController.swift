@@ -133,8 +133,10 @@ extension AccountsViewController: AccountsDelegate {
     }
 
     func OpenHistory(with index: Int) {
+        let model = self.viewModel.accounts[index]
         let vc = TransactionsHistoryViewController.instantiate(fromAppStoryboard: .Payments)
         vc.modalPresentationStyle = .fullScreen
+        vc.accountId = model.idCuenta ?? ""
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

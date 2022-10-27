@@ -94,6 +94,8 @@ class PaymentConfirmViewController: UIViewController {
                         vc.viewModel.paymentData = self.paymentData
                         vc.viewModel.paymentAmount = self.paymentAmmount
                         vc.viewModel.isAccountPayment = self.viewModel.isAccountPayment
+                        vc.viewModel.zeroRateList = self.viewModel.methodSelected?.plazos ?? []
+                        vc.viewModel.zeroRatePayment = self.viewModel.methodSelected?.indTasaCero == 1 && self.viewModel.methodSelected?.indTarjeta == 1
                         vc.delegate = self
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {
@@ -116,7 +118,7 @@ class PaymentConfirmViewController: UIViewController {
                       let data = data else { return }
                 print(data)
                 self.view.activityStopAnimatingFull()
-                self.viewModel.methods = self.viewModel.isAccountPayment ? data.filter { $0.indTarjeta == 1 } : data
+                self.viewModel.methods = self.viewModel.isAccountPayment ? data.filter { $0.indTarjeta == 1 && $0.indTasaCero == 0} : data
                 self.paymentMethodsTableView.reloadData()
                 self.paymentMethodsTableViewHeightConstaint.constant = self.paymentMethodsTableView.contentSize.height + 40
             })

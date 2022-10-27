@@ -14,8 +14,11 @@ class SearchOffersViewController: UIViewController {
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet weak var searchHistoryView: UIView!
+    @IBOutlet weak var searchCollectionView: UICollectionView!
+
     // MARK: - Constants
+    let defaults = UserDefaults.standard
     let viewModel: SearchOffersViewModel
     let bag = DisposeBag()
 
@@ -33,15 +36,39 @@ class SearchOffersViewController: UIViewController {
         super.viewDidLoad()
         configureTableView()
         self.searchBar.endEditing(true)
+        viewModel.history = defaults.stringArray(forKey: "searchedText") ?? [String]()
+        if viewModel.history.count > 0 {
+            self.searchHistoryView.isHidden = false
+            self.searchCollectionView.reloadData()
+        } else {
+            self.searchHistoryView.isHidden = true
+        }
+    }
+
+    // MARK: - Observers
+    @objc func reload() {
+        guard let searchText = searchBar.text else { return }
+        self.view.activityStarAnimating()
+        if searchText != "" && searchText.count >= 3 {
+            fetchOffers(with: searchText.lowercased())
+            var array = viewModel.history
+            array.append(searchText)
+            defaults.set(array, forKey: "searchedText")
+            self.searchCollectionView.reloadData()
+        } else {
+            self.view.activityStopAnimating()
+            self.emptyView.alpha = 1
+            self.collectionView.alpha = 0
+        }
     }
 
     // MARK: - Functions
     func configureTableView() {
+        self.searchCollectionView.register(UINib(nibName: "SearchHistoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SearchHistoryCollectionViewCell")
         self.collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
     }
 
     fileprivate func fetchOffers(with searchText: String? = nil) {
-        view.activityStarAnimating()
         viewModel
             .fetchFilteredProducts(with: searchText)
             .asObservable()
@@ -99,12 +126,8 @@ class SearchOffersViewController: UIViewController {
 
 extension SearchOffersViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText != "" && searchText.count >= 3 {
-            fetchOffers(with: searchText.lowercased())
-        } else {
-            self.emptyView.alpha = 1
-            self.collectionView.alpha = 0
-        }
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(reload), object: nil)
+        self.perform(#selector(reload), with: nil, afterDelay: 0.5)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -120,11 +143,24 @@ extension SearchOffersViewController: UICollectionViewDelegate,
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.products.count
+        if collectionView == self.collectionView {
+            return viewModel.products.count
+        } else if collectionView == self.searchCollectionView {
+            return viewModel.history.count
+        }
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return getProductCell(collectionView, cellForItemAt: indexPath)
+        if collectionView == self.collectionView {
+            return getProductCell(collectionView, cellForItemAt: indexPath)
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchHistoryCollectionViewCell", for: indexPath) as! SearchHistoryCollectionViewCell
+            cell.searchLabel.text = viewModel.history[indexPath.row]
+            cell.indexPath = indexPath
+            cell.delegate = self
+            return cell
+        }
     }
 
     func getProductCell(_ collectionView: UICollectionView,
@@ -138,17 +174,26 @@ extension SearchOffersViewController: UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
-        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
-        let size: CGFloat = (collectionView.frame.size.width - space) / 2.0
-        return CGSize(width: size, height: 300)
+        if collectionView == self.searchCollectionView {
+            return CGSize(width: 85, height: 30)
+        } else {
+            let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+            let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+            let size: CGFloat = (collectionView.frame.size.width - space) / 2.0
+            return CGSize(width: size, height: 300)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
-        vc.offer = viewModel.products[indexPath.row]
-        vc.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(vc, animated: true)
+        if collectionView == self.collectionView {
+            let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+            vc.offer = viewModel.products[indexPath.row]
+            vc.modalPresentationStyle = .fullScreen
+            navigationController?.pushViewController(vc, animated: true)
+        } else if collectionView == self.searchCollectionView {
+            self.searchBar.text = viewModel.history[indexPath.row]
+            self.fetchOffers(with: viewModel.history[indexPath.row])
+        }
     }
 }
 
@@ -167,6 +212,19 @@ extension SearchOffersViewController: ProductCellDelegate {
         vc.offer = data
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension SearchOffersViewController: SearchHistoryDelegate {
+    func deleteItem(at indexPath: IndexPath) {
+        self.viewModel.history.remove(at: indexPath.row)
+        defaults.set(self.viewModel.history, forKey: "searchedText")
+        self.searchCollectionView.reloadData()
+        if viewModel.history.count > 0 {
+            self.searchHistoryView.isHidden = false
+        } else {
+            self.searchHistoryView.isHidden = true
+        }
     }
 }
 

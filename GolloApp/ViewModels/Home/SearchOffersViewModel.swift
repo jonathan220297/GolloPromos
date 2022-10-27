@@ -10,7 +10,8 @@ import RxRelay
 
 class SearchOffersViewModel {
     private let service = GolloService()
-    
+
+    var history: [String] = []
     var products: [Product] = []
 
     func fetchFilteredProducts(with searchText: String? = nil) -> BehaviorRelay<[Offers]?> {

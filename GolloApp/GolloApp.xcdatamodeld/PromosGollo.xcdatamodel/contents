@@ -19,6 +19,34 @@
         <attribute name="warrantyAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="productWarranty" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductWarranty" inverseName="carProduct" inverseEntity="ProductWarranty"/>
     </entity>
+    <entity name="Favorites" representedClassName="Favorites" syncable="YES" codeGenerationType="class">
+        <attribute name="brand" optional="YES" attributeType="String"/>
+        <attribute name="descriptionDetailBono" optional="YES" attributeType="String"/>
+        <attribute name="descriptionDetailDescuento" optional="YES" attributeType="String"/>
+        <attribute name="descriptionDetailRegalia" optional="YES" attributeType="String"/>
+        <attribute name="endDate" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="idEmpresa" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="idFavoriteProduct" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="idUsuario" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="modelo" optional="YES" attributeType="String"/>
+        <attribute name="montoBono" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="montoDescuento" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="originalPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="porcDescuento" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="precioFinal" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="product" optional="YES" attributeType="String"/>
+        <attribute name="productCode" optional="YES" attributeType="String"/>
+        <attribute name="productName" optional="YES" attributeType="String"/>
+        <attribute name="productoDescription" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="String"/>
+        <attribute name="tieneBono" optional="YES" attributeType="String"/>
+        <attribute name="tieneDescuento" optional="YES" attributeType="String"/>
+        <attribute name="tieneRegalia" optional="YES" attributeType="String"/>
+        <attribute name="tipoPromoApp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="ProductWarranty" representedClassName="ProductWarranty" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="idCarProduct" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>

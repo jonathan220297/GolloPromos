@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchHistoryCollectionViewCell" id="gTV-IL-0wX" customClass="SearchHistoryCollectionViewCell" customModule="GolloApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="167" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="167" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zb-wp-qcf">
+                        <rect key="frame" x="0.0" y="0.0" width="167" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roa-SR-a80">
+                                <rect key="frame" x="4" y="18" width="139" height="14.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.30575770549999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJj-bp-p6S">
+                                <rect key="frame" x="147" y="17" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="Il6-QV-aSu"/>
+                                    <constraint firstAttribute="width" constant="16" id="fzE-V9-QPb"/>
+                                </constraints>
+                                <color key="tintColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="square.split.diagonal.2x2" catalog="system"/>
+                                <connections>
+                                    <action selector="deleteItem:" destination="gTV-IL-0wX" eventType="touchUpInside" id="6zN-QU-War"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="GJj-bp-p6S" secondAttribute="trailing" constant="4" id="0AY-De-SFZ"/>
+                            <constraint firstItem="GJj-bp-p6S" firstAttribute="centerY" secondItem="4zb-wp-qcf" secondAttribute="centerY" id="42f-eG-68t"/>
+                            <constraint firstItem="roa-SR-a80" firstAttribute="centerY" secondItem="4zb-wp-qcf" secondAttribute="centerY" id="RlD-CD-83J"/>
+                            <constraint firstItem="roa-SR-a80" firstAttribute="leading" secondItem="4zb-wp-qcf" secondAttribute="leading" constant="4" id="aTf-HW-rOR"/>
+                            <constraint firstItem="GJj-bp-p6S" firstAttribute="leading" secondItem="roa-SR-a80" secondAttribute="trailing" constant="4" id="fzV-km-5ut"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="4zb-wp-qcf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="67i-ig-J6b"/>
+                <constraint firstAttribute="bottom" secondItem="4zb-wp-qcf" secondAttribute="bottom" id="FLa-0V-cmS"/>
+                <constraint firstAttribute="trailing" secondItem="4zb-wp-qcf" secondAttribute="trailing" id="bCC-7Q-60h"/>
+                <constraint firstItem="4zb-wp-qcf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="w2o-F8-ryc"/>
+            </constraints>
+            <size key="customSize" width="167" height="50"/>
+            <connections>
+                <outlet property="containerView" destination="4zb-wp-qcf" id="bLv-A2-Odp"/>
+                <outlet property="deleteHistory" destination="GJj-bp-p6S" id="8qS-8U-QZA"/>
+                <outlet property="searchLabel" destination="roa-SR-a80" id="hTh-2g-QzD"/>
+            </connections>
+            <point key="canvasLocation" x="146.92307692307691" y="20.616113744075829"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="square.split.diagonal.2x2" catalog="system" width="128" height="114"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

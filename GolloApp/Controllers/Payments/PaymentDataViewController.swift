@@ -22,7 +22,10 @@ class PaymentDataViewController: UIViewController {
     @IBOutlet weak var cardNameTextField: UITextField!
     @IBOutlet weak var cvvTextField: UITextField!
     @IBOutlet weak var continueButton: LoadingButton!
-    
+    @IBOutlet weak var zeroRateView: UIView!
+    @IBOutlet weak var zeroRateLabel: UILabel!
+    @IBOutlet weak var zeroRateButton: UIButton!
+
     lazy var viewModel: PaymentDataViewModel = {
         return PaymentDataViewModel()
     }()
@@ -37,6 +40,16 @@ class PaymentDataViewController: UIViewController {
         cvvTextField.delegate = self
         configureRx()
         hideKeyboardWhenTappedAround()
+
+        if self.viewModel.zeroRatePayment {
+            zeroRateView.isHidden = false
+//            if let first = self.viewModel.zeroRateList.first {
+//                self.zeroRateLabel.text = first.descPlazo
+//                self.viewModel.zeroRateSubject.accept(first.idPlazo)
+//            }
+        } else {
+            zeroRateView.isHidden = true
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +79,13 @@ class PaymentDataViewController: UIViewController {
             .subscribe(onNext: {[weak self] in
                 guard let self = self else { return }
                 self.displayYears()
+            })
+            .disposed(by: bag)
+        zeroRateButton.rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.displayZeroRate()
             })
             .disposed(by: bag)
         cardNameTextField.rx.text.bind(to: viewModel.cardNameSubject).disposed(by: bag)
@@ -121,6 +141,19 @@ class PaymentDataViewController: UIViewController {
             guard let self = self else { return }
             self.expirationYearLabel.text = item
             self.viewModel.expirationYearSubject.accept(self.viewModel.years[index])
+        }
+        dropDown.show()
+    }
+
+    fileprivate func displayZeroRate() {
+        let dropDown = DropDown()
+        dropDown.anchorView = zeroRateButton
+        viewModel.fillYears()
+        dropDown.dataSource = viewModel.zeroRateList.map{ $0.descPlazo ?? "" }
+        dropDown.selectionAction = {[weak self] (index: Int, item: String) in
+            guard let self = self else { return }
+            self.zeroRateLabel.text = item
+            self.viewModel.zeroRateSubject.accept(self.viewModel.zeroRateList[index].idPlazo)
         }
         dropDown.show()
     }

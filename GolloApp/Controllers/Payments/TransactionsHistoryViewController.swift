@@ -25,6 +25,7 @@ class TransactionsHistoryViewController: UIViewController {
     let bag = DisposeBag()
 
     var actualTransactionNumber = 10
+    var accountId = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,19 @@ class TransactionsHistoryViewController: UIViewController {
 
     // MARK: - Functions
     fileprivate func configureRx() {
+        viewModel.errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self else { return }
+                if !error.isEmpty {
+                    self.view.activityStopAnimating()
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    self.viewModel.errorMessage.accept("")
+                    self.tableView.alpha = 0
+                }
+            })
+            .disposed(by: bag)
+
         modifyItemsButton
             .rx
             .tap
@@ -56,7 +70,7 @@ class TransactionsHistoryViewController: UIViewController {
 
     fileprivate func fetchHistory(number: Int) {
         view.activityStarAnimating()
-        viewModel.fetchTransactionHistory(with: number, accountId: "152004009140")
+        viewModel.fetchTransactionHistory(with: number, accountId: accountId)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
             guard let self = self,

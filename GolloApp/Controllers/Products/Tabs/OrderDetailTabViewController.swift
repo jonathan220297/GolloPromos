@@ -114,7 +114,11 @@ class OrderDetailTabViewController: UIViewController {
             addressLabel.text = getAddress(with: deliveryPlace)
         }
 
-        paymentMethodLabel.text = "Tarjeta - \(paymentMethod?.numeroTarjeta ?? "")"
+        if let cardNumber = paymentMethod?.numeroTarjeta, !cardNumber.isEmpty {
+            paymentMethodLabel.text = "Tarjeta - \(cardNumber)"
+        } else {
+            paymentMethodLabel.text = paymentMethod?.descripcionFP ?? ""
+        }
         amountLabel.attributedText = formatHTML(header: "Monto: ", content: "₡\(numberFormatter.string(from: NSNumber(value: (paymentMethod?.montoTotal ?? 0.0))) ?? "")")
         viewModel.products = products
         productsTableView.reloadData()
