@@ -77,7 +77,15 @@ class ProductDetailViewController: UIViewController {
 
 extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.items.count
+        if let data = self.viewModel.items.first {
+            if let _ = data.precioUnitario, let _ = data.descripcion {
+                return self.viewModel.items.count
+            } else {
+                return 0
+            }
+        } else {
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

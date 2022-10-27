@@ -61,12 +61,12 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1L-0m-RVU">
-                                                                <rect key="frame" x="276.5" y="172.5" width="40" height="40"/>
+                                                                <rect key="frame" x="261.5" y="157.5" width="75" height="75"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="lTT-Bt-qU6"/>
-                                                                    <constraint firstAttribute="width" constant="40" id="xSA-P5-tcP"/>
+                                                                    <constraint firstAttribute="height" constant="75" id="lTT-Bt-qU6"/>
+                                                                    <constraint firstAttribute="width" constant="75" id="xSA-P5-tcP"/>
                                                                 </constraints>
-                                                                <color key="tintColor" name="colorPrimary"/>
+                                                                <color key="tintColor" name="AccentColor"/>
                                                                 <state key="normal" image="ic_edit"/>
                                                             </button>
                                                         </subviews>
@@ -74,10 +74,10 @@
                                                         <constraints>
                                                             <constraint firstItem="iY9-lV-P3N" firstAttribute="centerY" secondItem="R61-3S-YBN" secondAttribute="centerY" id="1gz-NL-5gC"/>
                                                             <constraint firstItem="QxG-7i-bi3" firstAttribute="centerY" secondItem="R61-3S-YBN" secondAttribute="centerY" id="7hw-yt-wuK"/>
-                                                            <constraint firstItem="H1L-0m-RVU" firstAttribute="leading" secondItem="iY9-lV-P3N" secondAttribute="trailing" constant="-35" id="9re-42-O8f"/>
+                                                            <constraint firstItem="H1L-0m-RVU" firstAttribute="leading" secondItem="iY9-lV-P3N" secondAttribute="trailing" constant="-50" id="9re-42-O8f"/>
                                                             <constraint firstItem="iY9-lV-P3N" firstAttribute="centerX" secondItem="R61-3S-YBN" secondAttribute="centerX" id="BWP-g3-OJs"/>
                                                             <constraint firstItem="iY9-lV-P3N" firstAttribute="top" secondItem="R61-3S-YBN" secondAttribute="top" id="Gw2-Zr-ySt"/>
-                                                            <constraint firstItem="H1L-0m-RVU" firstAttribute="top" secondItem="iY9-lV-P3N" secondAttribute="bottom" constant="-35" id="VHc-hr-awh"/>
+                                                            <constraint firstItem="H1L-0m-RVU" firstAttribute="top" secondItem="iY9-lV-P3N" secondAttribute="bottom" constant="-50" id="VHc-hr-awh"/>
                                                             <constraint firstItem="QxG-7i-bi3" firstAttribute="centerX" secondItem="R61-3S-YBN" secondAttribute="centerX" id="fBH-kd-rJ8"/>
                                                             <constraint firstItem="iY9-lV-P3N" firstAttribute="width" secondItem="R61-3S-YBN" secondAttribute="width" multiplier="0.5" id="o26-HS-ol7"/>
                                                         </constraints>

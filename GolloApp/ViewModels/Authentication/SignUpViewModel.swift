@@ -57,8 +57,8 @@ class SignUpViewModel: NSObject {
         authService.signUp(with: email, password) {[weak self] user, error in
             guard let user = user,
                   let self = self else {
-//                self?.hideLoading?()
-//                self?.showError?(error ?? "")
+                self?.hideLoading?()
+                self?.showError?(error ?? "")
                 return
             }
             self.userManager.userData = user

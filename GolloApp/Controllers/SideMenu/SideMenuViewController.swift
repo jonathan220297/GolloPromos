@@ -35,7 +35,7 @@ class SideMenuViewController: UIViewController {
         configureViews()
         configureRx()
         if Variables.isRegisterUser {
-            profileLabel.text = "Perfil de usuario"
+            profileLabel.text = "Mi perfil"
         } else {
             profileLabel.text = "Registrar usuario"
         }

@@ -45,7 +45,7 @@ func convertDate(date: String) -> String? {
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     let date = dateFormatter.date(from: date)
-    return date?.toString(dateFormat: "MMM dd,yyyy")
+    return date?.toString(dateFormat: "dd/MM/yyyy")
 }
 
 func convertToDictionary(text: String) -> [String: Any]? {

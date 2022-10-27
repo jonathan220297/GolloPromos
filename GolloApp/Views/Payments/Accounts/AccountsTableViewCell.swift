@@ -19,7 +19,8 @@ class AccountsTableViewCell: UITableViewCell {
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var openDetailImageView: UIImageView!
     @IBOutlet weak var startDateLabel: UILabel!
-    @IBOutlet weak var itemsButton: UIButton!
+    @IBOutlet weak var productsButton: UIButton!
+    @IBOutlet weak var historyButton: UIButton!
     @IBOutlet weak var initialAmountLabel: UILabel!
     @IBOutlet weak var currentAmountLabel: UILabel!
     @IBOutlet weak var totalPaymentLabel: UILabel!
@@ -44,6 +45,9 @@ class AccountsTableViewCell: UITableViewCell {
     }
 
     func setAccount(model: AccountsDetail, index: Int) {
+        self.productsButton.tag = index
+        self.historyButton.tag = index
+
         accountLabel.text = "Número de cuenta: \(model.numCuenta ?? "")"
         if let date = model.fecha {
             startDateLabel.text = "Fecha de inicio: \(date.formatStringDateGollo())"

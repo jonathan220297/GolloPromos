@@ -59,6 +59,7 @@ class StatusViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
+                    self.view.activityStopAnimating()
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
@@ -68,7 +69,8 @@ class StatusViewController: UIViewController {
 
     fileprivate func fetchStatus() {
         view.activityStarAnimating()
-        viewModel.fetchStatus(with: Variables.userProfile?.tipoIdentificacion ?? "C", documentId: Variables.userProfile?.numeroIdentificacion ?? "205080150")
+        viewModel
+            .fetchStatus(with: Variables.userProfile?.tipoIdentificacion ?? "C", documentId: Variables.userProfile?.numeroIdentificacion ?? "205080150")
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,

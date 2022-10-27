@@ -204,4 +204,125 @@ class CoreDataService {
             return false
         }
     }
+
+    func addProductFavorite(with item: Product) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Favorites", in: context)
+        let favoriteItem = NSManagedObject(entity: entity!, insertInto: context)
+        let id = UUID()
+        favoriteItem.setValue(id, forKey: "idFavoriteProduct")
+        favoriteItem.setValue(item.brand, forKey: "brand")
+        favoriteItem.setValue(item.descriptionDetailBono, forKey: "descriptionDetailBono")
+        favoriteItem.setValue(item.descriptionDetailDescuento, forKey: "descriptionDetailDescuento")
+        favoriteItem.setValue(item.descriptionDetailRegalia, forKey: "descriptionDetailRegalia")
+        favoriteItem.setValue(item.endDate, forKey: "endDate")
+        favoriteItem.setValue(item.id, forKey: "id")
+        favoriteItem.setValue(item.idEmpresa, forKey: "idEmpresa")
+        favoriteItem.setValue(item.idUsuario, forKey: "idUsuario")
+        favoriteItem.setValue(item.image, forKey: "image")
+        favoriteItem.setValue(item.modelo, forKey: "modelo")
+        favoriteItem.setValue(item.montoBono, forKey: "montoBono")
+        favoriteItem.setValue(item.montoDescuento, forKey: "montoDescuento")
+        favoriteItem.setValue(item.name, forKey: "name")
+        favoriteItem.setValue(item.originalPrice, forKey: "originalPrice")
+        favoriteItem.setValue(item.porcDescuento, forKey: "porcDescuento")
+        favoriteItem.setValue(item.precioFinal, forKey: "precioFinal")
+        favoriteItem.setValue(item.product, forKey: "product")
+        favoriteItem.setValue(item.productCode, forKey: "productCode")
+        favoriteItem.setValue(item.productName, forKey: "productName")
+        favoriteItem.setValue(item.productoDescription, forKey: "productoDescription")
+        favoriteItem.setValue(item.startDate, forKey: "startDate")
+        favoriteItem.setValue(item.tieneBono, forKey: "tieneBono")
+        favoriteItem.setValue(item.tieneDescuento, forKey: "tieneDescuento")
+        favoriteItem.setValue(item.tieneRegalia, forKey: "tieneRegalia")
+        favoriteItem.setValue(item.tipoPromoApp, forKey: "tipoPromoApp")
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Error addFavorite: " + error.localizedDescription)
+        }
+    }
+
+    func fetchFavoriteItems() -> [Product] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorites")
+        do {
+            let result = try context.fetch(request)
+            var favorites: [Product] = []
+            for data in result as! [NSManagedObject] {
+                favorites.append(
+                    Product(
+                        productCode: data.value(forKey: "productCode") as? String,
+                        descriptionDetailDescuento: data.value(forKey: "descriptionDetailDescuento") as? String,
+                        descriptionDetailRegalia: data.value(forKey: "descriptionDetailRegalia") as? String,
+                        originalPrice: data.value(forKey: "originalPrice") as? Double,
+                        image: data.value(forKey: "image") as? String,
+                        montoBono: data.value(forKey: "montoBono") as? Double,
+                        porcDescuento: data.value(forKey: "porcDescuento") as? Double,
+                        brand: data.value(forKey: "brand") as? String,
+                        descriptionDetailBono: data.value(forKey: "descriptionDetailBono") as? String,
+                        tieneBono: data.value(forKey: "tieneBono") as? String,
+                        name: data.value(forKey: "name") as? String,
+                        modelo: data.value(forKey: "modelo") as? String,
+                        endDate: data.value(forKey: "endDate") as? String,
+                        tieneRegalia: data.value(forKey: "tieneRegalia") as? String,
+                        simboloMoneda: SimboloMoneda.empty,
+                        id: data.value(forKey: "id") as? Int,
+                        montoDescuento: data.value(forKey: "montoDescuento") as? Double,
+                        idUsuario: data.value(forKey: "idUsuario") as? String,
+                        product: data.value(forKey: "product") as? String,
+                        idEmpresa: data.value(forKey: "idEmpresa") as? Int,
+                        startDate: data.value(forKey: "startDate") as? String,
+                        precioFinal: data.value(forKey: "precioFinal") as? Double,
+                        productName: data.value(forKey: "productName") as? String,
+                        tieneDescuento: data.value(forKey: "tieneDescuento") as? String,
+                        tipoPromoApp: data.value(forKey: "tipoPromoApp") as? Int,
+                        productoDescription: data.value(forKey: "productoDescription") as? String
+                    )
+                )
+            }
+            return favorites
+        } catch let error as NSError {
+            print("Error fetchCarItems: " + error.localizedDescription)
+            return []
+        }
+    }
+
+    func deleteFavorite(with id: UUID) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorites")
+        request.predicate = NSPredicate(format: "idFavoriteProduct == %@", id as CVarArg)
+        do {
+            let result = try context.fetch(request)
+            for object in result {
+                context.delete(object as! NSManagedObject)
+            }
+            try context.save()
+            return true
+        } catch let error as NSError {
+            print("Error favoriteItem: " + error.localizedDescription)
+            return false
+        }
+    }
+
+    func isFavoriteProduct(with code: String) -> UUID? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorites")
+        request.predicate = NSPredicate(format: "productCode == %@", code as CVarArg)
+        do {
+            let result = try context.fetch(request)
+            var id: UUID?
+            for object in result {
+                id = (object as! NSManagedObject).value(forKey: "idFavoriteProduct") as? UUID
+            }
+            return id
+        } catch let error as NSError {
+            print("Error favoriteItem: " + error.localizedDescription)
+            return nil
+        }
+    }
 }

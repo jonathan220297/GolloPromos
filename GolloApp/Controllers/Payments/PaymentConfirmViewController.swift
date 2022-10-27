@@ -116,7 +116,7 @@ class PaymentConfirmViewController: UIViewController {
                       let data = data else { return }
                 print(data)
                 self.view.activityStopAnimatingFull()
-                self.viewModel.methods = self.viewModel.isAccountPayment ? data.filter { $0.indTarjeta == 1 } : data
+                self.viewModel.methods = self.viewModel.isAccountPayment ? data.filter { $0.indTarjeta == 1 && $0.indTasaCero == 0} : data
                 self.paymentMethodsTableView.reloadData()
                 self.paymentMethodsTableViewHeightConstaint.constant = self.paymentMethodsTableView.contentSize.height + 40
             })

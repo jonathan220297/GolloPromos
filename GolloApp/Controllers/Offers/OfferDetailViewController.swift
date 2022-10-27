@@ -94,6 +94,15 @@ class OfferDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         configureAlternativeNavBar()
         carView.isHidden = true
+
+        let isFavorite = CoreDataService().isFavoriteProduct(with: offer?.productCode ?? "")
+        if let _ = isFavorite {
+            self.favoriteButton.setImage(UIImage(named: "ic_added_heart"), for: .normal)
+            self.favoriteButton.tintColor = .red
+        } else {
+            self.favoriteButton.setImage(UIImage(named: "ic_heart"), for: .normal)
+            self.favoriteButton.tintColor = .gray
+        }
     }
     
     // MARK: - Observers
@@ -117,8 +126,20 @@ class OfferDetailViewController: UIViewController {
     }
 
     fileprivate func saveFavorite() {
-        self.favoriteButton.setImage(UIImage(named: "ic_added_heart"), for: .normal)
-        self.showAlert(alertText: "GolloApp", alertMessage: "Favorito guardado correctamente.")
+        if let product = self.offer {
+            let isFavorite = CoreDataService().isFavoriteProduct(with: product.productCode ?? "")
+            if let id = isFavorite {
+                let _ = CoreDataService().deleteFavorite(with: id)
+                self.favoriteButton.setImage(UIImage(named: "ic_heart"), for: .normal)
+                self.favoriteButton.tintColor = .gray
+            } else {
+                CoreDataService().addProductFavorite(with: product)
+                self.favoriteButton.setImage(UIImage(named: "ic_added_heart"), for: .normal)
+                self.favoriteButton.tintColor = .red
+                self.showAlert(alertText: "GolloApp", alertMessage: "Favorito guardado correctamente.")
+            }
+
+        }
     }
 
     //MARK: - Functions
@@ -222,8 +243,15 @@ class OfferDetailViewController: UIViewController {
                     guard let self = self,
                           let _ = data else { return }
                     DispatchQueue.main.async {
+                        self.carView.isHidden = false
+                        // change to desired number of seconds (in this case 5 seconds)
+                        let when = DispatchTime.now() + 2
+                        DispatchQueue.main.asyncAfter(deadline: when){
+                          // your code with delay
+                            self.carView.isHidden = true
+                        }
                         CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
-                        self.carItemLabel.text = "\(CoreDataService().fetchCarItems().count) Items(s) en el carrito"
+                        self.carItemLabel.text = "El artículo ha sido agregado al carrito!"
                         self.configureAlternativeNavBar()
                         if self.viewModel.documents.count > 1 && self.warrantyMonth == 0 {
                             let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)

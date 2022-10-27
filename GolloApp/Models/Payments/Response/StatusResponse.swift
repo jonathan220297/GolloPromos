@@ -37,6 +37,7 @@ struct AccountData: Codable {
     let aplicaKiosco: String?
     let montoCancelarCuenta: Double?
     let diasAtraso: Int?
+    let montoAtraso: Double?
 }
 
 struct TotalsData: Codable {

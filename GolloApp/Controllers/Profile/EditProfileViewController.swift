@@ -112,6 +112,7 @@ class EditProfileViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         birthdateTextField.text = dateFormatter.string(from: datePicker.date)
+        viewModel.birthDateSubject.accept(dateFormatter.string(from: datePicker.date))
         self.view.endEditing(true)
     }
     
@@ -132,14 +133,24 @@ class EditProfileViewController: UIViewController {
     }
 
     func createDatePicker() {
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+        datePicker.datePickerMode = .date
+
+        birthdateTextField.textAlignment = .justified
+        birthdateTextField.inputView = datePicker
+        birthdateTextField.inputAccessoryView = createToolbar()
+    }
+
+    func createToolbar() -> UIToolbar {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
 
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([doneButton], animated: true)
-        birthdateTextField.inputAccessoryView = toolbar
-        birthdateTextField.inputView = datePicker
-        datePicker.datePickerMode = .date
+
+        return toolbar
     }
     
     fileprivate func configureUserData() {
@@ -166,7 +177,7 @@ class EditProfileViewController: UIViewController {
                 genero: info.genero,
                 correoElectronico1: info.correoElectronico1,
                 correoElectronico2: "",
-                telefono1: info.telefono2,
+                telefono1: info.telefono1,
                 telefono2: info.telefono2,
                 cantidadHijos: 0,
                 fechaNacimiento: info.fechaNacimiento,
@@ -196,6 +207,10 @@ class EditProfileViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        nameTextField.rx.text.bind(to: viewModel.nameSubject).disposed(by: disposeBag)
+        lastNameTextField.rx.text.bind(to: viewModel.lastnameSubject).disposed(by: disposeBag)
+        secondLastNameTextField.rx.text.bind(to: viewModel.secondLastnameSubject).disposed(by: disposeBag)
+        nameTextField.rx.text.bind(to: viewModel.nameSubject).disposed(by: disposeBag)
         birthdateTextField.rx.text.bind(to: viewModel.birthDateSubject).disposed(by: disposeBag)
         phoneNumberTextField.rx.text.bind(to: viewModel.phonenumberSubject).disposed(by: disposeBag)
         mobileTextField.rx.text.bind(to: viewModel.mobileNumberSubject).disposed(by: disposeBag)
@@ -342,30 +357,25 @@ class EditProfileViewController: UIViewController {
         profileImageView.isHidden = false
         self.unregisteredUserView.isHidden = true
         view.layoutIfNeeded()
-        let options = ImageLoadingOptions(
+        let _ = ImageLoadingOptions(
             placeholder: UIImage(named: "empty_image"),
             transition: .fadeIn(duration: 0.5),
             failureImage: UIImage(named: "empty_image")
         )
         if let data = data {
-//            if let url = URL(string: data.image ?? "") {
-//                Nuke.loadImage(with: url, options: options, into: userImageView)
-//            } else if let strBase64 = data.image, !strBase64.isEmpty {
-//                if let decodedData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions(rawValue: 0)) {
-//                    let decodedImage: UIImage = UIImage(data: decodedData as Data)!
-//                    print(decodedImage)
-//                    self.userImageView.image = decodedImage
-//                }
-//            }
             if let decodedData = Data(base64Encoded: Variables.userProfile?.image ?? ""),
                let decodedimage = UIImage(data: decodedData) {
                 userImageView.image = decodedimage
+                addImageButton.alpha = 0
+                editImageButton.alpha = 1
             } else {
                 if let url = URL(string: Variables.userProfile?.image ?? "") {
                     Nuke.loadImage(with: url, into: userImageView)
+                    addImageButton.alpha = 0
+                    editImageButton.alpha = 1
                 }
             }
-            documentTypeLabel.text = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "C"
+            documentTypeLabel.text = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "ProfileViewController_cedula".localized
             documentType = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "C"
             documentTypeButton.isEnabled = false
             documentNumberLabel.text = data.numeroIdentificacion
@@ -374,8 +384,13 @@ class EditProfileViewController: UIViewController {
             lastNameTextField.isEnabled = false
             secondLastNameTextField.isEnabled = false
             if let date = data.fechaNacimiento, !date.isEmpty {
-                birthdateTextField.text = date.convertDateFormater(with: "dd/MM/yyyy")
-                viewModel.birthDateSubject.accept(date.convertDateFormater(with: "dd/MM/yyyy"))
+                if !date.convertDateFormater(with: "dd/MM/yyyy").isEmpty {
+                    birthdateTextField.text = date.convertDateFormater(with: "dd/MM/yyyy")
+                    viewModel.birthDateSubject.accept(date.convertDateFormater(with: "dd/MM/yyyy"))
+                } else {
+                    birthdateTextField.text = date
+                    viewModel.birthDateSubject.accept(date)
+                }
                 birthdateTextField.isEnabled = false
             } else {
                 birthdateTextField.isEnabled = true
@@ -394,8 +409,8 @@ class EditProfileViewController: UIViewController {
             viewModel.lastnameSubject.accept(data.apellido1)
             secondLastNameTextField.text = data.apellido2
             viewModel.secondLastnameSubject.accept(data.apellido2)
-            phoneNumberTextField.text = data.telefonoTrabajo
-            viewModel.phonenumberSubject.accept(data.telefonoTrabajo)
+            phoneNumberTextField.text = data.telefono1
+            viewModel.phonenumberSubject.accept(data.telefono1)
             mobileTextField.text = data.telefono2
             viewModel.mobileNumberSubject.accept(data.telefono2)
             emailTextField.text = data.correoElectronico1
@@ -409,18 +424,18 @@ class EditProfileViewController: UIViewController {
         view.activityStarAnimating()
         let userInfo = UserInfo(
             idCliente: UserManager.shared.userData?.uid ?? "",
-            nombre: nameTextField.text,
-            apellido1: lastNameTextField.text,
-            apellido2: secondLastNameTextField.text,
-            telefono1: phoneNumberTextField.text,
-            telefono2: mobileTextField.text,
+            nombre: viewModel.nameSubject.value,
+            apellido1: viewModel.lastnameSubject.value,
+            apellido2: viewModel.secondLastnameSubject.value,
+            telefono1: viewModel.phonenumberSubject.value,
+            telefono2: viewModel.mobileNumberSubject.value,
             tipoIdentificacion: documentType,
             numeroIdentificacion: documentNumberLabel.text,
             direccion: addressTextField.text,
             latitud: nil,
             longitud: nil,
-            correoElectronico1: emailTextField.text,
-            fechaNacimiento: birthdateTextField.text,
+            correoElectronico1: viewModel.emailSubject.value,
+            fechaNacimiento: viewModel.birthDateSubject.value,
             image: viewModel.convertImageToBase64String(img: userImageView.image),
             genero: genderType
         )

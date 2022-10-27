@@ -38,7 +38,9 @@ extension SignUpViewController {
         }
 
         viewModel.showError = {[weak self] message in
-            self?.showAlert(alertText: "GolloApp", alertMessage: message)
+            guard let self = self else { return }
+            self.signUpButton.hideLoading()
+            self.showAlert(alertText: "GolloApp", alertMessage: message)
         }
 
         viewModel.hideLoading = {[weak self] in
