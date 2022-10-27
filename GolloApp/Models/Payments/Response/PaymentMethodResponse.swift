@@ -10,10 +10,10 @@ import Foundation
 class PaymentMethodResponse: Codable {
     let idFormaPago, formaPago, descripcion: String?
     let indTarjeta, indPrincipal, indTasaCero: Int?
-    let plazos: [Deadlines]?
+    let plazos: [ZeroRate]?
     var selected: Bool? = false
 }
 
-class Deadlines: Codable {
+class ZeroRate: Codable {
     let idPlazo, descPlazo: String?
 }

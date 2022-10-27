@@ -23,6 +23,8 @@ class PaymentDataViewModel {
     
     var paymentData: PaymentData?
     var paymentAmount = 0.0
+    var zeroRateList: [ZeroRate] = []
+    var zeroRatePayment: Bool = false
     
     let months = [1,2,3,4,5,6,7,8,9,10,11,12]
     var years: [Int] = []
@@ -35,6 +37,7 @@ class PaymentDataViewModel {
     let expirationYearSubject: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
     let cardNameSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let cardCvvSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let zeroRateSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -53,19 +56,37 @@ class PaymentDataViewModel {
                                         expirationNumberSubject,
                                         expirationYearSubject,
                                         cardNameSubject,
-                                        cardCvvSubject) { cardNumber, expirationNumber, expirationYear, cardName, cardCvv in
-            
-            guard let cardNumber = cardNumber,
-                  let _ = expirationNumber,
-                  let _ = expirationYear,
-                  let cardName = cardName,
-                  let cardCvv = cardCvv else {
-                return false
+                                        cardCvvSubject,
+                                        zeroRateSubject) { cardNumber, expirationNumber, expirationYear, cardName, cardCvv, zeroRateId in
+
+            if self.zeroRatePayment {
+                guard let cardNumber = cardNumber,
+                      let _ = expirationNumber,
+                      let _ = expirationYear,
+                      let cardName = cardName,
+                      let cardCvv = cardCvv,
+                      let zeroRateId = zeroRateId else {
+                    return false
+                }
+
+                return !(cardNumber.isEmpty)
+                && !(cardName.isEmpty)
+                && !(cardCvv.isEmpty)
+                && !(zeroRateId.isEmpty)
+
+            } else {
+                guard let cardNumber = cardNumber,
+                      let _ = expirationNumber,
+                      let _ = expirationYear,
+                      let cardName = cardName,
+                      let cardCvv = cardCvv else {
+                    return false
+                }
+
+                return !(cardNumber.isEmpty)
+                && !(cardName.isEmpty)
+                && !(cardCvv.isEmpty)
             }
-            
-            return !(cardNumber.isEmpty)
-            && !(cardName.isEmpty)
-            && !(cardCvv.isEmpty)
         }
     }
     
