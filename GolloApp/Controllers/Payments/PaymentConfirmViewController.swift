@@ -87,6 +87,7 @@ class PaymentConfirmViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 if let methodSelected = self.viewModel.methodSelected {
+                    self.viewModel.carManager.paymentMethod = []
                     self.viewModel.carManager.paymentMethodSelected = methodSelected
                     if methodSelected.indTarjeta == 1 {
                         let vc = PaymentDataViewController.instantiate(fromAppStoryboard: .Payments)
