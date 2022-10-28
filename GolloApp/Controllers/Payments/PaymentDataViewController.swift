@@ -203,7 +203,7 @@ class PaymentDataViewController: UIViewController {
                         viewModel: PaymentSuccessViewModel(
                             paymentMethodSelected: paymentMethodSelected,
                             productPaymentResponse: response
-                        )
+                        ), cartPayment: true
                     )
                     paymentSuccessViewController.modalPresentationStyle = .fullScreen
                     self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
@@ -242,7 +242,7 @@ class PaymentDataViewController: UIViewController {
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
                         accountPaymentResponse: response
-                    )
+                    ), cartPayment: true
                 )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)

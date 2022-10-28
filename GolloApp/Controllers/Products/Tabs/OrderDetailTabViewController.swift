@@ -50,7 +50,7 @@ class OrderDetailTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Detalle de la orden"
+        navigationItem.title = "Detalle de la orden"
         configureTableView()
     }
 
