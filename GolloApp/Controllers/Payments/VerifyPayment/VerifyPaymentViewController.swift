@@ -8,6 +8,10 @@
 import UIKit
 import WebKit
 
+protocol VerifyPaymentDelegate: AnyObject {
+    func transactionValidation(with success: Bool, processId: String)
+}
+
 class VerifyPaymentViewController: UIViewController {
 
     let webView: WKWebView = {
@@ -20,14 +24,19 @@ class VerifyPaymentViewController: UIViewController {
         let webView = WKWebView(frame: .zero, configuration: configuration)
         return webView
     }()
-    var redirectURL = ""
+    var redirectURL: String = ""
+    var processId: String = ""
+    var closePage: Bool = false
+    weak var delegate: VerifyPaymentDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Verificación de pago"
 
         self.view.addSubview(webView)
         self.webView.uiDelegate = self
-        guard let url = URL(string: "https://google.com") else { return }
+        self.webView.navigationDelegate = self
+        guard let url = URL(string: redirectURL) else { return }
         webView.load(URLRequest(url: url))
     }
 
@@ -36,18 +45,50 @@ class VerifyPaymentViewController: UIViewController {
         self.webView.frame = self.view.bounds
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        if self.isMovingFromParent {
+            self.delegate?.transactionValidation(with: self.closePage, processId: self.processId)
+        }
+    }
+
 }
 
 extension VerifyPaymentViewController: WKUIDelegate, WKNavigationDelegate {
     func webViewDidFinishLoad(_ webView: WKWebView) {
         if webView.isLoading { return }
+        if closePage {
+            self.navigationController?.popViewController(animated: true, completion: {
+                self.delegate?.transactionValidation(with: self.closePage, processId: self.processId)
+            })
+        }
         print("Finished loading page")
     }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if closePage {
+            self.navigationController?.popViewController(animated: true, completion: {
+                self.delegate?.transactionValidation(with: self.closePage, processId: self.processId)
+            })
+        }
+        print("Finished loading page")
+      }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
         if let urlStr = navigationAction.request.url?.absoluteString {
             print("Current page ~ \(urlStr)")
+            if urlStr.starts(with: "https://servicios.grupogollo.com:9199/ClientesApi/Transacciones/RespuestaBAC") {
+                closePage = true
+            }
         }
         decisionHandler(.allow)
     }

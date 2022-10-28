@@ -126,7 +126,7 @@ extension SideMenuViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.openUrl("https://www.gollotienda.com/terminos-y-condiciones")
+                self.openUrl("https://servicios.grupogollo.com:9199/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/Terminos-y-condiciones-App-de-Clientes.html")
             })
             .disposed(by: disposeBag)
         
@@ -134,7 +134,7 @@ extension SideMenuViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.openUrl("https://www.gollotienda.com/contacto/")
+                self.openUrl("https://servicios.grupogollo.com:9199/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/GOLLO-APP-Tutorial-de-uso.jpg")
             })
             .disposed(by: disposeBag)
     }

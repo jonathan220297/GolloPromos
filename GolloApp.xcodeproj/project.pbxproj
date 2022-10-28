@@ -260,6 +260,7 @@
 		4FDCC97B29097E14004BB9B6 /* SearchHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCC97929097E14004BB9B6 /* SearchHistoryCollectionViewCell.swift */; };
 		4FDCC97C29097E14004BB9B6 /* SearchHistoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCC97A29097E14004BB9B6 /* SearchHistoryCollectionViewCell.xib */; };
 		4FDCC97F290A37E6004BB9B6 /* VerifyPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCC97E290A37E6004BB9B6 /* VerifyPaymentViewController.swift */; };
+		4FDCC981290B2587004BB9B6 /* PaymentResponseDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCC980290B2587004BB9B6 /* PaymentResponseDetailRequest.swift */; };
 		4FDD105728D000700082ADB5 /* ProductsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD105528D000700082ADB5 /* ProductsTabViewController.swift */; };
 		4FDD105828D000700082ADB5 /* ProductsTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FDD105628D000700082ADB5 /* ProductsTabViewController.xib */; };
 		4FDD105B28D15E910082ADB5 /* CarTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD105928D15E910082ADB5 /* CarTabViewController.swift */; };
@@ -630,6 +631,7 @@
 		4FDCC97929097E14004BB9B6 /* SearchHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FDCC97A29097E14004BB9B6 /* SearchHistoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHistoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		4FDCC97E290A37E6004BB9B6 /* VerifyPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPaymentViewController.swift; sourceTree = "<group>"; };
+		4FDCC980290B2587004BB9B6 /* PaymentResponseDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponseDetailRequest.swift; sourceTree = "<group>"; };
 		4FDD105528D000700082ADB5 /* ProductsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTabViewController.swift; sourceTree = "<group>"; };
 		4FDD105628D000700082ADB5 /* ProductsTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductsTabViewController.xib; sourceTree = "<group>"; };
 		4FDD105928D15E910082ADB5 /* CarTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTabViewController.swift; sourceTree = "<group>"; };
@@ -1086,6 +1088,7 @@
 				4F194C1628FA96580011653D /* PaymentMethodRequest.swift */,
 				4F194C1A28FB04220011653D /* DeliveryMethodsRequest.swift */,
 				4FF1C6D728FF72C900456164 /* ProvenanceRequest.swift */,
+				4FDCC980290B2587004BB9B6 /* PaymentResponseDetailRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2242,6 +2245,7 @@
 				4F0D968326DDBE430061E89E /* UIColor+Assets.swift in Sources */,
 				4F1732432701494900D7924D /* HistoryViewController.swift in Sources */,
 				4FDD105B28D15E910082ADB5 /* CarTabViewController.swift in Sources */,
+				4FDCC981290B2587004BB9B6 /* PaymentResponseDetailRequest.swift in Sources */,
 				4F9B100228BDBDEA00B1FD82 /* SaveUserResponse.swift in Sources */,
 				4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */,
 				4FC04C5E28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift in Sources */,

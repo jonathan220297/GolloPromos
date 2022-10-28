@@ -2191,15 +2191,54 @@
                                             <outlet property="delegate" destination="asq-sJ-6oF" id="ZFr-LI-Ln8"/>
                                         </connections>
                                     </tableView>
+                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uW5-em-LeI">
+                                        <rect key="frame" x="0.0" y="80" width="331" height="245"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista de productos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bne-Wi-w5X">
+                                                <rect key="frame" x="102.5" y="114" width="126" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                <color key="textColor" name="colorPrimary"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Su cuenta no posee productos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQg-QX-I7O">
+                                                <rect key="frame" x="8" y="133" width="315" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_item_detail" translatesAutoresizingMaskIntoConstraints="NO" id="Fbx-bA-Pho">
+                                                <rect key="frame" x="141" y="63" width="49" height="49"/>
+                                                <color key="tintColor" name="colorPrimary"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Fbx-bA-Pho" secondAttribute="height" multiplier="1:1" id="3XA-XR-dbw"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Fbx-bA-Pho" firstAttribute="height" secondItem="uW5-em-LeI" secondAttribute="height" multiplier="0.2" id="5cj-WC-QHB"/>
+                                            <constraint firstItem="Bne-Wi-w5X" firstAttribute="top" secondItem="Fbx-bA-Pho" secondAttribute="bottom" constant="2" id="9bZ-5u-R2g"/>
+                                            <constraint firstItem="Fbx-bA-Pho" firstAttribute="centerX" secondItem="uW5-em-LeI" secondAttribute="centerX" id="PST-Wo-88c"/>
+                                            <constraint firstItem="Bne-Wi-w5X" firstAttribute="centerX" secondItem="uW5-em-LeI" secondAttribute="centerX" id="ULp-uo-PLj"/>
+                                            <constraint firstAttribute="trailing" secondItem="jQg-QX-I7O" secondAttribute="trailing" constant="8" id="b9s-JN-abQ"/>
+                                            <constraint firstItem="jQg-QX-I7O" firstAttribute="top" secondItem="Bne-Wi-w5X" secondAttribute="bottom" constant="2" id="mTn-KG-nOV"/>
+                                            <constraint firstItem="Bne-Wi-w5X" firstAttribute="centerY" secondItem="uW5-em-LeI" secondAttribute="centerY" id="n3r-RG-WW0"/>
+                                            <constraint firstItem="jQg-QX-I7O" firstAttribute="leading" secondItem="uW5-em-LeI" secondAttribute="leading" constant="8" id="pN2-zD-Mc6"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="uW5-em-LeI" firstAttribute="leading" secondItem="3rf-KB-5Wj" secondAttribute="leading" id="1HX-WF-e6h"/>
                                     <constraint firstAttribute="trailing" secondItem="euX-Ue-U3T" secondAttribute="trailing" id="4dx-AE-Oqg"/>
                                     <constraint firstAttribute="trailing" secondItem="Asq-CL-7P8" secondAttribute="trailing" id="4ya-g2-vf0"/>
+                                    <constraint firstItem="uW5-em-LeI" firstAttribute="top" secondItem="euX-Ue-U3T" secondAttribute="bottom" id="BsO-PG-7eh"/>
                                     <constraint firstItem="Asq-CL-7P8" firstAttribute="leading" secondItem="3rf-KB-5Wj" secondAttribute="leading" id="ElC-9F-Edt"/>
                                     <constraint firstItem="euX-Ue-U3T" firstAttribute="leading" secondItem="3rf-KB-5Wj" secondAttribute="leading" id="TU4-x0-5vp"/>
+                                    <constraint firstAttribute="bottom" secondItem="uW5-em-LeI" secondAttribute="bottom" id="gDu-yM-7ts"/>
                                     <constraint firstItem="Asq-CL-7P8" firstAttribute="top" secondItem="euX-Ue-U3T" secondAttribute="bottom" id="gQJ-G1-LNA"/>
                                     <constraint firstItem="euX-Ue-U3T" firstAttribute="top" secondItem="3rf-KB-5Wj" secondAttribute="top" id="p53-Hr-dVq"/>
+                                    <constraint firstAttribute="trailing" secondItem="uW5-em-LeI" secondAttribute="trailing" id="qtG-RO-Kzx"/>
                                     <constraint firstAttribute="bottom" secondItem="Asq-CL-7P8" secondAttribute="bottom" id="rln-bN-gNX"/>
                                     <constraint firstAttribute="height" constant="325" id="uz1-o5-KkE"/>
                                 </constraints>
@@ -2224,6 +2263,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyView" destination="uW5-em-LeI" id="8Gr-0M-ZXC"/>
                         <outlet property="tableView" destination="Asq-CL-7P8" id="nFR-vS-TnC"/>
                         <outlet property="viewGlass" destination="pvg-xX-FFX" id="tqn-e3-DHc"/>
                         <outlet property="viewPopup" destination="3rf-KB-5Wj" id="1Kk-2R-6aH"/>
@@ -2231,7 +2271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NgV-Hx-TFl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3948" y="88"/>
+            <point key="canvasLocation" x="3947.826086956522" y="87.723214285714278"/>
         </scene>
         <!--Historial-->
         <scene sceneID="q1D-D6-9Hw">

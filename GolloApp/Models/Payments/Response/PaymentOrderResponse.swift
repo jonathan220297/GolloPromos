@@ -12,4 +12,6 @@ class PaymentOrderResponse: Codable {
     var codigoAutorizacion: String?
     var idTransaccionBac: String?
     var orderId: String?
+    var url: String?
+    var indRedirect: Int?
 }

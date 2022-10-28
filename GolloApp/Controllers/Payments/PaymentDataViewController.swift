@@ -166,17 +166,21 @@ class PaymentDataViewController: UIViewController {
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,
                       let response = response,
-                      let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
-                let _ = self.viewModel.carManager.emptyCar()
-                self.continueButton.hideLoading()
-                let paymentSuccessViewController = PaymentSuccessViewController(
-                    viewModel: PaymentSuccessViewModel(
-                        paymentMethodSelected: paymentMethodSelected,
-                        accountPaymentResponse: response
-                    )
-                )
-                paymentSuccessViewController.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
+                      let _ = self.viewModel.carManager.paymentMethodSelected else { return }
+                if let url = response.url, !url.isEmpty {
+                    let verifyPaymentViewController = VerifyPaymentViewController()
+                    verifyPaymentViewController.modalPresentationStyle = .fullScreen
+                    verifyPaymentViewController.delegate = self
+                    verifyPaymentViewController.redirectURL = url
+                    verifyPaymentViewController.processId = response.idProceso ?? ""
+                    self.navigationController?.pushViewController(verifyPaymentViewController, animated: true)
+                } else {
+                    self.continueButton.hideLoading()
+                    self.viewModel.errorMessage.accept("")
+                    self.navigationController?.popViewController(animated: true, completion: {
+                        self.delegate?.errorWhilePayment(with: "No es posible verificar la transacción")
+                    })
+                }
             })
             .disposed(by: bag)
     }
@@ -192,12 +196,52 @@ class PaymentDataViewController: UIViewController {
                       let response = response,
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 print(response)
+                if let redirect = response.indRedirect, redirect == 0 {
+                    let _ = self.viewModel.carManager.emptyCar()
+                    self.continueButton.hideLoading()
+                    let paymentSuccessViewController = PaymentSuccessViewController(
+                        viewModel: PaymentSuccessViewModel(
+                            paymentMethodSelected: paymentMethodSelected,
+                            productPaymentResponse: response
+                        )
+                    )
+                    paymentSuccessViewController.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
+                } else {
+                    if let url = response.url, !url.isEmpty {
+                        let verifyPaymentViewController = VerifyPaymentViewController()
+                        verifyPaymentViewController.modalPresentationStyle = .fullScreen
+                        verifyPaymentViewController.delegate = self
+                        verifyPaymentViewController.redirectURL = url
+                        verifyPaymentViewController.processId = response.idProceso ?? ""
+                        self.navigationController?.pushViewController(verifyPaymentViewController, animated: true)
+                    } else {
+                        self.continueButton.hideLoading()
+                        self.viewModel.errorMessage.accept("")
+                        self.navigationController?.popViewController(animated: true, completion: {
+                            self.delegate?.errorWhilePayment(with: "No es posible verificar la transacción")
+                        })
+                    }
+                }
+            })
+            .disposed(by: bag)
+    }
+
+    private func getPaymentResult(with id: String) {
+        viewModel
+            .getPaymentResponseDetail(with: id)
+            .asObservable()
+            .subscribe(onNext: {[weak self] response in
+                guard let self = self,
+                      let response = response,
+                      let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
+                print(response)
                 let _ = self.viewModel.carManager.emptyCar()
                 self.continueButton.hideLoading()
                 let paymentSuccessViewController = PaymentSuccessViewController(
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
-                        productPaymentResponse: response
+                        accountPaymentResponse: response
                     )
                 )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
@@ -251,5 +295,17 @@ extension PaymentDataViewController: UITextFieldDelegate {
             return newString.length <= maxLength
         }
         return true
+    }
+}
+
+extension PaymentDataViewController: VerifyPaymentDelegate {
+    func transactionValidation(with success: Bool, processId: String) {
+        if success {
+            self.getPaymentResult(with: processId)
+        } else {
+            self.navigationController?.popViewController(animated: true, completion: {
+                self.delegate?.errorWhilePayment(with: "Error en el proceso")
+            })
+        }
     }
 }

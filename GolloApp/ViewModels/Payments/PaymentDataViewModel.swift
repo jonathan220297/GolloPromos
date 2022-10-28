@@ -183,7 +183,7 @@ class PaymentDataViewModel {
                noLineaRelacionada: 0,
                nomTarjeta: cardHolderName,
                numTarjeta: cardNumber,
-               tipoPlazoTarjeta: "11723675",
+               tipoPlazoTarjeta: self.zeroRateSubject.value ?? "",
                tipoTarjeta: "",
                totalCuotas: 0,
                indTarjeta: carManager.paymentMethodSelected?.indTarjeta ?? 0,
@@ -220,6 +220,43 @@ class PaymentDataViewModel {
                     apiResponse.accept(response)
                 case .failure(let error):
                     self.errorMessage.accept(error.localizedDescription)
+                }
+            }
+        }
+        return apiResponse
+    }
+
+    func getPaymentResponseDetail(with processId: String) -> BehaviorRelay<PaymentResponse?> {
+        let apiResponse: BehaviorRelay<PaymentResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(
+            BaseRequest<PaymentResponse, PaymentResponseDetailServiceRequest>(
+                resource: "Procesos",
+                service: BaseServiceRequestParam<PaymentResponseDetailServiceRequest>(
+                    servicio: ServicioParam(
+                        encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.VERIFICATION_SERVICE_PROCESS_ID.rawValue),
+                        parametros: PaymentResponseDetailServiceRequest(
+                            idProceso: processId
+                        )
+                    )
+                )
+            )
+        ) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                    switch error {
+                    case .decoding: break;
+                    case .server(code: let code, message: _):
+                        if code == 401 {
+                            self.errorExpiredToken.accept(true)
+                        } else {
+                            self.errorMessage.accept(error.localizedDescription)
+                        }
+                    }
+                    //log.debug("Error: \(error.localizedDescription)")
                 }
             }
         }

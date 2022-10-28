@@ -50,7 +50,7 @@ class PaymentAddressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Info. personal"
+        navigationItem.title = "Datos de envío"
         tabBarController?.navigationItem.hidesBackButton = false
         tabBarController?.navigationController?.navigationBar.tintColor = .white
         configureViews()

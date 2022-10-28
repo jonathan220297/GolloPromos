@@ -13,7 +13,8 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var viewGlass: UIView!
     @IBOutlet weak var viewPopup: UIView!
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var emptyView: UIView!
+    
     var accountType: String = ""
     var accountId: String = ""
 
@@ -52,6 +53,7 @@ class ProductDetailViewController: UIViewController {
                 if !error.isEmpty {
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
+                    self.emptyView.alpha = 1
                 }
             })
             .disposed(by: bag)
@@ -79,11 +81,14 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let data = self.viewModel.items.first {
             if let _ = data.precioUnitario, let _ = data.descripcion {
+                self.emptyView.alpha = 0
                 return self.viewModel.items.count
             } else {
+                self.emptyView.alpha = 1
                 return 0
             }
         } else {
+            self.emptyView.alpha = 1
             return 0
         }
     }

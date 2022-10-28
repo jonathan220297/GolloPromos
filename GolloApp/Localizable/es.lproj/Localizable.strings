@@ -186,16 +186,16 @@ Se constituye un acuerdo legal entre cualquier usuario y el App de Gollo dándos
 "PaymentDataViewController_continue_payment" = "CONTINUAR CON EL PAGO";
 
 // PersonalInfoViewController
-"PersonalInfoViewController_title" = "Info. personal";
+"PersonalInfoViewController_title" = "Datos de envío";
 "PersonalInfoViewController_first_name" = "Nombres";
-"PersonalInfoViewController_last_name" = "Apellidos";
-"PersonalInfoViewController_email" = "Correo";
+"PersonalInfoViewController_last_name" = "Primer apellido";
+"PersonalInfoViewController_email" = "Correo electrónico";
 "PersonalInfoViewController_phone_number" = "Número de teléfono";
-"PersonalInfoViewController_document_type" = "Tipo de documento";
-"PersonalInfoViewController_identification_number" = "Número de documento (ID o pasaporte)";
-"PersonalInfoViewController_select_address" = "ELEGIR DIRECCIÓN";
+"PersonalInfoViewController_document_type" = "Tipo de documento de identidad";
+"PersonalInfoViewController_identification_number" = "Número de documento (cédula o pasaporte)";
+"PersonalInfoViewController_select_address" = "SELECCIONAR DIRECCIÓN";
 "PersonalInfoViewController_country" = "País";
-"PersonalInfoViewController_state" = "Departamento";
+"PersonalInfoViewController_state" = "Provincia";
 "PersonalInfoViewController_city" = "Ciudad";
 "PersonalInfoViewController_address" = "Dirección";
 "PersonalInfoViewController_save_address" = "GUARDAR DIRECCIÓN";

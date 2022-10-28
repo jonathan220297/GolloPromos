@@ -13,7 +13,7 @@
         <!--Side Menu View Controller-->
         <scene sceneID="1vo-5t-XkS">
             <objects>
-                <viewController storyboardIdentifier="SideMenuViewController" id="YmW-mI-uSu" customClass="SideMenuViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SideMenuViewController" id="YmW-mI-uSu" customClass="SideMenuViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="46x-Rh-HQG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,7 @@
                                                                     <constraint firstAttribute="width" constant="25" id="lLc-fU-5X4"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Perfil de usuario" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFV-18-TNT">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mi perfil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFV-18-TNT">
                                                                 <rect key="frame" x="65" y="8" width="341" height="34"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
                                                                 <nil key="highlightedColor"/>
@@ -197,7 +197,7 @@
                                                                     <constraint firstAttribute="width" constant="25" id="r66-6V-eed"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terminos y condiciones" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2q-gX-pVn">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Términos y condiciones" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2q-gX-pVn">
                                                                 <rect key="frame" x="65" y="8" width="341" height="34"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
                                                                 <nil key="highlightedColor"/>
@@ -348,7 +348,7 @@
         <!--Contact Us View Controller-->
         <scene sceneID="YeL-fq-Upf">
             <objects>
-                <viewController storyboardIdentifier="ContactUsViewController" id="o9M-gR-RDW" customClass="ContactUsViewController" customModule="PromosGollo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactUsViewController" id="o9M-gR-RDW" customClass="ContactUsViewController" customModule="GolloApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sPx-pI-tBd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
