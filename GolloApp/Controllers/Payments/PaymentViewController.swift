@@ -36,6 +36,7 @@ class PaymentViewController: UIViewController {
     var cardTypePayment: Bool = false
     var currentAmount: Double? = 0.0
     var selectedPaymentAmount = -1
+    var errorAmount: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,9 +67,24 @@ class PaymentViewController: UIViewController {
 
     // MARK: - Observers
     @objc func otherAmountTextFieldDidChange(_ textField: UITextField) {
-        otherAmountErrorLabel.isHidden = true
         if let amountString = textField.text?.currencyInputFormatting() {
             textField.text = amountString
+        }
+        if let otherAmountString = textField.text {
+            let doubleAmount = Double(otherAmountString.replacingOccurrences(of: ",", with: "").replacingOccurrences(of: "₡", with: "")) ?? 0.0
+            let sugestedAmount = round(paymentData?.totalAmount ?? 0.0)
+
+            if doubleAmount > sugestedAmount {
+                otherAmountErrorLabel.text = "Monto ingresado es mayor al total a cancelar."
+                otherAmountErrorLabel.isHidden = false
+                errorAmount = true
+            } else {
+                otherAmountErrorLabel.isHidden = true
+                errorAmount = false
+            }
+        } else {
+            otherAmountErrorLabel.isHidden = true
+            errorAmount = false
         }
     }
     
@@ -120,17 +136,19 @@ class PaymentViewController: UIViewController {
                 self.showPaymentConfirmViewController()
             }
         } else if !otherAmountView.isHidden {
-            guard let amount = otherAmountTextField.text else { return }
-            let amountDouble = Double(amount.replacingOccurrences(of: "₡", with: "").replacingOccurrences(of: ",", with: "")) ?? 0.0
-            if amountDouble > 0.0 {
-                self.currentAmount = amountDouble
-                if self.isThirdPayAccount && self.currentAmount! > self.antiLaunderingAmount {
-                    self.showProvenanceViewController()
-                } else {
-                    self.showPaymentConfirmViewController()
+            if !errorAmount {
+                guard let amount = otherAmountTextField.text else { return }
+                let amountDouble = Double(amount.replacingOccurrences(of: "₡", with: "").replacingOccurrences(of: ",", with: "")) ?? 0.0
+                if amountDouble > 0.0 {
+                    self.currentAmount = amountDouble
+                    if self.isThirdPayAccount && self.currentAmount! > self.antiLaunderingAmount {
+                        self.showProvenanceViewController()
+                    } else {
+                        self.showPaymentConfirmViewController()
+                    }
+                } else if amount.isEmpty {
+                    self.setErrorLabel(with: "Monto es requerido")
                 }
-            } else if amount.isEmpty {
-                self.setErrorLabel(with: "Monto es requerido")
             }
         } else {
             self.showAlert(alertText: "GolloApp", alertMessage: "Seleccione monto de pago")

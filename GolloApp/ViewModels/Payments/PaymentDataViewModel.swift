@@ -183,7 +183,7 @@ class PaymentDataViewModel {
                noLineaRelacionada: 0,
                nomTarjeta: cardHolderName,
                numTarjeta: cardNumber,
-               tipoPlazoTarjeta: self.zeroRateSubject.value ?? "",
+               tipoPlazoTarjeta: self.zeroRateSubject.value ?? "11723675",
                tipoTarjeta: "",
                totalCuotas: 0,
                indTarjeta: carManager.paymentMethodSelected?.indTarjeta ?? 0,
