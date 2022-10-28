@@ -11,4 +11,7 @@ struct PaymentResponse: Codable {
     var idProceso: String?
     var codigoAutorizacion: String?
     var idTransaccionBac: String?
+    var orderId: String?
+    var url: String?
+    var indRedirect: Int?
 }

@@ -186,20 +186,20 @@ Se constituye un acuerdo legal entre cualquier usuario y el App de Gollo dándos
 "PaymentDataViewController_continue_payment" = "CONTINUAR CON EL PAGO";
 
 // PersonalInfoViewController
-"PersonalInfoViewController_title" = "Personal Info";
-"PersonalInfoViewController_first_name" = "First Name";
-"PersonalInfoViewController_last_name" = "Last Name";
-"PersonalInfoViewController_email" = "Email";
-"PersonalInfoViewController_phone_number" = "Phone Number";
-"PersonalInfoViewController_document_type" = "Document Type";
-"PersonalInfoViewController_identification_number" = "Identification Number (ID or passport)";
-"PersonalInfoViewController_select_address" = "SELECT ADDRESS";
-"PersonalInfoViewController_country" = "Country";
-"PersonalInfoViewController_state" = "State";
-"PersonalInfoViewController_city" = "City";
-"PersonalInfoViewController_address" = "Address";
-"PersonalInfoViewController_save_address" = "SAVE ADDRESS";
-"PersonalInfoViewController_continue" = "CONTINUE WITH DELIVERY";
-"PersonalInfoViewController_address_saved" = "Address saved";
-"PersonalInfoViewController_address_incomplete" = "Address incomplete";
-"PersonalInfoViewController_login_to_save_address" = "Login to save the address";
+"PersonalInfoViewController_title" = "Datos de envío";
+"PersonalInfoViewController_first_name" = "Nombres";
+"PersonalInfoViewController_last_name" = "Primer apellido";
+"PersonalInfoViewController_email" = "Correo electrónico";
+"PersonalInfoViewController_phone_number" = "Número de teléfono";
+"PersonalInfoViewController_document_type" = "Tipo de documento de identidad";
+"PersonalInfoViewController_identification_number" = "Número de documento (cédula o pasaporte)";
+"PersonalInfoViewController_select_address" = "SELECCIONAR DIRECCIÓN";
+"PersonalInfoViewController_country" = "País";
+"PersonalInfoViewController_state" = "Provincia";
+"PersonalInfoViewController_city" = "Ciudad";
+"PersonalInfoViewController_address" = "Dirección";
+"PersonalInfoViewController_save_address" = "GUARDAR DIRECCIÓN";
+"PersonalInfoViewController_continue" = "CONTINUAR CON EL ENVÍO";
+"PersonalInfoViewController_address_saved" = "Dirección guardada";
+"PersonalInfoViewController_address_incomplete" = "Dirección incompleta";
+"PersonalInfoViewController_login_to_save_address" = "Inicia sesión para guardar la dirección";
