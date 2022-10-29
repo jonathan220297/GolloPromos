@@ -79,6 +79,7 @@ class SearchDocumentViewModel {
                 case .success(let response):
                     apiResponse.accept(response.cuentas)
                 case .failure(let error):
+                    self.errorMessage.accept(error.localizedDescription)
                     print("Error: \(error.localizedDescription)")
                 }
             }

@@ -10,19 +10,32 @@ import Nuke
 
 class NotificationTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var imageViewCell: UIImageView!
     @IBOutlet weak var titleCell: UILabel!
     @IBOutlet weak var contentCell: UILabel!
     @IBOutlet weak var dateCell: UILabel!
 
     func setNotification(notification: NotificationsData) {
+        if notification.idType == "3" {
+            imageViewCell.image = UIImage(named: "ic_bag")
+        } else {
+            imageViewCell.image = UIImage(named: "ic_notification")
+        }
+
+
         titleCell.text = notification.title
         contentCell.text = notification.message
 
-        if let effective = notification.effectiveDate {
-            dateCell.text = effective.toString(dateFormat: "MMM d, yyyy")
+        if notification.read == "N" {
+            titleCell.textColor = UIColor.black
+            contentCell.textColor = UIColor.black
+        }
+
+        if let date = notification.issueDate {
+            dateCell.text = "Fecha: \(date)"
         } else {
             let date = Date()
-            dateCell.text = date.toString(dateFormat: "MMM d, yyyy")
+            dateCell.text = "Fecha: \(date.toString(dateFormat: "MMM d, yyyy"))"
         }
     }
 

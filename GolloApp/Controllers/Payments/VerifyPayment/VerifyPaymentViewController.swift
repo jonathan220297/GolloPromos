@@ -63,29 +63,18 @@ class VerifyPaymentViewController: UIViewController {
 }
 
 extension VerifyPaymentViewController: WKUIDelegate, WKNavigationDelegate {
-    func webViewDidFinishLoad(_ webView: WKWebView) {
-        if webView.isLoading { return }
-        if closePage {
-            self.navigationController?.popViewController(animated: true, completion: {
-                self.delegate?.transactionValidation(with: self.closePage, processId: self.processId)
-            })
-        }
-        print("Finished loading page")
-    }
-
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if closePage {
             self.navigationController?.popViewController(animated: true, completion: {
                 self.delegate?.transactionValidation(with: self.closePage, processId: self.processId)
             })
         }
-        print("Finished loading page")
+        print("Finished loading page new")
       }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
         if let urlStr = navigationAction.request.url?.absoluteString {
-            print("Current page ~ \(urlStr)")
             if urlStr.starts(with: "https://servicios.grupogollo.com:9199/ClientesApi/Transacciones/RespuestaBAC") {
                 closePage = true
             }

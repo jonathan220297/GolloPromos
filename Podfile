@@ -14,6 +14,7 @@ target 'GolloApp' do
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
   pod 'FirebaseAnalytics'
+  pod 'FirebaseMessaging'
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'GoogleSignIn'
@@ -27,7 +28,7 @@ target 'GolloApp' do
   
   pod 'XCGLogger'
   
-  pod 'GolloNetWorking', :path => '/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking'
+  pod 'GolloNetWorking', :path => '/Users/jonathanrodriguez/Documents/Unicomer/GolloPromos-iOS-Modules/GolloNetWorking'
   
   target 'GolloAppTests' do
     inherit! :search_paths

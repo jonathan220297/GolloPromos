@@ -22,10 +22,12 @@ class PaymentSuccessViewController: UIViewController {
     // MARK: - Constants
     let viewModel: PaymentSuccessViewModel
     let bag = DisposeBag()
+    let cartPayment: Bool
     
     // MARK: - Lifecycle
-    init(viewModel: PaymentSuccessViewModel) {
+    init(viewModel: PaymentSuccessViewModel, cartPayment: Bool) {
         self.viewModel = viewModel
+        self.cartPayment = cartPayment
         super.init(nibName: "PaymentSuccessViewController", bundle: nil)
     }
     
@@ -69,13 +71,17 @@ class PaymentSuccessViewController: UIViewController {
     }
     
     func popToAccountController() {
+        var returnCount: Int = 5
+        if cartPayment {
+            returnCount = 6
+        }
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-            self.navigationController!.popToViewController(viewControllers[viewControllers.count - 5], animated: true)
+            self.navigationController!.popToViewController(viewControllers[viewControllers.count - returnCount], animated: true)
     }
     
     func configureViews() {
         if viewModel.accountPaymentResponse != nil {
-            titleLabel.text = "Pago aplicado con exito"
+            titleLabel.text = "Pago aplicado con éxito"
             successImage.image = UIImage(named: "ic_payment_success")
             orderNumberLabel.isHidden = true
         } else if let productPaymentResponse = viewModel.productPaymentResponse {

@@ -30,8 +30,9 @@ public class UserInfo: NSObject, Codable {
     let telefono1, telefono2, tipoIdentificacion, numeroIdentificacion, direccion: String?
     let latitud, longitud: Double?
     let correoElectronico1, fechaNacimiento, image, genero: String?
+    let tipoOperacion: Int?
 
-    public init(idCliente: String?, nombre: String?, apellido1: String?, apellido2: String?, telefono1: String?, telefono2: String?, tipoIdentificacion: String?, numeroIdentificacion: String?, direccion: String?, latitud: Double?, longitud: Double?, correoElectronico1: String?, fechaNacimiento: String?, image: String?, genero: String?) {
+    public init(idCliente: String?, nombre: String?, apellido1: String?, apellido2: String?, telefono1: String?, telefono2: String?, tipoIdentificacion: String?, numeroIdentificacion: String?, direccion: String?, latitud: Double?, longitud: Double?, correoElectronico1: String?, fechaNacimiento: String?, image: String?, genero: String?, tipoOperacion: Int?) {
         self.idCliente = idCliente
         self.nombre = nombre
         self.apellido1 = apellido1
@@ -47,5 +48,6 @@ public class UserInfo: NSObject, Codable {
         self.fechaNacimiento = fechaNacimiento
         self.image = image
         self.genero = genero
+        self.tipoOperacion = tipoOperacion
     }
 }

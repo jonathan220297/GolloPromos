@@ -159,7 +159,7 @@ class PaymentConfirmViewController: UIViewController {
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
                         productPaymentResponse: response
-                    )
+                    ), cartPayment: false
                 )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)

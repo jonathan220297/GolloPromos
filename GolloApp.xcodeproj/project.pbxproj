@@ -143,6 +143,9 @@
 		4F410E1E28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F410E1C28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift */; };
 		4F410E1F28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F410E1D28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib */; };
 		4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46199E2700FC8300265E73 /* StatusViewController.swift */; };
+		4F47F735290D985B00A72AAA /* ReadNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F47F734290D985B00A72AAA /* ReadNotificationRequest.swift */; };
+		4F47F737290D9DDF00A72AAA /* UnreadNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F47F736290D9DDF00A72AAA /* UnreadNotificationRequest.swift */; };
+		4F47F739290D9E0C00A72AAA /* UnreadNotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F47F738290D9E0C00A72AAA /* UnreadNotificationData.swift */; };
 		4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47527275585007B17FE /* CGFloat+Extension.swift */; };
 		4F4EC47B2727680E007B17FE /* DocType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EC47A2727680E007B17FE /* DocType.swift */; };
 		4F4EC47E27276A50007B17FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EC48027276A50007B17FE /* Localizable.strings */; };
@@ -506,6 +509,9 @@
 		4F410E1C28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFilteredListCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F410E1D28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesFilteredListCollectionViewCell.xib; sourceTree = "<group>"; };
 		4F46199E2700FC8300265E73 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		4F47F734290D985B00A72AAA /* ReadNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadNotificationRequest.swift; sourceTree = "<group>"; };
+		4F47F736290D9DDF00A72AAA /* UnreadNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadNotificationRequest.swift; sourceTree = "<group>"; };
+		4F47F738290D9E0C00A72AAA /* UnreadNotificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadNotificationData.swift; sourceTree = "<group>"; };
 		4F4EC47527275585007B17FE /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		4F4EC47A2727680E007B17FE /* DocType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocType.swift; sourceTree = "<group>"; };
 		4F4EC47F27276A50007B17FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -839,6 +845,7 @@
 			isa = PBXGroup;
 			children = (
 				4F0D969426DDD3E50061E89E /* NotificationsData.swift */,
+				4F47F738290D9E0C00A72AAA /* UnreadNotificationData.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -847,6 +854,8 @@
 			isa = PBXGroup;
 			children = (
 				4F0D969626DDD3E50061E89E /* NotificationRequest.swift */,
+				4F47F734290D985B00A72AAA /* ReadNotificationRequest.swift */,
+				4F47F736290D9DDF00A72AAA /* UnreadNotificationRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2205,6 +2214,7 @@
 				4F3E482A27278700009D259D /* ThirdPartyResponse.swift in Sources */,
 				4F3E7C8628F2317500221684 /* CategoryFilteredList.swift in Sources */,
 				4FADF58A28E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.swift in Sources */,
+				4F47F739290D9E0C00A72AAA /* UnreadNotificationData.swift in Sources */,
 				4FE1911326DEFAC700322128 /* ProductsData.swift in Sources */,
 				4FEDF8E128B7E7BA00719245 /* ResetPasswordViewController.swift in Sources */,
 				4FA0B87E28E3CF7B00395361 /* SaveUserAddressRequest.swift in Sources */,
@@ -2260,6 +2270,7 @@
 				4FA2768526D9193C00216284 /* SignUpViewModel.swift in Sources */,
 				4F0D969F26DDD57A0061E89E /* SideMenuViewController.swift in Sources */,
 				4F37A7F027223EE000FBB46B /* BaseRequest.swift in Sources */,
+				4F47F735290D985B00A72AAA /* ReadNotificationRequest.swift in Sources */,
 				4FB2582F2720DDDC0003C607 /* HistoryViewModel.swift in Sources */,
 				4F135C5F28FDF6C0007303D1 /* SearchOffersRequest.swift in Sources */,
 				4F7C5F3428E621A300123072 /* OrderDetailRequest.swift in Sources */,
@@ -2387,6 +2398,7 @@
 				4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */,
 				4F75A54628AEFE500001CC4D /* PaymentDataViewController.swift in Sources */,
 				4FEDF8E528B9928700719245 /* TransactionHistoryResponse.swift in Sources */,
+				4F47F737290D9DDF00A72AAA /* UnreadNotificationRequest.swift in Sources */,
 				4F3E7C7A28F21C5A00221684 /* CategoriesViewController.swift in Sources */,
 				4F0D969126DDD3BE0061E89E /* NotificationsViewModel.swift in Sources */,
 				4F57B79C28F9F1B600CFBD01 /* SearchOffersViewModel.swift in Sources */,
@@ -2582,11 +2594,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Gollo App";
+				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2608,11 +2620,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Gollo App";
+				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

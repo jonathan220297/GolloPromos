@@ -63,7 +63,7 @@ class HomeViewController: UITabBarController {
         UINavigationBar.appearance().tintColor = UIColor.white
         navigationOrders.navigationBar.standardAppearance = getNavBarAppareance()
         navigationOrders.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
-        navigationOrders.title = "Ordenes"
+        navigationOrders.title = "Órdenes"
         navigationOrders.tabBarItem.image = UIImage(named: "ic_bag")
 
         let menuTab = MenuTabViewController()

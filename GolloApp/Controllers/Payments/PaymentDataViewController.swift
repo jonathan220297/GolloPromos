@@ -203,7 +203,7 @@ class PaymentDataViewController: UIViewController {
                         viewModel: PaymentSuccessViewModel(
                             paymentMethodSelected: paymentMethodSelected,
                             productPaymentResponse: response
-                        )
+                        ), cartPayment: true
                     )
                     paymentSuccessViewController.modalPresentationStyle = .fullScreen
                     self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
@@ -236,13 +236,35 @@ class PaymentDataViewController: UIViewController {
                       let response = response,
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 print(response)
-                let _ = self.viewModel.carManager.emptyCar()
                 self.continueButton.hideLoading()
                 let paymentSuccessViewController = PaymentSuccessViewController(
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
                         accountPaymentResponse: response
-                    )
+                    ), cartPayment: true
+                )
+                paymentSuccessViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
+            })
+            .disposed(by: bag)
+    }
+
+    private func getProductPaymentResult(with id: String) {
+        viewModel
+            .getProductPaymentResponseDetail(with: id)
+            .asObservable()
+            .subscribe(onNext: {[weak self] response in
+                guard let self = self,
+                      let response = response,
+                      let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
+                print(response)
+                let _ = self.viewModel.carManager.emptyCar()
+                self.continueButton.hideLoading()
+                let paymentSuccessViewController = PaymentSuccessViewController(
+                    viewModel: PaymentSuccessViewModel(
+                        paymentMethodSelected: paymentMethodSelected,
+                        productPaymentResponse: response
+                    ), cartPayment: true
                 )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
@@ -301,7 +323,11 @@ extension PaymentDataViewController: UITextFieldDelegate {
 extension PaymentDataViewController: VerifyPaymentDelegate {
     func transactionValidation(with success: Bool, processId: String) {
         if success {
-            self.getPaymentResult(with: processId)
+            if self.viewModel.isAccountPayment {
+                self.getPaymentResult(with: processId)
+            } else {
+                self.getProductPaymentResult(with: processId)
+            }
         } else {
             self.navigationController?.popViewController(animated: true, completion: {
                 self.delegate?.errorWhilePayment(with: "Error en el proceso")

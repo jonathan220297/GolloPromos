@@ -74,6 +74,9 @@ class ThirdPartyViewController: UIViewController {
                 guard let self = self else { return }
                 if !error.isEmpty {
                     self.view.activityStopAnimatingFull()
+                    self.navigationItem.title = "Pago de cuotas de Terceros"
+                    self.searchView.alpha = 1
+                    self.dataView.alpha = 0
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
@@ -99,7 +102,7 @@ class ThirdPartyViewController: UIViewController {
 
                     self.antiLaunderingAmount = data.montoMinAntilavado ?? 0.0
                     self.navigationItem.title = "Cuentas activas de terceros"
-                    self.customerDocumentLabel.text = "Cedula: \(number)"
+                    self.customerDocumentLabel.text = "Cédula: \(number)"
                     self.fetchCustomerAccounts(documentType: type, documentId: number)
                 } else {
                     DispatchQueue.main.async {
