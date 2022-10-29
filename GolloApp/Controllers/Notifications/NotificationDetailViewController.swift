@@ -26,8 +26,20 @@ class NotificationDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.title = "Notificación"
         showData()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     // MARK: - Functions
@@ -47,21 +59,6 @@ class NotificationDetailViewController: UIViewController {
                     self.nImageView.alpha = 0
                 }
             }
-
-            if let due = n.dueDate {
-                effectiveDateLabel.text = "Válido hasta el \(due.toString(dateFormat: "MMM d, yyyy"))"
-            } else {
-                let date = Date()
-                effectiveDateLabel.text = "Válido hasta el \(date.toString(dateFormat: "MMM d, yyyy"))"
-            }
-
-            if let effective = n.effectiveDate {
-                issueDate.text = "Fecha de publicación: \(effective.toString(dateFormat: "MMM d, yyyy"))"
-            } else {
-                let date = Date()
-                issueDate.text = "Fecha de publicación: \(date.toString(dateFormat: "MMM d, yyyy"))"
-            }
-
         }
     }
 

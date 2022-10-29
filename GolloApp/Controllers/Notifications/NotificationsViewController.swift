@@ -23,7 +23,8 @@ class NotificationsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Notifications"
+        navigationItem.title = "Notificaciones"
+        self.tableView.rowHeight = 75.0
         fetchNotifications()
     }
 
@@ -60,17 +61,27 @@ class NotificationsViewController: UIViewController {
                 guard let self = self,
                       let data = data else { return }
                 self.viewModel.fetchingMore = false
-                if self.viewModel.page == 1 {
-                    self.viewModel.NotificationsArray = data
-                } else {
-                    self.viewModel.NotificationsArray.append(contentsOf: data)
-                }
+                self.viewModel.NotificationsArray = data
                 if data.isEmpty {
-                    self.viewModel.page -= 1
                     self.emptyView.alpha = 1
                     self.dataView.alpha = 0
+                } else {
+                    self.emptyView.alpha = 0
+                    self.dataView.alpha = 1
                 }
                 self.tableView.reloadData()
+            })
+            .disposed(by: bag)
+    }
+
+    func markAsRead(with notificationId: String) {
+        viewModel
+            .markAsRead(with: notificationId)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let _ = data else { return }
+                self.fetchNotifications()
             })
             .disposed(by: bag)
     }
@@ -97,11 +108,21 @@ extension NotificationsViewController: UITableViewDataSource, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let n = self.self.viewModel.NotificationsArray[indexPath.row]
-        let vc = NotificationDetailViewController.instantiate(fromAppStoryboard: .Notifications)
-        vc.modalPresentationStyle = .fullScreen
-        vc.notification = n
-        //navigationController?.pushViewController(vc, animated: true)
+        self.markAsRead(with: self.viewModel.NotificationsArray[indexPath.row].IdNotification ?? "")
+        if self.viewModel.NotificationsArray[indexPath.row].idType == "3" {
+            let orderDetailTabViewController = OrderDetailTabViewController(
+                viewModel: OrderDetailTabViewModel(),
+                orderId: self.viewModel.NotificationsArray[indexPath.row].idType ?? "0"
+            )
+            orderDetailTabViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(orderDetailTabViewController, animated: true)
+        } else {
+            let n = self.self.viewModel.NotificationsArray[indexPath.row]
+            let vc = NotificationDetailViewController.instantiate(fromAppStoryboard: .Notifications)
+            vc.modalPresentationStyle = .fullScreen
+            vc.notification = n
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -111,7 +132,7 @@ extension NotificationsViewController: UITableViewDataSource, UITableViewDelegat
             if !viewModel.fetchingMore {
                 viewModel.fetchingMore = true
                 viewModel.page += 1
-                fetchNotifications()
+                //fetchNotifications()
             }
         }
     }

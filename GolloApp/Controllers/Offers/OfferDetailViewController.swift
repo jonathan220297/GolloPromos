@@ -58,6 +58,9 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var bonusView: UIView!
     @IBOutlet weak var bonoConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var offerDescriptionView: UIView!
+    @IBOutlet weak var offerDescriptionLabel: UILabel!
+    
     @IBOutlet weak var carView: UIView!
     @IBOutlet weak var carItemLabel: UILabel!
     @IBOutlet weak var carButton: UIButton!
@@ -351,6 +354,13 @@ class OfferDetailViewController: UIViewController {
                     self.bonoConstraint.constant = 0
                     self.bonusView.layoutIfNeeded()
                 }
+            }
+
+            if let description = data.articulo?.descripcionDetalle, !description.isEmpty {
+                self.offerDescriptionView.isHidden = false
+                self.offerDescriptionLabel.attributedText = description.htmlToAttributedString
+            } else {
+                self.offerDescriptionView.isHidden = true
             }
 
         } else { return }

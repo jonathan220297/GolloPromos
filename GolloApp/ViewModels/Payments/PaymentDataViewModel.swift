@@ -262,6 +262,43 @@ class PaymentDataViewModel {
         }
         return apiResponse
     }
+
+    func getProductPaymentResponseDetail(with processId: String) -> BehaviorRelay<PaymentOrderResponse?> {
+        let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(
+            BaseRequest<PaymentOrderResponse, PaymentResponseDetailServiceRequest>(
+                resource: "Procesos",
+                service: BaseServiceRequestParam<PaymentResponseDetailServiceRequest>(
+                    servicio: ServicioParam(
+                        encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.VERIFICATION_SERVICE_PROCESS_ID.rawValue),
+                        parametros: PaymentResponseDetailServiceRequest(
+                            idProceso: processId
+                        )
+                    )
+                )
+            )
+        ) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                    switch error {
+                    case .decoding: break;
+                    case .server(code: let code, message: _):
+                        if code == 401 {
+                            self.errorExpiredToken.accept(true)
+                        } else {
+                            self.errorMessage.accept(error.localizedDescription)
+                        }
+                    }
+                    //log.debug("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
     
     //    func setCardData() -> Bool {
     //        guard let cardNumber = cardNumberSubject.value,

@@ -21,6 +21,7 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
+    @IBOutlet weak var notificationCountLabel: UILabel!
     
     let disposeBag = DisposeBag()
 
@@ -44,6 +45,7 @@ class SideMenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUserData()
+        fetchUnreadNotifications()
     }
 
     // MARK: - Actions
@@ -108,6 +110,23 @@ class SideMenuViewController: UIViewController {
             let vc = SFSafariViewController(url: url, configuration: config)
             present(vc, animated: true)
         }
+    }
+
+    func fetchUnreadNotifications() {
+        viewModel
+            .fetchUnreadNotifications()
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                if let count = data.cantidad, count > 0 {
+                    self.notificationCountLabel.isHidden = false
+                    self.notificationCountLabel.text = "\(count)"
+                } else {
+                    self.notificationCountLabel.isHidden = true
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 

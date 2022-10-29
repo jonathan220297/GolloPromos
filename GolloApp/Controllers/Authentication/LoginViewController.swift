@@ -353,7 +353,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             // Sign in with Firebase
             authService.signIn(with: firebaseCredential) { user, error in
                 if let error = error {
-                    self.showAlert(alertText: "Shoppi", alertMessage: error)
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
                 }
                 guard let user = user else { return }
                 // Mak a request to set user's display name on Firebase

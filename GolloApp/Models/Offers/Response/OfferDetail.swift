@@ -18,6 +18,7 @@ struct Article : Codable {
     let regalias: Royalties?
     let stock: [Stock]?
     let extraGarantia: [Warranty]?
+    let descripcionDetalle: String?
 }
 
 struct Royalties: Codable {

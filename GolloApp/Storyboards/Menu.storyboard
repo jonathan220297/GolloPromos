@@ -159,8 +159,14 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notificaciones" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41R-dQ-fRL">
-                                                                <rect key="frame" x="65" y="8" width="341" height="34"/>
+                                                                <rect key="frame" x="65" y="8" width="317" height="34"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnb-cw-Rfn">
+                                                                <rect key="frame" x="406" y="25" width="0.0" height="0.0"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                <color key="textColor" red="0.90400677920000005" green="0.19408547879999999" blue="0.18843609089999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0J2-uU-UQn">
@@ -177,10 +183,12 @@
                                                             <constraint firstAttribute="bottom" secondItem="0J2-uU-UQn" secondAttribute="bottom" id="Cfz-Wt-Qwy"/>
                                                             <constraint firstAttribute="height" constant="50" id="DEE-hH-dWb"/>
                                                             <constraint firstItem="32M-Os-mFM" firstAttribute="centerY" secondItem="fyn-b8-YYB" secondAttribute="centerY" id="Ho7-Wq-fSM"/>
-                                                            <constraint firstAttribute="trailing" secondItem="41R-dQ-fRL" secondAttribute="trailing" constant="8" id="L9m-fF-SNQ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="41R-dQ-fRL" secondAttribute="trailing" constant="32" id="L9m-fF-SNQ"/>
                                                             <constraint firstItem="0J2-uU-UQn" firstAttribute="top" secondItem="fyn-b8-YYB" secondAttribute="top" id="Woa-7n-q5S"/>
                                                             <constraint firstAttribute="trailing" secondItem="0J2-uU-UQn" secondAttribute="trailing" id="chN-nY-QBe"/>
+                                                            <constraint firstAttribute="trailing" secondItem="tnb-cw-Rfn" secondAttribute="trailing" constant="8" id="hEK-3Q-fmk"/>
                                                             <constraint firstItem="32M-Os-mFM" firstAttribute="leading" secondItem="fyn-b8-YYB" secondAttribute="leading" constant="24" id="iMX-YT-MQy"/>
+                                                            <constraint firstItem="tnb-cw-Rfn" firstAttribute="centerY" secondItem="fyn-b8-YYB" secondAttribute="centerY" id="kQK-aT-OS0"/>
                                                             <constraint firstItem="0J2-uU-UQn" firstAttribute="leading" secondItem="fyn-b8-YYB" secondAttribute="leading" id="lo4-f6-WNN"/>
                                                             <constraint firstItem="41R-dQ-fRL" firstAttribute="centerY" secondItem="fyn-b8-YYB" secondAttribute="centerY" id="rdt-nG-vEd"/>
                                                             <constraint firstItem="41R-dQ-fRL" firstAttribute="leading" secondItem="32M-Os-mFM" secondAttribute="trailing" constant="16" id="uIu-04-AJb"/>
@@ -334,6 +342,7 @@
                     <connections>
                         <outlet property="editProfileButton" destination="0nu-nq-YGb" id="oq5-nX-j4P"/>
                         <outlet property="helpButton" destination="HdB-Df-wlO" id="9Pz-il-l0a"/>
+                        <outlet property="notificationCountLabel" destination="tnb-cw-Rfn" id="tfX-RY-Sxl"/>
                         <outlet property="profileEmailLabel" destination="ZJJ-QJ-3JT" id="PZG-ik-AfM"/>
                         <outlet property="profileImageView" destination="iHA-J4-T4n" id="0bH-dn-8Tf"/>
                         <outlet property="profileLabel" destination="pFV-18-TNT" id="QUU-4Q-lJL"/>
@@ -442,7 +451,7 @@
         <image name="ic_terms" width="100" height="100"/>
         <image name="ic_user_profile" width="100" height="100"/>
         <image name="logo_golloapp" width="1452" height="654"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="person.fill" catalog="system" width="32" height="32"/>
         <namedColor name="colorPrimary">
             <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

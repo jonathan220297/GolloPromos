@@ -118,7 +118,7 @@ class EditProfileViewController: UIViewController {
     
     // MARK: - Functions
     func configureNavigationBar() {
-        self.navigationItem.title = "Perfil de usuario"
+        self.navigationItem.title = "Mi perfil"
         self.tabBarController?.tabBar.isHidden = true
         let barAppearance = UINavigationBarAppearance()
         barAppearance.backgroundColor = .primary
@@ -376,7 +376,7 @@ class EditProfileViewController: UIViewController {
                 }
             }
             documentTypeLabel.text = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "ProfileViewController_cedula".localized
-            documentType = viewModel.docTypes.first(where: { $0.code.elementsEqual(data.tipoIdentificacion ?? "C") })?.name ?? "C"
+            documentType = data.tipoIdentificacion ?? "C"
             documentTypeButton.isEnabled = false
             documentNumberLabel.text = data.numeroIdentificacion
             documentNumberLabel.isEnabled = false
@@ -422,6 +422,12 @@ class EditProfileViewController: UIViewController {
 
     fileprivate func saveUserData() {
         view.activityStarAnimating()
+        var operationType = 1
+        if self.viewModel.isUpdating {
+            operationType = 2
+        } else {
+            operationType = 1
+        }
         let userInfo = UserInfo(
             idCliente: UserManager.shared.userData?.uid ?? "",
             nombre: viewModel.nameSubject.value,
@@ -437,7 +443,8 @@ class EditProfileViewController: UIViewController {
             correoElectronico1: viewModel.emailSubject.value,
             fechaNacimiento: viewModel.birthDateSubject.value,
             image: viewModel.convertImageToBase64String(img: userImageView.image),
-            genero: genderType
+            genero: genderType,
+            tipoOperacion: operationType
         )
         viewModel.updateUserData(with: userInfo)
             .asObservable()
