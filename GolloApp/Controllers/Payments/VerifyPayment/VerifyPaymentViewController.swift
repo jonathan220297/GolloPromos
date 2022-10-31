@@ -75,7 +75,7 @@ extension VerifyPaymentViewController: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
         if let urlStr = navigationAction.request.url?.absoluteString {
-            if urlStr.starts(with: "https://servicios.grupogollo.com:9199/ClientesApi/Transacciones/RespuestaBAC") {
+            if urlStr.starts(with: "http://74.208.150.44/PromosAPI/Transacciones/RespuestaBAC") {
                 closePage = true
             }
         }

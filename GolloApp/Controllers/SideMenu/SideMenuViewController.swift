@@ -58,6 +58,7 @@ class SideMenuViewController: UIViewController {
     @IBAction func logoutButtonTapped(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
+            self.saveToken(with: "")
             try firebaseAuth.signOut()
             let story = UIStoryboard(name: "Main", bundle:nil)
             let vc = story.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
@@ -127,6 +128,16 @@ class SideMenuViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+    }
+
+    func saveToken(with token: String) -> Bool {
+        if let data = token.data(using: .utf8) {
+            let status = KeychainManager.save(key: "token", data: data)
+            log.debug("Status: \(status)")
+            return true
+        } else {
+            return false
+        }
     }
 }
 
