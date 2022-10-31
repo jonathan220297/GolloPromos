@@ -64,6 +64,7 @@ class SideMenuViewController: UIViewController {
             UIApplication.shared.windows.first?.rootViewController = vc
             UIApplication.shared.windows.first?.makeKeyAndVisible()
             userDefaults.removeObject(forKey: "Information")
+            let _ = KeychainManager.delete(key: "token")
         } catch _ as NSError {
 //            log.error("Error signing out: \(signOutError)")
         }
