@@ -158,6 +158,73 @@ class EditProfileViewModel {
         return apiResponse
     }
 
+    func deleteUserProfile() -> BehaviorRelay<LoginData?> {
+        let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<LoginData?, DeleteProfileServiceRequest>(
+            service: BaseServiceRequestParam<DeleteProfileServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: Encabezado(
+                        idProceso: GOLLOAPP.REMOVE_USER_PROCESS_ID.rawValue,
+                        idDevice: "",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        timeStamp: String(Date().timeIntervalSince1970),
+                        idCia: 10,
+                        token: getToken(),
+                        integrationId: nil),
+                    parametros: DeleteProfileServiceRequest(
+                        idEmpresa: 10,
+                        idCliente: UserManager.shared.userData?.uid ?? ""
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
+
+    func registerDevice(with deviceToken: String) -> BehaviorRelay<LoginData?> {
+        let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<LoginData?, RegisterDeviceServiceRequest>(
+            service: BaseServiceRequestParam<RegisterDeviceServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: Encabezado(
+                        idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
+                        idDevice: "",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        timeStamp: String(Date().timeIntervalSince1970),
+                        idCia: 10,
+                        token: getToken(),
+                        integrationId: nil),
+                    parametros: RegisterDeviceServiceRequest(
+                        idEmpresa: 10,
+                        idDeviceToken: deviceToken,
+                        Token: getToken(),
+                        idCliente: UserManager.shared.userData?.uid ?? "",
+                        idDevice: "\(UUID())"
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
+
     func convertImageToBase64String (img: UIImage?) -> String {
         if let image = img {
             return image.jpegData(compressionQuality: 0.25)?.base64EncodedString() ?? ""

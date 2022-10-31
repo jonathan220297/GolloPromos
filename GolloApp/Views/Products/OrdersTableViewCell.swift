@@ -26,11 +26,11 @@ class OrdersTableViewCell: UITableViewCell {
     }
         
     func setOrderData(with data: Order) {
-        referenceLabel.attributedText = formatHTML(header: "Número de referencia: ", content: "\(data.idOrden ?? 0)")
-        orderNumberLabel.attributedText = formatHTML(header: "Número de order: ", content: data.ordenNaf ?? "")
-        statusLabel.attributedText = formatHTML(header: "Status: ", content: "Ingresado")
+        orderNumberLabel.attributedText = formatHTML(header: "Número de orden: ", content: data.ordenNaf ?? "")
+        statusLabel.attributedText = formatHTML(header: "Estado: ", content: data.descripcionCupon ?? "")
         if let date = data.fechaOrden {
             dateLabel.attributedText = formatHTML(header: "Fecha pedido: ", content: date.formatStringDateGollo())
         }
+        referenceLabel.attributedText = formatHTML(header: "Referencia: ", content: "\(data.idOrden ?? 0)")
     }
 }

@@ -7,17 +7,15 @@
 
 import Foundation
 import FirebaseAuth
+import RxRelay
 
 class SplashViewModel: NSObject {
+    private let service = GolloService()
     private let defaults = UserDefaults.standard
     private let userManager = UserManager.shared
 
     func verifyTermsConditionsState() -> Bool {
         return defaults.bool(forKey: "termsConditionsAccepted")
-    }
-
-    func setUserData(with data: User) {
-        userManager.userData = data
     }
 
     func verifyUserLogged() -> Bool {
@@ -27,6 +25,10 @@ class SplashViewModel: NSObject {
         } else {
             return false
         }
+    }
+
+    func setUserData(with data: User) {
+        userManager.userData = data
     }
 
     func sessionExpired() -> Bool {
@@ -58,5 +60,44 @@ class SplashViewModel: NSObject {
             }
         }
         return expDate.compare(Date()) == .orderedDescending
+    }
+
+    func registerDevice(with deviceToken: String) -> BehaviorRelay<LoginData?> {
+        var token: String? = nil
+        if !getToken().isEmpty {
+            token = getToken()
+        }
+        let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<LoginData?, RegisterDeviceServiceRequest>(
+            service: BaseServiceRequestParam<RegisterDeviceServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: Encabezado(
+                        idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
+                        idDevice: "",
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        timeStamp: String(Date().timeIntervalSince1970),
+                        idCia: 10,
+                        token: token,
+                        integrationId: nil),
+                    parametros: RegisterDeviceServiceRequest(
+                        idEmpresa: 10,
+                        idDeviceToken: deviceToken,
+                        Token: token,
+                        idCliente: UserManager.shared.userData?.uid ?? "",
+                        idDevice: "\(UUID())"
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
     }
 }
