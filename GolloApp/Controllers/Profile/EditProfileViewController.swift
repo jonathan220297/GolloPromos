@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import DropDown
 import Nuke
+import FirebaseMessaging
 
 class EditProfileViewController: UIViewController {
 
@@ -47,7 +48,9 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var addressRequiredLabel: UILabel!
     @IBOutlet weak var updateButton: LoadingButton!
-
+    @IBOutlet weak var deleteProfileView: UIView!
+    @IBOutlet weak var deleteProfileButton: UIButton!
+    
     lazy var viewModel: EditProfileViewModel = {
         let vm = EditProfileViewModel()
         vm.processDocTypes()
@@ -188,6 +191,11 @@ class EditProfileViewController: UIViewController {
             )
             showData(with: data)
         }
+        if viewModel.isUpdating {
+            self.deleteProfileView.isHidden = false
+        } else {
+            self.deleteProfileView.isHidden = true
+        }
     }
 
     fileprivate func configureRx() {
@@ -283,6 +291,14 @@ class EditProfileViewController: UIViewController {
             .tap
             .subscribe(onNext: {
                 self.saveUserData()
+            })
+            .disposed(by: disposeBag)
+
+        deleteProfileButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.deleteData()
             })
             .disposed(by: disposeBag)
     }
@@ -444,7 +460,7 @@ class EditProfileViewController: UIViewController {
             fechaNacimiento: viewModel.birthDateSubject.value,
             image: viewModel.convertImageToBase64String(img: userImageView.image),
             genero: genderType,
-            tipoOperacion: operationType
+            tipoOperacion: 1//operationType
         )
         viewModel.updateUserData(with: userInfo)
             .asObservable()
@@ -462,6 +478,49 @@ class EditProfileViewController: UIViewController {
                 }
                 self.view.activityStopAnimating()
                 self.showAlert(alertText: "GolloApp", alertMessage: "Usuario actualizado exitosamente.")
+            })
+            .disposed(by: disposeBag)
+    }
+
+    fileprivate func deleteData() {
+        viewModel
+            .deleteUserProfile()
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let _ = data else { return }
+                Messaging.messaging().token { token, error in
+                  if let error = error {
+                    print("Error fetching FCM registration token: \(error)")
+                  } else if let token = token {
+                    print("FCM registration token: \(token)")
+                    self.registerDevice(with: token)
+                  }
+                }
+
+            })
+            .disposed(by: disposeBag)
+    }
+
+    fileprivate func registerDevice(with token: String) {
+        self.viewModel
+            .registerDevice(with: token)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                if let info = data.registro {
+                    Variables.userProfile = info
+                    do {
+                        try self.userDefaults.setObject(info, forKey: "Information")
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                Variables.isRegisterUser = data.estadoRegistro ?? false
+                Variables.isLoginUser = data.estadoLogin ?? false
+                Variables.isClientUser = data.estadoCliente ?? false
+                self.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
     }

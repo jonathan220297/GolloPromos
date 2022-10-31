@@ -885,6 +885,32 @@
                                                                     <constraint firstItem="jJk-zw-SnR" firstAttribute="top" secondItem="MQQ-Ya-Thb" secondAttribute="top" constant="4" id="z7m-Co-Bhp"/>
                                                                 </constraints>
                                                             </view>
+                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2D-sm-4sA">
+                                                                <rect key="frame" x="0.0" y="740" width="415" height="65"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtb-zp-wj3">
+                                                                        <rect key="frame" x="31" y="4" width="353" height="57"/>
+                                                                        <color key="backgroundColor" name="colorPrimary"/>
+                                                                        <color key="tintColor" name="AccentColor"/>
+                                                                        <state key="normal" title="ELIMINAR REGISTRO">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="10"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="mtb-zp-wj3" firstAttribute="width" secondItem="x2D-sm-4sA" secondAttribute="width" multiplier="0.85" id="03e-EF-98z"/>
+                                                                    <constraint firstAttribute="height" constant="65" id="Kjx-gc-KDm"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="mtb-zp-wj3" secondAttribute="bottom" constant="4" id="XD7-kY-gE8"/>
+                                                                    <constraint firstItem="mtb-zp-wj3" firstAttribute="centerX" secondItem="x2D-sm-4sA" secondAttribute="centerX" id="i7O-jH-P9U"/>
+                                                                    <constraint firstItem="mtb-zp-wj3" firstAttribute="top" secondItem="x2D-sm-4sA" secondAttribute="top" constant="4" id="jv1-rY-Q6I"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -925,6 +951,8 @@
                         <outlet property="addressTextField" destination="dUd-V4-H14" id="z3P-dF-uHm"/>
                         <outlet property="birthdateRequiredLabel" destination="rv5-qP-7DI" id="MnH-rt-iTH"/>
                         <outlet property="birthdateTextField" destination="Oa5-ty-mRE" id="IOQ-eH-SgY"/>
+                        <outlet property="deleteProfileButton" destination="mtb-zp-wj3" id="DZF-aE-keg"/>
+                        <outlet property="deleteProfileView" destination="x2D-sm-4sA" id="6kQ-lv-05q"/>
                         <outlet property="documentNumberLabel" destination="C5R-87-apl" id="jYY-bB-T4G"/>
                         <outlet property="documentTypeButton" destination="NgX-hV-UGY" id="qaV-Zb-xi0"/>
                         <outlet property="documentTypeLabel" destination="DDv-oo-fc1" id="uvn-iE-P82"/>

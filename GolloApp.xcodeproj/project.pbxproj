@@ -200,6 +200,7 @@
 		4F894A21270A620A0004AAB3 /* StatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F894A20270A620A0004AAB3 /* StatusRequest.swift */; };
 		4F8CB6C728FD1FCF00A59F2C /* PaymentMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CB6C528FD1FCF00A59F2C /* PaymentMethodTableViewCell.swift */; };
 		4F8CB6C828FD1FCF00A59F2C /* PaymentMethodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F8CB6C628FD1FCF00A59F2C /* PaymentMethodTableViewCell.xib */; };
+		4F903FBA290F794100392606 /* RegisterDeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F903FB9290F794100392606 /* RegisterDeviceRequest.swift */; };
 		4F9B100028BDBBCD00B1FD82 /* SaveUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */; };
 		4F9B100228BDBDEA00B1FD82 /* SaveUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */; };
 		4FA0B87028E3C48700395361 /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0B86E28E3C48700395361 /* AddressListViewController.swift */; };
@@ -230,6 +231,7 @@
 		4FB258332720DEC30003C607 /* HistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258322720DEC30003C607 /* HistoryRequest.swift */; };
 		4FB258352720E6C40003C607 /* CustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258342720E6C40003C607 /* CustomerInfo.swift */; };
 		4FB4466928921D2E00C35A96 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4466828921D2E00C35A96 /* ServicesViewController.swift */; };
+		4FB45FA1290F7E76006A4958 /* DeleteProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB45FA0290F7E76006A4958 /* DeleteProfileRequest.swift */; };
 		4FC04C5428AE95A3001EF211 /* GenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5328AE95A3001EF211 /* GenderType.swift */; };
 		4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5628AE9C3E001EF211 /* UserRequest.swift */; };
 		4FC04C5A28AE9C74001EF211 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5928AE9C74001EF211 /* UserResponse.swift */; };
@@ -567,6 +569,7 @@
 		4F894A20270A620A0004AAB3 /* StatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRequest.swift; sourceTree = "<group>"; };
 		4F8CB6C528FD1FCF00A59F2C /* PaymentMethodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableViewCell.swift; sourceTree = "<group>"; };
 		4F8CB6C628FD1FCF00A59F2C /* PaymentMethodTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentMethodTableViewCell.xib; sourceTree = "<group>"; };
+		4F903FB9290F794100392606 /* RegisterDeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDeviceRequest.swift; sourceTree = "<group>"; };
 		4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserRequest.swift; sourceTree = "<group>"; };
 		4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserResponse.swift; sourceTree = "<group>"; };
 		4FA0B86E28E3C48700395361 /* AddressListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
@@ -598,6 +601,7 @@
 		4FB258322720DEC30003C607 /* HistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRequest.swift; sourceTree = "<group>"; };
 		4FB258342720E6C40003C607 /* CustomerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfo.swift; sourceTree = "<group>"; };
 		4FB4466828921D2E00C35A96 /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		4FB45FA0290F7E76006A4958 /* DeleteProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileRequest.swift; sourceTree = "<group>"; };
 		4FC04C5328AE95A3001EF211 /* GenderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderType.swift; sourceTree = "<group>"; };
 		4FC04C5628AE9C3E001EF211 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		4FC04C5928AE9C74001EF211 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -1442,6 +1446,7 @@
 			isa = PBXGroup;
 			children = (
 				4FA41E0927015A09007C93F9 /* LoginRequest.swift */,
+				4F903FB9290F794100392606 /* RegisterDeviceRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1484,6 +1489,7 @@
 			children = (
 				4FC04C5628AE9C3E001EF211 /* UserRequest.swift */,
 				4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */,
+				4FB45FA0290F7E76006A4958 /* DeleteProfileRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2283,6 +2289,7 @@
 				4F3E482E27278796009D259D /* PaymentData.swift in Sources */,
 				4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */,
 				4F3E48392727883C009D259D /* PaymentConfirmViewController.swift in Sources */,
+				4FB45FA1290F7E76006A4958 /* DeleteProfileRequest.swift in Sources */,
 				4F0D962B26D91B4D0061E89E /* AuthenticationService.swift in Sources */,
 				4F894A17270A5A900004AAB3 /* AccountsViewModel.swift in Sources */,
 				4F11E045272DB61900E15003 /* AccountsItemResponse.swift in Sources */,
@@ -2376,6 +2383,7 @@
 				4F0D965426DDBAE20061E89E /* NSLayoutConstraint+Extension.swift in Sources */,
 				4FFCD37028C1494500D13F38 /* UserDefaults+Extensions.swift in Sources */,
 				4F75A54828AEFE650001CC4D /* PaymentDataViewModel.swift in Sources */,
+				4F903FBA290F794100392606 /* RegisterDeviceRequest.swift in Sources */,
 				4F0D968E26DDD3970061E89E /* NotificationsViewController.swift in Sources */,
 				4FA0B87728E3C6EB00395361 /* AddressTableViewCell.swift in Sources */,
 				4F3E480627278525009D259D /* FilterViewModel.swift in Sources */,
@@ -2596,7 +2604,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
+				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2622,7 +2630,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
+				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

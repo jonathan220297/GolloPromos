@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseMessaging
+import RxSwift
 
 class ViewController: UIViewController {
     var viewLoader = UIView()
@@ -16,6 +18,7 @@ class ViewController: UIViewController {
     }()
 
     let userDefaults = UserDefaults.standard
+    let bag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +60,14 @@ class ViewController: UIViewController {
                 viewLoader.removeFromSuperview()
             }
         }
+        Messaging.messaging().token { token, error in
+          if let error = error {
+            print("Error fetching FCM registration token: \(error)")
+          } else if let token = token {
+            print("FCM registration token: \(token)")
+            self.registerDevice(with: token)
+          }
+        }
     }
 
     // MARK: - Actions
@@ -64,6 +75,29 @@ class ViewController: UIViewController {
         let vc = TermsConditionsViewController.instantiate(fromAppStoryboard: .Main)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+    }
+
+    // MARK: - Functions
+    fileprivate func registerDevice(with token: String) {
+        viewModel
+            .registerDevice(with: token)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                if let info = data.registro {
+                    Variables.userProfile = info
+                    do {
+                        try self.userDefaults.setObject(info, forKey: "Information")
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                Variables.isRegisterUser = data.estadoRegistro ?? false
+                Variables.isLoginUser = data.estadoLogin ?? false
+                Variables.isClientUser = data.estadoCliente ?? false
+            })
+            .disposed(by: bag)
     }
 
 }
