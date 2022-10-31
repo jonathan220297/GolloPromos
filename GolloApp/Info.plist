@@ -52,6 +52,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Gollo App utilizará los datos de la aplicación para mostrarte mejores promociones y descuentos.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -94,7 +96,5 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-    <key>NSUserTrackingUsageDescription</key>
-    <string>Gollo App utilizará los datos de la aplicación para mostrarte mejores promociones y descuentos.</string>
 </dict>
 </plist>

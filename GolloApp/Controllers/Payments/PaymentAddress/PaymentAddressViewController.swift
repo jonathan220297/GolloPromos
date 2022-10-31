@@ -227,31 +227,38 @@ class PaymentAddressViewController: UIViewController {
                       let firstItem = response.first else { return }
                 self.viewModel.statesArray.accept(response)
                 self.stateLabel.text = firstItem.provincia
-                self.viewModel.stateSubject.accept(firstItem.idProvincia)
-                self.fetchCities(state: firstItem.idProvincia)
+                self.viewModel.stateSubject.accept(firstItem)
+                self.fetchCities(state: firstItem.idProvincia) {[weak self] response in
+                    guard let self = self else { return }
+                    self.processCities(with: response)
+                }
             })
             .disposed(by: bag)
     }
     
-    fileprivate func fetchCities(state: String) {
+    fileprivate func fetchCities(state: String, completion: @escaping(_ result: Provincias?) -> Void) {
         viewModel
             .fetchCities(state: state)
             .asObservable()
             .subscribe(onNext: {[weak self] response in
-                guard let self = self,
-                      let response = response,
-                      let firstItem = response.provincias.first,
-                      let firstCounty = firstItem.cantones.first,
-                      let firstDistrict = firstCounty.distritos.first else { return }
-                self.viewModel.citiesArray.accept(firstItem.cantones)
-                self.viewModel.districtArray.accept(firstCounty.distritos)
-                self.countyLabel.text = firstCounty.canton
-                self.viewModel.countySubject.accept(firstCounty.idCanton)
-                self.districtLabel.text = firstDistrict.distrito
-                self.viewModel.districtSubject.accept(firstDistrict.idDistrito)
-                self.view.activityStopAnimating()
+                guard self != nil else { return }
+                completion(response)
             })
             .disposed(by: bag)
+    }
+    
+    fileprivate func processCities(with response : Provincias?) {
+        guard let response = response,
+              let firstItem = response.provincias.first,
+              let firstCounty = firstItem.cantones.first,
+              let firstDistrict = firstCounty.distritos.first else { return }
+        self.viewModel.citiesArray.accept(firstItem.cantones)
+        self.viewModel.districtArray.accept(firstCounty.distritos)
+        self.countyLabel.text = firstCounty.canton
+        self.viewModel.countySubject.accept(firstCounty)
+        self.districtLabel.text = firstDistrict.distrito
+        self.viewModel.districtSubject.accept(firstDistrict)
+        self.view.activityStopAnimating()
     }
     
     fileprivate func displayStatesList() {
@@ -261,8 +268,11 @@ class PaymentAddressViewController: UIViewController {
         dropDown.selectionAction = {[weak self] (index: Int, item: String) in
             guard let self = self else { return }
             self.stateLabel.text = item
-            self.viewModel.stateSubject.accept(self.viewModel.statesArray.value[index].idProvincia)
-            self.fetchCities(state: self.viewModel.statesArray.value[index].idProvincia)
+            self.viewModel.stateSubject.accept(self.viewModel.statesArray.value[index])
+            self.fetchCities(state: self.viewModel.statesArray.value[index].idProvincia) {[weak self] response in
+                guard let self = self else { return }
+                self.processCities(with: response)
+            }
         }
         dropDown.show()
     }
@@ -274,7 +284,7 @@ class PaymentAddressViewController: UIViewController {
         dropDown.selectionAction = {[weak self] (index: Int, item: String) in
             guard let self = self else { return }
             self.countyLabel.text = item
-            self.viewModel.countySubject.accept(self.viewModel.citiesArray.value[index].idCanton)
+            self.viewModel.countySubject.accept(self.viewModel.citiesArray.value[index])
             self.fetchDistrictList(with: self.viewModel.citiesArray.value[index].idCanton)
         }
         dropDown.show()
@@ -287,7 +297,7 @@ class PaymentAddressViewController: UIViewController {
         dropDown.selectionAction = {[weak self] (index: Int, item: String) in
             guard let self = self else { return }
             self.districtLabel.text = item
-            self.viewModel.districtSubject.accept(self.viewModel.districtArray.value[index].idDistrito)
+            self.viewModel.districtSubject.accept(self.viewModel.districtArray.value[index])
         }
         dropDown.show()
     }
@@ -297,7 +307,7 @@ class PaymentAddressViewController: UIViewController {
             county.idCanton == countyId
         }), let district = county.distritos.first else { return }
         self.viewModel.districtArray.accept(county.distritos)
-        self.viewModel.districtSubject.accept(district.idDistrito)
+        self.viewModel.districtSubject.accept(district)
         self.districtLabel.text = district.distrito
     }
     
@@ -309,9 +319,9 @@ class PaymentAddressViewController: UIViewController {
     fileprivate func showShippingMethodsPage() {
         let shippingMethodViewController = ShippingMethodViewController(
             viewModel: ShippingMethodViewModel(),
-            state: viewModel.stateSubject.value,
-            county: viewModel.countySubject.value,
-            district: viewModel.districtSubject.value
+            state: viewModel.stateSubject.value?.idProvincia,
+            county: viewModel.countySubject.value?.idCanton,
+            district: viewModel.districtSubject.value?.idDistrito
         )
         shippingMethodViewController.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(shippingMethodViewController, animated: true)
@@ -340,20 +350,30 @@ class PaymentAddressViewController: UIViewController {
 
 extension PaymentAddressViewController: AddressListDelegate {
     func didSelectAddress(address: UserAddress) {
+        view.activityStartAnimatingFull()
         let stateSelected = viewModel.statesArray.value.first { state in
             state.idProvincia == address.idProvincia
         }
-        viewModel.stateSubject.accept(stateSelected?.idProvincia ?? "")
-        stateLabel.text = stateSelected?.provincia ?? ""
-        let countySelected = viewModel.citiesArray.value.first { county in
-            county.idCanton == address.idCanton
+        viewModel.stateSubject.accept(stateSelected)
+        stateLabel.text = stateSelected?.provincia
+        fetchCities(state: stateSelected?.idProvincia ?? "") {[weak self] response in
+            guard let self = self, let cities = response?.provincias.first?.cantones else { return }
+            self.view.activityStopAnimatingFull()
+            self.viewModel.citiesArray.accept(cities)
+            let countySelected = self.viewModel.citiesArray.value.first { county in
+                county.idCanton == address.idCanton
+            }
+            self.viewModel.countySubject.accept(countySelected)
+            self.countyLabel.text = countySelected?.canton
+            self.fetchDistrictList(with: countySelected?.idCanton ?? "")
+            let districtSelected = self.viewModel.districtArray.value.first { district in
+                district.idDistrito == address.idDistrito
+            }
+            self.viewModel.districtSubject.accept(districtSelected)
+            self.districtLabel.text = districtSelected?.distrito
+            self.addressTextField.text = address.direccionExacta
+            self.viewModel.addressSubject.accept(address.direccionExacta)
+            self.postalCodeTextField.text = address.codigoPostal
         }
-        viewModel.countySubject.accept(countySelected?.idCanton ?? "")
-        countyLabel.text = countySelected?.canton ?? ""
-        viewModel.districtSubject.accept(address.idDistrito)
-        districtLabel.text = address.distritoDesc
-        addressTextField.text = address.direccionExacta
-        viewModel.addressSubject.accept(address.direccionExacta)
-        postalCodeTextField.text = address.codigoPostal
     }
 }

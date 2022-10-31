@@ -362,8 +362,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                 changeRequest.commitChanges(completion: { (error) in
                     if let error = error {
                         print(error.localizedDescription)
-                    } else {
-                        print("Updated display name: \(Auth.auth().currentUser!.displayName!)")
                     }
                 })
                 self.viewModel.setUserData(with: user)
