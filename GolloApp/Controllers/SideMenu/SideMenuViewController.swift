@@ -10,6 +10,7 @@ import Nuke
 import RxSwift
 import RxCocoa
 import FirebaseAuth
+import FirebaseMessaging
 import SafariServices
 
 class SideMenuViewController: UIViewController {
@@ -22,6 +23,8 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var termsConditionButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var notificationCountLabel: UILabel!
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var logoutView: UIView!
     
     let disposeBag = DisposeBag()
 
@@ -35,10 +38,16 @@ class SideMenuViewController: UIViewController {
         super.viewDidLoad()
         configureViews()
         configureRx()
-        if Variables.isRegisterUser {
-            profileLabel.text = "Mi perfil"
+        if Auth.auth().currentUser != nil {
+            logoutView.isHidden = false
+            if Variables.isRegisterUser {
+                profileLabel.text = "Mi perfil"
+            } else {
+                profileLabel.text = "Registrar usuario"
+            }
         } else {
-            profileLabel.text = "Registrar usuario"
+            logoutView.isHidden = true
+            profileLabel.text = "Login"
         }
     }
 
@@ -56,19 +65,7 @@ class SideMenuViewController: UIViewController {
     }
 
     @IBAction func logoutButtonTapped(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            self.saveToken(with: "")
-            try firebaseAuth.signOut()
-            let story = UIStoryboard(name: "Main", bundle:nil)
-            let vc = story.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
-            UIApplication.shared.windows.first?.rootViewController = vc
-            UIApplication.shared.windows.first?.makeKeyAndVisible()
-            userDefaults.removeObject(forKey: "Information")
-            let _ = KeychainManager.delete(key: "token")
-        } catch _ as NSError {
-//            log.error("Error signing out: \(signOutError)")
-        }
+        exit(0)
     }
 
     @IBAction func openCategoriesTapped(_ sender: Any) {
@@ -101,6 +98,10 @@ class SideMenuViewController: UIViewController {
                     Nuke.loadImage(with: url, into: profileImageView)
                 }
             }
+        } else {
+            profileName.text = nil
+            profileEmailLabel.text = nil
+            profileImageView.image = nil
         }
     }
     
@@ -140,16 +141,52 @@ class SideMenuViewController: UIViewController {
             return false
         }
     }
+    
+    fileprivate func registerDevice(with token: String) {
+        viewModel
+            .registerDevice(with: token)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                if let info = data.registro {
+                    Variables.userProfile = info
+                    do {
+                        try self.userDefaults.setObject(info, forKey: "Information")
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                if let token = data.token {
+                    let _ = self.viewModel.saveToken(with: token)
+                }
+                if let deviceID = data.idCliente {
+                    self.userDefaults.set(deviceID, forKey: "deviceID")
+                }
+                Variables.isRegisterUser = data.estadoRegistro ?? false
+                Variables.isLoginUser = data.estadoLogin ?? false
+                Variables.isClientUser = data.estadoCliente ?? false
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 extension SideMenuViewController {
     // MARK: - Functions
     fileprivate func configureRx() {
         editProfileButton.rx.tap.bind {
-            let vc = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
-            vc.sideMenuAcction = true
-            vc.modalPresentationStyle = .fullScreen
-            self.navigationController?.pushViewController(vc, animated: true)
+            if Auth.auth().currentUser != nil {
+                let vc = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+                vc.sideMenuAcction = true
+                vc.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
+                let loginVC = vc.viewControllers.first as? LoginViewController
+                loginVC?.delegate = self
+                self.present(vc, animated: true)
+            }
         }
         .disposed(by: disposeBag)
         
@@ -168,6 +205,43 @@ extension SideMenuViewController {
                 self.openUrl("https://servicios.grupogollo.com:9199/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/GOLLO-APP-Tutorial-de-uso.jpg")
             })
             .disposed(by: disposeBag)
+        
+        logoutButton
+            .rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                let firebaseAuth = Auth.auth()
+                do {
+                    try firebaseAuth.signOut()
+                    self.userDefaults.removeObject(forKey: "Information")
+                    let _ = KeychainManager.delete(key: "token")
+                    Variables.isRegisterUser = false
+                    Variables.isLoginUser = false
+                    Variables.isClientUser = false
+                    Variables.userProfile = nil
+                    UserManager.shared.userData = nil
+                    Messaging.messaging().token { token, error in
+                      if let error = error {
+                        print("Error fetching FCM registration token: \(error)")
+                      } else if let token = token {
+                        self.registerDevice(with: token)
+                      }
+                    }
+                    self.dismiss(animated: true)
+                } catch let signOutError as NSError {
+                    log.error("Error signing out: \(signOutError)")
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
+extension SideMenuViewController: LoginDelegate {
+    func loginViewControllerShouldDismiss(_ loginViewController: LoginViewController) { }
+    
+    func didLoginSucceed() {
+        print("LOGIN SUCCEED")
+        self.dismiss(animated: true)
+    }
+}

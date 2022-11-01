@@ -84,7 +84,7 @@ class PaymentAddressViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.STATES_CITIES.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -116,7 +116,7 @@ class PaymentAddressViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.STATES_CITIES.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -195,7 +195,7 @@ class PaymentAddressViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.SAVE_ADDRESS.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,

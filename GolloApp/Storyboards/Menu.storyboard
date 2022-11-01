@@ -67,10 +67,10 @@
                                 <rect key="frame" x="0.0" y="190" width="414" height="706"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fs3-XS-jox">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="352"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="406"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wdU-lK-0yV">
-                                                <rect key="frame" x="0.0" y="16" width="414" height="320"/>
+                                                <rect key="frame" x="0.0" y="16" width="414" height="374"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QuI-4i-bEo">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -108,8 +108,44 @@
                                                             <constraint firstItem="0nu-nq-YGb" firstAttribute="top" secondItem="QuI-4i-bEo" secondAttribute="top" id="vst-Pg-7dB"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIL-Zu-fqN">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Xm-WX-UhZ">
                                                         <rect key="frame" x="0.0" y="54" width="414" height="50"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="VMq-ev-QFT">
+                                                                <rect key="frame" x="24" y="13" width="25" height="23.5"/>
+                                                                <color key="tintColor" name="colorPrimary"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="25" id="USl-CV-TMI"/>
+                                                                    <constraint firstAttribute="width" secondItem="VMq-ev-QFT" secondAttribute="height" multiplier="1:1" id="sCM-RH-c8A"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cerrar sesión" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWo-bz-icx">
+                                                                <rect key="frame" x="65" y="8" width="341" height="34"/>
+                                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eID-Xo-2lg">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="GWo-bz-icx" secondAttribute="trailing" constant="8" id="08i-Si-Ibm"/>
+                                                            <constraint firstAttribute="bottom" secondItem="eID-Xo-2lg" secondAttribute="bottom" id="8E5-5S-3Dk"/>
+                                                            <constraint firstItem="GWo-bz-icx" firstAttribute="top" secondItem="4Xm-WX-UhZ" secondAttribute="top" constant="8" id="FWa-r1-NHG"/>
+                                                            <constraint firstItem="GWo-bz-icx" firstAttribute="leading" secondItem="VMq-ev-QFT" secondAttribute="trailing" constant="16" id="PHI-Fl-IBg"/>
+                                                            <constraint firstItem="GWo-bz-icx" firstAttribute="centerY" secondItem="4Xm-WX-UhZ" secondAttribute="centerY" id="PQS-tk-uvt"/>
+                                                            <constraint firstItem="VMq-ev-QFT" firstAttribute="leading" secondItem="4Xm-WX-UhZ" secondAttribute="leading" constant="24" id="gPq-7c-Lzl"/>
+                                                            <constraint firstItem="eID-Xo-2lg" firstAttribute="leading" secondItem="4Xm-WX-UhZ" secondAttribute="leading" id="i6F-6J-cOd"/>
+                                                            <constraint firstAttribute="trailing" secondItem="eID-Xo-2lg" secondAttribute="trailing" id="p6x-rb-xZc"/>
+                                                            <constraint firstItem="VMq-ev-QFT" firstAttribute="centerY" secondItem="4Xm-WX-UhZ" secondAttribute="centerY" id="raC-cZ-JfL"/>
+                                                            <constraint firstAttribute="bottom" secondItem="GWo-bz-icx" secondAttribute="bottom" constant="8" id="sKj-rH-bWC"/>
+                                                            <constraint firstAttribute="height" constant="50" id="tdk-4h-Hbn"/>
+                                                            <constraint firstItem="eID-Xo-2lg" firstAttribute="top" secondItem="4Xm-WX-UhZ" secondAttribute="top" id="v8N-E5-7q2"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIL-Zu-fqN">
+                                                        <rect key="frame" x="0.0" y="108" width="414" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_menu_categories" translatesAutoresizingMaskIntoConstraints="NO" id="dgx-VT-8fh">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>
@@ -148,7 +184,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyn-b8-YYB">
-                                                        <rect key="frame" x="0.0" y="108" width="414" height="50"/>
+                                                        <rect key="frame" x="0.0" y="162" width="414" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_notification" translatesAutoresizingMaskIntoConstraints="NO" id="32M-Os-mFM">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>
@@ -195,7 +231,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFD-nm-wYN">
-                                                        <rect key="frame" x="0.0" y="162" width="414" height="50"/>
+                                                        <rect key="frame" x="0.0" y="216" width="414" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_terms" translatesAutoresizingMaskIntoConstraints="NO" id="5VQ-tc-BpJ">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>
@@ -231,7 +267,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umS-s4-alO">
-                                                        <rect key="frame" x="0.0" y="216" width="414" height="50"/>
+                                                        <rect key="frame" x="0.0" y="270" width="414" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_help" translatesAutoresizingMaskIntoConstraints="NO" id="7XR-7l-3aA">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>
@@ -267,7 +303,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpt-NI-qRH">
-                                                        <rect key="frame" x="0.0" y="270" width="414" height="50"/>
+                                                        <rect key="frame" x="0.0" y="324" width="414" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logout" translatesAutoresizingMaskIntoConstraints="NO" id="ccv-Ex-3Kh">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>
@@ -342,6 +378,8 @@
                     <connections>
                         <outlet property="editProfileButton" destination="0nu-nq-YGb" id="oq5-nX-j4P"/>
                         <outlet property="helpButton" destination="HdB-Df-wlO" id="9Pz-il-l0a"/>
+                        <outlet property="logoutButton" destination="eID-Xo-2lg" id="7kD-2e-3HU"/>
+                        <outlet property="logoutView" destination="4Xm-WX-UhZ" id="kaU-oa-DpZ"/>
                         <outlet property="notificationCountLabel" destination="tnb-cw-Rfn" id="tfX-RY-Sxl"/>
                         <outlet property="profileEmailLabel" destination="ZJJ-QJ-3JT" id="PZG-ik-AfM"/>
                         <outlet property="profileImageView" destination="iHA-J4-T4n" id="0bH-dn-8Tf"/>
@@ -450,8 +488,9 @@
         <image name="ic_notification" width="25" height="25"/>
         <image name="ic_terms" width="100" height="100"/>
         <image name="ic_user_profile" width="100" height="100"/>
+        <image name="lock.fill" catalog="system" width="125" height="128"/>
         <image name="logo_golloapp" width="1452" height="654"/>
-        <image name="person.fill" catalog="system" width="32" height="32"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <namedColor name="colorPrimary">
             <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

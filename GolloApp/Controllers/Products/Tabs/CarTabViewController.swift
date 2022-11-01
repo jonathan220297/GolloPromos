@@ -5,6 +5,7 @@
 //  Created by Jonathan Rodriguez on 13/9/22.
 //
 
+import FirebaseAuth
 import RxSwift
 import UIKit
 
@@ -74,19 +75,14 @@ class CarTabViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                if Variables.isRegisterUser {
-                    self.viewModel.carManager.emptyCarWithCoreData()
-                    self.viewModel.setItemsToCarManager()
-                    self.viewModel.carManager.total = self.viewModel.total
-                    let paymentAddressViewController = PaymentAddressViewController(
-                        viewModel: PaymentAddressViewModel()
-                    )
-                    paymentAddressViewController.modalPresentationStyle = .fullScreen
-                    self.navigationController?.pushViewController(paymentAddressViewController, animated: true)
+                if Auth.auth().currentUser != nil {
+                    self.checkIfUserRegistered()
                 } else {
-                    let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
-                    editProfileViewController.modalPresentationStyle = .fullScreen
-                    self.navigationController?.pushViewController(editProfileViewController, animated: true)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
+                    let loginVC = vc.viewControllers.first as? LoginViewController
+                    loginVC?.delegate = self
+                    self.present(vc, animated: true)
                 }
             })
             .disposed(by: bag)
@@ -124,6 +120,23 @@ class CarTabViewController: UIViewController {
         }
         viewModel.total = total
         totalLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
+    }
+    
+    func checkIfUserRegistered() {
+        if Variables.isRegisterUser {
+            self.viewModel.carManager.emptyCarWithCoreData()
+            self.viewModel.setItemsToCarManager()
+            self.viewModel.carManager.total = self.viewModel.total
+            let paymentAddressViewController = PaymentAddressViewController(
+                viewModel: PaymentAddressViewModel()
+            )
+            paymentAddressViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(paymentAddressViewController, animated: true)
+        } else {
+            let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+            editProfileViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(editProfileViewController, animated: true)
+        }
     }
 }
 
@@ -195,5 +208,13 @@ extension CarTabViewController: OfferServiceProtectionDelegate {
         } else {
             showAlert(alertText: "GolloApp", alertMessage: "Intentelo de nuevo.")
         }
+    }
+}
+
+extension CarTabViewController: LoginDelegate {
+    func loginViewControllerShouldDismiss(_ loginViewController: LoginViewController) { }
+    
+    func didLoginSucceed() {
+        checkIfUserRegistered()
     }
 }

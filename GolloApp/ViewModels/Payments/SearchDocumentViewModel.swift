@@ -59,7 +59,7 @@ class SearchDocumentViewModel {
             servicio: ServicioParam(
                 encabezado: Encabezado(
                     idProceso: GOLLOAPP.ACTIVE_ACCOUNTS_PROCESS_ID.rawValue,
-                    idDevice: "",
+                    idDevice: getDeviceID(),
                     idUsuario: UserManager.shared.userData?.uid ?? "",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,

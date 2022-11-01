@@ -22,7 +22,7 @@ class OffersListViewModel {
             servicio: ServicioParam(
                 encabezado: Encabezado(
                     idProceso: GOLLOAPP.OFFER_CAT_PROCESS_ID.rawValue,
-                    idDevice: "",
+                    idDevice: getDeviceID(),
                     idUsuario: "IPHNkG8EWMg2oVYOASnlMuHXHHL2",
                     timeStamp: String(Date().timeIntervalSince1970),
                     idCia: 10,
