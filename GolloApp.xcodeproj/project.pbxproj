@@ -240,11 +240,11 @@
 		4FCA88B228DA26F500B1FE46 /* OffersTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA88B128DA26F500B1FE46 /* OffersTabViewModel.swift */; };
 		4FCA88B528DAA08B00B1FE46 /* CarProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA88B328DAA08B00B1FE46 /* CarProductTableViewCell.swift */; };
 		4FCA88B628DAA08B00B1FE46 /* CarProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCA88B428DAA08B00B1FE46 /* CarProductTableViewCell.xib */; };
-		4FCC0DCD290847F8006F2210 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FCC0DCC290847F8006F2210 /* GoogleService-Info.plist */; };
 		4FCC3F7A28F1D4F00063C9C9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC3F7828F1D4F00063C9C9 /* MainViewController.swift */; };
 		4FCC3F7B28F1D4F00063C9C9 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCC3F7928F1D4F00063C9C9 /* MainViewController.xib */; };
 		4FCEB7E028CFF9A0009B3FDF /* OffersTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEB7DE28CFF9A0009B3FDF /* OffersTabViewController.swift */; };
 		4FCEB7E128CFF9A0009B3FDF /* OffersTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCEB7DF28CFF9A0009B3FDF /* OffersTabViewController.xib */; };
+		4FD508F6290EEAB3004238BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FD508F5290EEAB3004238BC /* GoogleService-Info.plist */; };
 		4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */; };
 		4FDA3A9E26D8FE26003B2CB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */; };
 		4FDA3AA026D8FE26003B2CB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9F26D8FE26003B2CB6 /* ViewController.swift */; };
@@ -610,11 +610,11 @@
 		4FCA88B128DA26F500B1FE46 /* OffersTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTabViewModel.swift; sourceTree = "<group>"; };
 		4FCA88B328DAA08B00B1FE46 /* CarProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarProductTableViewCell.swift; sourceTree = "<group>"; };
 		4FCA88B428DAA08B00B1FE46 /* CarProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarProductTableViewCell.xib; sourceTree = "<group>"; };
-		4FCC0DCC290847F8006F2210 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FCC3F7828F1D4F00063C9C9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4FCC3F7928F1D4F00063C9C9 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		4FCEB7DE28CFF9A0009B3FDF /* OffersTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTabViewController.swift; sourceTree = "<group>"; };
 		4FCEB7DF28CFF9A0009B3FDF /* OffersTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OffersTabViewController.xib; sourceTree = "<group>"; };
+		4FD508F5290EEAB3004238BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FDA3A9826D8FE26003B2CB6 /* GolloApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolloApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1577,7 +1577,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4FCC0DCC290847F8006F2210 /* GoogleService-Info.plist */,
+				4FD508F5290EEAB3004238BC /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* GolloApp.xcdatamodeld */,
 			);
 			path = GolloApp;
@@ -1989,6 +1989,7 @@
 				4F0D966F26DDBB810061E89E /* SansSerifBookFLF-Italic.otf in Resources */,
 				4FDA3AA526D8FE27003B2CB6 /* Assets.xcassets in Resources */,
 				4FE1912526DEFCA000322128 /* ProductCollectionViewCell.xib in Resources */,
+				4FD508F6290EEAB3004238BC /* GoogleService-Info.plist in Resources */,
 				4F678D7C28E7C3FF00C8E8B3 /* WishesViewController.xib in Resources */,
 				4FA0B87128E3C48700395361 /* AddressListViewController.xib in Resources */,
 				4F317A9C28F9E038005BA675 /* SectionCollectionViewCell.xib in Resources */,
@@ -2028,7 +2029,6 @@
 				4FDCC97C29097E14004BB9B6 /* SearchHistoryCollectionViewCell.xib in Resources */,
 				4F57B79A28F9F19E00CFBD01 /* SearchOffersViewController.xib in Resources */,
 				4F0D96C826DDD9990061E89E /* Services.storyboard in Resources */,
-				4FCC0DCD290847F8006F2210 /* GoogleService-Info.plist in Resources */,
 				4FFD9CA0272A145F004778F1 /* CategoryOffersTableViewCell.xib in Resources */,
 				4F7C5F3A28E641CC00123072 /* ProductOrderDetailTableViewCell.xib in Resources */,
 				4F678D8028E7C5C600C8E8B3 /* WhishesTableViewCell.xib in Resources */,

@@ -11,6 +11,8 @@ import FirebaseMessaging
 import RxSwift
 
 class ViewController: UIViewController {
+    @IBOutlet weak var continueButton: LocalizableButton!
+    
     var viewLoader = UIView()
 
     lazy var viewModel: SplashViewModel = {
@@ -22,13 +24,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureRx()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewLoader = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        view.addSubview(viewLoader)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -51,13 +51,10 @@ class ViewController: UIViewController {
             }
         } else {
             if viewModel.verifyTermsConditionsState() {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
-            } else {
-                viewLoader.isHidden = true
-                viewLoader.removeFromSuperview()
+                if let vc = AppStoryboard.Home.initialViewController() {
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
             }
         }
         Messaging.messaging().token { token, error in
@@ -93,6 +90,12 @@ class ViewController: UIViewController {
                         print(error.localizedDescription)
                     }
                 }
+                if let token = data.token {
+                    let _ = self.viewModel.saveToken(with: token)
+                }
+                if let deviceID = data.idCliente {
+                    self.userDefaults.set(deviceID, forKey: "deviceID")
+                }
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
@@ -100,5 +103,17 @@ class ViewController: UIViewController {
             .disposed(by: bag)
     }
 
+    fileprivate func configureRx() {
+        continueButton
+            .rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                let vc = TermsConditionsViewController.instantiate(fromAppStoryboard: .Main)
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            })
+            .disposed(by: bag)
+    }
 }
 

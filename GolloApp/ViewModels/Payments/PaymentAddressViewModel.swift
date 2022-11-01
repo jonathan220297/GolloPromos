@@ -27,9 +27,9 @@ class PaymentAddressViewModel {
     let documentTypeSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let identificationNumberSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let countrySubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
-    let stateSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
-    let countySubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
-    let districtSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
+    let stateSubject: BehaviorRelay<State?> = BehaviorRelay(value: nil)
+    let countySubject: BehaviorRelay<County?> = BehaviorRelay(value: nil)
+    let districtSubject: BehaviorRelay<District?> = BehaviorRelay(value: nil)
     let addressSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let postalCodeSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let latitudeSubject: BehaviorRelay<Double?> = BehaviorRelay(value: nil)
@@ -59,17 +59,14 @@ class PaymentAddressViewModel {
         return Observable.combineLatest(identificationNumberSubject, stateSubject, countySubject, districtSubject, addressSubject) { identificationNumber, state, county, district, address in
             
             guard let identificationNumber = identificationNumber,
-                  let state = state,
-                  let county = county,
-                  let district = district,
+                  state != nil,
+                  county != nil,
+                  district != nil,
                   let address = address else {
                 return false
             }
             
             return !(identificationNumber.isEmpty)
-                && !(state.isEmpty)
-                && !(county.isEmpty)
-                && !(district.isEmpty)
                 && !(address.isEmpty)
         }
     }
@@ -87,7 +84,7 @@ class PaymentAddressViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.STATES_CITIES.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -119,7 +116,7 @@ class PaymentAddressViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.STATES_CITIES.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -167,9 +164,9 @@ class PaymentAddressViewModel {
             fechaEntrega: "",
             firstName: firstName ?? "",
             horaEntrega: "",
-            idCanton: county ?? "",
-            idDistrito: district ?? "",
-            idProvincia: state ?? "",
+            idCanton: county?.idCanton ?? "",
+            idDistrito: district?.idDistrito ?? "",
+            idProvincia: state?.idProvincia ?? "",
             idReceptor: identificationNumber ?? "",
             lastName: lastName ?? "",
             lugarDespacho: "",
@@ -183,15 +180,12 @@ class PaymentAddressViewModel {
     }
     
     func isValidAddress() -> Bool {
-        guard let country = countrySubject.value,
-              let state = stateSubject.value,
-              let city = countySubject.value,
+        guard countrySubject.value != nil,
+              stateSubject.value != nil,
+              countySubject.value != nil,
               let address = addressSubject.value else { return false }
         
-        return !(country.isEmpty)
-            && !(state.isEmpty)
-            && !(city.isEmpty)
-            && !(address.isEmpty)
+        return !(address.isEmpty)
     }
     
     func saveAddress() -> BehaviorRelay<Bool?> {
@@ -201,7 +195,7 @@ class PaymentAddressViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.SAVE_ADDRESS.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -209,9 +203,9 @@ class PaymentAddressViewModel {
                         integrationId: nil),
                     parametros: SaveUserAddressRequest(
                         idCliente: Variables.userProfile?.idCliente ?? "",
-                        idProvincia: stateSubject.value ?? "",
-                        idCanton: countySubject.value ?? "",
-                        idDistrito: districtSubject.value ?? "",
+                        idProvincia: stateSubject.value?.idProvincia ?? "",
+                        idCanton: countySubject.value?.idCanton ?? "",
+                        idDistrito: districtSubject.value?.idDistrito ?? "",
                         direccionExacta: addressSubject.value ?? "",
                         codigoPostal: postalCodeSubject.value ?? "",
                         GPS_X: 0.0,

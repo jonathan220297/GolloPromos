@@ -864,7 +864,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseAnalytics
   - FirebaseMessaging
-  - GolloNetWorking (from `/Users/jonathanrodriguez/Documents/Unicomer/GolloPromos-iOS-Modules/GolloNetWorking`)
+  - GolloNetWorking (from `/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking`)
   - GoogleSignIn
   - ImageSlideshow
   - ImageSlideshow/Alamofire
@@ -925,7 +925,7 @@ EXTERNAL SOURCES:
   AAInfographics:
     :git: https://github.com/AAChartModel/AAChartKit-Swift.git
   GolloNetWorking:
-    :path: "/Users/jonathanrodriguez/Documents/Unicomer/GolloPromos-iOS-Modules/GolloNetWorking"
+    :path: "/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking"
 
 CHECKOUT OPTIONS:
   AAInfographics:
@@ -980,6 +980,6 @@ SPEC CHECKSUMS:
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: ca4f298afe3cc2b55c42ab69b3efc2c4aa895d99
+PODFILE CHECKSUM: 19abfc95ea7be659bf9e29d7274fbdf0f8124d60
 
 COCOAPODS: 1.11.3

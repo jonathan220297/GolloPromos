@@ -5,6 +5,7 @@
 //  Created by Jonathan Rodriguez on 13/9/22.
 //
 
+import FirebaseAuth
 import UIKit
 
 class MenuTabViewController: UIViewController {
@@ -12,6 +13,7 @@ class MenuTabViewController: UIViewController {
     @IBOutlet weak var menuTabTableView: UITableView!
 
     var menuItems: [MenuTabData] = []
+    var itemSelected: IndexPath = IndexPath(row: 0, section: 0)
 
     init() {
         super.init(nibName: "MenuTabViewController", bundle: nil)
@@ -55,6 +57,59 @@ class MenuTabViewController: UIViewController {
         menuTabTableView.register(UINib(nibName: "MenuTabTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTabTableViewCell")
     }
     
+    func moveToLogin() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
+        let loginVC = vc.viewControllers.first as? LoginViewController
+        loginVC?.delegate = self
+        self.present(vc, animated: true)
+    }
+    
+    func moveToProfile() {
+        let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+        editProfileViewController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(editProfileViewController, animated: true)
+    }
+    
+    func moveToAccount() {
+        if Variables.isRegisterUser {
+            let accountsViewController = AccountsViewController.instantiate(fromAppStoryboard: .Payments)
+            accountsViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(accountsViewController, animated: true)
+        } else {
+           moveToProfile()
+        }
+    }
+    
+    func moveToStatus() {
+        if Variables.isRegisterUser {
+            let statusViewController = StatusViewController.instantiate(fromAppStoryboard: .Payments)
+            statusViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(statusViewController, animated: true)
+        } else {
+            moveToProfile()
+        }
+    }
+    
+    func moveToThirdParty() {
+        if Variables.isRegisterUser {
+            let thirdPartyViewController = ThirdPartyViewController.instantiate(fromAppStoryboard: .Payments)
+            thirdPartyViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(thirdPartyViewController, animated: true)
+        } else {
+            moveToProfile()
+        }
+    }
+    
+    func moveToHistory() {
+        if Variables.isRegisterUser {
+            let historyViewController = HistoryViewController.instantiate(fromAppStoryboard: .Payments)
+            historyViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(historyViewController, animated: true)
+        } else {
+            moveToProfile()
+        }
+    }
 }
 
 extension MenuTabViewController: UITableViewDataSource, UITableViewDelegate {
@@ -89,60 +144,38 @@ extension MenuTabViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        itemSelected = indexPath
         let id = menuItems[indexPath.section].items[indexPath.row].id
 
         switch id {
         case 1:
-            if Variables.isRegisterUser {
-                let accountsViewController = AccountsViewController.instantiate(fromAppStoryboard: .Payments)
-                accountsViewController.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(accountsViewController, animated: true)
+            if Auth.auth().currentUser != nil {
+                moveToAccount()
             } else {
-                let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
-                editProfileViewController.modalPresentationStyle = .fullScreen
-                navigationController?.pushViewController(editProfileViewController, animated: true)
+                moveToLogin()
             }
-
         case 2:
-            if Variables.isRegisterUser {
-                let statusViewController = StatusViewController.instantiate(fromAppStoryboard: .Payments)
-                statusViewController.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(statusViewController, animated: true)
-            } else {
-                let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
-                editProfileViewController.modalPresentationStyle = .fullScreen
-                navigationController?.pushViewController(editProfileViewController, animated: true)
+            if Auth.auth().currentUser != nil {
+                moveToStatus()
+            } else{
+                moveToLogin()
             }
-
         case 3:
-            if Variables.isRegisterUser {
-                let thirdPartyViewController = ThirdPartyViewController.instantiate(fromAppStoryboard: .Payments)
-                thirdPartyViewController.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(thirdPartyViewController, animated: true)
+            if Auth.auth().currentUser != nil {
+                moveToThirdParty()
             } else {
-                let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
-                editProfileViewController.modalPresentationStyle = .fullScreen
-                navigationController?.pushViewController(editProfileViewController, animated: true)
+                moveToLogin()
             }
-
         case 4:
-            if Variables.isRegisterUser {
-                let historyViewController = HistoryViewController.instantiate(fromAppStoryboard: .Payments)
-                historyViewController.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(historyViewController, animated: true)
+            if Auth.auth().currentUser != nil {
+                moveToHistory()
             } else {
-                let editProfileViewController = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
-                editProfileViewController.modalPresentationStyle = .fullScreen
-                navigationController?.pushViewController(editProfileViewController, animated: true)
+                moveToLogin()
             }
-
         case 5:
             let wishesViewController = WishesViewController()
             wishesViewController.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(wishesViewController, animated: true)
-            break
-
         default:
             print("Have you done something new?")
         }
@@ -150,5 +183,23 @@ extension MenuTabViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
+    }
+}
+
+extension MenuTabViewController: LoginDelegate {
+    func loginViewControllerShouldDismiss(_ loginViewController: LoginViewController) { }
+    
+    func didLoginSucceed() {
+        switch itemSelected.row {
+        case 0:
+            moveToAccount()
+        case 1:
+            moveToStatus()
+        case 2:
+            moveToThirdParty()
+        case 3:
+            moveToHistory()
+        default: break
+        }
     }
 }

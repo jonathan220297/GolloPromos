@@ -21,7 +21,7 @@ class OffersFilteredListViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.CATEGORIES_FILTER_PROCESS_ID.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -55,7 +55,7 @@ class OffersFilteredListViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,

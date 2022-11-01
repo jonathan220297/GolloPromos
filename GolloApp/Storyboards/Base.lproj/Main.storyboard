@@ -64,7 +64,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="MainViewController_continue_button"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="buttonContiueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TxP-89-TF0"/>
+                                            <action selector="buttonContiueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PMH-fu-jc5"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresa para aprovechar nuestras promociones, hacer pagos e incluso pagar cuotas de terceros." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70k-MS-skT" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
@@ -104,6 +104,9 @@
                             <constraint firstItem="NkY-zh-4o6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tpE-Qf-Cfk"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="continueButton" destination="DVK-tJ-mSb" id="Azz-1Y-Q3Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

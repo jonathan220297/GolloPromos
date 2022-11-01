@@ -7,192 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "363299C7-6985-4D4C-9F57-E6E881E35EBF"
+            uuid = "297C6D6E-8364-45B0-A6F8-483D3060F02B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GolloApp/Controllers/Profile/EditProfileViewController.swift"
+            filePath = "GolloApp/Controllers/Authentication/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
-            landmarkName = "changeImage()"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "buttonContiueTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D2CF5EC1-E458-4A41-8188-870210F280D2"
+            uuid = "40547815-AF28-4C21-AEEF-1CB5EA6238ED"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GolloApp/Controllers/Profile/EditProfileViewController.swift"
+            filePath = "GolloApp/Controllers/Authentication/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "configureNavigationBar()"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D2CF5EC1-E458-4A41-8188-870210F280D2 - 9b1a6e3168186c0b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GolloApp.EditProfileViewController.configureUserData() -&gt; ()"
-                  moduleName = "GolloApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/Controllers/Profile/EditProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119"
-                  offsetFromSymbolStart = "421">
-               </Location>
-               <Location
-                  uuid = "D2CF5EC1-E458-4A41-8188-870210F280D2 - 9b1a6e3168186c0b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GolloApp.EditProfileViewController.configureUserData() -&gt; ()"
-                  moduleName = "GolloApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/Controllers/Profile/EditProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119"
-                  offsetFromSymbolStart = "521">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FCE91F7E-7A51-4346-A7CE-9B4FB049F95D"
+            uuid = "57E7B03A-56E0-4EB0-B474-F9088A4E09A2"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GolloApp/ViewModels/Profile/EditProfileViewModel.swift"
+            filePath = "GolloApp/Controllers/Authentication/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "isValidForm"
-            landmarkType = "24">
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "configureRx()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BCDB79DB-777B-4CD3-BE0E-3CD17FFCB83B"
+            uuid = "F3801A4A-9183-49BD-8C64-01ED3F150F53"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
+            filePath = "GolloApp/Controllers/SideMenu/SideMenuViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "isValidForm"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "BCDB79DB-777B-4CD3-BE0E-3CD17FFCB83B - 10a6fd5e2c420fd3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool in GolloApp.SignUpViewModel.isValidForm.getter : RxSwift.Observable&lt;Swift.Bool&gt;"
-                  moduleName = "GolloApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "319">
-               </Location>
-               <Location
-                  uuid = "BCDB79DB-777B-4CD3-BE0E-3CD17FFCB83B - 10a6fd5e2c420fd3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool in GolloApp.SignUpViewModel.isValidForm.getter : RxSwift.Observable&lt;Swift.Bool&gt;"
-                  moduleName = "GolloApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "367">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7CBAA38A-C601-4F27-BC31-BAE7F516EFCF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "isValidForm"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "7CBAA38A-C601-4F27-BC31-BAE7F516EFCF - 10a6fd5e2c420fd3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool in GolloApp.SignUpViewModel.isValidForm.getter : RxSwift.Observable&lt;Swift.Bool&gt;"
-                  moduleName = "GolloApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "319">
-               </Location>
-               <Location
-                  uuid = "7CBAA38A-C601-4F27-BC31-BAE7F516EFCF - 10a6fd5e2c420fd3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool in GolloApp.SignUpViewModel.isValidForm.getter : RxSwift.Observable&lt;Swift.Bool&gt;"
-                  moduleName = "GolloApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS/GolloApp/GolloApp/ViewModels/Authentication/SignUpViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "367">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A056D93F-88C4-4D82-BDA7-219876AC8F05"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GolloApp/Controllers/Profile/EditProfileViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "351"
-            endingLineNumber = "351"
-            landmarkName = "showData(with:)"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "setUserData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

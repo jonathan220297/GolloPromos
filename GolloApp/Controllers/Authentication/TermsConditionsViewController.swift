@@ -58,10 +58,14 @@ extension TermsConditionsViewController {
             } else {
                 print("Nice")
                 self.viewModel.setCheckboxValueToUserDefaults()
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
+                if let vc = AppStoryboard.Home.initialViewController() {
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let vc = storyboard.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
+//                vc.modalPresentationStyle = .fullScreen
+//                self.present(vc, animated: true)
             }
         }
         .disposed(by: disposeBag)

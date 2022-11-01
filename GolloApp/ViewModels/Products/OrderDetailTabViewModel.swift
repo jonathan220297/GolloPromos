@@ -20,7 +20,7 @@ class OrderDetailTabViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.ORDER_DETAIL_PROCESS_ID.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,

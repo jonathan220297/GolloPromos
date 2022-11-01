@@ -32,7 +32,7 @@ class OffersViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_CATEGORIES_PROCESS_ID.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -64,7 +64,7 @@ class OffersViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_CAT_PROCESS_ID.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -100,7 +100,7 @@ class OffersViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -137,7 +137,7 @@ class OffersViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
-                        idDevice: "",
+                        idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,

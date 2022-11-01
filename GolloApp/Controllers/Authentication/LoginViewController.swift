@@ -21,6 +21,7 @@ private let minimalPasswordLength = 6
 
 protocol LoginDelegate {
     func loginViewControllerShouldDismiss(_ loginViewController: LoginViewController)
+    func didLoginSucceed()
 }
 
 class LoginViewController: UIViewController {
@@ -83,9 +84,8 @@ class LoginViewController: UIViewController {
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
-                if let vc = AppStoryboard.Home.initialViewController() {
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
+                self.dismiss(animated: true) {
+                    self.delegate?.didLoginSucceed()
                 }
             })
             .disposed(by: disposeBag)
@@ -362,8 +362,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                 changeRequest.commitChanges(completion: { (error) in
                     if let error = error {
                         print(error.localizedDescription)
-                    } else {
-                        print("Updated display name: \(Auth.auth().currentUser!.displayName!)")
                     }
                 })
                 self.viewModel.setUserData(with: user)

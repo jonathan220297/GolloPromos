@@ -148,13 +148,20 @@ func getToken() -> String {
 func getDefaultBaseHeaderRequest(with processId: String,
                                  integrationId: String? = nil) -> Encabezado {
     let encabezado = Encabezado(idProceso: processId,
-                                idDevice: "",
+                                idDevice: getDeviceID(),
                                 idUsuario: UserManager.shared.userData?.uid ?? "",
                                 timeStamp: String(Date().timeIntervalSince1970),
                                 idCia: 10,
                                 token: getToken() ,
                                 integrationId: integrationId)
     return encabezado
+}
+
+func getDeviceID() -> String {
+    guard let deviceID = UserDefaults.standard.object(forKey: "deviceID") as? String else {
+        return ""
+    }
+    return deviceID
 }
 
 struct Variables {
