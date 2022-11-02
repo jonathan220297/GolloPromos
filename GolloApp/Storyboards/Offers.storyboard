@@ -862,7 +862,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-Ob-kqK">
                                                         <rect key="frame" x="8" y="253.66666666666669" width="361" height="140"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contrato de servicios de reparación" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fh2-Ws-6RY">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contrato de servicio de reparación" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fh2-Ws-6RY">
                                                                 <rect key="frame" x="8" y="4" width="345" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="QAv-xi-i7n"/>
@@ -1149,11 +1149,11 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="de2-4G-VtL">
-                                                <rect key="frame" x="8" y="818" width="377" height="125"/>
+                                                <rect key="frame" x="8" y="818" width="377" height="250"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDJ-wS-CSq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="377" height="125"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDJ-wS-CSq">
+                                                        <rect key="frame" x="0.0" y="0.0" width="377" height="250"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -1163,7 +1163,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="jDJ-wS-CSq" secondAttribute="trailing" id="Ghn-90-VnY"/>
                                                     <constraint firstAttribute="bottom" secondItem="jDJ-wS-CSq" secondAttribute="bottom" id="H3a-Wd-oc8"/>
                                                     <constraint firstItem="jDJ-wS-CSq" firstAttribute="top" secondItem="de2-4G-VtL" secondAttribute="top" id="ZGU-oC-1LL"/>
-                                                    <constraint firstAttribute="height" constant="125" id="b2h-PI-dAF"/>
+                                                    <constraint firstAttribute="height" constant="250" id="b2h-PI-dAF"/>
                                                     <constraint firstItem="jDJ-wS-CSq" firstAttribute="leading" secondItem="de2-4G-VtL" secondAttribute="leading" id="qdb-VV-3Ym"/>
                                                 </constraints>
                                             </view>

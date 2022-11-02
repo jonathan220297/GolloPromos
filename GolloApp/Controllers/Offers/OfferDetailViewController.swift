@@ -5,6 +5,7 @@
 //  Created by Rodrigo Osegueda on 31/8/21.
 //
 
+import Foundation
 import UIKit
 import Nuke
 import RxSwift
@@ -253,11 +254,13 @@ class OfferDetailViewController: UIViewController {
                           // your code with delay
                             self.carView.isHidden = true
                         }
-                        CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
+                        let id = CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
                         self.carItemLabel.text = "El artículo ha sido agregado al carrito!"
                         self.configureAlternativeNavBar()
                         if self.viewModel.documents.count > 1 && self.warrantyMonth == 0 {
                             let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
+                            offerServiceProtectionViewController.delegate = self
+                            offerServiceProtectionViewController.selectedId = id
                             offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
                             offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
                             self.present(offerServiceProtectionViewController, animated: true)
@@ -301,7 +304,33 @@ class OfferDetailViewController: UIViewController {
             brandLabel.attributedText = formatHTML(header: "Marca: ", content: offer.brand ?? "")
             modelLabel.attributedText = formatHTML(header: "Modelo: ", content: offer.modelo ?? "")
             descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productName ?? "")
-            dateLabel.attributedText = formatHTML(header: "Fecha de Vencimiento: ", content: convertDate(date: offer.endDate ?? "") ?? "")
+            if let endDate = offer.endDate, !endDate.isEmpty {
+                let calendar = Calendar.current
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                let toDate = dateFormatter.date(from: endDate)
+
+                // Replace the hour (time) of both dates with 00:00
+                let date1 = calendar.startOfDay(for: Date())
+                let date2 = calendar.startOfDay(for: toDate ?? Date())
+
+                let days = calendar.numberOfDaysBetween(date1, and: date2)
+                let hours = calendar.dateComponents([.hour], from: date1, to: date2).hour
+                var stringDays = "día"
+                if days > 1 {
+                    stringDays = "días"
+                }
+                var stringHours = "hora"
+                if let hours = hours, hours > 1 {
+                    stringHours = "horas"
+                    dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "3 días y 0 horas")
+                } else {
+                    dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(days) \(stringDays)")
+                }
+            } else {
+                dateLabel.alpha = 0
+            }
 
             let originalString = numberFormatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
@@ -358,7 +387,14 @@ class OfferDetailViewController: UIViewController {
 
             if let description = data.articulo?.descripcionDetalle, !description.isEmpty {
                 self.offerDescriptionView.isHidden = false
-                self.offerDescriptionLabel.attributedText = description.htmlToAttributedString
+                let decodeString = description.removingPercentEncoding
+                if let htmlString = decodeString {
+                    let formatedHtml = "<html><head><style type='text/css'>@font-face { font-family: MyFont;src: url('font/jost_variable_font.ttf') } body {font-family: MyFont;font-size: medium;text-align: justify;} </style></head><body>\(htmlString)</body></html>"
+                    self.offerDescriptionLabel.attributedText = formatedHtml.htmlToAttributedString
+
+                } else {
+                    self.offerDescriptionView.isHidden = true
+                }
             } else {
                 self.offerDescriptionView.isHidden = true
             }
@@ -447,5 +483,24 @@ extension OfferDetailViewController: UIScrollViewDelegate {
         } else {
             scrollView.contentInset = .zero
         }
+    }
+}
+
+extension OfferDetailViewController: OfferServiceProtectionDelegate {
+    func protectionSelected(with id: UUID, month: Int, amount: Double) {
+        let _ = CoreDataService().addGolloPlus(for: id, month: month, amount: amount)
+    }
+}
+
+extension NSAttributedString {
+    internal convenience init?(html: String) {
+        guard let data = html.data(using: String.Encoding.utf16, allowLossyConversion: false) else {
+            // not sure which is more reliable: String.Encoding.utf16 or String.Encoding.unicode
+            return nil
+        }
+        guard let attributedString = try? NSMutableAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) else {
+            return nil
+        }
+        self.init(attributedString: attributedString)
     }
 }

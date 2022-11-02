@@ -27,6 +27,10 @@ class WishesViewController: UIViewController {
         super.viewDidLoad()
         tabBarController?.navigationItem.title = "Mis productos favoritos"
         configureTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.favorites = CoreDataService().fetchFavoriteItems()
         if self.favorites.isEmpty {
             self.emptyView.alpha = 1

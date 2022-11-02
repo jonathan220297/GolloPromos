@@ -147,6 +147,10 @@ class OffersFilteredListViewController: UIViewController {
     }
 
     fileprivate func dropDown() {
+        var newTaxonomy = taxonomy
+        if selectedTaxonomy != -1 {
+            newTaxonomy = selectedTaxonomy
+        }
         let options = ["A-Z", "Z-A", "Menor precio", "Mayor precio"]
         let dropDown = DropDown()
         dropDown.anchorView = optionButton
@@ -155,7 +159,7 @@ class OffersFilteredListViewController: UIViewController {
         dropDown.selectionAction = { [self] (index: Int, item: String) in
             selectedPosition = index
             optionLabel.text = item
-            self.fetchOffers(with: taxonomy, order: selectedPosition + 1)
+            self.fetchOffers(with: newTaxonomy, order: selectedPosition + 1)
         }
     }
 

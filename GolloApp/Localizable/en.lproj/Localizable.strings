@@ -178,10 +178,10 @@ Se constituye un acuerdo legal entre cualquier usuario y el App de Gollo dándos
 "ProfileViewController_update" = "ACTUALIZAR";
 
 // PaymentDataViewController
-"PaymentDataViewController_title" = "Número de tarjeta de crédito";
-"PaymentDataViewController_card_number" = "Número de tarjeta de crédito";
-"PaymentDataViewController_expiration" = "Mes de expiración";
-"PaymentDataViewController_expiration_year" = "Año de expiración";
+"PaymentDataViewController_title" = "Tarjeta crédito";
+"PaymentDataViewController_card_number" = "Tarjeta de crédito";
+"PaymentDataViewController_expiration" = "Mes de vencimiento";
+"PaymentDataViewController_expiration_year" = "Año de vencimiento";
 "PaymentDataViewController_card_name" = "Nombre";
 "PaymentDataViewController_continue_payment" = "CONTINUAR CON EL PAGO";
 

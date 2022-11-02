@@ -60,7 +60,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
             showBono(with: data)
         } else if data.tieneDescuento?.bool ?? false {
             if let discountPercentage = data.porcDescuento {
-                if String(discountPercentage) == "0.0" {
+                if discountPercentage == 0.0 {
                     productRealPriceLabel.text = ""
                     productRealPriceLabel.isHidden = true
                     productDiscountPercentageView.isHidden = true
@@ -76,6 +76,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
                     productDiscountPercentageView.isHidden = false
                     let discInt = Int(round(discountPercentage))
                     productDiscountPercentageLabel.text = String(discInt) + "%"
+                    productDiscountPercentageView.clipsToBounds = true
+                    productDiscountPercentageView.layer.cornerRadius = 10
+                    productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMaxYCorner]
+                    productDiscountPercentageView.isHidden = false
+                    productDiscountPercentageView.backgroundColor = UIColor.red
                 }
             } else {
                 productRealPriceLabel.text = ""

@@ -19,6 +19,7 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileEmailLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var profileChangeImage: UIImageView!
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
@@ -47,7 +48,8 @@ class SideMenuViewController: UIViewController {
             }
         } else {
             logoutView.isHidden = true
-            profileLabel.text = "Login"
+            profileLabel.text = "Abrir sesión"
+            profileChangeImage.image = UIImage(named: "ic_open_session")
         }
     }
 
@@ -101,7 +103,8 @@ class SideMenuViewController: UIViewController {
         } else {
             profileName.text = nil
             profileEmailLabel.text = nil
-            profileImageView.image = nil
+            profileImageView.image = UIImage(named: "ic_user_profile")
+            profileImageView.image?.withTintColor(.white)
         }
     }
     
@@ -166,6 +169,8 @@ class SideMenuViewController: UIViewController {
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
+                self.dismiss(animated: true)
+                self.showAlert(alertText: "GolloApp", alertMessage: "Sesión cerrada exitosamente")
             })
             .disposed(by: disposeBag)
     }
@@ -228,7 +233,6 @@ extension SideMenuViewController {
                         self.registerDevice(with: token)
                       }
                     }
-                    self.dismiss(animated: true)
                 } catch let signOutError as NSError {
                     log.error("Error signing out: \(signOutError)")
                 }

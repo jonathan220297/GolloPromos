@@ -13,11 +13,13 @@ class OrderDetailTabViewController: UIViewController {
     @IBOutlet weak var referenceLabel: UILabel!
     @IBOutlet weak var orderLabel: UILabel!
     @IBOutlet weak var createLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var productsLabel: UILabel!
     @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var deliveryTitleLabel: UILabel!
     @IBOutlet weak var warrantyLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var bonusLabel: UILabel!
     @IBOutlet weak var totalFinalLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -92,18 +94,56 @@ class OrderDetailTabViewController: UIViewController {
             bonus = bono * -1
         }
 
-        referenceLabel.text = "Número de referencia: \(order.orden.idOrden ?? 0)"
         orderLabel.text = "Número de orden: \(order.orden.numOrdenTienda ?? "")"
         if let date = order.orden.fechaOrden {
-            createLabel.text = "Fecha pedido: \(convertDate(date: date) ?? date)"
+            createLabel.attributedText = formatHTML(header: "Fecha pedido: ", content: convertDate(date: date) ?? date)
         }
-        productsLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: productsAmount)) ?? "")"
-        deliveryLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (shippingItem?.precioExtendido ?? 0.0))) ?? "")"
-        deliveryTitleLabel.text = "\(shippingItem?.descripcion ?? "")"
-        warrantyLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (warrantyItem?.precioExtendido ?? 0.0))) ?? "")"
-        totalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (order.orden.montoBruto ?? 0.0 - (order.orden.montoDescuento ?? 0.0)))) ?? "")"
-        bonusLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: bonus)) ?? "")"
-        totalFinalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (order.orden.montoBruto ?? 0.0) - (order.orden.montoDescuento ?? 0.0) + (bonus))) ?? "")"
+        referenceLabel.attributedText = formatHTML(header: "Número de referencia: ", content: "\(order.orden.idOrden ?? 0)")
+        statusLabel.attributedText = formatHTML(header: "Estado: ", content: order.orden.descripcionCupon ?? "")
+
+        // Total products
+        if let totalProductAmount = order.orden.montoProductos {
+            productsLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: totalProductAmount)) ?? "")"
+        } else {
+            productsLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: productsAmount)) ?? "")"
+        }
+        // Total delivery
+        if let totalDeliveryAmount = order.orden.montoEnvio {
+            deliveryLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (totalDeliveryAmount))) ?? "")"
+        } else {
+            deliveryLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (shippingItem?.precioExtendido ?? 0.0))) ?? "")"
+        }
+        //deliveryTitleLabel.text = "\(shippingItem?.descripcion ?? "")"
+        // Total extraWarranty
+        if let totalExtraWarrantyAmount = order.orden.montoExtragarantia {
+            warrantyLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (totalExtraWarrantyAmount))) ?? "")"
+        } else {
+            warrantyLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (warrantyItem?.precioExtendido ?? 0.0))) ?? "")"
+        }
+        // Total extraWarranty
+        if let totalAmount = order.orden.montoBruto {
+            totalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (totalAmount))) ?? "")"
+        } else {
+            totalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (order.orden.montoBruto ?? 0.0 - (order.orden.montoDescuento ?? 0.0)))) ?? "")"
+        }
+        // Total Bonus
+        if let totalDiscountAmount = order.orden.montoDescuento {
+            discountLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: totalDiscountAmount)) ?? "")"
+        } else {
+            discountLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: 0.0)) ?? "")"
+        }
+        // Total Bonus
+        if let totalBonusAmount = order.orden.montoBono {
+            bonusLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: totalBonusAmount)) ?? "")"
+        } else {
+            bonusLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: bonus)) ?? "")"
+        }
+        // Total Final
+        if let totalFinalAmount = order.orden.montoNeto {
+            totalFinalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: totalFinalAmount)) ?? "")"
+        } else {
+            totalFinalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (order.orden.montoBruto ?? 0.0) - (order.orden.montoDescuento ?? 0.0) + (bonus))) ?? "")"
+        }
 
         guard let deliveryPlace = order.formaEntrega.first else { return }
         if let place = deliveryPlace.lugarDespacho, !place.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -115,7 +155,7 @@ class OrderDetailTabViewController: UIViewController {
         }
 
         if let cardNumber = paymentMethod?.numeroTarjeta, !cardNumber.isEmpty {
-            paymentMethodLabel.text = "Tarjeta - \(cardNumber)"
+            paymentMethodLabel.text = "\(paymentMethod?.descripcionFP ?? "") - \(cardNumber)"
         } else {
             paymentMethodLabel.text = paymentMethod?.descripcionFP ?? ""
         }

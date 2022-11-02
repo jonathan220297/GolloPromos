@@ -2986,7 +2986,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4O-f5-dme">
                                                         <rect key="frame" x="199" y="0.0" width="199" height="35"/>
                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" red="0.90400677920000005" green="0.19408547879999999" blue="0.18843609089999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -3362,7 +3362,7 @@
                                                                 <rect key="frame" x="8" y="8" width="398" height="114"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" red="0.90186256170000001" green="0.90201735500000002" blue="0.9018527865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="f1G-s7-UXx" firstAttribute="top" secondItem="irm-oc-BdM" secondAttribute="top" constant="8" id="Plq-Vs-0sS"/>
                                                             <constraint firstAttribute="trailing" secondItem="f1G-s7-UXx" secondAttribute="trailing" constant="8" id="Uk0-VU-j2m"/>

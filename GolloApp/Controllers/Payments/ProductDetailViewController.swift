@@ -88,7 +88,6 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
                 return 0
             }
         } else {
-            self.emptyView.alpha = 1
             return 0
         }
     }

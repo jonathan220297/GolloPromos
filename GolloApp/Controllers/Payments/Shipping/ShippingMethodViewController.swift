@@ -155,7 +155,7 @@ class ShippingMethodViewController: UIViewController {
         vc.viewModel.isAccountPayment = false
         vc.viewModel.subTotal = self.viewModel.carManager.total
         vc.viewModel.shipping = self.viewModel.methodSelected?.cost ?? 0.0
-        vc.viewModel.bonus = 0.0
+        vc.viewModel.bonus = self.viewModel.carManager.bonus
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

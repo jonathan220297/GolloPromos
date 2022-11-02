@@ -12,6 +12,7 @@ class CarTabViewModel {
     
     var car: [CartItemDetail] = []
     var total = 0.0
+    var bonus = 0.0
     
     func setItemsToCarManager() {
         //OrderItem

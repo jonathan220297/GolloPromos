@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentSuccessViewController" customModule="PromosGollo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentSuccessViewController" customModule="GolloApp" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="euL-sT-nUp" id="wML-Fq-RyZ"/>
                 <outlet property="closeButton" destination="o8R-7h-3pk" id="5rg-f3-XgB"/>
@@ -59,20 +59,20 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="s6k-Wo-E4r">
-                    <rect key="frame" x="8" y="277" width="398" height="249.5"/>
+                    <rect key="frame" x="8" y="277" width="398" height="215"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsT-sW-wfC">
-                            <rect key="frame" x="0.0" y="0.0" width="398" height="101.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="398" height="67"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="xLD-pP-YwX"/>
                             </constraints>
-                            <string key="text">Su pago ha sido procesado exitosamente. Por favor esté pendiente de su correo y de las notificaciones que puede recibir en esta plataforma porque por esos medios le notificaremos sobre su factura electrónica.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <string key="text">Su pago ha sido procesado satisfactoriamente. Por favor esté pendiente de su correo y de las notificaciones que puede recibir en esta plataforma porque por esos medios le notificaremos sobre su factura electrónica.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" systemColor="secondaryLabelColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Número de orden: 214" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaA-aA-Wpn">
-                            <rect key="frame" x="101.5" y="117.5" width="195.5" height="21"/>
+                            <rect key="frame" x="101.5" y="83" width="195.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="AEe-zG-wke"/>
                             </constraints>
@@ -81,7 +81,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHP-TF-8hf">
-                            <rect key="frame" x="0.0" y="154.5" width="398" height="95"/>
+                            <rect key="frame" x="0.0" y="120" width="398" height="95"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oCl-u1-wzb">
                                     <rect key="frame" x="8" y="31" width="35" height="33"/>
@@ -91,7 +91,7 @@
                                         <constraint firstAttribute="width" constant="35" id="Pb8-Am-JGf"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si tiene algún problema con su pago puede contactarnos a transferencias_cr@unicomer.com y con gusto le atenderemos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKV-zC-zRn">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si tiene algún problema con su pago puede contactarnos a gollo_cr@unicomer.com y con gusto le atenderemos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKV-zC-zRn">
                                     <rect key="frame" x="59" y="24" width="323" height="47"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <nil key="textColor"/>
@@ -116,7 +116,7 @@
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8R-7h-3pk">
-                    <rect key="frame" x="144.5" y="542.5" width="125" height="40"/>
+                    <rect key="frame" x="144.5" y="508" width="125" height="40"/>
                     <color key="backgroundColor" name="colorPrimary"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="D3u-mm-xez"/>

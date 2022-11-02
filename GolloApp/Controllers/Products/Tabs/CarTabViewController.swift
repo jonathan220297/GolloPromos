@@ -111,14 +111,30 @@ class CarTabViewController: UIViewController {
         }
 
         carTableView.reloadData()
-        totalItemsLabel.text = "Tienes \(viewModel.car.count) item(s) en el carrito"
+        var totalString = "Tienes \(viewModel.car.count) item(s) en el carrito"
+        if viewModel.car.count > 1 {
+            totalString = "Tienes \(viewModel.car.count) items en el carrito"
+        } else {
+            totalString = "Tienes \(viewModel.car.count) item en el carrito"
+        }
+
+        totalItemsLabel.text = totalString
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.decimal
         var total = 0.0
+        var carBonus = 0.0
         for item in viewModel.car {
-            total += (item.precioUnitario * Double(item.cantidad)) + item.montoExtragar
+            var totalPrice = 0.0
+            if let bonus = item.montoBonoProveedor {
+                carBonus += bonus
+                totalPrice = item.precioUnitario - item.montoDescuento - bonus
+            } else {
+                totalPrice = item.precioUnitario - item.montoDescuento
+            }
+            total += (totalPrice * Double(item.cantidad)) + item.montoExtragar
         }
         viewModel.total = total
+        viewModel.bonus = carBonus
         totalLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
     }
     
@@ -127,6 +143,7 @@ class CarTabViewController: UIViewController {
             self.viewModel.carManager.emptyCarWithCoreData()
             self.viewModel.setItemsToCarManager()
             self.viewModel.carManager.total = self.viewModel.total
+            self.viewModel.carManager.bonus = self.viewModel.bonus
             let paymentAddressViewController = PaymentAddressViewController(
                 viewModel: PaymentAddressViewModel()
             )
