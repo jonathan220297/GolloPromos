@@ -720,17 +720,17 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Aev-go-DKh">
-                                                        <rect key="frame" x="8" y="50.333333333333314" width="361" height="20.333333333333329"/>
+                                                        <rect key="frame" x="8" y="50.333333333333314" width="361" height="19.666666666666671"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Vs5-KX-OtS">
-                                                                <rect key="frame" x="0.0" y="0.99999999999999822" width="30" height="19"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time" translatesAutoresizingMaskIntoConstraints="NO" id="Vs5-KX-OtS">
+                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="19.666666666666668"/>
                                                                 <color key="tintColor" red="0.0" green="0.39239364859999998" blue="0.70810222629999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="9dz-Jn-QJW"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finaliza en 2 días y 23 horas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sH9-Lr-DmM">
-                                                                <rect key="frame" x="38" y="0.0" width="323" height="20.333333333333332"/>
+                                                                <rect key="frame" x="38" y="0.0" width="323" height="19.666666666666668"/>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                 <color key="textColor" red="0.90400677920000005" green="0.19408547879999999" blue="0.18843609089999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -738,7 +738,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VuG-Uh-cPG">
-                                                        <rect key="frame" x="8" y="78.666666666666686" width="361" height="25"/>
+                                                        <rect key="frame" x="8" y="78" width="361" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_marca" translatesAutoresizingMaskIntoConstraints="NO" id="scU-Ip-PU2">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
@@ -758,7 +758,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uT3-6m-Zxr">
-                                                        <rect key="frame" x="8" y="107.66666666666669" width="361" height="25"/>
+                                                        <rect key="frame" x="8" y="107" width="361" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_offer_gifted_product" translatesAutoresizingMaskIntoConstraints="NO" id="Vk9-f1-YiU">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
@@ -778,7 +778,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gzy-Lg-aKk">
-                                                        <rect key="frame" x="8" y="136.66666666666669" width="361" height="25"/>
+                                                        <rect key="frame" x="8" y="136" width="361" height="25"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_offer_description" translatesAutoresizingMaskIntoConstraints="NO" id="WgB-5l-pHm">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
@@ -798,7 +798,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwI-fz-6N8">
-                                                        <rect key="frame" x="8" y="165.66666666666669" width="361" height="80"/>
+                                                        <rect key="frame" x="8" y="165" width="361" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hX0-9e-0y0">
                                                                 <rect key="frame" x="16" y="19.333333333333318" width="148" height="41.333333333333343"/>
@@ -860,7 +860,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-Ob-kqK">
-                                                        <rect key="frame" x="8" y="253.66666666666669" width="361" height="140"/>
+                                                        <rect key="frame" x="8" y="253" width="361" height="140"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contrato de servicio de reparación" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fh2-Ws-6RY">
                                                                 <rect key="frame" x="8" y="4" width="345" height="21"/>
@@ -872,7 +872,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6z3-50-Zcv">
-                                                                <rect key="frame" x="8" y="28.999999999999943" width="345" height="40"/>
+                                                                <rect key="frame" x="8" y="29" width="345" height="40"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downarrow" translatesAutoresizingMaskIntoConstraints="NO" id="BGT-bs-Tb7">
                                                                         <rect key="frame" x="317" y="10" width="20" height="20"/>
@@ -913,7 +913,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kg-GQ-wEc">
-                                                                <rect key="frame" x="20" y="91.999999999999943" width="321" height="40"/>
+                                                                <rect key="frame" x="20" y="92" width="321" height="40"/>
                                                                 <color key="backgroundColor" red="1" green="0.70624512429999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="yar-Mw-PcS"/>
@@ -1326,7 +1326,6 @@
     </scenes>
     <resources>
         <image name="clear" catalog="system" width="128" height="114"/>
-        <image name="clock" catalog="system" width="128" height="123"/>
         <image name="downarrow" width="128" height="128"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="ic_cart" width="30" height="30"/>
@@ -1341,6 +1340,7 @@
         <image name="ic_offers_home" width="50" height="50"/>
         <image name="ic_offers_menu" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_share" width="16.666666030883789" height="16.666666030883789"/>
+        <image name="ic_time" width="12" height="12"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

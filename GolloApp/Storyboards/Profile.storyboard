@@ -170,7 +170,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yH0-IP-Lwd">
                                                         <rect key="frame" x="0.0" y="83" width="415" height="70"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Número de documento (ID o pasaporte)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFg-1P-gKs" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Número de documento (cédula o pasaporte)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFg-1P-gKs" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="0.0" width="399" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="gZV-hS-him"/>
@@ -347,7 +347,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cg9-NX-kdy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="415" height="75"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCZ-hE-0iW">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCZ-hE-0iW">
                                                                         <rect key="frame" x="8" y="0.0" width="399" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="sp1-r8-DTR"/>

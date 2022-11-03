@@ -49,7 +49,7 @@ class MenuTabViewController: UIViewController {
         menuItems.append(firstItem)
 
         var secondItems: [ItemTabData] = []
-        let whishes = ItemTabData(id: 5, image: "ic_heart", title: "Mis productos favoritos", subtitle: "Productos en mi lista de deseo")
+        let whishes = ItemTabData(id: 5, image: "ic_heart", title: "Mis productos favoritos", subtitle: "Productos en mi lista de deseos")
         secondItems.append(whishes)
         let secondItem = MenuTabData(title: "Favoritos", items: secondItems)
         menuItems.append(secondItem)

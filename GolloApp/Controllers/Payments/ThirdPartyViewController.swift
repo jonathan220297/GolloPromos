@@ -101,7 +101,7 @@ class ThirdPartyViewController: UIViewController {
                     }
 
                     self.antiLaunderingAmount = data.montoMinAntilavado ?? 0.0
-                    self.navigationItem.title = "Cuentas activas de terceros"
+                    self.navigationItem.title = "Cuentas activas de tercero"
                     self.customerDocumentLabel.text = "Cédula: \(number)"
                     self.fetchCustomerAccounts(documentType: type, documentId: number)
                 } else {

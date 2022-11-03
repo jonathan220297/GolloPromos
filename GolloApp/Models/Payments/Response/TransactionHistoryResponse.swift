@@ -13,14 +13,11 @@ struct TransactionHistoryResponse: Codable {
 }
 
 struct AccountInfo: Codable {
-    let tipoId, identificacion, nombreCliente: String?
+    let tipoId, idCuenta, idCliente: String?
 }
 
 struct Payments: Codable {
-    let fecha, idTienda, fechaPago, idCuenta, tipoCuenta: String?
-    let idRecibo, noCuotaAsistencia, noFisico, numCuenta, empresa, descripcion: String?
-    let montoRecibo, diaPago, diasAtraso: Int?
-    let monProntoPago, monPagoMora, monCuotaAsistencia, monPagoInteres, monPagoCapital: Double?
-    let montTotImpuesto, montoCuota, montoMaximoPago, saldoActual, montoCancelarCuenta, montoSugeridoBotonera: Double?
-    let montoInicial, montoAtraso: Double?
+    let fecha, idTienda, noCuotaAsistencia, idRecibo, noFisico: String?
+    let monProntoPago, monPagoMora, monCuotaAsistencia, montoRecibo: Double?
+    let monPagoInteres, monPagoCapital, montTotImpuesto: Double?
 }

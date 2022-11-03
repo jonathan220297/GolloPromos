@@ -82,7 +82,7 @@ class OrderDetailTabViewController: UIViewController {
         guard let order = order.detalle.first else { return }
         let shippingItem = order.ordenDetalle.first(where: { $0.sku == SKU_SHIPPING })
         let warrantyItem = order.ordenDetalle.first(where: { $0.sku == SKU_WARRANTY })
-        let paymentMethod = order.formasPago.first
+        let paymentMethod = order.formasPago.first(where: { $0.principalFP == 1 })
 
         let products = order.ordenDetalle.filter { product in
             return product.esRegalia != 1 && product.sku != SKU_SHIPPING && product.sku != SKU_WARRANTY
@@ -146,12 +146,17 @@ class OrderDetailTabViewController: UIViewController {
         }
 
         guard let deliveryPlace = order.formaEntrega.first else { return }
-        if let place = deliveryPlace.lugarDespacho, !place.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            nameLabel.text = "Recoger en tienda"
-            addressLabel.text = place
+        if deliveryPlace.tipoEntrega == "20" {
+            nameLabel.attributedText = formatHTML(header: "Recoger en tienda: ", content: deliveryPlace.lugarDespacho ?? "")
+            addressLabel.alpha = 0
         } else {
-            nameLabel.text = deliveryPlace.receptorProducto
-            addressLabel.text = getAddress(with: deliveryPlace)
+            if let place = deliveryPlace.lugarDespacho, !place.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                nameLabel.text = deliveryPlace.receptorProducto
+                addressLabel.text = getAddress(with: deliveryPlace)
+            } else {
+                nameLabel.text = "Recoger en tienda"
+                addressLabel.text = deliveryPlace.lugarDespacho ?? ""
+            }
         }
 
         if let cardNumber = paymentMethod?.numeroTarjeta, !cardNumber.isEmpty {

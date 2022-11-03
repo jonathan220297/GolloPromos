@@ -7,6 +7,8 @@
 
 import RxSwift
 import UIKit
+import FirebaseAuth
+import FirebaseMessaging
 
 class HomeTabViewController: UIViewController {
     // MARK: - IBOutlets
@@ -31,6 +33,7 @@ class HomeTabViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         configureViewModel()
+        configureRx()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +47,34 @@ class HomeTabViewController: UIViewController {
     }
     
     // MARK: - Functions
+    fileprivate func configureRx() {
+        viewModel
+            .errorExpiredToken
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self,
+                      let value = value else { return }
+                if value {
+                    self.userDefaults.removeObject(forKey: "Information")
+                    let _ = KeychainManager.delete(key: "token")
+                    Variables.isRegisterUser = false
+                    Variables.isLoginUser = false
+                    Variables.isClientUser = false
+                    Variables.userProfile = nil
+                    UserManager.shared.userData = nil
+                    Messaging.messaging().token { token, error in
+                      if let error = error {
+                        print("Error fetching FCM registration token: \(error)")
+                      } else if let token = token {
+                        self.registerDevice(with: token)
+                      }
+                    }
+                }
+                self.viewModel.errorExpiredToken.accept(nil)
+            })
+            .disposed(by: disposeBag)
+    }
+
     fileprivate func configureViewModel() {
         viewModel.reloadTableViewData = { [weak self] in
             guard let self = self else { return }
@@ -54,6 +85,35 @@ class HomeTabViewController: UIViewController {
             }
             self.homeCollectionView.reloadData()
         }
+    }
+
+    fileprivate func registerDevice(with token: String) {
+        viewModel
+            .registerDevice(with: token)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                if let info = data.registro {
+                    Variables.userProfile = info
+                    do {
+                        try self.userDefaults.setObject(info, forKey: "Information")
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                if let token = data.token {
+                    let _ = self.viewModel.saveToken(with: token)
+                }
+                if let deviceID = data.idCliente {
+                    self.userDefaults.set(deviceID, forKey: "deviceID")
+                }
+                Variables.isRegisterUser = data.estadoRegistro ?? false
+                Variables.isLoginUser = data.estadoLogin ?? false
+                Variables.isClientUser = data.estadoCliente ?? false
+                self.fetchHomeConfiguration()
+            })
+            .disposed(by: disposeBag)
     }
     
     fileprivate func configureCollectionView() {

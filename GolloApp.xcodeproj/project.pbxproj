@@ -202,6 +202,7 @@
 		4F8CB6C728FD1FCF00A59F2C /* PaymentMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CB6C528FD1FCF00A59F2C /* PaymentMethodTableViewCell.swift */; };
 		4F8CB6C828FD1FCF00A59F2C /* PaymentMethodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F8CB6C628FD1FCF00A59F2C /* PaymentMethodTableViewCell.xib */; };
 		4F903FBA290F794100392606 /* RegisterDeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F903FB9290F794100392606 /* RegisterDeviceRequest.swift */; };
+		4F90BC842912E2BA006EEABC /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F90BC832912E2BA006EEABC /* Double+Extension.swift */; };
 		4F9B100028BDBBCD00B1FD82 /* SaveUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */; };
 		4F9B100228BDBDEA00B1FD82 /* SaveUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */; };
 		4FA0B87028E3C48700395361 /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0B86E28E3C48700395361 /* AddressListViewController.swift */; };
@@ -572,6 +573,7 @@
 		4F8CB6C528FD1FCF00A59F2C /* PaymentMethodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableViewCell.swift; sourceTree = "<group>"; };
 		4F8CB6C628FD1FCF00A59F2C /* PaymentMethodTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentMethodTableViewCell.xib; sourceTree = "<group>"; };
 		4F903FB9290F794100392606 /* RegisterDeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDeviceRequest.swift; sourceTree = "<group>"; };
+		4F90BC832912E2BA006EEABC /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserRequest.swift; sourceTree = "<group>"; };
 		4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserResponse.swift; sourceTree = "<group>"; };
 		4FA0B86E28E3C48700395361 /* AddressListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 				4FEDF8DE28B5DBEA00719245 /* UITextField+Extension.swift */,
 				4FFCD36F28C1494500D13F38 /* UserDefaults+Extensions.swift */,
 				4F3952AF29123D9600BCE270 /* Calendar+Extension.swift */,
+				4F90BC832912E2BA006EEABC /* Double+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2212,6 +2215,7 @@
 				4F317A9A28F77399005BA675 /* MasterSection.swift in Sources */,
 				4F0D96A226DDD59E0061E89E /* SideMenuViewModel.swift in Sources */,
 				4FEDF8E328B9921E00719245 /* TransactionHistoryRequest.swift in Sources */,
+				4F90BC842912E2BA006EEABC /* Double+Extension.swift in Sources */,
 				4F317A9328F76FCB005BA675 /* BannerCollectionViewCell.swift in Sources */,
 				4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */,
 				4FCA88B528DAA08B00B1FE46 /* CarProductTableViewCell.swift in Sources */,
@@ -2606,7 +2610,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
@@ -2632,7 +2636,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;

@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import DropDown
 import Nuke
+import FirebaseAuth
 import FirebaseMessaging
 
 class EditProfileViewController: UIViewController {
@@ -298,7 +299,19 @@ class EditProfileViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.deleteData()
+                let refreshAlert = UIAlertController(title: "", message: "¿Desea eliminar el registro?", preferredStyle: UIAlertController.Style.alert)
+
+                refreshAlert.addAction(UIAlertAction(title: "Acceptar", style: .default, handler: { (action: UIAlertAction!) in
+                    self.view.activityStarAnimating()
+                    self.deleteUserData()
+                    refreshAlert.dismiss(animated: true)
+                }))
+
+                refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (action: UIAlertAction!) in
+                    refreshAlert.dismiss(animated: true)
+                }))
+
+                self.present(refreshAlert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
@@ -482,22 +495,29 @@ class EditProfileViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    fileprivate func deleteData() {
+    fileprivate func deleteUserData() {
         viewModel
             .deleteUserProfile()
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let _ = data else { return }
+                self.userDefaults.removeObject(forKey: "Information")
+                let _ = KeychainManager.delete(key: "token")
+                Variables.isRegisterUser = false
+                Variables.isLoginUser = false
+                Variables.isClientUser = false
+                Variables.userProfile = nil
+                UserManager.shared.userData = nil
                 Messaging.messaging().token { token, error in
                   if let error = error {
-                    print("Error fetching FCM registration token: \(error)")
+                      self.view.activityStopAnimating()
+                      print("Error fetching FCM registration token: \(error)")
                   } else if let token = token {
-                    print("FCM registration token: \(token)")
-                    self.registerDevice(with: token)
+                      print("FCM registration token: \(token)")
+                      self.registerDevice(with: token)
                   }
                 }
-
             })
             .disposed(by: disposeBag)
     }
@@ -517,6 +537,7 @@ class EditProfileViewController: UIViewController {
                         print(error.localizedDescription)
                     }
                 }
+                self.view.activityStopAnimating()
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false

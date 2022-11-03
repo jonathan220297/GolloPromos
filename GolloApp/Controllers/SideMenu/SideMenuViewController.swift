@@ -44,7 +44,7 @@ class SideMenuViewController: UIViewController {
             if Variables.isRegisterUser {
                 profileLabel.text = "Mi perfil"
             } else {
-                profileLabel.text = "Registrar usuario"
+                profileLabel.text = "Crea tu perfil"
             }
         } else {
             logoutView.isHidden = true
@@ -152,6 +152,7 @@ class SideMenuViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
+                self.showAlert(alertText: "GolloApp", alertMessage: "Sesión cerrada exitosamente")
                 if let info = data.registro {
                     Variables.userProfile = info
                     do {
@@ -170,7 +171,6 @@ class SideMenuViewController: UIViewController {
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
                 self.dismiss(animated: true)
-                self.showAlert(alertText: "GolloApp", alertMessage: "Sesión cerrada exitosamente")
             })
             .disposed(by: disposeBag)
     }

@@ -25,7 +25,7 @@ class WishesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Mis productos favoritos"
+        navigationItem.title = "Mis productos favoritos"
         configureTableView()
     }
 

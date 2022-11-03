@@ -160,7 +160,7 @@ class EditProfileViewModel {
 
     func deleteUserProfile() -> BehaviorRelay<LoginData?> {
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<LoginData?, DeleteProfileServiceRequest>(
+        service.callWebServiceGolloAlternative(BaseRequest<LoginData?, DeleteProfileServiceRequest>(
             service: BaseServiceRequestParam<DeleteProfileServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
@@ -191,8 +191,14 @@ class EditProfileViewModel {
     }
 
     func registerDevice(with deviceToken: String) -> BehaviorRelay<LoginData?> {
+        var token: String? = nil
+        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : nil
+        if !getToken().isEmpty {
+            token = getToken()
+        }
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<LoginData?, RegisterDeviceServiceRequest>(
+        service.callWebServiceGolloAlternative(BaseRequest<LoginData?, RegisterDeviceServiceRequest>(
+            resource: "Procesos/RegistroDispositivos",
             service: BaseServiceRequestParam<RegisterDeviceServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
@@ -201,13 +207,13 @@ class EditProfileViewModel {
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
-                        token: getToken(),
+                        token: token ?? "",
                         integrationId: nil),
                     parametros: RegisterDeviceServiceRequest(
                         idEmpresa: 10,
                         idDeviceToken: deviceToken,
-                        Token: getToken(),
-                        idCliente: UserManager.shared.userData?.uid ?? "",
+                        Token: token,
+                        idCliente: idClient,
                         idDevice: "\(UUID())"
                     )
                 )

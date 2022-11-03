@@ -802,18 +802,17 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcl-eR-C5V">
                                             <rect key="frame" x="0.0" y="908" width="390" height="65"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nq-bl-uED" customClass="LocalizableButton" customModule="GolloApp" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nq-bl-uED">
                                                     <rect key="frame" x="19.666666666666657" y="8" width="351" height="49"/>
                                                     <color key="backgroundColor" name="colorPrimary"/>
-                                                    <fontDescription key="fontDescription" name="SansSerifFLF-Demibold" family="SansSerifFLF" pointSize="17"/>
-                                                    <state key="normal" title="CONTINUE WITH DELIVERY">
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <state key="normal" title="CONTINUAR CON EL ENVÍO">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="15"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="translationKey" value="PersonalInfoViewController_continue"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                             </subviews>

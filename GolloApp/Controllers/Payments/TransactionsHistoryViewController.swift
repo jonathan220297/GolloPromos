@@ -102,7 +102,7 @@ class TransactionsHistoryViewController: UIViewController {
 extension TransactionsHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let data = self.viewModel.payments.first {
-            if let _ = data.montoCuota, let _ = data.montoMaximoPago {
+            if let _ = data.montoRecibo, let _ = data.monPagoCapital {
                 return self.viewModel.payments.count
             } else {
                 return 0

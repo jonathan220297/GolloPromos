@@ -32,6 +32,7 @@ struct OrderItem: Codable {
 // MARK: - PaymentMethod
 struct PaymentMethod: Codable {
     let codAutorizacion, fechaExp, idFormaPago: String
+    let skuRelacionado: String?
     let montoPago: Double
     let noLineaRelacionada: Int
     let nomTarjeta, numTarjeta, tipoPlazoTarjeta, tipoTarjeta: String

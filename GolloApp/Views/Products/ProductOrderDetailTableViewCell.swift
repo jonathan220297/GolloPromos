@@ -34,7 +34,7 @@ class ProductOrderDetailTableViewCell: UITableViewCell {
         }
         titleLabel.text = data.descripcion ?? ""
         subtitleLabel.attributedText = formatHTML(header: "Cantidad: ", content: "\(data.cantidad ?? 0)")
-        totalLabel.attributedText = formatHTML(header: "Total: ", content: "₡\(numberFormatter.string(from: NSNumber(value: (data.precioExtendido ?? 0.0))) ?? "")")
+        totalLabel.attributedText = formatHTML(header: "Precio: ", content: "₡\(numberFormatter.string(from: NSNumber(value: (data.precioUnitario ?? 0.0))) ?? "")")
     }
     
 }

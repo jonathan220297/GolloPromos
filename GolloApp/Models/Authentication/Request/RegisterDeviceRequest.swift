@@ -12,7 +12,7 @@ struct RegisterDeviceRequest: APIRequest {
     public typealias Response = LoginData
 
     public var resourceName: String {
-        return "Procesos"
+        return "Procesos/RegistroDispositivos"
     }
 
     let service: BaseServiceRequestParam<RegisterDeviceServiceRequest>?

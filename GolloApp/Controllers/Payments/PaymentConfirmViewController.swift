@@ -137,12 +137,20 @@ class PaymentConfirmViewController: UIViewController {
         if let subtotal = numberFormatter.string(from: NSNumber(value: round(viewModel.subTotal))),
            let shipping = numberFormatter.string(from: NSNumber(value: round(viewModel.shipping))),
            let bono = numberFormatter.string(from: NSNumber(value: round(viewModel.bonus))) {
-            subtotalLabel.text = "₡" + String(subtotal)
+            var subtotalAmount = subtotal
+            if !self.viewModel.isAccountPayment, let formattedString = numberFormatter.string(from: NSNumber(value: round(self.viewModel.getSubtotalAmount()))) {
+                subtotalAmount = formattedString
+            }
+            subtotalLabel.text = "₡" + String(subtotalAmount)
             shippingStackView.isHidden = false
             shippingLabel.text = "₡" + String(shipping)
             bonoStackView.isHidden = false
             bonoLabel.text = "₡" + String(bono)
-            let total = round(viewModel.subTotal) + round(viewModel.shipping) - round(viewModel.bonus)
+
+            var total = round(viewModel.subTotal) + round(viewModel.shipping) - round(viewModel.bonus)
+            if !self.viewModel.isAccountPayment {
+                total = round(self.viewModel.getSubtotalAmount()) + round(viewModel.shipping) - round(viewModel.bonus)
+            }
             if let totalAmount = numberFormatter.string(from: NSNumber(value: round(total))), total > 0.0 {
                 totalLabel.text = "₡" + String(totalAmount)
             } else {

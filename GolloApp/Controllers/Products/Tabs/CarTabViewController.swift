@@ -125,17 +125,19 @@ class CarTabViewController: UIViewController {
         var carBonus = 0.0
         for item in viewModel.car {
             var totalPrice = 0.0
+            var totalBonus = 0.0
             if let bonus = item.montoBonoProveedor {
-                carBonus += bonus
+                totalBonus = bonus
                 totalPrice = item.precioUnitario - item.montoDescuento - bonus
             } else {
                 totalPrice = item.precioUnitario - item.montoDescuento
             }
-            total += (totalPrice * Double(item.cantidad)) + item.montoExtragar
+            carBonus += (totalBonus * Double(item.cantidad))
+            total += (totalPrice * Double(item.cantidad)) + (item.montoExtragar * Double(item.cantidad))
         }
         viewModel.total = total
         viewModel.bonus = carBonus
-        totalLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
+        totalLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: total))!
     }
     
     func checkIfUserRegistered() {

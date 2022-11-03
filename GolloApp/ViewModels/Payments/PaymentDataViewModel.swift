@@ -179,6 +179,7 @@ class PaymentDataViewModel {
                codAutorizacion: cvv,
                fechaExp: expiryDatePretty,
                idFormaPago: carManager.paymentMethodSelected?.idFormaPago ?? "30",
+               skuRelacionado: nil,
                montoPago: carManager.total,
                noLineaRelacionada: 0,
                nomTarjeta: cardHolderName,

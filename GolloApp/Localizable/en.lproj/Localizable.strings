@@ -169,8 +169,8 @@ Se constituye un acuerdo legal entre cualquier usuario y el App de Gollo dándos
 
 // ProfileViewController
 "ProfileViewController_title" = "Perfil de usuario";
-"ProfileViewController_document_type" = "Tipo de documento";
-"ProfileViewController_document_number" = "Número de documento (ID o pasaporte)";
+"ProfileViewController_document_type" = "Tipo de documento de indentidad";
+"ProfileViewController_document_number" = "Número de documento (cédula o pasaporte)";
 "ProfileViewController_search_customer" = "BUSCAR CLIENTE";
 "ProfileViewController_cedula" = "Cédula";
 "ProfileViewController_cedula_juridica" = "Cédula jurídica";
@@ -183,7 +183,7 @@ Se constituye un acuerdo legal entre cualquier usuario y el App de Gollo dándos
 "PaymentDataViewController_expiration" = "Mes de vencimiento";
 "PaymentDataViewController_expiration_year" = "Año de vencimiento";
 "PaymentDataViewController_card_name" = "Nombre";
-"PaymentDataViewController_continue_payment" = "CONTINUAR CON EL PAGO";
+"PaymentDataViewController_continue_payment" = "FINALIZAR PAGO";
 
 // PersonalInfoViewController
 "PersonalInfoViewController_title" = "Datos de envío";

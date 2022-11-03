@@ -17,7 +17,7 @@
                 <outlet property="createLabel" destination="IsQ-DG-F1Q" id="Dct-43-8bE"/>
                 <outlet property="deliveryLabel" destination="zyb-Mg-wgn" id="khv-K7-xSR"/>
                 <outlet property="deliveryTitleLabel" destination="kdp-DF-yTW" id="Hcz-d3-sCX"/>
-                <outlet property="discountLabel" destination="Gmc-nA-o7D" id="xmh-KH-DdX"/>
+                <outlet property="discountLabel" destination="pR3-se-uOp" id="UKf-5m-ef7"/>
                 <outlet property="nameLabel" destination="H5X-36-jtq" id="3qU-0l-YMa"/>
                 <outlet property="orderLabel" destination="nuo-Tp-En6" id="Cy3-v6-GNz"/>
                 <outlet property="paymentMethodLabel" destination="KXm-os-73f" id="azQ-WK-fr4"/>
@@ -278,17 +278,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5X-36-jtq">
-                                                    <rect key="frame" x="0.0" y="22" width="366" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5X-36-jtq">
+                                                    <rect key="frame" x="0.0" y="22" width="366" height="26.666666666666671"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="jpg-63-E1D"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="jpg-63-E1D"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-N0-W8C">
-                                                    <rect key="frame" x="0.0" y="42" width="366" height="34"/>
+                                                    <rect key="frame" x="0.0" y="48.666666666666686" width="366" height="27.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ajm-Tu-tTc"/>
                                                     </constraints>

@@ -29,7 +29,7 @@ struct PaymentType: Codable {
     let idFormaPago, codigoCupon, upcRelacionado, tipoTarjeta: String?
     let numeroTarjeta, codigoAutorizacion, fechaExpiraTarjeta, nombreTarjeta, descripcionFP: String?
     let montoTotal: Double?
-    let noLineaProductoRelacionado, totalCuotas: Int?
+    let noLineaProductoRelacionado, totalCuotas, principalFP: Int?
 }
 
 struct DeliveryType: Codable {

@@ -104,17 +104,27 @@ class CarProductTableViewCell: UITableViewCell {
         } else {
             totalPrice = data.precioUnitario - data.montoDescuento
         }
+        totalPrice = totalPrice * Double(data.cantidad)
 
         if data.mesesExtragar != 0 {
             warrantyNameLabel.text = "Gollo plus \(data.mesesExtragar) meses"
-            warrantyAmountLabel.text = "₡" + formatter.string(from: NSNumber(value: data.montoExtragar))!
+            warrantyAmountLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: data.montoExtragar))!
             warrantyStackView.isHidden = false
             addWarrantyView.isHidden = true
-            let total = totalPrice + data.montoExtragar
+            let total = totalPrice + (data.montoExtragar * Double(data.cantidad))
             totalAmountLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: total))!
         } else {
             warrantyStackView.isHidden = true
-            addWarrantyView.isHidden = false
+            if let id = data.idCarItem {
+                let warranties = CoreDataService().fetchCarWarranty(with: id)
+                if warranties.count > 1 {
+                    addWarrantyView.isHidden = false
+                } else {
+                    addWarrantyView.isHidden = true
+                }
+            } else {
+                addWarrantyView.isHidden = false
+            }
             totalAmountLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: totalPrice))!
         }
     }
