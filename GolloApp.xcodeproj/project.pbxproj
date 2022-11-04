@@ -203,6 +203,8 @@
 		4F8CB6C828FD1FCF00A59F2C /* PaymentMethodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F8CB6C628FD1FCF00A59F2C /* PaymentMethodTableViewCell.xib */; };
 		4F903FBA290F794100392606 /* RegisterDeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F903FB9290F794100392606 /* RegisterDeviceRequest.swift */; };
 		4F90BC842912E2BA006EEABC /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F90BC832912E2BA006EEABC /* Double+Extension.swift */; };
+		4F90BC8729143501006EEABC /* RoyaltyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F90BC8529143501006EEABC /* RoyaltyTableViewCell.swift */; };
+		4F90BC8829143501006EEABC /* RoyaltyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F90BC8629143501006EEABC /* RoyaltyTableViewCell.xib */; };
 		4F9B100028BDBBCD00B1FD82 /* SaveUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */; };
 		4F9B100228BDBDEA00B1FD82 /* SaveUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */; };
 		4FA0B87028E3C48700395361 /* AddressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0B86E28E3C48700395361 /* AddressListViewController.swift */; };
@@ -574,6 +576,8 @@
 		4F8CB6C628FD1FCF00A59F2C /* PaymentMethodTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentMethodTableViewCell.xib; sourceTree = "<group>"; };
 		4F903FB9290F794100392606 /* RegisterDeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDeviceRequest.swift; sourceTree = "<group>"; };
 		4F90BC832912E2BA006EEABC /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		4F90BC8529143501006EEABC /* RoyaltyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoyaltyTableViewCell.swift; sourceTree = "<group>"; };
+		4F90BC8629143501006EEABC /* RoyaltyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoyaltyTableViewCell.xib; sourceTree = "<group>"; };
 		4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserRequest.swift; sourceTree = "<group>"; };
 		4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserResponse.swift; sourceTree = "<group>"; };
 		4FA0B86E28E3C48700395361 /* AddressListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
@@ -1746,6 +1750,8 @@
 				4F410E1D28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib */,
 				4FDCC97929097E14004BB9B6 /* SearchHistoryCollectionViewCell.swift */,
 				4FDCC97A29097E14004BB9B6 /* SearchHistoryCollectionViewCell.xib */,
+				4F90BC8529143501006EEABC /* RoyaltyTableViewCell.swift */,
+				4F90BC8629143501006EEABC /* RoyaltyTableViewCell.xib */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -1994,6 +2000,7 @@
 				4F4EC47E27276A50007B17FE /* Localizable.strings in Resources */,
 				4F0D966F26DDBB810061E89E /* SansSerifBookFLF-Italic.otf in Resources */,
 				4FDA3AA526D8FE27003B2CB6 /* Assets.xcassets in Resources */,
+				4F90BC8829143501006EEABC /* RoyaltyTableViewCell.xib in Resources */,
 				4FE1912526DEFCA000322128 /* ProductCollectionViewCell.xib in Resources */,
 				4FCDE9A92910C86600B73D29 /* GoogleService-Info.plist in Resources */,
 				4F678D7C28E7C3FF00C8E8B3 /* WishesViewController.xib in Resources */,
@@ -2365,6 +2372,7 @@
 				4F0D96CB26DDDEE30061E89E /* AccountsViewController.swift in Sources */,
 				4F0D96AD26DDD6D40061E89E /* EditProfileViewModel.swift in Sources */,
 				4F0D96D526DDDF2C0061E89E /* AccountItemResponse.swift in Sources */,
+				4F90BC8729143501006EEABC /* RoyaltyTableViewCell.swift in Sources */,
 				4F17323127013C0000D7924D /* ProductTableViewCell.swift in Sources */,
 				4F0D969B26DDD4170061E89E /* NotificationTableViewCell.swift in Sources */,
 				4FF1C6D828FF72C900456164 /* ProvenanceRequest.swift in Sources */,
@@ -2610,7 +2618,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
@@ -2636,7 +2644,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;

@@ -115,7 +115,7 @@ class CarTabViewController: UIViewController {
         if viewModel.car.count > 1 {
             totalString = "Tienes \(viewModel.car.count) items en el carrito"
         } else {
-            totalString = "Tienes \(viewModel.car.count) item en el carrito"
+            totalString = "Tiene \(viewModel.car.count) item en el carrito"
         }
 
         totalItemsLabel.text = totalString

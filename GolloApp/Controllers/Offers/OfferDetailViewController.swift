@@ -303,7 +303,7 @@ class OfferDetailViewController: UIViewController {
 
             brandLabel.attributedText = formatHTML(header: "Marca: ", content: offer.brand ?? "")
             modelLabel.attributedText = formatHTML(header: "Modelo: ", content: offer.modelo ?? "")
-            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productName ?? "")
+            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: data.articulo?.especificaciones ?? "")
             if let endDate = offer.endDate, !endDate.isEmpty {
                 let calendar = Calendar.current
                 let dateFormatter = DateFormatter()

@@ -191,19 +191,18 @@ class ShippingMethodViewController: UIViewController {
                           let response = response else { return }
                     if let fletes = response.fletes, !fletes.isEmpty {
                         if let _ = fletes.first {
-                            self.viewModel.setShippingMethods(false)
                             for f in fletes {
-                                self.viewModel.methods.insert(
+                                self.viewModel.methods.append(
                                     ShippingMethodData(
                                         cargoCode: f.codigoFlete ?? "",
                                         shippingType: f.nombre ?? "",
                                         shippingDescription: f.descripcion ?? "",
                                         cost: f.monto ?? 0.0,
                                         selected: false
-                                    ),
-                                    at: 0
+                                    )
                                 )
                             }
+                            self.viewModel.setShippingMethods(false)
                             self.shippingMethodsTableView.reloadData()
                             self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + 120
                             self.stateView.isHidden = true

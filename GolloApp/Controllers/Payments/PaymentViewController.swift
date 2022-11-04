@@ -208,7 +208,7 @@ class PaymentViewController: UIViewController {
                 self.totalPendingHeigth.constant = 0
                 self.totalPendingView.layoutIfNeeded()
             }
-            self.installmentLabel.text = "Monto a pagar"
+            self.installmentTitleLabel.text = "Monto a pagar"
             if let pending = numberFormatter.string(from: NSNumber(value: self.paymentData?.totalAmount ?? 0.0)) {
                 self.installmentLabel.text = "₡" + String(pending)
             }

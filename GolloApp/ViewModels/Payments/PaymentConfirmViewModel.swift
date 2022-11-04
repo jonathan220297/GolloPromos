@@ -160,7 +160,7 @@ class PaymentConfirmViewModel {
                     descripcion: item.descripcion,
                     descuento: Int(discountAmount),
                     montoDescuento: 0.0,
-                    montoExtragar: item.montoExtragar,
+                    montoExtragar: item.montoExtragar.round(to: 2),
                     porcDescuento: item.porcDescuento,
                     precioExtendido: extendedFormattedPrice,
                     precioUnitario: item.precioUnitario.round(to: 2),

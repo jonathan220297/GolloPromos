@@ -11,6 +11,7 @@ import RxRelay
 class OrderDetailTabViewModel {
     private let service = GolloService()
 
+    var royalties: [OrderDetailInformation] = []
     var products: [OrderDetailInformation] = []
 
     func fetchOrderDetail(orderId: String) -> BehaviorRelay<OrderDetailData?> {

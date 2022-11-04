@@ -63,6 +63,7 @@ class HistoryViewController: UIViewController {
         self.tableView.rowHeight = 200.0
         hideKeyboardWhenTappedAround()
         configureRx()
+        configureDates()
     }
 
     // MARK: - Observers
@@ -112,6 +113,21 @@ class HistoryViewController: UIViewController {
             .disposed(by: bag)
     }
 
+    fileprivate func configureDates() {
+        let actualDate = Date()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        alternativeFormatter.dateFormat = "dd/MM/yyyy"
+
+        fromDateSelected = dateFormatter.string(from: actualDate)
+        fromTextField.text = alternativeFormatter.string(from: actualDate)
+
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        DateFormatter().dateFormat = "dd/MM/yyyy"
+
+        toDateSelected = dateFormatter.string(from: actualDate)
+        toTextField.text = alternativeFormatter.string(from: actualDate)
+    }
+
     fileprivate func fetchHistory(from: String, to: String) {
         view.activityStarAnimating()
         viewModel.fetchHistoryTransactions(with: from, endDate: to)
@@ -127,6 +143,9 @@ class HistoryViewController: UIViewController {
                     self.tableView.reloadData()
                     self.emptyView.alpha = 0
                     self.tableView.alpha = 1
+                } else {
+                    self.emptyView.alpha = 1
+                    self.tableView.alpha = 0
                 }
             })
             .disposed(by: bag)

@@ -28,9 +28,14 @@ class OrderDetailTabViewController: UIViewController {
     @IBOutlet weak var quotaStackView: UIStackView!
     @IBOutlet weak var quotaSwitch: UISwitch!
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var royaltyView: UIView!
+    @IBOutlet weak var royaltyViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var royaltyTableView: UITableView!
+    @IBOutlet weak var productsView: UIView!
     @IBOutlet weak var productsTableView: UITableView!
     @IBOutlet weak var productsTableViewHeight: NSLayoutConstraint!
-
+    @IBOutlet weak var productsViewHeight: NSLayoutConstraint!
+    
     // MARK: - Constants
     let viewModel: OrderDetailTabViewModel
     let orderId: String
@@ -62,6 +67,7 @@ class OrderDetailTabViewController: UIViewController {
     }
 
     func configureTableView() {
+        royaltyTableView.register(UINib(nibName: "RoyaltyTableViewCell", bundle: nil), forCellReuseIdentifier: "RoyaltyTableViewCell")
         productsTableView.register(UINib(nibName: "ProductOrderDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductOrderDetailTableViewCell")
     }
 
@@ -83,6 +89,7 @@ class OrderDetailTabViewController: UIViewController {
         let shippingItem = order.ordenDetalle.first(where: { $0.sku == SKU_SHIPPING })
         let warrantyItem = order.ordenDetalle.first(where: { $0.sku == SKU_WARRANTY })
         let paymentMethod = order.formasPago.first(where: { $0.principalFP == 1 })
+        let royalty = order.ordenDetalle.filter { $0.esRegalia == 1 }
 
         let products = order.ordenDetalle.filter { product in
             return product.esRegalia != 1 && product.sku != SKU_SHIPPING && product.sku != SKU_WARRANTY
@@ -165,8 +172,23 @@ class OrderDetailTabViewController: UIViewController {
             paymentMethodLabel.text = paymentMethod?.descripcionFP ?? ""
         }
         amountLabel.attributedText = formatHTML(header: "Monto: ", content: "₡\(numberFormatter.string(from: NSNumber(value: (paymentMethod?.montoTotal ?? 0.0))) ?? "")")
+
+        royaltyView.isHidden = royalty.isEmpty
+        viewModel.royalties = royalty
+        royaltyTableView.reloadData()
+
         viewModel.products = products
         productsTableView.reloadData()
+
+        if viewModel.royalties.count > 1 {
+            royaltyViewHeight.constant = CGFloat(25 + (50 * viewModel.royalties.count))
+            royaltyView.layoutIfNeeded()
+        }
+
+        if viewModel.products.count > 1 {
+            productsViewHeight.constant = CGFloat(25 + (100 * viewModel.products.count))
+            productsView.layoutIfNeeded()
+        }
     }
 
     func getAddress(with data: DeliveryType) -> String {
@@ -185,11 +207,19 @@ class OrderDetailTabViewController: UIViewController {
 
 extension OrderDetailTabViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.products.count
+        if tableView == self.royaltyTableView {
+            return viewModel.royalties.count
+        } else {
+            return viewModel.products.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return getProductCell(tableView, cellForRowAt: indexPath)
+        if tableView == self.royaltyTableView {
+            return getRoyaltyCell(tableView, cellForRowAt: indexPath)
+        } else {
+            return getProductCell(tableView, cellForRowAt: indexPath)
+        }
     }
 
     func getProductCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -201,7 +231,22 @@ extension OrderDetailTabViewController: UITableViewDataSource, UITableViewDelega
         return cell
     }
 
+    func getRoyaltyCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RoyaltyTableViewCell", for: indexPath) as? RoyaltyTableViewCell else {
+            return UITableViewCell()
+        }
+
+        cell.quantityLabel.text = "\(viewModel.royalties[indexPath.row].cantidad ?? 0)"
+        cell.nameLabel.text = viewModel.royalties[indexPath.row].descripcion
+        cell.selectionStyle = .none
+        return cell
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        if tableView == self.royaltyTableView {
+            return 50
+        } else {
+            return 100
+        }
     }
 }

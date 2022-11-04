@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import RxCocoa
 import RxSwift
 
@@ -85,6 +86,17 @@ extension SignUpViewController {
     fileprivate func showConfirmationMessage() {
         self.signUpButton.hideLoading()
         showAlertWithActions(alertText: "Verificación de correo", alertMessage: "Se enviará un enlace a tu correo electrónico para validar tu cuenta") {
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                Variables.isRegisterUser = false
+                Variables.isLoginUser = false
+                Variables.isClientUser = false
+                Variables.userProfile = nil
+                UserManager.shared.userData = nil
+            } catch let signOutError as NSError {
+                log.error("Error signing out: \(signOutError)")
+            }
             self.navigationController?.popViewController(animated: true)
         }
     }
