@@ -165,13 +165,13 @@ Se constituye un acuerdo legal entre cualquier usuario y el App de Gollo dándos
 "SignUpViewController_button_title" = "CREAR NUEVA CUENTA";
 
 // Extensions
-"Extension_simple_alert_ok_button" = "Got it";
+"Extension_simple_alert_ok_button" = "Aceptar";
 
 // ProfileViewController
 "ProfileViewController_title" = "Perfil de usuario";
 "ProfileViewController_document_type" = "Tipo de documento de indentidad";
 "ProfileViewController_document_number" = "Número de documento (cédula o pasaporte)";
-"ProfileViewController_search_customer" = "BUSCAR CLIENTE";
+"ProfileViewController_search_customer" = "BUSCAR";
 "ProfileViewController_cedula" = "Cédula";
 "ProfileViewController_cedula_juridica" = "Cédula jurídica";
 "ProfileViewController_passport" = "Pasaporte";
@@ -182,7 +182,7 @@ Se constituye un acuerdo legal entre cualquier usuario y el App de Gollo dándos
 "PaymentDataViewController_card_number" = "Tarjeta de crédito";
 "PaymentDataViewController_expiration" = "Mes de vencimiento";
 "PaymentDataViewController_expiration_year" = "Año de vencimiento";
-"PaymentDataViewController_card_name" = "Nombre";
+"PaymentDataViewController_card_name" = "Titular de la tarjeta";
 "PaymentDataViewController_continue_payment" = "FINALIZAR PAGO";
 
 // PersonalInfoViewController

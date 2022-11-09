@@ -34,6 +34,7 @@ class SearchOffersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureRx()
         configureTableView()
         self.searchBar.endEditing(true)
         viewModel.history = defaults.stringArray(forKey: "searchedText") ?? [String]()
@@ -63,6 +64,22 @@ class SearchOffersViewController: UIViewController {
     }
 
     // MARK: - Functions
+    fileprivate func configureRx() {
+        viewModel
+            .errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self else { return }
+                if !error.isEmpty {
+                    self.view.activityStopAnimating()
+                    self.emptyView.alpha = 1
+                    self.collectionView.alpha = 0
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    self.viewModel.errorMessage.accept("")
+                }
+            })
+            .disposed(by: bag)
+    }
     func configureTableView() {
         self.searchCollectionView.register(UINib(nibName: "SearchHistoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SearchHistoryCollectionViewCell")
         self.collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")

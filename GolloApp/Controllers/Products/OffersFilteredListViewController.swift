@@ -179,6 +179,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesFilteredListCell", for: indexPath) as! CategoriesFilteredListCollectionViewCell
             cell.titleLabel.text = viewModel.categories[indexPath.row].nombre
+            cell.titleLabel.sizeToFit()
             return cell
         } else {
             return getProductCell(collectionView, cellForItemAt: indexPath)
@@ -197,7 +198,10 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.collectionView {
-            return CGSize(width: 140, height: 35)
+            let label = UILabel(frame: CGRect.zero)
+            label.text = viewModel.categories[indexPath.row].nombre
+            label.sizeToFit()
+            return CGSize(width: label.frame.width, height: 40)
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
@@ -212,7 +216,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
                 let selected = collectionView.cellForItem(at: indexPath) as! CategoriesFilteredListCollectionViewCell
                 selected.titleLabel.textColor = .white
                 selected.cellView.backgroundColor = .primaryLight
-                selected.cellView.layer.cornerRadius = 10
+                selected.cellView.layer.cornerRadius = 5
                 selected.cellView.layer.masksToBounds = true
                 selected.cellView.layoutSubviews()
                 selected.cellView.layoutIfNeeded()
@@ -230,7 +234,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
                     }
                 }
                 previous?.cellView.backgroundColor = .primary
-                selected.cellView.layer.cornerRadius = 10
+                selected.cellView.layer.cornerRadius = 5
                 selected.cellView.layer.masksToBounds = true
                 selected.cellView.layoutSubviews()
                 selected.cellView.layoutIfNeeded()

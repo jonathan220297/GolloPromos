@@ -236,6 +236,7 @@
 		4FB258352720E6C40003C607 /* CustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB258342720E6C40003C607 /* CustomerInfo.swift */; };
 		4FB4466928921D2E00C35A96 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4466828921D2E00C35A96 /* ServicesViewController.swift */; };
 		4FB45FA1290F7E76006A4958 /* DeleteProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB45FA0290F7E76006A4958 /* DeleteProfileRequest.swift */; };
+		4FBC3F872919FC0600626626 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBC3F862919FC0600626626 /* PushNotificationManager.swift */; };
 		4FC04C5428AE95A3001EF211 /* GenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5328AE95A3001EF211 /* GenderType.swift */; };
 		4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5628AE9C3E001EF211 /* UserRequest.swift */; };
 		4FC04C5A28AE9C74001EF211 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5928AE9C74001EF211 /* UserResponse.swift */; };
@@ -610,6 +611,7 @@
 		4FB258342720E6C40003C607 /* CustomerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfo.swift; sourceTree = "<group>"; };
 		4FB4466828921D2E00C35A96 /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		4FB45FA0290F7E76006A4958 /* DeleteProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileRequest.swift; sourceTree = "<group>"; };
+		4FBC3F862919FC0600626626 /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		4FC04C5328AE95A3001EF211 /* GenderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderType.swift; sourceTree = "<group>"; };
 		4FC04C5628AE9C3E001EF211 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		4FC04C5928AE9C74001EF211 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -1414,6 +1416,7 @@
 				4FE1911426DEFB0E00322128 /* DataManager.swift */,
 				4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */,
 				4FE86E6128E40BAC008E58F1 /* CarManager.swift */,
+				4FBC3F862919FC0600626626 /* PushNotificationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -2174,6 +2177,7 @@
 			files = (
 				4F0D96E026DDE1F30061E89E /* ItemsTableViewCell.swift in Sources */,
 				4F3E7C8428F21D7000221684 /* CategoriesFilterData.swift in Sources */,
+				4FBC3F872919FC0600626626 /* PushNotificationManager.swift in Sources */,
 				4FB258332720DEC30003C607 /* HistoryRequest.swift in Sources */,
 				4FC04C5428AE95A3001EF211 /* GenderType.swift in Sources */,
 				4F74C8D8272C7DE200FADA4D /* OffersQueryView.swift in Sources */,
@@ -2618,7 +2622,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
@@ -2644,7 +2648,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;

@@ -24,6 +24,7 @@ class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBar()
+        configureTabBarAppearance()
     }
 
     // MARK: - Observers
@@ -87,6 +88,19 @@ class HomeViewController: UITabBarController {
             if let tabBarController = self.tabBarController {
                 tabBarController.selectedIndex = 2
             }
+        }
+    }
+
+    func configureTabBarAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .white
+        UITabBar.appearance().standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        } else {
+            UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor(named: "colorPrimary") ?? .blue], for: .selected)
+            UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.systemGray], for: .normal)
+            tabBar.barTintColor = .white
         }
     }
 

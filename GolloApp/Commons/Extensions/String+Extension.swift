@@ -133,34 +133,49 @@ extension String {
 
 
     public var convertHtmlToNSAttributedString: NSAttributedString? {
-            guard let data = data(using: .utf8) else {
-                return nil
-            }
-            do {
-                return try NSAttributedString(data: data,options: [.documentType: NSAttributedString.DocumentType.html,.characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
-            }
-            catch {
-                print(error.localizedDescription)
-                return nil
-            }
+        guard let data = data(using: .utf8) else {
+            return nil
         }
+        do {
+            return try NSAttributedString(data: data,options: [.documentType: NSAttributedString.DocumentType.html,.characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        }
+        catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
 
-        public func convertHtmlToAttributedStringWithCSS(font: UIFont? , csscolor: String , lineheight: Int, csstextalign: String) -> NSAttributedString? {
-            guard let font = font else {
-                return convertHtmlToNSAttributedString
-            }
-            let modifiedString = "<style>body{font-family: '\(font.fontName)'; font-size:\(font.pointSize)px; color: \(csscolor); line-height: \(lineheight)px; text-align: \(csstextalign); }</style>\(self)";
-            guard let data = modifiedString.data(using: .utf8) else {
-                return nil
-            }
-            do {
-                return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
-            }
-            catch {
-                print(error)
-                return nil
-            }
+    public func convertHtmlToAttributedStringWithCSS(font: UIFont? , csscolor: String , lineheight: Int, csstextalign: String) -> NSAttributedString? {
+        guard let font = font else {
+            return convertHtmlToNSAttributedString
         }
+        let modifiedString = "<style>body{font-family: '\(font.fontName)'; font-size:\(font.pointSize)px; color: \(csscolor); line-height: \(lineheight)px; text-align: \(csstextalign); }</style>\(self)";
+        guard let data = modifiedString.data(using: .utf8) else {
+            return nil
+        }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        }
+        catch {
+            print(error)
+            return nil
+        }
+    }
+
+    func removingLeadingSpaces() -> String {
+        guard let index = firstIndex(where: { !CharacterSet(charactersIn: String($0)).isSubset(of: .whitespaces) }) else {
+            return self
+        }
+        return String(self[index...])
+    }
+
+    func replace(string:String, replacement:String) -> String {
+        return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+    }
+
+    func removeWhitespace() -> String {
+        return self.replace(string: " ", replacement: "")
+    }
 }
 
 

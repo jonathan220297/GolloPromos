@@ -168,12 +168,14 @@ class PaymentDataViewController: UIViewController {
                       let response = response,
                       let _ = self.viewModel.carManager.paymentMethodSelected else { return }
                 if let url = response.url, !url.isEmpty {
-                    let verifyPaymentViewController = VerifyPaymentViewController()
-                    verifyPaymentViewController.modalPresentationStyle = .fullScreen
-                    verifyPaymentViewController.delegate = self
-                    verifyPaymentViewController.redirectURL = url
-                    verifyPaymentViewController.processId = response.idProceso ?? ""
-                    self.navigationController?.pushViewController(verifyPaymentViewController, animated: true)
+                    self.showAlertWithActions(alertText: "", alertMessage: "Vas a ser redireccionado a una página externa de autenticación. Por favor no cerrés dicha página y seguí las instrucciones.") {
+                        let verifyPaymentViewController = VerifyPaymentViewController()
+                        verifyPaymentViewController.modalPresentationStyle = .fullScreen
+                        verifyPaymentViewController.delegate = self
+                        verifyPaymentViewController.redirectURL = url
+                        verifyPaymentViewController.processId = response.idProceso ?? ""
+                        self.navigationController?.pushViewController(verifyPaymentViewController, animated: true)
+                    }
                 } else {
                     self.continueButton.hideLoading()
                     self.viewModel.errorMessage.accept("")
@@ -209,12 +211,14 @@ class PaymentDataViewController: UIViewController {
                     self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
                 } else {
                     if let url = response.url, !url.isEmpty {
-                        let verifyPaymentViewController = VerifyPaymentViewController()
-                        verifyPaymentViewController.modalPresentationStyle = .fullScreen
-                        verifyPaymentViewController.delegate = self
-                        verifyPaymentViewController.redirectURL = url
-                        verifyPaymentViewController.processId = response.idProceso ?? ""
-                        self.navigationController?.pushViewController(verifyPaymentViewController, animated: true)
+                        self.showAlertWithActions(alertText: "", alertMessage: "Vas a ser redireccionado a una página externa de autenticación. Por favor no cerrés dicha página y seguí las instrucciones.") {
+                            let verifyPaymentViewController = VerifyPaymentViewController()
+                            verifyPaymentViewController.modalPresentationStyle = .fullScreen
+                            verifyPaymentViewController.delegate = self
+                            verifyPaymentViewController.redirectURL = url
+                            verifyPaymentViewController.processId = response.idProceso ?? ""
+                            self.navigationController?.pushViewController(verifyPaymentViewController, animated: true)
+                        }
                     } else {
                         self.continueButton.hideLoading()
                         self.viewModel.errorMessage.accept("")

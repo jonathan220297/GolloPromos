@@ -54,7 +54,7 @@ class LoginViewModel: NSObject {
         }
     }
 
-    func fetchUserInfo(for loginType: LoginType) -> BehaviorRelay<LoginData?> {
+    func fetchUserInfo(for loginType: LoginType, idToken: String) -> BehaviorRelay<LoginData?> {
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
         service.callWebServiceGolloAlternative(
             LoginRequest(
@@ -66,14 +66,18 @@ class LoginViewModel: NSObject {
                             idUsuario: UserManager.shared.userData?.uid ?? "",
                             timeStamp: String(Date().timeIntervalSince1970),
                             idCia: 10,
-                            token: "",
+                            token: idToken,
                             integrationId: nil),
                         parametros: LoginServiceRequest(
                             idCliente: userManager.userData?.uid ?? "",
                             nombre: userManager.userData?.displayName ?? "",
                             apellido1: userManager.userData?.displayName ?? "",
                             apellido2: userManager.userData?.displayName ?? "",
-                            tipoLogin: String(loginType.rawValue)
+                            tipoLogin: String(loginType.rawValue),
+                            idDevice: getDeviceID(),
+                            idDeviceToken: "",
+                            sisOperativo: "iOS",
+                            idEmpresa: 10
                         )
                     )
                 )

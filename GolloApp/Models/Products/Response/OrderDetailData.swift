@@ -33,7 +33,7 @@ struct PaymentType: Codable {
 }
 
 struct DeliveryType: Codable {
-    let tipoEntrega, lugarDespacho, horaEntrega, fechaEntrega, instruccionesEspeciales: String?
+    let tipoEntrega, lugarDespacho, horaEntrega, fechaEntrega, instruccionesEspeciales, descEntrega: String?
     let direccion, tipoDireccion, idProvincia, provinciaDesc, idCanton, cantonDesc, idDistrito, distritoDesc: String?
     let tipoIdReceptor, idReceptor, parentescoReceptor, codigoPostal, receptorProducto, telefonoReceptor: String?
 }

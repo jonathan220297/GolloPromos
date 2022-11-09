@@ -162,7 +162,7 @@ class PaymentConfirmViewModel {
                     montoDescuento: 0.0,
                     montoExtragar: item.montoExtragar.round(to: 2),
                     porcDescuento: item.porcDescuento,
-                    precioExtendido: extendedFormattedPrice,
+                    precioExtendido: extendedFormattedPrice.round(to: 2),
                     precioUnitario: item.precioUnitario.round(to: 2),
                     sku: item.sku,
                     tipoSku: 1,

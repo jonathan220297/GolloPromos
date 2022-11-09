@@ -27,6 +27,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var searchCustomerHeight: NSLayoutConstraint!
     @IBOutlet weak var unregisteredUserView: UIView!
     @IBOutlet weak var registerUserButton: UIButton!
+    @IBOutlet weak var informationView: UIView!
     // User data
     @IBOutlet weak var userDataStackView: UIStackView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -70,7 +71,6 @@ class EditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
         configureObservers()
         configureRx()
         createDatePicker()
@@ -88,6 +88,7 @@ class EditProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         self.tabBarController?.tabBar.isHidden = true
+        configureNavigationBar()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -122,7 +123,11 @@ class EditProfileViewController: UIViewController {
     
     // MARK: - Functions
     func configureNavigationBar() {
-        self.navigationItem.title = "Mi perfil"
+        if (Variables.userProfile != nil && Variables.isRegisterUser) {
+            self.navigationItem.title = "Mi perfil"
+        } else {
+            self.navigationItem.title = "Crea tu perfil"
+        }
         self.tabBarController?.tabBar.isHidden = true
         let barAppearance = UINavigationBarAppearance()
         barAppearance.backgroundColor = .primary
@@ -382,6 +387,7 @@ class EditProfileViewController: UIViewController {
         view.activityStopAnimating()
         searchCustomerButton.visibility = .gone
         searchCustomerHeight.constant = 0
+        informationView.isHidden = true
         userDataStackView.alpha = 1
         profileImageView.isHidden = false
         self.unregisteredUserView.isHidden = true
@@ -491,6 +497,8 @@ class EditProfileViewController: UIViewController {
                 }
                 self.view.activityStopAnimating()
                 self.showAlert(alertText: "GolloApp", alertMessage: "Usuario actualizado exitosamente.")
+                self.configureNavigationBar()
+                self.configureUserData()
             })
             .disposed(by: disposeBag)
     }

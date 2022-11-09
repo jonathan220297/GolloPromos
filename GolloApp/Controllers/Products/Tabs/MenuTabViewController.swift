@@ -39,7 +39,7 @@ class MenuTabViewController: UIViewController {
         var firstItems: [ItemTabData] = []
         let accounts = ItemTabData(id: 1, image: "ic_menu_accounts", title: "Pago de cuotas", subtitle: "Abonos y consultas a compras activas de crédito")
         let status = ItemTabData(id: 2, image: "ic_payment_status", title: "Estados de cuentas", subtitle: "Estado de cuentas a la fecha")
-        let third = ItemTabData(id: 3, image: "ic_third_party_payment", title: "Pago de cuotas de Terceros", subtitle: "Abonos a compras activas de crédito de otras personas")
+        let third = ItemTabData(id: 3, image: "ic_third_party_payment", title: "Pago de cuotas de terceros", subtitle: "Abonos a compras activas de crédito de otras personas")
         let history = ItemTabData(id: 4, image: "ic_history", title: "Historial de pagos", subtitle: "Historial de pagos realizados por este App")
         firstItems.append(accounts)
         firstItems.append(status)
@@ -122,7 +122,12 @@ extension MenuTabViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return menuItems[section].title
+        return menuItems[section].title.capitalized
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let titleView = view as! UITableViewHeaderFooterView
+        titleView.textLabel?.text =  titleView.textLabel?.text?.capitalized
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

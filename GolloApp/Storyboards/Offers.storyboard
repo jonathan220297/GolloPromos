@@ -1264,6 +1264,7 @@
                         <outlet property="cartView" destination="WzY-Ob-kqK" id="vD4-dr-21b"/>
                         <outlet property="cartViewHeight" destination="fr4-gY-4O5" id="Y6W-gs-O9k"/>
                         <outlet property="dateLabel" destination="sH9-Lr-DmM" id="Bbd-fR-lso"/>
+                        <outlet property="dateView" destination="Aev-go-DKh" id="egA-3Q-iDl"/>
                         <outlet property="descriptionLabel" destination="oOM-NB-fYo" id="ioq-6V-klB"/>
                         <outlet property="discountConstraint" destination="6zg-Hg-y0a" id="HxR-i9-N9x"/>
                         <outlet property="discountLabel" destination="u4Q-3g-h89" id="FIk-74-Vc3"/>

@@ -25,8 +25,13 @@ class ItemsTableViewCell: UITableViewCell {
     }
 
     func setItem(with model: Items) {
-        descriptionLabel.text = model.descripcion
-        modelLabel.text = "Modelo: \(model.modelo ?? "")"
+        descriptionLabel.text = "Producto: \(model.descripcion ?? "")"
+        if let modelItem = model.modelo, !modelItem.isEmpty {
+            modelLabel.isHidden = false
+            modelLabel.text = "Modelo: \(modelItem)"
+        } else {
+            modelLabel.isHidden = true
+        }
         quantityLabel.text = "Cantidad: \(model.cantidad ?? 0)"
     }
 

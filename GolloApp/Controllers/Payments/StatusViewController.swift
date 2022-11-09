@@ -25,7 +25,8 @@ class StatusViewController: UIViewController {
     @IBOutlet weak var currentBalanceLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var defaultBalanceLabel: UILabel!
-    
+    @IBOutlet weak var emptyView: UIView!
+
     lazy var viewModel: StatusViewModel = {
         return StatusViewModel()
     }()
@@ -33,7 +34,7 @@ class StatusViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Estados de cuenta"
+        navigationItem.title = "Estados de cuentas"
         self.tabBarController?.tabBar.isHidden = true
 
         self.tableView.rowHeight = 310.0
@@ -82,6 +83,12 @@ class StatusViewController: UIViewController {
                 self.showClientTotals(totals: data.totales)
                 self.viewModel.account = data.cuentas ?? []
                 self.tableView.reloadData()
+
+                if let data = self.viewModel.account.first, let number = data.numCuenta, !number.isEmpty {
+                    self.emptyView.alpha = 0
+                } else {
+                    self.emptyView.alpha = 1
+                }
             })
             .disposed(by: bag)
     }

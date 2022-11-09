@@ -11,16 +11,18 @@ import RxRelay
 class SearchOffersViewModel {
     private let service = GolloService()
 
+    let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
+    
     var history: [String] = []
     var products: [Product] = []
 
     func fetchFilteredProducts(with searchText: String? = nil) -> BehaviorRelay<[Offers]?> {
         let apiResponse: BehaviorRelay<[Offers]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[Offers], SearchOffersServiceRequest>(
-            service: BaseServiceRequestParam<SearchOffersServiceRequest>(
+        service.callWebServiceGollo(BaseRequest<[Offers], OfferFilteredListServiceRequest>(
+            service: BaseServiceRequestParam<OfferFilteredListServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
-                        idProceso: GOLLOAPP.SEARCH_PRODUCTS_PROCESS_ID.rawValue,
+                        idProceso: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue,
                         idDevice: getDeviceID(),
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
@@ -28,13 +30,15 @@ class SearchOffersViewModel {
                         token: getToken(),
                         integrationId: nil
                     ),
-                    parametros: SearchOffersServiceRequest (
+                    parametros: OfferFilteredListServiceRequest (
+                        idCategoria: nil,
+                        orden: nil,
                         busqueda: searchText,
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",
                         idTaxonomia: -1,
                         numPagina: 1,
-                        tamanoPagina: 40
+                        tamanoPagina: 30
                     )
                 )
             )
@@ -44,6 +48,7 @@ class SearchOffersViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
+                    self.errorMessage.accept(error.localizedDescription)
                     print("Error: \(error.localizedDescription)")
                 }
             }

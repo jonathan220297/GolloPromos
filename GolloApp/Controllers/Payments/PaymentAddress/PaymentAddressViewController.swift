@@ -38,9 +38,12 @@ class PaymentAddressViewController: UIViewController {
     // MARK: - Constants
     var viewModel: PaymentAddressViewModel
     let bag = DisposeBag()
+    let userDefaults = UserDefaults.standard
+    var firstLoad = true
 
     init(viewModel: PaymentAddressViewModel) {
         self.viewModel = viewModel
+        self.viewModel.processDocTypes()
         super.init(nibName: "PaymentAddressViewController", bundle: nil)
     }
     
@@ -102,8 +105,8 @@ class PaymentAddressViewController: UIViewController {
         phoneNumberTextField.text = Variables.userProfile?.telefono1
         viewModel.phoneNumberSubject.accept(Variables.userProfile?.telefono1)
         if let document = viewModel.documentTypeArray.first {
-            self.documentTypeLabel.text = document
-            self.viewModel.documentTypeSubject.accept(document)
+            self.documentTypeLabel.text = document.name
+            self.viewModel.documentTypeSubject.accept(document.code)
         }
         identificationNumberTextField.text = Variables.userProfile?.numeroIdentificacion
         viewModel.identificationNumberSubject.accept(Variables.userProfile?.numeroIdentificacion)
@@ -196,11 +199,11 @@ class PaymentAddressViewController: UIViewController {
     fileprivate func displayDocumentTypeList() {
         let dropDown = DropDown()
         dropDown.anchorView = documentTypeButton
-        dropDown.dataSource = viewModel.documentTypeArray
+        dropDown.dataSource = viewModel.documentTypeArray.map { $0.name }
         dropDown.selectionAction = {[weak self] (index: Int, item: String) in
             guard let self = self else { return }
             self.documentTypeLabel.text = item
-            self.viewModel.documentTypeSubject.accept(item)
+            self.viewModel.documentTypeSubject.accept(self.viewModel.documentTypeArray[index].code)
         }
         dropDown.show()
     }
@@ -226,8 +229,9 @@ class PaymentAddressViewController: UIViewController {
                       let response = response,
                       let firstItem = response.first else { return }
                 self.viewModel.statesArray.accept(response)
-                self.stateLabel.text = firstItem.provincia
-                self.viewModel.stateSubject.accept(firstItem)
+                self.stateLabel.text = ""
+                self.viewModel.stateSubject.accept(nil)
+
                 self.fetchCities(state: firstItem.idProvincia) {[weak self] response in
                     guard let self = self else { return }
                     self.processCities(with: response)
@@ -254,11 +258,44 @@ class PaymentAddressViewController: UIViewController {
               let firstDistrict = firstCounty.distritos.first else { return }
         self.viewModel.citiesArray.accept(firstItem.cantones)
         self.viewModel.districtArray.accept(firstCounty.distritos)
-        self.countyLabel.text = firstCounty.canton
-        self.viewModel.countySubject.accept(firstCounty)
-        self.districtLabel.text = firstDistrict.distrito
-        self.viewModel.districtSubject.accept(firstDistrict)
+        self.countyLabel.text = ""
+        self.viewModel.countySubject.accept(nil)
+        self.districtLabel.text = ""
+        self.viewModel.districtSubject.accept(nil)
+//        self.countyLabel.text = firstCounty.canton
+//        self.viewModel.countySubject.accept(firstCounty)
+//        self.districtLabel.text = firstDistrict.distrito
+//        self.viewModel.districtSubject.accept(firstDistrict)
         self.view.activityStopAnimating()
+
+        if firstLoad {
+            do {
+                let previousSelectedProvince = try self.userDefaults.getObject(forKey: "Province", castTo: State?.self)
+                let previousSelectedCounty = try self.userDefaults.getObject(forKey: "County", castTo: County?.self)
+                let previousSelectedDistrict = try self.userDefaults.getObject(forKey: "District", castTo: District?.self)
+                let previousSelectedAddress = self.userDefaults.object(forKey: "Address") as? String
+
+                if let state = previousSelectedProvince,
+                   let county = previousSelectedCounty,
+                   let district = previousSelectedDistrict,
+                   let address = previousSelectedAddress {
+                    firstLoad = false
+                    self.stateLabel.text = state.provincia
+                    self.viewModel.stateSubject.accept(state)
+
+                    self.countyLabel.text = county.canton
+                    self.viewModel.countySubject.accept(county)
+
+                    self.districtLabel.text = district.distrito
+                    self.viewModel.districtSubject.accept(district)
+
+                    self.addressTextField.text = address
+                    self.viewModel.addressSubject.accept(address)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     fileprivate func displayStatesList() {
@@ -285,6 +322,8 @@ class PaymentAddressViewController: UIViewController {
             guard let self = self else { return }
             self.countyLabel.text = item
             self.viewModel.countySubject.accept(self.viewModel.citiesArray.value[index])
+            self.viewModel.districtSubject.accept(nil)
+            self.districtLabel.text = ""
             self.fetchDistrictList(with: self.viewModel.citiesArray.value[index].idCanton)
         }
         dropDown.show()
@@ -307,8 +346,8 @@ class PaymentAddressViewController: UIViewController {
             county.idCanton == countyId
         }), let district = county.distritos.first else { return }
         self.viewModel.districtArray.accept(county.distritos)
-        self.viewModel.districtSubject.accept(district)
-        self.districtLabel.text = district.distrito
+//        self.viewModel.districtSubject.accept(district)
+//        self.districtLabel.text = district.distrito
     }
     
     fileprivate func prepareAddressInfo() {
@@ -317,6 +356,19 @@ class PaymentAddressViewController: UIViewController {
     }
     
     fileprivate func showShippingMethodsPage() {
+        do {
+            self.userDefaults.removeObject(forKey: "Province")
+            self.userDefaults.removeObject(forKey: "County")
+            self.userDefaults.removeObject(forKey: "District")
+            self.userDefaults.set(nil, forKey: "Address")
+
+            try self.userDefaults.setObject(viewModel.stateSubject.value, forKey: "Province")
+            try self.userDefaults.setObject(viewModel.countySubject.value, forKey: "County")
+            try self.userDefaults.setObject(viewModel.districtSubject.value, forKey: "District")
+            self.userDefaults.set(viewModel.addressSubject.value, forKey: "Address")
+        } catch {
+            print(error.localizedDescription)
+        }
         let shippingMethodViewController = ShippingMethodViewController(
             viewModel: ShippingMethodViewModel(),
             state: viewModel.stateSubject.value?.idProvincia,

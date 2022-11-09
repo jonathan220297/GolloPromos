@@ -27,6 +27,7 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var modelLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateView: UIStackView!
     
     @IBOutlet weak var savingHeader: UILabel!
     @IBOutlet weak var savingsLabel: UILabel!
@@ -83,8 +84,8 @@ class OfferDetailViewController: UIViewController {
         super.viewDidLoad()
         
         // Zoom
-        scrollImageView.minimumZoomScale = 1
-        scrollImageView.maximumZoomScale = 4
+        scrollImageView.minimumZoomScale = 1.0
+        scrollImageView.maximumZoomScale = 10.0
         
         tabBarController?.navigationItem.hidesBackButton = false
         tabBarController?.navigationController?.navigationBar.tintColor = .white
@@ -330,6 +331,7 @@ class OfferDetailViewController: UIViewController {
                 }
             } else {
                 dateLabel.alpha = 0
+                dateView.alpha = 0
             }
 
             let originalString = numberFormatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
@@ -460,30 +462,30 @@ extension OfferDetailViewController: UIScrollViewDelegate {
         return offerImage
     }
 
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        if scrollView.zoomScale > 1 {
-            if let image = offerImage.image {
-                let ratioW = offerImage.frame.width / image.size.width
-                let ratioH = offerImage.frame.height / image.size.height
-
-                let ratio = ratioW > ratioH ? ratioW : ratioH
-                let newWidth = image.size.width * ratio
-                let newHeight = image.size.height * ratio
-
-                let conditionLeft = newWidth*scrollView.zoomScale > offerImage.frame.width
-
-                let left = 0.5 * (conditionLeft ? newWidth - offerImage.frame.width : (scrollView.frame.width - scrollView.contentSize.width))
-
-                let conditionTop = newHeight*scrollView.zoomScale > offerImage.frame.height
-
-                let top = 0.5 * (conditionTop ? newHeight - offerImage.frame.height : (scrollView.frame.height - scrollView.contentSize.height))
-
-                scrollView.contentInset = UIEdgeInsets(top: top, left: left, bottom: top, right: left)
-            }
-        } else {
-            scrollView.contentInset = .zero
-        }
-    }
+//    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+//        if scrollView.zoomScale > 1 {
+//            if let image = offerImage.image {
+//                let ratioW = offerImage.frame.width / image.size.width
+//                let ratioH = offerImage.frame.height / image.size.height
+//
+//                let ratio = ratioW > ratioH ? ratioW : ratioH
+//                let newWidth = image.size.width * ratio
+//                let newHeight = image.size.height * ratio
+//
+//                let conditionLeft = newWidth*scrollView.zoomScale > offerImage.frame.width
+//
+//                let left = 0.5 * (conditionLeft ? newWidth - offerImage.frame.width : (scrollView.frame.width - scrollView.contentSize.width))
+//
+//                let conditionTop = newHeight*scrollView.zoomScale > offerImage.frame.height
+//
+//                let top = 0.5 * (conditionTop ? newHeight - offerImage.frame.height : (scrollView.frame.height - scrollView.contentSize.height))
+//
+//                scrollView.contentInset = UIEdgeInsets(top: top, left: left, bottom: top, right: left)
+//            }
+//        } else {
+//            scrollView.contentInset = .zero
+//        }
+//    }
 }
 
 extension OfferDetailViewController: OfferServiceProtectionDelegate {

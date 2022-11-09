@@ -173,4 +173,5 @@ struct Variables {
     static var isClientUser = false
     static var isLoginUser = false
     static var userProfile: UserInfo? = nil
+    static var notificationsToken = ""
 }

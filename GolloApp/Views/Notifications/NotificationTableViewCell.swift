@@ -16,7 +16,7 @@ class NotificationTableViewCell: UITableViewCell {
     @IBOutlet weak var dateCell: UILabel!
 
     func setNotification(notification: NotificationsData) {
-        if notification.idType == "3" {
+        if notification.type == "3" {
             imageViewCell.image = UIImage(named: "ic_bag")
         } else {
             imageViewCell.image = UIImage(named: "ic_notification")

@@ -22,6 +22,7 @@ class OrderDetailTabViewController: UIViewController {
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var bonusLabel: UILabel!
     @IBOutlet weak var totalFinalLabel: UILabel!
+    @IBOutlet weak var descriptionDeliveryLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var paymentMethodLabel: UILabel!
@@ -57,13 +58,31 @@ class OrderDetailTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Detalle de la orden"
+        navigationItem.title = "Detalle de orden"
         configureTableView()
+        configureRx()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchOrderDetail()
+    }
+
+    fileprivate func configureRx() {
+        viewModel
+            .errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self else { return }
+                if !error.isEmpty {
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: error) {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    self.viewModel.errorMessage.accept("")
+                }
+            })
+            .disposed(by: bag)
     }
 
     func configureTableView() {
@@ -154,13 +173,16 @@ class OrderDetailTabViewController: UIViewController {
 
         guard let deliveryPlace = order.formaEntrega.first else { return }
         if deliveryPlace.tipoEntrega == "20" {
+            descriptionDeliveryLabel.text = deliveryPlace.descEntrega
             nameLabel.attributedText = formatHTML(header: "Recoger en tienda: ", content: deliveryPlace.lugarDespacho ?? "")
             addressLabel.alpha = 0
         } else {
-            if let place = deliveryPlace.lugarDespacho, !place.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            if let place = deliveryPlace.lugarDespacho, !place.removeWhitespace().isEmpty {
+                descriptionDeliveryLabel.text = deliveryPlace.descEntrega
                 nameLabel.text = deliveryPlace.receptorProducto
                 addressLabel.text = getAddress(with: deliveryPlace)
             } else {
+                descriptionDeliveryLabel.alpha = 0
                 nameLabel.text = "Recoger en tienda"
                 addressLabel.text = deliveryPlace.lugarDespacho ?? ""
             }

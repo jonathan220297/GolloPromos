@@ -63,32 +63,41 @@ class LoginViewController: UIViewController {
 
     // MARK: - Functions
     fileprivate func configureViews() {
-        let text = "No tienes una cuenta? REGISTRATE"
+        let text = "¿No tenés una cuenta? REGISTRATE"
         signUpButton.setAttributedTitle(text.withBoldText(text: "REGISTRATE", fontNormalText: UIFont.sansSerifDemiBold(ofSize: 15), fontBoldText: UIFont.sansSerifBold(ofSize: 15), fontColorBold: .primary), for: .normal)
     }
 
     fileprivate func loginRequestInfo(for loginType: LoginType) {
-        viewModel.fetchUserInfo(for: loginType)
-            .asObservable()
-            .subscribe(onNext: {[weak self] data in
-                guard let self = self,
-                      let data = data else { return }
-                if let info = data.registro {
-                    Variables.userProfile = info
-                    do {
-                        try self.userDefaults.setObject(info, forKey: "Information")
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-                Variables.isRegisterUser = data.estadoRegistro ?? false
-                Variables.isLoginUser = data.estadoLogin ?? false
-                Variables.isClientUser = data.estadoCliente ?? false
-                self.dismiss(animated: true) {
-                    self.delegate?.didLoginSucceed()
-                }
-            })
-            .disposed(by: disposeBag)
+        guard let user = Auth.auth().currentUser else { return }
+        user.getIDToken(completion: { (res, err) in
+            if err != nil {
+                print("*** TOKEN() ERROR: \(err!)")
+            } else {
+                print("*** TOKEN() SUCCESS: \(res!)")
+                self.viewModel
+                    .fetchUserInfo(for: loginType, idToken: res ?? "")
+                    .asObservable()
+                    .subscribe(onNext: {[weak self] data in
+                        guard let self = self,
+                              let data = data else { return }
+                        if let info = data.registro {
+                            Variables.userProfile = info
+                            do {
+                                try self.userDefaults.setObject(info, forKey: "Information")
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                        Variables.isRegisterUser = data.estadoRegistro ?? false
+                        Variables.isLoginUser = data.estadoLogin ?? false
+                        Variables.isClientUser = data.estadoCliente ?? false
+                        self.dismiss(animated: true) {
+                            self.delegate?.didLoginSucceed()
+                        }
+                    })
+                    .disposed(by: self.disposeBag)
+            }
+        })
     }
 
     fileprivate func configureViewModel() {
@@ -213,7 +222,11 @@ class LoginViewController: UIViewController {
             guard let self = self else { return }
             if let error = error {
                 self.buttonLogin.hideLoading()
-                self.showAlert(alertText: "GolloApp", alertMessage: error)
+                var userError = error
+                if userError == "The password is invalid or the user does not have a password." {
+                    userError = "Usuario y/o contraseña son inválidos."
+                }
+                self.showAlert(alertText: "GolloApp", alertMessage: userError)
                 do {
                     try Auth.auth().signOut()
                 } catch let error as NSError {

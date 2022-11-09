@@ -152,7 +152,6 @@ class SideMenuViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
-                self.showAlert(alertText: "GolloApp", alertMessage: "Sesión cerrada exitosamente")
                 if let info = data.registro {
                     Variables.userProfile = info
                     do {
@@ -162,6 +161,7 @@ class SideMenuViewController: UIViewController {
                     }
                 }
                 if let token = data.token {
+                    let _ = KeychainManager.delete(key: "token")
                     let _ = self.viewModel.saveToken(with: token)
                 }
                 if let deviceID = data.idCliente {
@@ -170,7 +170,9 @@ class SideMenuViewController: UIViewController {
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
-                self.dismiss(animated: true)
+                self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Sesión cerrada exitosamente") {
+                    self.dismiss(animated: true)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -220,7 +222,6 @@ extension SideMenuViewController {
                 do {
                     try firebaseAuth.signOut()
                     self.userDefaults.removeObject(forKey: "Information")
-                    let _ = KeychainManager.delete(key: "token")
                     Variables.isRegisterUser = false
                     Variables.isLoginUser = false
                     Variables.isClientUser = false

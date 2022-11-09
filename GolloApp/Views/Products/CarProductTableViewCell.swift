@@ -86,6 +86,8 @@ class CarProductTableViewCell: UITableViewCell {
 
         if data.montoDescuento > 0.0 {
             discountLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: data.montoDescuento))!)"
+        } else {
+            discountLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: 0.0))!)"
         }
 
         if let bonus = data.montoBonoProveedor, bonus > 0.0 {

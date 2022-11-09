@@ -11,6 +11,7 @@ import UIKit
 protocol AccountsDelegate {
     func OpenItems(with index: Int)
     func OpenHistory(with index: Int)
+    func PayAccount(with index: Int)
 }
 
 class AccountsTableViewCell: UITableViewCell {
@@ -30,6 +31,7 @@ class AccountsTableViewCell: UITableViewCell {
     @IBOutlet weak var amountArrearsLabel: UILabel!
     @IBOutlet weak var feeAmountLabel: UILabel!
     @IBOutlet weak var dayArrearsLabel: UILabel!
+    @IBOutlet weak var paymentButton: UIButton!
 
     var delegate: AccountsDelegate!
 
@@ -47,10 +49,11 @@ class AccountsTableViewCell: UITableViewCell {
     func setAccount(model: AccountsDetail, index: Int) {
         self.productsButton.tag = index
         self.historyButton.tag = index
+        self.paymentButton.tag = index
 
         accountLabel.text = "Número de cuenta: \(model.numCuenta ?? "")"
         if let date = model.fecha {
-            startDateLabel.text = "Fecha de inicio: \(date.formatStringDateGollo())"
+            startDateLabel.text = "Fecha inicio: \(date.formatStringDateGollo())"
         }
         if let initial = numberFormatter.string(from: NSNumber(value: model.montoInicial ?? 0.0)) {
             initialAmountLabel.text = "₡" + String(initial)
@@ -98,6 +101,10 @@ class AccountsTableViewCell: UITableViewCell {
         delegate.OpenItems(with: sender.tag)
     }
     
+    @IBAction func payButtonTapped(_ sender: UIButton) {
+        delegate.PayAccount(with: sender.tag)
+    }
+
     private func doubleLayerHalfPieChart(_ firstValue: Double, _ secondValue: Double) -> AAOptions {
         let aaChartModel = AAChartModel()
             .chartType(.pie)

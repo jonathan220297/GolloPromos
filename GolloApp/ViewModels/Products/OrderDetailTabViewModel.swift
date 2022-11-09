@@ -11,6 +11,8 @@ import RxRelay
 class OrderDetailTabViewModel {
     private let service = GolloService()
 
+    let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
+
     var royalties: [OrderDetailInformation] = []
     var products: [OrderDetailInformation] = []
 
@@ -40,6 +42,7 @@ class OrderDetailTabViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
+                    self.errorMessage.accept("Ocurrió un error, inténtelo de nuevo")
                     print("Error: \(error.localizedDescription)")
                 }
             }

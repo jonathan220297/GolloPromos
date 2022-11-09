@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
                     self?.requestTracking()
         }
+        PushNotificationManager().registerForPushNotifications(application: application)
         return true
     }
 

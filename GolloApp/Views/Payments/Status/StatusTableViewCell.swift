@@ -44,7 +44,7 @@ class StatusTableViewCell: UITableViewCell {
     func setStatus(model: AccountData, index: Int) {
         accountLabel.text = "Número de cuenta: \(model.numCuenta ?? "")"
         if let date = model.fecha {
-            startDateLabel.text = "Fecha de inicio: \(date.formatStringDateGollo())"
+            startDateLabel.text = "Fecha inicio: \(date.formatStringDateGollo())"
         }
         if let initial = numberFormatter.string(from: NSNumber(value: model.montoInicial ?? 0.0)) {
             initialAmountLabel.text = "₡" + String(initial)

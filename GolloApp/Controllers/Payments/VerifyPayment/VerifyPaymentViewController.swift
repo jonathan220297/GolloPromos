@@ -55,8 +55,8 @@ class VerifyPaymentViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        if self.isMovingFromParent {
-            self.delegate?.transactionValidation(with: self.closePage, processId: self.processId)
+        if self.isMovingFromParent && !closePage {
+            self.delegate?.transactionValidation(with: false, processId: self.processId)
         }
     }
 
