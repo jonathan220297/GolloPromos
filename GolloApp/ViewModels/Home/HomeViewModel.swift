@@ -84,7 +84,9 @@ class HomeViewModel {
                         idDeviceToken: deviceToken,
                         Token: token,
                         idCliente: idClient,
-                        idDevice: "\(UUID())"
+                        idDevice: "\(UUID())",
+                        version: Variables().VERSION_CODE,
+                        sisOperativo: "IOS"
                     )
                 )
             )
@@ -162,6 +164,7 @@ class HomeViewModel {
                         height: 0,
                         banner: nil,
                         link: section.linkValue,
+                        tax: section.linkTax,
                         product: section.productos
                     )
                 )

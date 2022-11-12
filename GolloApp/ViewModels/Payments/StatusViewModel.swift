@@ -33,7 +33,7 @@ class StatusViewModel {
                     tipoId: documentType,
                     idCliente: documentId,
                     empresa: 10,
-                    idCentro: "144"
+                    idCentro: "205"
                 )
             )
         ))) { response in

@@ -26,7 +26,7 @@ class AccountsViewModel {
                         tipoId: documentType,
                         idCliente: documentId,
                         empresa: "10",
-                        idCentro: ""
+                        idCentro: "205"
                     )
                 )
             )

@@ -214,7 +214,9 @@ class EditProfileViewModel {
                         idDeviceToken: deviceToken,
                         Token: token,
                         idCliente: idClient,
-                        idDevice: "\(UUID())"
+                        idDevice: "\(UUID())",
+                        version: Variables().VERSION_CODE,
+                        sisOperativo: "IOS"
                     )
                 )
             )
@@ -236,6 +238,16 @@ class EditProfileViewModel {
             return image.jpegData(compressionQuality: 0.25)?.base64EncodedString() ?? ""
         } else {
             return ""
+        }
+    }
+
+    func saveToken(with token: String) -> Bool {
+        if let data = token.data(using: .utf8) {
+            let status = KeychainManager.save(key: "token", data: data)
+            log.debug("Status: \(status)")
+            return true
+        } else {
+            return false
         }
     }
 

@@ -68,7 +68,9 @@ class SideMenuViewModel {
                         idDeviceToken: deviceToken,
                         Token: token,
                         idCliente: idClient,
-                        idDevice: "\(UUID())"
+                        idDevice: "\(UUID())",
+                        version: Variables().VERSION_CODE,
+                        sisOperativo: "IOS"
                     )
                 )
             )

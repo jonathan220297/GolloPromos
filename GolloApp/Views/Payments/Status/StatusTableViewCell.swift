@@ -62,7 +62,7 @@ class StatusTableViewCell: UITableViewCell {
         if let fee = numberFormatter.string(from: NSNumber(value: model.montoPago ?? 0.0)) {
             feeAmountLabel.text = "₡" + String(fee)
         }
-        if let arrears = numberFormatter.string(from: NSNumber(value: model.montoAtraso ?? 0.0)) {
+        if let arrears = numberFormatter.string(from: NSNumber(value: model.montoSugeridoPago ?? 0.0)) {
             amountArrearsLabel.text = "₡" + String(arrears)
         }
         dayArrearsLabel.text = "\(model.diasAtraso ?? 0)"

@@ -112,7 +112,7 @@ extension NotificationsViewController: UITableViewDataSource, UITableViewDelegat
         if self.viewModel.NotificationsArray[indexPath.row].type == "3" {
             let orderDetailTabViewController = OrderDetailTabViewController(
                 viewModel: OrderDetailTabViewModel(),
-                orderId: self.viewModel.NotificationsArray[indexPath.row].type ?? "0"
+                orderId: String(self.viewModel.NotificationsArray[indexPath.row].idType ?? 0)
             )
             orderDetailTabViewController.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(orderDetailTabViewController, animated: true)

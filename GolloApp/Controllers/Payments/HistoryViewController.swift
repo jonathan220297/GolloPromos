@@ -126,6 +126,13 @@ class HistoryViewController: UIViewController {
 
         toDateSelected = dateFormatter.string(from: actualDate)
         toTextField.text = alternativeFormatter.string(from: actualDate)
+
+        if let from = fromDateSelected,
+           let to = toDateSelected {
+            if !from.isEmpty && !to.isEmpty {
+                self.fetchHistory(from: from, to: to)
+            }
+        }
     }
 
     fileprivate func fetchHistory(from: String, to: String) {

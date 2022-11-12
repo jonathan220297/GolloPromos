@@ -62,12 +62,26 @@ class HomeTabViewController: UIViewController {
                     Variables.isClientUser = false
                     Variables.userProfile = nil
                     UserManager.shared.userData = nil
-                    Messaging.messaging().token { token, error in
-                      if let error = error {
-                        print("Error fetching FCM registration token: \(error)")
-                      } else if let token = token {
-                        self.registerDevice(with: token)
-                      }
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Tu sesión ha expirado y la aplicación se reiniciara inmediatamente.") {
+                        let firebaseAuth = Auth.auth()
+                        do {
+                            try firebaseAuth.signOut()
+                            self.userDefaults.removeObject(forKey: "Information")
+                            Variables.isRegisterUser = false
+                            Variables.isLoginUser = false
+                            Variables.isClientUser = false
+                            Variables.userProfile = nil
+                            UserManager.shared.userData = nil
+                            Messaging.messaging().token { token, error in
+                              if let error = error {
+                                print("Error fetching FCM registration token: \(error)")
+                              } else if let token = token {
+                                self.registerDevice(with: token)
+                              }
+                            }
+                        } catch let signOutError as NSError {
+                            log.error("Error signing out: \(signOutError)")
+                        }
                     }
                 }
                 self.viewModel.errorExpiredToken.accept(nil)
@@ -133,6 +147,7 @@ class HomeTabViewController: UIViewController {
                       let response = response else { return }
                 DispatchQueue.main.async {
                     defer { self.view.activityStopAnimating() }
+                    self.view.activityStopAnimating()
                     self.viewModel.configuration = response
                     self.viewModel.configureSections()
                     self.homeCollectionView.reloadData()
@@ -229,7 +244,7 @@ extension HomeTabViewController: HomeSectionDelegate {
         let offersFilteredListViewController = OffersFilteredListViewController(
             viewModel: OffersFilteredListViewModel(),
             category: viewModel.sections[indexPath.section].link,
-            taxonomy: -1
+            taxonomy: viewModel.sections[indexPath.section].tax ?? -1
         )
         offersFilteredListViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)

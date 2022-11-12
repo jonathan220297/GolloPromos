@@ -306,13 +306,13 @@ class EditProfileViewController: UIViewController {
             .subscribe(onNext: {
                 let refreshAlert = UIAlertController(title: "", message: "¿Desea eliminar el registro?", preferredStyle: UIAlertController.Style.alert)
 
-                refreshAlert.addAction(UIAlertAction(title: "Acceptar", style: .default, handler: { (action: UIAlertAction!) in
-                    self.view.activityStarAnimating()
-                    self.deleteUserData()
+                refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
                     refreshAlert.dismiss(animated: true)
                 }))
 
-                refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (action: UIAlertAction!) in
+                refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
+                    self.view.activityStarAnimating()
+                    self.deleteUserData()
                     refreshAlert.dismiss(animated: true)
                 }))
 
@@ -544,6 +544,12 @@ class EditProfileViewController: UIViewController {
                     } catch {
                         print(error.localizedDescription)
                     }
+                }
+                if let token = data.token {
+                    let _ = self.viewModel.saveToken(with: token)
+                }
+                if let deviceID = data.idCliente {
+                    self.userDefaults.set(deviceID, forKey: "deviceID")
                 }
                 self.view.activityStopAnimating()
                 Variables.isRegisterUser = data.estadoRegistro ?? false

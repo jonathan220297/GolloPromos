@@ -643,16 +643,27 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zfq-Da-1cg">
                                                 <rect key="frame" x="8" y="8" width="377" height="175"/>
                                                 <subviews>
-                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="beL-p9-q8Z">
+                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wB2-E9-wKC">
                                                         <rect key="frame" x="0.0" y="0.0" width="377" height="175"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NLg-Bw-jDJ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="377" height="175"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="NLg-Bw-jDJ" firstAttribute="leading" secondItem="cpe-Kw-UWg" secondAttribute="leading" id="0ds-AO-GY1"/>
+                                                            <constraint firstItem="NLg-Bw-jDJ" firstAttribute="width" secondItem="JUE-cv-dMT" secondAttribute="width" id="Eya-yp-aWp"/>
+                                                            <constraint firstItem="NLg-Bw-jDJ" firstAttribute="top" secondItem="cpe-Kw-UWg" secondAttribute="top" id="RTm-5a-231"/>
+                                                            <constraint firstItem="NLg-Bw-jDJ" firstAttribute="trailing" secondItem="cpe-Kw-UWg" secondAttribute="trailing" id="mgu-4k-mih"/>
+                                                            <constraint firstItem="NLg-Bw-jDJ" firstAttribute="height" secondItem="JUE-cv-dMT" secondAttribute="height" id="pyN-kk-saM"/>
+                                                            <constraint firstItem="NLg-Bw-jDJ" firstAttribute="bottom" secondItem="cpe-Kw-UWg" secondAttribute="bottom" id="yqw-Ge-Ka6"/>
+                                                        </constraints>
+                                                        <viewLayoutGuide key="contentLayoutGuide" id="cpe-Kw-UWg"/>
+                                                        <viewLayoutGuide key="frameLayoutGuide" id="JUE-cv-dMT"/>
                                                         <connections>
-                                                            <outlet property="delegate" destination="ibH-nn-DXi" id="G9q-8f-GjB"/>
+                                                            <outlet property="delegate" destination="ibH-nn-DXi" id="3Ir-69-lMv"/>
                                                         </connections>
                                                     </scrollView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bgx-hy-v19">
-                                                        <rect key="frame" x="0.0" y="0.0" width="377" height="175"/>
-                                                        <color key="tintColor" red="0.0" green="0.71626287700000002" blue="0.8547027707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Yh3-MS-07c">
                                                         <rect key="frame" x="317" y="4" width="56" height="24"/>
                                                         <subviews>
@@ -681,21 +692,13 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="wB2-E9-wKC" firstAttribute="leading" secondItem="Zfq-Da-1cg" secondAttribute="leading" id="61d-Je-ecY"/>
                                                     <constraint firstAttribute="height" constant="175" id="61g-yR-nKG"/>
-                                                    <constraint firstAttribute="trailing" secondItem="bgx-hy-v19" secondAttribute="trailing" id="9sT-3b-rXL"/>
-                                                    <constraint firstItem="bgx-hy-v19" firstAttribute="leading" secondItem="Zfq-Da-1cg" secondAttribute="leading" id="Fba-nZ-9Ax"/>
-                                                    <constraint firstItem="beL-p9-q8Z" firstAttribute="centerX" secondItem="Zfq-Da-1cg" secondAttribute="centerX" id="Gbp-ws-D2F"/>
+                                                    <constraint firstAttribute="trailing" secondItem="wB2-E9-wKC" secondAttribute="trailing" id="9un-g1-FPg"/>
                                                     <constraint firstAttribute="trailing" secondItem="Yh3-MS-07c" secondAttribute="trailing" constant="4" id="Nfc-eH-RZ4"/>
-                                                    <constraint firstItem="bgx-hy-v19" firstAttribute="centerY" secondItem="Zfq-Da-1cg" secondAttribute="centerY" id="TWg-eT-r7y"/>
-                                                    <constraint firstItem="bgx-hy-v19" firstAttribute="centerX" secondItem="Zfq-Da-1cg" secondAttribute="centerX" id="Zc5-Px-sFS"/>
-                                                    <constraint firstAttribute="bottom" secondItem="beL-p9-q8Z" secondAttribute="bottom" id="fjO-fT-T6F"/>
-                                                    <constraint firstItem="bgx-hy-v19" firstAttribute="top" secondItem="Zfq-Da-1cg" secondAttribute="top" id="gI7-r3-aah"/>
-                                                    <constraint firstAttribute="trailing" secondItem="beL-p9-q8Z" secondAttribute="trailing" id="jIs-7t-Dew"/>
-                                                    <constraint firstAttribute="bottom" secondItem="bgx-hy-v19" secondAttribute="bottom" id="kXd-z9-NOu"/>
-                                                    <constraint firstItem="beL-p9-q8Z" firstAttribute="leading" secondItem="Zfq-Da-1cg" secondAttribute="leading" id="ngR-Xu-L1r"/>
-                                                    <constraint firstItem="beL-p9-q8Z" firstAttribute="top" secondItem="Zfq-Da-1cg" secondAttribute="top" id="npF-HR-0DS"/>
+                                                    <constraint firstItem="wB2-E9-wKC" firstAttribute="top" secondItem="Zfq-Da-1cg" secondAttribute="top" id="Oru-fv-GjI"/>
+                                                    <constraint firstAttribute="bottom" secondItem="wB2-E9-wKC" secondAttribute="bottom" id="nkc-pH-02a"/>
                                                     <constraint firstItem="Yh3-MS-07c" firstAttribute="top" secondItem="Zfq-Da-1cg" secondAttribute="top" constant="4" id="taC-h6-MKG"/>
-                                                    <constraint firstItem="beL-p9-q8Z" firstAttribute="centerY" secondItem="Zfq-Da-1cg" secondAttribute="centerY" id="yMc-rB-0TN"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1280,13 +1283,13 @@
                         <outlet property="modelView" destination="zqT-Xq-7dU" id="keI-lM-cIu"/>
                         <outlet property="offerDescriptionLabel" destination="jDJ-wS-CSq" id="Jwu-GL-caB"/>
                         <outlet property="offerDescriptionView" destination="de2-4G-VtL" id="bQC-Yn-yF2"/>
-                        <outlet property="offerImage" destination="bgx-hy-v19" id="rzi-Jc-bYv"/>
+                        <outlet property="offerImage" destination="NLg-Bw-jDJ" id="T4X-OM-hPY"/>
                         <outlet property="originalPrice" destination="4Xe-Xh-aPv" id="QMo-WD-6fv"/>
                         <outlet property="priceDivider" destination="oDS-2f-426" id="qh9-nw-vDG"/>
                         <outlet property="pricesView" destination="IwI-fz-6N8" id="KFS-6U-7xD"/>
                         <outlet property="savingHeader" destination="Ur0-Dy-vvL" id="rGr-Kl-dPe"/>
                         <outlet property="savingsLabel" destination="wzN-La-ume" id="QQg-RO-fCg"/>
-                        <outlet property="scrollImageView" destination="beL-p9-q8Z" id="syn-Vv-Y6I"/>
+                        <outlet property="scrollImageView" destination="wB2-E9-wKC" id="Uep-jo-lnQ"/>
                         <outlet property="sepView" destination="oDS-2f-426" id="iOP-0b-KCu"/>
                         <outlet property="serialLabel" destination="O9a-yj-d3o" id="BQ7-48-e1V"/>
                         <outlet property="serviceButton" destination="O4s-wo-IWa" id="MqL-L0-bpW"/>
@@ -1300,7 +1303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GQG-x7-ifZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8718.705035971223" y="119.59798994974875"/>
+            <point key="canvasLocation" x="8718.3206106870221" y="119.01408450704226"/>
         </scene>
         <!--Offers Tab Bar View Controller-->
         <scene sceneID="XTO-3I-f1g">

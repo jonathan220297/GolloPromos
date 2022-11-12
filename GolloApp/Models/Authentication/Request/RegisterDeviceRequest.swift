@@ -29,4 +29,6 @@ struct RegisterDeviceServiceRequest: Codable {
     var Token: String? = nil
     var idCliente: String? = nil
     var idDevice: String
+    var version: String
+    var sisOperativo: String
 }

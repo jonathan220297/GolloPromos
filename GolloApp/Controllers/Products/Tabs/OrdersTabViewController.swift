@@ -7,6 +7,8 @@
 
 import UIKit
 import RxSwift
+import FirebaseAuth
+import FirebaseMessaging
 
 class OrdersTabViewController: UIViewController {
 
@@ -17,6 +19,7 @@ class OrdersTabViewController: UIViewController {
     // MARK: - Constants
     let viewModel: OrdersTabViewModel
     let bag = DisposeBag()
+    let userDefaults = UserDefaults.standard
 
     init(viewModel: OrdersTabViewModel) {
         self.viewModel = viewModel
@@ -45,6 +48,7 @@ class OrdersTabViewController: UIViewController {
         tabBarController?.navigationItem.leftBarButtonItem = nil
     }
 
+    // MARK: - Functions
     fileprivate func configureRx() {
         viewModel.errorMessage
             .asObservable()
@@ -55,6 +59,46 @@ class OrdersTabViewController: UIViewController {
                     self.viewModel.errorMessage.accept("")
                 }
             }
+            .disposed(by: bag)
+
+        viewModel
+            .errorExpiredToken
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self,
+                      let value = value else { return }
+                if value {
+                    self.userDefaults.removeObject(forKey: "Information")
+                    let _ = KeychainManager.delete(key: "token")
+                    Variables.isRegisterUser = false
+                    Variables.isLoginUser = false
+                    Variables.isClientUser = false
+                    Variables.userProfile = nil
+                    UserManager.shared.userData = nil
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Tu sesión ha expirado y la aplicación se reiniciara inmediatamente.") {
+                        let firebaseAuth = Auth.auth()
+                        do {
+                            try firebaseAuth.signOut()
+                            self.userDefaults.removeObject(forKey: "Information")
+                            Variables.isRegisterUser = false
+                            Variables.isLoginUser = false
+                            Variables.isClientUser = false
+                            Variables.userProfile = nil
+                            UserManager.shared.userData = nil
+                            Messaging.messaging().token { token, error in
+                              if let error = error {
+                                print("Error fetching FCM registration token: \(error)")
+                              } else if let token = token {
+                                self.registerDevice(with: token)
+                              }
+                            }
+                        } catch let signOutError as NSError {
+                            log.error("Error signing out: \(signOutError)")
+                        }
+                    }
+                }
+                self.viewModel.errorExpiredToken.accept(nil)
+            })
             .disposed(by: bag)
     }
 
@@ -79,6 +123,35 @@ class OrdersTabViewController: UIViewController {
                     self.dataView.alpha = 0
                 }
                 self.view.activityStopAnimating()
+            })
+            .disposed(by: bag)
+    }
+
+    fileprivate func registerDevice(with token: String) {
+        viewModel
+            .registerDevice(with: token)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                if let info = data.registro {
+                    Variables.userProfile = info
+                    do {
+                        try self.userDefaults.setObject(info, forKey: "Information")
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                if let token = data.token {
+                    let _ = self.viewModel.saveToken(with: token)
+                }
+                if let deviceID = data.idCliente {
+                    self.userDefaults.set(deviceID, forKey: "deviceID")
+                }
+                Variables.isRegisterUser = data.estadoRegistro ?? false
+                Variables.isLoginUser = data.estadoLogin ?? false
+                Variables.isClientUser = data.estadoCliente ?? false
+                self.fetchOrders()
             })
             .disposed(by: bag)
     }

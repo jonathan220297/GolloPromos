@@ -71,7 +71,7 @@ class AccountsTableViewCell: UITableViewCell {
         if let fee = numberFormatter.string(from: NSNumber(value: model.montoCuota ?? 0.0)) {
             feeAmountLabel.text = "₡" + String(fee)
         }
-        if let arrears = numberFormatter.string(from: NSNumber(value: model.montoAtraso ?? 0.0)) {
+        if let arrears = numberFormatter.string(from: NSNumber(value: model.montoSugeridoBotonera ?? 0.0)) {
             amountArrearsLabel.text = "₡" + String(arrears)
         }
         if let days = model.diasAtraso {

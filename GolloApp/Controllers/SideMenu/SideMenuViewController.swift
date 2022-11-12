@@ -209,7 +209,7 @@ extension SideMenuViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.openUrl("https://servicios.grupogollo.com:9199/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/GOLLO-APP-Tutorial-de-uso.jpg")
+                self.openUrl("https://servicios.grupogollo.com:9199/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/GOLLO-APP-Tutorial-de-uso.png")
             })
             .disposed(by: disposeBag)
         

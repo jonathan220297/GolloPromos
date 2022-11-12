@@ -130,7 +130,7 @@ class PaymentConfirmViewModel {
 
     func getSubtotalAmount() -> Double {
         let products = carManager.car
-        let amount = products.map { ($0.precioUnitario - $0.montoDescuento) * Double($0.cantidad) }.reduce(0, +)
+        let amount = products.map { ($0.precioUnitario - $0.montoDescuento - ($0.montoBonoProveedor ?? 0.0)) * Double($0.cantidad) }.reduce(0, +)
         let plus = products.map { $0.montoExtragar * Double($0.cantidad) }.reduce(0, +) 
         return amount + plus
     }

@@ -86,7 +86,7 @@ class OfferDetailViewController: UIViewController {
         // Zoom
         scrollImageView.minimumZoomScale = 1.0
         scrollImageView.maximumZoomScale = 10.0
-        
+
         tabBarController?.navigationItem.hidesBackButton = false
         tabBarController?.navigationController?.navigationBar.tintColor = .white
 
@@ -274,7 +274,7 @@ class OfferDetailViewController: UIViewController {
     
     private func showData(with data: OfferDetail) {
         self.initGolloPlus(with: data)
-
+        var totalDiscount = 0.0
         if let offer = offer {
             self.view.activityStopAnimatingFull()
             let _:CGFloat = 0.0001
@@ -334,11 +334,13 @@ class OfferDetailViewController: UIViewController {
                 dateView.alpha = 0
             }
 
+            totalDiscount = ((article?.articulo?.montoDescuento ?? 0.0) + (article?.articulo?.montoBonoProveedor ?? 0.0))
+
             let originalString = numberFormatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
 
-            if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0,
+            if totalDiscount > 0.0,
                let price = data.articulo?.precio, price > 0.0 {
                 let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
                 savingsLabel.text = "\("₡")\(savingString)"
@@ -461,31 +463,6 @@ extension OfferDetailViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return offerImage
     }
-
-//    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-//        if scrollView.zoomScale > 1 {
-//            if let image = offerImage.image {
-//                let ratioW = offerImage.frame.width / image.size.width
-//                let ratioH = offerImage.frame.height / image.size.height
-//
-//                let ratio = ratioW > ratioH ? ratioW : ratioH
-//                let newWidth = image.size.width * ratio
-//                let newHeight = image.size.height * ratio
-//
-//                let conditionLeft = newWidth*scrollView.zoomScale > offerImage.frame.width
-//
-//                let left = 0.5 * (conditionLeft ? newWidth - offerImage.frame.width : (scrollView.frame.width - scrollView.contentSize.width))
-//
-//                let conditionTop = newHeight*scrollView.zoomScale > offerImage.frame.height
-//
-//                let top = 0.5 * (conditionTop ? newHeight - offerImage.frame.height : (scrollView.frame.height - scrollView.contentSize.height))
-//
-//                scrollView.contentInset = UIEdgeInsets(top: top, left: left, bottom: top, right: left)
-//            }
-//        } else {
-//            scrollView.contentInset = .zero
-//        }
-//    }
 }
 
 extension OfferDetailViewController: OfferServiceProtectionDelegate {
