@@ -11,6 +11,9 @@ import RxRelay
 class OffersFilteredListViewModel {
     private let service = GolloService()
 
+    var page = 1
+    var fetchingMore = false
+
     var categories: [CategoriesFilterData] = []
     var products: [Product] = []
 
@@ -68,7 +71,7 @@ class OffersFilteredListViewModel {
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",
                         idTaxonomia: taxonomy,
-                        numPagina: 1,
+                        numPagina: page,
                         tamanoPagina: 30
                     )
                 )

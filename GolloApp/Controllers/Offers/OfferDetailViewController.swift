@@ -79,6 +79,7 @@ class OfferDetailViewController: UIViewController {
     var article: OfferDetail?
     var warrantyMonth = 0
     var warrantyAmount = 0.0
+    var totalDiscount = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +117,7 @@ class OfferDetailViewController: UIViewController {
     }
     
     fileprivate func shareContent() {
-        let someText:String = "Oferta: \(offer?.productName ?? "")\nSKU: \(offer?.productCode ?? "")\n\nPrecio Original: \(originalPrice.text ?? "")"
+        let someText:String = "Oferta: \(offer?.productName ?? "")\nSKU: \(offer?.productCode ?? "")\n\nPrecio Original: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precio ?? 0.0)) ?? "")\n\nDescuento total: \(numberFormatter.string(from: NSNumber(value: totalDiscount)) ?? "")\n\nNuevo precio: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precioDescuento ?? 0.0)) ?? "")"
         var objectsToShare:UIImage?
         if let image = self.offerImage.image {
             objectsToShare = image
@@ -274,7 +275,6 @@ class OfferDetailViewController: UIViewController {
     
     private func showData(with data: OfferDetail) {
         self.initGolloPlus(with: data)
-        var totalDiscount = 0.0
         if let offer = offer {
             self.view.activityStopAnimatingFull()
             let _:CGFloat = 0.0001
@@ -322,9 +322,7 @@ class OfferDetailViewController: UIViewController {
                 if days > 1 {
                     stringDays = "días"
                 }
-                var stringHours = "hora"
                 if let hours = hours, hours > 1 {
-                    stringHours = "horas"
                     dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "3 días y 0 horas")
                 } else {
                     dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(days) \(stringDays)")

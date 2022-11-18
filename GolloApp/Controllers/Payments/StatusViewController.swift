@@ -39,6 +39,7 @@ class StatusViewController: UIViewController {
 
         self.tableView.rowHeight = 310.0
         fetchStatus()
+        configureRx()
     }
 
     override func viewDidLayoutSubviews() {
@@ -62,6 +63,7 @@ class StatusViewController: UIViewController {
                 if !error.isEmpty {
                     self.view.activityStopAnimating()
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    self.emptyView.alpha = 1
                     self.viewModel.errorMessage.accept("")
                 }
             })

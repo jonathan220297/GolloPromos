@@ -48,6 +48,23 @@ func convertDate(date: String) -> String? {
     return date?.toString(dateFormat: "dd/MM/yyyy")
 }
 
+func sizeOfImageAt(url: URL) -> CGSize? {
+    // with CGImageSource we avoid loading the whole image into memory
+    guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else { return nil }
+
+    let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+    guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
+        return nil
+    }
+
+    if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
+       let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
+        return CGSize(width: width, height: height)
+    } else {
+        return nil
+    }
+}
+
 func convertToDictionary(text: String) -> [String: Any]? {
     var json = [String : Any]()
     if let data = text.data(using: String.Encoding.utf8) {
@@ -122,6 +139,7 @@ enum GOLLOAPP: String {
     case CATEGORIES_FILTER_PROCESS_ID = "43"
     case FILTERED_PRODUCTS_PROCESS_ID = "44"
     case PAYMENT_METHODS_PROCESS_ID = "45"
+    case DEVICE_TOKEN_PROCESS_ID = "46"
     case READ_NOTIFICATION_PROCESS_ID = "47"
     case NOTIFICATIONS_PROCESS_ID = "48"
     case PROVENANCE_PROCESS_ID = "50"

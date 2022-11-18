@@ -98,6 +98,8 @@
 		4F194C1928FA967B0011653D /* PaymentMethodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F194C1828FA967B0011653D /* PaymentMethodResponse.swift */; };
 		4F194C1B28FB04220011653D /* DeliveryMethodsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F194C1A28FB04220011653D /* DeliveryMethodsRequest.swift */; };
 		4F194C1D28FB046E0011653D /* DeliveryMethodsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F194C1C28FB046E0011653D /* DeliveryMethodsResponse.swift */; };
+		4F235394292813D900A68B9F /* DeviceTokenRequets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F235393292813D900A68B9F /* DeviceTokenRequets.swift */; };
+		4F2353962928142A00A68B9F /* DeviceTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2353952928142A00A68B9F /* DeviceTokenResponse.swift */; };
 		4F3080A627121F2100F7D8DE /* BaseHeaderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */; };
 		4F317A8F28F76D6F005BA675 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F317A8D28F76D6F005BA675 /* HomeTabViewController.swift */; };
 		4F317A9028F76D6F005BA675 /* HomeTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F317A8E28F76D6F005BA675 /* HomeTabViewController.xib */; };
@@ -471,6 +473,8 @@
 		4F194C1828FA967B0011653D /* PaymentMethodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodResponse.swift; sourceTree = "<group>"; };
 		4F194C1A28FB04220011653D /* DeliveryMethodsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMethodsRequest.swift; sourceTree = "<group>"; };
 		4F194C1C28FB046E0011653D /* DeliveryMethodsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMethodsResponse.swift; sourceTree = "<group>"; };
+		4F235393292813D900A68B9F /* DeviceTokenRequets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenRequets.swift; sourceTree = "<group>"; };
+		4F2353952928142A00A68B9F /* DeviceTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenResponse.swift; sourceTree = "<group>"; };
 		4F3080A527121F2000F7D8DE /* BaseHeaderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderRequest.swift; sourceTree = "<group>"; };
 		4F317A8D28F76D6F005BA675 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
 		4F317A8E28F76D6F005BA675 /* HomeTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTabViewController.xib; sourceTree = "<group>"; };
@@ -1659,6 +1663,7 @@
 			children = (
 				4FE190FF26DEF61500322128 /* HomeConfigurationRequest.swift */,
 				4F135C5E28FDF6C0007303D1 /* SearchOffersRequest.swift */,
+				4F235393292813D900A68B9F /* DeviceTokenRequets.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1667,6 +1672,7 @@
 			isa = PBXGroup;
 			children = (
 				4FE1910326DEF67100322128 /* HomeConfiguration.swift */,
+				4F2353952928142A00A68B9F /* DeviceTokenResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -2209,9 +2215,11 @@
 				4F7C5F2628E6168D00123072 /* OrdersRequest.swift in Sources */,
 				4F0D964426DDBA310061E89E /* String+Extension.swift in Sources */,
 				4F0D963026D91BF50061E89E /* User.swift in Sources */,
+				4F2353962928142A00A68B9F /* DeviceTokenResponse.swift in Sources */,
 				4FE1912A26DEFE0200322128 /* ProductVariationResponse.swift in Sources */,
 				4F0D965E26DDBB590061E89E /* CustomButton.swift in Sources */,
 				4F69894328BDB625000FFA56 /* PaymentSuccessViewController.swift in Sources */,
+				4F235394292813D900A68B9F /* DeviceTokenRequets.swift in Sources */,
 				4F678D7828E7C0C300C8E8B3 /* MenuTabViewModel.swift in Sources */,
 				4F75A54B28AEFEDC0001CC4D /* SingUpTableViewCell.swift in Sources */,
 				4F3E481A27278536009D259D /* ParentModel.swift in Sources */,
@@ -2622,9 +2630,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9196/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2632,7 +2640,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2648,9 +2656,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9196/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2658,7 +2666,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

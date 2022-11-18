@@ -232,9 +232,18 @@ class PaymentAddressViewController: UIViewController {
                 self.stateLabel.text = ""
                 self.viewModel.stateSubject.accept(nil)
 
-                self.fetchCities(state: firstItem.idProvincia) {[weak self] response in
-                    guard let self = self else { return }
-                    self.processCities(with: response)
+                do {
+                    let previousSelectedProvince = try self.userDefaults.getObject(forKey: "Province", castTo: State?.self)
+                    var id = firstItem.idProvincia
+                    if let selectedProvince = previousSelectedProvince {
+                        id = selectedProvince.idProvincia
+                    }
+                    self.fetchCities(state: id) {[weak self] response in
+                        guard let self = self else { return }
+                        self.processCities(with: response)
+                    }
+                } catch {
+                    print(error.localizedDescription)
                 }
             })
             .disposed(by: bag)
@@ -285,6 +294,7 @@ class PaymentAddressViewController: UIViewController {
 
                     self.countyLabel.text = county.canton
                     self.viewModel.countySubject.accept(county)
+                    self.fetchDistrictList(with: county.idCanton)
 
                     self.districtLabel.text = district.distrito
                     self.viewModel.districtSubject.accept(district)

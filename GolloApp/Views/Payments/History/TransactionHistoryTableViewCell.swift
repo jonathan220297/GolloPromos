@@ -32,7 +32,7 @@ class TranstactionHistoryTableViewCell: UITableViewCell {
 
     func setHistoryData(with data: Payments) {
         accountNumberLabel.text = "No. \(data.noFisico ?? "")"
-        dateLabel.text = data.fecha
+        dateLabel.text = data.fecha?.formatStringDateGollo()
         if let capital = numberFormatter.string(from: NSNumber(value: data.monPagoCapital ?? 0)) {
             capitalLabel.text = "\(GOLLOAPP.CURRENCY_SIMBOL.rawValue) \(capital)"
         }

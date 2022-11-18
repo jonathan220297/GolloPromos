@@ -59,10 +59,11 @@ class ViewController: UIViewController {
         }
         Messaging.messaging().token { token, error in
           if let error = error {
-            print("Error fetching FCM registration token: \(error)")
+              print("Error fetching FCM registration token: \(error)")
           } else if let token = token {
-            print("FCM registration token: \(token)")
-            self.registerDevice(with: token)
+              print("FCM registration token: \(token)")
+              self.registerDevice(with: token)
+              self.registerDeviceToken(with: token)
           }
         }
     }
@@ -99,6 +100,17 @@ class ViewController: UIViewController {
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
+            })
+            .disposed(by: bag)
+    }
+
+    fileprivate func registerDeviceToken(with token: String) {
+        viewModel
+            .registerDeviceToken(with: token)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let _ = self else { return }
+                print("Token saved")
             })
             .disposed(by: bag)
     }

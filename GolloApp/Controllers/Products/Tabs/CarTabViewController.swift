@@ -111,11 +111,11 @@ class CarTabViewController: UIViewController {
         }
 
         carTableView.reloadData()
-        var totalString = "Tiene \(viewModel.car.count) item(s) en el carrito"
+        var totalString = "Tiene \(viewModel.getTotalItems()) item(s) en el carrito"
         if viewModel.car.count > 1 {
-            totalString = "Tiene \(viewModel.car.count) items en el carrito"
+            totalString = "Tiene \(viewModel.getTotalItems()) items en el carrito"
         } else {
-            totalString = "Tiene \(viewModel.car.count) item en el carrito"
+            totalString = "Tiene \(viewModel.getTotalItems()) item en el carrito"
         }
 
         totalItemsLabel.text = totalString

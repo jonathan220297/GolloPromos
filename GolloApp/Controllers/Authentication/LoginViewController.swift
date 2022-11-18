@@ -222,11 +222,35 @@ class LoginViewController: UIViewController {
             guard let self = self else { return }
             if let error = error {
                 self.buttonLogin.hideLoading()
-                var userError = error
-                if userError == "The password is invalid or the user does not have a password." {
-                    userError = "Usuario y/o contraseña son inválidos."
+                if error == "Verify your email address" {
+                    let refreshAlert = UIAlertController(title: "Verificación de email", message: "Su cuenta de correo aún no ha sido verificada. Para verificarla debe hacer click en el link enviado a su cuenta de correo; el correo puede estar en la bandeja de correos no deseados.", preferredStyle: UIAlertController.Style.alert)
+
+                    refreshAlert.addAction(UIAlertAction(title: "Reenviar correo", style: .default, handler: { (action: UIAlertAction!) in
+                        user?.reload()
+                        if let user = user {
+                            if !user.isEmailVerified {
+                                user.sendEmailVerification { error in
+                                    if let error = error {
+                                        print("Error: \(error.localizedDescription)")
+                                    }
+                                }
+                            }
+                        }
+                        refreshAlert.dismiss(animated: true)
+                    }))
+
+                    refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
+                        refreshAlert.dismiss(animated: true)
+                    }))
+
+                    self.present(refreshAlert, animated: true, completion: nil)
+                } else {
+                    var userError = error
+                    if userError == "The password is invalid or the user does not have a password." {
+                        userError = "Usuario y/o contraseña son inválidos."
+                    }
+                    self.showAlert(alertText: "GolloApp", alertMessage: userError)
                 }
-                self.showAlert(alertText: "GolloApp", alertMessage: userError)
                 do {
                     try Auth.auth().signOut()
                 } catch let error as NSError {

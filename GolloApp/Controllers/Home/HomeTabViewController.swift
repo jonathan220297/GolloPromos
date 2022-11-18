@@ -9,6 +9,7 @@ import RxSwift
 import UIKit
 import FirebaseAuth
 import FirebaseMessaging
+import Nuke
 
 class HomeTabViewController: UIViewController {
     // MARK: - IBOutlets
@@ -34,12 +35,13 @@ class HomeTabViewController: UIViewController {
         configureCollectionView()
         configureViewModel()
         configureRx()
+        fetchHomeConfiguration()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavBar()
-        fetchHomeConfiguration()
+        //fetchHomeConfiguration()
     }
     
     // MARK: - Observers
@@ -55,6 +57,8 @@ class HomeTabViewController: UIViewController {
                 guard let self = self,
                       let value = value else { return }
                 if value {
+                    self.view.activityStopAnimating()
+                    self.viewModel.errorExpiredToken.accept(nil)
                     self.userDefaults.removeObject(forKey: "Information")
                     let _ = KeychainManager.delete(key: "token")
                     Variables.isRegisterUser = false
@@ -84,7 +88,6 @@ class HomeTabViewController: UIViewController {
                         }
                     }
                 }
-                self.viewModel.errorExpiredToken.accept(nil)
             })
             .disposed(by: disposeBag)
     }
@@ -205,6 +208,13 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
     func getBannerCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as? BannerCollectionViewCell else { return UICollectionViewCell() }
         cell.setBanner(with: viewModel.sections[indexPath.section].banner)
+        if indexPath.section == 0 {
+            cell.dividerViewHeight.constant = 0
+            cell.dividerView.isHidden = true
+        } else {
+            cell.dividerViewHeight.constant = 10
+            cell.dividerView.isHidden = false
+        }
         return cell
     }
     
@@ -219,8 +229,33 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if viewModel.sections[indexPath.section].banner != nil {
-            let height = viewModel.sections[indexPath.section].height ?? 100.0
-            return CGSize(width: collectionView.frame.size.width, height: Double(height))
+            if let firstImage = viewModel.sections[indexPath.section].banner?.images?.first {
+                let imageSrc = firstImage.image?.replacingOccurrences(of: " ", with: "%20")
+                if let url = URL(string: imageSrc ?? "") {
+                    let heigth = viewModel.sections[indexPath.section].height ?? 120.0
+                    do {
+                        let imageData = try Data(contentsOf: url) //You should not use this in app
+                        guard let image = UIImage(data: imageData) else {
+                            return CGSize(width: collectionView.frame.size.width, height: heigth)
+                        }
+                        let width = image.size.width
+                        let height = image.size.height
+                        let ratio = width / height
+                        let newHeight = collectionView.frame.size.width / ratio
+                        return CGSize(width: collectionView.frame.size.width, height: newHeight)
+                    } catch {
+                        print(error)
+                        return CGSize(width: collectionView.frame.size.width, height: heigth)
+                    }
+                    //let heigth = sizeOfImageAt(url: url)?.height ?? (viewModel.sections[indexPath.section].height ?? 120.0)
+                } else {
+                    let height = viewModel.sections[indexPath.section].height ?? 120.0
+                    return CGSize(width: collectionView.frame.size.width, height: Double(height))
+                }
+            } else {
+                let height = viewModel.sections[indexPath.section].height ?? 120.0
+                return CGSize(width: collectionView.frame.size.width, height: Double(height))
+            }
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)

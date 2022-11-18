@@ -87,7 +87,7 @@ class SideMenuViewController: UIViewController {
         if Variables.isRegisterUser {
             if let user = Variables.userProfile?.nombre,
                let lastname = Variables.userProfile?.apellido1 {
-                    profileName.text = "\(user) \(lastname)"
+                    profileName.text = "\(user) \(lastname) \(Variables.userProfile?.apellido2 ?? "")"
             }
             if let email = Variables.userProfile?.correoElectronico1 {
                 profileEmailLabel.text = email
@@ -98,6 +98,9 @@ class SideMenuViewController: UIViewController {
             } else {
                 if let url = URL(string: Variables.userProfile?.image ?? "") {
                     Nuke.loadImage(with: url, into: profileImageView)
+                } else {
+                    profileImageView.image = UIImage(named: "ic_user_profile")
+                    profileImageView.image?.withTintColor(.white)
                 }
             }
         } else {
@@ -201,7 +204,7 @@ extension SideMenuViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.openUrl("https://servicios.grupogollo.com:9199/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/Terminos-y-condiciones-App-de-Clientes.html")
+                self.openUrl("https://servicios.grupogollo.com:9196/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/Terminos-y-condiciones-App-de-Clientes.html")
             })
             .disposed(by: disposeBag)
         
@@ -209,7 +212,7 @@ extension SideMenuViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.openUrl("https://servicios.grupogollo.com:9199/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/GOLLO-APP-Tutorial-de-uso.png")
+                self.openUrl("https://servicios.grupogollo.com:9196/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/GOLLO-APP-Tutorial-de-uso.png")
             })
             .disposed(by: disposeBag)
         

@@ -9,6 +9,9 @@ import ImageSlideshow
 import UIKit
 
 class BannerCollectionViewCell: UICollectionViewCell {
+
+    @IBOutlet weak var dividerView: UIView!
+    @IBOutlet weak var dividerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var imageSlideShowView: ImageSlideshow!
     
     override func awakeFromNib() {
@@ -28,6 +31,6 @@ class BannerCollectionViewCell: UICollectionViewCell {
         }
         imageSlideShowView.setImageInputs(imageSet)
         imageSlideShowView.slideshowInterval = 2
-        imageSlideShowView.contentScaleMode = .scaleAspectFill
+        imageSlideShowView.contentScaleMode = .scaleToFill
     }
 }

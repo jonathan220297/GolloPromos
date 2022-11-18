@@ -40,4 +40,12 @@ class CarTabViewModel {
             i += 1
         }
     }
+
+    func getTotalItems() -> Int {
+        var i = 0
+        for c in car {
+            i += 1 * c.cantidad
+        }
+        return i
+    }
 }

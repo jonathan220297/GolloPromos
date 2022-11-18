@@ -74,7 +74,7 @@ extension WishesViewController: UITableViewDataSource, UITableViewDelegate {
             cell.productImageView.image = UIImage(named: "empty_image")
         }
         cell.productNameLabel.text = favorites[indexPath.row].productName
-        if let price = favorites[indexPath.row].originalPrice {
+        if let price = favorites[indexPath.row].precioFinal {
             let discountString = numberFormatter.string(from: NSNumber(value: price))!
             cell.productPriceLabel.text = "₡\(discountString)"
         }

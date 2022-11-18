@@ -24,7 +24,7 @@ class OffersFilteredListViewController: UIViewController {
 
     // MARK: - Variables
     var lastIndexActive: IndexPath = [1, 0]
-    var selectedPosition: Int = 0
+    var selectedPosition: Int = -1
     var selectedTaxonomy: Int = -1
 
     // MARK: - Lifecycle
@@ -107,6 +107,7 @@ class OffersFilteredListViewController: UIViewController {
                       let data = data else { return }
                 DispatchQueue.main.async {
                     self.view.activityStopAnimating()
+                    self.viewModel.fetchingMore = false
                     var products: [Product] = []
                     for o in data {
                         let p = Product(
@@ -139,7 +140,11 @@ class OffersFilteredListViewController: UIViewController {
                         )
                         products.append(p)
                     }
-                    self.viewModel.products = products
+                    if self.viewModel.page == 1 {
+                        self.viewModel.products = products
+                    } else {
+                        self.viewModel.products.append(contentsOf: products)
+                    }
                     self.productCollectionView.reloadData()
                 }
             })
@@ -159,6 +164,8 @@ class OffersFilteredListViewController: UIViewController {
         dropDown.selectionAction = { [self] (index: Int, item: String) in
             selectedPosition = index
             optionLabel.text = item
+            self.viewModel.fetchingMore = false
+            self.viewModel.page = 1
             self.fetchOffers(with: newTaxonomy, order: selectedPosition + 1)
         }
     }
@@ -220,7 +227,9 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
                 selected.cellView.layer.masksToBounds = true
                 selected.cellView.layoutSubviews()
                 selected.cellView.layoutIfNeeded()
-                
+
+                self.viewModel.fetchingMore = false
+                self.viewModel.page = 1
                 self.selectedTaxonomy = viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1
                 self.fetchOffers(with: viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1)
                 
@@ -246,6 +255,26 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
             vc.offer = viewModel.products[indexPath.row]
             vc.modalPresentationStyle = .fullScreen
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !viewModel.fetchingMore {
+                viewModel.fetchingMore = true
+                viewModel.page += 1
+                var newTaxonomy = taxonomy
+                if selectedTaxonomy != -1 {
+                    newTaxonomy = selectedTaxonomy
+                }
+                var order: Int?
+                if selectedPosition != -1 {
+                    order = selectedPosition + 1
+                }
+                self.fetchOffers(with: newTaxonomy, order: order)
+            }
         }
     }
 }

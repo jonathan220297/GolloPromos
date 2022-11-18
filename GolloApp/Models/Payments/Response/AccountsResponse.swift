@@ -21,8 +21,7 @@ struct AccountsDetail: Codable {
     let montoCancelarCuenta, montoAtraso: Double?
     let diasAtraso, montoAsistencia, totalCuotas, noCuota: Int?
     let montoCuota: Double?
-    let montoMaximoPago, dpp, montoSugeridoBotonera, montoExtragarantia: Double?
-    let diaPago: Int?
+    let montoMaximoPago, montoSugeridoBotonera, montoExtragarantia: Double?
     let descripcion, indicadorIncobrable, indicadorTasaCero: String?
 }
 

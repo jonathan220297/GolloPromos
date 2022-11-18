@@ -37,7 +37,7 @@ class LoginViewModel: NSObject {
                 completion(user, nil)
             } else {
                 self.hideLoading?()
-                completion(nil, "You must verify your email address to login.")
+                completion(user, "Verify your email address")
             }
         }
     }
