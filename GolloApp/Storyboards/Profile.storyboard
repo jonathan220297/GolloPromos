@@ -696,7 +696,7 @@ Para continuar, por favor proceder con el registro</string>
                                                                             <constraint firstAttribute="height" constant="34" id="ZfI-eW-GNq"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                                     </textField>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uD-uA-Jjg">
                                                                         <rect key="frame" x="8" y="59" width="399" height="1"/>
@@ -750,7 +750,7 @@ Para continuar, por favor proceder con el registro</string>
                                                                             <constraint firstAttribute="height" constant="34" id="G83-gr-Fxs"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                                     </textField>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="452-PF-bLP">
                                                                         <rect key="frame" x="8" y="59" width="399" height="1"/>

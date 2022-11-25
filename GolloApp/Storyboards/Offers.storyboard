@@ -708,7 +708,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zqT-Xq-7dU">
-                                                <rect key="frame" x="8" y="191" width="377" height="425"/>
+                                                <rect key="frame" x="8" y="191" width="377" height="460"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mabe Secadora" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4C-PS-TEN">
                                                         <rect key="frame" x="8" y="4" width="361" height="22.666666666666668"/>
@@ -781,16 +781,17 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gzy-Lg-aKk">
-                                                        <rect key="frame" x="8" y="136" width="361" height="50"/>
+                                                        <rect key="frame" x="8" y="136" width="361" height="84"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_offer_description" translatesAutoresizingMaskIntoConstraints="NO" id="WgB-5l-pHm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="84"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="mjg-lI-YCn"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOM-NB-fYo">
-                                                                <rect key="frame" x="38" y="0.0" width="323" height="50"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOM-NB-fYo">
+                                                                <rect key="frame" x="38" y="0.0" width="323" height="84"/>
+                                                                <mutableString key="text">Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label LabelLabel Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label LabelLabel Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label LabelLabel Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label LabelLabel Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label LabelLabel Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label</mutableString>
                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                 <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -801,7 +802,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwI-fz-6N8">
-                                                        <rect key="frame" x="8" y="190" width="361" height="80"/>
+                                                        <rect key="frame" x="8" y="224" width="361" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hX0-9e-0y0">
                                                                 <rect key="frame" x="16" y="19.333333333333318" width="148" height="41.333333333333343"/>
@@ -863,7 +864,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-Ob-kqK">
-                                                        <rect key="frame" x="8" y="278" width="361" height="140"/>
+                                                        <rect key="frame" x="8" y="312" width="361" height="140"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contrato de servicio de reparación" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fh2-Ws-6RY">
                                                                 <rect key="frame" x="8" y="4" width="345" height="21"/>
@@ -963,7 +964,7 @@
                                                     <constraint firstItem="c4C-PS-TEN" firstAttribute="top" secondItem="zqT-Xq-7dU" secondAttribute="top" constant="4" id="PVX-PE-OK3"/>
                                                     <constraint firstItem="Aev-go-DKh" firstAttribute="leading" secondItem="zqT-Xq-7dU" secondAttribute="leading" constant="8" id="RAR-8P-2ti"/>
                                                     <constraint firstItem="uT3-6m-Zxr" firstAttribute="leading" secondItem="zqT-Xq-7dU" secondAttribute="leading" constant="8" id="TIs-d1-GY2"/>
-                                                    <constraint firstAttribute="height" constant="425" id="XDh-Zk-3wj"/>
+                                                    <constraint firstAttribute="height" constant="460" id="XDh-Zk-3wj"/>
                                                     <constraint firstAttribute="trailing" secondItem="O9a-yj-d3o" secondAttribute="trailing" constant="8" id="XgK-g8-Mau"/>
                                                     <constraint firstItem="Gzy-Lg-aKk" firstAttribute="top" secondItem="uT3-6m-Zxr" secondAttribute="bottom" constant="4" id="Yg7-lc-iEm"/>
                                                     <constraint firstItem="Gzy-Lg-aKk" firstAttribute="leading" secondItem="zqT-Xq-7dU" secondAttribute="leading" constant="8" id="ak7-5i-9XU"/>
@@ -984,7 +985,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5S1-YC-jLi">
-                                                <rect key="frame" x="8" y="624" width="377" height="65"/>
+                                                <rect key="frame" x="8" y="659" width="377" height="65"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a9-UN-DpY">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="65"/>
@@ -1040,7 +1041,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nad-pp-LlG">
-                                                <rect key="frame" x="8" y="697" width="377" height="65"/>
+                                                <rect key="frame" x="8" y="732" width="377" height="65"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiK-S4-DGk">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="65"/>
@@ -1096,7 +1097,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L2T-HC-VDw">
-                                                <rect key="frame" x="8" y="770" width="377" height="65"/>
+                                                <rect key="frame" x="8" y="805" width="377" height="65"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otT-I6-Ath">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="65"/>
@@ -1152,7 +1153,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="de2-4G-VtL">
-                                                <rect key="frame" x="8" y="843" width="377" height="250"/>
+                                                <rect key="frame" x="8" y="878" width="377" height="250"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDJ-wS-CSq">
                                                         <rect key="frame" x="0.0" y="0.0" width="377" height="250"/>

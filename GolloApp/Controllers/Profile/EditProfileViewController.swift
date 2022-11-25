@@ -74,7 +74,7 @@ class EditProfileViewController: UIViewController {
         configureObservers()
         configureRx()
         createDatePicker()
-        configureUserData()
+        configureUserData(with: true)
         hideKeyboardWhenTappedAround()
         imagePicker.delegate = self
         documentNumberLabel.delegate = self
@@ -162,40 +162,89 @@ class EditProfileViewController: UIViewController {
         return toolbar
     }
     
-    fileprivate func configureUserData() {
+    fileprivate func configureUserData(with fetch: Bool) {
         viewModel.isUpdating = (Variables.userProfile != nil && Variables.isRegisterUser)
-        if let info = Variables.userProfile, Variables.isRegisterUser {
-            let data = UserData(
-                tipoIdentificacion: info.tipoIdentificacion,
-                tarjetasDeCredito: "",
-                estadoCivil: "",
-                numeroIdentificacion: info.numeroIdentificacion,
-                nombre: info.nombre,
-                apellido1: info.apellido1,
-                apellido2: info.apellido2,
-                idRegistroBit: 0,
-                salario: 0,
-                direccion: info.direccion,
-                fechaIngresoTrabajo: "",
-                corporacion: "",
-                lugarTrabajo: "",
-                direccionTrabajo: "",
-                telefonoTrabajo: "",
-                nombreConyugue: "",
-                casa: "",
-                genero: info.genero,
-                correoElectronico1: info.correoElectronico1,
-                correoElectronico2: "",
-                telefono1: info.telefono1,
-                telefono2: info.telefono2,
-                cantidadHijos: 0,
-                fechaNacimiento: info.fechaNacimiento,
-                nacionalidad: "",
-                carroPropio: "",
-                ocupacion: "",
-                image: Variables.userProfile?.image
-            )
-            showData(with: data)
+        if fetch {
+            if let info = Variables.userProfile, Variables.isRegisterUser {
+                view.activityStartAnimatingFull()
+                viewModel.fetchUserData(id: info.numeroIdentificacion ?? "", type: info.tipoIdentificacion ?? "")
+                    .asObservable()
+                    .subscribe(onNext: {[weak self] data in
+                        guard let self = self,
+                              let data = data else { return }
+                        self.view.activityStopAnimatingFull()
+                        if let _ = data.numeroIdentificacion, let _ = data.numeroIdentificacion {
+                            self.showData(with: data)
+                        } else {
+                            let data = UserData(
+                                tipoIdentificacion: info.tipoIdentificacion,
+                                tarjetasDeCredito: "",
+                                estadoCivil: "",
+                                numeroIdentificacion: info.numeroIdentificacion,
+                                nombre: info.nombre,
+                                apellido1: info.apellido1,
+                                apellido2: info.apellido2,
+                                idRegistroBit: 0,
+                                salario: 0,
+                                direccion: info.direccion,
+                                fechaIngresoTrabajo: "",
+                                corporacion: "",
+                                lugarTrabajo: "",
+                                direccionTrabajo: "",
+                                telefonoTrabajo: "",
+                                nombreConyugue: "",
+                                casa: "",
+                                genero: info.genero,
+                                correoElectronico1: info.correoElectronico1,
+                                correoElectronico2: "",
+                                telefono1: info.telefono1,
+                                telefono2: info.telefono2,
+                                cantidadHijos: 0,
+                                fechaNacimiento: info.fechaNacimiento,
+                                nacionalidad: "",
+                                carroPropio: "",
+                                ocupacion: "",
+                                image: Variables.userProfile?.image
+                            )
+                            self.showData(with: data)
+                        }
+                    })
+                    .disposed(by: disposeBag)
+            }
+        } else {
+            if let info = Variables.userProfile, Variables.isRegisterUser {
+                let data = UserData(
+                    tipoIdentificacion: info.tipoIdentificacion,
+                    tarjetasDeCredito: "",
+                    estadoCivil: "",
+                    numeroIdentificacion: info.numeroIdentificacion,
+                    nombre: info.nombre,
+                    apellido1: info.apellido1,
+                    apellido2: info.apellido2,
+                    idRegistroBit: 0,
+                    salario: 0,
+                    direccion: info.direccion,
+                    fechaIngresoTrabajo: "",
+                    corporacion: "",
+                    lugarTrabajo: "",
+                    direccionTrabajo: "",
+                    telefonoTrabajo: "",
+                    nombreConyugue: "",
+                    casa: "",
+                    genero: info.genero,
+                    correoElectronico1: info.correoElectronico1,
+                    correoElectronico2: "",
+                    telefono1: info.telefono1,
+                    telefono2: info.telefono2,
+                    cantidadHijos: 0,
+                    fechaNacimiento: info.fechaNacimiento,
+                    nacionalidad: "",
+                    carroPropio: "",
+                    ocupacion: "",
+                    image: Variables.userProfile?.image
+                )
+                showData(with: data)
+            }
         }
         if viewModel.isUpdating {
             self.deleteProfileView.isHidden = false
@@ -217,6 +266,47 @@ class EditProfileViewController: UIViewController {
                         self.showAlert(alertText: "GolloApp", alertMessage: message)
                     }
                     self.viewModel.errorMessage.accept("")
+                }
+            })
+            .disposed(by: disposeBag)
+
+        viewModel
+            .errorExpiredToken
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self,
+                      let value = value else { return }
+                if value {
+                    self.view.activityStopAnimating()
+                    self.viewModel.errorExpiredToken.accept(nil)
+                    self.userDefaults.removeObject(forKey: "Information")
+                    let _ = KeychainManager.delete(key: "token")
+                    Variables.isRegisterUser = false
+                    Variables.isLoginUser = false
+                    Variables.isClientUser = false
+                    Variables.userProfile = nil
+                    UserManager.shared.userData = nil
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Tu sesión ha expirado y la aplicación se reiniciara inmediatamente.") {
+                        let firebaseAuth = Auth.auth()
+                        do {
+                            try firebaseAuth.signOut()
+                            self.userDefaults.removeObject(forKey: "Information")
+                            Variables.isRegisterUser = false
+                            Variables.isLoginUser = false
+                            Variables.isClientUser = false
+                            Variables.userProfile = nil
+                            UserManager.shared.userData = nil
+                            Messaging.messaging().token { token, error in
+                              if let error = error {
+                                print("Error fetching FCM registration token: \(error)")
+                              } else if let token = token {
+                                self.registerDevice(with: token)
+                              }
+                            }
+                        } catch let signOutError as NSError {
+                            log.error("Error signing out: \(signOutError)")
+                        }
+                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -498,7 +588,7 @@ class EditProfileViewController: UIViewController {
                 self.view.activityStopAnimating()
                 self.showAlert(alertText: "GolloApp", alertMessage: "Usuario actualizado exitosamente.")
                 self.configureNavigationBar()
-                self.configureUserData()
+                self.configureUserData(with: false)
             })
             .disposed(by: disposeBag)
     }

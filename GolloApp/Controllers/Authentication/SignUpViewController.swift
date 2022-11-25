@@ -63,7 +63,7 @@ extension SignUpViewController {
                       let email = self.emailTextField.text,
                       let password = self.passwordTextField.text else { return }
                 self.signUpButton.showLoading()
-                self.viewModel.signUp(with: email, password)
+                self.viewModel.signUp(with: email.trimmingCharacters(in: .whitespacesAndNewlines), password)
             })
             .disposed(by: disposeBag)
         

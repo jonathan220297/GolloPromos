@@ -316,16 +316,23 @@ class OfferDetailViewController: UIViewController {
                 let date1 = calendar.startOfDay(for: Date())
                 let date2 = calendar.startOfDay(for: toDate ?? Date())
 
-                let days = calendar.numberOfDaysBetween(date1, and: date2)
-                let hours = calendar.dateComponents([.hour], from: date1, to: date2).hour
-                var stringDays = "día"
-                if days > 1 {
-                    stringDays = "días"
-                }
-                if let hours = hours, hours > 1 {
-                    dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "3 días y 0 horas")
+                if date1 > date2 {
+                    dateLabel.alpha = 0
+                    dateView.alpha = 0
                 } else {
-                    dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(days) \(stringDays)")
+                    print("To date: \(endDate) ~~ \(date2)")
+                    print("New difference: \(date2.offsetFrom(date: date1))")
+                    let days = calendar.numberOfDaysBetween(date1, and: date2)
+                    let hours = calendar.dateComponents([.hour], from: date1, to: date2).hour
+                    var stringDays = "día"
+                    if days > 1 {
+                        stringDays = "días"
+                    }
+                    if let hours = hours, hours > 1 {
+                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "3 días y 0 horas")
+                    } else {
+                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(days) \(stringDays)")
+                    }
                 }
             } else {
                 dateLabel.alpha = 0

@@ -199,6 +199,47 @@ extension SideMenuViewController {
             }
         }
         .disposed(by: disposeBag)
+
+        viewModel
+            .errorExpiredToken
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self,
+                      let value = value else { return }
+                if value {
+                    self.view.activityStopAnimating()
+                    self.viewModel.errorExpiredToken.accept(nil)
+                    self.userDefaults.removeObject(forKey: "Information")
+                    let _ = KeychainManager.delete(key: "token")
+                    Variables.isRegisterUser = false
+                    Variables.isLoginUser = false
+                    Variables.isClientUser = false
+                    Variables.userProfile = nil
+                    UserManager.shared.userData = nil
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Tu sesión ha expirado y la aplicación se reiniciara inmediatamente.") {
+                        let firebaseAuth = Auth.auth()
+                        do {
+                            try firebaseAuth.signOut()
+                            self.userDefaults.removeObject(forKey: "Information")
+                            Variables.isRegisterUser = false
+                            Variables.isLoginUser = false
+                            Variables.isClientUser = false
+                            Variables.userProfile = nil
+                            UserManager.shared.userData = nil
+                            Messaging.messaging().token { token, error in
+                              if let error = error {
+                                print("Error fetching FCM registration token: \(error)")
+                              } else if let token = token {
+                                self.registerDevice(with: token)
+                              }
+                            }
+                        } catch let signOutError as NSError {
+                            log.error("Error signing out: \(signOutError)")
+                        }
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
         
         termsConditionButton
             .rx

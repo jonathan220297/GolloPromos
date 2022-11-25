@@ -12,6 +12,9 @@ class SideMenuViewModel {
     private let service = GolloService()
     let userManager = UserManager.shared
 
+    let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
+    let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
+
     func fetchUnreadNotifications() -> BehaviorRelay<UnreadNotificationData?> {
         let apiResponse: BehaviorRelay<UnreadNotificationData?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<UnreadNotificationData, UnreadNotificationServiceRequest>(
@@ -81,6 +84,16 @@ class SideMenuViewModel {
                     apiResponse.accept(response)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
+                    switch error {
+                    case .decoding: break;
+                    case .server(code: let code, message: _):
+                        if code == 401 {
+                            self.errorExpiredToken.accept(true)
+                            self.errorMessage.accept("")
+                        } else {
+                            self.errorMessage.accept(error.localizedDescription)
+                        }
+                    }
                 }
             }
         }

@@ -168,8 +168,9 @@ class ShippingMethodViewController: UIViewController {
                 guard let self = self,
                       let response = response else { return }
                 self.view.activityStopAnimatingFull()
-                self.viewModel.data = response
-                self.viewModel.processStates(with: response)
+                let responseData = response.sorted { $0.nombre < $1.nombre }
+                self.viewModel.data = responseData
+                self.viewModel.processStates(with: responseData)
                 self.viewModel.processShops(with: self.viewModel.states.first ?? "")
                 self.stateLabel.text = self.viewModel.states.first ?? ""
             })

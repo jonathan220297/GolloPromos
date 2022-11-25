@@ -218,7 +218,7 @@ class LoginViewController: UIViewController {
         buttonLogin.showLoading()
         guard let username = usernameTextField.text,
               let password = passwordTextField.text else { return }
-        viewModel.signIn(with: username, password: password) {[weak self] user, error in
+        viewModel.signIn(with: username.trimmingCharacters(in: .whitespacesAndNewlines), password: password) {[weak self] user, error in
             guard let self = self else { return }
             if let error = error {
                 self.buttonLogin.hideLoading()

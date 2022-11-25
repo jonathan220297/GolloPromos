@@ -42,13 +42,13 @@ class OffersFilteredListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        fetchCategories()
+        fetchOffers(with: taxonomy)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureAlternativeNavBar()
-        fetchCategories()
-        fetchOffers(with: taxonomy)
         configureRx()
     }
 

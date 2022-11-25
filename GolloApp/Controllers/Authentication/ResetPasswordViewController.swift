@@ -68,7 +68,7 @@ class ResetPasswordViewController: UIViewController {
             .tap
             .subscribe(onNext: { _ in
                 if let email = self.emailTextField.text {
-                    Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+                    Auth.auth().sendPasswordReset(withEmail: email.trimmingCharacters(in: .whitespacesAndNewlines)) { (error) in
                         if let error = error {
                             self.showAlert(alertText: "GolloApp", alertMessage: error.localizedDescription)
                         } else {

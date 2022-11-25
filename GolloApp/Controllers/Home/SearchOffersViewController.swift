@@ -192,7 +192,10 @@ extension SearchOffersViewController: UICollectionViewDelegate,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.searchCollectionView {
-            return CGSize(width: 85, height: 30)
+            let label = UILabel(frame: CGRect.zero)
+            label.text = viewModel.history[indexPath.row]
+            label.sizeToFit()
+            return CGSize(width: label.frame.width + 15, height: 30)
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
