@@ -97,6 +97,47 @@ class LoginViewModel: NSObject {
             }
         return apiResponse
     }
+
+    func registerDeviceToken(with deviceToken: String) -> BehaviorRelay<DeviceTokenResponse?> {
+        var token: String? = nil
+        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : nil
+        if !getToken().isEmpty {
+            token = getToken()
+        }
+        let apiResponse: BehaviorRelay<DeviceTokenResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGolloAlternative(BaseRequest<DeviceTokenResponse?, DeviceTokenServiceRequest>(
+            resource: "Procesos",
+            service: BaseServiceRequestParam<DeviceTokenServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: Encabezado(
+                        idProceso: GOLLOAPP.DEVICE_TOKEN_PROCESS_ID.rawValue,
+                        idDevice: getDeviceID(),
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        timeStamp: String(Date().timeIntervalSince1970),
+                        idCia: 10,
+                        token: token ?? "",
+                        integrationId: nil),
+                    parametros: DeviceTokenServiceRequest(
+                        deleteAction: "N",
+                        idCliente: idClient,
+                        idDevice: "\(UUID())",
+                        idDeviceToken: deviceToken,
+                        idSistemaOperativo: "IOS"
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
     
     func saveToken(with token: String) -> Bool {
         if let data = token.data(using: .utf8) {

@@ -36,6 +36,7 @@ class HomeTabViewController: UIViewController {
         configureViewModel()
         configureRx()
         fetchHomeConfiguration()
+        configureTopic()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,6 +158,18 @@ class HomeTabViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+    }
+
+    fileprivate func configureTopic() {
+        if Messaging.messaging().fcmToken != nil {
+            Messaging.messaging().subscribe(toTopic: "gollo_app") { error in
+                if error == nil {
+                    print("Subscribed to topic")
+                } else{
+                    print("Not Subscribed to topic")
+                }
+            }
+        }
     }
 }
 
