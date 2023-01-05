@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OffersFilteredListViewController" customModule="PromosGollo" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OffersFilteredListViewController" customModule="GolloApp" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="uCd-hM-ljK" id="MuS-3L-eQu"/>
                 <outlet property="optionButton" destination="5tc-FA-jjw" id="Pra-Ur-ZfJ"/>
@@ -52,7 +52,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63s-DY-lSA">
                             <rect key="frame" x="0.0" y="40" width="390" height="75"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ordenado por:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNs-gJ-QC6">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ordenar por:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNs-gJ-QC6">
                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="EIb-rY-Chy"/>

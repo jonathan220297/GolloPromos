@@ -25,8 +25,12 @@ class WishesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Mis productos favoritos"
+        navigationItem.title = "Mis productos favoritos"
         configureTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.favorites = CoreDataService().fetchFavoriteItems()
         if self.favorites.isEmpty {
             self.emptyView.alpha = 1
@@ -70,7 +74,7 @@ extension WishesViewController: UITableViewDataSource, UITableViewDelegate {
             cell.productImageView.image = UIImage(named: "empty_image")
         }
         cell.productNameLabel.text = favorites[indexPath.row].productName
-        if let price = favorites[indexPath.row].originalPrice {
+        if let price = favorites[indexPath.row].precioFinal {
             let discountString = numberFormatter.string(from: NSNumber(value: price))!
             cell.productPriceLabel.text = "₡\(discountString)"
         }

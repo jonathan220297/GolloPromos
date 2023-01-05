@@ -25,7 +25,7 @@ class AccountsViewController: UIViewController {
 
         navigationItem.title = "Pago de cuotas"
 
-        tableView.rowHeight = 335.0
+        tableView.rowHeight = 370.0
         tableView.tableFooterView = UIView()
         fetchAccounts()
         configureRx()
@@ -137,6 +137,27 @@ extension AccountsViewController: AccountsDelegate {
         let vc = TransactionsHistoryViewController.instantiate(fromAppStoryboard: .Payments)
         vc.modalPresentationStyle = .fullScreen
         vc.accountId = model.idCuenta ?? ""
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func PayAccount(with index: Int) {
+        let model = self.viewModel.accounts[index]
+        let vc = PaymentViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .fullScreen
+        let payment = PaymentData()
+        payment.currency = GOLLOAPP.CURRENCY_SIMBOL.rawValue
+        payment.suggestedAmount = model.montoSugeridoBotonera
+        payment.installmentAmount = model.montoCuota
+        payment.totalAmount = model.montoCancelarCuenta
+        payment.idCuenta = model.idCuenta
+        payment.numCuenta = model.numCuenta
+        payment.type = 1
+        payment.documentId = Variables.userProfile?.numeroIdentificacion ?? "205080150"
+        payment.documentType = Variables.userProfile?.tipoIdentificacion ?? "C"
+        payment.nombreCliente = "\(Variables.userProfile?.nombre ?? "") \(Variables.userProfile?.apellido1 ?? "")"
+        payment.email = Variables.userProfile?.correoElectronico1 ?? ""
+        vc.paymentData = payment
+        vc.isThirdPayAccount = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

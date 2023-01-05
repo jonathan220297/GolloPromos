@@ -38,6 +38,7 @@ struct AccountData: Codable {
     let montoCancelarCuenta: Double?
     let diasAtraso: Int?
     let montoAtraso: Double?
+    let montoSugeridoPago: Double?
 }
 
 struct TotalsData: Codable {

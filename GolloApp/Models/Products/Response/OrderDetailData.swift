@@ -21,18 +21,19 @@ struct OrderDetail: Codable {
 struct OrderInformation: Codable {
     let idOrden, idMovimiento, totalLineas: Int?
     let idEmpresa, idCliente, estadoOrden, fechaOrden, condicionVenta, codigoCupon, descripcionCupon, numOrdenTienda: String?
-    let montoBruto, montoDescuento, montoExtragarantia: Double?
+    let montoProductos, montoEnvio, montoExtragarantia, montoBruto, montoDescuento: Double?
+    let montoBono, montoNeto: Double?
 }
 
 struct PaymentType: Codable {
     let idFormaPago, codigoCupon, upcRelacionado, tipoTarjeta: String?
     let numeroTarjeta, codigoAutorizacion, fechaExpiraTarjeta, nombreTarjeta, descripcionFP: String?
     let montoTotal: Double?
-    let noLineaProductoRelacionado, totalCuotas: Int?
+    let noLineaProductoRelacionado, totalCuotas, principalFP: Int?
 }
 
 struct DeliveryType: Codable {
-    let tipoEntrega, lugarDespacho, horaEntrega, fechaEntrega, instruccionesEspeciales: String?
+    let tipoEntrega, lugarDespacho, horaEntrega, fechaEntrega, instruccionesEspeciales, descEntrega: String?
     let direccion, tipoDireccion, idProvincia, provinciaDesc, idCanton, cantonDesc, idDistrito, distritoDesc: String?
     let tipoIdReceptor, idReceptor, parentescoReceptor, codigoPostal, receptorProducto, telefonoReceptor: String?
 }

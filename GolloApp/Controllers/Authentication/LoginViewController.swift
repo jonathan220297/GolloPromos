@@ -63,32 +63,49 @@ class LoginViewController: UIViewController {
 
     // MARK: - Functions
     fileprivate func configureViews() {
-        let text = "No tienes una cuenta? REGISTRATE"
+        let text = "¿No tenés una cuenta? REGISTRATE"
         signUpButton.setAttributedTitle(text.withBoldText(text: "REGISTRATE", fontNormalText: UIFont.sansSerifDemiBold(ofSize: 15), fontBoldText: UIFont.sansSerifBold(ofSize: 15), fontColorBold: .primary), for: .normal)
     }
 
     fileprivate func loginRequestInfo(for loginType: LoginType) {
-        viewModel.fetchUserInfo(for: loginType)
-            .asObservable()
-            .subscribe(onNext: {[weak self] data in
-                guard let self = self,
-                      let data = data else { return }
-                if let info = data.registro {
-                    Variables.userProfile = info
-                    do {
-                        try self.userDefaults.setObject(info, forKey: "Information")
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-                Variables.isRegisterUser = data.estadoRegistro ?? false
-                Variables.isLoginUser = data.estadoLogin ?? false
-                Variables.isClientUser = data.estadoCliente ?? false
-                self.dismiss(animated: true) {
-                    self.delegate?.didLoginSucceed()
-                }
-            })
-            .disposed(by: disposeBag)
+        guard let user = Auth.auth().currentUser else { return }
+        user.getIDToken(completion: { (res, err) in
+            if err != nil {
+                print("*** TOKEN() ERROR: \(err!)")
+            } else {
+                print("*** TOKEN() SUCCESS: \(res!)")
+                self.viewModel
+                    .fetchUserInfo(for: loginType, idToken: res ?? "")
+                    .asObservable()
+                    .subscribe(onNext: {[weak self] data in
+                        guard let self = self,
+                              let data = data else { return }
+                        if let info = data.registro {
+                            Variables.userProfile = info
+                            do {
+                                try self.userDefaults.setObject(info, forKey: "Information")
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                        Messaging.messaging().token { token, error in
+                          if let error = error {
+                              print("Error fetching FCM registration token: \(error)")
+                          } else if let token = token {
+                              print("FCM registration token: \(token)")
+                              self.registerDeviceToken(with: token)
+                          }
+                        }
+                        Variables.isRegisterUser = data.estadoRegistro ?? false
+                        Variables.isLoginUser = data.estadoLogin ?? false
+                        Variables.isClientUser = data.estadoCliente ?? false
+                        self.dismiss(animated: true) {
+                            self.delegate?.didLoginSucceed()
+                        }
+                    })
+                    .disposed(by: self.disposeBag)
+            }
+        })
     }
 
     fileprivate func configureViewModel() {
@@ -209,11 +226,39 @@ class LoginViewController: UIViewController {
         buttonLogin.showLoading()
         guard let username = usernameTextField.text,
               let password = passwordTextField.text else { return }
-        viewModel.signIn(with: username, password: password) {[weak self] user, error in
+        viewModel.signIn(with: username.trimmingCharacters(in: .whitespacesAndNewlines), password: password) {[weak self] user, error in
             guard let self = self else { return }
             if let error = error {
                 self.buttonLogin.hideLoading()
-                self.showAlert(alertText: "GolloApp", alertMessage: error)
+                if error == "Verify your email address" {
+                    let refreshAlert = UIAlertController(title: "Verificación de email", message: "Su cuenta de correo aún no ha sido verificada. Para verificarla debe hacer click en el link enviado a su cuenta de correo; el correo puede estar en la bandeja de correos no deseados.", preferredStyle: UIAlertController.Style.alert)
+
+                    refreshAlert.addAction(UIAlertAction(title: "Reenviar correo", style: .default, handler: { (action: UIAlertAction!) in
+                        user?.reload()
+                        if let user = user {
+                            if !user.isEmailVerified {
+                                user.sendEmailVerification { error in
+                                    if let error = error {
+                                        print("Error: \(error.localizedDescription)")
+                                    }
+                                }
+                            }
+                        }
+                        refreshAlert.dismiss(animated: true)
+                    }))
+
+                    refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
+                        refreshAlert.dismiss(animated: true)
+                    }))
+
+                    self.present(refreshAlert, animated: true, completion: nil)
+                } else {
+                    var userError = error
+                    if userError == "The password is invalid or the user does not have a password." {
+                        userError = "Usuario y/o contraseña son inválidos."
+                    }
+                    self.showAlert(alertText: "GolloApp", alertMessage: userError)
+                }
                 do {
                     try Auth.auth().signOut()
                 } catch let error as NSError {
@@ -318,6 +363,17 @@ class LoginViewController: UIViewController {
         }.joined()
 
         return hashString
+    }
+
+    fileprivate func registerDeviceToken(with token: String) {
+        viewModel
+            .registerDeviceToken(with: token)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let _ = self else { return }
+                print("Token saved")
+            })
+            .disposed(by: disposeBag)
     }
 }
 

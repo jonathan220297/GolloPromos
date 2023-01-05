@@ -114,9 +114,15 @@ class ShippingMethodViewModel {
     }
     
     func processShippingMethod() {
+        var deliveryType = "20"
+        if methodSelected?.cargoCode == "-1" {
+            deliveryType = "20"
+        } else {
+            deliveryType = methodSelected?.cargoCode ?? ""
+        }
         carManager.shippingMethod = methodSelected
         carManager.deliveryInfo?.lugarDespacho = shopSelected?.idTienda ?? ""
-        carManager.deliveryInfo?.tipoEntrega = "20"
+        carManager.deliveryInfo?.tipoEntrega = deliveryType
         carManager.deliveryInfo?.codigoFlete = carManager.shippingMethod?.cargoCode ?? "-1"
         carManager.deliveryInfo?.montoFlete = carManager.shippingMethod?.cost ?? 0.0
     }

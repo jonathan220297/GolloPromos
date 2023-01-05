@@ -8,11 +8,12 @@
 import Foundation
 
 public class NotificationsData: Codable {
-    let IdNotification, idType, issueDate, title, message: String?
+    let idType: Int?
+    let IdNotification, issueDate, title, message: String?
     let image, imageList, url: String?
     let type, read: String?
 
-    public init(IdNotification: String?, idType: String?, issueDate: String?, title: String?, message: String?, image: String?, imageList: String?, url: String?, type: String?, read: String?) {
+    public init(IdNotification: String?, idType: Int?, issueDate: String?, title: String?, message: String?, image: String?, imageList: String?, url: String?, type: String?, read: String?) {
         self.IdNotification = IdNotification
         self.idType = idType
         self.issueDate = issueDate

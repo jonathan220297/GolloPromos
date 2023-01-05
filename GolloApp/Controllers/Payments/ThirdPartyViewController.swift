@@ -34,10 +34,10 @@ class ThirdPartyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Pago de cuotas de Terceros"
+        navigationItem.title = "Pago de cuotas de terceros"
         self.tabBarController?.tabBar.isHidden = true
 
-        self.tableView.rowHeight = 140.0
+        self.tableView.rowHeight = 175.0
         configureRx()
     }
 
@@ -101,7 +101,7 @@ class ThirdPartyViewController: UIViewController {
                     }
 
                     self.antiLaunderingAmount = data.montoMinAntilavado ?? 0.0
-                    self.navigationItem.title = "Cuentas activas de terceros"
+                    self.navigationItem.title = "Cuentas activas de tercero"
                     self.customerDocumentLabel.text = "Cédula: \(number)"
                     self.fetchCustomerAccounts(documentType: type, documentId: number)
                 } else {
@@ -143,6 +143,7 @@ extension ThirdPartyViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell") as! ThirdPartyAccountsTableViewCell
 
         cell.setAccount(model: account, index: indexPath.row)
+        cell.delegate = self
         cell.selectionStyle = .none
 
         return cell
@@ -172,4 +173,27 @@ extension ThirdPartyViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension ThirdPartyViewController: ThirdPartyAccountsDelegate {
+    func PayAccount(with index: Int) {
+        let model = self.viewModel.accounts[index]
+        let vc = PaymentViewController.instantiate(fromAppStoryboard: .Payments)
+        vc.modalPresentationStyle = .fullScreen
+        let payment = PaymentData()
+        payment.currency = GOLLOAPP.CURRENCY_SIMBOL.rawValue
+        payment.suggestedAmount = model.montoSugeridoBotonera
+        payment.installmentAmount = model.montoCuota
+        payment.totalAmount = model.montoCancelarCuenta
+        payment.idCuenta = model.idCuenta
+        payment.numCuenta = model.numCuenta
+        payment.type = 1
+        payment.documentId = Variables.userProfile?.numeroIdentificacion ?? "205080150"
+        payment.documentType = Variables.userProfile?.tipoIdentificacion ?? "C"
+        payment.nombreCliente = "\(Variables.userProfile?.nombre ?? "") \(Variables.userProfile?.apellido1 ?? "")"
+        payment.email = Variables.userProfile?.correoElectronico1 ?? ""
+        vc.paymentData = payment
+        vc.isThirdPayAccount = true
+        vc.antiLaunderingAmount = self.antiLaunderingAmount ?? 0.0
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
 

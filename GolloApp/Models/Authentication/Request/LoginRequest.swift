@@ -29,6 +29,10 @@ struct LoginServiceRequest: Codable {
     public let apellido1: String
     public let apellido2: String
     public let tipoLogin: String
+    public let idDevice: String
+    public let idDeviceToken: String
+    public let sisOperativo: String
+    public let idEmpresa: Int
 }
 
 enum LoginType: Int {

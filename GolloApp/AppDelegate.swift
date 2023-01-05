@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseCore
+import FirebaseMessaging
 import GoogleSignIn
 import CoreData
 import XCGLogger
@@ -18,7 +19,7 @@ import FacebookCore
 let log = XCGLogger.default
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
 
@@ -32,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
                     self?.requestTracking()
         }
+        PushNotificationManager().registerForPushNotifications(application: application)
+
+        Messaging.messaging().delegate = self
+
         return true
     }
 

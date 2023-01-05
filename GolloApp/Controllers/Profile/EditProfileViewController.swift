@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import DropDown
 import Nuke
+import FirebaseAuth
 import FirebaseMessaging
 
 class EditProfileViewController: UIViewController {
@@ -26,6 +27,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var searchCustomerHeight: NSLayoutConstraint!
     @IBOutlet weak var unregisteredUserView: UIView!
     @IBOutlet weak var registerUserButton: UIButton!
+    @IBOutlet weak var informationView: UIView!
     // User data
     @IBOutlet weak var userDataStackView: UIStackView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -69,11 +71,10 @@ class EditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
         configureObservers()
         configureRx()
         createDatePicker()
-        configureUserData()
+        configureUserData(with: true)
         hideKeyboardWhenTappedAround()
         imagePicker.delegate = self
         documentNumberLabel.delegate = self
@@ -87,6 +88,7 @@ class EditProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         self.tabBarController?.tabBar.isHidden = true
+        configureNavigationBar()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -121,7 +123,11 @@ class EditProfileViewController: UIViewController {
     
     // MARK: - Functions
     func configureNavigationBar() {
-        self.navigationItem.title = "Mi perfil"
+        if (Variables.userProfile != nil && Variables.isRegisterUser) {
+            self.navigationItem.title = "Mi perfil"
+        } else {
+            self.navigationItem.title = "Crea tu perfil"
+        }
         self.tabBarController?.tabBar.isHidden = true
         let barAppearance = UINavigationBarAppearance()
         barAppearance.backgroundColor = .primary
@@ -156,40 +162,89 @@ class EditProfileViewController: UIViewController {
         return toolbar
     }
     
-    fileprivate func configureUserData() {
+    fileprivate func configureUserData(with fetch: Bool) {
         viewModel.isUpdating = (Variables.userProfile != nil && Variables.isRegisterUser)
-        if let info = Variables.userProfile, Variables.isRegisterUser {
-            let data = UserData(
-                tipoIdentificacion: info.tipoIdentificacion,
-                tarjetasDeCredito: "",
-                estadoCivil: "",
-                numeroIdentificacion: info.numeroIdentificacion,
-                nombre: info.nombre,
-                apellido1: info.apellido1,
-                apellido2: info.apellido2,
-                idRegistroBit: 0,
-                salario: 0,
-                direccion: info.direccion,
-                fechaIngresoTrabajo: "",
-                corporacion: "",
-                lugarTrabajo: "",
-                direccionTrabajo: "",
-                telefonoTrabajo: "",
-                nombreConyugue: "",
-                casa: "",
-                genero: info.genero,
-                correoElectronico1: info.correoElectronico1,
-                correoElectronico2: "",
-                telefono1: info.telefono1,
-                telefono2: info.telefono2,
-                cantidadHijos: 0,
-                fechaNacimiento: info.fechaNacimiento,
-                nacionalidad: "",
-                carroPropio: "",
-                ocupacion: "",
-                image: Variables.userProfile?.image
-            )
-            showData(with: data)
+        if fetch {
+            if let info = Variables.userProfile, Variables.isRegisterUser {
+                view.activityStartAnimatingFull()
+                viewModel.fetchUserData(id: info.numeroIdentificacion ?? "", type: info.tipoIdentificacion ?? "")
+                    .asObservable()
+                    .subscribe(onNext: {[weak self] data in
+                        guard let self = self,
+                              let data = data else { return }
+                        self.view.activityStopAnimatingFull()
+                        if let _ = data.numeroIdentificacion, let _ = data.numeroIdentificacion {
+                            self.showData(with: data)
+                        } else {
+                            let data = UserData(
+                                tipoIdentificacion: info.tipoIdentificacion,
+                                tarjetasDeCredito: "",
+                                estadoCivil: "",
+                                numeroIdentificacion: info.numeroIdentificacion,
+                                nombre: info.nombre,
+                                apellido1: info.apellido1,
+                                apellido2: info.apellido2,
+                                idRegistroBit: 0,
+                                salario: 0,
+                                direccion: info.direccion,
+                                fechaIngresoTrabajo: "",
+                                corporacion: "",
+                                lugarTrabajo: "",
+                                direccionTrabajo: "",
+                                telefonoTrabajo: "",
+                                nombreConyugue: "",
+                                casa: "",
+                                genero: info.genero,
+                                correoElectronico1: info.correoElectronico1,
+                                correoElectronico2: "",
+                                telefono1: info.telefono1,
+                                telefono2: info.telefono2,
+                                cantidadHijos: 0,
+                                fechaNacimiento: info.fechaNacimiento,
+                                nacionalidad: "",
+                                carroPropio: "",
+                                ocupacion: "",
+                                image: Variables.userProfile?.image
+                            )
+                            self.showData(with: data)
+                        }
+                    })
+                    .disposed(by: disposeBag)
+            }
+        } else {
+            if let info = Variables.userProfile, Variables.isRegisterUser {
+                let data = UserData(
+                    tipoIdentificacion: info.tipoIdentificacion,
+                    tarjetasDeCredito: "",
+                    estadoCivil: "",
+                    numeroIdentificacion: info.numeroIdentificacion,
+                    nombre: info.nombre,
+                    apellido1: info.apellido1,
+                    apellido2: info.apellido2,
+                    idRegistroBit: 0,
+                    salario: 0,
+                    direccion: info.direccion,
+                    fechaIngresoTrabajo: "",
+                    corporacion: "",
+                    lugarTrabajo: "",
+                    direccionTrabajo: "",
+                    telefonoTrabajo: "",
+                    nombreConyugue: "",
+                    casa: "",
+                    genero: info.genero,
+                    correoElectronico1: info.correoElectronico1,
+                    correoElectronico2: "",
+                    telefono1: info.telefono1,
+                    telefono2: info.telefono2,
+                    cantidadHijos: 0,
+                    fechaNacimiento: info.fechaNacimiento,
+                    nacionalidad: "",
+                    carroPropio: "",
+                    ocupacion: "",
+                    image: Variables.userProfile?.image
+                )
+                showData(with: data)
+            }
         }
         if viewModel.isUpdating {
             self.deleteProfileView.isHidden = false
@@ -211,6 +266,47 @@ class EditProfileViewController: UIViewController {
                         self.showAlert(alertText: "GolloApp", alertMessage: message)
                     }
                     self.viewModel.errorMessage.accept("")
+                }
+            })
+            .disposed(by: disposeBag)
+
+        viewModel
+            .errorExpiredToken
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self,
+                      let value = value else { return }
+                if value {
+                    self.view.activityStopAnimating()
+                    self.viewModel.errorExpiredToken.accept(nil)
+                    self.userDefaults.removeObject(forKey: "Information")
+                    let _ = KeychainManager.delete(key: "token")
+                    Variables.isRegisterUser = false
+                    Variables.isLoginUser = false
+                    Variables.isClientUser = false
+                    Variables.userProfile = nil
+                    UserManager.shared.userData = nil
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Tu sesión ha expirado y la aplicación se reiniciara inmediatamente.") {
+                        let firebaseAuth = Auth.auth()
+                        do {
+                            try firebaseAuth.signOut()
+                            self.userDefaults.removeObject(forKey: "Information")
+                            Variables.isRegisterUser = false
+                            Variables.isLoginUser = false
+                            Variables.isClientUser = false
+                            Variables.userProfile = nil
+                            UserManager.shared.userData = nil
+                            Messaging.messaging().token { token, error in
+                              if let error = error {
+                                print("Error fetching FCM registration token: \(error)")
+                              } else if let token = token {
+                                self.registerDevice(with: token)
+                              }
+                            }
+                        } catch let signOutError as NSError {
+                            log.error("Error signing out: \(signOutError)")
+                        }
+                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -298,7 +394,19 @@ class EditProfileViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.deleteData()
+                let refreshAlert = UIAlertController(title: "", message: "¿Desea eliminar el registro?", preferredStyle: UIAlertController.Style.alert)
+
+                refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
+                    refreshAlert.dismiss(animated: true)
+                }))
+
+                refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
+                    self.view.activityStarAnimating()
+                    self.deleteUserData()
+                    refreshAlert.dismiss(animated: true)
+                }))
+
+                self.present(refreshAlert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
@@ -369,6 +477,7 @@ class EditProfileViewController: UIViewController {
         view.activityStopAnimating()
         searchCustomerButton.visibility = .gone
         searchCustomerHeight.constant = 0
+        informationView.isHidden = true
         userDataStackView.alpha = 1
         profileImageView.isHidden = false
         self.unregisteredUserView.isHidden = true
@@ -478,26 +587,35 @@ class EditProfileViewController: UIViewController {
                 }
                 self.view.activityStopAnimating()
                 self.showAlert(alertText: "GolloApp", alertMessage: "Usuario actualizado exitosamente.")
+                self.configureNavigationBar()
+                self.configureUserData(with: false)
             })
             .disposed(by: disposeBag)
     }
 
-    fileprivate func deleteData() {
+    fileprivate func deleteUserData() {
         viewModel
             .deleteUserProfile()
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let _ = data else { return }
+                self.userDefaults.removeObject(forKey: "Information")
+                let _ = KeychainManager.delete(key: "token")
+                Variables.isRegisterUser = false
+                Variables.isLoginUser = false
+                Variables.isClientUser = false
+                Variables.userProfile = nil
+                UserManager.shared.userData = nil
                 Messaging.messaging().token { token, error in
                   if let error = error {
-                    print("Error fetching FCM registration token: \(error)")
+                      self.view.activityStopAnimating()
+                      print("Error fetching FCM registration token: \(error)")
                   } else if let token = token {
-                    print("FCM registration token: \(token)")
-                    self.registerDevice(with: token)
+                      print("FCM registration token: \(token)")
+                      self.registerDevice(with: token)
                   }
                 }
-
             })
             .disposed(by: disposeBag)
     }
@@ -517,6 +635,13 @@ class EditProfileViewController: UIViewController {
                         print(error.localizedDescription)
                     }
                 }
+                if let token = data.token {
+                    let _ = self.viewModel.saveToken(with: token)
+                }
+                if let deviceID = data.idCliente {
+                    self.userDefaults.set(deviceID, forKey: "deviceID")
+                }
+                self.view.activityStopAnimating()
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false

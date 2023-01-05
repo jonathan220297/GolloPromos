@@ -5,6 +5,7 @@
 //  Created by Rodrigo Osegueda on 31/8/21.
 //
 
+import Foundation
 import UIKit
 import Nuke
 import RxSwift
@@ -26,6 +27,7 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var modelLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateView: UIStackView!
     
     @IBOutlet weak var savingHeader: UILabel!
     @IBOutlet weak var savingsLabel: UILabel!
@@ -77,14 +79,15 @@ class OfferDetailViewController: UIViewController {
     var article: OfferDetail?
     var warrantyMonth = 0
     var warrantyAmount = 0.0
+    var totalDiscount = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Zoom
-        scrollImageView.minimumZoomScale = 1
-        scrollImageView.maximumZoomScale = 4
-        
+        scrollImageView.minimumZoomScale = 1.0
+        scrollImageView.maximumZoomScale = 10.0
+
         tabBarController?.navigationItem.hidesBackButton = false
         tabBarController?.navigationController?.navigationBar.tintColor = .white
 
@@ -114,7 +117,7 @@ class OfferDetailViewController: UIViewController {
     }
     
     fileprivate func shareContent() {
-        let someText:String = "Oferta: \(offer?.productName ?? "")\nSKU: \(offer?.productCode ?? "")\n\nPrecio Original: \(originalPrice.text ?? "")"
+        let someText:String = "Oferta: \(offer?.productName ?? "")\nSKU: \(offer?.productCode ?? "")\n\nPrecio Original: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precio ?? 0.0)) ?? "")\n\nDescuento total: \(numberFormatter.string(from: NSNumber(value: totalDiscount)) ?? "")\n\nNuevo precio: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precioDescuento ?? 0.0)) ?? "")"
         var objectsToShare:UIImage?
         if let image = self.offerImage.image {
             objectsToShare = image
@@ -253,11 +256,13 @@ class OfferDetailViewController: UIViewController {
                           // your code with delay
                             self.carView.isHidden = true
                         }
-                        CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
+                        let id = CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
                         self.carItemLabel.text = "El artículo ha sido agregado al carrito!"
                         self.configureAlternativeNavBar()
                         if self.viewModel.documents.count > 1 && self.warrantyMonth == 0 {
                             let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
+                            offerServiceProtectionViewController.delegate = self
+                            offerServiceProtectionViewController.selectedId = id
                             offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
                             offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
                             self.present(offerServiceProtectionViewController, animated: true)
@@ -270,7 +275,6 @@ class OfferDetailViewController: UIViewController {
     
     private func showData(with data: OfferDetail) {
         self.initGolloPlus(with: data)
-
         if let offer = offer {
             self.view.activityStopAnimatingFull()
             let _:CGFloat = 0.0001
@@ -300,14 +304,48 @@ class OfferDetailViewController: UIViewController {
 
             brandLabel.attributedText = formatHTML(header: "Marca: ", content: offer.brand ?? "")
             modelLabel.attributedText = formatHTML(header: "Modelo: ", content: offer.modelo ?? "")
-            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: offer.productName ?? "")
-            dateLabel.attributedText = formatHTML(header: "Fecha de Vencimiento: ", content: convertDate(date: offer.endDate ?? "") ?? "")
+            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: data.articulo?.especificaciones ?? "")
+            if let endDate = offer.endDate, !endDate.isEmpty {
+                let calendar = Calendar.current
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                let toDate = dateFormatter.date(from: endDate)
+
+                // Replace the hour (time) of both dates with 00:00
+                let date1 = calendar.startOfDay(for: Date())
+                let date2 = calendar.startOfDay(for: toDate ?? Date())
+
+                if date1 > date2 {
+                    dateLabel.alpha = 0
+                    dateView.alpha = 0
+                } else {
+                    print("To date: \(endDate) ~~ \(date2)")
+                    print("New difference: \(date2.offsetFrom(date: date1))")
+                    let days = calendar.numberOfDaysBetween(date1, and: date2)
+                    let hours = calendar.dateComponents([.hour], from: date1, to: date2).hour
+                    var stringDays = "día"
+                    if days > 1 {
+                        stringDays = "días"
+                    }
+                    if let hours = hours, hours > 1 {
+                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "3 días y 0 horas")
+                    } else {
+                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(days) \(stringDays)")
+                    }
+                }
+            } else {
+                dateLabel.alpha = 0
+                dateView.alpha = 0
+            }
+
+            totalDiscount = ((article?.articulo?.montoDescuento ?? 0.0) + (article?.articulo?.montoBonoProveedor ?? 0.0))
 
             let originalString = numberFormatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
 
-            if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0,
+            if totalDiscount > 0.0,
                let price = data.articulo?.precio, price > 0.0 {
                 let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
                 savingsLabel.text = "\("₡")\(savingString)"
@@ -358,7 +396,14 @@ class OfferDetailViewController: UIViewController {
 
             if let description = data.articulo?.descripcionDetalle, !description.isEmpty {
                 self.offerDescriptionView.isHidden = false
-                self.offerDescriptionLabel.attributedText = description.htmlToAttributedString
+                let decodeString = description.removingPercentEncoding
+                if let htmlString = decodeString {
+                    let formatedHtml = "<html><head><style type='text/css'>@font-face { font-family: MyFont;src: url('font/jost_variable_font.ttf') } body {font-family: MyFont;font-size: medium;text-align: justify;} </style></head><body>\(htmlString)</body></html>"
+                    self.offerDescriptionLabel.attributedText = formatedHtml.htmlToAttributedString
+
+                } else {
+                    self.offerDescriptionView.isHidden = true
+                }
             } else {
                 self.offerDescriptionView.isHidden = true
             }
@@ -423,29 +468,23 @@ extension OfferDetailViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return offerImage
     }
+}
 
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        if scrollView.zoomScale > 1 {
-            if let image = offerImage.image {
-                let ratioW = offerImage.frame.width / image.size.width
-                let ratioH = offerImage.frame.height / image.size.height
+extension OfferDetailViewController: OfferServiceProtectionDelegate {
+    func protectionSelected(with id: UUID, month: Int, amount: Double) {
+        let _ = CoreDataService().addGolloPlus(for: id, month: month, amount: amount)
+    }
+}
 
-                let ratio = ratioW > ratioH ? ratioW : ratioH
-                let newWidth = image.size.width * ratio
-                let newHeight = image.size.height * ratio
-
-                let conditionLeft = newWidth*scrollView.zoomScale > offerImage.frame.width
-
-                let left = 0.5 * (conditionLeft ? newWidth - offerImage.frame.width : (scrollView.frame.width - scrollView.contentSize.width))
-
-                let conditionTop = newHeight*scrollView.zoomScale > offerImage.frame.height
-
-                let top = 0.5 * (conditionTop ? newHeight - offerImage.frame.height : (scrollView.frame.height - scrollView.contentSize.height))
-
-                scrollView.contentInset = UIEdgeInsets(top: top, left: left, bottom: top, right: left)
-            }
-        } else {
-            scrollView.contentInset = .zero
+extension NSAttributedString {
+    internal convenience init?(html: String) {
+        guard let data = html.data(using: String.Encoding.utf16, allowLossyConversion: false) else {
+            // not sure which is more reliable: String.Encoding.utf16 or String.Encoding.unicode
+            return nil
         }
+        guard let attributedString = try? NSMutableAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) else {
+            return nil
+        }
+        self.init(attributedString: attributedString)
     }
 }

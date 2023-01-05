@@ -155,7 +155,7 @@ class ShippingMethodViewController: UIViewController {
         vc.viewModel.isAccountPayment = false
         vc.viewModel.subTotal = self.viewModel.carManager.total
         vc.viewModel.shipping = self.viewModel.methodSelected?.cost ?? 0.0
-        vc.viewModel.bonus = 0.0
+        vc.viewModel.bonus = self.viewModel.carManager.bonus
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -168,8 +168,9 @@ class ShippingMethodViewController: UIViewController {
                 guard let self = self,
                       let response = response else { return }
                 self.view.activityStopAnimatingFull()
-                self.viewModel.data = response
-                self.viewModel.processStates(with: response)
+                let responseData = response.sorted { $0.nombre < $1.nombre }
+                self.viewModel.data = responseData
+                self.viewModel.processStates(with: responseData)
                 self.viewModel.processShops(with: self.viewModel.states.first ?? "")
                 self.stateLabel.text = self.viewModel.states.first ?? ""
             })
@@ -190,20 +191,21 @@ class ShippingMethodViewController: UIViewController {
                     guard let self = self,
                           let response = response else { return }
                     if let fletes = response.fletes, !fletes.isEmpty {
-                        if let store = fletes.first {
+                        if let _ = fletes.first {
+                            for f in fletes {
+                                self.viewModel.methods.append(
+                                    ShippingMethodData(
+                                        cargoCode: f.codigoFlete ?? "",
+                                        shippingType: f.nombre ?? "",
+                                        shippingDescription: f.descripcion ?? "",
+                                        cost: f.monto ?? 0.0,
+                                        selected: false
+                                    )
+                                )
+                            }
                             self.viewModel.setShippingMethods(false)
-                            self.viewModel.methods.insert(
-                                ShippingMethodData(
-                                    cargoCode: store.codigoFlete ?? "",
-                                    shippingType: store.nombre ?? "",
-                                    shippingDescription: store.descripcion ?? "",
-                                    cost: store.monto ?? 0.0,
-                                    selected: false
-                                ),
-                                at: 0
-                            )
                             self.shippingMethodsTableView.reloadData()
-                            self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + 100
+                            self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + 120
                             self.stateView.isHidden = true
                             self.shopView.isHidden = true
                             self.continueButton.isHidden = false
@@ -289,7 +291,7 @@ extension ShippingMethodViewController: ShippingMethodCellDelegate {
         viewModel.methods[indexPath.row].selected = true
         shippingMethodsTableView.reloadData()
         viewModel.methodSelected = viewModel.methods[indexPath.row]
-        if let method = viewModel.methods.first, method.selected {
+        if let method = viewModel.methodSelected, method.selected, method.cargoCode != "-1" {
             self.stateView.isHidden = true
             self.shopView.isHidden = true
             self.continueButton.isHidden = false

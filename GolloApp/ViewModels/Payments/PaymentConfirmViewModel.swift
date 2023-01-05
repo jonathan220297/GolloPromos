@@ -65,7 +65,8 @@ class PaymentConfirmViewModel {
                        codAutorizacion: "",
                        fechaExp: "",
                        idFormaPago: "90",
-                       montoPago: item.montoBonoProveedor ?? 0.0,
+                       skuRelacionado: item.sku,
+                       montoPago: (item.montoBonoProveedor ?? 0.0) * Double(item.cantidad),
                        noLineaRelacionada: 0,
                        nomTarjeta: "",
                        numTarjeta: "",
@@ -83,7 +84,8 @@ class PaymentConfirmViewModel {
                codAutorizacion: "",
                fechaExp: "",
                idFormaPago: methodSelected?.idFormaPago ?? "",
-               montoPago: carManager.total,
+               skuRelacionado: nil,
+               montoPago: carManager.total + shipping,
                noLineaRelacionada: 0,
                nomTarjeta: "",
                numTarjeta: "",
@@ -94,6 +96,7 @@ class PaymentConfirmViewModel {
                indPrincipal: methodSelected?.indPrincipal ?? 0
            )
         )
+        let orderItemsDetail = orderDetail()
         let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(
             BaseRequest<PaymentOrderResponse?, OrderData>(
@@ -104,7 +107,7 @@ class PaymentConfirmViewModel {
                             with: GOLLOAPP.PRODUCT_PAYMENT.rawValue
                         ),
                         parametros: OrderData(
-                            detalle: carManager.car,
+                            detalle: orderItemsDetail,
                             formaPago: carManager.paymentMethod,
                             idCliente: clientID,
                             infoEntrega: deliveryInfo
@@ -123,5 +126,53 @@ class PaymentConfirmViewModel {
             }
         }
         return apiResponse
+    }
+
+    func getSubtotalAmount() -> Double {
+        let products = carManager.car
+        let amount = products.map { ($0.precioUnitario - $0.montoDescuento - ($0.montoBonoProveedor ?? 0.0)) * Double($0.cantidad) }.reduce(0, +)
+        let plus = products.map { $0.montoExtragar * Double($0.cantidad) }.reduce(0, +) 
+        return amount + plus
+    }
+
+    private func orderDetail() -> [OrderItem] {
+        var orderItems: [OrderItem] = []
+        //OrderItem
+        var i = 1
+        for item in carManager.car {
+            let discountAmount = Double(item.cantidad) * (item.montoDescuento)
+            let extendedPrice = Double(item.cantidad) * (item.precioUnitario)
+            var code: String?
+            var description: String?
+            if let regalia = item.codRegalia, !regalia.isEmpty {
+                code = regalia
+            }
+            if let regaliaDescripcion = item.descRegalia, !regaliaDescripcion.isEmpty {
+                description = regaliaDescripcion
+            }
+            let extended = (extendedPrice - discountAmount)
+            let extendedFormattedPrice = extended.round(to: 2)
+            orderItems.append(
+                OrderItem(
+                    cantidad: item.cantidad,
+                    mesesExtragar: item.mesesExtragar,
+                    idLinea: i,
+                    descripcion: item.descripcion,
+                    descuento: Int(discountAmount),
+                    montoDescuento: 0.0,
+                    montoExtragar: item.montoExtragar.round(to: 2),
+                    porcDescuento: item.porcDescuento,
+                    precioExtendido: extendedFormattedPrice.round(to: 2),
+                    precioUnitario: item.precioUnitario.round(to: 2),
+                    sku: item.sku,
+                    tipoSku: 1,
+                    montoBonoProveedor: nil,
+                    codRegalia: code,
+                    descRegalia: description
+                )
+            )
+            i += 1
+        }
+        return orderItems
     }
 }

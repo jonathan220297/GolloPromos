@@ -56,7 +56,7 @@ class CategoriesViewController: UIViewController {
                     if !subsCat.isEmpty {
                         subsCat.append(SubCategoryItem(id: parent.idTipoCategoriaApp ?? 0, count: parent.totalHijos ?? 0, name: "Todos" , description: "\(parent.nombre ?? "") - Todos", image: ""))
                     }
-                    catModel.append(CategoryFilteredList(id: 1, count: parent.totalHijos ?? 0, name: parent.nombre ?? "", description: parent.descripcion ?? "", image: "", categories: subsCat))
+                    catModel.append(CategoryFilteredList(id: parent.idTipoCategoriaApp ?? 1, count: parent.totalHijos ?? 0, name: parent.nombre ?? "", description: parent.descripcion ?? "", image: "", categories: subsCat))
                 }
 
                 self.categories = catModel
@@ -87,15 +87,18 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .primary
         cell.tintColor = .white
         cell.textLabel?.textColor = .white
-        if !(categories[indexPath.section].isOpened && indexPath.row > 0) {
+        if !(categories[indexPath.section].isOpened && indexPath.row > 0 && categories[indexPath.section].categories.count > 0) {
             let chevronImageView = UIImageView(image: UIImage(named: "ic_right_arrow"))
             cell.accessoryView = chevronImageView
+        } else {
+            cell.accessoryView = UIImageView()
         }
         
         if indexPath.row == 0 {
             cell.textLabel?.text = categories[indexPath.section].name
         } else {
             cell.textLabel?.text = "\t\(categories[indexPath.section].categories[indexPath.row - 1].name)"
+            cell.accessoryView?.alpha = 0
         }
 
         cell.selectionStyle = .none
@@ -114,8 +117,18 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
             offersFilteredListViewController.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
         } else {
-            categories[indexPath.section].isOpened = !categories[indexPath.section].isOpened
-            tableView.reloadSections([indexPath.section], with: .none)
+            if categories[indexPath.section].name.lowercased().contains("otros") {
+                let offersFilteredListViewController = OffersFilteredListViewController(
+                    viewModel: OffersFilteredListViewModel(),
+                    category: nil,
+                    taxonomy: categories[indexPath.section].id
+                )
+                offersFilteredListViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
+            } else {
+                categories[indexPath.section].isOpened = !categories[indexPath.section].isOpened
+                tableView.reloadSections([indexPath.section], with: .none)
+            }
         }
     }
 

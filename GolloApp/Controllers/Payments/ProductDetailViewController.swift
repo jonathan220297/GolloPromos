@@ -80,7 +80,7 @@ class ProductDetailViewController: UIViewController {
 extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let data = self.viewModel.items.first {
-            if let _ = data.precioUnitario, let _ = data.descripcion {
+            if let _ = data.descripcion, let _ = data.descripcion, let _ = data.cantidad {
                 self.emptyView.alpha = 0
                 return self.viewModel.items.count
             } else {
@@ -88,7 +88,6 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
                 return 0
             }
         } else {
-            self.emptyView.alpha = 1
             return 0
         }
     }

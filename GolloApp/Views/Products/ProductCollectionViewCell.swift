@@ -52,21 +52,25 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         productNameLabel.text = data.brand ?? ""
         productTypeLabel.text = data.name ?? ""
-        productDiscountPriceLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: data.precioFinal ?? 0.0))!)" 
+        productDiscountPriceLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: data.precioFinal ?? 0.0))!)"
 
-        if data.tieneRegalia?.bool ?? false {
-            showGift(with: data)
-        } else if data.tieneBono?.bool ?? false {
-            showBono(with: data)
-        } else if data.tieneDescuento?.bool ?? false {
+        let showDiscount = data.tieneDescuento?.bool ?? false || data.tieneBono?.bool ?? false
+
+        if showDiscount {
+            productDiscountPriceLabel.textColor = .red
+        } else {
+            productDiscountPriceLabel.textColor = .black
+        }
+
+        if data.tieneDescuento?.bool ?? false {
             if let discountPercentage = data.porcDescuento {
-                if String(discountPercentage) == "0.0" {
+                if discountPercentage == 0.0 {
                     productRealPriceLabel.text = ""
                     productRealPriceLabel.isHidden = true
                     productDiscountPercentageView.isHidden = true
                     productDiscountPercentageLabel.text = ""
                 } else {
-                    let originalPrice = String(data.originalPrice ?? 0.0).currencyFormatting()
+                    let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
                     let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
                     attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
                                                  value: 2,
@@ -76,6 +80,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
                     productDiscountPercentageView.isHidden = false
                     let discInt = Int(round(discountPercentage))
                     productDiscountPercentageLabel.text = String(discInt) + "%"
+                    productDiscountPercentageView.clipsToBounds = true
+                    productDiscountPercentageView.layer.cornerRadius = 10
+                    productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMaxYCorner]
+                    productDiscountPercentageView.isHidden = false
+                    productDiscountPercentageView.backgroundColor = UIColor.red
                 }
             } else {
                 productRealPriceLabel.text = ""
@@ -83,12 +92,57 @@ class ProductCollectionViewCell: UICollectionViewCell {
                 productDiscountPercentageView.isHidden = true
                 productDiscountPercentageLabel.text = ""
             }
+        } else if data.tieneRegalia?.bool ?? false {
+            showGift(with: data)
+        } else if data.tieneBono?.bool ?? false {
+            showBono(with: data)
         } else {
             productRealPriceLabel.text = ""
             productRealPriceLabel.isHidden = true
             productDiscountPercentageView.isHidden = true
             productDiscountPercentageLabel.text = ""
         }
+
+//        if data.tieneRegalia?.bool ?? false {
+//            showGift(with: data)
+//        } else if data.tieneBono?.bool ?? false {
+//            showBono(with: data)
+//        } else if data.tieneDescuento?.bool ?? false {
+//            if let discountPercentage = data.porcDescuento {
+//                if discountPercentage == 0.0 {
+//                    productRealPriceLabel.text = ""
+//                    productRealPriceLabel.isHidden = true
+//                    productDiscountPercentageView.isHidden = true
+//                    productDiscountPercentageLabel.text = ""
+//                } else {
+//                    let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
+//                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
+//                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
+//                                                 value: 2,
+//                                                 range: NSMakeRange(0, attributeString.length))
+//                    productRealPriceLabel.attributedText = attributeString
+//                    productRealPriceLabel.isHidden = false
+//                    productDiscountPercentageView.isHidden = false
+//                    let discInt = Int(round(discountPercentage))
+//                    productDiscountPercentageLabel.text = String(discInt) + "%"
+//                    productDiscountPercentageView.clipsToBounds = true
+//                    productDiscountPercentageView.layer.cornerRadius = 10
+//                    productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMaxYCorner]
+//                    productDiscountPercentageView.isHidden = false
+//                    productDiscountPercentageView.backgroundColor = UIColor.red
+//                }
+//            } else {
+//                productRealPriceLabel.text = ""
+//                productRealPriceLabel.isHidden = true
+//                productDiscountPercentageView.isHidden = true
+//                productDiscountPercentageLabel.text = ""
+//            }
+//        } else {
+//            productRealPriceLabel.text = ""
+//            productRealPriceLabel.isHidden = true
+//            productDiscountPercentageView.isHidden = true
+//            productDiscountPercentageLabel.text = ""
+//        }
     }
     
     func configureRx() {
@@ -117,11 +171,17 @@ class ProductCollectionViewCell: UICollectionViewCell {
         productDiscountPercentageView.clipsToBounds = true
         productDiscountPercentageView.layer.cornerRadius = 10
         productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        productRealPriceLabel.text = ""
-        productRealPriceLabel.isHidden = true
         productDiscountPercentageView.isHidden = false
         productDiscountPercentageView.backgroundColor = UIColor.bonus
         productDiscountPercentageLabel.text = "Bono"
+        let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
+                                     value: 2,
+                                     range: NSMakeRange(0, attributeString.length))
+        productRealPriceLabel.attributedText = attributeString
+        productRealPriceLabel.isHidden = false
+        productDiscountPercentageView.isHidden = false
     }
 }
 

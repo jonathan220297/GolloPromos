@@ -13,22 +13,30 @@ class OrderDetailTabViewController: UIViewController {
     @IBOutlet weak var referenceLabel: UILabel!
     @IBOutlet weak var orderLabel: UILabel!
     @IBOutlet weak var createLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var productsLabel: UILabel!
     @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var deliveryTitleLabel: UILabel!
     @IBOutlet weak var warrantyLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var bonusLabel: UILabel!
     @IBOutlet weak var totalFinalLabel: UILabel!
+    @IBOutlet weak var descriptionDeliveryLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var paymentMethodLabel: UILabel!
     @IBOutlet weak var quotaStackView: UIStackView!
     @IBOutlet weak var quotaSwitch: UISwitch!
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var royaltyView: UIView!
+    @IBOutlet weak var royaltyViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var royaltyTableView: UITableView!
+    @IBOutlet weak var productsView: UIView!
     @IBOutlet weak var productsTableView: UITableView!
     @IBOutlet weak var productsTableViewHeight: NSLayoutConstraint!
-
+    @IBOutlet weak var productsViewHeight: NSLayoutConstraint!
+    
     // MARK: - Constants
     let viewModel: OrderDetailTabViewModel
     let orderId: String
@@ -50,8 +58,9 @@ class OrderDetailTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Detalle de la orden"
+        navigationItem.title = "Detalle de orden"
         configureTableView()
+        configureRx()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +68,25 @@ class OrderDetailTabViewController: UIViewController {
         fetchOrderDetail()
     }
 
+    fileprivate func configureRx() {
+        viewModel
+            .errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self else { return }
+                if !error.isEmpty {
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: error) {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    self.viewModel.errorMessage.accept("")
+                }
+            })
+            .disposed(by: bag)
+    }
+
     func configureTableView() {
+        royaltyTableView.register(UINib(nibName: "RoyaltyTableViewCell", bundle: nil), forCellReuseIdentifier: "RoyaltyTableViewCell")
         productsTableView.register(UINib(nibName: "ProductOrderDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductOrderDetailTableViewCell")
     }
 
@@ -80,7 +107,8 @@ class OrderDetailTabViewController: UIViewController {
         guard let order = order.detalle.first else { return }
         let shippingItem = order.ordenDetalle.first(where: { $0.sku == SKU_SHIPPING })
         let warrantyItem = order.ordenDetalle.first(where: { $0.sku == SKU_WARRANTY })
-        let paymentMethod = order.formasPago.first
+        let paymentMethod = order.formasPago.first(where: { $0.principalFP == 1 })
+        let royalty = order.ordenDetalle.filter { $0.esRegalia == 1 }
 
         let products = order.ordenDetalle.filter { product in
             return product.esRegalia != 1 && product.sku != SKU_SHIPPING && product.sku != SKU_WARRANTY
@@ -92,36 +120,97 @@ class OrderDetailTabViewController: UIViewController {
             bonus = bono * -1
         }
 
-        referenceLabel.text = "Número de referencia: \(order.orden.idOrden ?? 0)"
         orderLabel.text = "Número de orden: \(order.orden.numOrdenTienda ?? "")"
         if let date = order.orden.fechaOrden {
-            createLabel.text = "Fecha pedido: \(convertDate(date: date) ?? date)"
+            createLabel.attributedText = formatHTML(header: "Fecha pedido: ", content: convertDate(date: date) ?? date)
         }
-        productsLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: productsAmount)) ?? "")"
-        deliveryLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (shippingItem?.precioExtendido ?? 0.0))) ?? "")"
-        deliveryTitleLabel.text = "\(shippingItem?.descripcion ?? "")"
-        warrantyLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (warrantyItem?.precioExtendido ?? 0.0))) ?? "")"
-        totalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (order.orden.montoBruto ?? 0.0 - (order.orden.montoDescuento ?? 0.0)))) ?? "")"
-        bonusLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: bonus)) ?? "")"
-        totalFinalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (order.orden.montoBruto ?? 0.0) - (order.orden.montoDescuento ?? 0.0) + (bonus))) ?? "")"
+        referenceLabel.attributedText = formatHTML(header: "Número de referencia: ", content: "\(order.orden.idOrden ?? 0)")
+        statusLabel.attributedText = formatHTML(header: "Estado: ", content: order.orden.descripcionCupon ?? "")
+
+        // Total products
+        if let totalProductAmount = order.orden.montoProductos {
+            productsLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: totalProductAmount)) ?? "")"
+        } else {
+            productsLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: productsAmount)) ?? "")"
+        }
+        // Total delivery
+        if let totalDeliveryAmount = order.orden.montoEnvio {
+            deliveryLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (totalDeliveryAmount))) ?? "")"
+        } else {
+            deliveryLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (shippingItem?.precioExtendido ?? 0.0))) ?? "")"
+        }
+        //deliveryTitleLabel.text = "\(shippingItem?.descripcion ?? "")"
+        // Total extraWarranty
+        if let totalExtraWarrantyAmount = order.orden.montoExtragarantia {
+            warrantyLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (totalExtraWarrantyAmount))) ?? "")"
+        } else {
+            warrantyLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (warrantyItem?.precioExtendido ?? 0.0))) ?? "")"
+        }
+        // Total extraWarranty
+        if let totalAmount = order.orden.montoBruto {
+            totalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (totalAmount))) ?? "")"
+        } else {
+            totalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (order.orden.montoBruto ?? 0.0 - (order.orden.montoDescuento ?? 0.0)))) ?? "")"
+        }
+        // Total Bonus
+        if let totalDiscountAmount = order.orden.montoDescuento {
+            discountLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: totalDiscountAmount)) ?? "")"
+        } else {
+            discountLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: 0.0)) ?? "")"
+        }
+        // Total Bonus
+        if let totalBonusAmount = order.orden.montoBono {
+            bonusLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: totalBonusAmount)) ?? "")"
+        } else {
+            bonusLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: bonus)) ?? "")"
+        }
+        // Total Final
+        if let totalFinalAmount = order.orden.montoNeto {
+            totalFinalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: totalFinalAmount)) ?? "")"
+        } else {
+            totalFinalLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: (order.orden.montoBruto ?? 0.0) - (order.orden.montoDescuento ?? 0.0) + (bonus))) ?? "")"
+        }
 
         guard let deliveryPlace = order.formaEntrega.first else { return }
-        if let place = deliveryPlace.lugarDespacho, !place.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            nameLabel.text = "Recoger en tienda"
-            addressLabel.text = place
+        if deliveryPlace.tipoEntrega == "20" {
+            descriptionDeliveryLabel.text = deliveryPlace.descEntrega
+            nameLabel.attributedText = formatHTML(header: "Recoger en tienda: ", content: deliveryPlace.lugarDespacho ?? "")
+            addressLabel.alpha = 0
         } else {
-            nameLabel.text = deliveryPlace.receptorProducto
-            addressLabel.text = getAddress(with: deliveryPlace)
+            if let place = deliveryPlace.lugarDespacho, !place.removeWhitespace().isEmpty {
+                descriptionDeliveryLabel.text = deliveryPlace.descEntrega
+                nameLabel.text = deliveryPlace.receptorProducto
+                addressLabel.text = getAddress(with: deliveryPlace)
+            } else {
+                descriptionDeliveryLabel.alpha = 0
+                nameLabel.text = "Recoger en tienda"
+                addressLabel.text = deliveryPlace.lugarDespacho ?? ""
+            }
         }
 
         if let cardNumber = paymentMethod?.numeroTarjeta, !cardNumber.isEmpty {
-            paymentMethodLabel.text = "Tarjeta - \(cardNumber)"
+            paymentMethodLabel.text = "\(paymentMethod?.descripcionFP ?? "") - \(cardNumber)"
         } else {
             paymentMethodLabel.text = paymentMethod?.descripcionFP ?? ""
         }
         amountLabel.attributedText = formatHTML(header: "Monto: ", content: "₡\(numberFormatter.string(from: NSNumber(value: (paymentMethod?.montoTotal ?? 0.0))) ?? "")")
+
+        royaltyView.isHidden = royalty.isEmpty
+        viewModel.royalties = royalty
+        royaltyTableView.reloadData()
+
         viewModel.products = products
         productsTableView.reloadData()
+
+        if viewModel.royalties.count > 1 {
+            royaltyViewHeight.constant = CGFloat(25 + (50 * viewModel.royalties.count))
+            royaltyView.layoutIfNeeded()
+        }
+
+        if viewModel.products.count > 1 {
+            productsViewHeight.constant = CGFloat(25 + (100 * viewModel.products.count))
+            productsView.layoutIfNeeded()
+        }
     }
 
     func getAddress(with data: DeliveryType) -> String {
@@ -140,11 +229,19 @@ class OrderDetailTabViewController: UIViewController {
 
 extension OrderDetailTabViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.products.count
+        if tableView == self.royaltyTableView {
+            return viewModel.royalties.count
+        } else {
+            return viewModel.products.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return getProductCell(tableView, cellForRowAt: indexPath)
+        if tableView == self.royaltyTableView {
+            return getRoyaltyCell(tableView, cellForRowAt: indexPath)
+        } else {
+            return getProductCell(tableView, cellForRowAt: indexPath)
+        }
     }
 
     func getProductCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -156,7 +253,22 @@ extension OrderDetailTabViewController: UITableViewDataSource, UITableViewDelega
         return cell
     }
 
+    func getRoyaltyCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RoyaltyTableViewCell", for: indexPath) as? RoyaltyTableViewCell else {
+            return UITableViewCell()
+        }
+
+        cell.quantityLabel.text = "\(viewModel.royalties[indexPath.row].cantidad ?? 0)"
+        cell.nameLabel.text = viewModel.royalties[indexPath.row].descripcion
+        cell.selectionStyle = .none
+        return cell
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        if tableView == self.royaltyTableView {
+            return 50
+        } else {
+            return 100
+        }
     }
 }

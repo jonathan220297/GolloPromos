@@ -338,9 +338,9 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Nu-jD-qyn">
-                                                <rect key="frame" x="154" y="450" width="106" height="29"/>
+                                                <rect key="frame" x="151.5" y="450" width="111" height="29"/>
                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="12"/>
-                                                <state key="normal" title="Olvidaste tu clave?">
+                                                <state key="normal" title="¿Olvidaste tu clave?">
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -378,7 +378,7 @@
                                                             <constraint firstItem="UUZ-jM-MYX" firstAttribute="leading" secondItem="Nmu-rP-21j" secondAttribute="leading" id="elO-Av-6gD"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O ingresa con" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="pGx-Ox-4cf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="o utilizá" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="pGx-Ox-4cf">
                                                         <rect key="frame" x="132.5" y="0.0" width="117" height="25"/>
                                                         <fontDescription key="fontDescription" name="SansSerifFLF-Demibold" family="SansSerifFLF" pointSize="15"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor"/>

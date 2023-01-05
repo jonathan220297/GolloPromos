@@ -70,7 +70,7 @@ class SearchDocumentViewModel {
                     tipoId: documentType,
                     idCliente: documentId,
                     empresa: "10",
-                    idCentro: ""
+                    idCentro: "205"
                 )
             )
         ))) { response in

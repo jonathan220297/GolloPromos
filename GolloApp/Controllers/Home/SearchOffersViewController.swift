@@ -34,6 +34,7 @@ class SearchOffersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureRx()
         configureTableView()
         self.searchBar.endEditing(true)
         viewModel.history = defaults.stringArray(forKey: "searchedText") ?? [String]()
@@ -63,6 +64,22 @@ class SearchOffersViewController: UIViewController {
     }
 
     // MARK: - Functions
+    fileprivate func configureRx() {
+        viewModel
+            .errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self else { return }
+                if !error.isEmpty {
+                    self.view.activityStopAnimating()
+                    self.emptyView.alpha = 1
+                    self.collectionView.alpha = 0
+                    self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    self.viewModel.errorMessage.accept("")
+                }
+            })
+            .disposed(by: bag)
+    }
     func configureTableView() {
         self.searchCollectionView.register(UINib(nibName: "SearchHistoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SearchHistoryCollectionViewCell")
         self.collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
@@ -175,7 +192,10 @@ extension SearchOffersViewController: UICollectionViewDelegate,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.searchCollectionView {
-            return CGSize(width: 85, height: 30)
+            let label = UILabel(frame: CGRect.zero)
+            label.text = viewModel.history[indexPath.row]
+            label.sizeToFit()
+            return CGSize(width: label.frame.width + 15, height: 30)
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)

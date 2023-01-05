@@ -9,14 +9,16 @@ import CoreData
 import UIKit
 
 class CoreDataService {
-    func addCarItems(with items: [CartItemDetail], warranty: [Warranty]) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    func addCarItems(with items: [CartItemDetail], warranty: [Warranty]) -> UUID? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "CarProduct", in: context)
         let warrantyEntity = NSEntityDescription.entity(forEntityName: "ProductWarranty", in: context)
+        var idCarProduct: UUID?
         for item in items {
             let carItem = NSManagedObject(entity: entity!, insertInto: context)
             let id = UUID()
+            idCarProduct = id
             carItem.setValue(id, forKey: "idCarProduct")
             carItem.setValue(item.urlImage, forKey: "urlImage")
             carItem.setValue(item.descripcion, forKey: "descriptionItem")
@@ -46,8 +48,10 @@ class CoreDataService {
         }
         do {
             try context.save()
+            return idCarProduct
         } catch let error as NSError {
             print("Error addCarItems: " + error.localizedDescription)
+            return nil
         }
     }
     

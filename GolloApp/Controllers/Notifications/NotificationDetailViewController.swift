@@ -48,11 +48,15 @@ class NotificationDetailViewController: UIViewController {
             titleLabel.text = n.title
             messageLabel.text = n.message
 
-            if let image = n.image {
-                if let url = URL(string: APDLGT.GIMGURL + (image)) {
+            if let image = n.image?.replacingOccurrences(of: " ", with: "%20") {
+                if let url = URL(string: image) {
                     Nuke.loadImage(with: url, into: nImageView)
+                    nImageView.isHidden = false
+                } else {
+                    nImageView.isHidden = true
                 }
             } else {
+                nImageView.isHidden = true
                 let newMultiplier: CGFloat = 0.0001
                 DispatchQueue.main.async {
                     self.nImageContraint = self.nImageContraint.setMultiplier(multiplier: newMultiplier)

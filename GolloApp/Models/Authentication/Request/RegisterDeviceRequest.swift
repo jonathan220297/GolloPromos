@@ -12,7 +12,7 @@ struct RegisterDeviceRequest: APIRequest {
     public typealias Response = LoginData
 
     public var resourceName: String {
-        return "Procesos"
+        return "Procesos/RegistroDispositivos"
     }
 
     let service: BaseServiceRequestParam<RegisterDeviceServiceRequest>?
@@ -29,4 +29,6 @@ struct RegisterDeviceServiceRequest: Codable {
     var Token: String? = nil
     var idCliente: String? = nil
     var idDevice: String
+    var version: String
+    var sisOperativo: String
 }

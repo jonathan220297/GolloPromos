@@ -84,6 +84,7 @@ class PaymentSuccessViewController: UIViewController {
             titleLabel.text = "Pago aplicado con éxito"
             successImage.image = UIImage(named: "ic_payment_success")
             orderNumberLabel.isHidden = true
+            paymentDescriptionLabel.text = "Su pago ha sido procesado satisfactoriamente. Por favor esté pendiente de su correo y de las notificaciones que puede recibir en esta plataforma porque por esos medios le notificaremos sobre su factura electrónica."
         } else if let productPaymentResponse = viewModel.productPaymentResponse {
             titleLabel.text = "Orden confirmada"
             successImage.image = UIImage(named: "ic_order_confirmation")
@@ -95,6 +96,7 @@ class PaymentSuccessViewController: UIViewController {
                 fontBoldText: UIFont.systemFont(ofSize: 20, weight: .semibold),
                 fontColorBold: .darkGray
             )
+            paymentDescriptionLabel.text = "Su orden ha sido enviada satisfactoriamente. Por favor esté pendiente de su correo y de las notificaciones que puede recibir en esta plataforma sobre el estatus de su pedido."
         }
     }
 }

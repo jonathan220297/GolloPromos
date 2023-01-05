@@ -15,7 +15,7 @@ class PaymentAddressViewModel {
     let carManager = CarManager.shared
     
     var itemsArray: [String] = []
-    var documentTypeArray: [String] = ["Cedula"]
+    var documentTypeArray: [DocType] = []
     var statesArray: BehaviorRelay<[State]> = BehaviorRelay(value: [])
     var citiesArray: BehaviorRelay<[County]> = BehaviorRelay(value: [])
     var districtArray: BehaviorRelay<[District]> = BehaviorRelay(value: [])
@@ -75,6 +75,15 @@ class PaymentAddressViewModel {
         return Observable.combineLatest(isValidFirstPartForm, isValidSecondPartForm) { firstPart, secondPart in
             return firstPart && secondPart
         }
+    }
+
+    func processDocTypes() {
+        documentTypeArray.append(DocType(code: "C", name: "ProfileViewController_cedula".localized))
+        documentTypeArray.append(DocType(code: "J", name: "ProfileViewController_cedula_juridica".localized))
+        documentTypeArray.append(DocType(code: "P", name: "ProfileViewController_passport".localized))
+        documentTypeArray.append(DocType(code: "E", name: "Extranjero"))
+        documentTypeArray.append(DocType(code: "R", name: "Residente"))
+        documentTypeArray.append(DocType(code: "N", name: "Nite"))
     }
     
     func fetchStates() -> BehaviorRelay<[State]?> {
@@ -173,7 +182,7 @@ class PaymentAddressViewModel {
             montoFlete: carManager.shippingMethod?.cost ?? 0.0,
             nomReceptor: (firstName ?? "") + " " + (lastName ?? ""),
             telReceptor: phoneNumber ?? "",
-            tipoEntrega: "",
+            tipoEntrega: "10",
             tipoIDRecep: "C"
         )
         carManager.deliveryInfo = deliveryInfo

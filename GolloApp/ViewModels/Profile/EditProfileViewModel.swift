@@ -13,6 +13,7 @@ class EditProfileViewModel {
     private let service = GolloService()
     private let firebaseService = FirebaseService()
 
+    let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     let userManager = UserManager.shared
     var docTypes: [DocType] = []
@@ -127,8 +128,17 @@ class EditProfileViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
-                    self.errorMessage.accept(error.localizedDescription)
                     print("Error: \(error.localizedDescription)")
+                    switch error {
+                    case .decoding: break;
+                    case .server(code: let code, message: _):
+                        if code == 401 {
+                            self.errorExpiredToken.accept(true)
+                            self.errorMessage.accept("")
+                        } else {
+                            self.errorMessage.accept(error.localizedDescription)
+                        }
+                    }
                 }
             }
         }
@@ -160,7 +170,7 @@ class EditProfileViewModel {
 
     func deleteUserProfile() -> BehaviorRelay<LoginData?> {
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<LoginData?, DeleteProfileServiceRequest>(
+        service.callWebServiceGolloAlternative(BaseRequest<LoginData?, DeleteProfileServiceRequest>(
             service: BaseServiceRequestParam<DeleteProfileServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
@@ -191,8 +201,14 @@ class EditProfileViewModel {
     }
 
     func registerDevice(with deviceToken: String) -> BehaviorRelay<LoginData?> {
+        var token: String? = nil
+        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : nil
+        if !getToken().isEmpty {
+            token = getToken()
+        }
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<LoginData?, RegisterDeviceServiceRequest>(
+        service.callWebServiceGolloAlternative(BaseRequest<LoginData?, RegisterDeviceServiceRequest>(
+            resource: "Procesos/RegistroDispositivos",
             service: BaseServiceRequestParam<RegisterDeviceServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
@@ -201,14 +217,16 @@ class EditProfileViewModel {
                         idUsuario: UserManager.shared.userData?.uid ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
-                        token: getToken(),
+                        token: token ?? "",
                         integrationId: nil),
                     parametros: RegisterDeviceServiceRequest(
                         idEmpresa: 10,
                         idDeviceToken: deviceToken,
-                        Token: getToken(),
-                        idCliente: UserManager.shared.userData?.uid ?? "",
-                        idDevice: "\(UUID())"
+                        Token: token,
+                        idCliente: idClient,
+                        idDevice: "\(UUID())",
+                        version: Variables().VERSION_CODE,
+                        sisOperativo: "IOS"
                     )
                 )
             )
@@ -230,6 +248,16 @@ class EditProfileViewModel {
             return image.jpegData(compressionQuality: 0.25)?.base64EncodedString() ?? ""
         } else {
             return ""
+        }
+    }
+
+    func saveToken(with token: String) -> Bool {
+        if let data = token.data(using: .utf8) {
+            let status = KeychainManager.save(key: "token", data: data)
+            log.debug("Status: \(status)")
+            return true
+        } else {
+            return false
         }
     }
 

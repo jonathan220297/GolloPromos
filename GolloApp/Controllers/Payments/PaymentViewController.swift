@@ -67,15 +67,15 @@ class PaymentViewController: UIViewController {
 
     // MARK: - Observers
     @objc func otherAmountTextFieldDidChange(_ textField: UITextField) {
-        if let amountString = textField.text?.currencyInputFormatting() {
-            textField.text = amountString
+        if let amountString = textField.text?.digitsOnly(), let amountDouble = Double(amountString), let formmatedAmount = numberFormatter.string(from: NSNumber(value: amountDouble)) {
+            textField.text = "₡" + formmatedAmount
         }
         if let otherAmountString = textField.text {
-            let doubleAmount = Double(otherAmountString.replacingOccurrences(of: ",", with: "").replacingOccurrences(of: "₡", with: "")) ?? 0.0
+            let doubleAmount = Double(otherAmountString.digitsOnly()) ?? 0.0
             let sugestedAmount = round(paymentData?.totalAmount ?? 0.0)
 
             if doubleAmount > sugestedAmount {
-                otherAmountErrorLabel.text = "Monto ingresado es mayor al total a cancelar."
+                otherAmountErrorLabel.text = "Monto a pagar no puede ser mayor a ₡\(numberFormatter.string(from: NSNumber(value: sugestedAmount)) ?? "\(sugestedAmount)")"
                 otherAmountErrorLabel.isHidden = false
                 errorAmount = true
             } else {
@@ -138,7 +138,7 @@ class PaymentViewController: UIViewController {
         } else if !otherAmountView.isHidden {
             if !errorAmount {
                 guard let amount = otherAmountTextField.text else { return }
-                let amountDouble = Double(amount.replacingOccurrences(of: "₡", with: "").replacingOccurrences(of: ",", with: "")) ?? 0.0
+                let amountDouble = Double(amount.digitsOnly()) ?? 0.0
                 if amountDouble > 0.0 {
                     self.currentAmount = amountDouble
                     if self.isThirdPayAccount && self.currentAmount! > self.antiLaunderingAmount {
@@ -208,7 +208,7 @@ class PaymentViewController: UIViewController {
                 self.totalPendingHeigth.constant = 0
                 self.totalPendingView.layoutIfNeeded()
             }
-            self.installmentLabel.text = "Monto a pagar"
+            self.installmentTitleLabel.text = "Monto a pagar"
             if let pending = numberFormatter.string(from: NSNumber(value: self.paymentData?.totalAmount ?? 0.0)) {
                 self.installmentLabel.text = "₡" + String(pending)
             }
@@ -262,5 +262,13 @@ extension String {
         }
     
         return formatter.string(from: number)!
+    }
+
+    func digitsOnly() -> String {
+        let newString = self
+            .components(separatedBy:CharacterSet.decimalDigits.inverted)
+            .joined()
+
+        return newString
     }
 }

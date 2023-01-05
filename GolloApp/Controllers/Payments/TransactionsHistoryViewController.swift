@@ -70,7 +70,8 @@ class TransactionsHistoryViewController: UIViewController {
 
     fileprivate func fetchHistory(number: Int) {
         view.activityStarAnimating()
-        viewModel.fetchTransactionHistory(with: number, accountId: accountId)
+        viewModel
+            .fetchTransactionHistory(with: number, accountId: accountId)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
             guard let self = self,
@@ -100,7 +101,15 @@ class TransactionsHistoryViewController: UIViewController {
 // MARK: - Extension Table View
 extension TransactionsHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.payments.count
+        if let data = self.viewModel.payments.first {
+            if let _ = data.montoRecibo, let _ = data.monPagoCapital {
+                return self.viewModel.payments.count
+            } else {
+                return 0
+            }
+        } else{
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -24,7 +24,7 @@ class OffersFilteredListViewController: UIViewController {
 
     // MARK: - Variables
     var lastIndexActive: IndexPath = [1, 0]
-    var selectedPosition: Int = 0
+    var selectedPosition: Int = -1
     var selectedTaxonomy: Int = -1
 
     // MARK: - Lifecycle
@@ -42,13 +42,13 @@ class OffersFilteredListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        fetchCategories()
+        fetchOffers(with: taxonomy)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureAlternativeNavBar()
-        fetchCategories()
-        fetchOffers(with: taxonomy)
         configureRx()
     }
 
@@ -107,6 +107,7 @@ class OffersFilteredListViewController: UIViewController {
                       let data = data else { return }
                 DispatchQueue.main.async {
                     self.view.activityStopAnimating()
+                    self.viewModel.fetchingMore = false
                     var products: [Product] = []
                     for o in data {
                         let p = Product(
@@ -139,7 +140,11 @@ class OffersFilteredListViewController: UIViewController {
                         )
                         products.append(p)
                     }
-                    self.viewModel.products = products
+                    if self.viewModel.page == 1 {
+                        self.viewModel.products = products
+                    } else {
+                        self.viewModel.products.append(contentsOf: products)
+                    }
                     self.productCollectionView.reloadData()
                 }
             })
@@ -147,6 +152,10 @@ class OffersFilteredListViewController: UIViewController {
     }
 
     fileprivate func dropDown() {
+        var newTaxonomy = taxonomy
+        if selectedTaxonomy != -1 {
+            newTaxonomy = selectedTaxonomy
+        }
         let options = ["A-Z", "Z-A", "Menor precio", "Mayor precio"]
         let dropDown = DropDown()
         dropDown.anchorView = optionButton
@@ -155,7 +164,9 @@ class OffersFilteredListViewController: UIViewController {
         dropDown.selectionAction = { [self] (index: Int, item: String) in
             selectedPosition = index
             optionLabel.text = item
-            self.fetchOffers(with: taxonomy, order: selectedPosition + 1)
+            self.viewModel.fetchingMore = false
+            self.viewModel.page = 1
+            self.fetchOffers(with: newTaxonomy, order: selectedPosition + 1)
         }
     }
 
@@ -175,6 +186,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesFilteredListCell", for: indexPath) as! CategoriesFilteredListCollectionViewCell
             cell.titleLabel.text = viewModel.categories[indexPath.row].nombre
+            cell.titleLabel.sizeToFit()
             return cell
         } else {
             return getProductCell(collectionView, cellForItemAt: indexPath)
@@ -193,7 +205,10 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.collectionView {
-            return CGSize(width: 140, height: 35)
+            let label = UILabel(frame: CGRect.zero)
+            label.text = viewModel.categories[indexPath.row].nombre
+            label.sizeToFit()
+            return CGSize(width: label.frame.width, height: 40)
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
@@ -208,11 +223,13 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
                 let selected = collectionView.cellForItem(at: indexPath) as! CategoriesFilteredListCollectionViewCell
                 selected.titleLabel.textColor = .white
                 selected.cellView.backgroundColor = .primaryLight
-                selected.cellView.layer.cornerRadius = 10
+                selected.cellView.layer.cornerRadius = 5
                 selected.cellView.layer.masksToBounds = true
                 selected.cellView.layoutSubviews()
                 selected.cellView.layoutIfNeeded()
-                
+
+                self.viewModel.fetchingMore = false
+                self.viewModel.page = 1
                 self.selectedTaxonomy = viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1
                 self.fetchOffers(with: viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1)
                 
@@ -226,7 +243,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
                     }
                 }
                 previous?.cellView.backgroundColor = .primary
-                selected.cellView.layer.cornerRadius = 10
+                selected.cellView.layer.cornerRadius = 5
                 selected.cellView.layer.masksToBounds = true
                 selected.cellView.layoutSubviews()
                 selected.cellView.layoutIfNeeded()
@@ -238,6 +255,26 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
             vc.offer = viewModel.products[indexPath.row]
             vc.modalPresentationStyle = .fullScreen
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !viewModel.fetchingMore {
+                viewModel.fetchingMore = true
+                viewModel.page += 1
+                var newTaxonomy = taxonomy
+                if selectedTaxonomy != -1 {
+                    newTaxonomy = selectedTaxonomy
+                }
+                var order: Int?
+                if selectedPosition != -1 {
+                    order = selectedPosition + 1
+                }
+                self.fetchOffers(with: newTaxonomy, order: order)
+            }
         }
     }
 }

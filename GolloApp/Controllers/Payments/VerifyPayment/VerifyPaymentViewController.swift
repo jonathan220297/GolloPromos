@@ -55,8 +55,8 @@ class VerifyPaymentViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        if self.isMovingFromParent {
-            self.delegate?.transactionValidation(with: self.closePage, processId: self.processId)
+        if self.isMovingFromParent && !closePage {
+            self.delegate?.transactionValidation(with: false, processId: self.processId)
         }
     }
 
@@ -73,11 +73,8 @@ extension VerifyPaymentViewController: WKUIDelegate, WKNavigationDelegate {
       }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-
         if let urlStr = navigationAction.request.url?.absoluteString {
-            if urlStr.starts(with: "http://74.208.150.44/PromosAPI/Transacciones/RespuestaBAC") {
-                closePage = true
-            }
+            closePage = urlStr.lowercased().starts(with: "https://servicios.grupogollo.com:9196/ClientesApi/Transacciones/RespuestaBAC".lowercased())
         }
         decisionHandler(.allow)
     }

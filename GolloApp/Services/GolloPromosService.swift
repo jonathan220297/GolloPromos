@@ -75,8 +75,12 @@ class GolloService {
 
         service.invokeService(for: endpoint, method: .post, with: parameters, getToken()) { data, error in
             if let error = error {
-                log.debug("Error: \(error)")
-                completion(.failure(.server(code: 0, message: error)))
+                if error == "Token vencido" {
+                    completion(.failure(.server(code: 401, message: "Token vencido")))
+                } else {
+                    log.debug("Error: \(error)")
+                    completion(.failure(.server(code: 0, message: error)))
+                }
             }
             self.parseResultGollo(of: T.Response.self, data: data) { result, error in
                 if let error = error {
@@ -100,8 +104,12 @@ class GolloService {
 
         service.invokeService(for: endpoint, method: .post, with: parameters, getToken()) { data, error in
             if let error = error {
-                log.debug("Error: \(error)")
-                completion(.failure(.server(code: 0, message: error)))
+                if error == "Token vencido" {
+                    completion(.failure(.server(code: 401, message: "Token vencido")))
+                } else {
+                    log.debug("Error: \(error)")
+                    completion(.failure(.server(code: 0, message: error)))
+                }
             }
             if let object = self.parseResultGolloAlternative(of: T.Response.self, data: data) {
                 completion(.success(object))

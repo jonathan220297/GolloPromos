@@ -125,7 +125,7 @@ class PaymentDataViewModel {
             numeroTarjeta: cardNumberSubject.value ?? "",
             tipoPlazoTarjeta: "11723675",
             moneda: "CRC",
-            nombreTarjetaHabiente: cardNameSubject.value ?? "",
+            nombreTarjetaHabiente: cardNameSubject.value?.trimmingCharacters(in: .whitespaces) ?? "",
             codigoSeguridad: cardCvvSubject.value ?? "",
             fechaVencimiento: expiryDate,
             pagoTerceros: thirdPayment
@@ -179,9 +179,10 @@ class PaymentDataViewModel {
                codAutorizacion: cvv,
                fechaExp: expiryDatePretty,
                idFormaPago: carManager.paymentMethodSelected?.idFormaPago ?? "30",
+               skuRelacionado: nil,
                montoPago: carManager.total,
                noLineaRelacionada: 0,
-               nomTarjeta: cardHolderName,
+               nomTarjeta: cardHolderName.trimmingCharacters(in: .whitespaces),
                numTarjeta: cardNumber,
                tipoPlazoTarjeta: self.zeroRateSubject.value ?? "11723675",
                tipoTarjeta: "",
@@ -195,6 +196,7 @@ class PaymentDataViewModel {
     func makeProductPayment() -> BehaviorRelay<PaymentOrderResponse?> {
         guard let deliveryInfo = carManager.deliveryInfo,
               let clientID = Variables.userProfile?.numeroIdentificacion else { return BehaviorRelay<PaymentOrderResponse?>(value: nil) }
+        let orderItemsDetail = orderDetail()
         let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(
             BaseRequest<PaymentOrderResponse?, OrderData>(
@@ -205,7 +207,7 @@ class PaymentDataViewModel {
                             with: GOLLOAPP.PRODUCT_PAYMENT.rawValue
                         ),
                         parametros: OrderData(
-                            detalle: carManager.car,
+                            detalle: orderItemsDetail,
                             formaPago: carManager.paymentMethod,
                             idCliente: clientID,
                             infoEntrega: deliveryInfo
@@ -298,6 +300,47 @@ class PaymentDataViewModel {
             }
         }
         return apiResponse
+    }
+
+    private func orderDetail() -> [OrderItem] {
+        var orderItems: [OrderItem] = []
+        //OrderItem
+        var i = 1
+        for item in carManager.car {
+            let discountAmount = Double(item.cantidad) * (item.montoDescuento)
+            let extendedPrice = Double(item.cantidad) * (item.precioUnitario)
+            var code: String?
+            var description: String?
+            if let regalia = item.codRegalia, !regalia.isEmpty {
+                code = regalia
+            }
+            if let regaliaDescripcion = item.descRegalia, !regaliaDescripcion.isEmpty {
+                description = regaliaDescripcion
+            }
+            let extended = (extendedPrice - discountAmount)
+            let extendedFormattedPrice = extended.round(to: 2)
+            orderItems.append(
+                OrderItem(
+                    cantidad: item.cantidad,
+                    mesesExtragar: item.mesesExtragar,
+                    idLinea: i,
+                    descripcion: item.descripcion,
+                    descuento: Int(discountAmount),
+                    montoDescuento: 0.0,
+                    montoExtragar: item.montoExtragar.round(to: 2),
+                    porcDescuento: item.porcDescuento,
+                    precioExtendido: extendedFormattedPrice.round(to: 2),
+                    precioUnitario: item.precioUnitario.round(to: 2),
+                    sku: item.sku,
+                    tipoSku: 1,
+                    montoBonoProveedor: nil,
+                    codRegalia: code,
+                    descRegalia: description
+                )
+            )
+            i += 1
+        }
+        return orderItems
     }
     
     //    func setCardData() -> Bool {

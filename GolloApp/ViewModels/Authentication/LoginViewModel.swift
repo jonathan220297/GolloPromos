@@ -37,7 +37,7 @@ class LoginViewModel: NSObject {
                 completion(user, nil)
             } else {
                 self.hideLoading?()
-                completion(nil, "You must verify your email address to login.")
+                completion(user, "Verify your email address")
             }
         }
     }
@@ -54,7 +54,7 @@ class LoginViewModel: NSObject {
         }
     }
 
-    func fetchUserInfo(for loginType: LoginType) -> BehaviorRelay<LoginData?> {
+    func fetchUserInfo(for loginType: LoginType, idToken: String) -> BehaviorRelay<LoginData?> {
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
         service.callWebServiceGolloAlternative(
             LoginRequest(
@@ -66,14 +66,18 @@ class LoginViewModel: NSObject {
                             idUsuario: UserManager.shared.userData?.uid ?? "",
                             timeStamp: String(Date().timeIntervalSince1970),
                             idCia: 10,
-                            token: "",
+                            token: idToken,
                             integrationId: nil),
                         parametros: LoginServiceRequest(
                             idCliente: userManager.userData?.uid ?? "",
                             nombre: userManager.userData?.displayName ?? "",
                             apellido1: userManager.userData?.displayName ?? "",
                             apellido2: userManager.userData?.displayName ?? "",
-                            tipoLogin: String(loginType.rawValue)
+                            tipoLogin: String(loginType.rawValue),
+                            idDevice: getDeviceID(),
+                            idDeviceToken: "",
+                            sisOperativo: "iOS",
+                            idEmpresa: 10
                         )
                     )
                 )
@@ -91,6 +95,47 @@ class LoginViewModel: NSObject {
                     }
                 }
             }
+        return apiResponse
+    }
+
+    func registerDeviceToken(with deviceToken: String) -> BehaviorRelay<DeviceTokenResponse?> {
+        var token: String? = nil
+        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : nil
+        if !getToken().isEmpty {
+            token = getToken()
+        }
+        let apiResponse: BehaviorRelay<DeviceTokenResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGolloAlternative(BaseRequest<DeviceTokenResponse?, DeviceTokenServiceRequest>(
+            resource: "Procesos",
+            service: BaseServiceRequestParam<DeviceTokenServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: Encabezado(
+                        idProceso: GOLLOAPP.DEVICE_TOKEN_PROCESS_ID.rawValue,
+                        idDevice: getDeviceID(),
+                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        timeStamp: String(Date().timeIntervalSince1970),
+                        idCia: 10,
+                        token: token ?? "",
+                        integrationId: nil),
+                    parametros: DeviceTokenServiceRequest(
+                        deleteAction: "N",
+                        idCliente: idClient,
+                        idDevice: "\(UUID())",
+                        idDeviceToken: deviceToken,
+                        idSistemaOperativo: "IOS"
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
         return apiResponse
     }
     

@@ -26,7 +26,7 @@
                             <constraint firstAttribute="height" constant="10" id="bzh-7u-l8Q"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwu-yM-zFk" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="iwu-yM-zFk" customClass="ImageSlideshow" customModule="ImageSlideshow">
                         <rect key="frame" x="0.0" y="10" width="492" height="78"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -44,6 +44,8 @@
             </constraints>
             <size key="customSize" width="492" height="88"/>
             <connections>
+                <outlet property="dividerView" destination="l2r-w2-O8L" id="IlR-Za-u1v"/>
+                <outlet property="dividerViewHeight" destination="bzh-7u-l8Q" id="CbD-kF-MWP"/>
                 <outlet property="imageSlideShowView" destination="iwu-yM-zFk" id="pVF-9i-szf"/>
             </connections>
             <point key="canvasLocation" x="476.92307692307691" y="34.123222748815166"/>

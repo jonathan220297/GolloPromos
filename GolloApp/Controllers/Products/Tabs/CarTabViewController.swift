@@ -111,15 +111,33 @@ class CarTabViewController: UIViewController {
         }
 
         carTableView.reloadData()
-        totalItemsLabel.text = "Tienes \(viewModel.car.count) item(s) en el carrito"
+        var totalString = "Tiene \(viewModel.getTotalItems()) item(s) en el carrito"
+        if viewModel.car.count > 1 {
+            totalString = "Tiene \(viewModel.getTotalItems()) items en el carrito"
+        } else {
+            totalString = "Tiene \(viewModel.getTotalItems()) item en el carrito"
+        }
+
+        totalItemsLabel.text = totalString
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.decimal
         var total = 0.0
+        var carBonus = 0.0
         for item in viewModel.car {
-            total += (item.precioUnitario * Double(item.cantidad)) + item.montoExtragar
+            var totalPrice = 0.0
+            var totalBonus = 0.0
+            if let bonus = item.montoBonoProveedor {
+                totalBonus = bonus
+                totalPrice = item.precioUnitario - item.montoDescuento - bonus
+            } else {
+                totalPrice = item.precioUnitario - item.montoDescuento
+            }
+            carBonus += (totalBonus * Double(item.cantidad))
+            total += (totalPrice * Double(item.cantidad)) + (item.montoExtragar * Double(item.cantidad))
         }
         viewModel.total = total
-        totalLabel.text = "₡" + formatter.string(from: NSNumber(value: total))!
+        viewModel.bonus = carBonus
+        totalLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: total))!
     }
     
     func checkIfUserRegistered() {
@@ -127,6 +145,7 @@ class CarTabViewController: UIViewController {
             self.viewModel.carManager.emptyCarWithCoreData()
             self.viewModel.setItemsToCarManager()
             self.viewModel.carManager.total = self.viewModel.total
+            self.viewModel.carManager.bonus = self.viewModel.bonus
             let paymentAddressViewController = PaymentAddressViewController(
                 viewModel: PaymentAddressViewModel()
             )

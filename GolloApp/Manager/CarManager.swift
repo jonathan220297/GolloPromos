@@ -11,6 +11,7 @@ class CarManager {
     static let shared = CarManager()
     
     var total = 0.0
+    var bonus = 0.0
     var car: [OrderItem] = []
     var shippingMethod: ShippingMethodData?
     var paymentMethodSelected: PaymentMethodResponse?

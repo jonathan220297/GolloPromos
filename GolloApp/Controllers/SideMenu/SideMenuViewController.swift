@@ -19,6 +19,7 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileEmailLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var profileChangeImage: UIImageView!
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
@@ -43,11 +44,12 @@ class SideMenuViewController: UIViewController {
             if Variables.isRegisterUser {
                 profileLabel.text = "Mi perfil"
             } else {
-                profileLabel.text = "Registrar usuario"
+                profileLabel.text = "Crea tu perfil"
             }
         } else {
             logoutView.isHidden = true
-            profileLabel.text = "Login"
+            profileLabel.text = "Abrir sesión"
+            profileChangeImage.image = UIImage(named: "ic_open_session")
         }
     }
 
@@ -85,7 +87,7 @@ class SideMenuViewController: UIViewController {
         if Variables.isRegisterUser {
             if let user = Variables.userProfile?.nombre,
                let lastname = Variables.userProfile?.apellido1 {
-                    profileName.text = "\(user) \(lastname)"
+                    profileName.text = "\(user) \(lastname) \(Variables.userProfile?.apellido2 ?? "")"
             }
             if let email = Variables.userProfile?.correoElectronico1 {
                 profileEmailLabel.text = email
@@ -96,12 +98,16 @@ class SideMenuViewController: UIViewController {
             } else {
                 if let url = URL(string: Variables.userProfile?.image ?? "") {
                     Nuke.loadImage(with: url, into: profileImageView)
+                } else {
+                    profileImageView.image = UIImage(named: "ic_user_profile")
+                    profileImageView.image?.withTintColor(.white)
                 }
             }
         } else {
             profileName.text = nil
             profileEmailLabel.text = nil
-            profileImageView.image = nil
+            profileImageView.image = UIImage(named: "ic_user_profile")
+            profileImageView.image?.withTintColor(.white)
         }
     }
     
@@ -158,6 +164,7 @@ class SideMenuViewController: UIViewController {
                     }
                 }
                 if let token = data.token {
+                    let _ = KeychainManager.delete(key: "token")
                     let _ = self.viewModel.saveToken(with: token)
                 }
                 if let deviceID = data.idCliente {
@@ -166,6 +173,9 @@ class SideMenuViewController: UIViewController {
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
+                self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Sesión cerrada exitosamente") {
+                    self.dismiss(animated: true)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -189,12 +199,53 @@ extension SideMenuViewController {
             }
         }
         .disposed(by: disposeBag)
+
+        viewModel
+            .errorExpiredToken
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self,
+                      let value = value else { return }
+                if value {
+                    self.view.activityStopAnimating()
+                    self.viewModel.errorExpiredToken.accept(nil)
+                    self.userDefaults.removeObject(forKey: "Information")
+                    let _ = KeychainManager.delete(key: "token")
+                    Variables.isRegisterUser = false
+                    Variables.isLoginUser = false
+                    Variables.isClientUser = false
+                    Variables.userProfile = nil
+                    UserManager.shared.userData = nil
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Tu sesión ha expirado y la aplicación se reiniciara inmediatamente.") {
+                        let firebaseAuth = Auth.auth()
+                        do {
+                            try firebaseAuth.signOut()
+                            self.userDefaults.removeObject(forKey: "Information")
+                            Variables.isRegisterUser = false
+                            Variables.isLoginUser = false
+                            Variables.isClientUser = false
+                            Variables.userProfile = nil
+                            UserManager.shared.userData = nil
+                            Messaging.messaging().token { token, error in
+                              if let error = error {
+                                print("Error fetching FCM registration token: \(error)")
+                              } else if let token = token {
+                                self.registerDevice(with: token)
+                              }
+                            }
+                        } catch let signOutError as NSError {
+                            log.error("Error signing out: \(signOutError)")
+                        }
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
         
         termsConditionButton
             .rx
             .tap
             .subscribe(onNext: {
-                self.openUrl("https://servicios.grupogollo.com:9199/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/Terminos-y-condiciones-App-de-Clientes.html")
+                self.openUrl("https://servicios.grupogollo.com:9196/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/Terminos-y-condiciones-App-de-Clientes.html")
             })
             .disposed(by: disposeBag)
         
@@ -202,7 +253,7 @@ extension SideMenuViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.openUrl("https://servicios.grupogollo.com:9199/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/GOLLO-APP-Tutorial-de-uso.jpg")
+                self.openUrl("https://servicios.grupogollo.com:9196/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/GOLLO-APP-Tutorial-de-uso.png")
             })
             .disposed(by: disposeBag)
         
@@ -215,7 +266,6 @@ extension SideMenuViewController {
                 do {
                     try firebaseAuth.signOut()
                     self.userDefaults.removeObject(forKey: "Information")
-                    let _ = KeychainManager.delete(key: "token")
                     Variables.isRegisterUser = false
                     Variables.isLoginUser = false
                     Variables.isClientUser = false
@@ -228,7 +278,6 @@ extension SideMenuViewController {
                         self.registerDevice(with: token)
                       }
                     }
-                    self.dismiss(animated: true)
                 } catch let signOutError as NSError {
                     log.error("Error signing out: \(signOutError)")
                 }

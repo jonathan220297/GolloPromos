@@ -58,7 +58,11 @@ class SignUpViewModel: NSObject {
             guard let user = user,
                   let self = self else {
                 self?.hideLoading?()
-                self?.showError?(error ?? "")
+                var userError = error
+                if error == "The email address is already in use by another account." {
+                    userError = "El correo electrónico ingresado ya se registró previamente."
+                }
+                self?.showError?(userError ?? "")
                 return
             }
             self.userManager.userData = user
