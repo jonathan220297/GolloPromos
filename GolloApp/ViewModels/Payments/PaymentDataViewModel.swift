@@ -8,6 +8,7 @@
 import Foundation
 import RxRelay
 import RxSwift
+import FirebaseAnalytics
 
 enum MovementType: String {
     case fee = "C"
@@ -188,7 +189,10 @@ class PaymentDataViewModel {
                tipoTarjeta: "",
                totalCuotas: 0,
                indTarjeta: carManager.paymentMethodSelected?.indTarjeta ?? 0,
-               indPrincipal: carManager.paymentMethodSelected?.indPrincipal ?? 0
+               indPrincipal: carManager.paymentMethodSelected?.indPrincipal ?? 0,
+               indEmma: 0,
+               pinValidacionEmma: nil,
+               plazoCredito: nil
            )
         )
     }
@@ -341,6 +345,51 @@ class PaymentDataViewModel {
             i += 1
         }
         return orderItems
+    }
+    
+    func addPurchaseEvent(orderNumber: String) {
+        let date = Date()
+        let format = date.getFormattedDate(format: "dd-MM-yyyy HH:mm:ss")
+        
+        Analytics.logEvent("purchase", parameters: [
+            "affiliation": "App de clientes",
+            "coupon": "Orden de compra",
+            "currency": "CRC",
+            "end_date": format,
+            "item_id": "Producto",
+            "items": getAnalyticsItem(),
+            "shipping": carManager.shippingMethod?.shippingType ?? "",
+            "start_date": format,
+            "transaction_id": orderNumber,
+            "value": carManager.paymentMethod.first?.montoPago ?? 0.0
+        ])
+    }
+    
+    private func getAnalyticsItem() -> [String : String] {
+        var items = [String : String]()
+        carManager.car.forEach { orderItem in
+            items["item_id"] = orderItem.sku
+            items["item_name"] = orderItem.descripcion
+        }
+        return items
+    }
+    
+    func addToCartEvent() {
+        Analytics.logEvent("add_to_cart", parameters: [
+            "currency": "CRC",
+            "items": getAnalyticsItem(),
+            "value": carManager.paymentMethod.first?.montoPago ?? 0.0
+        ])
+    }
+    
+    func addPaymentInfoEvent(coupon: String) {
+        Analytics.logEvent("add_payment_info", parameters: [
+            "coupon": coupon,
+            "currency": "CRC",
+            "items": getAnalyticsItem(),
+            "value": carManager.paymentMethod.first?.montoPago ?? 0.0,
+            "payment_type": carManager.paymentMethod.first?.idFormaPago ?? ""
+        ])
     }
     
     //    func setCardData() -> Bool {

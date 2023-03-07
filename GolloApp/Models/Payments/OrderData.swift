@@ -37,7 +37,8 @@ struct PaymentMethod: Codable {
     let noLineaRelacionada: Int
     let nomTarjeta, numTarjeta, tipoPlazoTarjeta, tipoTarjeta: String
     let totalCuotas: Int
-    let indTarjeta, indPrincipal: Int
+    let indTarjeta, indPrincipal, indEmma: Int
+    let pinValidacionEmma, plazoCredito: Int?
 }
 
 // MARK: - DeliveryInfo

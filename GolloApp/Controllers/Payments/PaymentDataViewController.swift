@@ -160,6 +160,7 @@ class PaymentDataViewController: UIViewController {
     
     private func makeAccountPayment() {
         continueButton.showLoading()
+        self.viewModel.addPaymentInfoEvent(coupon: "Pago de cuota")
         viewModel
             .makeGolloPayment()
             .asObservable()
@@ -190,6 +191,8 @@ class PaymentDataViewController: UIViewController {
     private func makeProductPayment() {
         viewModel.setCardData()
         continueButton.showLoading()
+        self.viewModel.addToCartEvent()
+        self.viewModel.addPaymentInfoEvent(coupon: "Orden de compra")
         viewModel
             .makeProductPayment()
             .asObservable()
@@ -199,6 +202,7 @@ class PaymentDataViewController: UIViewController {
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 print(response)
                 if let redirect = response.indRedirect, redirect == 0 {
+                    self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
                     let _ = self.viewModel.carManager.emptyCar()
                     self.continueButton.hideLoading()
                     let paymentSuccessViewController = PaymentSuccessViewController(

@@ -29,4 +29,10 @@ extension Date{
         if let second = difference.second, second > 0 { return seconds }
         return ""
     }
+    
+    func getFormattedDate(format: String) -> String {
+            let dateformat = DateFormatter()
+            dateformat.dateFormat = format
+            return dateformat.string(from: self)
+        }
 }

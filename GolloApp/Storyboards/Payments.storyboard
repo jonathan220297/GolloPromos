@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5n-84-JB3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5n-84-JB3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1002,67 +1002,79 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="757"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Le-f5-zoI">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="657"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9WM-dd-XIW">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xag-Z4-LHf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gf1-LQ-8ci">
-                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="140"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="175"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Capacidad de pago" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpJ-L5-0KY">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="205" height="19.5"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <color key="textColor" red="0.079844074079999994" green="0.3590557606" blue="0.56809224449999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EA5-0W-2Pc">
-                                                                        <rect key="frame" x="0.0" y="20" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="19.5" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wp8-uV-hg1">
-                                                                        <rect key="frame" x="0.0" y="40" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="39" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23F-X8-fa9">
-                                                                        <rect key="frame" x="0.0" y="60" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="58.5" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consumido" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvD-BZ-ws3">
-                                                                        <rect key="frame" x="0.0" y="80" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="78" width="205" height="19"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mC-Ub-nER">
-                                                                        <rect key="frame" x="0.0" y="100" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="97" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disponible" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-Yl-lbg">
-                                                                        <rect key="frame" x="0.0" y="120" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="116.5" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvZ-GE-h7z">
+                                                                        <rect key="frame" x="0.0" y="136" width="205" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
+                                                                        <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Efectivo limite" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V13-vK-hsy">
+                                                                        <rect key="frame" x="0.0" y="155.5" width="205" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="V9R-WV-f0X">
-                                                                <rect key="frame" x="209" y="0.0" width="205" height="140"/>
+                                                                <rect key="frame" x="209" y="0.0" width="205" height="175"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Límite de crédito" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyT-xl-B4X">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="205" height="19.5"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <color key="tintColor" red="0.079844074079999994" green="0.3590557606" blue="0.56809224449999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
@@ -1070,39 +1082,51 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9G-bx-lA5">
-                                                                        <rect key="frame" x="0.0" y="20" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="19.5" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8n-lN-X2O">
-                                                                        <rect key="frame" x="0.0" y="40" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="39" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdQ-NT-CSD">
-                                                                        <rect key="frame" x="0.0" y="60" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="58.5" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consumido" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAE-rz-BHH">
-                                                                        <rect key="frame" x="0.0" y="80" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="78" width="205" height="19"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEc-yE-s5q">
-                                                                        <rect key="frame" x="0.0" y="100" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="97" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                                                         <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disponible" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjo-hM-Y6M">
-                                                                        <rect key="frame" x="0.0" y="120" width="205" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="116.5" width="205" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ8-nl-yO3">
+                                                                        <rect key="frame" x="0.0" y="136" width="205" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
+                                                                        <color key="textColor" white="0.43822238870000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Efectivo disponible" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUg-yf-GOe">
+                                                                        <rect key="frame" x="0.0" y="155.5" width="205" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -1115,12 +1139,12 @@
                                                     <constraint firstAttribute="bottom" secondItem="xag-Z4-LHf" secondAttribute="bottom" id="20U-BN-pvM"/>
                                                     <constraint firstItem="xag-Z4-LHf" firstAttribute="top" secondItem="9WM-dd-XIW" secondAttribute="top" id="8Vx-yC-opo"/>
                                                     <constraint firstItem="xag-Z4-LHf" firstAttribute="leading" secondItem="9WM-dd-XIW" secondAttribute="leading" id="IKm-Kq-zfW"/>
-                                                    <constraint firstAttribute="height" constant="140" id="JVr-wq-aUb"/>
+                                                    <constraint firstAttribute="height" constant="175" id="JVr-wq-aUb"/>
                                                     <constraint firstAttribute="trailing" secondItem="xag-Z4-LHf" secondAttribute="trailing" id="Mdw-Xa-aIO"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nb0-ce-bYN">
-                                                <rect key="frame" x="0.0" y="148" width="414" height="25"/>
+                                                <rect key="frame" x="0.0" y="183" width="414" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuentas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMx-eP-2MV">
                                                         <rect key="frame" x="180.5" y="2.5" width="53" height="20"/>
@@ -1157,7 +1181,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAg-AL-3Cs">
-                                                <rect key="frame" x="0.0" y="181" width="414" height="300"/>
+                                                <rect key="frame" x="0.0" y="216" width="414" height="300"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pnv-3Y-yd3">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -1592,7 +1616,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GW-fV-rP6">
-                                                <rect key="frame" x="0.0" y="489" width="414" height="25"/>
+                                                <rect key="frame" x="0.0" y="524" width="414" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Totales" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWq-lm-DW9">
                                                         <rect key="frame" x="183.5" y="2.5" width="47" height="20"/>
@@ -1629,7 +1653,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TBn-G3-skH">
-                                                <rect key="frame" x="0.0" y="522" width="414" height="100"/>
+                                                <rect key="frame" x="0.0" y="557" width="414" height="100"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NWb-iA-Vvz">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -1730,6 +1754,7 @@
                         <outlet property="accountsView" destination="CAg-AL-3Cs" id="JNn-9s-iCW"/>
                         <outlet property="cmmAvailableLabel" destination="7mC-Ub-nER" id="i25-ii-JaK"/>
                         <outlet property="cmmLabel" destination="EA5-0W-2Pc" id="RVc-dj-zjk"/>
+                        <outlet property="cmmLimitMoneyLabel" destination="xvZ-GE-h7z" id="hXi-JQ-2Us"/>
                         <outlet property="cmmUsedLabel" destination="23F-X8-fa9" id="IFG-1e-F9K"/>
                         <outlet property="currentBalanceLabel" destination="otr-gH-DS1" id="Oek-Hw-qUd"/>
                         <outlet property="dataView" destination="JET-31-IvA" id="5a9-tD-K8D"/>
@@ -1738,6 +1763,7 @@
                         <outlet property="initialAmountLabel" destination="Fbk-5s-hKx" id="mfo-sa-aCE"/>
                         <outlet property="lemAvailableLabel" destination="kEc-yE-s5q" id="WqU-af-nT8"/>
                         <outlet property="lemLabel" destination="S9G-bx-lA5" id="7Qc-jN-VGC"/>
+                        <outlet property="lemLimitMoneyLabel" destination="ZQ8-nl-yO3" id="Q9s-am-uFP"/>
                         <outlet property="lemUsedLabel" destination="vdQ-NT-CSD" id="Kk9-IU-dg7"/>
                         <outlet property="paymentAmountLabel" destination="kZx-2t-XVO" id="XGz-Br-lKQ"/>
                         <outlet property="paymentAmountView" destination="9WM-dd-XIW" id="1lg-Ki-Mhx"/>
