@@ -283,7 +283,8 @@ class CoreDataService {
                         productName: data.value(forKey: "productName") as? String,
                         tieneDescuento: data.value(forKey: "tieneDescuento") as? String,
                         tipoPromoApp: data.value(forKey: "tipoPromoApp") as? Int,
-                        productoDescription: data.value(forKey: "productoDescription") as? String
+                        productoDescription: data.value(forKey: "productoDescription") as? String,
+                        muestraDescuento: "false"
                     )
                 )
             }

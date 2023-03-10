@@ -16,7 +16,9 @@ class EmmaTermsListViewModel {
     var subTotal = 0.0
     var shipping = 0.0
     var bonus = 0.0
-    var validationPin: Int?
+    var totalIntents = 0
+    var validationEmail: String?
+    var validationPin: String?
     var termSelected: EmmaTerms?
     
     var terms: [EmmaTerms] = []
@@ -75,7 +77,7 @@ class EmmaTermsListViewModel {
                        indTarjeta: 0,
                        indPrincipal: 0,
                        indEmma: 1,
-                       pinValidacionEmma: validationPin ?? 0,
+                       pinValidacionEmma: Int(validationPin ?? "0"),
                        plazoCredito: termSelected?.cantidadMeses ?? 0
                    )
                 )
@@ -97,7 +99,7 @@ class EmmaTermsListViewModel {
                indTarjeta: 0,
                indPrincipal: 0,
                indEmma: 1,
-               pinValidacionEmma: validationPin ?? 0,
+               pinValidacionEmma: Int(validationPin ?? "0"),
                plazoCredito: termSelected?.cantidadMeses ?? 0
            )
         )

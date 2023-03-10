@@ -101,7 +101,7 @@ class EditProfileViewModel {
         genderTypes.append(GenderType(code: "F", name: "Mujer"))
     }
 
-    func fetchUserData(id: String, type: String) -> BehaviorRelay<UserData?> {
+    func fetchUserData(id: String, type: String, pin: Int = 0) -> BehaviorRelay<UserData?> {
         let apiResponse: BehaviorRelay<UserData?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<UserData, UserServiceRequest>(
             service: BaseServiceRequestParam<UserServiceRequest>(
@@ -118,7 +118,8 @@ class EditProfileViewModel {
                     parametros: UserServiceRequest (
                         noCia: "10",
                         numeroIdentificacion: id,
-                        tipoIdentificacion: type
+                        tipoIdentificacion: type,
+                        indPin: pin
                     )
                 )
             )

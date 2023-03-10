@@ -484,7 +484,7 @@ class EditProfileViewController: UIViewController {
         } else {
             view.activityStarAnimating()
             viewModel
-                .fetchUserData(id: self.documentNumberLabel.text ?? "", type: documentType)
+                .fetchUserData(id: self.documentNumberLabel.text ?? "", type: documentType, pin: 1)
                 .asObservable()
                 .subscribe(onNext: {[weak self] data in
                     guard let self = self,

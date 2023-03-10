@@ -18,8 +18,6 @@ class PaymentConfirmViewController: UIViewController {
     @IBOutlet weak var bonoLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var continuePaymentButton: UIButton!
-
-    @IBOutlet weak var paymentMethodsTableViewHeightConstaint: NSLayoutConstraint!
     
     var paymentData: PaymentData?
     var paymentAmmount: Double = 0.0
@@ -134,16 +132,9 @@ class PaymentConfirmViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
-                print(data)
-                var heigthUpdate = 40
-                if self.viewModel.methods.contains(where: { $0.indEmma == 1 }) {
-                    heigthUpdate = 120
-                }
-                
                 self.view.activityStopAnimatingFull()
                 self.viewModel.methods = self.viewModel.isAccountPayment ? data.filter { $0.indTarjeta == 1 && $0.indTasaCero == 0} : data
                 self.paymentMethodsTableView.reloadData()
-                self.paymentMethodsTableViewHeightConstaint.constant = self.paymentMethodsTableView.contentSize.height + CGFloat(heigthUpdate)
             })
             .disposed(by: bag)
     }
@@ -186,6 +177,7 @@ class PaymentConfirmViewController: UIViewController {
             let emmaTermsViewController = EmmaTermsListViewController(
                 viewModel: EmmaTermsListViewModel()
             )
+            emmaTermsViewController.delegate = self
             emmaTermsViewController.viewModel.subTotal = self.viewModel.subTotal
             emmaTermsViewController.viewModel.shipping = self.viewModel.shipping
             emmaTermsViewController.viewModel.bonus = self.viewModel.bonus
@@ -219,6 +211,12 @@ class PaymentConfirmViewController: UIViewController {
 
 extension PaymentConfirmViewController: PaymentDataDelegate {
     func errorWhilePayment(with message: String) {
+        showAlert(alertText: "Error", alertMessage: message)
+    }
+}
+
+extension PaymentConfirmViewController: EmmaTermsDelegate {
+    func errorWhileEmmaPayment(with message: String) {
         showAlert(alertText: "Error", alertMessage: message)
     }
 }

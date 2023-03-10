@@ -78,8 +78,17 @@ class CarProductTableViewCell: UITableViewCell {
     func setProductData(with data: CartItemDetail) {
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.decimal
+        
+        let options = ImageLoadingOptions(
+            placeholder: UIImage(named: "empty_image"),
+            transition: .fadeIn(duration: 0.5),
+            failureImage: UIImage(named: "empty_image")
+        )
+        
         if let url = URL(string: data.urlImage ?? "") {
-            Nuke.loadImage(with: url, into: productImageView)
+            Nuke.loadImage(with: url, options: options, into: productImageView)
+        } else {
+            productImageView.image = UIImage(named: "empty_image")
         }
         productNameLabel.text = data.descripcion
         productPriceLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: data.precioUnitario))!

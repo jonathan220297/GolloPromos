@@ -62,8 +62,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
             productDiscountPriceLabel.textColor = .black
         }
 
-        //if data.muestraDescuento?.bool ?? false {
-            if data.tieneDescuento?.bool ?? false {
+        
+        if data.tieneDescuento?.bool ?? false {
+            if data.muestraDescuento?.bool ?? false {
                 if let discountPercentage = data.porcDescuento {
                     if discountPercentage == 0.0 {
                         productRealPriceLabel.text = ""
@@ -93,22 +94,23 @@ class ProductCollectionViewCell: UICollectionViewCell {
                     productDiscountPercentageView.isHidden = true
                     productDiscountPercentageLabel.text = ""
                 }
-            } else if data.tieneRegalia?.bool ?? false {
-                showGift(with: data)
-            } else if data.tieneBono?.bool ?? false {
-                showBono(with: data)
             } else {
                 productRealPriceLabel.text = ""
                 productRealPriceLabel.isHidden = true
                 productDiscountPercentageView.isHidden = true
                 productDiscountPercentageLabel.text = ""
+                productDiscountPriceLabel.textColor = .black
             }
-//        } else {
-//            productRealPriceLabel.text = ""
-//            productRealPriceLabel.isHidden = true
-//            productDiscountPercentageView.isHidden = true
-//            productDiscountPercentageLabel.text = ""
-//        }
+        } else if data.tieneRegalia?.bool ?? false {
+            showGift(with: data)
+        } else if data.tieneBono?.bool ?? false {
+            showBono(with: data)
+        } else {
+            productRealPriceLabel.text = ""
+            productRealPriceLabel.isHidden = true
+            productDiscountPercentageView.isHidden = true
+            productDiscountPercentageLabel.text = ""
+        }
 
 //        if data.tieneRegalia?.bool ?? false {
 //            showGift(with: data)
@@ -180,7 +182,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
         productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         productDiscountPercentageView.isHidden = false
         productDiscountPercentageView.backgroundColor = UIColor.bonus
-        productDiscountPercentageLabel.text = "Bono"
+        productDiscountPercentageLabel.text = "Precio especial"
+        productDiscountPercentageLabel.font = productDiscountPercentageLabel.font.withSize(12)
         let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,

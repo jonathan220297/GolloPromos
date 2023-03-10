@@ -57,6 +57,23 @@ extension String {
         return ""
     }
     
+    func interestFormatting() -> String {
+        if let value = Double(self) {
+            let formatter = NumberFormatter()
+            formatter.currencySymbol = "₡"
+            formatter.numberStyle = .decimal
+            formatter.currencyDecimalSeparator = ","
+            formatter.currencyGroupingSeparator = "."
+            formatter.maximumFractionDigits = 4
+            formatter.minimumFractionDigits = 4
+            formatter.minimumIntegerDigits = 5
+            if let str = formatter.string(for: value) {
+                return str
+            }
+        }
+        return ""
+    }
+    
     func removeFormatAmount() -> Double {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
