@@ -193,6 +193,14 @@ extension String {
     func removeWhitespace() -> String {
         return self.replace(string: " ", replacement: "")
     }
+    
+    func convertStringToDate() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss"
+        let date = dateFormatter.date(from: self)
+        return date ?? Date()
+    }
 }
 
 
