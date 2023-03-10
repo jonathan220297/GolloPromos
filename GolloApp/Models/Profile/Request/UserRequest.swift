@@ -27,4 +27,5 @@ struct UserServiceRequest: Codable {
     var noCia: String
     var numeroIdentificacion: String
     var tipoIdentificacion: String
+    var indPin: Int
 }

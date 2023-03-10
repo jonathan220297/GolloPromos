@@ -160,28 +160,51 @@ class PaymentDataViewController: UIViewController {
     
     private func makeAccountPayment() {
         continueButton.showLoading()
+        self.viewModel.addPaymentInfoEvent(coupon: "Pago de cuota")
         viewModel
             .makeGolloPayment()
             .asObservable()
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,
                       let response = response,
-                      let _ = self.viewModel.carManager.paymentMethodSelected else { return }
-                if let url = response.url, !url.isEmpty {
-                    self.showAlertWithActions(alertText: "", alertMessage: "Vas a ser redireccionado a una página externa de autenticación. Por favor no cerrés dicha página y seguí las instrucciones.") {
-                        let verifyPaymentViewController = VerifyPaymentViewController()
-                        verifyPaymentViewController.modalPresentationStyle = .fullScreen
-                        verifyPaymentViewController.delegate = self
-                        verifyPaymentViewController.redirectURL = url
-                        verifyPaymentViewController.processId = response.idProceso ?? ""
-                        self.navigationController?.pushViewController(verifyPaymentViewController, animated: true)
-                    }
-                } else {
+                      let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
+                if let redirect = response.indRedirect, redirect == 0 {
+                    self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
+                    let _ = self.viewModel.carManager.emptyCar()
                     self.continueButton.hideLoading()
-                    self.viewModel.errorMessage.accept("")
-                    self.navigationController?.popViewController(animated: true, completion: {
-                        self.delegate?.errorWhilePayment(with: "No es posible verificar la transacción")
-                    })
+                    let productPaymentResponse = PaymentOrderResponse()
+                    productPaymentResponse.orderId = response.orderId
+                    productPaymentResponse.idProceso = response.idProceso
+                    productPaymentResponse.codigoAutorizacion = response.codigoAutorizacion
+                    productPaymentResponse.idTransaccionBac = response.idTransaccionBac
+                    productPaymentResponse.indRedirect = response.indRedirect
+                    productPaymentResponse.url = response.url
+                    
+                    let paymentSuccessViewController = PaymentSuccessViewController(
+                        viewModel: PaymentSuccessViewModel(
+                            paymentMethodSelected: paymentMethodSelected,
+                            productPaymentResponse: productPaymentResponse
+                        ), cartPayment: false
+                    )
+                    paymentSuccessViewController.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)
+                } else {
+                    if let url = response.url, !url.isEmpty {
+                        self.showAlertWithActions(alertText: "", alertMessage: "Vas a ser redireccionado a una página externa de autenticación. Por favor no cerrés dicha página y seguí las instrucciones.") {
+                            let verifyPaymentViewController = VerifyPaymentViewController()
+                            verifyPaymentViewController.modalPresentationStyle = .fullScreen
+                            verifyPaymentViewController.delegate = self
+                            verifyPaymentViewController.redirectURL = url
+                            verifyPaymentViewController.processId = response.idProceso ?? ""
+                            self.navigationController?.pushViewController(verifyPaymentViewController, animated: true)
+                        }
+                    } else {
+                        self.continueButton.hideLoading()
+                        self.viewModel.errorMessage.accept("")
+                        self.navigationController?.popViewController(animated: true, completion: {
+                            self.delegate?.errorWhilePayment(with: "No es posible verificar la transacción")
+                        })
+                    }
                 }
             })
             .disposed(by: bag)
@@ -190,6 +213,8 @@ class PaymentDataViewController: UIViewController {
     private func makeProductPayment() {
         viewModel.setCardData()
         continueButton.showLoading()
+        self.viewModel.addToCartEvent()
+        self.viewModel.addPaymentInfoEvent(coupon: "Orden de compra")
         viewModel
             .makeProductPayment()
             .asObservable()
@@ -199,6 +224,7 @@ class PaymentDataViewController: UIViewController {
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 print(response)
                 if let redirect = response.indRedirect, redirect == 0 {
+                    self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
                     let _ = self.viewModel.carManager.emptyCar()
                     self.continueButton.hideLoading()
                     let paymentSuccessViewController = PaymentSuccessViewController(

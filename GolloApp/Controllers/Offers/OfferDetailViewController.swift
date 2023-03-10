@@ -306,34 +306,46 @@ class OfferDetailViewController: UIViewController {
             modelLabel.attributedText = formatHTML(header: "Modelo: ", content: offer.modelo ?? "")
             descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: data.articulo?.especificaciones ?? "")
             if let endDate = offer.endDate, !endDate.isEmpty {
-                let calendar = Calendar.current
-                let dateFormatter = DateFormatter()
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                let toDate = dateFormatter.date(from: endDate)
-
-                // Replace the hour (time) of both dates with 00:00
-                let date1 = calendar.startOfDay(for: Date())
-                let date2 = calendar.startOfDay(for: toDate ?? Date())
-
-                if date1 > date2 {
-                    dateLabel.alpha = 0
-                    dateView.alpha = 0
-                } else {
-                    print("To date: \(endDate) ~~ \(date2)")
-                    print("New difference: \(date2.offsetFrom(date: date1))")
-                    let days = calendar.numberOfDaysBetween(date1, and: date2)
-                    let hours = calendar.dateComponents([.hour], from: date1, to: date2).hour
-                    var stringDays = "día"
-                    if days > 1 {
-                        stringDays = "días"
-                    }
-                    if let hours = hours, hours > 1 {
-                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "3 días y 0 horas")
-                    } else {
-                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(days) \(stringDays)")
-                    }
+//                let calendar = Calendar.current
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+//                let toDate = dateFormatter.date(from: endDate)
+//
+//                // Replace the hour (time) of both dates with 00:00
+//                let date1 = calendar.startOfDay(for: Date())
+//                let date2 = calendar.startOfDay(for: toDate ?? Date())
+//
+//                if date1 > date2 {
+//                    dateLabel.alpha = 0
+//                    dateView.alpha = 0
+//                } else {
+//                    print("To date: \(endDate) ~~ \(date2)")
+//                    print("New difference: \(date2.offsetFrom(date: date1))")
+//                    let days = calendar.numberOfDaysBetween(date1, and: date2)
+//                    let hours = calendar.dateComponents([.hour], from: date1, to: date2).hour
+//                    var stringDays = "día"
+//                    if days > 1 {
+//                        stringDays = "días"
+//                    }
+//                    if let hours = hours, hours > 1 {
+//                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "3 días y 0 horas")
+//                    } else {
+//                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(days) \(stringDays)")
+//                    }
+//                }
+                
+                let endFormattedDate = endDate.convertStringToDate()
+                let timeDifference = Date() - endFormattedDate
+                let numberOfDays = Int(timeDifference.day ?? 0)
+                let hours = Int((timeDifference.hour ?? 0) - (numberOfDays * 24))
+                
+                print("Formatted difference time \(numberOfDays) ~~ \(hours)")
+                var stringDays = "día"
+                if numberOfDays > 1 {
+                    stringDays = "días"
                 }
+                dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(numberOfDays) \(stringDays) y \(hours) horas".replace(string: "-", replacement: ""))
             } else {
                 dateLabel.alpha = 0
                 dateView.alpha = 0

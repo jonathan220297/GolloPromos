@@ -15,9 +15,11 @@ class StatusViewController: UIViewController {
     @IBOutlet weak var cmmLabel: UILabel!
     @IBOutlet weak var cmmUsedLabel: UILabel!
     @IBOutlet weak var cmmAvailableLabel: UILabel!
+    @IBOutlet weak var cmmLimitMoneyLabel: UILabel!
     @IBOutlet weak var lemLabel: UILabel!
     @IBOutlet weak var lemUsedLabel: UILabel!
     @IBOutlet weak var lemAvailableLabel: UILabel!
+    @IBOutlet weak var lemLimitMoneyLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var accountsView: UIView!
     @IBOutlet weak var totalsView: UIView!
@@ -122,6 +124,12 @@ class StatusViewController: UIViewController {
             }
             if let lemAvailable = numberFormatter.string(from: NSNumber(value: model.lemDisponible ?? 0.0)) {
                 lemAvailableLabel.text = "₡" + " " + String(lemAvailable)
+            }
+            if let limit = numberFormatter.string(from: NSNumber(value: model.efectivoLimite ?? 0.0)) {
+                cmmLimitMoneyLabel.text = "₡" + " " + String(limit)
+            }
+            if let available = numberFormatter.string(from: NSNumber(value: model.efectivoDisponible ?? 0.0)) {
+                lemLimitMoneyLabel.text = "₡" + " " + String(available)
             }
         }
     }

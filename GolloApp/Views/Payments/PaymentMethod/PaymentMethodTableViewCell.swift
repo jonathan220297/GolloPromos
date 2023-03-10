@@ -16,6 +16,7 @@ class PaymentMethodTableViewCell: UITableViewCell {
     @IBOutlet weak var paymentRadioButton: UIButton!
     @IBOutlet weak var paymentNameLabel: UILabel!
     @IBOutlet weak var paymentDescriptionLabel: UILabel!
+    @IBOutlet weak var emmaAmountLabel: UILabel!
     
     weak var delegate: PaymentMethodCellDelegate?
     var indexPath = IndexPath(row: 0, section: 0)
@@ -31,6 +32,9 @@ class PaymentMethodTableViewCell: UITableViewCell {
     }
     
     func setMethodData(with method: PaymentMethodResponse) {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.decimal
+        
         paymentRadioButton.setImage(
             UIImage(
                 named: method.selected ?? false ? "ic_radio-button-checked" : "ic_radio-button-unchecked"
@@ -39,6 +43,12 @@ class PaymentMethodTableViewCell: UITableViewCell {
         )
         paymentNameLabel.text = method.formaPago
         paymentDescriptionLabel.text = method.descripcion
+        if method.indEmma == 1 {
+            emmaAmountLabel.isHidden = false
+            emmaAmountLabel.text = "Monto disponible: ₡" + (formatter.string(from: NSNumber(value: method.montoDisponibleEmma ?? 0.0)) ?? "0.0")
+        } else {
+            emmaAmountLabel.isHidden = true
+        }
     }
     
     func configureRx() {

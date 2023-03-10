@@ -25,5 +25,6 @@ struct DeliveryMethodsServiceRequest: Codable {
     var idCanton: String
     var idDistrito: String
     var idProvincia: String
+    var amount: Double
 }
 

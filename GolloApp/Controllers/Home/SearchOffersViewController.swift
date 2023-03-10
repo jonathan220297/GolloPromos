@@ -121,7 +121,8 @@ class SearchOffersViewController: UIViewController {
                         productName: o.productName,
                         tieneDescuento: o.tieneDescuento,
                         tipoPromoApp: 0,
-                        productoDescription: ""
+                        productoDescription: "",
+                        muestraDescuento: o.muestraDescuento
                     )
                     products.append(p)
                 }

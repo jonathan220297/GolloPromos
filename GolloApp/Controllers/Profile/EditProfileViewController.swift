@@ -52,6 +52,11 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var updateButton: LoadingButton!
     @IBOutlet weak var deleteProfileView: UIView!
     @IBOutlet weak var deleteProfileButton: UIButton!
+    @IBOutlet weak var validationCodeView: UIView!
+    @IBOutlet weak var informationValidationCodeLabel: UILabel!
+    @IBOutlet weak var codeTextField: UITextField!
+    @IBOutlet weak var validateCodeButton: UIButton!
+    @IBOutlet weak var cancelValidationButton: UIButton!
     
     lazy var viewModel: EditProfileViewModel = {
         let vm = EditProfileViewModel()
@@ -68,6 +73,7 @@ class EditProfileViewController: UIViewController {
     var documentType = ""
     var genderType = ""
     var sideMenuAcction = false
+    var tempUserData: UserData? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,7 +173,8 @@ class EditProfileViewController: UIViewController {
         if fetch {
             if let info = Variables.userProfile, Variables.isRegisterUser {
                 view.activityStartAnimatingFull()
-                viewModel.fetchUserData(id: info.numeroIdentificacion ?? "", type: info.tipoIdentificacion ?? "")
+                viewModel
+                    .fetchUserData(id: info.numeroIdentificacion ?? "", type: info.tipoIdentificacion ?? "")
                     .asObservable()
                     .subscribe(onNext: {[weak self] data in
                         guard let self = self,
@@ -204,7 +211,9 @@ class EditProfileViewController: UIViewController {
                                 nacionalidad: "",
                                 carroPropio: "",
                                 ocupacion: "",
-                                image: Variables.userProfile?.image
+                                image: Variables.userProfile?.image,
+                                emailValidacion: "",
+                                pinValidacion: ""
                             )
                             self.showData(with: data)
                         }
@@ -241,7 +250,9 @@ class EditProfileViewController: UIViewController {
                     nacionalidad: "",
                     carroPropio: "",
                     ocupacion: "",
-                    image: Variables.userProfile?.image
+                    image: Variables.userProfile?.image,
+                    emailValidacion: "",
+                    pinValidacion: ""
                 )
                 showData(with: data)
             }
@@ -409,6 +420,29 @@ class EditProfileViewController: UIViewController {
                 self.present(refreshAlert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
+        validateCodeButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                if let data = self.tempUserData {
+                    if self.codeTextField.text != nil && data.pinValidacion == self.codeTextField.text {
+                        self.validationCodeView.isHidden = true
+                        self.showData(with: data)
+                    } else {
+                        self.showAlert(alertText: "Error", alertMessage: "Ingresa un código válido.")
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        cancelValidationButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.validationCodeView.isHidden = true
+            })
+            .disposed(by: disposeBag)
     }
 
     func changeImage() {
@@ -449,14 +483,22 @@ class EditProfileViewController: UIViewController {
             showAlert(alertText: "GolloApp", alertMessage: "Cédula inválida")
         } else {
             view.activityStarAnimating()
-            viewModel.fetchUserData(id: self.documentNumberLabel.text ?? "", type: documentType)
+            viewModel
+                .fetchUserData(id: self.documentNumberLabel.text ?? "", type: documentType, pin: 1)
                 .asObservable()
                 .subscribe(onNext: {[weak self] data in
                     guard let self = self,
                           let data = data else { return }
                     self.view.activityStopAnimating()
                     if let _ = data.numeroIdentificacion, let _ = data.numeroIdentificacion {
-                        self.showData(with: data)
+                        if let _ = data.emailValidacion, let _ = data.pinValidacion {
+                            self.tempUserData = data
+                            self.informationValidationCodeLabel.text = "Se ha enviado un código de verificación a su correo electrónico \(data.emailValidacion ?? ""), el cual debe digitar a continuación"
+                            self.validationCodeView.isHidden = false
+                        } else {
+                            self.validationCodeView.isHidden = true
+                            self.showData(with: data)
+                        }
                     } else {
                         self.unregisteredUserView.alpha = 1
                     }

@@ -104,11 +104,12 @@ struct Product: Codable {
     let productName, tieneDescuento: String?
     let tipoPromoApp: Int?
     let productoDescription: String?
+    let muestraDescuento: String?
 
     enum CodingKeys: String, CodingKey {
         case productCode, descriptionDetailDescuento, descriptionDetailRegalia, originalPrice, image, montoBono, porcDescuento, brand, descriptionDetailBono, tieneBono, name, modelo, endDate, tieneRegalia, simboloMoneda, id, montoDescuento, idUsuario, product
         case idEmpresa = "IdEmpresa, idempresa"
-        case startDate, precioFinal, productName, tieneDescuento, tipoPromoApp
+        case startDate, precioFinal, productName, tieneDescuento, tipoPromoApp, muestraDescuento
         case productoDescription = "description"
     }
 }

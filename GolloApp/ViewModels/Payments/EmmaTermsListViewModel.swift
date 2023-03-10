@@ -1,60 +1,59 @@
 //
-//  PaymentConfirmViewModel.swift
-//  PromosGollo
+//  EmmaTermsListViewModel.swift
+//  GolloApp
 //
-//  Created by Jonathan Rodriguez on 28/9/22.
+//  Created by Rodrigo Osegueda on 6/3/23.
 //
 
 import Foundation
 import RxRelay
 import FirebaseAnalytics
 
-class PaymentConfirmViewModel {
+class EmmaTermsListViewModel {
     private let service = GolloService()
     let carManager = CarManager.shared
-    
-    var methods: [PaymentMethodResponse] = []
-    var methodSelected: PaymentMethodResponse?
     
     var subTotal = 0.0
     var shipping = 0.0
     var bonus = 0.0
-    var isAccountPayment = true
+    var totalIntents = 0
+    var validationEmail: String?
+    var validationPin: String?
+    var termSelected: EmmaTerms?
     
+    var terms: [EmmaTerms] = []
     let errorMessage = BehaviorRelay<String?>(value: nil)
-
-    func fetchPaymentMethods() -> BehaviorRelay<[PaymentMethodResponse]?> {
-        let apiResponse: BehaviorRelay<[PaymentMethodResponse]?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<[PaymentMethodResponse], PaymentMethodServiceRequest>(
-            service: BaseServiceRequestParam<PaymentMethodServiceRequest>(
-                servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.PAYMENT_METHODS_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil
-                    ),
-                    parametros: PaymentMethodServiceRequest (
-                        numIdentificacion: Variables.userProfile?.numeroIdentificacion ?? ""
+    
+    func fetchEmmaTerms() -> BehaviorRelay<EmmaTermsResponse?> {
+        let apiResponse: BehaviorRelay<EmmaTermsResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(
+            BaseRequest<EmmaTermsResponse, EmmaTermsServiceRequest>(
+                resource: "Procesos",
+                service: BaseServiceRequestParam<EmmaTermsServiceRequest>(
+                    servicio: ServicioParam(
+                        encabezado: getDefaultBaseHeaderRequest(
+                            with: GOLLOAPP.EMMA_TERMS_PROCESS_ID.rawValue
+                        ),
+                        parametros: EmmaTermsServiceRequest(
+                            monto: getSubtotalAmount(),
+                            numIdentificacion: Variables.userProfile?.numeroIdentificacion ?? ""
+                        )
                     )
                 )
             )
-        )) { response in
+        ) { response in
             DispatchQueue.main.async {
                 switch response {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    self.errorMessage.accept(error.localizedDescription)
                 }
             }
         }
         return apiResponse
     }
-
+    
     func sendOrder() -> BehaviorRelay<PaymentOrderResponse?> {
         guard let deliveryInfo = carManager.deliveryInfo,
               let clientID = Variables.userProfile?.numeroIdentificacion else {
@@ -77,9 +76,9 @@ class PaymentConfirmViewModel {
                        totalCuotas: 0,
                        indTarjeta: 0,
                        indPrincipal: 0,
-                       indEmma: 0,
-                       pinValidacionEmma: nil,
-                       plazoCredito: nil
+                       indEmma: 1,
+                       pinValidacionEmma: Int(validationPin ?? "0"),
+                       plazoCredito: termSelected?.cantidadMeses ?? 0
                    )
                 )
             }
@@ -88,7 +87,7 @@ class PaymentConfirmViewModel {
             PaymentMethod(
                codAutorizacion: "",
                fechaExp: "",
-               idFormaPago: methodSelected?.idFormaPago ?? "",
+               idFormaPago: "50",
                skuRelacionado: nil,
                montoPago: carManager.total + shipping,
                noLineaRelacionada: 0,
@@ -97,11 +96,11 @@ class PaymentConfirmViewModel {
                tipoPlazoTarjeta: "",
                tipoTarjeta: "",
                totalCuotas: 0,
-               indTarjeta: methodSelected?.indTarjeta ?? 0,
-               indPrincipal: methodSelected?.indPrincipal ?? 0,
-               indEmma: 0,
-               pinValidacionEmma: nil,
-               plazoCredito: nil
+               indTarjeta: 0,
+               indPrincipal: 0,
+               indEmma: 1,
+               pinValidacionEmma: Int(validationPin ?? "0"),
+               plazoCredito: termSelected?.cantidadMeses ?? 0
            )
         )
         let orderItemsDetail = orderDetail()
@@ -139,7 +138,7 @@ class PaymentConfirmViewModel {
     func getSubtotalAmount() -> Double {
         let products = carManager.car
         let amount = products.map { ($0.precioUnitario - $0.montoDescuento - ($0.montoBonoProveedor ?? 0.0)) * Double($0.cantidad) }.reduce(0, +)
-        let plus = products.map { $0.montoExtragar * Double($0.cantidad) }.reduce(0, +) 
+        let plus = products.map { $0.montoExtragar * Double($0.cantidad) }.reduce(0, +)
         return amount + plus
     }
 

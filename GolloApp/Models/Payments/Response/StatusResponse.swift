@@ -18,6 +18,8 @@ struct CreditData: Codable {
     let lemActual: Double?
     let cmmDisponible: Double?
     let lemDisponible: Double?
+    let efectivoLimite: Double?
+    let efectivoDisponible: Double?
 }
 
 struct AccountData: Codable {

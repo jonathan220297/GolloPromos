@@ -9,8 +9,9 @@ import Foundation
 
 class PaymentMethodResponse: Codable {
     let idFormaPago, formaPago, descripcion: String?
-    let indTarjeta, indPrincipal, indTasaCero: Int?
+    let indTarjeta, indPrincipal, indTasaCero, indEmma: Int?
     let plazos: [ZeroRate]?
+    let montoDisponibleEmma: Double?
     var selected: Bool? = false
 }
 

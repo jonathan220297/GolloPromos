@@ -18,8 +18,6 @@ class PaymentConfirmViewController: UIViewController {
     @IBOutlet weak var bonoLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var continuePaymentButton: UIButton!
-
-    @IBOutlet weak var paymentMethodsTableViewHeightConstaint: NSLayoutConstraint!
     
     var paymentData: PaymentData?
     var paymentAmmount: Double = 0.0
@@ -100,7 +98,24 @@ class PaymentConfirmViewController: UIViewController {
                         vc.delegate = self
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {
-                        self.sendOrder()
+                        if methodSelected.indEmma == 1 {
+                            let total = round(self.viewModel.subTotal) + round(self.viewModel.shipping) - round(self.viewModel.bonus)
+                            if total > 0.0 {
+                                if (methodSelected.montoDisponibleEmma ?? 0.0) >= total {
+                                    self.showEmmaTermsViewController()
+                                } else {
+                                    self.showAlert(alertText: "Gollo App", alertMessage: "Monto de compra es mayor que monto disponible en EMMA")
+                                }
+                            } else {
+                                if (methodSelected.montoDisponibleEmma ?? 0.0) >= self.viewModel.subTotal {
+                                    self.showEmmaTermsViewController()
+                                } else {
+                                    self.showAlert(alertText: "Gollo App", alertMessage: "Monto de compra es mayor que monto disponible en EMMA")
+                                }
+                            }
+                        } else {
+                            self.sendOrder()
+                        }
                     }
                 } else {
                     self.showAlert(alertText: "GolloApp", alertMessage: "Debes elegir un método de pago para continuar")
@@ -117,11 +132,9 @@ class PaymentConfirmViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
-                print(data)
                 self.view.activityStopAnimatingFull()
                 self.viewModel.methods = self.viewModel.isAccountPayment ? data.filter { $0.indTarjeta == 1 && $0.indTasaCero == 0} : data
                 self.paymentMethodsTableView.reloadData()
-                self.paymentMethodsTableViewHeightConstaint.constant = self.paymentMethodsTableView.contentSize.height + 40
             })
             .disposed(by: bag)
     }
@@ -159,6 +172,20 @@ class PaymentConfirmViewController: UIViewController {
         }
     }
     
+    private func showEmmaTermsViewController() {
+        DispatchQueue.main.async {
+            let emmaTermsViewController = EmmaTermsListViewController(
+                viewModel: EmmaTermsListViewModel()
+            )
+            emmaTermsViewController.delegate = self
+            emmaTermsViewController.viewModel.subTotal = self.viewModel.subTotal
+            emmaTermsViewController.viewModel.shipping = self.viewModel.shipping
+            emmaTermsViewController.viewModel.bonus = self.viewModel.bonus
+            emmaTermsViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(emmaTermsViewController, animated: true)
+        }
+    }
+    
     fileprivate func sendOrder() {
         viewModel
             .sendOrder()
@@ -167,6 +194,7 @@ class PaymentConfirmViewController: UIViewController {
                 guard let self = self,
                       let response = response,
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
+                self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
                 let _ = self.viewModel.carManager.emptyCar()
                 let paymentSuccessViewController = PaymentSuccessViewController(
                     viewModel: PaymentSuccessViewModel(
@@ -183,6 +211,12 @@ class PaymentConfirmViewController: UIViewController {
 
 extension PaymentConfirmViewController: PaymentDataDelegate {
     func errorWhilePayment(with message: String) {
+        showAlert(alertText: "Error", alertMessage: message)
+    }
+}
+
+extension PaymentConfirmViewController: EmmaTermsDelegate {
+    func errorWhileEmmaPayment(with message: String) {
         showAlert(alertText: "Error", alertMessage: message)
     }
 }

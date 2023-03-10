@@ -62,35 +62,44 @@ class ProductCollectionViewCell: UICollectionViewCell {
             productDiscountPriceLabel.textColor = .black
         }
 
+        
         if data.tieneDescuento?.bool ?? false {
-            if let discountPercentage = data.porcDescuento {
-                if discountPercentage == 0.0 {
+            if data.muestraDescuento?.bool ?? false {
+                if let discountPercentage = data.porcDescuento {
+                    if discountPercentage == 0.0 {
+                        productRealPriceLabel.text = ""
+                        productRealPriceLabel.isHidden = true
+                        productDiscountPercentageView.isHidden = true
+                        productDiscountPercentageLabel.text = ""
+                    } else {
+                        let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
+                        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
+                        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
+                                                     value: 2,
+                                                     range: NSMakeRange(0, attributeString.length))
+                        productRealPriceLabel.attributedText = attributeString
+                        productRealPriceLabel.isHidden = false
+                        productDiscountPercentageView.isHidden = false
+                        let discInt = Int(round(discountPercentage))
+                        productDiscountPercentageLabel.text = String(discInt) + "%"
+                        productDiscountPercentageView.clipsToBounds = true
+                        productDiscountPercentageView.layer.cornerRadius = 10
+                        productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMaxYCorner]
+                        productDiscountPercentageView.isHidden = false
+                        productDiscountPercentageView.backgroundColor = UIColor.red
+                    }
+                } else {
                     productRealPriceLabel.text = ""
                     productRealPriceLabel.isHidden = true
                     productDiscountPercentageView.isHidden = true
                     productDiscountPercentageLabel.text = ""
-                } else {
-                    let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
-                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
-                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
-                                                 value: 2,
-                                                 range: NSMakeRange(0, attributeString.length))
-                    productRealPriceLabel.attributedText = attributeString
-                    productRealPriceLabel.isHidden = false
-                    productDiscountPercentageView.isHidden = false
-                    let discInt = Int(round(discountPercentage))
-                    productDiscountPercentageLabel.text = String(discInt) + "%"
-                    productDiscountPercentageView.clipsToBounds = true
-                    productDiscountPercentageView.layer.cornerRadius = 10
-                    productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMaxYCorner]
-                    productDiscountPercentageView.isHidden = false
-                    productDiscountPercentageView.backgroundColor = UIColor.red
                 }
             } else {
                 productRealPriceLabel.text = ""
                 productRealPriceLabel.isHidden = true
                 productDiscountPercentageView.isHidden = true
                 productDiscountPercentageLabel.text = ""
+                productDiscountPriceLabel.textColor = .black
             }
         } else if data.tieneRegalia?.bool ?? false {
             showGift(with: data)
@@ -173,7 +182,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
         productDiscountPercentageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         productDiscountPercentageView.isHidden = false
         productDiscountPercentageView.backgroundColor = UIColor.bonus
-        productDiscountPercentageLabel.text = "Bono"
+        productDiscountPercentageLabel.text = "Precio especial"
+        productDiscountPercentageLabel.font = productDiscountPercentageLabel.font.withSize(12)
         let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,

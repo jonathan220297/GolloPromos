@@ -19,7 +19,7 @@ struct Offers: Codable {
     let montoBono: Double?
     let endDate, startDate: String?
     let montoDescuento, precioFinal: Double?
-    let tieneBono, tieneRegalia, tieneDescuento: String?
+    let tieneBono, tieneRegalia, tieneDescuento, muestraDescuento: String?
 }
 
 struct CategoryOffers {

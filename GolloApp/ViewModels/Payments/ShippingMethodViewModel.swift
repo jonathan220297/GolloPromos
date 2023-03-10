@@ -76,7 +76,8 @@ class ShippingMethodViewModel {
                         parametros: DeliveryMethodsServiceRequest(
                             idCanton: idCounty,
                             idDistrito: idDistrict,
-                            idProvincia: idState
+                            idProvincia: idState,
+                            amount: carManager.total
                         )
                     )
                 )
