@@ -14,6 +14,10 @@ class SplashViewModel: NSObject {
     private let defaults = UserDefaults.standard
     private let userManager = UserManager.shared
 
+    let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
+    let updatedVersion: BehaviorRelay<String> = BehaviorRelay(value: "")
+    let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
+    
     func verifyTermsConditionsState() -> Bool {
         return defaults.bool(forKey: "termsConditionsAccepted")
     }
@@ -99,6 +103,18 @@ class SplashViewModel: NSObject {
                     apiResponse.accept(response)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
+                    switch error {
+                    case .decoding: break;
+                    case .server(code: let code, message: _):
+                        if code == 401 {
+                            self.errorExpiredToken.accept(true)
+                            self.errorMessage.accept("")
+                        } else if code == -1 {
+                            self.updatedVersion.accept(error.localizedDescription.replace(string: "[VER] ", replacement: ""))
+                        } else {
+                            self.errorMessage.accept(error.localizedDescription)
+                        }
+                    }
                 }
             }
         }

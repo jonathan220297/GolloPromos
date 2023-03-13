@@ -15,6 +15,7 @@ import XCGLogger
 import AppTrackingTransparency
 import AdSupport
 import FacebookCore
+import UserNotifications
 
 let log = XCGLogger.default
 
@@ -28,22 +29,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         // Override point for customization after application launch.
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
 
-        FirebaseApp.configure()
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
-                    self?.requestTracking()
+            self?.requestTracking()
         }
+        
+        FirebaseApp.configure()
+        
         PushNotificationManager().registerForPushNotifications(application: application)
 
         Messaging.messaging().delegate = self
-
+        
         return true
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return GIDSignIn.sharedInstance.handle(url)
     }
-
+    
     func requestTracking() {
         if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization(completionHandler: { (status) in
@@ -108,7 +110,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             }
         }
     }
+    
+    private func registerForPushNotifications() {
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            // 1. Check to see if permission is granted
+            print("Granted \(granted)")
+            guard granted else { return }
+            // 2. Attempt registration for remote notifications on the main thread
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+                print("Granted \(granted)")
+            }
+        }
+    }
 
+}
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("Available token in simulator: \(token)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("i am not available in simulator :( \(error)")
+    }
 }
 

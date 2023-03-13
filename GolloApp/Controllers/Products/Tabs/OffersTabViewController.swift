@@ -92,6 +92,16 @@ class OffersTabViewController: UIViewController {
                 self.viewModel.errorExpiredToken.accept(nil)
             })
             .disposed(by: bag)
+        
+        viewModel.errorMessage
+            .asObservable()
+            .bind { (errorMessage) in
+                if !errorMessage.isEmpty {
+                    self.showAlert(alertText: "GolloApp", alertMessage: errorMessage)
+                    self.viewModel.errorMessage.accept("")
+                }
+            }
+            .disposed(by: bag)
     }
 
     func configureBarButtons() {

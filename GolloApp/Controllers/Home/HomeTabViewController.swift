@@ -37,6 +37,7 @@ class HomeTabViewController: UIViewController {
         configureRx()
         fetchHomeConfiguration()
         configureTopic()
+        validateVersion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +92,31 @@ class HomeTabViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.updatedVersion
+            .asObservable()
+            .bind { (errorMessage) in
+                if !errorMessage.isEmpty {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+                        self?.showAlertWithActions(alertText: "Actualización", alertMessage: errorMessage) {
+                            exit(0)
+                        }
+                    }
+                    self.viewModel.updatedVersion.accept("")
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    fileprivate func validateVersion() {
+        Messaging.messaging().token { token, error in
+          if let error = error {
+              print("Error fetching FCM registration token: \(error)")
+          } else if let token = token {
+              print("FCM registration token: \(token)")
+              self.registerDevice(with: token)
+          }
+        }
     }
 
     fileprivate func configureViewModel() {

@@ -78,7 +78,8 @@ class ShippingMethodViewController: UIViewController {
             forCellReuseIdentifier: "ShippingMethodTableViewCell"
         )
         shippingMethodsTableView.reloadData()
-        shoppingMethodsTableViewHeightConstraint.constant = shippingMethodsTableView.contentSize.height + 35
+        shoppingMethodsTableViewHeightConstraint.constant = shippingMethodsTableView.contentSize.height + CGFloat(((self.viewModel.methods.count - 1) * 75))
+        shippingMethodsTableView.layoutIfNeeded()
     }
     
     fileprivate func configureRx() {
@@ -94,6 +95,7 @@ class ShippingMethodViewController: UIViewController {
                 self.viewModel.methodSelected = self.viewModel.methods.first
                 self.shippingMethodsTableView.reloadData()
                 self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + 35
+                self.shippingMethodsTableView.layoutIfNeeded()
                 self.stateView.isHidden = false
                 self.shopView.isHidden = false
                 self.continueButton.isHidden = false
@@ -205,7 +207,8 @@ class ShippingMethodViewController: UIViewController {
                             }
                             self.viewModel.setShippingMethods(false)
                             self.shippingMethodsTableView.reloadData()
-                            self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + 120
+                            self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + CGFloat(((self.viewModel.methods.count - 1) * 80))
+                            self.shippingMethodsTableView.layoutIfNeeded()
                             self.stateView.isHidden = true
                             self.shopView.isHidden = true
                             self.continueButton.isHidden = false

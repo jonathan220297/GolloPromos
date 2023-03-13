@@ -87,7 +87,7 @@ class EmmaTermsListViewModel {
             PaymentMethod(
                codAutorizacion: "",
                fechaExp: "",
-               idFormaPago: "50",
+               idFormaPago: "51",
                skuRelacionado: nil,
                montoPago: carManager.total + shipping,
                noLineaRelacionada: 0,
@@ -97,7 +97,7 @@ class EmmaTermsListViewModel {
                tipoTarjeta: "",
                totalCuotas: 0,
                indTarjeta: 0,
-               indPrincipal: 0,
+               indPrincipal: 1,
                indEmma: 1,
                pinValidacionEmma: Int(validationPin ?? "0"),
                plazoCredito: termSelected?.cantidadMeses ?? 0

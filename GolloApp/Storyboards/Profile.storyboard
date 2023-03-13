@@ -978,10 +978,10 @@ Para continuar, por favor proceder con el registro</string>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9d-qT-7zG">
-                                        <rect key="frame" x="41.5" y="257" width="331" height="300"/>
+                                        <rect key="frame" x="31" y="244.5" width="352" height="325"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1aC-8O-0zN">
-                                                <rect key="frame" x="125.5" y="8.5" width="80" height="79"/>
+                                                <rect key="frame" x="136" y="8.5" width="80" height="79"/>
                                                 <color key="tintColor" red="1" green="0.70624512429999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="529-5l-cOs"/>
@@ -995,33 +995,33 @@ Para continuar, por favor proceder con el registro</string>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código de verificación" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZP-Kf-bKG">
-                                                <rect key="frame" x="4" y="100" width="323" height="22.5"/>
+                                                <rect key="frame" x="4" y="100" width="344" height="22.5"/>
                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vk-N0-kFP">
-                                                <rect key="frame" x="4" y="130.5" width="323" height="0.0"/>
+                                                <rect key="frame" x="4" y="130.5" width="344" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Código de verificación" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3DI-gt-MBY">
-                                                <rect key="frame" x="16" y="146.5" width="299" height="34"/>
+                                                <rect key="frame" x="16" y="146.5" width="320" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DQ9-or-FjG">
-                                                <rect key="frame" x="20" y="257.5" width="291" height="34.5"/>
+                                                <rect key="frame" x="20" y="282.5" width="312" height="34.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pdt-Ut-TRD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="145.5" height="34.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="156" height="34.5"/>
                                                         <color key="tintColor" name="colorBonus"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Validar"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adg-xk-rCg">
-                                                        <rect key="frame" x="145.5" y="0.0" width="145.5" height="34.5"/>
+                                                        <rect key="frame" x="156" y="0.0" width="156" height="34.5"/>
                                                         <color key="tintColor" name="colorBonus"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Cancelar"/>
@@ -1033,7 +1033,7 @@ Para continuar, por favor proceder con el registro</string>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="3DI-gt-MBY" secondAttribute="trailing" constant="16" id="2It-kp-cUK"/>
                                             <constraint firstItem="3DI-gt-MBY" firstAttribute="leading" secondItem="D9d-qT-7zG" secondAttribute="leading" constant="16" id="38f-VN-7B2"/>
-                                            <constraint firstAttribute="height" constant="300" id="85b-1l-pkC"/>
+                                            <constraint firstAttribute="height" constant="325" id="85b-1l-pkC"/>
                                             <constraint firstAttribute="trailing" secondItem="kZP-Kf-bKG" secondAttribute="trailing" constant="4" id="I7T-nR-hzs"/>
                                             <constraint firstItem="1aC-8O-0zN" firstAttribute="centerX" secondItem="D9d-qT-7zG" secondAttribute="centerX" id="K6c-GH-R40"/>
                                             <constraint firstItem="DQ9-or-FjG" firstAttribute="leading" secondItem="D9d-qT-7zG" secondAttribute="leading" constant="20" id="LIs-Uq-Vw6"/>
@@ -1062,7 +1062,7 @@ Para continuar, por favor proceder con el registro</string>
                                     <constraint firstAttribute="bottom" secondItem="HX0-Ad-bNA" secondAttribute="bottom" id="HYE-6b-GSP"/>
                                     <constraint firstItem="HX0-Ad-bNA" firstAttribute="top" secondItem="AKw-4s-50b" secondAttribute="top" id="JiV-nu-fpw"/>
                                     <constraint firstItem="D9d-qT-7zG" firstAttribute="centerY" secondItem="AKw-4s-50b" secondAttribute="centerY" id="Jqq-tA-QYj"/>
-                                    <constraint firstItem="D9d-qT-7zG" firstAttribute="width" secondItem="AKw-4s-50b" secondAttribute="width" multiplier="0.8" id="P8R-gb-Tao"/>
+                                    <constraint firstItem="D9d-qT-7zG" firstAttribute="width" secondItem="AKw-4s-50b" secondAttribute="width" multiplier="0.85" id="P8R-gb-Tao"/>
                                     <constraint firstItem="HX0-Ad-bNA" firstAttribute="leading" secondItem="AKw-4s-50b" secondAttribute="leading" id="fwz-tU-Gj6"/>
                                     <constraint firstAttribute="trailing" secondItem="HX0-Ad-bNA" secondAttribute="trailing" id="vjf-PX-Veh"/>
                                 </constraints>

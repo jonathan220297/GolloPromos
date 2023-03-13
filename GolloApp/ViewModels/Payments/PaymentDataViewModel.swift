@@ -200,6 +200,30 @@ class PaymentDataViewModel {
     func makeProductPayment() -> BehaviorRelay<PaymentOrderResponse?> {
         guard let deliveryInfo = carManager.deliveryInfo,
               let clientID = Variables.userProfile?.numeroIdentificacion else { return BehaviorRelay<PaymentOrderResponse?>(value: nil) }
+        for item in carManager.car {
+            if let montoBonoProveedor = item.montoBonoProveedor, montoBonoProveedor > 0.0 {
+                carManager.paymentMethod.append(
+                    PaymentMethod(
+                       codAutorizacion: "",
+                       fechaExp: "",
+                       idFormaPago: "90",
+                       skuRelacionado: item.sku,
+                       montoPago: (item.montoBonoProveedor ?? 0.0) * Double(item.cantidad),
+                       noLineaRelacionada: 0,
+                       nomTarjeta: "",
+                       numTarjeta: "",
+                       tipoPlazoTarjeta: "",
+                       tipoTarjeta: "",
+                       totalCuotas: 0,
+                       indTarjeta: 0,
+                       indPrincipal: 0,
+                       indEmma: 0,
+                       pinValidacionEmma: nil,
+                       plazoCredito: nil
+                   )
+                )
+            }
+        }
         let orderItemsDetail = orderDetail()
         let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(

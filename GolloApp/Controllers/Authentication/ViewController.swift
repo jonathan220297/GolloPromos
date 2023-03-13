@@ -24,6 +24,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureRx()
     }
 
@@ -116,6 +117,30 @@ class ViewController: UIViewController {
     }
 
     fileprivate func configureRx() {
+        viewModel.errorMessage
+            .asObservable()
+            .bind { (errorMessage) in
+                if !errorMessage.isEmpty {
+                    self.showAlert(alertText: "GolloApp", alertMessage: errorMessage)
+                    self.viewModel.errorMessage.accept("")
+                }
+            }
+            .disposed(by: bag)
+        
+        viewModel.updatedVersion
+            .asObservable()
+            .bind { (errorMessage) in
+                if !errorMessage.isEmpty {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
+                        self?.showAlertWithActions(alertText: "Actualización", alertMessage: errorMessage) {
+                            exit(0)
+                        }
+                    }
+                    self.viewModel.updatedVersion.accept("")
+                }
+            }
+            .disposed(by: bag)
+        
         continueButton
             .rx
             .tap
