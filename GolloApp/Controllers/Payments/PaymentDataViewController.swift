@@ -172,18 +172,11 @@ class PaymentDataViewController: UIViewController {
                     self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
                     let _ = self.viewModel.carManager.emptyCar()
                     self.continueButton.hideLoading()
-                    let productPaymentResponse = PaymentOrderResponse()
-                    productPaymentResponse.orderId = response.orderId
-                    productPaymentResponse.idProceso = response.idProceso
-                    productPaymentResponse.codigoAutorizacion = response.codigoAutorizacion
-                    productPaymentResponse.idTransaccionBac = response.idTransaccionBac
-                    productPaymentResponse.indRedirect = response.indRedirect
-                    productPaymentResponse.url = response.url
                     
                     let paymentSuccessViewController = PaymentSuccessViewController(
                         viewModel: PaymentSuccessViewModel(
                             paymentMethodSelected: paymentMethodSelected,
-                            productPaymentResponse: productPaymentResponse
+                            accountPaymentResponse: response
                         ), cartPayment: false
                     )
                     paymentSuccessViewController.modalPresentationStyle = .fullScreen

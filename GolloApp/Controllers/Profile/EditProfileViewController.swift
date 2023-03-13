@@ -84,6 +84,7 @@ class EditProfileViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         imagePicker.delegate = self
         documentNumberLabel.delegate = self
+        hideKeyboardWhenTappedAround()
     }
 
     override func viewWillLayoutSubviews() {

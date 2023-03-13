@@ -100,18 +100,11 @@ class PaymentConfirmViewController: UIViewController {
                     } else {
                         if methodSelected.indEmma == 1 {
                             let total = round(self.viewModel.subTotal) + round(self.viewModel.shipping) - round(self.viewModel.bonus)
-                            if total > 0.0 {
-                                if (methodSelected.montoDisponibleEmma ?? 0.0) >= total {
-                                    self.showEmmaTermsViewController()
-                                } else {
-                                    self.showAlert(alertText: "Gollo App", alertMessage: "Monto de compra es mayor que monto disponible en EMMA")
-                                }
+                        
+                            if (methodSelected.montoDisponibleEmma ?? 0.0) >= total {
+                                self.showEmmaTermsViewController()
                             } else {
-                                if (methodSelected.montoDisponibleEmma ?? 0.0) >= self.viewModel.subTotal {
-                                    self.showEmmaTermsViewController()
-                                } else {
-                                    self.showAlert(alertText: "Gollo App", alertMessage: "Monto de compra es mayor que monto disponible en EMMA")
-                                }
+                                self.showAlert(alertText: "Gollo App", alertMessage: "Monto de compra es mayor que monto disponible en EMMA")
                             }
                         } else {
                             self.sendOrder()

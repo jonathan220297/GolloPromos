@@ -34,6 +34,8 @@ class EmmaTermsListViewController: UIViewController {
     let bag = DisposeBag()
     weak var delegate: EmmaTermsDelegate?
     
+    var keyboardShowing: Bool = false
+    
     // MARK: - Lifecycle
     init(viewModel: EmmaTermsListViewModel) {
         self.viewModel = viewModel
@@ -47,10 +49,12 @@ class EmmaTermsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Seleccione el plazo"
+
         configureRx()
         configureTableView()
         configureProductPayment()
         fetchEmmaTermsList()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +67,31 @@ class EmmaTermsListViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    // MARK: - Observers
+    @objc func closePopUp() {
+        if !keyboardShowing {
+            dismiss(animated: true)
+        } else {
+            hideKeyboardWhenTappedAround()
+        }
+    }
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.keyboardShowing = true
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height - 150
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.keyboardShowing = false
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
 
     fileprivate func configureRx() {
@@ -173,7 +202,7 @@ class EmmaTermsListViewController: UIViewController {
             bonoStackView.isHidden = true
             bonoLabel.text = "₡" + String(bono)
 
-            let total = round(viewModel.subTotal) + round(viewModel.shipping) - round(viewModel.bonus)
+            let total = round(viewModel.subTotal) + round(viewModel.shipping)
             if let totalAmount = numberFormatter.string(from: NSNumber(value: round(total))), total > 0.0 {
                 totalLabel.text = "₡" + String(totalAmount)
             } else {
@@ -238,5 +267,15 @@ extension EmmaTermsListViewController: EmmaTermsCellDelegate {
         viewModel.terms[indexPath.row].selected = true
         viewModel.termSelected = viewModel.terms[indexPath.row]
         paymentMethodsTableView.reloadData()
+    }
+}
+
+// MARK: - UIGestureRecognizer Delegates
+extension EmmaTermsListViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view!.isDescendant(of: self.validationCodeView) {
+            return true
+        }
+        return false
     }
 }

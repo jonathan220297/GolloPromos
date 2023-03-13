@@ -12,6 +12,7 @@ class HomeViewModel {
     private let service = GolloService()
 
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
+    let updatedVersion: BehaviorRelay<String> = BehaviorRelay(value: "")
     let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
     var sectionsArray: [HomeSection] = []
 
@@ -97,6 +98,18 @@ class HomeViewModel {
                     apiResponse.accept(response)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
+                    switch error {
+                    case .decoding: break;
+                    case .server(code: let code, message: _):
+                        if code == 401 {
+                            self.errorExpiredToken.accept(true)
+                            self.errorMessage.accept("")
+                        } else if code == -1 {
+                            self.updatedVersion.accept(error.localizedDescription.replace(string: "[VER] ", replacement: ""))
+                        } else {
+                            self.errorMessage.accept(error.localizedDescription)
+                        }
+                    }
                 }
             }
         }

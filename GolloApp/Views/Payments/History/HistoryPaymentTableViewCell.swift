@@ -44,6 +44,7 @@ class HistoryPaymentTableViewCell: UITableViewCell {
         if data.procesada?.bool ?? false {
             successPaymentImageView.alpha = 1
 //            messageStackView.alpha = 0
+            messageLabel.textColor = UIColor.black
         } else {
             successPaymentImageView.alpha = 0
             messageLabel.textColor = UIColor.red

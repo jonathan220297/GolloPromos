@@ -77,7 +77,7 @@ class ShippingMethodViewModel {
                             idCanton: idCounty,
                             idDistrito: idDistrict,
                             idProvincia: idState,
-                            amount: carManager.total
+                            monto: carManager.total
                         )
                     )
                 )

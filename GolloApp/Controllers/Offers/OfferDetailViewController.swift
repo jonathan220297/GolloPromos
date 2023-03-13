@@ -285,13 +285,13 @@ class OfferDetailViewController: UIViewController {
                 failureImage: UIImage(named: "empty_image")
             )
 
-            if offer.image == "" || offer.image == "NA" {
+            if data.articulo?.urlImagen == "" || data.articulo?.urlImagen == "NA" {
                 DispatchQueue.main.async {
                     self.imageConstraint.constant = 0
                     self.imageView.alpha = 0
                 }
             } else {
-                let url = URL(string: offer.image!)
+                let url = URL(string: data.articulo?.urlImagen ?? "")
                 if let url = url {
                     Nuke.loadImage(with: url, options: options, into: offerImage)
                 } else {

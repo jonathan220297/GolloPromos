@@ -33,11 +33,11 @@ class SignUpViewModel: NSObject {
             }
 
             let range = NSRange(location: 0, length: password.utf16.count)
-            let regex = try! NSRegularExpression(pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{6,}")
+            let regex = try! NSRegularExpression(pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#^&+=])[A-Za-z\\dd$@$!%*?&#^&+=]{6,}")
             let valid = regex.firstMatch(in: password, options: [], range: range) != nil
 
             let rangeConfirmation = NSRange(location: 0, length: password.utf16.count)
-            let regexConfirmation = try! NSRegularExpression(pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{6,}")
+            let regexConfirmation = try! NSRegularExpression(pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#^&+=])[A-Za-z\\dd$@$!%*?&#^&+=]{6,}")
             let validConfirmation = regexConfirmation.firstMatch(in: password, options: [], range: rangeConfirmation) != nil
             
             if !password.isEmpty {
