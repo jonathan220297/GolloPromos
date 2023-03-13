@@ -189,7 +189,7 @@ struct Variables {
     // Company
     var GOLLO_COMPANY = "10"
     var GOLLO_STORE = "144"
-    var VERSION_CODE = "1.0.1"
+    var VERSION_CODE = "1.0.2"
     static var isClientUser = false
     static var isLoginUser = false
     static var userProfile: UserInfo? = nil
