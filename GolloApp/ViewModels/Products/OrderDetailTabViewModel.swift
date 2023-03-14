@@ -15,6 +15,7 @@ class OrderDetailTabViewModel {
 
     var royalties: [OrderDetailInformation] = []
     var products: [OrderDetailInformation] = []
+    var fromNotification = false
 
     func fetchOrderDetail(orderId: String) -> BehaviorRelay<OrderDetailData?> {
         let apiResponse: BehaviorRelay<OrderDetailData?> = BehaviorRelay(value: nil)

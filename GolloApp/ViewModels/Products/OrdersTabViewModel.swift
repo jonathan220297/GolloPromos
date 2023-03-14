@@ -15,7 +15,7 @@ class OrdersTabViewModel {
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     
     var orders: [Order] = []
-
+    
     func fetchOrders() -> BehaviorRelay<OrdersData?> {
         let apiResponse: BehaviorRelay<OrdersData?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<OrdersData, OrderServiceRequest>(

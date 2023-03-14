@@ -15,10 +15,13 @@ class NotificationsViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var heightSearchBar: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var backButton: UIButton!
+    
     lazy var viewModel: NotificationsViewModel = {
         return NotificationsViewModel()
     }()
+    var fromNotifications: Bool = false
     let bag = DisposeBag()
 
     override func viewDidLoad() {
@@ -32,6 +35,11 @@ class NotificationsViewController: UIViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
+        if fromNotifications {
+            backView.isHidden = false
+        } else {
+            backView.isHidden = true
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,6 +57,14 @@ class NotificationsViewController: UIViewController {
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
+            })
+            .disposed(by: bag)
+        
+        backButton
+            .rx
+            .tap
+            .subscribe(onNext: { _ in
+                self.dismiss(animated: true)
             })
             .disposed(by: bag)
     }
@@ -112,7 +128,8 @@ extension NotificationsViewController: UITableViewDataSource, UITableViewDelegat
         if self.viewModel.NotificationsArray[indexPath.row].type == "3" {
             let orderDetailTabViewController = OrderDetailTabViewController(
                 viewModel: OrderDetailTabViewModel(),
-                orderId: String(self.viewModel.NotificationsArray[indexPath.row].idType ?? 0)
+                orderId: String(self.viewModel.NotificationsArray[indexPath.row].idType ?? 0),
+                fromNotifications: false
             )
             orderDetailTabViewController.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(orderDetailTabViewController, animated: true)

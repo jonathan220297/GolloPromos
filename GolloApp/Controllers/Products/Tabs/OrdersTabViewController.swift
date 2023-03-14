@@ -179,7 +179,8 @@ extension OrdersTabViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let orderDetailTabViewController = OrderDetailTabViewController(
             viewModel: OrderDetailTabViewModel(),
-            orderId: String(viewModel.orders[indexPath.row].idOrden ?? 0)
+            orderId: String(viewModel.orders[indexPath.row].idOrden ?? 0),
+            fromNotifications: false
         )
         orderDetailTabViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(orderDetailTabViewController, animated: true)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BNP-9x-DdO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BNP-9x-DdO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -57,8 +57,38 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeL-OW-p7M">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9W8-wT-grp">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpz-vs-1Gp">
+                                                <rect key="frame" x="12" y="25.5" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="USb-kK-ShB"/>
+                                                    <constraint firstAttribute="width" constant="24" id="xgP-cf-6q7"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="ic_back_arrow"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notificaciones" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vU-ph-Nb4">
+                                                <rect key="frame" x="44" y="28" width="326" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstItem="kpz-vs-1Gp" firstAttribute="leading" secondItem="9W8-wT-grp" secondAttribute="leading" constant="12" id="1hU-1A-f1X"/>
+                                            <constraint firstAttribute="height" constant="75" id="8J4-4y-A2A"/>
+                                            <constraint firstItem="9vU-ph-Nb4" firstAttribute="centerY" secondItem="9W8-wT-grp" secondAttribute="centerY" id="TF3-MA-ghH"/>
+                                            <constraint firstAttribute="trailing" secondItem="9vU-ph-Nb4" secondAttribute="trailing" constant="44" id="WaE-sW-Y5a"/>
+                                            <constraint firstItem="9vU-ph-Nb4" firstAttribute="leading" secondItem="kpz-vs-1Gp" secondAttribute="trailing" constant="8" id="YI1-gV-F9s"/>
+                                            <constraint firstItem="kpz-vs-1Gp" firstAttribute="centerY" secondItem="9W8-wT-grp" secondAttribute="centerY" id="eVF-ow-L3Q"/>
+                                        </constraints>
+                                    </view>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="s83-1T-sK2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="75" width="414" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="9fu-nu-5vv"/>
                                         </constraints>
@@ -69,7 +99,7 @@
                                         </connections>
                                     </searchBar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bcL-mt-RFY">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                        <rect key="frame" x="0.0" y="75" width="414" height="787"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NotificationTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" rowHeight="80" id="jCB-jc-b8H" customClass="NotificationTableViewCell" customModule="GolloApp" customModuleProvider="target">
@@ -147,11 +177,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="s83-1T-sK2" secondAttribute="trailing" id="8EK-Rc-R2G"/>
+                                    <constraint firstAttribute="trailing" secondItem="9W8-wT-grp" secondAttribute="trailing" id="BFI-9x-hkO"/>
+                                    <constraint firstItem="s83-1T-sK2" firstAttribute="top" secondItem="9W8-wT-grp" secondAttribute="bottom" id="ISG-ZN-3Uq"/>
+                                    <constraint firstItem="9W8-wT-grp" firstAttribute="leading" secondItem="ZeL-OW-p7M" secondAttribute="leading" id="M9F-FA-obN"/>
                                     <constraint firstItem="s83-1T-sK2" firstAttribute="leading" secondItem="ZeL-OW-p7M" secondAttribute="leading" id="R1c-PX-Zfn"/>
-                                    <constraint firstItem="s83-1T-sK2" firstAttribute="top" secondItem="ZeL-OW-p7M" secondAttribute="top" id="ajK-PO-GJR"/>
                                     <constraint firstAttribute="bottom" secondItem="bcL-mt-RFY" secondAttribute="bottom" id="bMX-9V-0go"/>
                                     <constraint firstItem="bcL-mt-RFY" firstAttribute="top" secondItem="s83-1T-sK2" secondAttribute="bottom" id="eUO-cE-xp3"/>
                                     <constraint firstAttribute="trailing" secondItem="bcL-mt-RFY" secondAttribute="trailing" id="hhn-yw-sh0"/>
+                                    <constraint firstItem="9W8-wT-grp" firstAttribute="top" secondItem="ZeL-OW-p7M" secondAttribute="top" id="k7G-Y5-RVo"/>
                                     <constraint firstItem="bcL-mt-RFY" firstAttribute="leading" secondItem="ZeL-OW-p7M" secondAttribute="leading" id="ope-Wn-idm"/>
                                 </constraints>
                             </view>
@@ -171,6 +204,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="kpz-vs-1Gp" id="zhk-03-yBH"/>
+                        <outlet property="backView" destination="9W8-wT-grp" id="7bd-Qp-NPo"/>
                         <outlet property="dataView" destination="ZeL-OW-p7M" id="R1z-ug-rfp"/>
                         <outlet property="emptyView" destination="hsy-nQ-HT3" id="6l3-I0-1Mx"/>
                         <outlet property="heightSearchBar" destination="9fu-nu-5vv" id="o7Y-jo-7uT"/>
@@ -330,9 +365,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_back_arrow" width="25" height="25"/>
         <image name="ic_navigate" width="50" height="50"/>
         <image name="ic_notification" width="25" height="25"/>
         <image name="ic_right_arrow" width="25" height="25"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="PrimaryColor">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
