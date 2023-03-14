@@ -36,19 +36,23 @@ class OrderDetailTabViewController: UIViewController {
     @IBOutlet weak var productsTableView: UITableView!
     @IBOutlet weak var productsTableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var productsViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var backButton: UIButton!
     
     // MARK: - Constants
     let viewModel: OrderDetailTabViewModel
     let orderId: String
+    let fromNotifications: Bool
     let bag = DisposeBag()
     let SKU_SHIPPING = "73"
     let SKU_WARRANTY = "4"
     let PAYMENT_BONUS = "90"
     let PAYMENT_METHOD_CARD = "30"
 
-    init(viewModel: OrderDetailTabViewModel, orderId: String) {
+    init(viewModel: OrderDetailTabViewModel, orderId: String, fromNotifications: Bool) {
         self.viewModel = viewModel
         self.orderId = orderId
+        self.fromNotifications = fromNotifications
         super.init(nibName: "OrderDetailTabViewController", bundle: nil)
     }
 
@@ -66,6 +70,11 @@ class OrderDetailTabViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchOrderDetail()
+        if fromNotifications {
+            backView.isHidden = false
+        } else {
+            backView.isHidden = true
+        }
     }
 
     fileprivate func configureRx() {
@@ -77,10 +86,22 @@ class OrderDetailTabViewController: UIViewController {
                 if !error.isEmpty {
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.showAlertWithActions(alertText: "GolloApp", alertMessage: error) {
-                        self.navigationController?.popViewController(animated: true)
+                        if self.fromNotifications {
+                            self.dismiss(animated: true)
+                        } else {
+                            self.navigationController?.popViewController(animated: true)
+                        }
                     }
                     self.viewModel.errorMessage.accept("")
                 }
+            })
+            .disposed(by: bag)
+        
+        backButton
+            .rx
+            .tap
+            .subscribe(onNext: { _ in
+                self.dismiss(animated: true)
             })
             .disposed(by: bag)
     }

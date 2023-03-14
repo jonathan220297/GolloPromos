@@ -344,6 +344,7 @@
 		4FFD9CCB272B6C1E004778F1 /* EmptyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9CCA272B6C1E004778F1 /* EmptyTableView.swift */; };
 		6B079CBDD169C3A33575D3F2 /* Pods_GolloApp_GolloAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFC703C6F440B986034F989 /* Pods_GolloApp_GolloAppUITests.framework */; };
 		AA91DBFFEF8013E180CE06FE /* Pods_GolloApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C522BEE5C15BCF287B89EC9 /* Pods_GolloApp.framework */; };
+		CB56EEFE29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */; };
 		CB8A01A129BCFBB20004C508 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A01A029BCFBB20004C508 /* Data+Extension.swift */; };
 		CB8A01A329BE3B1F0004C508 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB8A01A229BE3B1F0004C508 /* GoogleService-Info.plist */; };
 		CBDD0E3F29B698630071E063 /* EmmaTermsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD0E3D29B698630071E063 /* EmmaTermsListViewController.swift */; };
@@ -739,6 +740,7 @@
 		A827069AB45FE22F01CFACEE /* Pods-PromosGolloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromosGolloTests.release.xcconfig"; path = "Target Support Files/Pods-PromosGolloTests/Pods-PromosGolloTests.release.xcconfig"; sourceTree = "<group>"; };
 		B3CEE94174F36CD0150EB27C /* Pods-GolloAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloAppTests.release.xcconfig"; path = "Target Support Files/Pods-GolloAppTests/Pods-GolloAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC64B1ED8688A27A8A61B040 /* Pods-GolloAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloAppTests.debug.xcconfig"; path = "Target Support Files/Pods-GolloAppTests/Pods-GolloAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypeTransitionManager.swift; sourceTree = "<group>"; };
 		CB8A01A029BCFBB20004C508 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		CB8A01A229BE3B1F0004C508 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBDD0E3D29B698630071E063 /* EmmaTermsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmmaTermsListViewController.swift; sourceTree = "<group>"; };
@@ -1443,6 +1445,7 @@
 				4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */,
 				4FE86E6128E40BAC008E58F1 /* CarManager.swift */,
 				4FBC3F862919FC0600626626 /* PushNotificationManager.swift */,
+				CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -2373,6 +2376,7 @@
 				4F7C5F2828E6171600123072 /* OrdersData.swift in Sources */,
 				4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */,
 				4F17322D27013BA100D7924D /* HeaderTableViewCell.swift in Sources */,
+				CB56EEFE29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift in Sources */,
 				4F17323E2701476200D7924D /* Account.swift in Sources */,
 				4F17323827013D1E00D7924D /* ParentModel.swift in Sources */,
 				4F7C5F3928E641CC00123072 /* ProductOrderDetailTableViewCell.swift in Sources */,
@@ -2680,7 +2684,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
@@ -2708,7 +2712,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;

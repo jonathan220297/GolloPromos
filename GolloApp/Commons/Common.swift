@@ -195,3 +195,8 @@ struct Variables {
     static var userProfile: UserInfo? = nil
     static var notificationsToken = ""
 }
+
+enum APP_NOTIFICATIONS: String {
+    case GENERAL = "1"
+    case ORDER = "3"
+}
