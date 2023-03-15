@@ -8,6 +8,7 @@
 import UIKit
 import RxRelay
 import RxSwift
+import FirebaseAuth
 
 class EditProfileViewModel {
     private let service = GolloService()
@@ -102,6 +103,7 @@ class EditProfileViewModel {
     }
 
     func fetchUserData(id: String, type: String, pin: Int = 0) -> BehaviorRelay<UserData?> {
+        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
         let apiResponse: BehaviorRelay<UserData?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<UserData, UserServiceRequest>(
             service: BaseServiceRequestParam<UserServiceRequest>(
@@ -109,7 +111,7 @@ class EditProfileViewModel {
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue,
                         idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        idUsuario: idClient ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
                         token: getToken(),
@@ -170,6 +172,7 @@ class EditProfileViewModel {
     }
 
     func deleteUserProfile() -> BehaviorRelay<LoginData?> {
+        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
         service.callWebServiceGolloAlternative(BaseRequest<LoginData?, DeleteProfileServiceRequest>(
             service: BaseServiceRequestParam<DeleteProfileServiceRequest>(
@@ -177,14 +180,14 @@ class EditProfileViewModel {
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.REMOVE_USER_PROCESS_ID.rawValue,
                         idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        idUsuario: idClient,
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
                         token: getToken(),
                         integrationId: nil),
                     parametros: DeleteProfileServiceRequest(
                         idEmpresa: 10,
-                        idCliente: UserManager.shared.userData?.uid ?? ""
+                        idCliente: idClient ?? ""
                     )
                 )
             )
@@ -203,7 +206,7 @@ class EditProfileViewModel {
 
     func registerDevice(with deviceToken: String) -> BehaviorRelay<LoginData?> {
         var token: String? = nil
-        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : nil
+        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
         if !getToken().isEmpty {
             token = getToken()
         }
@@ -215,7 +218,7 @@ class EditProfileViewModel {
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
                         idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        idUsuario: idClient,
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
                         token: token ?? "",
@@ -271,6 +274,6 @@ class EditProfileViewModel {
             return false
         }
     }
-
+    
 }
 

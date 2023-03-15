@@ -597,7 +597,7 @@ class EditProfileViewController: UIViewController {
             operationType = 1
         }
         let userInfo = UserInfo(
-            idCliente: UserManager.shared.userData?.uid ?? "",
+            idCliente: UserManager.shared.userData?.uid ?? Auth.auth().currentUser?.uid,
             nombre: viewModel.nameSubject.value,
             apellido1: viewModel.lastnameSubject.value,
             apellido2: viewModel.secondLastnameSubject.value,
@@ -612,7 +612,7 @@ class EditProfileViewController: UIViewController {
             fechaNacimiento: viewModel.birthDateSubject.value,
             image: viewModel.convertImageToBase64String(img: userImageView.image),
             genero: genderType,
-            tipoOperacion: 1//operationType
+            tipoOperacion: 1 //operationType
         )
         viewModel.updateUserData(with: userInfo)
             .asObservable()
