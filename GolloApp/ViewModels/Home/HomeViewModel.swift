@@ -83,7 +83,7 @@ class HomeViewModel {
                     parametros: RegisterDeviceServiceRequest(
                         idEmpresa: 10,
                         idDeviceToken: deviceToken,
-                        Token: token,
+                        token: token,
                         idCliente: idClient,
                         idDevice: "\(UUID())",
                         version: Variables().VERSION_CODE,

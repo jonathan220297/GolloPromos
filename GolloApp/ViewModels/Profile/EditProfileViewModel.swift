@@ -179,7 +179,7 @@ class EditProfileViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.REMOVE_USER_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
+                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
                         idUsuario: idClient,
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -217,7 +217,7 @@ class EditProfileViewModel {
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
+                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
                         idUsuario: idClient,
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
@@ -226,9 +226,9 @@ class EditProfileViewModel {
                     parametros: RegisterDeviceServiceRequest(
                         idEmpresa: 10,
                         idDeviceToken: deviceToken,
-                        Token: token,
+                        token: token,
                         idCliente: idClient,
-                        idDevice: "\(UUID())",
+                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
                         version: Variables().VERSION_CODE,
                         sisOperativo: "IOS"
                     )
@@ -267,6 +267,7 @@ class EditProfileViewModel {
 
     func saveToken(with token: String) -> Bool {
         if let data = token.data(using: .utf8) {
+            let _ = KeychainManager.delete(key: "token")
             let status = KeychainManager.save(key: "token", data: data)
             log.debug("Status: \(status)")
             return true

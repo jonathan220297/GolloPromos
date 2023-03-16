@@ -644,7 +644,6 @@ class EditProfileViewController: UIViewController {
                 guard let self = self,
                       let _ = data else { return }
                 self.userDefaults.removeObject(forKey: "Information")
-                let _ = KeychainManager.delete(key: "token")
                 Variables.isRegisterUser = false
                 Variables.isLoginUser = false
                 Variables.isClientUser = false

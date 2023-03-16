@@ -7,6 +7,7 @@
 
 import Foundation
 import RxRelay
+import FirebaseAuth
 
 class OrdersTabViewModel {
     private let service = GolloService()
@@ -17,20 +18,21 @@ class OrdersTabViewModel {
     var orders: [Order] = []
     
     func fetchOrders() -> BehaviorRelay<OrdersData?> {
+        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
         let apiResponse: BehaviorRelay<OrdersData?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<OrdersData, OrderServiceRequest>(
             service: BaseServiceRequestParam<OrderServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: Encabezado(
                         idProceso: GOLLOAPP.ORDERS_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
+                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
+                        idUsuario: idClient ?? "",
                         timeStamp: String(Date().timeIntervalSince1970),
                         idCia: 10,
                         token: getToken(),
                         integrationId: nil),
                     parametros: OrderServiceRequest (
-                        idCliente: UserManager.shared.userData?.uid ?? ""
+                        idCliente: idClient ?? ""
                     )
                 )
             )
@@ -79,7 +81,7 @@ class OrdersTabViewModel {
                     parametros: RegisterDeviceServiceRequest(
                         idEmpresa: 10,
                         idDeviceToken: deviceToken,
-                        Token: token,
+                        token: token,
                         idCliente: idClient,
                         idDevice: "\(UUID())",
                         version: Variables().VERSION_CODE,
