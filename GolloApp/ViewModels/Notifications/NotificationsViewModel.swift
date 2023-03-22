@@ -23,15 +23,16 @@ class NotificationsViewModel {
         service.callWebServiceGollo(BaseRequest<[NotificationsData], NotificationsServiceRequest>(
             service: BaseServiceRequestParam<NotificationsServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.NOTIFICATIONS_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil
-                    ),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.NOTIFICATIONS_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: UserManager.shared.userData?.uid ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil
+//                    ),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.NOTIFICATIONS_PROCESS_ID.rawValue),
                     parametros: NotificationsServiceRequest (
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",
@@ -58,15 +59,16 @@ class NotificationsViewModel {
         service.callWebServiceGollo(BaseRequest<NotificationsData, ReadNotificationServiceRequest>(
             service: BaseServiceRequestParam<ReadNotificationServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.READ_NOTIFICATION_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil
-                    ),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.READ_NOTIFICATION_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: UserManager.shared.userData?.uid ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil
+//                    ),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.READ_NOTIFICATION_PROCESS_ID.rawValue),
                     parametros: ReadNotificationServiceRequest (
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idNotificacion: id

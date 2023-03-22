@@ -22,15 +22,16 @@ class SideMenuViewModel {
         service.callWebServiceGollo(BaseRequest<UnreadNotificationData, UnreadNotificationServiceRequest>(
             service: BaseServiceRequestParam<UnreadNotificationServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.UNREAD_NOTIFICATIONS_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: idClient,
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil
-                    ),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.UNREAD_NOTIFICATIONS_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: idClient,
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil
+//                    ),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.UNREAD_NOTIFICATIONS_PROCESS_ID.rawValue),
                     parametros: UnreadNotificationServiceRequest (
                         idCliente: idClient ?? ""
                     )
@@ -62,6 +63,7 @@ class SideMenuViewModel {
     func registerDevice(with deviceToken: String) -> BehaviorRelay<LoginData?> {
         var token: String? = nil
         let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
+        let idDevice: String = UIDevice.current.identifierForVendor?.uuidString ?? ""
         if !getToken().isEmpty {
             token = getToken()
         }
@@ -70,20 +72,21 @@ class SideMenuViewModel {
             resource: "Procesos/RegistroDispositivos",
             service: BaseServiceRequestParam<RegisterDeviceServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: idClient,
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: token ?? "",
-                        integrationId: nil),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: idClient,
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: token ?? "",
+//                        integrationId: nil),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue),
                     parametros: RegisterDeviceServiceRequest(
                         idEmpresa: 10,
                         idDeviceToken: deviceToken,
                         token: token,
                         idCliente: idClient,
-                        idDevice: "\(UUID())",
+                        idDevice: idDevice,
                         version: Variables().VERSION_CODE,
                         sisOperativo: "IOS"
                     )

@@ -168,9 +168,10 @@ func getToken() -> String {
 func getDefaultBaseHeaderRequest(with processId: String,
                                  integrationId: String? = nil) -> Encabezado {
     let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
+    let idDevice: String = UIDevice.current.identifierForVendor?.uuidString ?? ""
     let encabezado = Encabezado(idProceso: processId,
-                                idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
-                                idUsuario: idClient ?? "",
+                                idDevice: idDevice,
+                                idUsuario: idClient ?? idDevice,
                                 timeStamp: String(Date().timeIntervalSince1970),
                                 idCia: 10,
                                 token: getToken() ,

@@ -108,15 +108,16 @@ class EditProfileViewModel {
         service.callWebServiceGollo(BaseRequest<UserData, UserServiceRequest>(
             service: BaseServiceRequestParam<UserServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: idClient ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil
-                    ),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: idClient ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil
+//                    ),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue),
                     parametros: UserServiceRequest (
                         noCia: "10",
                         numeroIdentificacion: id,
@@ -177,14 +178,15 @@ class EditProfileViewModel {
         service.callWebServiceGolloAlternative(BaseRequest<LoginData?, DeleteProfileServiceRequest>(
             service: BaseServiceRequestParam<DeleteProfileServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.REMOVE_USER_PROCESS_ID.rawValue,
-                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
-                        idUsuario: idClient,
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.REMOVE_USER_PROCESS_ID.rawValue,
+//                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
+//                        idUsuario: idClient,
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.REMOVE_USER_PROCESS_ID.rawValue),
                     parametros: DeleteProfileServiceRequest(
                         idEmpresa: 10,
                         idCliente: idClient ?? ""
@@ -207,6 +209,7 @@ class EditProfileViewModel {
     func registerDevice(with deviceToken: String) -> BehaviorRelay<LoginData?> {
         var token: String? = nil
         let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
+        let idDevice: String = UIDevice.current.identifierForVendor?.uuidString ?? ""
         if !getToken().isEmpty {
             token = getToken()
         }
@@ -215,20 +218,21 @@ class EditProfileViewModel {
             resource: "Procesos/RegistroDispositivos",
             service: BaseServiceRequestParam<RegisterDeviceServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
-                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
-                        idUsuario: idClient,
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: token ?? "",
-                        integrationId: nil),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
+//                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
+//                        idUsuario: idClient,
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: token ?? "",
+//                        integrationId: nil),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue),
                     parametros: RegisterDeviceServiceRequest(
                         idEmpresa: 10,
                         idDeviceToken: deviceToken,
                         token: token,
                         idCliente: idClient,
-                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
+                        idDevice: idDevice,
                         version: Variables().VERSION_CODE,
                         sisOperativo: "IOS"
                     )
