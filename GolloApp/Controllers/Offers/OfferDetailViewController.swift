@@ -117,7 +117,7 @@ class OfferDetailViewController: UIViewController {
     }
     
     fileprivate func shareContent() {
-        let someText:String = "Oferta: \(offer?.productName ?? "")\nSKU: \(offer?.productCode ?? "")\n\nPrecio Original: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precio ?? 0.0)) ?? "")\n\nDescuento total: \(numberFormatter.string(from: NSNumber(value: totalDiscount)) ?? "")\n\nNuevo precio: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precioDescuento ?? 0.0)) ?? "")"
+        let someText:String = "Oferta: \(article?.articulo?.nombre ?? "")\nSKU: \(article?.articulo?.sku ?? "")\n\nPrecio Original: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precio ?? 0.0)) ?? "")\n\nDescuento total: \(numberFormatter.string(from: NSNumber(value: totalDiscount)) ?? "")\n\nNuevo precio: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precioDescuento ?? 0.0)) ?? "")"
         var objectsToShare:UIImage?
         if let image = self.offerImage.image {
             objectsToShare = image

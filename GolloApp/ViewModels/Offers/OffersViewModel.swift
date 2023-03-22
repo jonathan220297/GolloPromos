@@ -30,14 +30,15 @@ class OffersViewModel {
         service.callWebServiceGollo(BaseRequest<[CategoriesData], CategoriesServiceRequest>(
             service: BaseServiceRequestParam<CategoriesServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.OFFER_CATEGORIES_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.OFFER_CATEGORIES_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: UserManager.shared.userData?.uid ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.OFFER_CATEGORIES_PROCESS_ID.rawValue),
                     parametros: CategoriesServiceRequest (
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10"
@@ -62,15 +63,16 @@ class OffersViewModel {
         service.callWebServiceGollo(BaseRequest<[Product], OffersServiceRequest>(
             service: BaseServiceRequestParam<OffersServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.OFFER_CAT_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil
-                    ),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.OFFER_CAT_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: UserManager.shared.userData?.uid ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil
+//                    ),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.OFFER_CAT_PROCESS_ID.rawValue),
                     parametros: OffersServiceRequest (
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",
@@ -98,14 +100,15 @@ class OffersViewModel {
         service.callWebServiceGollo(BaseRequest<[Product], ProductServiceRequest>(
             service: BaseServiceRequestParam<ProductServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: UserManager.shared.userData?.uid ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue),
                     parametros: ProductServiceRequest(
                         idCliente: "",
                         idCompania: "10",
@@ -135,14 +138,15 @@ class OffersViewModel {
         service.callWebServiceGollo(BaseRequest<[Product], ProductServiceRequest>(
             service: BaseServiceRequestParam<ProductServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: UserManager.shared.userData?.uid ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.OFFER_LIST_PROCESS_ID.rawValue),
                     parametros: ProductServiceRequest(
                         idCliente: UserManager.shared.userData?.uid ?? "",
                         idCompania: "10",

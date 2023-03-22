@@ -28,15 +28,16 @@ class PaymentConfirmViewModel {
         service.callWebServiceGollo(BaseRequest<[PaymentMethodResponse], PaymentMethodServiceRequest>(
             service: BaseServiceRequestParam<PaymentMethodServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.PAYMENT_METHODS_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil
-                    ),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.PAYMENT_METHODS_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: UserManager.shared.userData?.uid ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil
+//                    ),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.PAYMENT_METHODS_PROCESS_ID.rawValue),
                     parametros: PaymentMethodServiceRequest (
                         numIdentificacion: Variables.userProfile?.numeroIdentificacion ?? ""
                     )

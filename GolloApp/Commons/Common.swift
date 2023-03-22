@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 enum ProductsType {
     case categories
@@ -166,9 +167,11 @@ func getToken() -> String {
 
 func getDefaultBaseHeaderRequest(with processId: String,
                                  integrationId: String? = nil) -> Encabezado {
+    let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
+    let idDevice: String = UIDevice.current.identifierForVendor?.uuidString ?? ""
     let encabezado = Encabezado(idProceso: processId,
-                                idDevice: getDeviceID(),
-                                idUsuario: UserManager.shared.userData?.uid ?? "",
+                                idDevice: idDevice,
+                                idUsuario: idClient ?? idDevice,
                                 timeStamp: String(Date().timeIntervalSince1970),
                                 idCia: 10,
                                 token: getToken() ,
@@ -177,6 +180,8 @@ func getDefaultBaseHeaderRequest(with processId: String,
 }
 
 func getDeviceID() -> String {
+//    let uniqueID = UIDevice.current.identifierForVendor?.uuidString ?? ""
+//    return uniqueID
     guard let deviceID = UserDefaults.standard.object(forKey: "deviceID") as? String else {
         return ""
     }
@@ -194,6 +199,8 @@ struct Variables {
     static var isLoginUser = false
     static var userProfile: UserInfo? = nil
     static var notificationsToken = ""
+    static var openPushNotificationFlow = false
+    static var notificationFlowPayload: [String: Any]? = nil
 }
 
 enum APP_NOTIFICATIONS: String {

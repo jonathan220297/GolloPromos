@@ -20,15 +20,16 @@ class StatusViewModel {
         let apiResponse: BehaviorRelay<StatusData?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(StatusRequest(service: BaseServiceRequestParam<StatusServiceRequest>(
             servicio: ServicioParam(
-                encabezado: Encabezado(
-                    idProceso: GOLLOAPP.STATUS_PROCESS_ID.rawValue,
-                    idDevice: getDeviceID(),
-                    idUsuario: UserManager.shared.userData?.uid ?? "",
-                    timeStamp: String(Date().timeIntervalSince1970),
-                    idCia: 10,
-                    token: getToken(),
-                    integrationId: nil
-                ),
+//                encabezado: Encabezado(
+//                    idProceso: GOLLOAPP.STATUS_PROCESS_ID.rawValue,
+//                    idDevice: getDeviceID(),
+//                    idUsuario: UserManager.shared.userData?.uid ?? "",
+//                    timeStamp: String(Date().timeIntervalSince1970),
+//                    idCia: 10,
+//                    token: getToken(),
+//                    integrationId: nil
+//                ),
+                encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.STATUS_PROCESS_ID.rawValue),
                 parametros: StatusServiceRequest (
                     tipoId: documentType,
                     idCliente: documentId,

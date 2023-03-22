@@ -26,9 +26,10 @@ struct RegisterDeviceRequest: APIRequest {
 struct RegisterDeviceServiceRequest: Codable {
     var idEmpresa: Int
     var idDeviceToken: String
-    var Token: String? = nil
+    var token: String? = nil
     var idCliente: String? = nil
     var idDevice: String
     var version: String
     var sisOperativo: String
+    var deleteAction: String = "N"
 }

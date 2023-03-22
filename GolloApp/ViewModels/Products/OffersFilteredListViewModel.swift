@@ -22,15 +22,16 @@ class OffersFilteredListViewModel {
         service.callWebServiceGollo(BaseRequest<[CategoriesFilterData], CategoriesFilteredListServiceRequest>(
             service: BaseServiceRequestParam<CategoriesFilteredListServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.CATEGORIES_FILTER_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil
-                    ),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.CATEGORIES_FILTER_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: UserManager.shared.userData?.uid ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil
+//                    ),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.CATEGORIES_FILTER_PROCESS_ID.rawValue),
                     parametros: CategoriesFilteredListServiceRequest (
                         idCategoria: categoryId,
                         idCompania: "10",
@@ -56,15 +57,16 @@ class OffersFilteredListViewModel {
         service.callWebServiceGollo(BaseRequest<[Offers], OfferFilteredListServiceRequest>(
             service: BaseServiceRequestParam<OfferFilteredListServiceRequest>(
                 servicio: ServicioParam(
-                    encabezado: Encabezado(
-                        idProceso: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue,
-                        idDevice: getDeviceID(),
-                        idUsuario: UserManager.shared.userData?.uid ?? "",
-                        timeStamp: String(Date().timeIntervalSince1970),
-                        idCia: 10,
-                        token: getToken(),
-                        integrationId: nil
-                    ),
+//                    encabezado: Encabezado(
+//                        idProceso: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue,
+//                        idDevice: getDeviceID(),
+//                        idUsuario: UserManager.shared.userData?.uid ?? "",
+//                        timeStamp: String(Date().timeIntervalSince1970),
+//                        idCia: 10,
+//                        token: getToken(),
+//                        integrationId: nil
+//                    ),
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue),
                     parametros: OfferFilteredListServiceRequest (
                         idCategoria: categoryId,
                         orden: order,
