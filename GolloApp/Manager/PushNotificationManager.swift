@@ -32,8 +32,9 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
 
     internal func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo as! [String: Any]
+        let inactive = UIApplication.shared.applicationState == UIApplication.State.inactive
         print("UserInfo PushNotificationManager internal didReceive: \(userInfo) ~~ \(userInfo["type"] as? Int ?? 0) ~~ \(userInfo["idType"] as? Int ?? 0)")
-        notificationTypeManager.nonActiveNotificationTypeTransition(with: userInfo)
+        notificationTypeManager.nonActiveNotificationTypeTransition(with: userInfo, isInactiveApp: inactive)
         completionHandler()
     }
 

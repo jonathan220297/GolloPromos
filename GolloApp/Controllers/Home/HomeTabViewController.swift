@@ -43,6 +43,7 @@ class HomeTabViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavBar()
+        validateNotificationsFlow()
         //fetchHomeConfiguration()
     }
     
@@ -195,6 +196,31 @@ class HomeTabViewController: UIViewController {
                     print("Not Subscribed to topic")
                 }
             }
+        }
+    }
+    
+    fileprivate func validateNotificationsFlow() {
+        if Variables.openPushNotificationFlow {
+            if let userInfo = Variables.notificationFlowPayload, let notificationType = userInfo["type"] as? String {
+                switch(notificationType) {
+                case APP_NOTIFICATIONS.GENERAL.rawValue:
+                    let vc = NotificationsViewController.instantiate(fromAppStoryboard: .Notifications)
+                    vc.modalPresentationStyle = .fullScreen
+                    vc.fromNotifications = false
+                    self.navigationController?.pushViewController(vc, animated: true)
+                case APP_NOTIFICATIONS.ORDER.rawValue:
+                    let orderDetailTabViewController = OrderDetailTabViewController(
+                        viewModel: OrderDetailTabViewModel(),
+                        orderId: userInfo["idType"] as? String ?? "",
+                        fromNotifications: false
+                    )
+                    orderDetailTabViewController.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(orderDetailTabViewController, animated: true)
+                default:
+                    print("None action.")
+                }
+            }
+            Variables.openPushNotificationFlow = false
         }
     }
 }

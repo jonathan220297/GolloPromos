@@ -199,6 +199,8 @@ struct Variables {
     static var isLoginUser = false
     static var userProfile: UserInfo? = nil
     static var notificationsToken = ""
+    static var openPushNotificationFlow = false
+    static var notificationFlowPayload: [String: Any]? = nil
 }
 
 enum APP_NOTIFICATIONS: String {
