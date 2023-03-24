@@ -6,9 +6,18 @@
 //
 
 import Foundation
+import NotificationBannerSwift
 import UIKit
 
 class NotificationTypeTransitionManager {
+    internal func selectedQueuePosition() -> QueuePosition {
+        return .front
+    }
+    
+    internal func selectedBannerPosition() -> BannerPosition {
+        .top
+    }
+    
     func nonActiveNotificationTypeTransition(with userInfo: [String: Any], isInactiveApp: Bool) {
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         
@@ -20,13 +29,23 @@ class NotificationTypeTransitionManager {
             NotificationCenter.default.post(name: Notification.Name(rawValue: NOTIFICATION_NAME.NOTIFICATION_FLOW), object: nil)
         case .active:
             // foreground
-            if var topController = keyWindow?.rootViewController {
-                while let presentedViewController = topController.presentedViewController {
-                    topController = presentedViewController
+            if let title = userInfo["title"] as? String,
+               let message = userInfo["message"] as? String {
+                let banner = FloatingNotificationBanner(title: title, subtitle: message, style: .info)
+                banner.show(queuePosition: selectedQueuePosition(),
+                            bannerPosition: selectedBannerPosition(),
+                            cornerRadius: 10,
+                            shadowBlurRadius: 15)
+                banner.onTap = {
+                    if var topController = keyWindow?.rootViewController {
+                        while let presentedViewController = topController.presentedViewController {
+                            topController = presentedViewController
+                        }
+                        self.configurePage(with: topController.navigationController, userInfo)
+                    } else {
+                        self.configurePage(with: nil, userInfo)
+                    }
                 }
-                configurePage(with: topController.navigationController, userInfo)
-            } else {
-                configurePage(with: nil, userInfo)
             }
         default:
             break
