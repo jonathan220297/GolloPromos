@@ -36,8 +36,6 @@ class OrderDetailTabViewController: UIViewController {
     @IBOutlet weak var productsTableView: UITableView!
     @IBOutlet weak var productsTableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var productsViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var backView: UIView!
-    @IBOutlet weak var backButton: UIButton!
     
     // MARK: - Constants
     let viewModel: OrderDetailTabViewModel
@@ -71,10 +69,27 @@ class OrderDetailTabViewController: UIViewController {
         super.viewWillAppear(animated)
         fetchOrderDetail()
         if fromNotifications {
-            backView.isHidden = false
-        } else {
-            backView.isHidden = true
+            configureNavigationBar()
         }
+    }
+    
+    // MARK: - Observers
+    @objc func closeTapped() {
+        dismiss(animated: true)
+    }
+    
+    func configureNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .primary
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationItem.standardAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().tintColor = .white
+        
+        let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
+        self.navigationItem.leftBarButtonItem = leftBarButton
     }
 
     fileprivate func configureRx() {
@@ -94,14 +109,6 @@ class OrderDetailTabViewController: UIViewController {
                     }
                     self.viewModel.errorMessage.accept("")
                 }
-            })
-            .disposed(by: bag)
-        
-        backButton
-            .rx
-            .tap
-            .subscribe(onNext: { _ in
-                self.dismiss(animated: true)
             })
             .disposed(by: bag)
     }

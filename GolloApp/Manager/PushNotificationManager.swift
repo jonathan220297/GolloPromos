@@ -45,6 +45,7 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if let userInfo = notification.request.content.userInfo as? [String: Any] {
             print("UserInfo PushNotificationManager willPresent: \(userInfo) ~~ \(userInfo["type"] as? Int ?? 0) ~~ \(userInfo["idType"] as? Int ?? 0)")
+            notificationTypeManager.nonActiveNotificationTypeTransition(with: userInfo, isInactiveApp: false)
         }
         completionHandler([.alert, .sound, .badge])
     }

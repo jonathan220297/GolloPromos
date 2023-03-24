@@ -15,8 +15,6 @@ class NotificationsViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var heightSearchBar: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backView: UIView!
-    @IBOutlet weak var backButton: UIButton!
     
     lazy var viewModel: NotificationsViewModel = {
         return NotificationsViewModel()
@@ -36,16 +34,34 @@ class NotificationsViewController: UIViewController {
         self.tabBarController?.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
         if fromNotifications {
-            backView.isHidden = false
-        } else {
-            backView.isHidden = true
-        }
+           configureNavigationBar()
+        } 
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    // MARK: - Observers
+    @objc func closeTapped() {
+        dismiss(animated: true)
+    }
+    
+    // MARK: - Functions
+    func configureNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .primary
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationItem.standardAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().tintColor = .white
+        
+        let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeTapped))
+        self.navigationItem.leftBarButtonItem = leftBarButton
     }
 
     fileprivate func configureRx() {
@@ -57,14 +73,6 @@ class NotificationsViewController: UIViewController {
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept("")
                 }
-            })
-            .disposed(by: bag)
-        
-        backButton
-            .rx
-            .tap
-            .subscribe(onNext: { _ in
-                self.dismiss(animated: true)
             })
             .disposed(by: bag)
     }
