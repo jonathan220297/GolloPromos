@@ -11,6 +11,7 @@ import UIKit
 class NotificationTypeTransitionManager {
     func nonActiveNotificationTypeTransition(with userInfo: [String: Any], isInactiveApp: Bool) {
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let seconds = 2.0
 
         if isInactiveApp {
             if var topController = keyWindow?.rootViewController {
@@ -40,6 +41,10 @@ class NotificationTypeTransitionManager {
         } else {
             Variables.openPushNotificationFlow = true
             Variables.notificationFlowPayload = userInfo
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NOTIFICATION_NAME.NOTIFICATION_FLOW), object: nil)
         }
     }
 }
