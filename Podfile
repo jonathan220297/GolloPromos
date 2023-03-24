@@ -26,10 +26,11 @@ target 'GolloApp' do
   pod 'RxCocoa'
   pod 'SideMenu', '~> 6.0'
   pod 'DropDown'
+  pod 'NotificationBannerSwift', '~> 3.0.0'
   
   pod 'XCGLogger'
   
-  pod 'GolloNetWorking', :path => '../GolloApp-Modules/GolloNetWorking'
+  pod 'GolloNetWorking', :path => '/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking'
   
   target 'GolloAppTests' do
     inherit! :search_paths

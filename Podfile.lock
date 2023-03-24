@@ -839,11 +839,15 @@ PODS:
   - Libuv-gRPC/Implementation (0.0.10):
     - Libuv-gRPC/Interface (= 0.0.10)
   - Libuv-gRPC/Interface (0.0.10)
+  - MarqueeLabel (4.0.5)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
+  - NotificationBannerSwift (3.0.6):
+    - MarqueeLabel (~> 4.0.5)
+    - SnapKit (~> 5.0.1)
   - Nuke (9.5.0)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
@@ -856,6 +860,7 @@ PODS:
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - SideMenu (6.5.0)
+  - SnapKit (5.0.1)
   - XCGLogger (7.0.1):
     - XCGLogger/Core (= 7.0.1)
   - XCGLogger/Core (7.0.1):
@@ -872,10 +877,11 @@ DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseCrashlytics
   - FirebaseMessaging
-  - GolloNetWorking (from `../GolloApp-Modules/GolloNetWorking`)
+  - GolloNetWorking (from `/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking`)
   - GoogleSignIn
   - ImageSlideshow
   - ImageSlideshow/Alamofire
+  - NotificationBannerSwift (~> 3.0.0)
   - Nuke (~> 9.0)
   - RxCocoa
   - RxSwift
@@ -920,7 +926,9 @@ SPEC REPOS:
     - ImageSlideshow
     - leveldb-library
     - Libuv-gRPC
+    - MarqueeLabel
     - nanopb
+    - NotificationBannerSwift
     - Nuke
     - ObjcExceptionBridging
     - PromisesObjC
@@ -928,13 +936,14 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SideMenu
+    - SnapKit
     - XCGLogger
 
 EXTERNAL SOURCES:
   AAInfographics:
     :git: https://github.com/AAChartModel/AAChartKit-Swift.git
   GolloNetWorking:
-    :path: "../GolloApp-Modules/GolloNetWorking"
+    :path: "/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking"
 
 CHECKOUT OPTIONS:
   AAInfographics:
@@ -980,7 +989,9 @@ SPEC CHECKSUMS:
   ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
+  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
+  NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
   Nuke: 6f400a4ea957e09149ec335a3c6acdcc814d89e4
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
@@ -988,8 +999,9 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 83a416f774fe85446e66ea815dd4714b737e08ce
+PODFILE CHECKSUM: bd0926a3db2eaa2219701d88215b63c351c6a62b
 
 COCOAPODS: 1.11.3
