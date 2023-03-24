@@ -207,3 +207,7 @@ enum APP_NOTIFICATIONS: String {
     case GENERAL = "1"
     case ORDER = "3"
 }
+
+enum NOTIFICATION_NAME {
+    static let NOTIFICATION_FLOW = "notificationFlow"
+}

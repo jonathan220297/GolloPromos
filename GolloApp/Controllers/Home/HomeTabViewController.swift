@@ -38,6 +38,13 @@ class HomeTabViewController: UIViewController {
         fetchHomeConfiguration()
         configureTopic()
         validateVersion()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(notificationAction),
+            name: NSNotification.Name(rawValue: NOTIFICATION_NAME.NOTIFICATION_FLOW),
+            object: nil
+        )
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +56,10 @@ class HomeTabViewController: UIViewController {
     
     // MARK: - Observers
     @objc func handleMoreTap(_ sender: UIGestureRecognizer) {
+    }
+    
+    @objc func notificationAction(notification: NSNotification) {
+        validateNotificationsFlow()
     }
     
     // MARK: - Functions
