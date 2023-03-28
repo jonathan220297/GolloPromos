@@ -156,6 +156,7 @@
 		4F57B79928F9F19E00CFBD01 /* SearchOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57B79728F9F19E00CFBD01 /* SearchOffersViewController.swift */; };
 		4F57B79A28F9F19E00CFBD01 /* SearchOffersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F57B79828F9F19E00CFBD01 /* SearchOffersViewController.xib */; };
 		4F57B79C28F9F1B600CFBD01 /* SearchOffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57B79B28F9F1B600CFBD01 /* SearchOffersViewModel.swift */; };
+		4F5D96E329D295F800071A83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F5D96E229D295F800071A83 /* GoogleService-Info.plist */; };
 		4F660FBF28FF890E0095464B /* ProductCardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F660FBE28FF890E0095464B /* ProductCardDetail.swift */; };
 		4F660FC1290068920095464B /* PaymentSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F660FC0290068920095464B /* PaymentSuccessViewModel.swift */; };
 		4F678D7328E7BD6100C8E8B3 /* MenuTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F678D7128E7BD6100C8E8B3 /* MenuTabTableViewCell.swift */; };
@@ -345,7 +346,6 @@
 		6B079CBDD169C3A33575D3F2 /* Pods_GolloApp_GolloAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFC703C6F440B986034F989 /* Pods_GolloApp_GolloAppUITests.framework */; };
 		AA91DBFFEF8013E180CE06FE /* Pods_GolloApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C522BEE5C15BCF287B89EC9 /* Pods_GolloApp.framework */; };
 		CB56EEFE29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */; };
-		CB801F2829CD652B0049210A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB801F2729CD652B0049210A /* GoogleService-Info.plist */; };
 		CB8A01A129BCFBB20004C508 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A01A029BCFBB20004C508 /* Data+Extension.swift */; };
 		CBDD0E3F29B698630071E063 /* EmmaTermsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD0E3D29B698630071E063 /* EmmaTermsListViewController.swift */; };
 		CBDD0E4029B698630071E063 /* EmmaTermsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBDD0E3E29B698630071E063 /* EmmaTermsListViewController.xib */; };
@@ -541,6 +541,7 @@
 		4F57B79728F9F19E00CFBD01 /* SearchOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOffersViewController.swift; sourceTree = "<group>"; };
 		4F57B79828F9F19E00CFBD01 /* SearchOffersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchOffersViewController.xib; sourceTree = "<group>"; };
 		4F57B79B28F9F1B600CFBD01 /* SearchOffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOffersViewModel.swift; sourceTree = "<group>"; };
+		4F5D96E229D295F800071A83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F660FBE28FF890E0095464B /* ProductCardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardDetail.swift; sourceTree = "<group>"; };
 		4F660FC0290068920095464B /* PaymentSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewModel.swift; sourceTree = "<group>"; };
 		4F678D7128E7BD6100C8E8B3 /* MenuTabTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabTableViewCell.swift; sourceTree = "<group>"; };
@@ -741,7 +742,6 @@
 		B3CEE94174F36CD0150EB27C /* Pods-GolloAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloAppTests.release.xcconfig"; path = "Target Support Files/Pods-GolloAppTests/Pods-GolloAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC64B1ED8688A27A8A61B040 /* Pods-GolloAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloAppTests.debug.xcconfig"; path = "Target Support Files/Pods-GolloAppTests/Pods-GolloAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypeTransitionManager.swift; sourceTree = "<group>"; };
-		CB801F2729CD652B0049210A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB8A01A029BCFBB20004C508 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		CBDD0E3D29B698630071E063 /* EmmaTermsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmmaTermsListViewController.swift; sourceTree = "<group>"; };
 		CBDD0E3E29B698630071E063 /* EmmaTermsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmmaTermsListViewController.xib; sourceTree = "<group>"; };
@@ -1619,7 +1619,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				CB801F2729CD652B0049210A /* GoogleService-Info.plist */,
+				4F5D96E229D295F800071A83 /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* GolloApp.xcdatamodeld */,
 			);
 			path = GolloApp;
@@ -2064,7 +2064,7 @@
 				4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */,
 				4FE573A728C16AEF00BBDEBC /* SignupWaringViewController.xib in Resources */,
 				4F0D967526DDBB810061E89E /* SansSerifExbFLF-Italic.otf in Resources */,
-				CB801F2829CD652B0049210A /* GoogleService-Info.plist in Resources */,
+				4F5D96E329D295F800071A83 /* GoogleService-Info.plist in Resources */,
 				4F0D968126DDBC740061E89E /* Home.storyboard in Resources */,
 				4F0D96A826DDD6530061E89E /* Profile.storyboard in Resources */,
 				4F0D968926DDCF4D0061E89E /* Menu.storyboard in Resources */,

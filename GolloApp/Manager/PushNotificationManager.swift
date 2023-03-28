@@ -47,7 +47,5 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
             print("UserInfo PushNotificationManager willPresent: \(userInfo) ~~ \(userInfo["type"] as? Int ?? 0) ~~ \(userInfo["idType"] as? Int ?? 0)")
             notificationTypeManager.nonActiveNotificationTypeTransition(with: userInfo, isInactiveApp: false)
         }
-        completionHandler([.alert, .sound, .badge])
     }
-    
 }
