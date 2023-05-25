@@ -16,6 +16,7 @@ import AppTrackingTransparency
 import AdSupport
 import FacebookCore
 import UserNotifications
+import FirebaseDynamicLinks
 
 let log = XCGLogger.default
 
@@ -41,8 +42,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+      return application(app, open: url,
+                         sourceApplication: options[UIApplication.OpenURLOptionsKey
+                           .sourceApplication] as? String,
+                         annotation: "")
+    }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+          // Handle the deep link. For example, show the deep-linked content or
+          // apply a promotional offer to the user's account.
+          // ...
+            if let navigationController = self.window?.rootViewController as? UINavigationController {
+                if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
+                    if let range = dynamicURL.range(of: "/product/") {
+                        let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
+                        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+                        vc.skuProduct = sku
+                        vc.bodegaProduct = "1"
+                        vc.modalPresentationStyle = .fullScreen
+                        navigationController.pushViewController(vc, animated: true)
+                    }
+                }
+            }
+        }
         return GIDSignIn.sharedInstance.handle(url)
     }
     

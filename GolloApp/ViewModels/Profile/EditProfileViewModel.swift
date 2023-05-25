@@ -102,21 +102,11 @@ class EditProfileViewModel {
         genderTypes.append(GenderType(code: "F", name: "Mujer"))
     }
 
-    func fetchUserData(id: String, type: String, pin: Int = 0) -> BehaviorRelay<UserData?> {
-        let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
-        let apiResponse: BehaviorRelay<UserData?> = BehaviorRelay(value: nil)
-        service.callWebServiceGollo(BaseRequest<UserData, UserServiceRequest>(
+    func fetchUserData(id: String, type: String, pin: Int = 0) -> BehaviorRelay<ProfileResponse?> {
+        let apiResponse: BehaviorRelay<ProfileResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<ProfileResponse, UserServiceRequest>(
             service: BaseServiceRequestParam<UserServiceRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue,
-//                        idDevice: getDeviceID(),
-//                        idUsuario: idClient ?? "",
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil
-//                    ),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue),
                     parametros: UserServiceRequest (
                         noCia: "10",

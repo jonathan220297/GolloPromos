@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,10 +22,10 @@
                                 <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGs-Ql-rKy">
-                                        <rect key="frame" x="0.0" y="0.0" width="415" height="1245.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="415" height="1240"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cgd-1v-dyw">
-                                                <rect key="frame" x="0.0" y="16" width="415" height="1213.5"/>
+                                                <rect key="frame" x="0.0" y="16" width="415" height="1208"/>
                                                 <subviews>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R61-3S-YBN">
                                                         <rect key="frame" x="0.0" y="-207.5" width="415" height="207.5"/>
@@ -204,7 +204,7 @@ Para continuar, por favor proceder con el registro</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yH0-IP-Lwd">
-                                                        <rect key="frame" x="0.0" y="171" width="415" height="70"/>
+                                                        <rect key="frame" x="0.0" y="171" width="415" height="75"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Número de documento (cédula o pasaporte)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFg-1P-gKs" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="0.0" width="399" height="21"/>
@@ -251,7 +251,7 @@ Para continuar, por favor proceder con el registro</string>
                                                             <constraint firstAttribute="trailing" secondItem="BFg-1P-gKs" secondAttribute="trailing" constant="8" id="KOG-Lf-Kui"/>
                                                             <constraint firstItem="C5R-87-apl" firstAttribute="leading" secondItem="yH0-IP-Lwd" secondAttribute="leading" constant="8" id="MeB-uM-cjy"/>
                                                             <constraint firstItem="mHU-VG-nbj" firstAttribute="leading" secondItem="yH0-IP-Lwd" secondAttribute="leading" constant="8" id="Nma-Nn-tZI"/>
-                                                            <constraint firstAttribute="height" constant="70" id="QSf-Dg-5qP"/>
+                                                            <constraint firstAttribute="height" constant="75" id="QSf-Dg-5qP"/>
                                                             <constraint firstAttribute="trailing" secondItem="mHU-VG-nbj" secondAttribute="trailing" constant="8" id="R6k-O3-ZBU"/>
                                                             <constraint firstAttribute="trailing" secondItem="C5R-87-apl" secondAttribute="trailing" constant="8" id="bPV-fc-zNy"/>
                                                             <constraint firstItem="MUV-jf-ylW" firstAttribute="leading" secondItem="yH0-IP-Lwd" secondAttribute="leading" constant="8" id="fwb-SQ-IYl"/>
@@ -261,7 +261,7 @@ Para continuar, por favor proceder con el registro</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JjU-A6-FqP">
-                                                        <rect key="frame" x="0.0" y="249" width="415" height="65"/>
+                                                        <rect key="frame" x="0.0" y="254" width="415" height="65"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5M-4d-vuN" customClass="LoadingButton" customModule="GolloApp" customModuleProvider="target">
                                                                 <rect key="frame" x="31" y="8" width="353" height="49"/>
@@ -288,23 +288,23 @@ Para continuar, por favor proceder con el registro</string>
                                                         </constraints>
                                                     </view>
                                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAf-VB-Fir">
-                                                        <rect key="frame" x="0.0" y="322" width="415" height="143.5"/>
+                                                        <rect key="frame" x="0.0" y="327" width="415" height="133"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHv-Nd-180">
-                                                                <rect key="frame" x="16" y="16" width="383" height="111.5"/>
+                                                                <rect key="frame" x="16" y="4" width="383" height="125"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GY2-QW-KBT">
-                                                                        <rect key="frame" x="8" y="8" width="367" height="90"/>
+                                                                        <rect key="frame" x="8" y="8" width="367" height="80"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_register_new_user" translatesAutoresizingMaskIntoConstraints="NO" id="ZWW-j6-RUz">
-                                                                                <rect key="frame" x="8" y="20" width="50" height="50"/>
+                                                                                <rect key="frame" x="8" y="15" width="50" height="50"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="50" id="KvC-he-los"/>
                                                                                     <constraint firstAttribute="height" constant="50" id="R16-Nq-aZq"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usted no es cliente de Gollo. ¿Quiere registrarse ahora?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FE8-77-aDm">
-                                                                                <rect key="frame" x="70" y="12" width="285" height="66"/>
+                                                                                <rect key="frame" x="70" y="12" width="285" height="56"/>
                                                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -313,7 +313,7 @@ Para continuar, por favor proceder con el registro</string>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstItem="ZWW-j6-RUz" firstAttribute="centerY" secondItem="GY2-QW-KBT" secondAttribute="centerY" id="9PG-CI-1vZ"/>
-                                                                            <constraint firstAttribute="height" constant="90" id="E2I-E4-bcn"/>
+                                                                            <constraint firstAttribute="height" constant="80" id="E2I-E4-bcn"/>
                                                                             <constraint firstAttribute="trailing" secondItem="FE8-77-aDm" secondAttribute="trailing" constant="12" id="EQ3-61-Wkh"/>
                                                                             <constraint firstItem="FE8-77-aDm" firstAttribute="centerY" secondItem="GY2-QW-KBT" secondAttribute="centerY" id="OzD-M9-Koc"/>
                                                                             <constraint firstItem="ZWW-j6-RUz" firstAttribute="leading" secondItem="GY2-QW-KBT" secondAttribute="leading" constant="8" id="R7G-pD-0fl"/>
@@ -322,10 +322,10 @@ Para continuar, por favor proceder con el registro</string>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kj-69-bB5">
-                                                                        <rect key="frame" x="200.5" y="34.5" width="170.5" height="65"/>
+                                                                        <rect key="frame" x="200.5" y="47" width="170.5" height="70"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odp-cy-gfP">
-                                                                                <rect key="frame" x="12.5" y="8" width="145" height="49"/>
+                                                                                <rect key="frame" x="12.5" y="8" width="145" height="54"/>
                                                                                 <color key="backgroundColor" red="0.87653189899999995" green="0.122155048" blue="0.12884393329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="145" id="R3V-uz-ysG"/>
@@ -347,16 +347,15 @@ Para continuar, por favor proceder con el registro</string>
                                                                             <constraint firstItem="Odp-cy-gfP" firstAttribute="top" secondItem="2kj-69-bB5" secondAttribute="top" constant="8" id="AwL-bv-xTK"/>
                                                                             <constraint firstItem="Odp-cy-gfP" firstAttribute="centerX" secondItem="2kj-69-bB5" secondAttribute="centerX" id="EAV-tl-CQ2"/>
                                                                             <constraint firstAttribute="bottom" secondItem="Odp-cy-gfP" secondAttribute="bottom" constant="8" id="FDa-D5-6ND"/>
-                                                                            <constraint firstAttribute="height" constant="65" id="LAk-t1-JZn"/>
+                                                                            <constraint firstAttribute="height" constant="70" id="LAk-t1-JZn"/>
                                                                             <constraint firstItem="Odp-cy-gfP" firstAttribute="width" secondItem="2kj-69-bB5" secondAttribute="width" multiplier="0.85" id="nHK-HN-icc"/>
-                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="zPq-yk-UYT"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="2kj-69-bB5" secondAttribute="trailing" constant="12" id="HMT-Wg-PXQ"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="2kj-69-bB5" secondAttribute="bottom" constant="12" id="IcJ-kK-acx"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="2kj-69-bB5" secondAttribute="bottom" constant="8" id="IcJ-kK-acx"/>
                                                                     <constraint firstItem="GY2-QW-KBT" firstAttribute="leading" secondItem="RHv-Nd-180" secondAttribute="leading" constant="8" id="cf5-Q2-REi"/>
                                                                     <constraint firstItem="GY2-QW-KBT" firstAttribute="top" secondItem="RHv-Nd-180" secondAttribute="top" constant="8" id="kev-ny-jGd"/>
                                                                     <constraint firstAttribute="trailing" secondItem="GY2-QW-KBT" secondAttribute="trailing" constant="8" id="uNU-4U-4rH"/>
@@ -372,13 +371,13 @@ Para continuar, por favor proceder con el registro</string>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="RHv-Nd-180" secondAttribute="trailing" constant="16" id="96W-5v-ihr"/>
-                                                            <constraint firstAttribute="bottom" secondItem="RHv-Nd-180" secondAttribute="bottom" constant="16" id="YFv-pM-XwZ"/>
-                                                            <constraint firstItem="RHv-Nd-180" firstAttribute="top" secondItem="hAf-VB-Fir" secondAttribute="top" constant="16" id="gU8-eW-MRa"/>
+                                                            <constraint firstAttribute="bottom" secondItem="RHv-Nd-180" secondAttribute="bottom" constant="4" id="YFv-pM-XwZ"/>
+                                                            <constraint firstItem="RHv-Nd-180" firstAttribute="top" secondItem="hAf-VB-Fir" secondAttribute="top" constant="4" id="gU8-eW-MRa"/>
                                                             <constraint firstItem="RHv-Nd-180" firstAttribute="leading" secondItem="hAf-VB-Fir" secondAttribute="leading" constant="16" id="txj-aw-GyT"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YdR-vX-jYc">
-                                                        <rect key="frame" x="0.0" y="473.5" width="415" height="740"/>
+                                                        <rect key="frame" x="0.0" y="468" width="415" height="740"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cg9-NX-kdy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="415" height="75"/>
@@ -957,7 +956,7 @@ Para continuar, por favor proceder con el registro</string>
                                             <constraint firstItem="Cgd-1v-dyw" firstAttribute="leading" secondItem="gGs-Ql-rKy" secondAttribute="leading" id="B2k-aD-UaH"/>
                                             <constraint firstItem="Cgd-1v-dyw" firstAttribute="top" secondItem="gGs-Ql-rKy" secondAttribute="top" constant="16" id="an2-be-xa9"/>
                                             <constraint firstAttribute="bottom" secondItem="Cgd-1v-dyw" secondAttribute="bottom" constant="16" id="eB1-4G-8FR"/>
-                                            <constraint firstAttribute="height" constant="1245.5" id="iPd-4B-YPs"/>
+                                            <constraint firstAttribute="height" constant="1240" id="iPd-4B-YPs"/>
                                             <constraint firstAttribute="trailing" secondItem="Cgd-1v-dyw" secondAttribute="trailing" id="u2R-yc-xVc"/>
                                         </constraints>
                                     </view>
@@ -1116,6 +1115,7 @@ Para continuar, por favor proceder con el registro</string>
                         <outlet property="registerUserButton" destination="Odp-cy-gfP" id="OMP-Xo-l5l"/>
                         <outlet property="searchCustomerButton" destination="j5M-4d-vuN" id="H2W-Ex-qge"/>
                         <outlet property="searchCustomerHeight" destination="VC5-v5-FXg" id="Lso-Kg-7Gx"/>
+                        <outlet property="searchCustomerView" destination="JjU-A6-FqP" id="mTc-Qp-yaf"/>
                         <outlet property="secondLastNameTextField" destination="7y1-X6-30b" id="q5H-sR-WqO"/>
                         <outlet property="secondLastnameRequiredLabel" destination="GJC-VT-FZm" id="FDQ-0f-b92"/>
                         <outlet property="unregisteredUserView" destination="hAf-VB-Fir" id="GnY-IX-wGL"/>

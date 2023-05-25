@@ -23,6 +23,8 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
+    @IBOutlet weak var contactUsButton: UIButton!
+    @IBOutlet weak var scanGoButton: UIButton!
     @IBOutlet weak var notificationCountLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var logoutView: UIView!
@@ -254,6 +256,35 @@ extension SideMenuViewController {
             .tap
             .subscribe(onNext: {
                 self.openUrl("https://servicios.grupogollo.com:9196/PromosArchivos/10-Unicomer%20de%20Costa%20Rica/02.Imagenes/DOC/GOLLO-APP-Tutorial-de-uso.png")
+            })
+            .disposed(by: disposeBag)
+        
+        contactUsButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                let phoneNumber =  "+50683046556"
+                let appURL = URL(string: "https://api.whatsapp.com/send?phone=\(phoneNumber)")
+                if let appURL = appURL, UIApplication.shared.canOpenURL(appURL) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+                    }
+                    else {
+                        UIApplication.shared.openURL(appURL)
+                    }
+                } else {
+                    self.showAlert(alertText: "GolloApp", alertMessage: "Para contactar a Gollo Chatbot necesita WhatsApp instalado a su dispositivo.")
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        scanGoButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                let productScannerViewController = ProductScannerViewController()
+                productScannerViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(productScannerViewController, animated: true)
             })
             .disposed(by: disposeBag)
         

@@ -35,7 +35,7 @@ class HomeTabViewController: UIViewController {
         configureCollectionView()
         configureViewModel()
         configureRx()
-        fetchHomeConfiguration()
+        //fetchHomeConfiguration()
         configureTopic()
         validateVersion()
         NotificationCenter.default.addObserver(
@@ -51,7 +51,6 @@ class HomeTabViewController: UIViewController {
         super.viewWillAppear(animated)
         configureNavBar()
         validateNotificationsFlow()
-        //fetchHomeConfiguration()
     }
     
     // MARK: - Observers
@@ -284,7 +283,9 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
     func getBannerCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as? BannerCollectionViewCell else { return UICollectionViewCell() }
         cell.setBanner(with: viewModel.sections[indexPath.section].banner)
-        if indexPath.section == 0 {
+        cell.dividerViewHeight.constant = 0
+        cell.dividerView.isHidden = true
+        if indexPath.section == 1 {
             cell.dividerViewHeight.constant = 0
             cell.dividerView.isHidden = true
         } else {

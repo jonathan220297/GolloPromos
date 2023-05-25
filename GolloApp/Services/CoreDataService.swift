@@ -209,7 +209,7 @@ class CoreDataService {
         }
     }
 
-    func addProductFavorite(with item: Product) {
+    func addProductFavorite(with item: Product, name: String?) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Favorites", in: context)

@@ -10,6 +10,7 @@ import UIKit
 import Nuke
 import RxSwift
 import DropDown
+import FirebaseDynamicLinks
 
 class OfferDetailViewController: UIViewController {
 
@@ -19,6 +20,9 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var imageConstraint: NSLayoutConstraint!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
+    
+    @IBOutlet weak var imagesView: UIView!
+    @IBOutlet weak var imagesCollectionView: UICollectionView!
     
     @IBOutlet weak var modelView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -67,6 +71,10 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var carItemLabel: UILabel!
     @IBOutlet weak var carButton: UIButton!
     
+    @IBOutlet weak var suggestedTitleLabel: UILabel!
+    @IBOutlet weak var suggestedProductsView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     // Variables
     var offer: Product?
     let defaults = UserDefaults.standard
@@ -76,6 +84,8 @@ class OfferDetailViewController: UIViewController {
     }()
     let bag = DisposeBag()
 
+    var skuProduct: String?
+    var bodegaProduct: String?
     var article: OfferDetail?
     var warrantyMonth = 0
     var warrantyAmount = 0.0
@@ -91,9 +101,10 @@ class OfferDetailViewController: UIViewController {
         tabBarController?.navigationItem.hidesBackButton = false
         tabBarController?.navigationController?.navigationBar.tintColor = .white
 
-        configureRx()
-        fetchData()
         configureViews()
+        configureRx()
+        configureCollectionView()
+        fetchData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -101,7 +112,7 @@ class OfferDetailViewController: UIViewController {
         configureAlternativeNavBar()
         carView.isHidden = true
 
-        let isFavorite = CoreDataService().isFavoriteProduct(with: offer?.productCode ?? "")
+        let isFavorite = CoreDataService().isFavoriteProduct(with: skuProduct ?? "")
         if let _ = isFavorite {
             self.favoriteButton.setImage(UIImage(named: "ic_added_heart"), for: .normal)
             self.favoriteButton.tintColor = .red
@@ -117,18 +128,25 @@ class OfferDetailViewController: UIViewController {
     }
     
     fileprivate func shareContent() {
-        let someText:String = "Oferta: \(article?.articulo?.nombre ?? "")\nSKU: \(article?.articulo?.sku ?? "")\n\nPrecio Original: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precio ?? 0.0)) ?? "")\n\nDescuento total: \(numberFormatter.string(from: NSNumber(value: totalDiscount)) ?? "")\n\nNuevo precio: \(numberFormatter.string(from: NSNumber(value: article?.articulo?.precioDescuento ?? 0.0)) ?? "")"
-        var objectsToShare:UIImage?
-        if let image = self.offerImage.image {
-            objectsToShare = image
+        generateDynamicLink { url in
+            var sharedObjects : [Any]
+            if !url.isEmpty {
+                sharedObjects = [url]
+            } else {
+                let someText:String = "Oferta: \(self.self.self.article?.articulo?.nombre ?? "")\nSKU: \(self.self.article?.articulo?.sku ?? "")\n\nPrecio Original: \(numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precio ?? "0.0") ?? 0.0)) ?? "")\n\nDescuento total: \(numberFormatter.string(from: NSNumber(value: self.totalDiscount)) ?? "")\n\nNuevo precio: \(numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0)) ?? "")"
+                var objectsToShare:UIImage?
+                if let image = self.offerImage.image {
+                    objectsToShare = image
+                }
+                sharedObjects = [objectsToShare as Any, someText]
+            }
+            let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+
+            activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook, UIActivity.ActivityType.postToTwitter]
+
+            self.present(activityViewController, animated: true, completion: nil)
         }
-        let sharedObjects:[Any] = [objectsToShare as Any, someText]
-        let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-
-        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook, UIActivity.ActivityType.postToTwitter]
-
-        self.present(activityViewController, animated: true, completion: nil)
     }
 
     fileprivate func saveFavorite() {
@@ -139,7 +157,7 @@ class OfferDetailViewController: UIViewController {
                 self.favoriteButton.setImage(UIImage(named: "ic_heart"), for: .normal)
                 self.favoriteButton.tintColor = .gray
             } else {
-                CoreDataService().addProductFavorite(with: product)
+                CoreDataService().addProductFavorite(with: product, name: offer?.name)
                 self.favoriteButton.setImage(UIImage(named: "ic_added_heart"), for: .normal)
                 self.favoriteButton.tintColor = .red
                 self.showAlert(alertText: "GolloApp", alertMessage: "Favorito guardado correctamente.")
@@ -206,15 +224,60 @@ class OfferDetailViewController: UIViewController {
             })
             .disposed(by: bag)
     }
+    
+    func configureCollectionView() {
+        self.imagesCollectionView.register(UINib(nibName: "OfferImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "OfferImagesCollectionViewCell")
+        self.collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
+    }
 
     private func fetchData() {
         self.view.activityStartAnimatingFull()
-        if let sku = offer?.productCode {
-            viewModel.fetchOfferDetail(sku: sku)
+        let skuCode = offer?.productCode ?? skuProduct
+        if let sku = skuCode {
+            viewModel.fetchOfferDetail(sku: sku, bodega: bodegaProduct ?? "1")
                 .asObservable()
                 .subscribe(onNext: {[weak self] data in
                     guard let self = self,
                           let data = data else { return }
+                    if let images = data.articulo?.imagenes {
+                        self.viewModel.images = images
+                    }
+                    if let complements = data.articulo?.complementos {
+                        var products: [Product] = []
+                        for o in complements {
+                            let p = Product(
+                                productCode: o.productCode,
+                                descriptionDetailDescuento: o.descriptionDetailDescuento,
+                                descriptionDetailRegalia: o.descriptionDetailRegalia,
+                                originalPrice: o.originalPrice,
+                                image: o.image,
+                                montoBono: o.montoBono,
+                                porcDescuento: o.porcDescuento,
+                                brand: o.brand,
+                                descriptionDetailBono: o.descriptionDetailRegalia,
+                                tieneBono: o.tieneBono,
+                                name: o.name,
+                                modelo: o.modelo,
+                                endDate: o.endDate,
+                                tieneRegalia: o.tieneRegalia,
+                                simboloMoneda: SimboloMoneda.empty,
+                                id: o.id,
+                                montoDescuento: o.montoDescuento,
+                                idUsuario: o.idUsuario,
+                                product: o.product,
+                                idEmpresa: o.idempresa,
+                                startDate: o.startDate,
+                                precioFinal: o.precioFinal,
+                                productName: o.productName,
+                                tieneDescuento: o.tieneDescuento,
+                                tipoPromoApp: 0,
+                                productoDescription: "",
+                                muestraDescuento: o.muestraDescuento
+                            )
+                            products.append(p)
+                        }
+                        self.viewModel.products = products
+                    }
                     self.article = data
                     self.showData(with: data)
                 })
@@ -223,24 +286,24 @@ class OfferDetailViewController: UIViewController {
     }
 
     private func addToCart() {
-        if let offer = offer, let article = article {
+        if let article = article?.articulo {
             var param: [CartItemDetail] = []
             let item = CartItemDetail(
-                urlImage: offer.image,
+                urlImage: article.urlImagen,
                 cantidad: 1,
                 idLinea: CoreDataService().fetchCarItems().count + 1,
                 mesesExtragar: warrantyMonth,
-                descripcion: offer.name ?? "",
-                sku: offer.productCode ?? "",
-                descuento: article.articulo?.precioDescuento ?? 0.0,
-                montoDescuento: article.articulo?.montoDescuento ?? 0.0,
+                descripcion: article.nombre ?? "",
+                sku: article.sku ?? "",
+                descuento: Double(article.precioDescuento ?? "0.0") ?? 0.0,
+                montoDescuento: Double(article.montoDescuento ?? "0.0") ?? 0.0,
                 montoExtragar: warrantyAmount,
                 porcDescuento: 0.0,
-                precioExtendido: (article.articulo?.precio ?? 0.0 - (article.articulo?.montoDescuento ?? 0.0)),
-                precioUnitario: article.articulo?.precio ?? 0.0,
-                montoBonoProveedor: article.articulo?.montoBonoProveedor ?? 0.0,
-                codRegalia: article.articulo?.regalias?.codigo,
-                descRegalia: article.articulo?.regalias?.descripcion
+                precioExtendido: (Double(article.precio ?? "0.0") ?? 0.0 - (Double(article.montoDescuento ?? "0.0") ?? 0.0)),
+                precioUnitario: Double(article.precio ?? "0.0") ?? 0.0,
+                montoBonoProveedor: Double(article.montoBonoProveedor ?? "0.0") ?? 0.0,
+                codRegalia: article.regalias?.codigo,
+                descRegalia: article.regalias?.descripcion
             )
             param.append(item)
             viewModel.addCart(parameters: param)
@@ -275,159 +338,143 @@ class OfferDetailViewController: UIViewController {
     
     private func showData(with data: OfferDetail) {
         self.initGolloPlus(with: data)
-        if let offer = offer {
-            self.view.activityStopAnimatingFull()
-            let _:CGFloat = 0.0001
+        self.view.activityStopAnimatingFull()
+        let _:CGFloat = 0.0001
 
-            let options = ImageLoadingOptions(
-                placeholder: UIImage(named: "empty_image"),
-                transition: .fadeIn(duration: 0.5),
-                failureImage: UIImage(named: "empty_image")
-            )
+        let options = ImageLoadingOptions(
+            placeholder: UIImage(named: "empty_image"),
+            transition: .fadeIn(duration: 0.5),
+            failureImage: UIImage(named: "empty_image")
+        )
 
-            if data.articulo?.urlImagen == "" || data.articulo?.urlImagen == "NA" {
-                DispatchQueue.main.async {
-                    self.imageConstraint.constant = 0
-                    self.imageView.alpha = 0
-                }
-            } else {
-                let url = URL(string: data.articulo?.urlImagen ?? "")
-                if let url = url {
-                    Nuke.loadImage(with: url, options: options, into: offerImage)
-                } else {
-                    offerImage.image = UIImage(named: "empty_image")
-                }
+        if data.articulo?.urlImagen == "" || data.articulo?.urlImagen == "NA" {
+            DispatchQueue.main.async {
+                self.imageConstraint.constant = 0
+                self.imageView.alpha = 0
             }
-
-            titleLabel.text = offer.name
-            serialLabel.text = offer.productCode
-
-            brandLabel.attributedText = formatHTML(header: "Marca: ", content: offer.brand ?? "")
-            modelLabel.attributedText = formatHTML(header: "Modelo: ", content: offer.modelo ?? "")
-            descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: data.articulo?.especificaciones ?? "")
-            if let endDate = offer.endDate, !endDate.isEmpty {
-//                let calendar = Calendar.current
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//                let toDate = dateFormatter.date(from: endDate)
-//
-//                // Replace the hour (time) of both dates with 00:00
-//                let date1 = calendar.startOfDay(for: Date())
-//                let date2 = calendar.startOfDay(for: toDate ?? Date())
-//
-//                if date1 > date2 {
-//                    dateLabel.alpha = 0
-//                    dateView.alpha = 0
-//                } else {
-//                    print("To date: \(endDate) ~~ \(date2)")
-//                    print("New difference: \(date2.offsetFrom(date: date1))")
-//                    let days = calendar.numberOfDaysBetween(date1, and: date2)
-//                    let hours = calendar.dateComponents([.hour], from: date1, to: date2).hour
-//                    var stringDays = "día"
-//                    if days > 1 {
-//                        stringDays = "días"
-//                    }
-//                    if let hours = hours, hours > 1 {
-//                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "3 días y 0 horas")
-//                    } else {
-//                        dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(days) \(stringDays)")
-//                    }
-//                }
-                
-                let endFormattedDate = endDate.convertStringToDate()
-                let timeDifference = Date() - endFormattedDate
-                let numberOfDays = Int(timeDifference.day ?? 0)
-                let hours = Int((timeDifference.hour ?? 0) - (numberOfDays * 24))
-                
-                print("Formatted difference time \(numberOfDays) ~~ \(hours)")
-                var stringDays = "día"
-                if numberOfDays > 1 {
-                    stringDays = "días"
-                }
-                dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(numberOfDays) \(stringDays) y \(hours) horas".replace(string: "-", replacement: ""))
+        } else {
+            let url = URL(string: data.articulo?.urlImagen ?? "")
+            if let url = url {
+                Nuke.loadImage(with: url, options: options, into: offerImage)
             } else {
-                dateLabel.alpha = 0
-                dateView.alpha = 0
+                offerImage.image = UIImage(named: "empty_image")
             }
+        }
 
-            totalDiscount = ((article?.articulo?.montoDescuento ?? 0.0) + (article?.articulo?.montoBonoProveedor ?? 0.0))
+        titleLabel.text = data.articulo?.nombre ?? ""
+        serialLabel.text = data.articulo?.sku ?? ""
 
-            let originalString = numberFormatter.string(from: NSNumber(value: data.articulo?.precio ?? 0.0))!
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
-            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-
-            if totalDiscount > 0.0,
-               let price = data.articulo?.precio, price > 0.0 {
-                let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
-                savingsLabel.text = "\("₡")\(savingString)"
-
-                let discountString = numberFormatter.string(from: NSNumber(value: data.articulo?.precioDescuento ?? 0.0))!
-                discountPriceLabel.text = "\("₡")\(discountString)"
-                self.originalPrice.attributedText = attributeString
-            } else {
-                self.originalPrice.text = "\("₡")\(originalString)"
-                self.savingHeader.alpha = 0
-                self.priceDivider.alpha = 0
-                self.savingsLabel.alpha = 0
-                self.discountLabel.alpha = 0
+        brandLabel.attributedText = formatHTML(header: "Marca: ", content: (data.articulo?.marca ?? ""))
+        modelLabel.attributedText = formatHTML(header: "Modelo: ", content: (data.articulo?.modelo ?? ""))
+        descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: data.articulo?.especificaciones ?? "")
+        if let endDate = article?.articulo?.endDate, !endDate.isEmpty {
+            let endFormattedDate = endDate.convertStringToDate()
+            let timeDifference = Date() - endFormattedDate
+            let numberOfDays = Int(timeDifference.day ?? 0)
+            let hours = Int((timeDifference.hour ?? 0) - (numberOfDays * 24))
+            
+            print("Formatted difference time \(numberOfDays) ~~ \(hours)")
+            var stringDays = "día"
+            if numberOfDays > 1 {
+                stringDays = "días"
             }
+            dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(numberOfDays) \(stringDays) y \(hours) horas".replace(string: "-", replacement: ""))
+        } else {
+            dateLabel.alpha = 0
+            dateView.alpha = 0
+        }
 
-            if let totalDiscount = data.articulo?.montoDescuento, totalDiscount > 0.0 {
-                discountLabel.text = "\("₡")\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
-            } else {
-                DispatchQueue.main.async {
-                    self.tintView.visibility = .gone
-                    self.discountView.visibility = .gone
-                    self.discountConstraint.constant = 0
-                    self.discountView.layoutIfNeeded()
-                }
+        totalDiscount = ((Double(article?.articulo?.montoDescuento ?? "0.0") ?? 0.0) + (Double(article?.articulo?.montoBonoProveedor ?? "0.0") ?? 0.0))
+
+        let originalString = numberFormatter.string(from: NSNumber(value: Double(data.articulo?.precio ?? "0.0") ?? 0.0))!
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+
+        if totalDiscount > 0.0,
+           let price = Double(data.articulo?.precio ?? "0.0"), price > 0.0 {
+            let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
+            savingsLabel.text = "\("₡")\(savingString)"
+
+            let discountString = numberFormatter.string(from: NSNumber(value: Double(data.articulo?.precioDescuento ?? "0.0") ?? 0.0))!
+            discountPriceLabel.text = "\("₡")\(discountString)"
+            self.originalPrice.attributedText = attributeString
+        } else {
+            self.originalPrice.text = "\("₡")\(originalString)"
+            self.savingHeader.alpha = 0
+            self.priceDivider.alpha = 0
+            self.savingsLabel.alpha = 0
+            self.discountLabel.alpha = 0
+        }
+
+        if let totalDiscount = Double(data.articulo?.montoDescuento ?? "0.0"), totalDiscount > 0.0 {
+            discountLabel.text = "\("₡")\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
+        } else {
+            DispatchQueue.main.async {
+                self.tintView.visibility = .gone
+                self.discountView.visibility = .gone
+                self.discountConstraint.constant = 0
+                self.discountView.layoutIfNeeded()
             }
+        }
 
-            if let royalties = article?.articulo?.regalias {
-                giftLabel.text = "\(royalties.codigo ?? "") - \(royalties.descripcion ?? "")"
-            } else {
-                DispatchQueue.main.async {
-                    self.tintViewGift.visibility = .gone
-                    self.giftView.visibility = .gone
-                    self.giftConstraint.constant = 0
-                    self.giftView.layoutIfNeeded()
-                }
+        if let royalties = article?.articulo?.regalias {
+            giftLabel.text = "\(royalties.codigo ?? "") - \(royalties.descripcion ?? "")"
+        } else {
+            DispatchQueue.main.async {
+                self.tintViewGift.visibility = .gone
+                self.giftView.visibility = .gone
+                self.giftConstraint.constant = 0
+                self.giftView.layoutIfNeeded()
             }
+        }
 
-            if let bonus = data.articulo?.montoBonoProveedor, bonus > 0.0 {
-                bonusLabel.text = "\("₡")\(numberFormatter.string(from: NSNumber(value: bonus))!)"
-            } else {
-                DispatchQueue.main.async {
-                    self.tintViewBonus.visibility = .gone
-                    self.bonusView.visibility = .gone
-                    self.bonoConstraint.constant = 0
-                    self.bonusView.layoutIfNeeded()
-                }
+        if let bonus = Double(data.articulo?.montoBonoProveedor ?? "0.0"), bonus > 0.0 {
+            bonusLabel.text = "\("₡")\(numberFormatter.string(from: NSNumber(value: bonus))!)"
+        } else {
+            DispatchQueue.main.async {
+                self.tintViewBonus.visibility = .gone
+                self.bonusView.visibility = .gone
+                self.bonoConstraint.constant = 0
+                self.bonusView.layoutIfNeeded()
             }
+        }
 
-            if let description = data.articulo?.descripcionDetalle, !description.isEmpty {
-                self.offerDescriptionView.isHidden = false
-                let decodeString = description.removingPercentEncoding
-                if let htmlString = decodeString {
-                    let formatedHtml = "<html><head><style type='text/css'>@font-face { font-family: MyFont;src: url('font/jost_variable_font.ttf') } body {font-family: MyFont;font-size: medium;text-align: justify;} </style></head><body>\(htmlString)</body></html>"
-                    self.offerDescriptionLabel.attributedText = formatedHtml.htmlToAttributedString
+        if let description = data.articulo?.descripcionDetalle, !description.trimmingCharacters(in: .whitespaces).isEmpty {
+            self.offerDescriptionView.isHidden = false
+            let decodeString = description.removingPercentEncoding
+            if let htmlString = decodeString {
+                let formatedHtml = "<html><head><style type='text/css'>@font-face { font-family: MyFont;src: url('font/jost_variable_font.ttf') } body {font-family: MyFont;font-size: medium;text-align: justify;} </style></head><body>\(htmlString)</body></html>"
+                self.offerDescriptionLabel.attributedText = formatedHtml.htmlToAttributedString
 
-                } else {
-                    self.offerDescriptionView.isHidden = true
-                }
             } else {
                 self.offerDescriptionView.isHidden = true
             }
-
-        } else { return }
+        } else {
+            self.offerDescriptionView.isHidden = true
+        }
+        
+        if let images = data.articulo?.imagenes, !images.isEmpty {
+            self.imagesView.isHidden = false
+            self.imagesCollectionView.reloadData()
+        } else {
+            self.imagesView.isHidden = true
+        }
+        
+        if let complements = data.articulo?.complementos, !complements.isEmpty {
+            self.suggestedTitleLabel.isHidden = false
+            self.suggestedProductsView.isHidden = false
+            self.collectionView.reloadData()
+        } else {
+            self.suggestedTitleLabel.isHidden = true
+            self.suggestedProductsView.isHidden = true
+        }
     }
 
     private func initGolloPlus(with data: OfferDetail) {
         var documents: [Warranty] = []
         let lovN = Warranty(plazoMeses: 0, porcentaje: 0.0, montoExtragarantia: 0.0, impuestoExtragarantia: 0.0, titulo: "Sin gollo plus")
         documents.append(lovN)
-        if let warranty = data.articulo?.extraGarantia {
+        if let warranty = data.articulo?.extragarantia {
             for w in warranty {
                 let amount = String(w.montoExtragarantia ?? 0.0).currencyFormatting()
                 let lov = Warranty(
@@ -461,10 +508,10 @@ class OfferDetailViewController: UIViewController {
     }
 
     private func isFavorite() -> UIImage? {
-        if let data = offer {
+        if let data = article?.articulo {
             let list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
             if list.contains(where: { dataO in
-                dataO.id == data.id
+                dataO.productCode == data.sku
             }) {
                 return UIImage(named: "ic_added_heart")
             } else {
@@ -472,6 +519,52 @@ class OfferDetailViewController: UIViewController {
             }
         } else {
             return UIImage(named: "ic_heart")
+        }
+    }
+    
+    private func generateDynamicLink(handler: @escaping (String) -> Void) {
+        let dynamicLinkDomain = "https://gollo.page.link"
+        let _:[String : String] = [
+            "product": article?.articulo?.sku ?? ""
+        ]
+        
+        var generatedLink = ""
+
+        guard let deepLink = URL(string:"https://gollo.page.link/product/\(article?.articulo?.sku ?? "")") else { return }
+        print("deepLink is \(deepLink)")
+        
+        let components = DynamicLinkComponents(link: deepLink, domainURIPrefix: dynamicLinkDomain)
+        
+        if let components = components {
+            let url = URL(string: article?.articulo?.urlImagen ?? "")
+            if let url = url {
+                components.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
+                components.socialMetaTagParameters?.imageURL = url
+            }
+            
+            //1. Build the dynamic long link
+            let longlLink = components.url
+            generatedLink = longlLink?.absoluteString ?? ""
+            print("The long link is \(longlLink!)")
+
+            //Set the length of a short Dynamic Link
+            let options = DynamicLinkComponentsOptions()
+            options.pathLength = .unguessable
+            components.options = options
+
+            //2. Or create a shortened dynamic link
+            components.shorten { (shortURL, warnings, error) in
+                if let error = error {
+                    print("shortURL error is \(error.localizedDescription)")
+                    handler(generatedLink)
+                    return
+                }
+
+                // TODO: Handle shortURL.
+                generatedLink = shortURL?.absoluteString ?? ""
+                handler(generatedLink)
+                print("shortURL is \(String(describing: shortURL))")
+            }
         }
     }
 }
@@ -482,9 +575,97 @@ extension OfferDetailViewController: UIScrollViewDelegate {
     }
 }
 
+extension OfferDetailViewController: UICollectionViewDelegate,
+                                            UICollectionViewDataSource,
+                                            UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == self.collectionView {
+            return self.viewModel.products.count
+        } else if collectionView == self.imagesCollectionView {
+            return self.viewModel.images.count
+        }
+        return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == self.collectionView {
+            return getProductCell(collectionView, cellForItemAt: indexPath)
+        } else {
+            return getImageCell(collectionView, cellForItemAt: indexPath)
+        }
+    }
+    
+    func getImageCell(_ collectionView: UICollectionView,
+                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OfferImagesCollectionViewCell", for: indexPath) as! OfferImagesCollectionViewCell
+        cell.setImageData(with: self.viewModel.images[indexPath.row])
+        return cell
+    }
+
+    func getProductCell(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
+        cell.setProductData(with: viewModel.products[indexPath.row])
+        cell.delegate = self
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.imagesCollectionView {
+            return CGSize(width: 70, height: 70)
+        } else {
+            let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+            let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+            let size: CGFloat = (collectionView.frame.size.width - space) / 2.0
+            return CGSize(width: size, height: 300)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.imagesCollectionView {
+            let options = ImageLoadingOptions(
+                placeholder: UIImage(named: "empty_image"),
+                transition: .fadeIn(duration: 0.5),
+                failureImage: UIImage(named: "empty_image")
+            )
+            
+            let url = URL(string: self.viewModel.images[indexPath.row].imagen ?? "")
+            if let url = url {
+                Nuke.loadImage(with: url, options: options, into: self.offerImage)
+            } else {
+                self.offerImage.image = UIImage(named: "empty_image")
+            }
+        }
+    }
+}
+
 extension OfferDetailViewController: OfferServiceProtectionDelegate {
     func protectionSelected(with id: UUID, month: Int, amount: Double) {
         let _ = CoreDataService().addGolloPlus(for: id, month: month, amount: amount)
+    }
+}
+
+extension OfferDetailViewController: OffersCellDelegate {
+    func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension OfferDetailViewController: ProductCellDelegate {
+    func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
+        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+        vc.offer = data
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

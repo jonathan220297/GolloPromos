@@ -80,6 +80,7 @@ class SearchOffersViewController: UIViewController {
             })
             .disposed(by: bag)
     }
+    
     func configureTableView() {
         self.searchCollectionView.register(UINib(nibName: "SearchHistoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SearchHistoryCollectionViewCell")
         self.collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
@@ -196,7 +197,7 @@ extension SearchOffersViewController: UICollectionViewDelegate,
             let label = UILabel(frame: CGRect.zero)
             label.text = viewModel.history[indexPath.row]
             label.sizeToFit()
-            return CGSize(width: label.frame.width + 15, height: 30)
+            return CGSize(width: label.frame.width + 15, height: 40)
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)

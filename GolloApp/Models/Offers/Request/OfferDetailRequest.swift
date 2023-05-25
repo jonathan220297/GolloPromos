@@ -24,5 +24,5 @@ struct OfferDetailRequest: APIRequest {
 }
 
 struct OfferDetailServiceRequest: Codable {
-    var centro, sku: String
+    var centro, sku, bodega: String
 }

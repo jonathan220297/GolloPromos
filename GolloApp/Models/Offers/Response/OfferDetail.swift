@@ -14,11 +14,14 @@ struct OfferDetail : Codable {
 struct Article : Codable {
     let sku, codigoReferencia, codigo, nombre, especificaciones: String?
     let urlImagen, marca, modelo: String?
-    let precio, montoDescuento, montoBonoProveedor, precioDescuento: Double?
+    let montoBonoProveedor, precioDescuento, montoDescuento, precio: String?
+    let descripcionDetalle: String?
+    let startDate, endDate: String?
     let regalias: Royalties?
     let stock: [Stock]?
-    let extraGarantia: [Warranty]?
-    let descripcionDetalle: String?
+    let extragarantia: [Warranty]?
+    let imagenes: [ArticleImages]?
+    let complementos: [Offers]?
 }
 
 struct Royalties: Codable {
@@ -34,4 +37,9 @@ struct Warranty: Codable {
     let plazoMeses: Int?
     let porcentaje, montoExtragarantia, impuestoExtragarantia: Double?
     let titulo: String?
+}
+
+struct ArticleImages: Codable {
+    let tipo: Int?
+    let imagen: String?
 }

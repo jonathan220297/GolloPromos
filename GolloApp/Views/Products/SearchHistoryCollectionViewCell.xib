@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,13 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="167" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roa-SR-a80">
-                                <rect key="frame" x="4" y="18" width="139" height="14.333333333333336"/>
+                                <rect key="frame" x="8" y="18" width="131" height="14.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.30575770549999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJj-bp-p6S">
-                                <rect key="frame" x="147" y="17" width="16" height="16"/>
+                                <rect key="frame" x="143" y="17" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="Il6-QV-aSu"/>
                                     <constraint firstAttribute="width" constant="16" id="fzE-V9-QPb"/>
@@ -43,10 +43,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="GJj-bp-p6S" secondAttribute="trailing" constant="4" id="0AY-De-SFZ"/>
+                            <constraint firstAttribute="trailing" secondItem="GJj-bp-p6S" secondAttribute="trailing" constant="8" id="0AY-De-SFZ"/>
                             <constraint firstItem="GJj-bp-p6S" firstAttribute="centerY" secondItem="4zb-wp-qcf" secondAttribute="centerY" id="42f-eG-68t"/>
                             <constraint firstItem="roa-SR-a80" firstAttribute="centerY" secondItem="4zb-wp-qcf" secondAttribute="centerY" id="RlD-CD-83J"/>
-                            <constraint firstItem="roa-SR-a80" firstAttribute="leading" secondItem="4zb-wp-qcf" secondAttribute="leading" constant="4" id="aTf-HW-rOR"/>
+                            <constraint firstItem="roa-SR-a80" firstAttribute="leading" secondItem="4zb-wp-qcf" secondAttribute="leading" constant="8" id="aTf-HW-rOR"/>
                             <constraint firstItem="GJj-bp-p6S" firstAttribute="leading" secondItem="roa-SR-a80" secondAttribute="trailing" constant="4" id="fzV-km-5ut"/>
                         </constraints>
                     </view>
@@ -65,7 +65,7 @@
                 <outlet property="deleteHistory" destination="GJj-bp-p6S" id="8qS-8U-QZA"/>
                 <outlet property="searchLabel" destination="roa-SR-a80" id="hTh-2g-QzD"/>
             </connections>
-            <point key="canvasLocation" x="146.92307692307691" y="20.616113744075829"/>
+            <point key="canvasLocation" x="145.38461538461539" y="20.616113744075829"/>
         </collectionViewCell>
     </objects>
     <resources>

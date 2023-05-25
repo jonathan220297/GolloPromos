@@ -23,6 +23,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var documentTypeLabel: UILabel!
     @IBOutlet weak var documentTypeButton: UIButton!
     @IBOutlet weak var documentNumberLabel: UITextField!
+    @IBOutlet weak var searchCustomerView: UIView!
     @IBOutlet weak var searchCustomerButton: UIButton!
     @IBOutlet weak var searchCustomerHeight: NSLayoutConstraint!
     @IBOutlet weak var unregisteredUserView: UIView!
@@ -181,42 +182,46 @@ class EditProfileViewController: UIViewController {
                         guard let self = self,
                               let data = data else { return }
                         self.view.activityStopAnimatingFull()
-                        if let _ = data.numeroIdentificacion, let _ = data.numeroIdentificacion {
-                            self.showData(with: data)
+                        if let profile = data.perfil {
+                            if let _ = profile.numeroIdentificacion, let _ = profile.numeroIdentificacion {
+                                self.showData(with: profile)
+                            } else {
+                                let data = UserData(
+                                    tipoIdentificacion: info.tipoIdentificacion,
+                                    tarjetasDeCredito: "",
+                                    estadoCivil: "",
+                                    numeroIdentificacion: info.numeroIdentificacion,
+                                    nombre: info.nombre,
+                                    apellido1: info.apellido1,
+                                    apellido2: info.apellido2,
+                                    idRegistroBit: 0,
+                                    salario: 0,
+                                    direccion: info.direccion,
+                                    fechaIngresoTrabajo: "",
+                                    corporacion: "",
+                                    lugarTrabajo: "",
+                                    direccionTrabajo: "",
+                                    telefonoTrabajo: "",
+                                    nombreConyugue: "",
+                                    casa: "",
+                                    genero: info.genero,
+                                    correoElectronico1: info.correoElectronico1,
+                                    correoElectronico2: "",
+                                    telefono1: info.telefono1,
+                                    telefono2: info.telefono2,
+                                    cantidadHijos: "0",
+                                    fechaNacimiento: info.fechaNacimiento,
+                                    nacionalidad: "",
+                                    carroPropio: "",
+                                    ocupacion: "",
+                                    image: Variables.userProfile?.image,
+                                    emailValidacion: "",
+                                    pinValidacion: ""
+                                )
+                                self.showData(with: data)
+                            }
                         } else {
-                            let data = UserData(
-                                tipoIdentificacion: info.tipoIdentificacion,
-                                tarjetasDeCredito: "",
-                                estadoCivil: "",
-                                numeroIdentificacion: info.numeroIdentificacion,
-                                nombre: info.nombre,
-                                apellido1: info.apellido1,
-                                apellido2: info.apellido2,
-                                idRegistroBit: 0,
-                                salario: 0,
-                                direccion: info.direccion,
-                                fechaIngresoTrabajo: "",
-                                corporacion: "",
-                                lugarTrabajo: "",
-                                direccionTrabajo: "",
-                                telefonoTrabajo: "",
-                                nombreConyugue: "",
-                                casa: "",
-                                genero: info.genero,
-                                correoElectronico1: info.correoElectronico1,
-                                correoElectronico2: "",
-                                telefono1: info.telefono1,
-                                telefono2: info.telefono2,
-                                cantidadHijos: 0,
-                                fechaNacimiento: info.fechaNacimiento,
-                                nacionalidad: "",
-                                carroPropio: "",
-                                ocupacion: "",
-                                image: Variables.userProfile?.image,
-                                emailValidacion: "",
-                                pinValidacion: ""
-                            )
-                            self.showData(with: data)
+                            self.showAlert(alertText: "GolloApp", alertMessage: "Ocurrió un error, intentelo de nuevo.")
                         }
                     })
                     .disposed(by: disposeBag)
@@ -246,7 +251,7 @@ class EditProfileViewController: UIViewController {
                     correoElectronico2: "",
                     telefono1: info.telefono1,
                     telefono2: info.telefono2,
-                    cantidadHijos: 0,
+                    cantidadHijos: "0",
                     fechaNacimiento: info.fechaNacimiento,
                     nacionalidad: "",
                     carroPropio: "",
@@ -491,17 +496,37 @@ class EditProfileViewController: UIViewController {
                     guard let self = self,
                           let data = data else { return }
                     self.view.activityStopAnimating()
-                    if let _ = data.numeroIdentificacion, let _ = data.numeroIdentificacion {
-                        if let _ = data.emailValidacion, let _ = data.pinValidacion {
-                            self.tempUserData = data
-                            self.informationValidationCodeLabel.text = "Se ha enviado un código de verificación a su correo electrónico \(data.emailValidacion ?? ""), el cual debe digitar a continuación"
-                            self.validationCodeView.isHidden = false
-                        } else {
-                            self.validationCodeView.isHidden = true
-                            self.showData(with: data)
-                        }
-                    } else {
+                    if let profile = data.perfil {
+                        self.tempUserData = profile
+                    }
+                    
+                    if data.indExiste == "N" {
+                        self.searchCustomerView.isHidden = true
+                        self.searchCustomerButton.isHidden = true
                         self.unregisteredUserView.alpha = 1
+                    } else {
+                        if let profile = data.perfil {
+                            if let _ = profile.numeroIdentificacion, let _ = profile.numeroIdentificacion {
+                                if let _ = profile.emailValidacion, let _ = profile.pinValidacion {
+                                    self.tempUserData = profile
+                                    self.informationValidationCodeLabel.text = "Se ha enviado un código de verificación a su correo electrónico \(profile.emailValidacion ?? ""), el cual debe digitar a continuación"
+                                    self.validationCodeView.isHidden = false
+                                } else {
+                                    self.validationCodeView.isHidden = true
+                                    self.showData(with: profile)
+                                }
+                                self.searchCustomerView.isHidden = false
+                                self.searchCustomerButton.isHidden = false
+                            } else {
+                                self.searchCustomerView.isHidden = true
+                                self.searchCustomerButton.isHidden = true
+                                self.unregisteredUserView.alpha = 1
+                            }
+                        } else {
+                            self.searchCustomerView.isHidden = true
+                            self.searchCustomerButton.isHidden = true
+                            self.unregisteredUserView.alpha = 1
+                        }
                     }
                 })
                 .disposed(by: disposeBag)

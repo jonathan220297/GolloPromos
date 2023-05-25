@@ -16,15 +16,18 @@ class OfferDetailViewModel {
     var offerDetail: OfferDetail?
     var cartDetail: OfferCartDetail?
     var documents: [Warranty] = []
+    var products: [Product] = []
+    var images: [ArticleImages] = []
 
-    func fetchOfferDetail(sku: String) -> BehaviorRelay<OfferDetail?> {
+    func fetchOfferDetail(sku: String, centro: String = "144", bodega: String = "1") -> BehaviorRelay<OfferDetail?> {
         let apiResponse: BehaviorRelay<OfferDetail?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(OfferDetailRequest(service: BaseServiceRequestParam<OfferDetailServiceRequest>(
             servicio: ServicioParam(
                 encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.OFFER_DETAIL_PROCESS_ID.rawValue),
                 parametros: OfferDetailServiceRequest (
-                    centro: "144",
-                    sku: sku
+                    centro: centro,
+                    sku: sku,
+                    bodega: bodega
                 )
             )
         ))) { response in
