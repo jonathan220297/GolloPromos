@@ -10,6 +10,7 @@ import RxSwift
 import RxRelay
 
 class TermsConditionsViewModel: NSObject {
+    
     private let defaults = UserDefaults.standard
 
     var checkboxSelected: BehaviorRelay<Bool> = BehaviorRelay(value: false)
@@ -21,4 +22,5 @@ class TermsConditionsViewModel: NSObject {
     func verifyTermsConditionsState() -> Bool {
         return defaults.bool(forKey: "termsConditionsAccepted")
     }
+    
 }

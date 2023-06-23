@@ -10,6 +10,7 @@ import RxSwift
 import UIKit
 
 class CarTabViewController: UIViewController {
+    
     // MARK: - IBOutlets
     @IBOutlet weak var carTableView: UITableView!
     @IBOutlet weak var totalItemsLabel: UILabel!

@@ -74,14 +74,6 @@ class HomeViewModel {
             resource: "Procesos/RegistroDispositivos",
             service: BaseServiceRequestParam<RegisterDeviceServiceRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
-//                        idDevice: getDeviceID(),
-//                        idUsuario: UserManager.shared.userData?.uid ?? "",
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: token ?? "",
-//                        integrationId: nil),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue),
                     parametros: RegisterDeviceServiceRequest(
                         idEmpresa: 10,

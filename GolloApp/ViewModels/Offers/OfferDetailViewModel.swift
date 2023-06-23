@@ -11,6 +11,7 @@ import RxRelay
 class OfferDetailViewModel {
     
     private let service = GolloService()
+    private let defaults = UserDefaults.standard
     
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     var offerDetail: OfferDetail?
@@ -36,6 +37,7 @@ class OfferDetailViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
+                    self.errorMessage.accept(error.localizedDescription)
                     print("Error: \(error.localizedDescription)")
                 }
             }
@@ -65,6 +67,18 @@ class OfferDetailViewModel {
             }
         }
         return apiResponse
+    }
+    
+    func setCarManagerTypeToUserDefaults(with type: String) {
+        defaults.setValue(type, forKey: "carManagetTypeStarted")
+    }
+
+    func verifyCarManagerTypeState() -> String? {
+        return defaults.string(forKey: "carManagetTypeStarted")
+    }
+    
+    func deleteCarManagerTypeState() {
+        defaults.removeObject(forKey: "carManagetTypeStarted")
     }
 
 }

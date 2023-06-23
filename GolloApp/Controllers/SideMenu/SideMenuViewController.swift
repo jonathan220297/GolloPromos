@@ -186,21 +186,24 @@ class SideMenuViewController: UIViewController {
 extension SideMenuViewController {
     // MARK: - Functions
     fileprivate func configureRx() {
-        editProfileButton.rx.tap.bind {
-            if Auth.auth().currentUser != nil {
-                let vc = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
-                vc.sideMenuAcction = true
-                vc.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
-                let loginVC = vc.viewControllers.first as? LoginViewController
-                loginVC?.delegate = self
-                self.present(vc, animated: true)
+        editProfileButton
+            .rx
+            .tap
+            .bind {
+                if Auth.auth().currentUser != nil {
+                    let vc = EditProfileViewController.instantiate(fromAppStoryboard: .Profile)
+                    vc.sideMenuAcction = true
+                    vc.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
+                    let loginVC = vc.viewControllers.first as? LoginViewController
+                    loginVC?.delegate = self
+                    self.present(vc, animated: true)
+                }
             }
-        }
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
 
         viewModel
             .errorExpiredToken
@@ -263,18 +266,8 @@ extension SideMenuViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                let phoneNumber =  "+50683046556"
-                let appURL = URL(string: "https://api.whatsapp.com/send?phone=\(phoneNumber)")
-                if let appURL = appURL, UIApplication.shared.canOpenURL(appURL) {
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
-                    }
-                    else {
-                        UIApplication.shared.openURL(appURL)
-                    }
-                } else {
-                    self.showAlert(alertText: "GolloApp", alertMessage: "Para contactar a Gollo Chatbot necesita WhatsApp instalado a su dispositivo.")
-                }
+                self.dismiss(animated: true)
+                NotificationCenter.default.post(name: Notification.Name("showContactInfo"), object: nil)
             })
             .disposed(by: disposeBag)
         
@@ -282,7 +275,9 @@ extension SideMenuViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                let productScannerViewController = ProductScannerViewController()
+                let productScannerViewController = ProductScannerViewController(
+                    viewModel: GolloStoresViewModel()
+                )
                 productScannerViewController.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(productScannerViewController, animated: true)
             })

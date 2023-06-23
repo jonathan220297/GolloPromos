@@ -61,24 +61,24 @@ class LoginViewModel: NSObject {
             LoginRequest(
                 service: BaseServiceRequestParam<LoginServiceRequest>(
                     servicio: ServicioParam(
-//                        encabezado: Encabezado(
-//                            idProceso: GOLLOAPP.LOGIN_PROCESS_ID.rawValue,
-//                            idDevice: idDevice,
-//                            idUsuario: UserManager.shared.userData?.uid ?? "",
-//                            timeStamp: String(Date().timeIntervalSince1970),
-//                            idCia: 10,
-//                            token: idToken,
-//                            integrationId: nil
-//                        ),
-                        encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.LOGIN_PROCESS_ID.rawValue),
+                        encabezado: Encabezado(
+                            idProceso: GOLLOAPP.LOGIN_PROCESS_ID.rawValue,
+                            idDevice: "ee404a014d9d1e3e",
+                            idUsuario: UserManager.shared.userData?.uid ?? "",
+                            timeStamp: String(Date().timeIntervalSince1970),
+                            idCia: 10,
+                            token: idToken,
+                            integrationId: nil
+                        ),
+//                        encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.LOGIN_PROCESS_ID.rawValue),
                         parametros: LoginServiceRequest(
                             idCliente: userManager.userData?.uid ?? "",
                             nombre: userManager.userData?.displayName ?? "",
                             apellido1: userManager.userData?.displayName ?? "",
                             apellido2: userManager.userData?.displayName ?? "",
                             tipoLogin: String(loginType.rawValue),
-                            idDevice: idDevice,
-                            idDeviceToken: "",
+                            idDevice: "ee404a014d9d1e3e",
+                            idDeviceToken: UIDevice.current.identifierForVendor?.uuidString ?? "",
                             sisOperativo: "iOS",
                             idEmpresa: 10
                         )

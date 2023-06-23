@@ -225,7 +225,8 @@ class EmmaTermsListViewController: UIViewController {
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
                         productPaymentResponse: response
-                    ), cartPayment: false
+                    ),
+                    cartPayment: true
                 )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)

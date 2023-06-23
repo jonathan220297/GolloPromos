@@ -30,7 +30,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
             }
         }
         imageSlideShowView.setImageInputs(imageSet)
-        imageSlideShowView.slideshowInterval = 5
+        imageSlideShowView.slideshowInterval = Double(banner?.autoPlayDelay ?? 5)
         imageSlideShowView.contentScaleMode = .scaleToFill
     }
 }

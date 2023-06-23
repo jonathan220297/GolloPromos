@@ -10,6 +10,7 @@ import RxSwift
 import UIKit
 
 class PaymentAddressViewController: UIViewController {
+    
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -56,6 +57,7 @@ class PaymentAddressViewController: UIViewController {
         navigationItem.title = "Datos de envío"
         tabBarController?.navigationItem.hidesBackButton = false
         tabBarController?.navigationController?.navigationBar.tintColor = .white
+        
         configureViews()
         configureObservers()
         configureRx()
@@ -78,7 +80,6 @@ class PaymentAddressViewController: UIViewController {
     
     // MARK: - Observers
     @objc func keyboardWillShow(notification: NSNotification) {
-
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -89,7 +90,6 @@ class PaymentAddressViewController: UIViewController {
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
     }
@@ -228,6 +228,7 @@ class PaymentAddressViewController: UIViewController {
                 guard let self = self,
                       let response = response,
                       let firstItem = response.first else { return }
+                view.activityStopAnimating()
                 self.viewModel.statesArray.accept(response)
                 self.stateLabel.text = ""
                 self.viewModel.stateSubject.accept(nil)

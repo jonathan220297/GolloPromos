@@ -12,6 +12,7 @@ struct LoginData: Codable {
     let estadoLogin: Bool?
     let estadoCliente: Bool?
     let estadoRegistro: Bool?
+    let indScanAndGo: Bool?
     let token: String?
     let registro: UserInfo?
 }

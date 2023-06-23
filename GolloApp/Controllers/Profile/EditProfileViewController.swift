@@ -394,6 +394,9 @@ class EditProfileViewController: UIViewController {
             .controlEvent([.editingDidBegin,.editingDidEnd])
             .asObservable()
             .subscribe(onNext: {
+                self.searchCustomerView.isHidden = false
+                self.searchCustomerView.isHidden = false
+                self.searchCustomerButton.isHidden = false
                 if self.unregisteredUserView.alpha == 1 {
                     self.unregisteredUserView.alpha = 0
                 }

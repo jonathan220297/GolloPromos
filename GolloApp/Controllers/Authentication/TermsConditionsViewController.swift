@@ -35,7 +35,8 @@ extension TermsConditionsViewController {
 extension TermsConditionsViewController {
     // MARK: - Functions
     fileprivate func configureRx() {
-        viewModel.checkboxSelected
+        viewModel
+            .checkboxSelected
             .asObservable()
             .subscribe(onNext: {[weak self] value in
                 guard let self = self else { return }
@@ -47,27 +48,28 @@ extension TermsConditionsViewController {
         })
         .disposed(by: disposeBag)
 
-        buttonCheckbox.rx.tap.bind {
-            self.viewModel.checkboxSelected.accept(!self.viewModel.checkboxSelected.value)
-        }
-        .disposed(by: disposeBag)
-
-        buttonContinue.rx.tap.bind {
-            if !self.viewModel.checkboxSelected.value {
-                self.showAlert(alertText: "GolloApp", alertMessage: "TermsConditionsController_continue_error".localized)
-            } else {
-                print("Nice")
-                self.viewModel.setCheckboxValueToUserDefaults()
-                if let vc = AppStoryboard.Home.initialViewController() {
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
-                }
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let vc = storyboard.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
-//                vc.modalPresentationStyle = .fullScreen
-//                self.present(vc, animated: true)
+        buttonCheckbox
+            .rx
+            .tap
+            .bind {
+                self.viewModel.checkboxSelected.accept(!self.viewModel.checkboxSelected.value)
             }
-        }
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
+
+        buttonContinue
+            .rx
+            .tap
+            .bind {
+                if !self.viewModel.checkboxSelected.value {
+                    self.showAlert(alertText: "GolloApp", alertMessage: "TermsConditionsController_continue_error".localized)
+                } else {
+                    self.viewModel.setCheckboxValueToUserDefaults()
+                    if let vc = AppStoryboard.Home.initialViewController() {
+                        vc.modalPresentationStyle = .fullScreen
+                        self.present(vc, animated: true)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }

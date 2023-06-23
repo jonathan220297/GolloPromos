@@ -35,9 +35,9 @@ class HomeTabViewController: UIViewController {
         configureCollectionView()
         configureViewModel()
         configureRx()
-        //fetchHomeConfiguration()
+        fetchHomeConfiguration()
         configureTopic()
-        validateVersion()
+//        validateVersion()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(notificationAction),

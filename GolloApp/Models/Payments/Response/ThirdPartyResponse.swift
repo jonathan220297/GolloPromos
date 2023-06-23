@@ -9,6 +9,11 @@ import Foundation
 
 // MARK: - Respuesta
 struct ThirdPartyData: Codable {
+    let perfil: ThirdPartyUserData?
+    let indExiste: String?
+}
+
+struct ThirdPartyUserData: Codable {
     let tipoIdentificacion, tarjetasDeCredito, estadoCivil, nacionalidad: String?
     let apellido1, telefono2, direccionTrabajo, lugarTrabajo: String?
     let idRegistroBit, otrosIngresos: Int?

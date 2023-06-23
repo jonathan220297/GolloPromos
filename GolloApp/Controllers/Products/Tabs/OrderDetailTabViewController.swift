@@ -221,7 +221,12 @@ class OrderDetailTabViewController: UIViewController {
         } else {
             paymentMethodLabel.text = paymentMethod?.descripcionFP ?? ""
         }
-        amountLabel.attributedText = formatHTML(header: "Monto: ", content: "₡\(numberFormatter.string(from: NSNumber(value: (paymentMethod?.montoTotal ?? 0.0))) ?? "")")
+        
+        if let totalDeliveryAmount = order.orden.montoEnvio {
+            amountLabel.attributedText = formatHTML(header: "Monto: ", content: "₡\(numberFormatter.string(from: NSNumber(value: ((paymentMethod?.montoTotal ?? 0.0) + totalDeliveryAmount))) ?? "")")
+        } else {
+            amountLabel.attributedText = formatHTML(header: "Monto: ", content: "₡\(numberFormatter.string(from: NSNumber(value: (paymentMethod?.montoTotal ?? 0.0))) ?? "")")
+        }
 
         royaltyView.isHidden = royalty.isEmpty
         viewModel.royalties = royalty

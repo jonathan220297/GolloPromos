@@ -92,21 +92,36 @@ class ThirdPartyViewController: UIViewController {
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
                       let data = data else { return }
-                if let type = data.tipoIdentificacion,
-                   let number = data.numeroIdentificacion {
-                    if let name = data.nombre,
-                       let lastName = data.apellido1,
-                       let secondLastName = data.apellido2 {
-                        self.customerNameLabel.text = name + " " + lastName + " " + secondLastName
-                    }
-
-                    self.antiLaunderingAmount = data.montoMinAntilavado ?? 0.0
-                    self.navigationItem.title = "Cuentas activas de tercero"
-                    self.customerDocumentLabel.text = "Cédula: \(number)"
-                    self.fetchCustomerAccounts(documentType: type, documentId: number)
-                } else {
+                if data.indExiste == "N" {
+                    self.view.activityStopAnimatingFull()
                     DispatchQueue.main.async {
                         self.showAlert(alertText: "GolloApp", alertMessage: "Usuario no encontrado.")
+                    }
+                } else {
+                    if let profile = data.perfil {
+                        if let type = profile.tipoIdentificacion,
+                           let number = profile.numeroIdentificacion {
+                            if let name = profile.nombre,
+                               let lastName = profile.apellido1,
+                               let secondLastName = profile.apellido2 {
+                                self.customerNameLabel.text = name + " " + lastName + " " + secondLastName
+                            }
+
+                            self.antiLaunderingAmount = 0.0
+                            self.navigationItem.title = "Cuentas activas de tercero"
+                            self.customerDocumentLabel.text = "Cédula: \(number)"
+                            self.fetchCustomerAccounts(documentType: type, documentId: number)
+                        } else {
+                            self.view.activityStopAnimatingFull()
+                            DispatchQueue.main.async {
+                                self.showAlert(alertText: "GolloApp", alertMessage: "Usuario no encontrado.")
+                            }
+                        }
+                    } else {
+                        self.view.activityStopAnimatingFull()
+                        DispatchQueue.main.async {
+                            self.showAlert(alertText: "GolloApp", alertMessage: "Usuario no encontrado.")
+                        }
                     }
                 }
             })

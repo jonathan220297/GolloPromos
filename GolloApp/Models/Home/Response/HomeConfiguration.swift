@@ -41,6 +41,7 @@ struct Banner: Codable {
     let images: [ImageBanner]?
     let isSlider: Bool?
     let name: String?
+    let autoPlayDelay: Int?
     var uiHeight: CGFloat? = 0.0
 }
 
@@ -96,8 +97,7 @@ struct Product: Codable {
     let simboloMoneda: SimboloMoneda?
     let id: Int?
     let montoDescuento: Double?
-    let idUsuario: String?
-    let product: String?
+    let idUsuario, product: String?
     let idEmpresa: Int?
     let startDate: String?
     let precioFinal: Double?

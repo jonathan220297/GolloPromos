@@ -86,6 +86,7 @@ class OfferDetailViewController: UIViewController {
 
     var skuProduct: String?
     var bodegaProduct: String?
+    var scannerFlowActivate: Bool = false
     var article: OfferDetail?
     var warrantyMonth = 0
     var warrantyAmount = 0.0
@@ -133,7 +134,7 @@ class OfferDetailViewController: UIViewController {
             if !url.isEmpty {
                 sharedObjects = [url]
             } else {
-                let someText:String = "Oferta: \(self.self.self.article?.articulo?.nombre ?? "")\nSKU: \(self.self.article?.articulo?.sku ?? "")\n\nPrecio Original: \(numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precio ?? "0.0") ?? 0.0)) ?? "")\n\nDescuento total: \(numberFormatter.string(from: NSNumber(value: self.totalDiscount)) ?? "")\n\nNuevo precio: \(numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0)) ?? "")"
+                let someText:String = "Oferta: \(self.article?.articulo?.nombre ?? "")\nSKU: \(self.article?.articulo?.sku ?? "")\n\nPrecio Original: \(numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precio ?? "0.0") ?? 0.0)) ?? "")\n\nDescuento total: \(numberFormatter.string(from: NSNumber(value: self.totalDiscount)) ?? "")\n\nNuevo precio: \(numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0)) ?? "")"
                 var objectsToShare:UIImage?
                 if let image = self.offerImage.image {
                     objectsToShare = image
@@ -150,13 +151,42 @@ class OfferDetailViewController: UIViewController {
     }
 
     fileprivate func saveFavorite() {
-        if let product = self.offer {
-            let isFavorite = CoreDataService().isFavoriteProduct(with: product.productCode ?? "")
+        if let article = self.article?.articulo {
+            let isFavorite = CoreDataService().isFavoriteProduct(with: article.sku ?? "")
             if let id = isFavorite {
                 let _ = CoreDataService().deleteFavorite(with: id)
                 self.favoriteButton.setImage(UIImage(named: "ic_heart"), for: .normal)
                 self.favoriteButton.tintColor = .gray
             } else {
+                let product = Product(
+                    productCode: article.sku,
+                    descriptionDetailDescuento: article.descripcionDetalle,
+                    descriptionDetailRegalia: "",
+                    originalPrice: Double(article.precio ?? "0.0"),
+                    image: article.urlImagen ?? "",
+                    montoBono: Double(article.montoBonoProveedor ?? "0.0"),
+                    porcDescuento: Double(article.precioDescuento ?? "0.0"),
+                    brand: article.marca,
+                    descriptionDetailBono: "",
+                    tieneBono: "false",
+                    name: article.nombre,
+                    modelo: article.modelo,
+                    endDate: article.endDate ?? "",
+                    tieneRegalia: "true",
+                    simboloMoneda: SimboloMoneda.empty,
+                    id: 1,
+                    montoDescuento: Double(article.montoDescuento ?? "0.0"),
+                    idUsuario: Variables.userProfile?.idCliente ?? "",
+                    product: article.nombre,
+                    idEmpresa: 0,
+                    startDate: article.startDate ?? "",
+                    precioFinal: Double(article.precioDescuento ?? "0.0"),
+                    productName: article.nombre ?? "",
+                    tieneDescuento: "false",
+                    tipoPromoApp: 0,
+                    productoDescription: "",
+                    muestraDescuento: "false"
+                )
                 CoreDataService().addProductFavorite(with: product, name: offer?.name)
                 self.favoriteButton.setImage(UIImage(named: "ic_added_heart"), for: .normal)
                 self.favoriteButton.tintColor = .red
@@ -172,12 +202,13 @@ class OfferDetailViewController: UIViewController {
     }
     
     fileprivate func configureRx() {
-        viewModel.errorMessage
+        viewModel
+            .errorMessage
             .asObservable()
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
-                    self.showAlert(alertText: "GolloApp", alertMessage: error)
+                    self.showAlert(alertText: "GolloApp", alertMessage: "Producto no disponible para la venta en el App.")
                     self.viewModel.errorMessage.accept("")
                 }
             })
@@ -211,7 +242,51 @@ class OfferDetailViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                self.addToCart()
+                if let carManagerType = self.viewModel.verifyCarManagerTypeState() {
+                    var initFlow = ""
+                    if carManagerType == CarManagerType.SCAN_AND_GO.rawValue {
+                        initFlow = "Scanner de productos"
+                    } else {
+                        initFlow = "Lista de productos"
+                    }
+                    if carManagerType == CarManagerType.SCAN_AND_GO.rawValue && self.scannerFlowActivate {
+                        self.addToCart()
+                    } else if carManagerType == CarManagerType.PRODUCT_LIST.rawValue && !self.scannerFlowActivate {
+                        self.addToCart()
+                    } else {
+                        let refreshAlert = UIAlertController(title: "GolloApp", message: "No se puede hacer un carrito con productos en línea y productos de agencia. ¿Deseas limpiar el carrito e inciar uno nuevo?", preferredStyle: UIAlertController.Style.alert)
+
+                        refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
+                            refreshAlert.dismiss(animated: true)
+                        }))
+
+                        refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
+                            if CoreDataService().deleteAllItems() {
+                                self.viewModel.deleteCarManagerTypeState()
+                                var type = ""
+                                if self.scannerFlowActivate {
+                                    type = CarManagerType.SCAN_AND_GO.rawValue
+                                } else {
+                                    type = CarManagerType.PRODUCT_LIST.rawValue
+                                }
+                                self.viewModel.setCarManagerTypeToUserDefaults(with: type)
+                                self.addToCart()
+                                refreshAlert.dismiss(animated: true)
+                            }
+                        }))
+
+                        self.present(refreshAlert, animated: true, completion: nil)
+                    }
+                } else {
+                    var type = ""
+                    if self.scannerFlowActivate {
+                        type = CarManagerType.SCAN_AND_GO.rawValue
+                    } else {
+                        type = CarManagerType.PRODUCT_LIST.rawValue
+                    }
+                    self.viewModel.setCarManagerTypeToUserDefaults(with: type)
+                    self.addToCart()
+                }
             })
             .disposed(by: bag)
         
@@ -373,7 +448,6 @@ class OfferDetailViewController: UIViewController {
             let numberOfDays = Int(timeDifference.day ?? 0)
             let hours = Int((timeDifference.hour ?? 0) - (numberOfDays * 24))
             
-            print("Formatted difference time \(numberOfDays) ~~ \(hours)")
             var stringDays = "día"
             if numberOfDays > 1 {
                 stringDays = "días"
@@ -523,15 +597,20 @@ class OfferDetailViewController: UIViewController {
     }
     
     private func generateDynamicLink(handler: @escaping (String) -> Void) {
-        let dynamicLinkDomain = "https://gollo.page.link"
+        let dynamicLinkDomain = "https://gollo.page.link/d6o5"
         let _:[String : String] = [
             "product": article?.articulo?.sku ?? ""
         ]
         
         var generatedLink = ""
 
-        guard let deepLink = URL(string:"https://gollo.page.link/product/\(article?.articulo?.sku ?? "")") else { return }
+        guard let deepLink = URL(string:"\(dynamicLinkDomain)/product/\(article?.articulo?.sku ?? "")") else { return }
         print("deepLink is \(deepLink)")
+        
+        let linkBuilder = DynamicLinkComponents(link: deepLink, domainURIPrefix: dynamicLinkDomain)
+        linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.merckers.golloapp")
+        linkBuilder?.iOSParameters?.appStoreID = "1643795423"
+        linkBuilder?.androidParameters = DynamicLinkAndroidParameters(packageName: "com.merckers.golloapp")
         
         let components = DynamicLinkComponents(link: deepLink, domainURIPrefix: dynamicLinkDomain)
         
@@ -551,6 +630,11 @@ class OfferDetailViewController: UIViewController {
             let options = DynamicLinkComponentsOptions()
             options.pathLength = .unguessable
             components.options = options
+            
+            components.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
+            components.socialMetaTagParameters?.title = self.article?.articulo?.nombre ?? ""
+            components.socialMetaTagParameters?.descriptionText = self.article?.articulo?.descripcionDetalle ?? (self.article?.articulo?.sku ?? "")
+            components.socialMetaTagParameters?.imageURL = URL(string: self.article?.articulo?.urlImagen ?? "")
 
             //2. Or create a shortened dynamic link
             components.shorten { (shortURL, warnings, error) in

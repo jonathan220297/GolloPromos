@@ -353,6 +353,9 @@
 		CB46D3B42A1845D800690EB9 /* GolloStoresTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB46D3B22A1845D800690EB9 /* GolloStoresTableViewCell.xib */; };
 		CB56EEFE29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */; };
 		CB8A01A129BCFBB20004C508 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A01A029BCFBB20004C508 /* Data+Extension.swift */; };
+		CB9E54382A45C28800B53828 /* ChatbotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E54362A45C28800B53828 /* ChatbotViewController.swift */; };
+		CB9E54392A45C28800B53828 /* ChatbotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9E54372A45C28800B53828 /* ChatbotViewController.xib */; };
+		CB9E543D2A45DC9D00B53828 /* DispatchQueue+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */; };
 		CBD4BD502A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD4BD4E2A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.swift */; };
 		CBD4BD512A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD4BD4F2A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.xib */; };
 		CBD708C52A1C7AA000693CA1 /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD708C42A1C7AA000693CA1 /* ProfileResponse.swift */; };
@@ -754,6 +757,9 @@
 		CB46D3B22A1845D800690EB9 /* GolloStoresTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GolloStoresTableViewCell.xib; sourceTree = "<group>"; };
 		CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypeTransitionManager.swift; sourceTree = "<group>"; };
 		CB8A01A029BCFBB20004C508 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		CB9E54362A45C28800B53828 /* ChatbotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotViewController.swift; sourceTree = "<group>"; };
+		CB9E54372A45C28800B53828 /* ChatbotViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatbotViewController.xib; sourceTree = "<group>"; };
+		CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extension.swift"; sourceTree = "<group>"; };
 		CBD4BD4E2A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		CBD4BD4F2A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		CBD708C42A1C7AA000693CA1 /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
@@ -830,6 +836,7 @@
 				4F3952AF29123D9600BCE270 /* Calendar+Extension.swift */,
 				4F90BC832912E2BA006EEABC /* Double+Extension.swift */,
 				CB8A01A029BCFBB20004C508 /* Data+Extension.swift */,
+				CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -942,12 +949,11 @@
 		4F0D96A626DDD5FB0061E89E /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				CB9E543B2A45C42000B53828 /* Categories */,
+				CB9E543A2A45C40A00B53828 /* ProductScanner */,
+				CB9E54352A45C26E00B53828 /* Chatbot */,
 				CB46D3A92A1830F000690EB9 /* GolloStores */,
 				4F0D969E26DDD57A0061E89E /* SideMenuViewController.swift */,
-				4F3E7C7828F21C5A00221684 /* CategoriesViewController.swift */,
-				4F3E7C7928F21C5A00221684 /* CategoriesViewController.xib */,
-				CB46D3A52A17FBD200690EB9 /* ProductScannerViewController.swift */,
-				CB46D3A62A17FBD200690EB9 /* ProductScannerViewController.xib */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -1930,6 +1936,33 @@
 			path = SideMenu;
 			sourceTree = "<group>";
 		};
+		CB9E54352A45C26E00B53828 /* Chatbot */ = {
+			isa = PBXGroup;
+			children = (
+				CB9E54362A45C28800B53828 /* ChatbotViewController.swift */,
+				CB9E54372A45C28800B53828 /* ChatbotViewController.xib */,
+			);
+			path = Chatbot;
+			sourceTree = "<group>";
+		};
+		CB9E543A2A45C40A00B53828 /* ProductScanner */ = {
+			isa = PBXGroup;
+			children = (
+				CB46D3A52A17FBD200690EB9 /* ProductScannerViewController.swift */,
+				CB46D3A62A17FBD200690EB9 /* ProductScannerViewController.xib */,
+			);
+			path = ProductScanner;
+			sourceTree = "<group>";
+		};
+		CB9E543B2A45C42000B53828 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4F3E7C7828F21C5A00221684 /* CategoriesViewController.swift */,
+				4F3E7C7928F21C5A00221684 /* CategoriesViewController.xib */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		CBDD0E3729B697ED0071E063 /* EmmaTerms */ = {
 			isa = PBXGroup;
 			children = (
@@ -2093,6 +2126,7 @@
 				4FDA3AA826D8FE27003B2CB6 /* LaunchScreen.storyboard in Resources */,
 				4FDD105C28D15E910082ADB5 /* CarTabViewController.xib in Resources */,
 				4F0D967B26DDBB810061E89E /* SansSerifFLF-Demibold.otf in Resources */,
+				CB9E54392A45C28800B53828 /* ChatbotViewController.xib in Resources */,
 				CB46D3AD2A18310800690EB9 /* GolloStoresViewController.xib in Resources */,
 				4F4EC47E27276A50007B17FE /* Localizable.strings in Resources */,
 				4F0D966F26DDBB810061E89E /* SansSerifBookFLF-Italic.otf in Resources */,
@@ -2386,6 +2420,7 @@
 				4F9B100228BDBDEA00B1FD82 /* SaveUserResponse.swift in Sources */,
 				4F4EC47627275585007B17FE /* CGFloat+Extension.swift in Sources */,
 				4FC04C5E28AEF0CF001EF211 /* TransactionsHistoryViewModel.swift in Sources */,
+				CB9E543D2A45DC9D00B53828 /* DispatchQueue+Extension.swift in Sources */,
 				4FDA3AA026D8FE26003B2CB6 /* ViewController.swift in Sources */,
 				4F0D96A526DDD5F50061E89E /* EditProfileViewController.swift in Sources */,
 				4F0D965226DDBACE0061E89E /* Date+Extension.swift in Sources */,
@@ -2435,6 +2470,7 @@
 				4FE86E6D28E4A1D4008E58F1 /* PaymentOrderResponse.swift in Sources */,
 				4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */,
 				4FB258352720E6C40003C607 /* CustomerInfo.swift in Sources */,
+				CB9E54382A45C28800B53828 /* ChatbotViewController.swift in Sources */,
 				4F4EC47B2727680E007B17FE /* DocType.swift in Sources */,
 				4F0D96E426DDE5AD0061E89E /* HomeViewController.swift in Sources */,
 				4F0D964626DDBA520061E89E /* UIFont+Extension.swift in Sources */,
@@ -2736,9 +2772,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2764,9 +2800,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

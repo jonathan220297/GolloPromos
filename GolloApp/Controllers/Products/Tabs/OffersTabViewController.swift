@@ -181,7 +181,7 @@ extension OffersTabViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.categories[section].productos.count > 0 ? 1 : 0
+        return (viewModel.categories[section].productos?.count ?? 0) > 0 ? 1 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -189,7 +189,7 @@ extension OffersTabViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.categories[indexPath.section].productos.count > 2 ? 650 : 320
+        return (viewModel.categories[indexPath.section].productos?.count ?? 0) > 2 ? 650 : 320
     }
     
     func getOfferCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -197,7 +197,7 @@ extension OffersTabViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.delegate = self
-        cell.viewModel.offersArray = viewModel.categories[indexPath.section].productos
+        cell.viewModel.offersArray = viewModel.categories[indexPath.section].productos ?? []
         cell.configureCollectionView()
         return cell
     }
