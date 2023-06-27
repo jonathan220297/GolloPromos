@@ -6,18 +6,11 @@
 //
 
 import UIKit
+import FirebaseDynamicLinks
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
-    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -46,7 +39,58 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let host = url.host else {
+                return
+        }
+        
+        DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
+            guard error == nil,
+                let dynamicLink = dynamicLink,
+                let urlString = dynamicLink.url?.absoluteString else {
+                    return
+            }
+            print("Dynamic link host: \(host)")
+            print("Dyanmic link url: \(urlString)")
+            
+            // Handle deep links
+            self.handleIncomingDynamicLink(dynamicLink)
+            
+            print("Dynamic link match type: \(dynamicLink.matchType.rawValue)")
+            
+            if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
+                if let range = dynamicURL.range(of: "/product/") {
+                    let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
+                    let userInfo = ["product": sku]
+                    NotificationCenter.default.post(name: Notification.Name("showDynamicLinkProduct"), object: nil, userInfo: userInfo)
+                }
+            }
+        }
+    }
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        if let userActivity = connectionOptions.userActivities.first {
+            if let incomingURL = userActivity.webpageURL {
+                _ = DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) { (dynamicLink, error) in
+                    guard error == nil else { return }
+                    if let dynamicLink = dynamicLink {
+                        self.handleIncomingDynamicLink(dynamicLink)
+                    }
+                }
+            }
+        }
+    }
+    
+    func handleIncomingDynamicLink(_ dynamicLink: DynamicLink) {
+        guard let url = dynamicLink.url else {
+            print("That's weird. My dynamic link object has no url.")
+            return
+        }
+        print("Your incoming link parameter is: \(url.absoluteString)")
+    }
+    
 }
 

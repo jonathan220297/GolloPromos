@@ -102,7 +102,15 @@ class ProvenanceViewController: UIViewController {
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,
                       let response = response else { return }
-                self.viewModel.natilonalities = response.nacionalidades
+                let sortedNationalities = response.nacionalidades.sorted {
+                    if ($0.descripcion ?? "").isUppercasePrefixed == ($1.descripcion ?? "").isUppercasePrefixed || ($0.descripcion ?? "").prefix(1).localizedCaseInsensitiveCompare(($1.descripcion ?? "").prefix(1)) != .orderedSame {
+                        return ($0.descripcion ?? "").localizedCaseInsensitiveCompare(($1.descripcion ?? "")) == .orderedSame
+                    } else {
+                        return ($0.descripcion ?? "").isUppercasePrefixed
+                    }
+
+                }
+                self.viewModel.natilonalities = sortedNationalities
                 self.viewModel.relationship = response.parentesco
                 self.viewModel.origin = response.origenFondos
             })
@@ -152,6 +160,7 @@ class ProvenanceViewController: UIViewController {
             vc.modalPresentationStyle = .fullScreen
             vc.paymentAmmount = self.currentAmount ?? 0.0
             vc.paymentData = self.paymentData
+            vc.isThirdPayAccount = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -439,7 +439,12 @@ class EditProfileViewController: UIViewController {
                         self.validationCodeView.isHidden = true
                         self.showData(with: data)
                     } else {
-                        self.showAlert(alertText: "Error", alertMessage: "Ingresa un código válido.")
+                        self.viewModel.totalIntents += 1
+                        if self.viewModel.totalIntents == 3 {
+                            self.navigationController?.popViewController(animated: true)
+                        } else {
+                            self.showAlert(alertText: "Error", alertMessage: "Ingresa un código válido.")
+                        }
                     }
                 }
             })
@@ -559,13 +564,13 @@ class EditProfileViewController: UIViewController {
             failureImage: UIImage(named: "empty_image")
         )
         if let data = data {
-            if let decodedData = Data(base64Encoded: Variables.userProfile?.image ?? ""),
+            if let decodedData = Data(base64Encoded: data.image ?? ""),
                let decodedimage = UIImage(data: decodedData) {
                 userImageView.image = decodedimage
                 addImageButton.alpha = 0
                 editImageButton.alpha = 1
             } else {
-                if let url = URL(string: Variables.userProfile?.image ?? "") {
+                if let url = URL(string: data.image ?? "") {
                     Nuke.loadImage(with: url, into: userImageView)
                     addImageButton.alpha = 0
                     editImageButton.alpha = 1

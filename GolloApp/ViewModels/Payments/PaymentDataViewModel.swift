@@ -24,6 +24,7 @@ class PaymentDataViewModel {
     
     var paymentData: PaymentData?
     var paymentAmount = 0.0
+    var shipping = 0.0
     var zeroRateList: [ZeroRate] = []
     var zeroRatePayment: Bool = false
     
@@ -181,7 +182,7 @@ class PaymentDataViewModel {
                fechaExp: expiryDatePretty,
                idFormaPago: carManager.paymentMethodSelected?.idFormaPago ?? "30",
                skuRelacionado: nil,
-               montoPago: carManager.total,
+               montoPago: carManager.total + shipping,
                noLineaRelacionada: 0,
                nomTarjeta: cardHolderName.trimmingCharacters(in: .whitespaces),
                numTarjeta: cardNumber,

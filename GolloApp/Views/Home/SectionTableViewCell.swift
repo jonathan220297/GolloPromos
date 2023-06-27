@@ -162,6 +162,7 @@ extension SectionTableViewCell: ProductCellDelegate {
     func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         self.delegate?.sectionTableView(self, moveTo: vc)
     }

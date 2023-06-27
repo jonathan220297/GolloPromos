@@ -93,6 +93,7 @@ extension WishesViewController: UITableViewDataSource, UITableViewDelegate {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.modalPresentationStyle = .fullScreen
         vc.offer = favorites[indexPath.row]
+        vc.skuProduct = favorites[indexPath.row].productCode
         navigationController?.pushViewController(vc, animated: true)
     }
 

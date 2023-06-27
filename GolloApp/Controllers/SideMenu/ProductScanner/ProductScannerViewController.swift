@@ -21,6 +21,8 @@ class ProductScannerViewController: UIViewController {
     @IBOutlet weak var storeSwitch: UISwitch!
     @IBOutlet weak var videoPreviewView: UIView!
     @IBOutlet weak var articleCodeStackView: UIStackView!
+    @IBOutlet weak var onboardingView: UIView!
+    @IBOutlet weak var onboardingButton: UIButton!
     
     var captureSession: AVCaptureSession
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -28,6 +30,7 @@ class ProductScannerViewController: UIViewController {
     var stringURL = String()
     var selectedBodega = 1
     var storeSelected: ShopData?
+    var navigationOk: Bool = false
     
     // MARK: - Constants
     var viewModel: GolloStoresViewModel
@@ -64,9 +67,14 @@ class ProductScannerViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         configureNavBar()
         
+        if self.viewModel.verifyTermsConditionsState() {
+            self.onboardingView.isHidden = true
+        }
+        
         if (self.captureSession.isRunning == false) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 self.captureSession.startRunning()
+                self.navigationOk = false
             })
         }
     }
@@ -144,16 +152,46 @@ class ProductScannerViewController: UIViewController {
     }
     
     private func configureRx() {
+        viewModel
+            .errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self else { return }
+                if !error.isEmpty {
+                    self.view.activityStopAnimatingFull()
+                }
+            })
+            .disposed(by: bag)
+        
+        onboardingButton
+            .rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.onboardingView.isHidden = true
+                self.viewModel.setOnBoardingValueToUserDefaults()
+            })
+            .disposed(by: bag)
+        
         storeSwitch
             .rx
             .isOn
             .subscribe(onNext: {[weak self] value in
                 guard let self = self else { return }
-                
                 if value {
                     self.articleCodeStackView.isHidden = false
+                    if (self.captureSession.isRunning == true) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.captureSession.stopRunning()
+                        }
+                    }
                 } else {
                     self.articleCodeStackView.isHidden = true
+                    if (self.captureSession.isRunning == false) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.captureSession.startRunning()
+                        }
+                    }
                 }
             })
             .disposed(by: bag)
@@ -188,18 +226,19 @@ class ProductScannerViewController: UIViewController {
             .subscribe(onNext: {[weak self] in
                 guard let self = self else { return }
                 var sku = ""
+                var center = ""
                 if self.articleCodeTextField.text == nil || self.articleCodeTextField.text?.isEmpty == true {
                     self.showAlert(alertText: "GolloApp", alertMessage: "Debe ingresar código de artículo.")
                 } else {
                     if let code = self.articleCodeTextField.text, code.count == 14 {
                         sku = String(code.dropFirst(4))
-                        _ = code.subString(from: 0, to: 3)
+                        center = code.subString(from: 0, to: 3)
                         let bodega = code.subString(from: 3, to: 4)
                         self.selectedBodega = Int(bodega) ?? 1
                     } else {
                         sku = self.articleCodeTextField.text ?? ""
                     }
-                    getSKU(with: sku, bodega: String(self.selectedBodega))
+                    getSKU(with: sku, center: center, bodega: String(self.selectedBodega))
                 }
             })
             .disposed(by: bag)
@@ -218,17 +257,21 @@ class ProductScannerViewController: UIViewController {
     }
     
     fileprivate func getSKU(with sku: String, center: String = "144", bodega: String) {
-        if (self.captureSession.isRunning == true) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.captureSession.stopRunning()
+        if !navigationOk {
+            if (self.captureSession.isRunning == true) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.captureSession.stopRunning()
+                }
             }
+            let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+            vc.skuProduct = sku
+            vc.centerProduct = center
+            vc.bodegaProduct = bodega
+            vc.scannerFlowActivate = true
+            vc.modalPresentationStyle = .fullScreen
+            navigationController?.pushViewController(vc, animated: true)
+            navigationOk = true
         }
-        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
-        vc.skuProduct = sku
-        vc.bodegaProduct = bodega
-        vc.scannerFlowActivate = true
-        vc.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -252,22 +295,23 @@ extension ProductScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func validateBarCode(with code: String) {
+        if (self.captureSession.isRunning == true) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.captureSession.stopRunning()
+            }
+        }
         if !code.isEmpty {
             let sku = String(code.dropFirst(4))
             let store = code.subString(from: 0, to: 3)
             let bodega = code.subString(from: 3, to: 4)
-            if self.storeSwitch.isOn {
-                if let searchStore = self.viewModel.shops.first(where: { $0.idTienda == store }) {
-                    self.storeSelected = searchStore
-                    self.storeTextField.text = searchStore.nombre
-                    if (self.captureSession.isRunning == true) {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            self.captureSession.stopRunning()
-                        }
-                    }
+            if !self.storeSwitch.isOn {
+                self.getSKU(with: sku, center: store, bodega: bodega)
+            }
+        } else {
+            if (self.captureSession.isRunning == false) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.captureSession.startRunning()
                 }
-            } else {
-                self.getSKU(with: sku, bodega: bodega)
             }
         }
     }

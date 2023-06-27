@@ -227,6 +227,7 @@ class OffersViewController: UIViewController {
     func openDetail(with data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }

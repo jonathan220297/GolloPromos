@@ -9,6 +9,8 @@ import UIKit
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
+import FirebaseFirestore
+import FirebaseAuth
 import GoogleSignIn
 import CoreData
 import XCGLogger
@@ -45,17 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-      return application(app, open: url,
-                         sourceApplication: options[UIApplication.OpenURLOptionsKey
-                           .sourceApplication] as? String,
-                         annotation: "")
-    }
-
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        if let scheme = url.scheme,
+            scheme.localizedCaseInsensitiveCompare("gollo.page.link") == .orderedSame {
+            
+            var parameters: [String: String] = [:]
+            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+                parameters[$0.name] = $0.value
+            }
+            
+            print("URL Firebase parameters \(parameters)")
+        }
         if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
-          // Handle the deep link. For example, show the deep-linked content or
-          // apply a promotional offer to the user's account.
-          // ...
+            self.handleIncomingDynamicLink(dynamicLink)
             if let navigationController = self.window?.rootViewController as? UINavigationController {
                 if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
                     if let range = dynamicURL.range(of: "/product/") {
@@ -69,7 +72,75 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
                 }
             }
         }
-        return GIDSignIn.sharedInstance.handle(url)
+      return application(app, open: url,
+                         sourceApplication: options[UIApplication.OpenURLOptionsKey
+                           .sourceApplication] as? String,
+                         annotation: "")
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if let incomingURL = userActivity.webpageURL {
+            print("Incoming URL is \(incomingURL)")
+            let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) {
+                (dynamicLink, error) in
+                guard error == nil else {
+                    print("Found an error! \(String(describing: error?.localizedDescription))")
+                    return
+                }
+                if let dynamicLink = dynamicLink {
+                    self.handleIncomingDynamicLink(dynamicLink)
+                    if let navigationController = self.window?.rootViewController as? UINavigationController {
+                        if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
+                            if let range = dynamicURL.range(of: "/product/") {
+                                let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
+                                let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+                                vc.skuProduct = sku
+                                vc.bodegaProduct = "1"
+                                vc.modalPresentationStyle = .fullScreen
+                                navigationController.pushViewController(vc, animated: true)
+                            }
+                        }
+                    }
+                }
+            }
+            if linkHandled {
+                return true
+            } else {
+                return false
+            }
+        }
+        return false
+    }
+    
+    func handleIncomingDynamicLink(_ dynamicLink: DynamicLink) {
+        guard let url = dynamicLink.url else {
+            print("That's weird. My dynamic link object has no url.")
+            return
+        }
+        print("Your incoming link parameter is: \(url.absoluteString)")
+    }
+
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+            self.handleIncomingDynamicLink(dynamicLink)
+            print("I have received a URL throught a custom scheme! \(url.absoluteString)")
+            if let navigationController = self.window?.rootViewController as? UINavigationController {
+                if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
+                    if let range = dynamicURL.range(of: "/product/") {
+                        let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
+                        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+                        vc.skuProduct = sku
+                        vc.bodegaProduct = "1"
+                        vc.modalPresentationStyle = .fullScreen
+                        navigationController.pushViewController(vc, animated: true)
+                    }
+                }
+            }
+          return true
+        } else {
+            return GIDSignIn.sharedInstance.handle(url)
+        }
     }
     
     func requestTracking() {

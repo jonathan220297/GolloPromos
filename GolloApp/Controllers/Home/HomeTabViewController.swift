@@ -44,7 +44,12 @@ class HomeTabViewController: UIViewController {
             name: NSNotification.Name(rawValue: NOTIFICATION_NAME.NOTIFICATION_FLOW),
             object: nil
         )
-
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(navigateProduct),
+            name: NSNotification.Name(rawValue: "showDynamicLinkProduct"),
+            object: nil
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -233,6 +238,18 @@ class HomeTabViewController: UIViewController {
             Variables.openPushNotificationFlow = false
         }
     }
+    
+    @objc fileprivate func navigateProduct(_ notification: Notification) {
+        if let productCode = notification.userInfo?["product"] as? String {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+                let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+                vc.skuProduct = productCode
+                vc.modalPresentationStyle = .fullScreen
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+         }
+    }
+    
 }
 
 extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -346,6 +363,7 @@ extension HomeTabViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = viewModel.sections[indexPath.section].product?[indexPath.row]
+        vc.skuProduct = viewModel.sections[indexPath.section].product?[indexPath.row].productCode
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -367,6 +385,7 @@ extension HomeTabViewController: ProductCellDelegate {
     func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -376,6 +395,7 @@ extension HomeTabViewController: OffersCellDelegate {
     func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }

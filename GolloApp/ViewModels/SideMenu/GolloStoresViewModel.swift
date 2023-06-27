@@ -10,7 +10,9 @@ import RxRelay
 
 class GolloStoresViewModel {
     private let service = GolloService()
+    private let defaults = UserDefaults.standard
     
+    let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     var data: [ShopData] = []
     var states: [String] = []
     var shops: [ShopData] = []
@@ -39,6 +41,7 @@ class GolloStoresViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
+                    self.errorMessage.accept(error.localizedDescription)
                     print("Error: \(error.localizedDescription)")
                 }
             }
@@ -63,5 +66,13 @@ class GolloStoresViewModel {
         shops = data.filter({ data in
             data.provincia == state
         })
+    }
+    
+    func setOnBoardingValueToUserDefaults() {
+        defaults.setValue(true, forKey: "scanOnBoarding")
+    }
+
+    func verifyTermsConditionsState() -> Bool {
+        return defaults.bool(forKey: "scanOnBoarding")
     }
 }

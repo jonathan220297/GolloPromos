@@ -19,7 +19,7 @@ struct Article : Codable {
     let startDate, endDate: String?
     let regalias: Royalties?
     let stock: [Stock]?
-    let extragarantia: [Warranty]?
+    let extraGarantia: [Warranty]?
     let imagenes: [ArticleImages]?
     let complementos: [Offers]?
 }

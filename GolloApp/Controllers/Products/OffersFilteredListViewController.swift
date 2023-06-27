@@ -254,6 +254,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
         } else if collectionView == self.productCollectionView {
             let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
             vc.offer = viewModel.products[indexPath.row]
+            vc.skuProduct = viewModel.products[indexPath.row].productCode
             vc.modalPresentationStyle = .fullScreen
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -284,6 +285,7 @@ extension OffersFilteredListViewController: OffersCellDelegate {
     func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -293,6 +295,7 @@ extension OffersFilteredListViewController: ProductCellDelegate {
     func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }

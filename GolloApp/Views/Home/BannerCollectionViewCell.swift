@@ -22,6 +22,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
     // MARK: - Functions
     func setBanner(with banner: Banner?) {
         guard let images = banner?.images else { return }
+        let seconds = (banner?.autoPlayDelay ?? 5000) / 1000
         var imageSet: [AlamofireSource] = []
         for image in images {
             let imageSrc = image.image?.replacingOccurrences(of: " ", with: "%20")
@@ -30,7 +31,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
             }
         }
         imageSlideShowView.setImageInputs(imageSet)
-        imageSlideShowView.slideshowInterval = Double(banner?.autoPlayDelay ?? 5)
+        imageSlideShowView.slideshowInterval = Double(seconds)
         imageSlideShowView.contentScaleMode = .scaleToFill
     }
 }

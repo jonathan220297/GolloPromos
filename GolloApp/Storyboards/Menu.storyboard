@@ -67,10 +67,10 @@
                                 <rect key="frame" x="0.0" y="190" width="414" height="706"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fs3-XS-jox">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="514"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="460"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wdU-lK-0yV">
-                                                <rect key="frame" x="0.0" y="16" width="414" height="482"/>
+                                                <rect key="frame" x="0.0" y="16" width="414" height="428"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QuI-4i-bEo">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -338,8 +338,8 @@
                                                             <constraint firstAttribute="height" constant="50" id="tyK-zB-Pbc"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwO-Q1-7ft">
-                                                        <rect key="frame" x="0.0" y="378" width="414" height="50"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwO-Q1-7ft">
+                                                        <rect key="frame" x="0.0" y="376" width="414" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcode" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nuC-mb-jvC">
                                                                 <rect key="frame" x="24" y="13.5" width="25" height="22.5"/>
@@ -375,7 +375,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpt-NI-qRH">
-                                                        <rect key="frame" x="0.0" y="432" width="414" height="50"/>
+                                                        <rect key="frame" x="0.0" y="378" width="414" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logout" translatesAutoresizingMaskIntoConstraints="NO" id="ccv-Ex-3Kh">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>

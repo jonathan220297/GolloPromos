@@ -38,6 +38,22 @@
 				<string>com.googleusercontent.apps.203295599193-2vk8mqdnkeefb679890onhoccf82jjrt</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.merckers.golloapp</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>gollo.page.link</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -45,6 +61,12 @@
 	<string>773236293860936</string>
 	<key>FacebookDisplayName</key>
 	<string>GolloApp</string>
+	<key>FirebaseDynamicLinksCustomDomains</key>
+	<array>
+		<string>https://gollo.page.link</string>
+		<string>https://gollo.page.link/product</string>
+		<string>https://gollo.com</string>
+	</array>
 	<key>GURLAPI</key>
 	<string>$(GOLLO_URL_SERVICE)</string>
 	<key>LSApplicationQueriesSchemes</key>

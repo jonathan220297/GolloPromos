@@ -21,6 +21,7 @@ class PaymentConfirmViewController: UIViewController {
     
     var paymentData: PaymentData?
     var paymentAmmount: Double = 0.0
+    var isThirdPayAccount: Bool = false
 
     var bag = DisposeBag()
     
@@ -90,6 +91,7 @@ class PaymentConfirmViewController: UIViewController {
                     if methodSelected.indTarjeta == 1 {
                         let vc = PaymentDataViewController.instantiate(fromAppStoryboard: .Payments)
                         vc.modalPresentationStyle = .fullScreen
+                        vc.viewModel.shipping = self.viewModel.shipping
                         vc.viewModel.paymentData = self.paymentData
                         vc.viewModel.paymentAmount = self.paymentAmmount
                         vc.viewModel.isAccountPayment = self.viewModel.isAccountPayment
@@ -193,7 +195,7 @@ class PaymentConfirmViewController: UIViewController {
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
                         productPaymentResponse: response
-                    ), cartPayment: false
+                    ), cartPayment: self.isThirdPayAccount
                 )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(paymentSuccessViewController, animated: true)

@@ -85,6 +85,7 @@ class OfferDetailViewController: UIViewController {
     let bag = DisposeBag()
 
     var skuProduct: String?
+    var centerProduct: String = "144"
     var bodegaProduct: String?
     var scannerFlowActivate: Bool = false
     var article: OfferDetail?
@@ -208,7 +209,9 @@ class OfferDetailViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self else { return }
                 if !error.isEmpty {
-                    self.showAlert(alertText: "GolloApp", alertMessage: "Producto no disponible para la venta en el App.")
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: error, action: {
+                        self.navigationController?.popViewController(animated: true)
+                    })
                     self.viewModel.errorMessage.accept("")
                 }
             })
@@ -243,39 +246,37 @@ class OfferDetailViewController: UIViewController {
             .tap
             .subscribe(onNext: {
                 if let carManagerType = self.viewModel.verifyCarManagerTypeState() {
-                    var initFlow = ""
-                    if carManagerType == CarManagerType.SCAN_AND_GO.rawValue {
-                        initFlow = "Scanner de productos"
-                    } else {
-                        initFlow = "Lista de productos"
-                    }
-                    if carManagerType == CarManagerType.SCAN_AND_GO.rawValue && self.scannerFlowActivate {
-                        self.addToCart()
-                    } else if carManagerType == CarManagerType.PRODUCT_LIST.rawValue && !self.scannerFlowActivate {
+                    if CoreDataService().fetchCarItems().isEmpty {
                         self.addToCart()
                     } else {
-                        let refreshAlert = UIAlertController(title: "GolloApp", message: "No se puede hacer un carrito con productos en línea y productos de agencia. ¿Deseas limpiar el carrito e inciar uno nuevo?", preferredStyle: UIAlertController.Style.alert)
+                        if carManagerType == CarManagerType.SCAN_AND_GO.rawValue && self.scannerFlowActivate {
+                            self.addToCart()
+                        } else if carManagerType == CarManagerType.PRODUCT_LIST.rawValue && !self.scannerFlowActivate {
+                            self.addToCart()
+                        } else {
+                            let refreshAlert = UIAlertController(title: "GolloApp", message: "No se puede hacer un carrito con productos en línea y productos de agencia. ¿Deseas limpiar el carrito e inciar uno nuevo?", preferredStyle: UIAlertController.Style.alert)
 
-                        refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
-                            refreshAlert.dismiss(animated: true)
-                        }))
-
-                        refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
-                            if CoreDataService().deleteAllItems() {
-                                self.viewModel.deleteCarManagerTypeState()
-                                var type = ""
-                                if self.scannerFlowActivate {
-                                    type = CarManagerType.SCAN_AND_GO.rawValue
-                                } else {
-                                    type = CarManagerType.PRODUCT_LIST.rawValue
-                                }
-                                self.viewModel.setCarManagerTypeToUserDefaults(with: type)
-                                self.addToCart()
+                            refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
                                 refreshAlert.dismiss(animated: true)
-                            }
-                        }))
+                            }))
 
-                        self.present(refreshAlert, animated: true, completion: nil)
+                            refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
+                                if CoreDataService().deleteAllItems() {
+                                    self.viewModel.deleteCarManagerTypeState()
+                                    var type = ""
+                                    if self.scannerFlowActivate {
+                                        type = CarManagerType.SCAN_AND_GO.rawValue
+                                    } else {
+                                        type = CarManagerType.PRODUCT_LIST.rawValue
+                                    }
+                                    self.viewModel.setCarManagerTypeToUserDefaults(with: type)
+                                    self.addToCart()
+                                    refreshAlert.dismiss(animated: true)
+                                }
+                            }))
+
+                            self.present(refreshAlert, animated: true, completion: nil)
+                        }
                     }
                 } else {
                     var type = ""
@@ -309,7 +310,7 @@ class OfferDetailViewController: UIViewController {
         self.view.activityStartAnimatingFull()
         let skuCode = offer?.productCode ?? skuProduct
         if let sku = skuCode {
-            viewModel.fetchOfferDetail(sku: sku, bodega: bodegaProduct ?? "1")
+            viewModel.fetchOfferDetail(sku: sku, centro: centerProduct , bodega: bodegaProduct ?? "1")
                 .asObservable()
                 .subscribe(onNext: {[weak self] data in
                     guard let self = self,
@@ -548,7 +549,7 @@ class OfferDetailViewController: UIViewController {
         var documents: [Warranty] = []
         let lovN = Warranty(plazoMeses: 0, porcentaje: 0.0, montoExtragarantia: 0.0, impuestoExtragarantia: 0.0, titulo: "Sin gollo plus")
         documents.append(lovN)
-        if let warranty = data.articulo?.extragarantia {
+        if let warranty = data.articulo?.extraGarantia {
             for w in warranty {
                 let amount = String(w.montoExtragarantia ?? 0.0).currencyFormatting()
                 let lov = Warranty(
@@ -597,58 +598,41 @@ class OfferDetailViewController: UIViewController {
     }
     
     private func generateDynamicLink(handler: @escaping (String) -> Void) {
-        let dynamicLinkDomain = "https://gollo.page.link/d6o5"
-        let _:[String : String] = [
-            "product": article?.articulo?.sku ?? ""
-        ]
-        
+        let dynamicLinkDomain = "https://gollo.page.link"
         var generatedLink = ""
 
         guard let deepLink = URL(string:"\(dynamicLinkDomain)/product/\(article?.articulo?.sku ?? "")") else { return }
-        print("deepLink is \(deepLink)")
         
         let linkBuilder = DynamicLinkComponents(link: deepLink, domainURIPrefix: dynamicLinkDomain)
         linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.merckers.golloapp")
         linkBuilder?.iOSParameters?.appStoreID = "1643795423"
+        
         linkBuilder?.androidParameters = DynamicLinkAndroidParameters(packageName: "com.merckers.golloapp")
+    
+        let url = URL(string: article?.articulo?.urlImagen ?? "")
         
-        let components = DynamicLinkComponents(link: deepLink, domainURIPrefix: dynamicLinkDomain)
+        linkBuilder?.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
+        linkBuilder?.socialMetaTagParameters?.title = self.article?.articulo?.nombre ?? ""
+        linkBuilder?.socialMetaTagParameters?.descriptionText = self.article?.articulo?.descripcionDetalle ?? (self.article?.articulo?.sku ?? "")
+        linkBuilder?.socialMetaTagParameters?.imageURL = url
         
-        if let components = components {
-            let url = URL(string: article?.articulo?.urlImagen ?? "")
-            if let url = url {
-                components.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
-                components.socialMetaTagParameters?.imageURL = url
-            }
-            
-            //1. Build the dynamic long link
-            let longlLink = components.url
-            generatedLink = longlLink?.absoluteString ?? ""
-            print("The long link is \(longlLink!)")
+        let longlLink = linkBuilder?.url
+        generatedLink = linkBuilder?.url?.absoluteString ?? ""
 
-            //Set the length of a short Dynamic Link
-            let options = DynamicLinkComponentsOptions()
-            options.pathLength = .unguessable
-            components.options = options
-            
-            components.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
-            components.socialMetaTagParameters?.title = self.article?.articulo?.nombre ?? ""
-            components.socialMetaTagParameters?.descriptionText = self.article?.articulo?.descripcionDetalle ?? (self.article?.articulo?.sku ?? "")
-            components.socialMetaTagParameters?.imageURL = URL(string: self.article?.articulo?.urlImagen ?? "")
+        print("The long link is \(longlLink!)")
 
-            //2. Or create a shortened dynamic link
-            components.shorten { (shortURL, warnings, error) in
-                if let error = error {
-                    print("shortURL error is \(error.localizedDescription)")
-                    handler(generatedLink)
-                    return
-                }
-
-                // TODO: Handle shortURL.
-                generatedLink = shortURL?.absoluteString ?? ""
-                handler(generatedLink)
-                print("shortURL is \(String(describing: shortURL))")
-            }
+        linkBuilder?.options = DynamicLinkComponentsOptions()
+        linkBuilder?.options?.pathLength = .short
+        linkBuilder?.shorten() { url, warnings, error in
+          guard let url = url, error != nil else {
+              print("The short URL error.")
+              handler(generatedLink)
+              return
+          }
+            // TODO: Handle shortURL.
+            generatedLink = url.absoluteString
+            handler(generatedLink)
+            print("The short URL is: \(url)")
         }
     }
 }
@@ -739,6 +723,7 @@ extension OfferDetailViewController: OffersCellDelegate {
     func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -748,6 +733,7 @@ extension OfferDetailViewController: ProductCellDelegate {
     func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }

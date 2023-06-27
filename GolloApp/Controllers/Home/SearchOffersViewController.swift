@@ -210,6 +210,7 @@ extension SearchOffersViewController: UICollectionViewDelegate,
         if collectionView == self.collectionView {
             let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
             vc.offer = viewModel.products[indexPath.row]
+            vc.skuProduct = viewModel.products[indexPath.row].productCode
             vc.modalPresentationStyle = .fullScreen
             navigationController?.pushViewController(vc, animated: true)
         } else if collectionView == self.searchCollectionView {
@@ -223,6 +224,7 @@ extension SearchOffersViewController: OffersCellDelegate {
     func offerssCell(_ offersTableViewCell: OffersTableViewCell, shouldMoveToDetailWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -232,6 +234,7 @@ extension SearchOffersViewController: ProductCellDelegate {
     func productCell(_ productCollectionViewCell: ProductCollectionViewCell, willMoveToDetilWith data: Product) {
         let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
         vc.offer = data
+        vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -222,8 +222,8 @@ class OrderDetailTabViewController: UIViewController {
             paymentMethodLabel.text = paymentMethod?.descripcionFP ?? ""
         }
         
-        if let totalDeliveryAmount = order.orden.montoEnvio {
-            amountLabel.attributedText = formatHTML(header: "Monto: ", content: "₡\(numberFormatter.string(from: NSNumber(value: ((paymentMethod?.montoTotal ?? 0.0) + totalDeliveryAmount))) ?? "")")
+        if let totalFinalAmount = order.orden.montoNeto {
+            amountLabel.attributedText = formatHTML(header: "Monto: ", content: "₡\(numberFormatter.string(from: NSNumber(value: (totalFinalAmount))) ?? "")")
         } else {
             amountLabel.attributedText = formatHTML(header: "Monto: ", content: "₡\(numberFormatter.string(from: NSNumber(value: (paymentMethod?.montoTotal ?? 0.0))) ?? "")")
         }

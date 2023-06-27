@@ -21,6 +21,7 @@ class EditProfileViewModel {
     var genderTypes: [GenderType] = []
     var data: UserData? = nil
     var isUpdating = false
+    var totalIntents = 0
 
     let nameSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let lastnameSubject: BehaviorRelay<String?> = BehaviorRelay(value: nil)

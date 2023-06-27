@@ -207,6 +207,10 @@ extension String {
        let endIndex = self.index(self.startIndex, offsetBy: to)
        return String(self[startIndex..<endIndex])
     }
+    
+    var isUppercasePrefixed: Bool {
+        return first?.isUppercase ?? false
+    }
 }
 
 

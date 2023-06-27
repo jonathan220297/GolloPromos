@@ -165,7 +165,7 @@ class PaymentViewController: UIViewController {
             let vc = PaymentConfirmViewController.instantiate(fromAppStoryboard: .Payments)
             vc.modalPresentationStyle = .fullScreen
             vc.paymentAmmount = self.currentAmount!
-            vc.paymentData = self.paymentData
+            vc.paymentData = self.paymentData            
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -217,7 +217,7 @@ class PaymentViewController: UIViewController {
 
     fileprivate func validateAmountData() -> Bool {
         if selectedPaymentAmount == -1  {
-            if let specifiedAmount = otherAmountTextField.text {
+            if let specifiedAmount = otherAmountTextField.text, !specifiedAmount.isEmpty {
                 currentAmount = Double(specifiedAmount)
                 return true
             } else {
