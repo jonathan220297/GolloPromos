@@ -113,6 +113,13 @@ class OffersTabViewController: UIViewController {
     func configureTableView() {
         offersTableView.register(UINib(nibName: "CategoryOffersTableViewCell", bundle: nil), forCellReuseIdentifier: "CategoryOffersTableViewCell")
         offersTableView.register(UINib(nibName: "OffersTableViewCell", bundle: nil), forCellReuseIdentifier: "OffersTableViewCell")
+        offersTableView.register(
+            UINib(
+                nibName: "OffersFooterTableViewCell",
+                bundle: nil
+            ),
+            forCellReuseIdentifier: "OffersFooterTableViewCell"
+        )
     }
 
     fileprivate func registerDevice(with token: String) {
@@ -216,6 +223,15 @@ extension OffersTabViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OffersFooterTableViewCell") as? OffersFooterTableViewCell else {
+            return UIView()
+        }
+        cell.delegate = self
+        cell.setCategoryInfo(with: viewModel.categories[section])
+        return cell
+    }
 }
 
 extension OffersTabViewController: CategoryOffersDelegate {
@@ -259,5 +275,17 @@ extension OffersTabViewController: OffersCellDelegate {
         vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension OffersTabViewController: OffersFooterDelegate {
+    func seeMoreTapped(section: Int) {
+        let offersFilteredListViewController = OffersFilteredListViewController(
+            viewModel: OffersFilteredListViewModel(),
+            category: section,
+            taxonomy: -1
+        )
+        offersFilteredListViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
     }
 }

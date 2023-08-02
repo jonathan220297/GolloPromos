@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="width" constant="25" id="nuK-OF-aF7"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehu-3J-NAO">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehu-3J-NAO">
                                 <rect key="frame" x="237" y="9.5" width="75" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="RA1-Wh-GHm"/>

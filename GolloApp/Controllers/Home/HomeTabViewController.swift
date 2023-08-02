@@ -181,6 +181,14 @@ class HomeTabViewController: UIViewController {
         homeCollectionView.register(UINib(nibName: "BannerCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BannerCollectionViewCell")
         homeCollectionView.register(UINib(nibName: "SectionCollectionViewCell", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionCollectionViewCell")
         homeCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
+        homeCollectionView.register(
+            UINib(
+                nibName: "ProductFooterCollectionViewCell",
+                bundle: nil
+            ),
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: "ProductFooterCollectionViewCell"
+        )
         
     }
     
@@ -269,13 +277,24 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionCollectionViewCell", for: indexPath) as! SectionCollectionViewCell
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionCollectionViewCell", for: indexPath) as! SectionCollectionViewCell
+            
+            header.indexPath = indexPath
+            header.setSectionName(with: viewModel.sections[indexPath.section].name ?? "")
+            header.delegate = self
+            
+            return header
+        case UICollectionView.elementKindSectionFooter:
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProductFooterCollectionViewCell", for: indexPath) as! ProductFooterCollectionViewCell
+            footer.delegate = self
+            footer.indexPath = indexPath
+            return footer
+        default:
+            assert(false, "Unexpected element kind")
+        }
         
-        header.indexPath = indexPath
-        header.setSectionName(with: viewModel.sections[indexPath.section].name ?? "")
-        header.delegate = self
-        
-        return header
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -283,6 +302,16 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             return CGSize(width: collectionView.bounds.width, height: 0)
         } else if let products = viewModel.sections[section].product, !products.isEmpty {
             return CGSize(width: collectionView.bounds.width, height: 55)
+        } else {
+            return CGSize(width: collectionView.bounds.width, height: 0)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if viewModel.sections[section].banner != nil {
+            return CGSize(width: collectionView.bounds.width, height: 0)
+        } else if let products = viewModel.sections[section].product, !products.isEmpty {
+            return CGSize(width: collectionView.bounds.width, height: 50)
         } else {
             return CGSize(width: collectionView.bounds.width, height: 0)
         }
@@ -423,5 +452,17 @@ extension HomeTabViewController: BannerCellDelegate {
                 present(vc, animated: true)
             }
         }
+    }
+}
+
+extension HomeTabViewController: ProductFooterDelegate {
+    func seeMoreTapped(indexPath: IndexPath) {
+        let offersFilteredListViewController = OffersFilteredListViewController(
+            viewModel: OffersFilteredListViewModel(),
+            category: viewModel.sections[indexPath.section].link,
+            taxonomy: viewModel.sections[indexPath.section].tax ?? -1
+        )
+        offersFilteredListViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
     }
 }
