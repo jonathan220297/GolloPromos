@@ -75,6 +75,7 @@ class EditProfileViewController: UIViewController {
     var genderType = ""
     var sideMenuAcction = false
     var tempUserData: UserData? = nil
+    var keyboardShowing: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,20 +108,28 @@ class EditProfileViewController: UIViewController {
     }
 
     // MARK: - Observers
+    @objc func closePopUp() {
+        if keyboardShowing {
+            hideKeyboardWhenTappedAround()
+        }
+    }
+
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 && self.searchCustomerButton.visibility == UIView.Visibility.gone {
-                self.view.frame.origin.y -= keyboardSize.height - 50
+            self.keyboardShowing = true
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height - 150
             }
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
+        self.keyboardShowing = false
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
     }
-
+    
     @objc func donePressed() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -303,7 +312,7 @@ class EditProfileViewController: UIViewController {
                     Variables.isClientUser = false
                     Variables.userProfile = nil
                     UserManager.shared.userData = nil
-                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Tu sesión ha expirado y la aplicación se reiniciara inmediatamente.") {
+                    self.showAlertWithActions(alertText: "Detectamos otra sesión activa", alertMessage: "La aplicación se reiniciará.") {
                         let firebaseAuth = Auth.auth()
                         do {
                             try firebaseAuth.signOut()
@@ -441,7 +450,11 @@ class EditProfileViewController: UIViewController {
                     } else {
                         self.viewModel.totalIntents += 1
                         if self.viewModel.totalIntents == 3 {
-                            self.navigationController?.popViewController(animated: true)
+                            self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Ha excedido la cantidad de intentos permitidos") {
+                                self.validationCodeView.isHidden = true
+                                self.codeTextField.text = ""
+                                self.viewModel.totalIntents = 0
+                            }
                         } else {
                             self.showAlert(alertText: "Error", alertMessage: "Ingresa un código válido.")
                         }

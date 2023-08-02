@@ -94,6 +94,7 @@ class CarTabViewController: UIViewController {
             .subscribe(onNext: {[weak self] in
                 guard let self = self else { return }
                 if CoreDataService().deleteAllItems() {
+                    self.viewModel.deleteCarManagerTypeState()
                     self.viewModel.car.removeAll()
                     self.carTableView.reloadData()
                     self.emptyView.alpha = 1

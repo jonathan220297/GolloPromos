@@ -9,6 +9,7 @@ import Foundation
 
 class CarTabViewModel {
     let carManager = CarManager.shared
+    private let defaults = UserDefaults.standard
     
     var car: [CartItemDetail] = []
     var total = 0.0
@@ -47,6 +48,10 @@ class CarTabViewModel {
             i += 1 * c.cantidad
         }
         return i
+    }
+    
+    func deleteCarManagerTypeState() {
+        defaults.removeObject(forKey: "carManagetTypeStarted")
     }
     
 }

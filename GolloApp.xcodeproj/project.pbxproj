@@ -352,6 +352,10 @@
 		CB46D3B32A1845D800690EB9 /* GolloStoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB46D3B12A1845D800690EB9 /* GolloStoresTableViewCell.swift */; };
 		CB46D3B42A1845D800690EB9 /* GolloStoresTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB46D3B22A1845D800690EB9 /* GolloStoresTableViewCell.xib */; };
 		CB56EEFE29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */; };
+		CB8264292A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8264272A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift */; };
+		CB82642A2A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8264282A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib */; };
+		CB82642E2A6E3AB100DB7B13 /* OfferProductImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82642C2A6E3AB100DB7B13 /* OfferProductImageViewController.swift */; };
+		CB82642F2A6E3AB100DB7B13 /* OfferProductImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB82642D2A6E3AB100DB7B13 /* OfferProductImageViewController.xib */; };
 		CB8A01A129BCFBB20004C508 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A01A029BCFBB20004C508 /* Data+Extension.swift */; };
 		CB9E54382A45C28800B53828 /* ChatbotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E54362A45C28800B53828 /* ChatbotViewController.swift */; };
 		CB9E54392A45C28800B53828 /* ChatbotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9E54372A45C28800B53828 /* ChatbotViewController.xib */; };
@@ -756,6 +760,10 @@
 		CB46D3B12A1845D800690EB9 /* GolloStoresTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolloStoresTableViewCell.swift; sourceTree = "<group>"; };
 		CB46D3B22A1845D800690EB9 /* GolloStoresTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GolloStoresTableViewCell.xib; sourceTree = "<group>"; };
 		CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypeTransitionManager.swift; sourceTree = "<group>"; };
+		CB8264272A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		CB8264282A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		CB82642C2A6E3AB100DB7B13 /* OfferProductImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferProductImageViewController.swift; sourceTree = "<group>"; };
+		CB82642D2A6E3AB100DB7B13 /* OfferProductImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferProductImageViewController.xib; sourceTree = "<group>"; };
 		CB8A01A029BCFBB20004C508 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		CB9E54362A45C28800B53828 /* ChatbotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotViewController.swift; sourceTree = "<group>"; };
 		CB9E54372A45C28800B53828 /* ChatbotViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatbotViewController.xib; sourceTree = "<group>"; };
@@ -1104,6 +1112,7 @@
 		4F17322B27013B9300D7924D /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				CB8264262A6E1C1000DB7B13 /* ProductImages */,
 				CB445C5D2A1E9A1700329B9D /* OfferImages */,
 				4FADF58728E4A27600DF9F29 /* OfferServiceProtection */,
 				4FFD9CA7272AF977004778F1 /* FilterTableViewCell.swift */,
@@ -1820,6 +1829,7 @@
 		4FE1912D26DF06BC00322128 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				CB82642B2A6E3A9300DB7B13 /* OfferProductImage */,
 				4F68372E28DB7A1B00462F5E /* OfferServiceProtection */,
 				4FFD9CAF272AFFED004778F1 /* OffersTabBarViewController.swift */,
 				4FE1913226DF071100322128 /* Filter */,
@@ -1934,6 +1944,24 @@
 				CB46D3B22A1845D800690EB9 /* GolloStoresTableViewCell.xib */,
 			);
 			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		CB8264262A6E1C1000DB7B13 /* ProductImages */ = {
+			isa = PBXGroup;
+			children = (
+				CB8264272A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift */,
+				CB8264282A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib */,
+			);
+			path = ProductImages;
+			sourceTree = "<group>";
+		};
+		CB82642B2A6E3A9300DB7B13 /* OfferProductImage */ = {
+			isa = PBXGroup;
+			children = (
+				CB82642C2A6E3AB100DB7B13 /* OfferProductImageViewController.swift */,
+				CB82642D2A6E3AB100DB7B13 /* OfferProductImageViewController.xib */,
+			);
+			path = OfferProductImage;
 			sourceTree = "<group>";
 		};
 		CB9E54352A45C26E00B53828 /* Chatbot */ = {
@@ -2135,6 +2163,7 @@
 				4FE1912526DEFCA000322128 /* ProductCollectionViewCell.xib in Resources */,
 				4F678D7C28E7C3FF00C8E8B3 /* WishesViewController.xib in Resources */,
 				4FA0B87128E3C48700395361 /* AddressListViewController.xib in Resources */,
+				CB82642F2A6E3AB100DB7B13 /* OfferProductImageViewController.xib in Resources */,
 				4F317A9C28F9E038005BA675 /* SectionCollectionViewCell.xib in Resources */,
 				4F69894428BDB625000FFA56 /* PaymentSuccessViewController.xib in Resources */,
 				4FDA3AA326D8FE26003B2CB6 /* Main.storyboard in Resources */,
@@ -2167,6 +2196,7 @@
 				4F0D96BC26DDD7F50061E89E /* MenuTableViewCell.xib in Resources */,
 				4FA0B87828E3C6EB00395361 /* AddressTableViewCell.xib in Resources */,
 				4F678D7428E7BD6100C8E8B3 /* MenuTabTableViewCell.xib in Resources */,
+				CB82642A2A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib in Resources */,
 				CBDD0E4029B698630071E063 /* EmmaTermsListViewController.xib in Resources */,
 				4F410E1F28F6174200387871 /* CategoriesFilteredListCollectionViewCell.xib in Resources */,
 				4F3E7C7B28F21C5A00221684 /* CategoriesViewController.xib in Resources */,
@@ -2455,6 +2485,7 @@
 				4F410E1B28F611F400387871 /* CategoriesFilterList.swift in Sources */,
 				4F3E481927278536009D259D /* FilterResponse.swift in Sources */,
 				4FA2768326D9192900216284 /* SplashViewModel.swift in Sources */,
+				CB82642E2A6E3AB100DB7B13 /* OfferProductImageViewController.swift in Sources */,
 				4F7C5F2828E6171600123072 /* OrdersData.swift in Sources */,
 				4F46199F2700FC8300265E73 /* StatusViewController.swift in Sources */,
 				4F17322D27013BA100D7924D /* HeaderTableViewCell.swift in Sources */,
@@ -2469,6 +2500,7 @@
 				4F0D96BD26DDD7F50061E89E /* MenuTableViewCell.swift in Sources */,
 				4FE86E6D28E4A1D4008E58F1 /* PaymentOrderResponse.swift in Sources */,
 				4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */,
+				CB8264292A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift in Sources */,
 				4FB258352720E6C40003C607 /* CustomerInfo.swift in Sources */,
 				CB9E54382A45C28800B53828 /* ChatbotViewController.swift in Sources */,
 				4F4EC47B2727680E007B17FE /* DocType.swift in Sources */,
@@ -2772,7 +2804,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
@@ -2782,7 +2814,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2800,7 +2832,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
@@ -2810,7 +2842,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

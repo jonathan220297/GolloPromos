@@ -208,6 +208,9 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
         if collectionView == self.collectionView {
             let label = UILabel(frame: CGRect.zero)
             label.text = viewModel.categories[indexPath.row].nombre
+            label.font = UIFont.boldSystemFont(ofSize: 16)
+            label.textAlignment = .center
+            label.adjustsFontSizeToFitWidth = true
             label.sizeToFit()
             return CGSize(width: label.frame.width, height: 40)
         } else {

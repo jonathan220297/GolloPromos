@@ -233,12 +233,12 @@ class ProductScannerViewController: UIViewController {
                     if let code = self.articleCodeTextField.text, code.count == 14 {
                         sku = String(code.dropFirst(4))
                         center = code.subString(from: 0, to: 3)
-                        let bodega = code.subString(from: 3, to: 4)
+                        let bodega = code.subString(from: 0, to: 4)
                         self.selectedBodega = Int(bodega) ?? 1
+                        getSKU(with: sku, center: center, bodega: bodega)
                     } else {
-                        sku = self.articleCodeTextField.text ?? ""
+                        self.showAlert(alertText: "GolloApp", alertMessage: "Debe ingresar código de artículo con la longitud correcta.")
                     }
-                    getSKU(with: sku, center: center, bodega: String(self.selectedBodega))
                 }
             })
             .disposed(by: bag)
@@ -300,10 +300,10 @@ extension ProductScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                 self.captureSession.stopRunning()
             }
         }
-        if !code.isEmpty {
+        if !code.isEmpty && code.count == 14 {
             let sku = String(code.dropFirst(4))
             let store = code.subString(from: 0, to: 3)
-            let bodega = code.subString(from: 3, to: 4)
+            let bodega = code.subString(from: 0, to: 4)
             if !self.storeSwitch.isOn {
                 self.getSKU(with: sku, center: store, bodega: bodega)
             }

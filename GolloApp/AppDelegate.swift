@@ -42,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         Messaging.messaging().delegate = self
         
+        if let url = launchOptions?[.url] as? URL, let annotation = launchOptions?[.annotation] {
+            return self.application(application, open: url, sourceApplication: launchOptions?[.sourceApplication] as? String, annotation: annotation)
+        }
+        
         return true
     }
     
@@ -54,21 +58,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
                 parameters[$0.name] = $0.value
             }
-            
+            let userInfo = ["product": ""]
+            NotificationCenter.default.post(name: Notification.Name("showDynamicLinkProduct"), object: nil, userInfo: userInfo)
             print("URL Firebase parameters \(parameters)")
         }
         if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
             self.handleIncomingDynamicLink(dynamicLink)
-            if let navigationController = self.window?.rootViewController as? UINavigationController {
-                if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
-                    if let range = dynamicURL.range(of: "/product/") {
-                        let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
-                        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
-                        vc.skuProduct = sku
-                        vc.bodegaProduct = "1"
-                        vc.modalPresentationStyle = .fullScreen
-                        navigationController.pushViewController(vc, animated: true)
-                    }
+            if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
+                if let range = dynamicURL.range(of: "/product/") {
+                    let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
+                    let userInfo = ["product": sku]
+                    NotificationCenter.default.post(name: Notification.Name("showDynamicLinkProduct"), object: nil, userInfo: userInfo)
                 }
             }
         }
@@ -81,25 +81,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if let incomingURL = userActivity.webpageURL {
-            print("Incoming URL is \(incomingURL)")
+            let userInfo = ["product": "sku"]
+            NotificationCenter.default.post(name: Notification.Name("showDynamicLinkProduct"), object: nil, userInfo: userInfo)
             let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) {
                 (dynamicLink, error) in
                 guard error == nil else {
+                    let userInfo = ["product": "sku"]
+                    NotificationCenter.default.post(name: Notification.Name("showDynamicLinkProduct"), object: nil, userInfo: userInfo)
                     print("Found an error! \(String(describing: error?.localizedDescription))")
                     return
                 }
                 if let dynamicLink = dynamicLink {
                     self.handleIncomingDynamicLink(dynamicLink)
-                    if let navigationController = self.window?.rootViewController as? UINavigationController {
-                        if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
-                            if let range = dynamicURL.range(of: "/product/") {
-                                let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
-                                let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
-                                vc.skuProduct = sku
-                                vc.bodegaProduct = "1"
-                                vc.modalPresentationStyle = .fullScreen
-                                navigationController.pushViewController(vc, animated: true)
-                            }
+                    if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
+                        if let range = dynamicURL.range(of: "/product/") {
+                            let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
+                            let userInfo = ["product": sku]
+                            NotificationCenter.default.post(name: Notification.Name("showDynamicLinkProduct"), object: nil, userInfo: userInfo)
                         }
                     }
                 }
@@ -125,16 +123,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
             self.handleIncomingDynamicLink(dynamicLink)
             print("I have received a URL throught a custom scheme! \(url.absoluteString)")
-            if let navigationController = self.window?.rootViewController as? UINavigationController {
-                if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
-                    if let range = dynamicURL.range(of: "/product/") {
-                        let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
-                        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
-                        vc.skuProduct = sku
-                        vc.bodegaProduct = "1"
-                        vc.modalPresentationStyle = .fullScreen
-                        navigationController.pushViewController(vc, animated: true)
-                    }
+            if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
+                if let range = dynamicURL.range(of: "/product/") {
+                    let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
+                    let userInfo = ["product": sku]
+                    NotificationCenter.default.post(name: Notification.Name("showDynamicLinkProduct"), object: nil, userInfo: userInfo)
                 }
             }
           return true

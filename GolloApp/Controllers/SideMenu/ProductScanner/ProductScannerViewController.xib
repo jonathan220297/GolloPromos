@@ -155,7 +155,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="8Wk-sZ-MUQ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mD8-eW-GrA">
                                                     <rect key="frame" x="8" y="74" width="272" height="1"/>

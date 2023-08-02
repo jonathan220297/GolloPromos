@@ -75,7 +75,7 @@ class OrdersTabViewController: UIViewController {
                     Variables.isClientUser = false
                     Variables.userProfile = nil
                     UserManager.shared.userData = nil
-                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Tu sesión ha expirado y la aplicación se reiniciara inmediatamente.") {
+                    self.showAlertWithActions(alertText: "Detectamos otra sesión activa", alertMessage: "La aplicación se reiniciará.") {
                         let firebaseAuth = Auth.auth()
                         do {
                             try firebaseAuth.signOut()

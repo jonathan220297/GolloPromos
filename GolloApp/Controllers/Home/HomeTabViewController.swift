@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseMessaging
 import Nuke
+import SafariServices
 
 class HomeTabViewController: UIViewController {
     // MARK: - IBOutlets
@@ -84,7 +85,7 @@ class HomeTabViewController: UIViewController {
                     Variables.isClientUser = false
                     Variables.userProfile = nil
                     UserManager.shared.userData = nil
-                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Tu sesión ha expirado y la aplicación se reiniciara inmediatamente.") {
+                    self.showAlertWithActions(alertText: "Detectamos otra sesión activa", alertMessage: "La aplicación se reiniciará.") {
                         let firebaseAuth = Auth.auth()
                         do {
                             try firebaseAuth.signOut()
@@ -300,6 +301,7 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
     func getBannerCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as? BannerCollectionViewCell else { return UICollectionViewCell() }
         cell.setBanner(with: viewModel.sections[indexPath.section].banner)
+        cell.delegate = self
         cell.dividerViewHeight.constant = 0
         cell.dividerView.isHidden = true
         if indexPath.section == 1 {
@@ -341,7 +343,6 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
                         print(error)
                         return CGSize(width: collectionView.frame.size.width, height: heigth)
                     }
-                    //let heigth = sizeOfImageAt(url: url)?.height ?? (viewModel.sections[indexPath.section].height ?? 120.0)
                 } else {
                     let height = viewModel.sections[indexPath.section].height ?? 120.0
                     return CGSize(width: collectionView.frame.size.width, height: Double(height))
@@ -398,5 +399,29 @@ extension HomeTabViewController: OffersCellDelegate {
         vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeTabViewController: BannerCellDelegate {
+    func bannerCell(_ bannerCollectionViewCell: BannerCollectionViewCell, willMoveToDetilWith data: Banner) {
+        if data.images?.first?.linkType == 1 {
+            if let category = data.images?.first?.linkValue, !category.isEmpty, let taxonomy = data.images?.first?.taxonomia {
+                let offersFilteredListViewController = OffersFilteredListViewController(
+                    viewModel: OffersFilteredListViewModel(),
+                    category: Int(category),
+                    taxonomy: taxonomy
+                )
+                offersFilteredListViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
+            }
+        } else if data.images?.first?.linkType == 3 {
+            if let value = data.images?.first?.linkValue, value.starts(with: "https"), let url = URL(string: value) {
+                let config = SFSafariViewController.Configuration()
+                config.entersReaderIfAvailable = true
+
+                let vc = SFSafariViewController(url: url, configuration: config)
+                present(vc, animated: true)
+            }
+        }
     }
 }

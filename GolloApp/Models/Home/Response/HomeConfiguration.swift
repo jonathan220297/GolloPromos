@@ -51,6 +51,7 @@ struct ImageBanner: Codable {
     let linkValue: String?
     let image: String?
     let linkType: Int?
+    let taxonomia: Int?
 }
 
 // MARK: - Home

@@ -22,6 +22,7 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     
     @IBOutlet weak var imagesView: UIView!
+    @IBOutlet weak var productImagesCollectionView: UICollectionView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     
     @IBOutlet weak var modelView: UIView!
@@ -302,6 +303,7 @@ class OfferDetailViewController: UIViewController {
     }
     
     func configureCollectionView() {
+        self.productImagesCollectionView.register(UINib(nibName: "ProductImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductImageCollectionViewCell")
         self.imagesCollectionView.register(UINib(nibName: "OfferImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "OfferImagesCollectionViewCell")
         self.collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
     }
@@ -310,13 +312,21 @@ class OfferDetailViewController: UIViewController {
         self.view.activityStartAnimatingFull()
         let skuCode = offer?.productCode ?? skuProduct
         if let sku = skuCode {
-            viewModel.fetchOfferDetail(sku: sku, centro: centerProduct , bodega: bodegaProduct ?? "1")
+            viewModel.fetchOfferDetail(sku: sku, centro: centerProduct, bodega: bodegaProduct ?? nil)
                 .asObservable()
                 .subscribe(onNext: {[weak self] data in
                     guard let self = self,
                           let data = data else { return }
                     if let images = data.articulo?.imagenes {
-                        self.viewModel.images = images
+                        var firstImage: [ArticleImages] = []
+                        let imageData = ArticleImages(tipo: 0, imagen: data.articulo?.urlImagen)
+                        firstImage.append(imageData)
+                        self.viewModel.images = firstImage + images
+                    } else {
+                        var firstImage: [ArticleImages] = []
+                        let imageData = ArticleImages(tipo: 0, imagen: data.articulo?.urlImagen)
+                        firstImage.append(imageData)
+                        self.viewModel.images = firstImage
                     }
                     if let complements = data.articulo?.complementos {
                         var products: [Product] = []
@@ -438,7 +448,7 @@ class OfferDetailViewController: UIViewController {
         }
 
         titleLabel.text = data.articulo?.nombre ?? ""
-        serialLabel.text = data.articulo?.sku ?? ""
+        serialLabel.attributedText = formatHTML(header: "Código del artículo: ", content: (data.articulo?.sku ?? ""))
 
         brandLabel.attributedText = formatHTML(header: "Marca: ", content: (data.articulo?.marca ?? ""))
         modelLabel.attributedText = formatHTML(header: "Modelo: ", content: (data.articulo?.modelo ?? ""))
@@ -456,7 +466,7 @@ class OfferDetailViewController: UIViewController {
             dateLabel.attributedText = formatHTML(header: "Finaliza en ", content: "\(numberOfDays) \(stringDays) y \(hours) horas".replace(string: "-", replacement: ""))
         } else {
             dateLabel.alpha = 0
-            dateView.alpha = 0
+            dateView.isHidden = true
         }
 
         totalDiscount = ((Double(article?.articulo?.montoDescuento ?? "0.0") ?? 0.0) + (Double(article?.articulo?.montoBonoProveedor ?? "0.0") ?? 0.0))
@@ -529,7 +539,11 @@ class OfferDetailViewController: UIViewController {
         }
         
         if let images = data.articulo?.imagenes, !images.isEmpty {
-            self.imagesView.isHidden = false
+            self.imagesView.isHidden = true
+            self.productImagesCollectionView.reloadData()
+            self.imagesCollectionView.reloadData()
+        } else if !self.viewModel.images.isEmpty {
+            self.productImagesCollectionView.reloadData()
             self.imagesCollectionView.reloadData()
         } else {
             self.imagesView.isHidden = true
@@ -645,15 +659,15 @@ extension OfferDetailViewController: UIScrollViewDelegate {
 
 extension OfferDetailViewController: UICollectionViewDelegate,
                                             UICollectionViewDataSource,
-                                            UICollectionViewDelegateFlowLayout {
+                                     UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
             return self.viewModel.products.count
-        } else if collectionView == self.imagesCollectionView {
+        } else if collectionView == self.imagesCollectionView || collectionView == self.productImagesCollectionView {
             return self.viewModel.images.count
         }
         return 0
@@ -662,10 +676,19 @@ extension OfferDetailViewController: UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             return getProductCell(collectionView, cellForItemAt: indexPath)
+        } else if collectionView == self.productImagesCollectionView {
+            return getProductImageCell(collectionView, cellForItemAt: indexPath)
         } else {
             return getImageCell(collectionView, cellForItemAt: indexPath)
         }
     }
+    
+    func getProductImageCell(_ collectionView: UICollectionView,
+                             cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductImageCollectionViewCell", for: indexPath) as! ProductImageCollectionViewCell
+       cell.setImageData(with: self.viewModel.images[indexPath.row])
+       return cell
+   }
     
     func getImageCell(_ collectionView: UICollectionView,
                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -687,12 +710,18 @@ extension OfferDetailViewController: UICollectionViewDelegate,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.imagesCollectionView {
             return CGSize(width: 70, height: 70)
+        } else if collectionView == self.productImagesCollectionView {
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
             let size: CGFloat = (collectionView.frame.size.width - space) / 2.0
             return CGSize(width: size, height: 300)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -709,6 +738,11 @@ extension OfferDetailViewController: UICollectionViewDelegate,
             } else {
                 self.offerImage.image = UIImage(named: "empty_image")
             }
+        } else if collectionView == self.productImagesCollectionView {
+            let offerServiceProtectionViewController = OfferProductImageViewController(imageUrl: article?.articulo?.urlImagen ?? "", productImages: self.viewModel.images)
+            offerServiceProtectionViewController.modalPresentationStyle = .fullScreen
+            offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
+            navigationController?.pushViewController(offerServiceProtectionViewController, animated: true)
         }
     }
 }

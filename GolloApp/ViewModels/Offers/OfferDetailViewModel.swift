@@ -20,7 +20,7 @@ class OfferDetailViewModel {
     var products: [Product] = []
     var images: [ArticleImages] = []
 
-    func fetchOfferDetail(sku: String, centro: String = "144", bodega: String = "1") -> BehaviorRelay<OfferDetail?> {
+    func fetchOfferDetail(sku: String, centro: String = "144", bodega: String?) -> BehaviorRelay<OfferDetail?> {
         let apiResponse: BehaviorRelay<OfferDetail?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(OfferDetailRequest(service: BaseServiceRequestParam<OfferDetailServiceRequest>(
             servicio: ServicioParam(
@@ -28,7 +28,7 @@ class OfferDetailViewModel {
                 parametros: OfferDetailServiceRequest (
                     centro: centro,
                     sku: sku,
-                    bodega: bodega
+                    bodega: bodega ?? nil
                 )
             )
         ))) { response in

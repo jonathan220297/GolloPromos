@@ -78,6 +78,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     guard error == nil else { return }
                     if let dynamicLink = dynamicLink {
                         self.handleIncomingDynamicLink(dynamicLink)
+                        
+                        if let dynamicURL = dynamicLink.url?.absoluteString, dynamicURL.contains("/product/") {
+                            if let range = dynamicURL.range(of: "/product/") {
+                                let sku = dynamicURL[range.upperBound...].trimmingCharacters(in: .whitespaces)
+                                let userInfo = ["product": sku]
+                                NotificationCenter.default.post(name: Notification.Name("showDynamicLinkProduct"), object: nil, userInfo: userInfo)
+                            }
+                        }
                     }
                 }
             }

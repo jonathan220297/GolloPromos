@@ -169,14 +169,6 @@ class EditProfileViewModel {
         service.callWebServiceGolloAlternative(BaseRequest<LoginData?, DeleteProfileServiceRequest>(
             service: BaseServiceRequestParam<DeleteProfileServiceRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.REMOVE_USER_PROCESS_ID.rawValue,
-//                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
-//                        idUsuario: idClient,
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.REMOVE_USER_PROCESS_ID.rawValue),
                     parametros: DeleteProfileServiceRequest(
                         idEmpresa: 10,
@@ -209,14 +201,6 @@ class EditProfileViewModel {
             resource: "Procesos/RegistroDispositivos",
             service: BaseServiceRequestParam<RegisterDeviceServiceRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue,
-//                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
-//                        idUsuario: idClient,
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: token ?? "",
-//                        integrationId: nil),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.REGISTER_DEVICE_PROCESS_ID.rawValue),
                     parametros: RegisterDeviceServiceRequest(
                         idEmpresa: 10,
