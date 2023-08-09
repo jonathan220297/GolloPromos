@@ -20,7 +20,9 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var imageConstraint: NSLayoutConstraint!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var imagePageController: UIPageControl!
     
+    @IBOutlet weak var productInformatioView: UIView!
     @IBOutlet weak var imagesView: UIView!
     @IBOutlet weak var productImagesCollectionView: UICollectionView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
@@ -42,6 +44,7 @@ class OfferDetailViewController: UIViewController {
 
     @IBOutlet weak var pricesView: UIView!
     @IBOutlet weak var sepView: UIView!
+    @IBOutlet weak var uniqueOriginalPriceLabel: UILabel!
     @IBOutlet weak var priceHeightView: NSLayoutConstraint!
 
     @IBOutlet weak var cartView: UIView!
@@ -49,7 +52,10 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var serviceButton: UIButton!
     @IBOutlet weak var addCartButton: UIButton!
     @IBOutlet weak var cartViewHeight: NSLayoutConstraint!
-
+    @IBOutlet weak var buyNowButton: UIButton!
+    @IBOutlet weak var warantySelectionLabel: UILabel!
+    @IBOutlet weak var dropDownSelectionView: UIView!
+    
     @IBOutlet weak var discountView: UIView!
     @IBOutlet weak var tintView: UIView!
     @IBOutlet weak var discountLabel: UILabel!
@@ -90,10 +96,11 @@ class OfferDetailViewController: UIViewController {
     var bodegaProduct: String?
     var scannerFlowActivate: Bool = false
     var article: OfferDetail?
-    var warrantyMonth = 0
-    var warrantyAmount = 0.0
+    var warrantyMonth: Int?
+    var warrantyAmount: Double?
     var totalDiscount = 0.0
-
+    var currentPage = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -201,6 +208,24 @@ class OfferDetailViewController: UIViewController {
     //MARK: - Functions
     func configureViews() {
         carView.layer.cornerRadius = 20.0
+        
+        productInformatioView.clipsToBounds = true
+        productInformatioView.layer.cornerRadius = 10
+        productInformatioView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
+        buyNowButton.backgroundColor = .white
+        buyNowButton.layer.cornerRadius = 15
+        buyNowButton.layer.borderWidth = 1
+        buyNowButton.layer.borderColor = UIColor.gray.cgColor
+        
+        dropDownSelectionView.backgroundColor = .white
+        dropDownSelectionView.layer.cornerRadius = 10
+        dropDownSelectionView.layer.borderWidth = 1
+        dropDownSelectionView.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     fileprivate func configureRx() {
@@ -246,48 +271,110 @@ class OfferDetailViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                if let carManagerType = self.viewModel.verifyCarManagerTypeState() {
-                    if CoreDataService().fetchCarItems().isEmpty {
-                        self.addToCart()
-                    } else {
-                        if carManagerType == CarManagerType.SCAN_AND_GO.rawValue && self.scannerFlowActivate {
-                            self.addToCart()
-                        } else if carManagerType == CarManagerType.PRODUCT_LIST.rawValue && !self.scannerFlowActivate {
+                if self.validateSelectedWaranty() {
+                    if let carManagerType = self.viewModel.verifyCarManagerTypeState() {
+                        if CoreDataService().fetchCarItems().isEmpty {
                             self.addToCart()
                         } else {
-                            let refreshAlert = UIAlertController(title: "GolloApp", message: "No se puede hacer un carrito con productos en línea y productos de agencia. ¿Deseas limpiar el carrito e inciar uno nuevo?", preferredStyle: UIAlertController.Style.alert)
+                            if carManagerType == CarManagerType.SCAN_AND_GO.rawValue && self.scannerFlowActivate {
+                                self.addToCart()
+                            } else if carManagerType == CarManagerType.PRODUCT_LIST.rawValue && !self.scannerFlowActivate {
+                                self.addToCart()
+                            } else {
+                                let refreshAlert = UIAlertController(title: "GolloApp", message: "No se puede hacer un carrito con productos en línea y productos de agencia. ¿Deseas limpiar el carrito e inciar uno nuevo?", preferredStyle: UIAlertController.Style.alert)
 
-                            refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
-                                refreshAlert.dismiss(animated: true)
-                            }))
-
-                            refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
-                                if CoreDataService().deleteAllItems() {
-                                    self.viewModel.deleteCarManagerTypeState()
-                                    var type = ""
-                                    if self.scannerFlowActivate {
-                                        type = CarManagerType.SCAN_AND_GO.rawValue
-                                    } else {
-                                        type = CarManagerType.PRODUCT_LIST.rawValue
-                                    }
-                                    self.viewModel.setCarManagerTypeToUserDefaults(with: type)
-                                    self.addToCart()
+                                refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
                                     refreshAlert.dismiss(animated: true)
-                                }
-                            }))
+                                }))
 
-                            self.present(refreshAlert, animated: true, completion: nil)
+                                refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
+                                    if CoreDataService().deleteAllItems() {
+                                        self.viewModel.deleteCarManagerTypeState()
+                                        var type = ""
+                                        if self.scannerFlowActivate {
+                                            type = CarManagerType.SCAN_AND_GO.rawValue
+                                        } else {
+                                            type = CarManagerType.PRODUCT_LIST.rawValue
+                                        }
+                                        self.viewModel.setCarManagerTypeToUserDefaults(with: type)
+                                        self.addToCart()
+                                        refreshAlert.dismiss(animated: true)
+                                    }
+                                }))
+
+                                self.present(refreshAlert, animated: true, completion: nil)
+                            }
                         }
+                    } else {
+                        var type = ""
+                        if self.scannerFlowActivate {
+                            type = CarManagerType.SCAN_AND_GO.rawValue
+                        } else {
+                            type = CarManagerType.PRODUCT_LIST.rawValue
+                        }
+                        self.viewModel.setCarManagerTypeToUserDefaults(with: type)
+                        self.addToCart()
                     }
                 } else {
-                    var type = ""
-                    if self.scannerFlowActivate {
-                        type = CarManagerType.SCAN_AND_GO.rawValue
+                    self.showAlert(alertText: "GolloApp", alertMessage: "Por favor seleccione el servicio de reparación")
+                    self.warantySelectionLabel.textColor = UIColor.red
+                    self.dropDownSelectionView.layer.borderColor = UIColor.red.cgColor
+                }
+            })
+            .disposed(by: bag)
+        
+        buyNowButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                if self.validateSelectedWaranty() {
+                    if let carManagerType = self.viewModel.verifyCarManagerTypeState() {
+                        if CoreDataService().fetchCarItems().isEmpty {
+                            self.addToCart(with: true)
+                        } else {
+                            if carManagerType == CarManagerType.SCAN_AND_GO.rawValue && self.scannerFlowActivate {
+                                self.addToCart(with: true)
+                            } else if carManagerType == CarManagerType.PRODUCT_LIST.rawValue && !self.scannerFlowActivate {
+                                self.addToCart(with: true)
+                            } else {
+                                let refreshAlert = UIAlertController(title: "GolloApp", message: "No se puede hacer un carrito con productos en línea y productos de agencia. ¿Deseas limpiar el carrito e inciar uno nuevo?", preferredStyle: UIAlertController.Style.alert)
+
+                                refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
+                                    refreshAlert.dismiss(animated: true)
+                                }))
+
+                                refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
+                                    if CoreDataService().deleteAllItems() {
+                                        self.viewModel.deleteCarManagerTypeState()
+                                        var type = ""
+                                        if self.scannerFlowActivate {
+                                            type = CarManagerType.SCAN_AND_GO.rawValue
+                                        } else {
+                                            type = CarManagerType.PRODUCT_LIST.rawValue
+                                        }
+                                        self.viewModel.setCarManagerTypeToUserDefaults(with: type)
+                                        self.addToCart(with: true)
+                                        refreshAlert.dismiss(animated: true)
+                                    }
+                                }))
+
+                                self.present(refreshAlert, animated: true, completion: nil)
+                            }
+                        }
                     } else {
-                        type = CarManagerType.PRODUCT_LIST.rawValue
+                        var type = ""
+                        if self.scannerFlowActivate {
+                            type = CarManagerType.SCAN_AND_GO.rawValue
+                        } else {
+                            type = CarManagerType.PRODUCT_LIST.rawValue
+                        }
+                        self.viewModel.setCarManagerTypeToUserDefaults(with: type)
+                        self.addToCart(with: true)
                     }
-                    self.viewModel.setCarManagerTypeToUserDefaults(with: type)
-                    self.addToCart()
+                } else {
+                    self.showAlert(alertText: "GolloApp", alertMessage: "Por favor seleccione el servicio de reparación")
+                    self.warantySelectionLabel.textColor = UIColor.red
+                    self.dropDownSelectionView.layer.borderColor = UIColor.red.cgColor
                 }
             })
             .disposed(by: bag)
@@ -307,6 +394,18 @@ class OfferDetailViewController: UIViewController {
         self.imagesCollectionView.register(UINib(nibName: "OfferImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "OfferImagesCollectionViewCell")
         self.collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
     }
+    
+    private func validateSelectedWaranty() -> Bool {
+        if let waranty = self.article?.articulo?.extraGarantia, !waranty.isEmpty {
+            if let _ = self.warrantyMonth, let _ = self.warrantyAmount {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return true
+        }
+    }
 
     private func fetchData() {
         self.view.activityStartAnimatingFull()
@@ -318,16 +417,23 @@ class OfferDetailViewController: UIViewController {
                     guard let self = self,
                           let data = data else { return }
                     if let images = data.articulo?.imagenes {
-                        var firstImage: [ArticleImages] = []
-                        let imageData = ArticleImages(tipo: 0, imagen: data.articulo?.urlImagen)
-                        firstImage.append(imageData)
-                        self.viewModel.images = firstImage + images
+                        if images.isEmpty {
+                            var firstImage: [ArticleImages] = []
+                            let imageData = ArticleImages(tipo: 0, imagen: data.articulo?.urlImagen)
+                            firstImage.append(imageData)
+                            self.viewModel.images = firstImage
+                        } else {
+                            self.viewModel.images = images
+                        }
                     } else {
                         var firstImage: [ArticleImages] = []
                         let imageData = ArticleImages(tipo: 0, imagen: data.articulo?.urlImagen)
                         firstImage.append(imageData)
                         self.viewModel.images = firstImage
                     }
+                    self.imagePageController.numberOfPages = self.viewModel.images.count
+                    self.imagePageController.currentPage = currentPage
+                    
                     if let complements = data.articulo?.complementos {
                         var products: [Product] = []
                         for o in complements {
@@ -371,19 +477,19 @@ class OfferDetailViewController: UIViewController {
         }
     }
 
-    private func addToCart() {
+    private func addToCart(with automaticRedirect: Bool = false) {
         if let article = article?.articulo {
             var param: [CartItemDetail] = []
             let item = CartItemDetail(
                 urlImage: article.urlImagen,
                 cantidad: 1,
                 idLinea: CoreDataService().fetchCarItems().count + 1,
-                mesesExtragar: warrantyMonth,
+                mesesExtragar: warrantyMonth ?? 0,
                 descripcion: article.nombre ?? "",
                 sku: article.sku ?? "",
                 descuento: Double(article.precioDescuento ?? "0.0") ?? 0.0,
                 montoDescuento: Double(article.montoDescuento ?? "0.0") ?? 0.0,
-                montoExtragar: warrantyAmount,
+                montoExtragar: warrantyAmount ?? 0.0,
                 porcDescuento: 0.0,
                 precioExtendido: (Double(article.precio ?? "0.0") ?? 0.0 - (Double(article.montoDescuento ?? "0.0") ?? 0.0)),
                 precioUnitario: Double(article.precio ?? "0.0") ?? 0.0,
@@ -408,14 +514,21 @@ class OfferDetailViewController: UIViewController {
                         let id = CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
                         self.carItemLabel.text = "El artículo ha sido agregado al carrito!"
                         self.configureAlternativeNavBar()
-                        if self.viewModel.documents.count > 1 && self.warrantyMonth == 0 {
-                            let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
-                            offerServiceProtectionViewController.delegate = self
-                            offerServiceProtectionViewController.selectedId = id
-                            offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
-                            offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
-                            self.present(offerServiceProtectionViewController, animated: true)
+                        if automaticRedirect {
+                            let carTab = CarTabViewController(
+                                viewModel: CarTabViewModel()
+                            )
+                            carTab.modalPresentationStyle = .fullScreen
+                            self.navigationController?.pushViewController(carTab, animated: true)
                         }
+//                        if self.viewModel.documents.count > 1 && self.warrantyMonth == 0 {
+//                            let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
+//                            offerServiceProtectionViewController.delegate = self
+//                            offerServiceProtectionViewController.selectedId = id
+//                            offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
+//                            offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
+//                            self.present(offerServiceProtectionViewController, animated: true)
+//                        }
                     }
                 })
                 .disposed(by: bag)
@@ -477,18 +590,27 @@ class OfferDetailViewController: UIViewController {
 
         if totalDiscount > 0.0,
            let price = Double(data.articulo?.precio ?? "0.0"), price > 0.0 {
+            self.pricesView.isHidden = false
+            self.uniqueOriginalPriceLabel.isHidden = true
             let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
             savingsLabel.text = "\("₡")\(savingString)"
 
             let discountString = numberFormatter.string(from: NSNumber(value: Double(data.articulo?.precioDescuento ?? "0.0") ?? 0.0))!
-            discountPriceLabel.text = "\("₡")\(discountString)"
-            self.originalPrice.attributedText = attributeString
+            self.discountPriceLabel.attributedText = attributeString
+            self.originalPrice.text = "\("₡")\(discountString)"
         } else {
+            self.pricesView.isHidden = true
+            self.uniqueOriginalPriceLabel.isHidden = false
+            self.uniqueOriginalPriceLabel.text = "\("₡")\(originalString)"
             self.originalPrice.text = "\("₡")\(originalString)"
+            self.originalPrice.textColor = .black
+            self.originalPrice.font = self.originalPrice.font.withSize(17)
             self.savingHeader.alpha = 0
             self.priceDivider.alpha = 0
             self.savingsLabel.alpha = 0
+            self.savingsLabel.isHidden = true
             self.discountLabel.alpha = 0
+            self.discountLabel.isHidden = true
         }
 
         if let totalDiscount = Double(data.articulo?.montoDescuento ?? "0.0"), totalDiscount > 0.0 {
@@ -563,7 +685,7 @@ class OfferDetailViewController: UIViewController {
         var documents: [Warranty] = []
         let lovN = Warranty(plazoMeses: 0, porcentaje: 0.0, montoExtragarantia: 0.0, impuestoExtragarantia: 0.0, titulo: "Sin gollo plus")
         documents.append(lovN)
-        if let warranty = data.articulo?.extraGarantia {
+        if let warranty = data.articulo?.extraGarantia, !warranty.isEmpty {
             for w in warranty {
                 let amount = String(w.montoExtragarantia ?? 0.0).currencyFormatting()
                 let lov = Warranty(
@@ -575,12 +697,14 @@ class OfferDetailViewController: UIViewController {
                 )
                 documents.append(lov)
             }
+        } else {
+            self.cartView.isHidden = true
         }
-        if let first = documents.first {
-            warrantyMonth = first.plazoMeses ?? 0
-            warrantyAmount = first.montoExtragarantia ?? 0.0
-            serviceLabel.text = first.titulo
-        }
+//        if let first = documents.first {
+//            warrantyMonth = first.plazoMeses ?? 0
+//            warrantyAmount = first.montoExtragarantia ?? 0.0
+//            serviceLabel.text = first.titulo
+//        }
         viewModel.documents = documents
     }
 
@@ -593,6 +717,8 @@ class OfferDetailViewController: UIViewController {
             warrantyMonth = viewModel.documents[index].plazoMeses ?? 0
             warrantyAmount = viewModel.documents[index].montoExtragarantia ?? 0.0
             serviceLabel.text = item
+            self.warantySelectionLabel.textColor = UIColor.primary
+            self.dropDownSelectionView.layer.borderColor = UIColor.lightGray.cgColor
         }
     }
 
@@ -743,6 +869,13 @@ extension OfferDetailViewController: UICollectionViewDelegate,
             offerServiceProtectionViewController.modalPresentationStyle = .fullScreen
             offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
             navigationController?.pushViewController(offerServiceProtectionViewController, animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == self.productImagesCollectionView {
+            self.currentPage = indexPath.row
+            self.imagePageController.currentPage = indexPath.row
         }
     }
 }

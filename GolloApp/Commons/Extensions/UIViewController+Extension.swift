@@ -205,14 +205,14 @@ extension UIViewController {
         self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = carButton
         
-        let searchView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width * 0.65, height: 25))
+        let searchView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width * 0.65, height: 30))
         searchView.backgroundColor = .white
         searchView.layer.cornerRadius = 5.0
-        let searchImageView = UIImageView(frame: CGRect(x: 8, y: 4, width: 15, height: 15))
+        let searchImageView = UIImageView(frame: CGRect(x: 8, y: 4, width: 19, height: 19))
         searchImageView.image = UIImage(systemName: "magnifyingglass")
         searchView.addSubview(searchImageView)
         searchImageView.tintColor = .gray
-        let searchLabel = UILabel(frame: CGRect(x: 28, y: 2, width: self.view.frame.size.width * 0.4, height: 21))
+        let searchLabel = UILabel(frame: CGRect(x: 28, y: 2, width: self.view.frame.size.width * 0.4, height: 26))
         searchLabel.font = UIFont.systemFont(ofSize: 13)
         searchLabel.textColor = .gray
         searchLabel.text = "Buscar en Gollo"
@@ -236,14 +236,14 @@ extension UIViewController {
         self.navigationItem.leftBarButtonItem = menuButton
         self.navigationItem.rightBarButtonItem = carButton
 
-        let searchView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width * 0.65, height: 25))
+        let searchView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width * 0.65, height: 30))
         searchView.backgroundColor = .white
         searchView.layer.cornerRadius = 5.0
-        let searchImageView = UIImageView(frame: CGRect(x: 8, y: 4, width: 15, height: 15))
+        let searchImageView = UIImageView(frame: CGRect(x: 8, y: 4, width: 19, height: 19))
         searchImageView.image = UIImage(systemName: "magnifyingglass")
         searchView.addSubview(searchImageView)
         searchImageView.tintColor = .gray
-        let searchLabel = UILabel(frame: CGRect(x: 28, y: 2, width: self.view.frame.size.width * 0.4, height: 21))
+        let searchLabel = UILabel(frame: CGRect(x: 28, y: 2, width: self.view.frame.size.width * 0.4, height: 26))
         searchLabel.font = UIFont.systemFont(ofSize: 13)
         searchLabel.textColor = .gray
         searchLabel.text = "Buscar en Gollo"

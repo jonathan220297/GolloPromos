@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBH-ce-r55">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEH-kX-Zfk">
                             <rect key="frame" x="353" y="16" width="32" height="32"/>
@@ -37,12 +37,14 @@
                             <state key="normal" title="X"/>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygK-ou-STP">
-                            <rect key="frame" x="0.0" y="48" width="393" height="713"/>
+                            <rect key="frame" x="0.0" y="48" width="393" height="670"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WQq-LA-7an">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="713"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="670"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </imageView>
                             </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="WQq-LA-7an" firstAttribute="width" secondItem="X8z-nX-qJg" secondAttribute="width" id="51R-ln-mfJ"/>
                                 <constraint firstItem="WQq-LA-7an" firstAttribute="top" secondItem="hXN-iM-24M" secondAttribute="top" id="BWa-sq-e8Q"/>
@@ -58,10 +60,10 @@
                             </connections>
                         </scrollView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAU-cK-Yrb">
-                            <rect key="frame" x="8" y="761" width="377" height="75"/>
+                            <rect key="frame" x="0.0" y="718" width="393" height="100"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EqZ-hd-0Bv">
-                                    <rect key="frame" x="4" y="4" width="369" height="67"/>
+                                    <rect key="frame" x="4" y="4" width="385" height="92"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mSr-XV-xKY">
                                         <size key="itemSize" width="128" height="128"/>
@@ -80,35 +82,24 @@
                             <constraints>
                                 <constraint firstItem="EqZ-hd-0Bv" firstAttribute="leading" secondItem="dAU-cK-Yrb" secondAttribute="leading" constant="4" id="45X-ga-Jgn"/>
                                 <constraint firstAttribute="trailing" secondItem="EqZ-hd-0Bv" secondAttribute="trailing" constant="4" id="Amm-3k-88o"/>
-                                <constraint firstAttribute="height" constant="75" id="K7L-Ho-hXc"/>
+                                <constraint firstAttribute="height" constant="100" id="K7L-Ho-hXc"/>
                                 <constraint firstAttribute="bottom" secondItem="EqZ-hd-0Bv" secondAttribute="bottom" constant="4" id="csh-Rs-WXU"/>
                                 <constraint firstItem="EqZ-hd-0Bv" firstAttribute="top" secondItem="dAU-cK-Yrb" secondAttribute="top" constant="4" id="r0o-Hy-zy0"/>
                             </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="YEH-kX-Zfk" secondAttribute="trailing" constant="8" id="467-Kh-DCc"/>
-                        <constraint firstAttribute="bottom" secondItem="dAU-cK-Yrb" secondAttribute="bottom" constant="16" id="HbE-KB-iEg"/>
+                        <constraint firstAttribute="bottom" secondItem="dAU-cK-Yrb" secondAttribute="bottom" id="HbE-KB-iEg"/>
                         <constraint firstItem="ygK-ou-STP" firstAttribute="leading" secondItem="yBH-ce-r55" secondAttribute="leading" id="UzI-J5-J14"/>
                         <constraint firstItem="dAU-cK-Yrb" firstAttribute="top" secondItem="ygK-ou-STP" secondAttribute="bottom" id="Xdd-jS-DR8"/>
                         <constraint firstItem="YEH-kX-Zfk" firstAttribute="top" secondItem="yBH-ce-r55" secondAttribute="top" constant="16" id="bf0-5F-Bqh"/>
-                        <constraint firstItem="dAU-cK-Yrb" firstAttribute="leading" secondItem="yBH-ce-r55" secondAttribute="leading" constant="8" id="dPE-I0-2mG"/>
+                        <constraint firstItem="dAU-cK-Yrb" firstAttribute="leading" secondItem="yBH-ce-r55" secondAttribute="leading" id="dPE-I0-2mG"/>
                         <constraint firstAttribute="trailing" secondItem="ygK-ou-STP" secondAttribute="trailing" id="lbR-0f-vXQ"/>
                         <constraint firstItem="ygK-ou-STP" firstAttribute="top" secondItem="YEH-kX-Zfk" secondAttribute="bottom" id="rex-cf-blZ"/>
-                        <constraint firstAttribute="trailing" secondItem="dAU-cK-Yrb" secondAttribute="trailing" constant="8" id="tjw-jC-t3u"/>
+                        <constraint firstAttribute="trailing" secondItem="dAU-cK-Yrb" secondAttribute="trailing" id="tjw-jC-t3u"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="18"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -117,15 +108,12 @@
                 <constraint firstItem="yBH-ce-r55" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="AD0-u4-87C"/>
                 <constraint firstItem="yBH-ce-r55" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PPx-ds-mKB"/>
                 <constraint firstItem="yBH-ce-r55" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PUc-W8-5lW"/>
-                <constraint firstAttribute="bottom" secondItem="yBH-ce-r55" secondAttribute="bottom" id="wpf-Ir-4gs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yBH-ce-r55" secondAttribute="bottom" id="wpf-Ir-4gs"/>
             </constraints>
             <point key="canvasLocation" x="-34.351145038167935" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

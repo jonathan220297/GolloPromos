@@ -292,7 +292,7 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             footer.indexPath = indexPath
             return footer
         default:
-            assert(false, "Unexpected element kind")
+            fatalError("Unexpected element kind")
         }
         
     }
@@ -333,7 +333,7 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
         cell.delegate = self
         cell.dividerViewHeight.constant = 0
         cell.dividerView.isHidden = true
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
             cell.dividerViewHeight.constant = 0
             cell.dividerView.isHidden = true
         } else {

@@ -19,6 +19,7 @@ class OfferProductImageViewController: UIViewController {
     let bag = DisposeBag()
     var imageUrl: String? = ""
     var productImages: [ArticleImages]? = []
+    var lastIndexActive: IndexPath = [1, 0]
     
     // MARK: - Lifecycle
     init(imageUrl: String?, productImages: [ArticleImages]?) {
@@ -26,7 +27,7 @@ class OfferProductImageViewController: UIViewController {
         self.productImages = productImages
         super.init(nibName: "OfferProductImageViewController", bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,7 +37,7 @@ class OfferProductImageViewController: UIViewController {
         self.tabBarController?.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
@@ -84,7 +85,7 @@ class OfferProductImageViewController: UIViewController {
     func configureCollectionView() {
         self.collectionView.register(UINib(nibName: "OfferImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "OfferImagesCollectionViewCell")
     }
-
+    
 }
 
 extension OfferProductImageViewController: UIScrollViewDelegate {
@@ -94,8 +95,8 @@ extension OfferProductImageViewController: UIScrollViewDelegate {
 }
 
 extension OfferProductImageViewController: UICollectionViewDelegate,
-                                            UICollectionViewDataSource,
-                                     UICollectionViewDelegateFlowLayout {
+                                           UICollectionViewDataSource,
+                                           UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -134,5 +135,30 @@ extension OfferProductImageViewController: UICollectionViewDelegate,
         } else {
             self.offerImage.image = UIImage(named: "empty_image")
         }
+        
+        if self.lastIndexActive != indexPath {
+            let selected = collectionView.cellForItem(at: indexPath) as! OfferImagesCollectionViewCell
+            selected.content.backgroundColor = UIColor.primaryLight
+            
+            let previous = collectionView.cellForItem(at: lastIndexActive) as? OfferImagesCollectionViewCell
+            previous?.content.backgroundColor = UIColor.lightGray
+            
+            self.lastIndexActive = indexPath
+        }
+//        let cell = collectionView.cellForItem(at: indexPath)
+//        cell?.layer.borderColor = UIColor.blue.cgColor
+//        cell?.layer.borderWidth = 1
+//        cell?.isSelected = true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        let totalCellWidth = 70 * (self.productImages?.count ?? 0)
+        let totalSpacingWidth = 8 * ((self.productImages?.count ?? 0) - 1)
+        
+        let leftInset = (collectionView.frame.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
     }
 }

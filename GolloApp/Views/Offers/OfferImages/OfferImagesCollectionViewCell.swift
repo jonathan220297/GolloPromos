@@ -10,6 +10,7 @@ import Nuke
 
 class OfferImagesCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var content: UIView!
     @IBOutlet weak var productImageView: UIImageView!
     
     override func awakeFromNib() {

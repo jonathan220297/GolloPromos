@@ -183,7 +183,7 @@ class HomeViewController: UITabBarController {
         navigationProductScanner.navigationBar.standardAppearance = getNavBarAppareance()
         navigationProductScanner.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
         navigationProductScanner.title = "Scan&Go"
-        navigationProductScanner.tabBarItem.image = UIImage(systemName: "qrcode")
+        navigationProductScanner.tabBarItem.image = UIImage(named: "ic_barcode")
 
         let menuTab = MenuTabViewController()
         let navigationMenu = UINavigationController(rootViewController: menuTab)

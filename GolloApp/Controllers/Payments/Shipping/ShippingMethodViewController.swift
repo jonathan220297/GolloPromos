@@ -78,7 +78,7 @@ class ShippingMethodViewController: UIViewController {
             forCellReuseIdentifier: "ShippingMethodTableViewCell"
         )
         shippingMethodsTableView.reloadData()
-        shoppingMethodsTableViewHeightConstraint.constant = shippingMethodsTableView.contentSize.height + CGFloat(((self.viewModel.methods.count - 1) * 75))
+        shoppingMethodsTableViewHeightConstraint.constant = shippingMethodsTableView.contentSize.height + CGFloat(((self.viewModel.methods.count - 1) * 125))
         shippingMethodsTableView.layoutIfNeeded()
     }
     
@@ -207,7 +207,7 @@ class ShippingMethodViewController: UIViewController {
                             }
                             self.viewModel.setShippingMethods(false)
                             self.shippingMethodsTableView.reloadData()
-                            self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + CGFloat(((self.viewModel.methods.count - 1) * 80))
+                            self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + CGFloat(((self.viewModel.methods.count - 1) * 125))
                             self.shippingMethodsTableView.layoutIfNeeded()
                             self.stateView.isHidden = true
                             self.shopView.isHidden = true

@@ -105,7 +105,7 @@ class PaymentViewController: UIViewController {
             selectedPaymentAmount = Payment.PAYMENT_INSTALLMENT.rawValue
             var amountSelected: Double? = 0.0
             if isThirdPayAccount {
-                amountSelected = paymentData?.totalAmount
+                amountSelected = paymentData?.suggestedAmount
             } else {
                 amountSelected = paymentData?.installmentAmount
             }
@@ -209,7 +209,7 @@ class PaymentViewController: UIViewController {
                 self.totalPendingView.layoutIfNeeded()
             }
             self.installmentTitleLabel.text = "Monto a pagar"
-            if let pending = numberFormatter.string(from: NSNumber(value: self.paymentData?.totalAmount ?? 0.0)) {
+            if let pending = numberFormatter.string(from: NSNumber(value: self.paymentData?.suggestedAmount ?? 0.0)) {
                 self.installmentLabel.text = "₡" + String(pending)
             }
         }

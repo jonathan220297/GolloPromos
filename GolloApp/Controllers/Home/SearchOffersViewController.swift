@@ -16,7 +16,8 @@ class SearchOffersViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchHistoryView: UIView!
     @IBOutlet weak var searchCollectionView: UICollectionView!
-
+    @IBOutlet weak var searchItemLabel: UILabel!
+    
     // MARK: - Constants
     let defaults = UserDefaults.standard
     let viewModel: SearchOffersViewModel
@@ -72,6 +73,7 @@ class SearchOffersViewController: UIViewController {
                 guard let self = self else { return }
                 if !error.isEmpty {
                     self.view.activityStopAnimating()
+                    self.searchItemLabel.text = "No se encontraron productos"
                     self.emptyView.alpha = 1
                     self.collectionView.alpha = 0
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
@@ -131,6 +133,7 @@ class SearchOffersViewController: UIViewController {
                 self.collectionView.reloadData()
 
                 if data.isEmpty {
+                    self.searchItemLabel.text = "No se encontraron productos"
                     self.emptyView.alpha = 1
                     self.collectionView.alpha = 0
                 } else {
@@ -197,7 +200,7 @@ extension SearchOffersViewController: UICollectionViewDelegate,
             let label = UILabel(frame: CGRect.zero)
             label.text = viewModel.history[indexPath.row]
             label.sizeToFit()
-            return CGSize(width: label.frame.width + 15, height: 40)
+            return CGSize(width: label.frame.width + 28, height: 40)
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)

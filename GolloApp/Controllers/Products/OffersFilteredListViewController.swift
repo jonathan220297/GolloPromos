@@ -208,11 +208,8 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
         if collectionView == self.collectionView {
             let label = UILabel(frame: CGRect.zero)
             label.text = viewModel.categories[indexPath.row].nombre
-            label.font = UIFont.boldSystemFont(ofSize: 16)
-            label.textAlignment = .center
-            label.adjustsFontSizeToFitWidth = true
             label.sizeToFit()
-            return CGSize(width: label.frame.width, height: 40)
+            return CGSize(width: label.frame.width + 8, height: 40)
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
