@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -130,7 +130,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMp-Gt-6dN">
-                                <rect key="frame" x="16" y="93" width="382" height="656.5"/>
+                                <rect key="frame" x="16" y="93" width="382" height="648.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" name="SansSerifFLF" family="SansSerifFLF" pointSize="15"/>
@@ -153,10 +153,10 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKW-O4-0rz">
-                                <rect key="frame" x="16" y="757.5" width="382" height="45.5"/>
+                                <rect key="frame" x="16" y="749.5" width="382" height="53.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gcw-fX-q38">
-                                        <rect key="frame" x="0.0" y="8" width="30" height="30"/>
+                                        <rect key="frame" x="0.0" y="12" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gcw-fX-q38" secondAttribute="height" multiplier="1:1" id="l7g-fw-oeS"/>
                                             <constraint firstAttribute="height" constant="30" id="zAB-sU-sdF"/>
@@ -165,7 +165,7 @@
                                         <state key="normal" image="ic_unchecked_checkbox"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acepto que he leído y entendido los términos y condiciones." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpi-4B-F7O">
-                                        <rect key="frame" x="38" y="8" width="336" height="29.5"/>
+                                        <rect key="frame" x="38" y="8" width="336" height="37.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="5Qa-h5-Z8V"/>
                                         </constraints>
@@ -345,7 +345,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlb-fs-k6s">
-                                                <rect key="frame" x="103" y="493" width="208" height="30"/>
+                                                <rect key="frame" x="88.5" y="493" width="237" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="BHi-41-kqH"/>
                                                 </constraints>
@@ -415,6 +415,8 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="Phb-M9-bcf"/>
                                                         </constraints>
+                                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="ic_facebook"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y38-XA-AoA">
@@ -622,16 +624,16 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="St1-0w-pj7">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="361"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="371"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creá un nuevo usuario con tu correo electrónico." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ula-d0-kGV">
-                                                <rect key="frame" x="16" y="16" width="382" height="37"/>
+                                                <rect key="frame" x="16" y="16" width="382" height="47"/>
                                                 <fontDescription key="fontDescription" name="SansSerifFLF-Demibold" family="SansSerifFLF" pointSize="20"/>
                                                 <color key="textColor" white="0.30575770549999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eyf-Ag-0xh">
-                                                <rect key="frame" x="16" y="85" width="382" height="162"/>
+                                                <rect key="frame" x="16" y="95" width="382" height="162"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acx-nm-Ccc">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="73"/>
@@ -724,7 +726,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rag-Hi-0EZ" customClass="LoadingButton" customModule="GolloApp" customModuleProvider="target">
-                                                <rect key="frame" x="103.5" y="279" width="207" height="50"/>
+                                                <rect key="frame" x="103.5" y="289" width="207" height="50"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="iCE-Jt-6dx"/>

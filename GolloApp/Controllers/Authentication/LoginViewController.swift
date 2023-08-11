@@ -208,7 +208,8 @@ class LoginViewController: UIViewController {
                 .tap
                 .subscribe(onNext: {[weak self] in
                     guard let self = self else { return }
-                    self.facebookLoginProcess()
+                    self.showAlert(alertText: "GolloApp", alertMessage: "Estimad@ cliente, el ingreso mediante Facebook se encuentra deshabilitado, por lo que puede ingresar por Google, Apple o registrarse mediante usuario y contraseña.")
+//                    self.facebookLoginProcess()
                 })
                 .disposed(by: disposeBag)
                 
