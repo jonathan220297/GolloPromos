@@ -63,45 +63,45 @@ class EmmaTermsListViewModel {
             if let montoBonoProveedor = item.montoBonoProveedor, montoBonoProveedor > 0.0 {
                 carManager.paymentMethod.append(
                     PaymentMethod(
-                       codAutorizacion: "",
-                       fechaExp: "",
-                       idFormaPago: "90",
-                       skuRelacionado: item.sku,
-                       montoPago: (item.montoBonoProveedor ?? 0.0) * Double(item.cantidad),
-                       noLineaRelacionada: 0,
-                       nomTarjeta: "",
-                       numTarjeta: "",
-                       tipoPlazoTarjeta: "",
-                       tipoTarjeta: "",
-                       totalCuotas: 0,
-                       indTarjeta: 0,
-                       indPrincipal: 0,
-                       indEmma: 1,
-                       pinValidacionEmma: Int(validationPin ?? "0"),
-                       plazoCredito: termSelected?.cantidadMeses ?? 0
-                   )
+                        codAutorizacion: "",
+                        fechaExp: "",
+                        idFormaPago: "90",
+                        skuRelacionado: item.sku,
+                        montoPago: (item.montoBonoProveedor ?? 0.0) * Double(item.cantidad),
+                        noLineaRelacionada: 0,
+                        nomTarjeta: "",
+                        numTarjeta: "",
+                        tipoPlazoTarjeta: "",
+                        tipoTarjeta: "",
+                        totalCuotas: 0,
+                        indTarjeta: 0,
+                        indPrincipal: 0,
+                        indEmma: 1,
+                        pinValidacionEmma: Int(validationPin ?? "0"),
+                        plazoCredito: termSelected?.cantidadMeses ?? 0
+                    )
                 )
             }
         }
         carManager.paymentMethod.append(
             PaymentMethod(
-               codAutorizacion: "",
-               fechaExp: "",
-               idFormaPago: "51",
-               skuRelacionado: nil,
-               montoPago: carManager.total + shipping,
-               noLineaRelacionada: 0,
-               nomTarjeta: "",
-               numTarjeta: "",
-               tipoPlazoTarjeta: "",
-               tipoTarjeta: "",
-               totalCuotas: 0,
-               indTarjeta: 0,
-               indPrincipal: 1,
-               indEmma: 1,
-               pinValidacionEmma: Int(validationPin ?? "0"),
-               plazoCredito: termSelected?.cantidadMeses ?? 0
-           )
+                codAutorizacion: "",
+                fechaExp: "",
+                idFormaPago: "51",
+                skuRelacionado: nil,
+                montoPago: carManager.total + shipping,
+                noLineaRelacionada: 0,
+                nomTarjeta: "",
+                numTarjeta: "",
+                tipoPlazoTarjeta: "",
+                tipoTarjeta: "",
+                totalCuotas: 0,
+                indTarjeta: 0,
+                indPrincipal: 1,
+                indEmma: 1,
+                pinValidacionEmma: Int(validationPin ?? "0"),
+                plazoCredito: termSelected?.cantidadMeses ?? 0
+            )
         )
         let orderItemsDetail = orderDetail()
         let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
@@ -134,14 +134,20 @@ class EmmaTermsListViewModel {
         }
         return apiResponse
     }
-
+    
     func getSubtotalAmount() -> Double {
-        let products = carManager.car
+        let products = carManager.carProductsDetail
         let amount = products.map { ($0.precioUnitario - $0.montoDescuento - ($0.montoBonoProveedor ?? 0.0)) * Double($0.cantidad) }.reduce(0, +)
         let plus = products.map { $0.montoExtragar * Double($0.cantidad) }.reduce(0, +)
-        return amount + plus
+        var taxes = 0.0
+        products.forEach { cp in
+            guard let id = cp.idCarItem else { return }
+            let expenses = CoreDataService().fetchCarExpense(with: id)
+            taxes += expenses.map { ($0.monto ?? 0.0) * Double(cp.cantidad) }.reduce(0, +)
+        }
+        return amount + plus + taxes
     }
-
+    
     private func orderDetail() -> [OrderItem] {
         var orderItems: [OrderItem] = []
         //OrderItem
@@ -179,6 +185,33 @@ class EmmaTermsListViewModel {
                 )
             )
             i += 1
+        }
+        for productTaxes in carManager.carProductsDetail {
+            if let id = productTaxes.idCarItem {
+                let expenses = CoreDataService().fetchCarExpense(with: id)
+                for taxes in expenses {
+                    orderItems.append(
+                        OrderItem(
+                            cantidad: productTaxes.cantidad,
+                            mesesExtragar: 0,
+                            idLinea: i,
+                            descripcion: taxes.descripcion ?? "",
+                            descuento: 0,
+                            montoDescuento: 0.0,
+                            montoExtragar: 0.0,
+                            porcDescuento: 0.0,
+                            precioExtendido: Double(productTaxes.cantidad) * (taxes.monto ?? 0.0).round(to: 2),
+                            precioUnitario: (taxes.monto ?? 0.0).round(to: 2),
+                            sku: taxes.skuGasto ?? "",
+                            tipoSku: 1,
+                            montoBonoProveedor: nil,
+                            codRegalia: nil,
+                            descRegalia: nil
+                        )
+                    )
+                    i += 1
+                }
+            }
         }
         return orderItems
     }

@@ -20,6 +20,7 @@ class CarManager {
     var nationality: String?
     var kinship: String?
     var fundsSource: String?
+    var carProductsDetail: [CartItemDetail] = []
     
     func emptyCar() -> Bool {
         car.removeAll()
@@ -30,6 +31,7 @@ class CarManager {
         nationality = nil
         kinship = nil
         fundsSource = nil
+        carProductsDetail.removeAll()
         return CoreDataService().deleteAllItems()
     }
     
@@ -42,5 +44,11 @@ class CarManager {
         nationality = nil
         kinship = nil
         fundsSource = nil
+        carProductsDetail.removeAll()
+    }
+    
+    func carHasVMI() -> Int {
+        let containsVMI = carProductsDetail.filter{ $0.indVMI == 1 }.count
+        return (containsVMI != 0) ? 1 : 0
     }
 }

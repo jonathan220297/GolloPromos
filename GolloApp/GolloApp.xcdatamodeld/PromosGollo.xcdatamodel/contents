@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CarProduct" representedClassName="CarProduct" syncable="YES" codeGenerationType="class">
         <attribute name="codRegalia" optional="YES" attributeType="String"/>
         <attribute name="descRegalia" optional="YES" attributeType="String"/>
@@ -10,13 +10,16 @@
         <attribute name="extendedPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="idCarProduct" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="idLinea" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="indVMI" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="providerBonusAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sku" optional="YES" attributeType="String"/>
+        <attribute name="totalExpenses" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="unitPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="urlImage" optional="YES" attributeType="String"/>
         <attribute name="warranty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="warrantyAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="productExpense" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductExpense" inverseName="carProduct" inverseEntity="ProductExpense"/>
         <relationship name="productWarranty" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductWarranty" inverseName="carProduct" inverseEntity="ProductWarranty"/>
     </entity>
     <entity name="Favorites" representedClassName="Favorites" syncable="YES" codeGenerationType="class">
@@ -46,6 +49,14 @@
         <attribute name="tieneDescuento" optional="YES" attributeType="String"/>
         <attribute name="tieneRegalia" optional="YES" attributeType="String"/>
         <attribute name="tipoPromoApp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="ProductExpense" representedClassName="ProductExpense" syncable="YES" codeGenerationType="class">
+        <attribute name="expenseAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="expenseDescription" optional="YES" attributeType="String"/>
+        <attribute name="expenseSKU" optional="YES" attributeType="String"/>
+        <attribute name="idCarProduct" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="mandatoryExpense" optional="YES" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <relationship name="carProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CarProduct" inverseName="productExpense" inverseEntity="CarProduct"/>
     </entity>
     <entity name="ProductWarranty" representedClassName="ProductWarranty" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

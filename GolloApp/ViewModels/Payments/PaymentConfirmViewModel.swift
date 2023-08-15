@@ -129,10 +129,16 @@ class PaymentConfirmViewModel {
     }
 
     func getSubtotalAmount() -> Double {
-        let products = carManager.car
+        let products = carManager.carProductsDetail
         let amount = products.map { ($0.precioUnitario - $0.montoDescuento - ($0.montoBonoProveedor ?? 0.0)) * Double($0.cantidad) }.reduce(0, +)
-        let plus = products.map { $0.montoExtragar * Double($0.cantidad) }.reduce(0, +) 
-        return amount + plus
+        let plus = products.map { $0.montoExtragar * Double($0.cantidad) }.reduce(0, +)
+        var taxes = 0.0
+        products.forEach { cp in
+            guard let id = cp.idCarItem else { return }
+            let expenses = CoreDataService().fetchCarExpense(with: id)
+            taxes += expenses.map { ($0.monto ?? 0.0) * Double(cp.cantidad) }.reduce(0, +)
+        }
+        return amount + plus + taxes
     }
 
     private func orderDetail() -> [OrderItem] {
@@ -172,6 +178,33 @@ class PaymentConfirmViewModel {
                 )
             )
             i += 1
+        }
+        for productTaxes in carManager.carProductsDetail {
+            if let id = productTaxes.idCarItem {
+                let expenses = CoreDataService().fetchCarExpense(with: id)
+                for taxes in expenses {
+                    orderItems.append(
+                        OrderItem(
+                            cantidad: productTaxes.cantidad,
+                            mesesExtragar: 0,
+                            idLinea: i,
+                            descripcion: taxes.descripcion ?? "",
+                            descuento: 0,
+                            montoDescuento: 0.0,
+                            montoExtragar: 0.0,
+                            porcDescuento: 0.0,
+                            precioExtendido: Double(productTaxes.cantidad) * (taxes.monto ?? 0.0).round(to: 2),
+                            precioUnitario: (taxes.monto ?? 0.0).round(to: 2),
+                            sku: taxes.skuGasto ?? "",
+                            tipoSku: 1,
+                            montoBonoProveedor: nil,
+                            codRegalia: nil,
+                            descRegalia: nil
+                        )
+                    )
+                    i += 1
+                }
+            }
         }
         return orderItems
     }

@@ -38,6 +38,7 @@ class CarTabViewModel {
                     descRegalia: item.descRegalia
                 )
             )
+            carManager.carProductsDetail.append(item)
             i += 1
         }
     }

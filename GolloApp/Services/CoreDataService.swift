@@ -9,15 +9,17 @@ import CoreData
 import UIKit
 
 class CoreDataService {
-    func addCarItems(with items: [CartItemDetail], warranty: [Warranty]) -> UUID? {
+    func addCarItems(with items: [CartItemDetail], warranty: [Warranty], expenses: [OtherExpenses]) -> UUID? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "CarProduct", in: context)
         let warrantyEntity = NSEntityDescription.entity(forEntityName: "ProductWarranty", in: context)
+        let expenseEntity = NSEntityDescription.entity(forEntityName: "ProductExpense", in: context)
         var idCarProduct: UUID?
         for item in items {
             let carItem = NSManagedObject(entity: entity!, insertInto: context)
             let id = UUID()
+            var totalExpenses = 0.0
             idCarProduct = id
             carItem.setValue(id, forKey: "idCarProduct")
             carItem.setValue(item.urlImage, forKey: "urlImage")
@@ -45,6 +47,18 @@ class CoreDataService {
                 carWarranty.setValue(id, forKey: "idCarProduct")
                 carItem.setValue(NSSet(object: carWarranty), forKey: "productWarranty")
             }
+            for t in expenses {
+                let carExpense = NSManagedObject(entity: expenseEntity!, insertInto: context)
+                carExpense.setValue(t.descripcion ?? "", forKey: "expenseDescription")
+                carExpense.setValue(t.skuGasto ?? "", forKey: "expenseSKU")
+                carExpense.setValue(t.monto ?? 0.0, forKey: "expenseAmount")
+                carExpense.setValue(t.obligatorio, forKey: "mandatoryExpense")
+                carExpense.setValue(id, forKey: "idCarProduct")
+                carItem.setValue(NSSet(object: carExpense), forKey: "productExpense")
+                totalExpenses += t.monto ?? 0.0
+            }
+            carItem.setValue(totalExpenses, forKey: "totalExpenses")
+            carItem.setValue(item.indVMI, forKey: "indVMI")
         }
         do {
             try context.save()
@@ -81,7 +95,10 @@ class CoreDataService {
                         montoBonoProveedor: data.value(forKey: "providerBonusAmount") as? Double ?? 0.0,
                         codRegalia: data.value(forKey: "codRegalia") as? String ?? "",
                         descRegalia: data.value(forKey: "descRegalia") as? String ?? "",
-                        warranty: data.value(forKey: "productWarranty") as? [Warranty] ?? []
+                        warranty: data.value(forKey: "productWarranty") as? [Warranty] ?? [],
+                        expenses: data.value(forKey: "productExpense") as? [OtherExpenses] ?? [],
+                        totalExpenses: data.value(forKey: "totalExpenses") as? Double ?? 0.0,
+                        indVMI: data.value(forKey: "indVMI") as? Int ?? 0
                     )
                 )
             }
@@ -91,7 +108,7 @@ class CoreDataService {
             return []
         }
     }
-
+    
     func fetchCarWarranty(with id: UUID) -> [Warranty] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
         let context = appDelegate.persistentContainer.viewContext
@@ -112,6 +129,31 @@ class CoreDataService {
                 )
             }
             return warranty
+        } catch let error as NSError {
+            print("Error fetchWarranties: " + error.localizedDescription)
+            return []
+        }
+    }
+    
+    func fetchCarExpense(with id: UUID) -> [OtherExpenses] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ProductExpense")
+        request.predicate = NSPredicate(format: "idCarProduct == %@", id as CVarArg)
+        do {
+            let result = try context.fetch(request)
+            var expense: [OtherExpenses] = []
+            for data in result as! [NSManagedObject] {
+                expense.append(
+                    OtherExpenses(
+                        skuGasto: data.value(forKey: "expenseSKU") as? String ?? "",
+                        descripcion: data.value(forKey: "expenseDescription") as? String ?? "",
+                        monto: data.value(forKey: "expenseAmount") as? Double ?? 0.0,
+                        obligatorio: data.value(forKey: "mandatoryExpense") as? Int ?? 0
+                    )
+                )
+            }
+            return expense
         } catch let error as NSError {
             print("Error fetchWarranties: " + error.localizedDescription)
             return []
@@ -170,7 +212,7 @@ class CoreDataService {
             return false
         }
     }
-
+    
     func addGolloPlus(for productID: UUID, month: Int, amount: Double) -> Bool {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
         let context = appDelegate.persistentContainer.viewContext
@@ -189,7 +231,7 @@ class CoreDataService {
             return false
         }
     }
-
+    
     func removeGolloPlus(for productID: UUID) -> Bool {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
         let context = appDelegate.persistentContainer.viewContext
@@ -208,7 +250,7 @@ class CoreDataService {
             return false
         }
     }
-
+    
     func addProductFavorite(with item: Product, name: String?) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
@@ -247,7 +289,7 @@ class CoreDataService {
             print("Error addFavorite: " + error.localizedDescription)
         }
     }
-
+    
     func fetchFavoriteItems() -> [Product] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
         let context = appDelegate.persistentContainer.viewContext
@@ -294,7 +336,7 @@ class CoreDataService {
             return []
         }
     }
-
+    
     func deleteFavorite(with id: UUID) -> Bool {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
         let context = appDelegate.persistentContainer.viewContext
@@ -312,7 +354,7 @@ class CoreDataService {
             return false
         }
     }
-
+    
     func isFavoriteProduct(with code: String) -> UUID? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
         let context = appDelegate.persistentContainer.viewContext

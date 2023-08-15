@@ -60,7 +60,7 @@ class PaymentDataViewModel {
                                         cardNameSubject,
                                         cardCvvSubject,
                                         zeroRateSubject) { cardNumber, expirationNumber, expirationYear, cardName, cardCvv, zeroRateId in
-
+            
             if self.zeroRatePayment {
                 guard let cardNumber = cardNumber,
                       let _ = expirationNumber,
@@ -70,12 +70,12 @@ class PaymentDataViewModel {
                       let zeroRateId = zeroRateId else {
                     return false
                 }
-
+                
                 return !(cardNumber.isEmpty)
                 && !(cardName.isEmpty)
                 && !(cardCvv.isEmpty)
                 && !(zeroRateId.isEmpty)
-
+                
             } else {
                 guard let cardNumber = cardNumber,
                       let _ = expirationNumber,
@@ -84,7 +84,7 @@ class PaymentDataViewModel {
                       let cardCvv = cardCvv else {
                     return false
                 }
-
+                
                 return !(cardNumber.isEmpty)
                 && !(cardName.isEmpty)
                 && !(cardCvv.isEmpty)
@@ -178,23 +178,23 @@ class PaymentDataViewModel {
         let expiryDatePretty = dateFormatterCardExpiryDate.string(from: expiryDate ?? Date())
         carManager.paymentMethod.append(
             PaymentMethod(
-               codAutorizacion: cvv,
-               fechaExp: expiryDatePretty,
-               idFormaPago: carManager.paymentMethodSelected?.idFormaPago ?? "30",
-               skuRelacionado: nil,
-               montoPago: carManager.total + shipping,
-               noLineaRelacionada: 0,
-               nomTarjeta: cardHolderName.trimmingCharacters(in: .whitespaces),
-               numTarjeta: cardNumber,
-               tipoPlazoTarjeta: self.zeroRateSubject.value ?? "11723675",
-               tipoTarjeta: "",
-               totalCuotas: 0,
-               indTarjeta: carManager.paymentMethodSelected?.indTarjeta ?? 0,
-               indPrincipal: carManager.paymentMethodSelected?.indPrincipal ?? 0,
-               indEmma: 0,
-               pinValidacionEmma: nil,
-               plazoCredito: nil
-           )
+                codAutorizacion: cvv,
+                fechaExp: expiryDatePretty,
+                idFormaPago: carManager.paymentMethodSelected?.idFormaPago ?? "30",
+                skuRelacionado: nil,
+                montoPago: carManager.total + shipping,
+                noLineaRelacionada: 0,
+                nomTarjeta: cardHolderName.trimmingCharacters(in: .whitespaces),
+                numTarjeta: cardNumber,
+                tipoPlazoTarjeta: self.zeroRateSubject.value ?? "11723675",
+                tipoTarjeta: "",
+                totalCuotas: 0,
+                indTarjeta: carManager.paymentMethodSelected?.indTarjeta ?? 0,
+                indPrincipal: carManager.paymentMethodSelected?.indPrincipal ?? 0,
+                indEmma: 0,
+                pinValidacionEmma: nil,
+                plazoCredito: nil
+            )
         )
     }
     
@@ -205,23 +205,23 @@ class PaymentDataViewModel {
             if let montoBonoProveedor = item.montoBonoProveedor, montoBonoProveedor > 0.0 {
                 carManager.paymentMethod.append(
                     PaymentMethod(
-                       codAutorizacion: "",
-                       fechaExp: "",
-                       idFormaPago: "90",
-                       skuRelacionado: item.sku,
-                       montoPago: (item.montoBonoProveedor ?? 0.0) * Double(item.cantidad),
-                       noLineaRelacionada: 0,
-                       nomTarjeta: "",
-                       numTarjeta: "",
-                       tipoPlazoTarjeta: "",
-                       tipoTarjeta: "",
-                       totalCuotas: 0,
-                       indTarjeta: 0,
-                       indPrincipal: 0,
-                       indEmma: 0,
-                       pinValidacionEmma: nil,
-                       plazoCredito: nil
-                   )
+                        codAutorizacion: "",
+                        fechaExp: "",
+                        idFormaPago: "90",
+                        skuRelacionado: item.sku,
+                        montoPago: (item.montoBonoProveedor ?? 0.0) * Double(item.cantidad),
+                        noLineaRelacionada: 0,
+                        nomTarjeta: "",
+                        numTarjeta: "",
+                        tipoPlazoTarjeta: "",
+                        tipoTarjeta: "",
+                        totalCuotas: 0,
+                        indTarjeta: 0,
+                        indPrincipal: 0,
+                        indEmma: 0,
+                        pinValidacionEmma: nil,
+                        plazoCredito: nil
+                    )
                 )
             }
         }
@@ -256,7 +256,7 @@ class PaymentDataViewModel {
         }
         return apiResponse
     }
-
+    
     func getPaymentResponseDetail(with processId: String) -> BehaviorRelay<PaymentResponse?> {
         let apiResponse: BehaviorRelay<PaymentResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(
@@ -293,7 +293,7 @@ class PaymentDataViewModel {
         }
         return apiResponse
     }
-
+    
     func getProductPaymentResponseDetail(with processId: String) -> BehaviorRelay<PaymentOrderResponse?> {
         let apiResponse: BehaviorRelay<PaymentOrderResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(
@@ -330,7 +330,7 @@ class PaymentDataViewModel {
         }
         return apiResponse
     }
-
+    
     private func orderDetail() -> [OrderItem] {
         var orderItems: [OrderItem] = []
         //OrderItem
@@ -368,6 +368,33 @@ class PaymentDataViewModel {
                 )
             )
             i += 1
+        }
+        for productTaxes in carManager.carProductsDetail {
+            if let id = productTaxes.idCarItem {
+                let expenses = CoreDataService().fetchCarExpense(with: id)
+                for taxes in expenses {
+                    orderItems.append(
+                        OrderItem(
+                            cantidad: productTaxes.cantidad,
+                            mesesExtragar: 0,
+                            idLinea: i,
+                            descripcion: taxes.descripcion ?? "",
+                            descuento: 0,
+                            montoDescuento: 0.0,
+                            montoExtragar: 0.0,
+                            porcDescuento: 0.0,
+                            precioExtendido: Double(productTaxes.cantidad) * (taxes.monto ?? 0.0).round(to: 2),
+                            precioUnitario: (taxes.monto ?? 0.0).round(to: 2),
+                            sku: taxes.skuGasto ?? "",
+                            tipoSku: 1,
+                            montoBonoProveedor: nil,
+                            codRegalia: nil,
+                            descRegalia: nil
+                        )
+                    )
+                    i += 1
+                }
+            }
         }
         return orderItems
     }

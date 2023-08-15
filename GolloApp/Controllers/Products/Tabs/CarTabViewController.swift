@@ -135,7 +135,7 @@ class CarTabViewController: UIViewController {
                 totalPrice = item.precioUnitario - item.montoDescuento
             }
             carBonus += (totalBonus * Double(item.cantidad))
-            total += (totalPrice * Double(item.cantidad)) + (item.montoExtragar * Double(item.cantidad))
+            total += (totalPrice * Double(item.cantidad)) + (item.montoExtragar * Double(item.cantidad)) + ((item.totalExpenses ?? 0.0) * Double(item.cantidad))
         }
         viewModel.total = total
         viewModel.bonus = carBonus
@@ -219,6 +219,12 @@ extension CarTabViewController: CarProductDelegate {
         if CoreDataService().removeGolloPlus(for: id) {
             fetchCarItems()
         }
+    }
+    
+    func showTaxesDetail(at indexPath: IndexPath) {
+        let item = viewModel.car[indexPath.row]
+        item.showingInformation = !item.showingInformation
+        self.carTableView.reloadData()
     }
 }
 

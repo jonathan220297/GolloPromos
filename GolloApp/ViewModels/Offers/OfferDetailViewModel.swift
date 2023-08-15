@@ -19,7 +19,10 @@ class OfferDetailViewModel {
     var documents: [Warranty] = []
     var products: [Product] = []
     var images: [ArticleImages] = []
-
+    
+    var mandatoryExpenses: [OtherExpenses] = []
+    var optionalExpenses: [OtherExpenses] = []
+    
     func fetchOfferDetail(sku: String, centro: String = "144", bodega: String?) -> BehaviorRelay<OfferDetail?> {
         let apiResponse: BehaviorRelay<OfferDetail?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(OfferDetailRequest(service: BaseServiceRequestParam<OfferDetailServiceRequest>(
@@ -44,7 +47,7 @@ class OfferDetailViewModel {
         }
         return apiResponse
     }
-
+    
     func addCart(parameters: [CartItemDetail]) -> BehaviorRelay<OfferCartDetail?> {
         let apiResponse: BehaviorRelay<OfferCartDetail?> = BehaviorRelay(value: nil)
         service.callWebServiceGolloAlternative(AddOfferCartRequest(service: BaseServiceRequestParam<AddOfferCartServiceRequest>(
@@ -72,7 +75,7 @@ class OfferDetailViewModel {
     func setCarManagerTypeToUserDefaults(with type: String) {
         defaults.setValue(type, forKey: "carManagetTypeStarted")
     }
-
+    
     func verifyCarManagerTypeState() -> String? {
         return defaults.string(forKey: "carManagetTypeStarted")
     }
@@ -80,5 +83,5 @@ class OfferDetailViewModel {
     func deleteCarManagerTypeState() {
         defaults.removeObject(forKey: "carManagetTypeStarted")
     }
-
+    
 }

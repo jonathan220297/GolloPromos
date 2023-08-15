@@ -77,6 +77,7 @@ class ShippingMethodViewModel {
                             idCanton: idCounty,
                             idDistrito: idDistrict,
                             idProvincia: idState,
+                            indVMI: carManager.carHasVMI(),
                             monto: carManager.total
                         )
                     )

@@ -13,7 +13,7 @@ import DropDown
 import FirebaseDynamicLinks
 
 class OfferDetailViewController: UIViewController {
-
+    
     @IBOutlet weak var scrollImageView: UIScrollView!
     @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var offerImage: UIImageView!
@@ -41,12 +41,12 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var priceDivider: UIView!
     @IBOutlet weak var discountPriceLabel: UILabel!
     @IBOutlet weak var originalPrice: UILabel!
-
+    
     @IBOutlet weak var pricesView: UIView!
     @IBOutlet weak var sepView: UIView!
     @IBOutlet weak var uniqueOriginalPriceLabel: UILabel!
     @IBOutlet weak var priceHeightView: NSLayoutConstraint!
-
+    
     @IBOutlet weak var cartView: UIView!
     @IBOutlet weak var serviceLabel: UILabel!
     @IBOutlet weak var serviceButton: UIButton!
@@ -60,17 +60,17 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var tintView: UIView!
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var discountConstraint: NSLayoutConstraint!
-
+    
     @IBOutlet weak var giftView: UIView!
     @IBOutlet weak var tintViewGift: UIView!
     @IBOutlet weak var giftLabel: UILabel!
     @IBOutlet weak var giftConstraint: NSLayoutConstraint!
-
+    
     @IBOutlet weak var bonusLabel: UILabel!
     @IBOutlet weak var tintViewBonus: UIView!
     @IBOutlet weak var bonusView: UIView!
     @IBOutlet weak var bonoConstraint: NSLayoutConstraint!
-
+    
     @IBOutlet weak var offerDescriptionView: UIView!
     @IBOutlet weak var offerDescriptionLabel: UILabel!
     
@@ -82,15 +82,23 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var suggestedProductsView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var optionalExpensesView: UIView!
+    @IBOutlet weak var optionalTableView: UITableView!
+    @IBOutlet weak var otherExpensesHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var otherExpensesView: UIView!
+    @IBOutlet weak var otherExpensesStackView: UIStackView!
+    @IBOutlet weak var tooltipVMIView: UIView!
+    @IBOutlet weak var tooltipVMILabel: UILabel!
+    
     // Variables
     var offer: Product?
     let defaults = UserDefaults.standard
-
+    
     lazy var viewModel: OfferDetailViewModel = {
         return OfferDetailViewModel()
     }()
     let bag = DisposeBag()
-
+    
     var skuProduct: String?
     var centerProduct: String = "144"
     var bodegaProduct: String?
@@ -100,6 +108,8 @@ class OfferDetailViewController: UIViewController {
     var warrantyAmount: Double?
     var totalDiscount = 0.0
     var currentPage = 0
+    var priceToShow: Double = 0.0
+    var newExpensesPrice = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,21 +117,22 @@ class OfferDetailViewController: UIViewController {
         // Zoom
         scrollImageView.minimumZoomScale = 1.0
         scrollImageView.maximumZoomScale = 10.0
-
+        
         tabBarController?.navigationItem.hidesBackButton = false
         tabBarController?.navigationController?.navigationBar.tintColor = .white
-
+        
         configureViews()
         configureRx()
+        configureTableView()
         configureCollectionView()
         fetchData()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureAlternativeNavBar()
         carView.isHidden = true
-
+        
         let isFavorite = CoreDataService().isFavoriteProduct(with: skuProduct ?? "")
         if let _ = isFavorite {
             self.favoriteButton.setImage(UIImage(named: "ic_added_heart"), for: .normal)
@@ -152,13 +163,13 @@ class OfferDetailViewController: UIViewController {
             }
             let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view
-
+            
             activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook, UIActivity.ActivityType.postToTwitter]
-
+            
             self.present(activityViewController, animated: true, completion: nil)
         }
     }
-
+    
     fileprivate func saveFavorite() {
         if let article = self.article?.articulo {
             let isFavorite = CoreDataService().isFavoriteProduct(with: article.sku ?? "")
@@ -201,10 +212,10 @@ class OfferDetailViewController: UIViewController {
                 self.favoriteButton.tintColor = .red
                 self.showAlert(alertText: "GolloApp", alertMessage: "Favorito guardado correctamente.")
             }
-
+            
         }
     }
-
+    
     //MARK: - Functions
     func configureViews() {
         carView.layer.cornerRadius = 20.0
@@ -226,6 +237,10 @@ class OfferDetailViewController: UIViewController {
         dropDownSelectionView.layer.cornerRadius = 10
         dropDownSelectionView.layer.borderWidth = 1
         dropDownSelectionView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        tooltipVMIView.layer.cornerRadius = 10
+        tooltipVMIView.layer.borderWidth = 1
+        tooltipVMIView.layer.borderColor = hexStringToUIColor(hex: "#FFD180").cgColor
     }
     
     fileprivate func configureRx() {
@@ -242,7 +257,7 @@ class OfferDetailViewController: UIViewController {
                 }
             })
             .disposed(by: bag)
-
+        
         favoriteButton
             .rx
             .tap
@@ -250,7 +265,7 @@ class OfferDetailViewController: UIViewController {
                 self.saveFavorite()
             })
             .disposed(by: bag)
-
+        
         shareButton
             .rx
             .tap
@@ -258,7 +273,7 @@ class OfferDetailViewController: UIViewController {
                 self.shareContent()
             })
             .disposed(by: bag)
-
+        
         serviceButton
             .rx
             .tap
@@ -266,7 +281,7 @@ class OfferDetailViewController: UIViewController {
                 self.configureServiceDropDown()
             })
             .disposed(by: bag)
-
+        
         addCartButton
             .rx
             .tap
@@ -282,11 +297,11 @@ class OfferDetailViewController: UIViewController {
                                 self.addToCart()
                             } else {
                                 let refreshAlert = UIAlertController(title: "GolloApp", message: "No se puede hacer un carrito con productos en línea y productos de agencia. ¿Deseas limpiar el carrito e inciar uno nuevo?", preferredStyle: UIAlertController.Style.alert)
-
+                                
                                 refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
                                     refreshAlert.dismiss(animated: true)
                                 }))
-
+                                
                                 refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
                                     if CoreDataService().deleteAllItems() {
                                         self.viewModel.deleteCarManagerTypeState()
@@ -301,7 +316,7 @@ class OfferDetailViewController: UIViewController {
                                         refreshAlert.dismiss(animated: true)
                                     }
                                 }))
-
+                                
                                 self.present(refreshAlert, animated: true, completion: nil)
                             }
                         }
@@ -338,11 +353,11 @@ class OfferDetailViewController: UIViewController {
                                 self.addToCart(with: true)
                             } else {
                                 let refreshAlert = UIAlertController(title: "GolloApp", message: "No se puede hacer un carrito con productos en línea y productos de agencia. ¿Deseas limpiar el carrito e inciar uno nuevo?", preferredStyle: UIAlertController.Style.alert)
-
+                                
                                 refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
                                     refreshAlert.dismiss(animated: true)
                                 }))
-
+                                
                                 refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
                                     if CoreDataService().deleteAllItems() {
                                         self.viewModel.deleteCarManagerTypeState()
@@ -357,7 +372,7 @@ class OfferDetailViewController: UIViewController {
                                         refreshAlert.dismiss(animated: true)
                                     }
                                 }))
-
+                                
                                 self.present(refreshAlert, animated: true, completion: nil)
                             }
                         }
@@ -389,6 +404,16 @@ class OfferDetailViewController: UIViewController {
             .disposed(by: bag)
     }
     
+    fileprivate func configureTableView() {
+        self.optionalTableView.register(
+            UINib(
+                nibName: "OptionalExpensesTableViewCell",
+                bundle: nil
+            ),
+            forCellReuseIdentifier: "OptionalExpensesTableViewCell"
+        )
+    }
+    
     func configureCollectionView() {
         self.productImagesCollectionView.register(UINib(nibName: "ProductImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductImageCollectionViewCell")
         self.imagesCollectionView.register(UINib(nibName: "OfferImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "OfferImagesCollectionViewCell")
@@ -406,78 +431,87 @@ class OfferDetailViewController: UIViewController {
             return true
         }
     }
-
+    
     private func fetchData() {
         self.view.activityStartAnimatingFull()
         let skuCode = offer?.productCode ?? skuProduct
         if let sku = skuCode {
-            viewModel.fetchOfferDetail(sku: sku, centro: centerProduct, bodega: bodegaProduct ?? nil)
-                .asObservable()
-                .subscribe(onNext: {[weak self] data in
-                    guard let self = self,
-                          let data = data else { return }
-                    if let images = data.articulo?.imagenes {
-                        if images.isEmpty {
-                            var firstImage: [ArticleImages] = []
-                            let imageData = ArticleImages(tipo: 0, imagen: data.articulo?.urlImagen)
-                            firstImage.append(imageData)
-                            self.viewModel.images = firstImage
-                        } else {
-                            self.viewModel.images = images
-                        }
-                    } else {
+            viewModel.fetchOfferDetail(
+                sku: sku,
+                centro: centerProduct,
+                bodega: bodegaProduct ?? nil
+            )
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                if let images = data.articulo?.imagenes {
+                    if images.isEmpty {
                         var firstImage: [ArticleImages] = []
                         let imageData = ArticleImages(tipo: 0, imagen: data.articulo?.urlImagen)
                         firstImage.append(imageData)
                         self.viewModel.images = firstImage
+                    } else {
+                        self.viewModel.images = images
                     }
-                    self.imagePageController.numberOfPages = self.viewModel.images.count
-                    self.imagePageController.currentPage = currentPage
-                    
-                    if let complements = data.articulo?.complementos {
-                        var products: [Product] = []
-                        for o in complements {
-                            let p = Product(
-                                productCode: o.productCode,
-                                descriptionDetailDescuento: o.descriptionDetailDescuento,
-                                descriptionDetailRegalia: o.descriptionDetailRegalia,
-                                originalPrice: o.originalPrice,
-                                image: o.image,
-                                montoBono: o.montoBono,
-                                porcDescuento: o.porcDescuento,
-                                brand: o.brand,
-                                descriptionDetailBono: o.descriptionDetailRegalia,
-                                tieneBono: o.tieneBono,
-                                name: o.name,
-                                modelo: o.modelo,
-                                endDate: o.endDate,
-                                tieneRegalia: o.tieneRegalia,
-                                simboloMoneda: SimboloMoneda.empty,
-                                id: o.id,
-                                montoDescuento: o.montoDescuento,
-                                idUsuario: o.idUsuario,
-                                product: o.product,
-                                idEmpresa: o.idempresa,
-                                startDate: o.startDate,
-                                precioFinal: o.precioFinal,
-                                productName: o.productName,
-                                tieneDescuento: o.tieneDescuento,
-                                tipoPromoApp: 0,
-                                productoDescription: "",
-                                muestraDescuento: o.muestraDescuento
-                            )
-                            products.append(p)
-                        }
-                        self.viewModel.products = products
+                } else {
+                    var firstImage: [ArticleImages] = []
+                    let imageData = ArticleImages(tipo: 0, imagen: data.articulo?.urlImagen)
+                    firstImage.append(imageData)
+                    self.viewModel.images = firstImage
+                }
+                self.imagePageController.numberOfPages = self.viewModel.images.count
+                self.imagePageController.currentPage = currentPage
+                
+                if let complements = data.articulo?.complementos {
+                    var products: [Product] = []
+                    for o in complements {
+                        let p = Product(
+                            productCode: o.productCode,
+                            descriptionDetailDescuento: o.descriptionDetailDescuento,
+                            descriptionDetailRegalia: o.descriptionDetailRegalia,
+                            originalPrice: o.originalPrice,
+                            image: o.image,
+                            montoBono: o.montoBono,
+                            porcDescuento: o.porcDescuento,
+                            brand: o.brand,
+                            descriptionDetailBono: o.descriptionDetailRegalia,
+                            tieneBono: o.tieneBono,
+                            name: o.name,
+                            modelo: o.modelo,
+                            endDate: o.endDate,
+                            tieneRegalia: o.tieneRegalia,
+                            simboloMoneda: SimboloMoneda.empty,
+                            id: o.id,
+                            montoDescuento: o.montoDescuento,
+                            idUsuario: o.idUsuario,
+                            product: o.product,
+                            idEmpresa: o.idempresa,
+                            startDate: o.startDate,
+                            precioFinal: o.precioFinal,
+                            productName: o.productName,
+                            tieneDescuento: o.tieneDescuento,
+                            tipoPromoApp: 0,
+                            productoDescription: "",
+                            muestraDescuento: o.muestraDescuento
+                        )
+                        products.append(p)
                     }
-                    self.article = data
-                    self.showData(with: data)
-                })
-                .disposed(by: bag)
+                    self.viewModel.products = products
+                }
+                self.article = data
+                self.showData(with: data)
+            })
+            .disposed(by: bag)
         }
     }
-
+    
     private func addToCart(with automaticRedirect: Bool = false) {
+        var totalExpenses = 0.0
+        let userSelectedExpenses = self.viewModel.mandatoryExpenses + self.viewModel.optionalExpenses.filter({ tax in tax.obligatorio == 0 && tax.selected == true })
+        userSelectedExpenses.forEach { e in
+            totalExpenses += (e.monto ?? 0.0)
+        }
         if let article = article?.articulo {
             var param: [CartItemDetail] = []
             let item = CartItemDetail(
@@ -495,7 +529,9 @@ class OfferDetailViewController: UIViewController {
                 precioUnitario: Double(article.precio ?? "0.0") ?? 0.0,
                 montoBonoProveedor: Double(article.montoBonoProveedor ?? "0.0") ?? 0.0,
                 codRegalia: article.regalias?.codigo,
-                descRegalia: article.regalias?.descripcion
+                descRegalia: article.regalias?.descripcion,
+                totalExpenses: totalExpenses,
+                indVMI: article.existeVMI ?? 0
             )
             param.append(item)
             viewModel.addCart(parameters: param)
@@ -508,10 +544,12 @@ class OfferDetailViewController: UIViewController {
                         // change to desired number of seconds (in this case 5 seconds)
                         let when = DispatchTime.now() + 2
                         DispatchQueue.main.asyncAfter(deadline: when){
-                          // your code with delay
+                            // your code with delay
                             self.carView.isHidden = true
                         }
-                        let id = CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents)
+                        let userSelectedTaxes = self.viewModel.optionalExpenses.filter({ tax in tax.obligatorio == 0 && tax.selected == true })
+                        let expenses = self.viewModel.mandatoryExpenses + userSelectedTaxes
+                        _ = CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents, expenses: expenses)
                         self.carItemLabel.text = "El artículo ha sido agregado al carrito!"
                         self.configureAlternativeNavBar()
                         if automaticRedirect {
@@ -521,14 +559,14 @@ class OfferDetailViewController: UIViewController {
                             carTab.modalPresentationStyle = .fullScreen
                             self.navigationController?.pushViewController(carTab, animated: true)
                         }
-//                        if self.viewModel.documents.count > 1 && self.warrantyMonth == 0 {
-//                            let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
-//                            offerServiceProtectionViewController.delegate = self
-//                            offerServiceProtectionViewController.selectedId = id
-//                            offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
-//                            offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
-//                            self.present(offerServiceProtectionViewController, animated: true)
-//                        }
+                        //                        if self.viewModel.documents.count > 1 && self.warrantyMonth == 0 {
+                        //                            let offerServiceProtectionViewController = OfferServiceProtectionViewController(services: self.viewModel.documents)
+                        //                            offerServiceProtectionViewController.delegate = self
+                        //                            offerServiceProtectionViewController.selectedId = id
+                        //                            offerServiceProtectionViewController.modalPresentationStyle = .overCurrentContext
+                        //                            offerServiceProtectionViewController.modalTransitionStyle = .crossDissolve
+                        //                            self.present(offerServiceProtectionViewController, animated: true)
+                        //                        }
                     }
                 })
                 .disposed(by: bag)
@@ -539,13 +577,13 @@ class OfferDetailViewController: UIViewController {
         self.initGolloPlus(with: data)
         self.view.activityStopAnimatingFull()
         let _:CGFloat = 0.0001
-
+        
         let options = ImageLoadingOptions(
             placeholder: UIImage(named: "empty_image"),
             transition: .fadeIn(duration: 0.5),
             failureImage: UIImage(named: "empty_image")
         )
-
+        
         if data.articulo?.urlImagen == "" || data.articulo?.urlImagen == "NA" {
             DispatchQueue.main.async {
                 self.imageConstraint.constant = 0
@@ -559,10 +597,10 @@ class OfferDetailViewController: UIViewController {
                 offerImage.image = UIImage(named: "empty_image")
             }
         }
-
+        
         titleLabel.text = data.articulo?.nombre ?? ""
         serialLabel.attributedText = formatHTML(header: "Código del artículo: ", content: (data.articulo?.sku ?? ""))
-
+        
         brandLabel.attributedText = formatHTML(header: "Marca: ", content: (data.articulo?.marca ?? ""))
         modelLabel.attributedText = formatHTML(header: "Modelo: ", content: (data.articulo?.modelo ?? ""))
         descriptionLabel.attributedText = formatHTML(header: "Descripción: ", content: data.articulo?.especificaciones ?? "")
@@ -581,38 +619,11 @@ class OfferDetailViewController: UIViewController {
             dateLabel.alpha = 0
             dateView.isHidden = true
         }
-
+        
         totalDiscount = ((Double(article?.articulo?.montoDescuento ?? "0.0") ?? 0.0) + (Double(article?.articulo?.montoBonoProveedor ?? "0.0") ?? 0.0))
-
-        let originalString = numberFormatter.string(from: NSNumber(value: Double(data.articulo?.precio ?? "0.0") ?? 0.0))!
-        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
-        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-
-        if totalDiscount > 0.0,
-           let price = Double(data.articulo?.precio ?? "0.0"), price > 0.0 {
-            self.pricesView.isHidden = false
-            self.uniqueOriginalPriceLabel.isHidden = true
-            let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
-            savingsLabel.text = "\("₡")\(savingString)"
-
-            let discountString = numberFormatter.string(from: NSNumber(value: Double(data.articulo?.precioDescuento ?? "0.0") ?? 0.0))!
-            self.discountPriceLabel.attributedText = attributeString
-            self.originalPrice.text = "\("₡")\(discountString)"
-        } else {
-            self.pricesView.isHidden = true
-            self.uniqueOriginalPriceLabel.isHidden = false
-            self.uniqueOriginalPriceLabel.text = "\("₡")\(originalString)"
-            self.originalPrice.text = "\("₡")\(originalString)"
-            self.originalPrice.textColor = .black
-            self.originalPrice.font = self.originalPrice.font.withSize(17)
-            self.savingHeader.alpha = 0
-            self.priceDivider.alpha = 0
-            self.savingsLabel.alpha = 0
-            self.savingsLabel.isHidden = true
-            self.discountLabel.alpha = 0
-            self.discountLabel.isHidden = true
-        }
-
+        
+        self.drawPrices()
+        
         if let totalDiscount = Double(data.articulo?.montoDescuento ?? "0.0"), totalDiscount > 0.0 {
             discountLabel.text = "\("₡")\(numberFormatter.string(from: NSNumber(value: totalDiscount))!)"
         } else {
@@ -623,7 +634,7 @@ class OfferDetailViewController: UIViewController {
                 self.discountView.layoutIfNeeded()
             }
         }
-
+        
         if let royalties = article?.articulo?.regalias {
             giftLabel.text = "\(royalties.codigo ?? "") - \(royalties.descripcion ?? "")"
         } else {
@@ -634,7 +645,7 @@ class OfferDetailViewController: UIViewController {
                 self.giftView.layoutIfNeeded()
             }
         }
-
+        
         if let bonus = Double(data.articulo?.montoBonoProveedor ?? "0.0"), bonus > 0.0 {
             bonusLabel.text = "\("₡")\(numberFormatter.string(from: NSNumber(value: bonus))!)"
         } else {
@@ -645,14 +656,14 @@ class OfferDetailViewController: UIViewController {
                 self.bonusView.layoutIfNeeded()
             }
         }
-
+        
         if let description = data.articulo?.descripcionDetalle, !description.trimmingCharacters(in: .whitespaces).isEmpty {
             self.offerDescriptionView.isHidden = false
             let decodeString = description.removingPercentEncoding
             if let htmlString = decodeString {
                 let formatedHtml = "<html><head><style type='text/css'>@font-face { font-family: MyFont;src: url('font/jost_variable_font.ttf') } body {font-family: MyFont;font-size: medium;text-align: justify;} </style></head><body>\(htmlString)</body></html>"
                 self.offerDescriptionLabel.attributedText = formatedHtml.htmlToAttributedString
-
+                
             } else {
                 self.offerDescriptionView.isHidden = true
             }
@@ -679,8 +690,51 @@ class OfferDetailViewController: UIViewController {
             self.suggestedTitleLabel.isHidden = true
             self.suggestedProductsView.isHidden = true
         }
+        
+        self.drawTaxes()
+        self.drawMandatoryExpenses(with: priceToShow)
+        
+        if data.articulo?.existeVMI == 1 {
+            self.tooltipVMIView.isHidden = false
+            self.tooltipVMILabel.text = data.articulo?.texto_vmi ?? ""
+        } else {
+            self.tooltipVMIView.isHidden = true
+        }
     }
-
+    
+    private func drawPrices() {
+        let originalString = numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precio ?? "0.0") ?? 0.0))!
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+        
+        if totalDiscount > 0.0,
+           let price = Double(self.article?.articulo?.precio ?? "0.0"), price > 0.0 {
+            self.pricesView.isHidden = false
+            self.uniqueOriginalPriceLabel.isHidden = true
+            let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
+            savingsLabel.text = "\("₡")\(savingString)"
+            
+            let discountString = numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0))!
+            self.discountPriceLabel.attributedText = attributeString
+            self.originalPrice.text = "\("₡")\(discountString)"
+            priceToShow = Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0
+        } else {
+            self.pricesView.isHidden = true
+            self.uniqueOriginalPriceLabel.isHidden = false
+            self.uniqueOriginalPriceLabel.text = "\("₡")\(originalString) IVAi"
+            self.originalPrice.text = "\("₡")\(originalString) IVAi"
+            self.originalPrice.textColor = .black
+            self.originalPrice.font = self.originalPrice.font.withSize(17)
+            self.savingHeader.alpha = 0
+            self.priceDivider.alpha = 0
+            self.savingsLabel.alpha = 0
+            self.savingsLabel.isHidden = true
+            self.discountLabel.alpha = 0
+            self.discountLabel.isHidden = true
+            priceToShow = Double(self.article?.articulo?.precio ?? "0.0") ?? 0.0
+        }
+    }
+    
     private func initGolloPlus(with data: OfferDetail) {
         var documents: [Warranty] = []
         let lovN = Warranty(plazoMeses: 0, porcentaje: 0.0, montoExtragarantia: 0.0, impuestoExtragarantia: 0.0, titulo: "Sin gollo plus")
@@ -700,14 +754,88 @@ class OfferDetailViewController: UIViewController {
         } else {
             self.cartView.isHidden = true
         }
-//        if let first = documents.first {
-//            warrantyMonth = first.plazoMeses ?? 0
-//            warrantyAmount = first.montoExtragarantia ?? 0.0
-//            serviceLabel.text = first.titulo
-//        }
+        //        if let first = documents.first {
+        //            warrantyMonth = first.plazoMeses ?? 0
+        //            warrantyAmount = first.montoExtragarantia ?? 0.0
+        //            serviceLabel.text = first.titulo
+        //        }
         viewModel.documents = documents
     }
-
+    
+    private func drawTaxes() {
+        if let tax = article?.articulo?.otrosGastos, !tax.isEmpty{
+            let filteredTaxes = tax.filter({ tax in tax.obligatorio == 0 })
+            self.viewModel.optionalExpenses = filteredTaxes
+            if !filteredTaxes.isEmpty {
+                self.optionalExpensesView.isHidden = false
+                self.otherExpensesHeightConstraint.constant = CGFloat(((self.viewModel.optionalExpenses.count) * 45))
+                
+                self.optionalTableView.layoutIfNeeded()
+                self.optionalTableView.reloadData()
+            } else {
+                self.optionalExpensesView.isHidden = true
+            }
+        } else {
+            self.optionalExpensesView.isHidden = true
+        }
+    }
+    
+    private func drawMandatoryExpenses(with price: Double) {
+        if let tax = article?.articulo?.otrosGastos, !tax.isEmpty{
+            let filteredTaxes = tax.filter({ tax in tax.obligatorio == 1 })
+            let userSelectedTaxes = self.viewModel.optionalExpenses.filter({ tax in tax.obligatorio == 0 && tax.selected == true })
+            self.viewModel.mandatoryExpenses = filteredTaxes
+            if !filteredTaxes.isEmpty || !userSelectedTaxes.isEmpty {
+                self.otherExpensesStackView.removeAllArrangedSubviews()
+                self.otherExpensesView.isHidden = false
+                
+                let includesLabel = UILabel()
+                includesLabel.font = UIFont.systemFont(ofSize: 12)
+                includesLabel.backgroundColor = UIColor.clear
+                includesLabel.textColor = .darkGray
+                includesLabel.text = "Incluye:"
+                
+                let articlePriceExpense = OtherExpenses(
+                    skuGasto: "",
+                    descripcion: "Precio del artículo",
+                    monto: price,
+                    obligatorio: -1
+                )
+                otherExpensesStackView.addArrangedSubview(includesLabel)
+                otherExpensesStackView.addArrangedSubview(taxesLabel(with: articlePriceExpense))
+                
+                let totalShowTaxes = filteredTaxes + userSelectedTaxes
+                
+                totalShowTaxes.forEach { t in
+                    otherExpensesStackView.addArrangedSubview(taxesLabel(with: t))
+                }
+            } else {
+                self.otherExpensesView.isHidden = true
+            }
+        } else {
+            self.otherExpensesView.isHidden = true
+        }
+    }
+    
+    private func taxesLabel(with t: OtherExpenses) -> UILabel {
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(named: "ic_ok")?.withTintColor(UIColor.systemGreen)
+        imageAttachment.bounds = CGRect(x: 0, y: 0, width: 12, height: 12)
+        
+        let expensesLabel = UILabel()
+        expensesLabel.font = UIFont.systemFont(ofSize: 12)
+        expensesLabel.backgroundColor = UIColor.clear
+        expensesLabel.textColor = .darkGray
+        let taxPrice = (numberFormatter.string(from: NSNumber(value: t.monto ?? 0.0)) ?? "").currencyFormatting()
+        
+        let attributedText = NSMutableAttributedString(attachment: imageAttachment)
+        attributedText.append(NSAttributedString(string: " "))
+        attributedText.append(NSAttributedString(attributedString: formatHTML(header: "\(t.descripcion ?? ""): ", content: "+\(taxPrice)")))
+        expensesLabel.attributedText = attributedText
+        
+        return expensesLabel
+    }
+    
     private func configureServiceDropDown() {
         let dropDown = DropDown()
         dropDown.anchorView = serviceButton
@@ -721,7 +849,7 @@ class OfferDetailViewController: UIViewController {
             self.dropDownSelectionView.layer.borderColor = UIColor.lightGray.cgColor
         }
     }
-
+    
     private func isFavorite() -> UIImage? {
         if let data = article?.articulo {
             let list = defaults.object(forKey: "Favorites") as? [Product] ?? [Product]()
@@ -740,7 +868,7 @@ class OfferDetailViewController: UIViewController {
     private func generateDynamicLink(handler: @escaping (String) -> Void) {
         let dynamicLinkDomain = "https://gollo.page.link"
         var generatedLink = ""
-
+        
         guard let deepLink = URL(string:"\(dynamicLinkDomain)/product/\(article?.articulo?.sku ?? "")") else { return }
         
         let linkBuilder = DynamicLinkComponents(link: deepLink, domainURIPrefix: dynamicLinkDomain)
@@ -748,7 +876,7 @@ class OfferDetailViewController: UIViewController {
         linkBuilder?.iOSParameters?.appStoreID = "1643795423"
         
         linkBuilder?.androidParameters = DynamicLinkAndroidParameters(packageName: "com.merckers.golloapp")
-    
+        
         let url = URL(string: article?.articulo?.urlImagen ?? "")
         
         linkBuilder?.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
@@ -758,17 +886,17 @@ class OfferDetailViewController: UIViewController {
         
         let longlLink = linkBuilder?.url
         generatedLink = linkBuilder?.url?.absoluteString ?? ""
-
+        
         print("The long link is \(longlLink!)")
-
+        
         linkBuilder?.options = DynamicLinkComponentsOptions()
         linkBuilder?.options?.pathLength = .short
         linkBuilder?.shorten() { url, warnings, error in
-          guard let url = url, error != nil else {
-              print("The short URL error.")
-              handler(generatedLink)
-              return
-          }
+            guard let url = url, error != nil else {
+                print("The short URL error.")
+                handler(generatedLink)
+                return
+            }
             // TODO: Handle shortURL.
             generatedLink = url.absoluteString
             handler(generatedLink)
@@ -784,7 +912,7 @@ extension OfferDetailViewController: UIScrollViewDelegate {
 }
 
 extension OfferDetailViewController: UICollectionViewDelegate,
-                                            UICollectionViewDataSource,
+                                     UICollectionViewDataSource,
                                      UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -798,7 +926,7 @@ extension OfferDetailViewController: UICollectionViewDelegate,
         }
         return 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             return getProductCell(collectionView, cellForItemAt: indexPath)
@@ -811,10 +939,10 @@ extension OfferDetailViewController: UICollectionViewDelegate,
     
     func getProductImageCell(_ collectionView: UICollectionView,
                              cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductImageCollectionViewCell", for: indexPath) as! ProductImageCollectionViewCell
-       cell.setImageData(with: self.viewModel.images[indexPath.row])
-       return cell
-   }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductImageCollectionViewCell", for: indexPath) as! ProductImageCollectionViewCell
+        cell.setImageData(with: self.viewModel.images[indexPath.row])
+        return cell
+    }
     
     func getImageCell(_ collectionView: UICollectionView,
                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -822,7 +950,7 @@ extension OfferDetailViewController: UICollectionViewDelegate,
         cell.setImageData(with: self.viewModel.images[indexPath.row])
         return cell
     }
-
+    
     func getProductCell(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
@@ -830,7 +958,7 @@ extension OfferDetailViewController: UICollectionViewDelegate,
         cell.delegate = self
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -880,6 +1008,30 @@ extension OfferDetailViewController: UICollectionViewDelegate,
     }
 }
 
+extension OfferDetailViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.optionalExpenses.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return getOptionalExpensesCell(tableView, cellForRowAt: indexPath)
+    }
+    
+    func getOptionalExpensesCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OptionalExpensesTableViewCell", for: indexPath) as? OptionalExpensesTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.setTaxesData(with: viewModel.optionalExpenses[indexPath.row])
+        cell.delegate = self
+        cell.indexPath = indexPath
+        return cell
+    }
+}
+
 extension OfferDetailViewController: OfferServiceProtectionDelegate {
     func protectionSelected(with id: UUID, month: Int, amount: Double) {
         let _ = CoreDataService().addGolloPlus(for: id, month: month, amount: amount)
@@ -903,6 +1055,35 @@ extension OfferDetailViewController: ProductCellDelegate {
         vc.skuProduct = data.productCode
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension OfferDetailViewController: OptionalExpensesCellDelegate {
+    func didSelectOptionalExpense(at indexPath: IndexPath) {
+        let expenseSelected = !(self.viewModel.optionalExpenses[indexPath.row].selected ?? false)
+        self.viewModel.optionalExpenses[indexPath.row].selected = expenseSelected
+        
+        if expenseSelected {
+            self.newExpensesPrice = (self.newExpensesPrice == 0.0 ? self.priceToShow : self.newExpensesPrice) + (self.viewModel.optionalExpenses[indexPath.row].monto ?? 0.0)
+        } else {
+            self.newExpensesPrice = self.newExpensesPrice - (self.viewModel.optionalExpenses[indexPath.row].monto ?? 0.0)
+        }
+        
+        if totalDiscount > 0.0,
+           let price = Double(self.article?.articulo?.precio ?? "0.0"), price > 0.0 {
+            let discountString = numberFormatter.string(from: NSNumber(value: self.newExpensesPrice))!
+            self.originalPrice.text = "\("₡")\(discountString)"
+            priceToShow = Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0
+        } else {
+            let originalString = numberFormatter.string(from: NSNumber(value: self.newExpensesPrice))!
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            self.uniqueOriginalPriceLabel.text = "\("₡")\(originalString) IVAi"
+            self.originalPrice.text = "\("₡")\(originalString) IVAi"
+        }
+        
+        self.drawMandatoryExpenses(with: priceToShow)
+        self.optionalTableView.reloadData()
     }
 }
 

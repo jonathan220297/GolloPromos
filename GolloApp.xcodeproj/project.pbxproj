@@ -363,6 +363,10 @@
 		CB9E54382A45C28800B53828 /* ChatbotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E54362A45C28800B53828 /* ChatbotViewController.swift */; };
 		CB9E54392A45C28800B53828 /* ChatbotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9E54372A45C28800B53828 /* ChatbotViewController.xib */; };
 		CB9E543D2A45DC9D00B53828 /* DispatchQueue+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */; };
+		CBA6327A2A870B180094DC23 /* StackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA632792A870B180094DC23 /* StackView+Extension.swift */; };
+		CBA6327C2A87C9960094DC23 /* CheckboxWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA6327B2A87C9960094DC23 /* CheckboxWithTitle.swift */; };
+		CBA632822A87E54D0094DC23 /* OptionalExpensesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA632802A87E54D0094DC23 /* OptionalExpensesTableViewCell.swift */; };
+		CBA632832A87E54D0094DC23 /* OptionalExpensesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBA632812A87E54D0094DC23 /* OptionalExpensesTableViewCell.xib */; };
 		CBC2611E2A7D467D00C891E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC2611D2A7D467D00C891E3 /* GoogleService-Info.plist */; };
 		CBD4BD502A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD4BD4E2A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.swift */; };
 		CBD4BD512A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD4BD4F2A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.xib */; };
@@ -779,6 +783,10 @@
 		CB9E54362A45C28800B53828 /* ChatbotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotViewController.swift; sourceTree = "<group>"; };
 		CB9E54372A45C28800B53828 /* ChatbotViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatbotViewController.xib; sourceTree = "<group>"; };
 		CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extension.swift"; sourceTree = "<group>"; };
+		CBA632792A870B180094DC23 /* StackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView+Extension.swift"; sourceTree = "<group>"; };
+		CBA6327B2A87C9960094DC23 /* CheckboxWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxWithTitle.swift; sourceTree = "<group>"; };
+		CBA632802A87E54D0094DC23 /* OptionalExpensesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExpensesTableViewCell.swift; sourceTree = "<group>"; };
+		CBA632812A87E54D0094DC23 /* OptionalExpensesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionalExpensesTableViewCell.xib; sourceTree = "<group>"; };
 		CBC2611D2A7D467D00C891E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBD4BD4E2A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		CBD4BD4F2A1E9EE900E30CA1 /* OfferImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferImagesCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -853,6 +861,7 @@
 				4F90BC832912E2BA006EEABC /* Double+Extension.swift */,
 				CB8A01A029BCFBB20004C508 /* Data+Extension.swift */,
 				CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */,
+				CBA632792A870B180094DC23 /* StackView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -866,6 +875,7 @@
 				4F0D965926DDBB360061E89E /* LocalizableLabel.swift */,
 				4F0D965B26DDBB490061E89E /* LocalizableButton.swift */,
 				4F0D965D26DDBB590061E89E /* CustomButton.swift */,
+				CBA6327B2A87C9960094DC23 /* CheckboxWithTitle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1120,6 +1130,7 @@
 		4F17322B27013B9300D7924D /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				CBA6327D2A87E52D0094DC23 /* OptionalExpenses */,
 				CB8264262A6E1C1000DB7B13 /* ProductImages */,
 				CB445C5D2A1E9A1700329B9D /* OfferImages */,
 				4FADF58728E4A27600DF9F29 /* OfferServiceProtection */,
@@ -2013,6 +2024,15 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		CBA6327D2A87E52D0094DC23 /* OptionalExpenses */ = {
+			isa = PBXGroup;
+			children = (
+				CBA632802A87E54D0094DC23 /* OptionalExpensesTableViewCell.swift */,
+				CBA632812A87E54D0094DC23 /* OptionalExpensesTableViewCell.xib */,
+			);
+			path = OptionalExpenses;
+			sourceTree = "<group>";
+		};
 		CBDD0E3729B697ED0071E063 /* EmmaTerms */ = {
 			isa = PBXGroup;
 			children = (
@@ -2205,6 +2225,7 @@
 				4F68373228DB7A5600462F5E /* OfferServiceProtectionViewController.xib in Resources */,
 				4FE86E6928E41092008E58F1 /* ShippingMethodTableViewCell.xib in Resources */,
 				4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */,
+				CBA632832A87E54D0094DC23 /* OptionalExpensesTableViewCell.xib in Resources */,
 				4FE1910C26DEF77C00322128 /* SectionTableViewCell.xib in Resources */,
 				4FE1910B26DEF77C00322128 /* SliderTableViewCell.xib in Resources */,
 				4F0D96BC26DDD7F50061E89E /* MenuTableViewCell.xib in Resources */,
@@ -2362,6 +2383,7 @@
 				4F9B100028BDBBCD00B1FD82 /* SaveUserRequest.swift in Sources */,
 				4FE1912826DEFCA000322128 /* ProductCollectionViewCell.swift in Sources */,
 				4F68372728DB666900462F5E /* OfferDetailRequest.swift in Sources */,
+				CBA6327A2A870B180094DC23 /* StackView+Extension.swift in Sources */,
 				4F69893F28BDAC8D000FFA56 /* PaymentResponse.swift in Sources */,
 				4F3E481C27278536009D259D /* OffersListRequest.swift in Sources */,
 				4FDB6EDA28E3B3790002DA0B /* City.swift in Sources */,
@@ -2476,8 +2498,10 @@
 				4FA2768526D9193C00216284 /* SignUpViewModel.swift in Sources */,
 				4F0D969F26DDD57A0061E89E /* SideMenuViewController.swift in Sources */,
 				4F37A7F027223EE000FBB46B /* BaseRequest.swift in Sources */,
+				CBA632822A87E54D0094DC23 /* OptionalExpensesTableViewCell.swift in Sources */,
 				4F47F735290D985B00A72AAA /* ReadNotificationRequest.swift in Sources */,
 				4FB2582F2720DDDC0003C607 /* HistoryViewModel.swift in Sources */,
+				CBA6327C2A87C9960094DC23 /* CheckboxWithTitle.swift in Sources */,
 				4F135C5F28FDF6C0007303D1 /* SearchOffersRequest.swift in Sources */,
 				4F7C5F3428E621A300123072 /* OrderDetailRequest.swift in Sources */,
 				4F68373128DB7A5600462F5E /* OfferServiceProtectionViewController.swift in Sources */,
@@ -2820,9 +2844,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9196/ClientesApiV3.0/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2830,7 +2854,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2848,9 +2872,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9196/ClientesApiV3.0/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2858,7 +2882,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.merckers.golloapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -14,6 +14,7 @@ class OrderDetailTabViewController: UIViewController {
     @IBOutlet weak var orderLabel: UILabel!
     @IBOutlet weak var createLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var productsLabel: UILabel!
     @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var deliveryTitleLabel: UILabel!
@@ -154,6 +155,7 @@ class OrderDetailTabViewController: UIViewController {
         }
         referenceLabel.attributedText = formatHTML(header: "Número de referencia: ", content: "\(order.orden.idOrden ?? 0)")
         statusLabel.attributedText = formatHTML(header: "Estado: ", content: order.orden.descripcionCupon ?? "")
+        originLabel.attributedText = formatHTML(header: "Origen: ", content: order.orden.origen ?? "")
 
         // Total products
         if let totalProductAmount = order.orden.montoProductos {
@@ -203,14 +205,14 @@ class OrderDetailTabViewController: UIViewController {
         if deliveryPlace.tipoEntrega == "20" {
             descriptionDeliveryLabel.text = deliveryPlace.descEntrega
             nameLabel.attributedText = formatHTML(header: "Recoger en tienda: ", content: deliveryPlace.lugarDespacho ?? "")
-            addressLabel.alpha = 0
+            addressLabel.isHidden = true
         } else {
             if let place = deliveryPlace.lugarDespacho, !place.removeWhitespace().isEmpty {
-                descriptionDeliveryLabel.text = deliveryPlace.descEntrega
-                nameLabel.text = deliveryPlace.receptorProducto
+                descriptionDeliveryLabel.text = deliveryPlace.descEntrega ?? ""
+                nameLabel.text = deliveryPlace.receptorProducto ?? ""
                 addressLabel.text = getAddress(with: deliveryPlace)
             } else {
-                descriptionDeliveryLabel.alpha = 0
+                descriptionDeliveryLabel.isHidden = true
                 nameLabel.text = "Recoger en tienda"
                 addressLabel.text = deliveryPlace.lugarDespacho ?? ""
             }

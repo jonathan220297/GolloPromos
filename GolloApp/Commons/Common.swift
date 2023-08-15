@@ -79,10 +79,10 @@ func convertToDictionary(text: String) -> [String: Any]? {
     return json
 }
 
-func formatHTML(header: String, content: String) -> NSMutableAttributedString {
+func formatHTML(header: String, content: String, size: CGFloat? = nil) -> NSMutableAttributedString {
     let someValue : String = content
     let text = NSMutableAttributedString(string: header)
-    text.append(NSAttributedString(string: someValue, attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)]))
+    text.append(NSAttributedString(string: someValue, attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: size != nil ? size! : UIFont.systemFontSize)]))
     return text
 }
 

@@ -22,6 +22,9 @@ struct Article : Codable {
     let extraGarantia: [Warranty]?
     let imagenes: [ArticleImages]?
     let complementos: [Offers]?
+    let otrosGastos: [OtherExpenses]?
+    let existeVMI: Int?
+    let texto_vmi: String?
 }
 
 struct Royalties: Codable {
@@ -42,4 +45,11 @@ struct Warranty: Codable {
 struct ArticleImages: Codable {
     let tipo: Int?
     let imagen: String?
+}
+
+struct OtherExpenses: Codable {
+    let skuGasto, descripcion: String?
+    let monto: Double?
+    let obligatorio: Int
+    var selected: Bool? = false
 }
