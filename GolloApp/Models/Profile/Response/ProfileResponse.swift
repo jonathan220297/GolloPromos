@@ -10,4 +10,5 @@ import Foundation
 struct ProfileResponse: Codable {
     let perfil: UserData?
     let indExiste: String?
+    let indAsociado: Int?
 }

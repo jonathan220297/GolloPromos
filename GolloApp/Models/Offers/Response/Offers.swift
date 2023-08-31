@@ -20,6 +20,8 @@ struct Offers: Codable {
     let endDate, startDate: String?
     let montoDescuento, precioFinal: Double?
     let tieneBono, tieneRegalia, tieneDescuento, muestraDescuento: String?
+    let tiene2x1, tieneNuevo, tieneTopVentas, tieneExclusivo, tienetranspGratis: String?
+    let indMostrarTop: Bool?
 }
 
 struct CategoryOffers {

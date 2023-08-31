@@ -347,6 +347,10 @@
 		4FFD9CCB272B6C1E004778F1 /* EmptyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9CCA272B6C1E004778F1 /* EmptyTableView.swift */; };
 		65D0FAE654DA22607863BF6C /* Pods_GolloAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043D8B1C858008ABBD81C410 /* Pods_GolloAppTests.framework */; };
 		BEB9D810F238C2BF5F31D44B /* Pods_GolloApp_GolloAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645A637FB259878AD396DD99 /* Pods_GolloApp_GolloAppUITests.framework */; };
+		CB17DEC62A906FC8009DA49E /* GeolozalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB17DEC42A906FC8009DA49E /* GeolozalizationViewController.swift */; };
+		CB17DEC72A906FC8009DA49E /* GeolozalizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB17DEC52A906FC8009DA49E /* GeolozalizationViewController.xib */; };
+		CB17DEC92A908BD9009DA49E /* ValidateProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB17DEC82A908BD9009DA49E /* ValidateProfileRequest.swift */; };
+		CB17DECB2A908C00009DA49E /* ValidateProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB17DECA2A908C00009DA49E /* ValidateProfileResponse.swift */; };
 		CB46D3A72A17FBD200690EB9 /* ProductScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB46D3A52A17FBD200690EB9 /* ProductScannerViewController.swift */; };
 		CB46D3A82A17FBD200690EB9 /* ProductScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB46D3A62A17FBD200690EB9 /* ProductScannerViewController.xib */; };
 		CB46D3AC2A18310800690EB9 /* GolloStoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB46D3AA2A18310800690EB9 /* GolloStoresViewController.swift */; };
@@ -363,6 +367,8 @@
 		CB9E54382A45C28800B53828 /* ChatbotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E54362A45C28800B53828 /* ChatbotViewController.swift */; };
 		CB9E54392A45C28800B53828 /* ChatbotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9E54372A45C28800B53828 /* ChatbotViewController.xib */; };
 		CB9E543D2A45DC9D00B53828 /* DispatchQueue+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */; };
+		CBA55B8A2A96ED5F00971144 /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA55B892A96ED5F00971144 /* ProductManager.swift */; };
+		CBA55B8C2A96EDA500971144 /* ProductRibbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA55B8B2A96EDA500971144 /* ProductRibbon.swift */; };
 		CBA6327A2A870B180094DC23 /* StackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA632792A870B180094DC23 /* StackView+Extension.swift */; };
 		CBA6327C2A87C9960094DC23 /* CheckboxWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA6327B2A87C9960094DC23 /* CheckboxWithTitle.swift */; };
 		CBA632822A87E54D0094DC23 /* OptionalExpensesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA632802A87E54D0094DC23 /* OptionalExpensesTableViewCell.swift */; };
@@ -767,6 +773,10 @@
 		7F56C7BBB94B06624F1B7633 /* Pods-GolloApp-GolloAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp-GolloAppUITests.release.xcconfig"; path = "Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC1BD336FE1FFD404ABA4BC3 /* Pods-GolloApp-GolloAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp-GolloAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC59E90B8130ECEB546139B5 /* Pods_GolloApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GolloApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB17DEC42A906FC8009DA49E /* GeolozalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolozalizationViewController.swift; sourceTree = "<group>"; };
+		CB17DEC52A906FC8009DA49E /* GeolozalizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeolozalizationViewController.xib; sourceTree = "<group>"; };
+		CB17DEC82A908BD9009DA49E /* ValidateProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateProfileRequest.swift; sourceTree = "<group>"; };
+		CB17DECA2A908C00009DA49E /* ValidateProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateProfileResponse.swift; sourceTree = "<group>"; };
 		CB46D3A52A17FBD200690EB9 /* ProductScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductScannerViewController.swift; sourceTree = "<group>"; };
 		CB46D3A62A17FBD200690EB9 /* ProductScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductScannerViewController.xib; sourceTree = "<group>"; };
 		CB46D3AA2A18310800690EB9 /* GolloStoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolloStoresViewController.swift; sourceTree = "<group>"; };
@@ -783,6 +793,8 @@
 		CB9E54362A45C28800B53828 /* ChatbotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotViewController.swift; sourceTree = "<group>"; };
 		CB9E54372A45C28800B53828 /* ChatbotViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatbotViewController.xib; sourceTree = "<group>"; };
 		CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extension.swift"; sourceTree = "<group>"; };
+		CBA55B892A96ED5F00971144 /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
+		CBA55B8B2A96EDA500971144 /* ProductRibbon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRibbon.swift; sourceTree = "<group>"; };
 		CBA632792A870B180094DC23 /* StackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView+Extension.swift"; sourceTree = "<group>"; };
 		CBA6327B2A87C9960094DC23 /* CheckboxWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxWithTitle.swift; sourceTree = "<group>"; };
 		CBA632802A87E54D0094DC23 /* OptionalExpensesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExpensesTableViewCell.swift; sourceTree = "<group>"; };
@@ -1153,6 +1165,7 @@
 			children = (
 				4F17323427013C6600D7924D /* Response */,
 				4F17323327013C5D00D7924D /* Request */,
+				CBA55B8B2A96EDA500971144 /* ProductRibbon.swift */,
 			);
 			path = Offers;
 			sourceTree = "<group>";
@@ -1500,6 +1513,7 @@
 				4FE86E6128E40BAC008E58F1 /* CarManager.swift */,
 				4FBC3F862919FC0600626626 /* PushNotificationManager.swift */,
 				CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */,
+				CBA55B892A96ED5F00971144 /* ProductManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1586,6 +1600,7 @@
 				4FC04C5628AE9C3E001EF211 /* UserRequest.swift */,
 				4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */,
 				4FB45FA0290F7E76006A4958 /* DeleteProfileRequest.swift */,
+				CB17DEC82A908BD9009DA49E /* ValidateProfileRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1596,6 +1611,7 @@
 				4FC04C5928AE9C74001EF211 /* UserResponse.swift */,
 				4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */,
 				CBD708C42A1C7AA000693CA1 /* ProfileResponse.swift */,
+				CB17DECA2A908C00009DA49E /* ValidateProfileResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1705,6 +1721,8 @@
 				4FDB6EC928DD18EA0002DA0B /* PaymentAddressViewController.xib */,
 				4FA0B86E28E3C48700395361 /* AddressListViewController.swift */,
 				4FA0B86F28E3C48700395361 /* AddressListViewController.xib */,
+				CB17DEC42A906FC8009DA49E /* GeolozalizationViewController.swift */,
+				CB17DEC52A906FC8009DA49E /* GeolozalizationViewController.xib */,
 			);
 			path = PaymentAddress;
 			sourceTree = "<group>";
@@ -2222,6 +2240,7 @@
 				4FEA90A628CFF6F300A73813 /* ProductViewController.xib in Resources */,
 				4F9DF3632A7B1924000ACCAE /* OffersFooterTableViewCell.xib in Resources */,
 				4F9DF35F2A7B07A2000ACCAE /* ProductFooterCollectionViewCell.xib in Resources */,
+				CB17DEC72A906FC8009DA49E /* GeolozalizationViewController.xib in Resources */,
 				4F68373228DB7A5600462F5E /* OfferServiceProtectionViewController.xib in Resources */,
 				4FE86E6928E41092008E58F1 /* ShippingMethodTableViewCell.xib in Resources */,
 				4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */,
@@ -2424,6 +2443,7 @@
 				4FC04C5C28AEF0B7001EF211 /* TransactionsHistoryViewController.swift in Sources */,
 				4F3E480527278525009D259D /* OffersListViewModel.swift in Sources */,
 				4FDCC97F290A37E6004BB9B6 /* VerifyPaymentViewController.swift in Sources */,
+				CB17DECB2A908C00009DA49E /* ValidateProfileResponse.swift in Sources */,
 				4F317A9A28F77399005BA675 /* MasterSection.swift in Sources */,
 				4F0D96A226DDD59E0061E89E /* SideMenuViewModel.swift in Sources */,
 				4FEDF8E328B9921E00719245 /* TransactionHistoryRequest.swift in Sources */,
@@ -2510,6 +2530,7 @@
 				4F7C5F2428E6163100123072 /* OrdersTabViewModel.swift in Sources */,
 				4FFD9CB7272B1FBD004778F1 /* OffersTableViewCell.swift in Sources */,
 				4F0D963326DDB82F0061E89E /* UIViewController+Extension.swift in Sources */,
+				CBA55B8A2A96ED5F00971144 /* ProductManager.swift in Sources */,
 				4F3E482E27278796009D259D /* PaymentData.swift in Sources */,
 				4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */,
 				4F3E48392727883C009D259D /* PaymentConfirmViewController.swift in Sources */,
@@ -2536,6 +2557,7 @@
 				4FA41E0C27015AA4007C93F9 /* Profile.swift in Sources */,
 				4FE1911C26DEFC1D00322128 /* ProductsRequest.swift in Sources */,
 				4F0D96BD26DDD7F50061E89E /* MenuTableViewCell.swift in Sources */,
+				CBA55B8C2A96EDA500971144 /* ProductRibbon.swift in Sources */,
 				4FE86E6D28E4A1D4008E58F1 /* PaymentOrderResponse.swift in Sources */,
 				4FFD9C9F272A145F004778F1 /* CategoryOffersTableViewCell.swift in Sources */,
 				CB8264292A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift in Sources */,
@@ -2639,6 +2661,7 @@
 				4F894A19270A5AAB0004AAB3 /* AccountsRequest.swift in Sources */,
 				4F69893D28BD9EEB000FFA56 /* PaymentRequest.swift in Sources */,
 				4FE86E5628E404F1008E58F1 /* ShippingMethodViewController.swift in Sources */,
+				CB17DEC92A908BD9009DA49E /* ValidateProfileRequest.swift in Sources */,
 				4FE1913426DF071A00322128 /* FilterViewController.swift in Sources */,
 				CB46D3A72A17FBD200690EB9 /* ProductScannerViewController.swift in Sources */,
 				4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */,
@@ -2647,6 +2670,7 @@
 				4F75A54628AEFE500001CC4D /* PaymentDataViewController.swift in Sources */,
 				4FEDF8E528B9928700719245 /* TransactionHistoryResponse.swift in Sources */,
 				4F47F737290D9DDF00A72AAA /* UnreadNotificationRequest.swift in Sources */,
+				CB17DEC62A906FC8009DA49E /* GeolozalizationViewController.swift in Sources */,
 				4F3E7C7A28F21C5A00221684 /* CategoriesViewController.swift in Sources */,
 				4F0D969126DDD3BE0061E89E /* NotificationsViewModel.swift in Sources */,
 				4F57B79C28F9F1B600CFBD01 /* SearchOffersViewModel.swift in Sources */,
@@ -2844,7 +2868,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
@@ -2872,7 +2896,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;

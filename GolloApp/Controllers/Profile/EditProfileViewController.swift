@@ -14,7 +14,7 @@ import FirebaseAuth
 import FirebaseMessaging
 
 class EditProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var profileScrollView: UIScrollView!
     @IBOutlet weak var profileImageView: UIView!
     @IBOutlet weak var userImageView: UIImageView!
@@ -67,7 +67,7 @@ class EditProfileViewController: UIViewController {
     }()
     let disposeBag = DisposeBag()
     let datePicker = UIDatePicker()
-
+    
     private let userManager = UserManager.shared
     let userDefaults = UserDefaults.standard
     var imagePicker = UIImagePickerController()
@@ -76,7 +76,8 @@ class EditProfileViewController: UIViewController {
     var sideMenuAcction = false
     var tempUserData: UserData? = nil
     var keyboardShowing: Bool = false
-
+    var affiliationProfile: AffiliationProfile? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureObservers()
@@ -88,32 +89,32 @@ class EditProfileViewController: UIViewController {
         documentNumberLabel.delegate = self
         hideKeyboardWhenTappedAround()
     }
-
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         self.tabBarController?.tabBar.isHidden = true
         configureNavigationBar()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         if sideMenuAcction {
             self.tabBarController?.navigationController?.navigationBar.isHidden = false
             self.tabBarController?.tabBar.isHidden = false
         }
     }
-
+    
     // MARK: - Observers
     @objc func closePopUp() {
         if keyboardShowing {
             hideKeyboardWhenTappedAround()
         }
     }
-
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.keyboardShowing = true
@@ -122,7 +123,7 @@ class EditProfileViewController: UIViewController {
             }
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         self.keyboardShowing = false
         if self.view.frame.origin.y != 0 {
@@ -157,25 +158,25 @@ class EditProfileViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     func createDatePicker() {
         if #available(iOS 13.4, *) {
             datePicker.preferredDatePickerStyle = .wheels
         }
         datePicker.datePickerMode = .date
-
+        
         birthdateTextField.textAlignment = .justified
         birthdateTextField.inputView = datePicker
         birthdateTextField.inputAccessoryView = createToolbar()
     }
-
+    
     func createToolbar() -> UIToolbar {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-
+        
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([doneButton], animated: true)
-
+        
         return toolbar
     }
     
@@ -278,7 +279,7 @@ class EditProfileViewController: UIViewController {
             self.deleteProfileView.isHidden = true
         }
     }
-
+    
     fileprivate func configureRx() {
         viewModel.errorMessage
             .asObservable()
@@ -295,7 +296,7 @@ class EditProfileViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-
+        
         viewModel
             .errorExpiredToken
             .asObservable()
@@ -323,11 +324,11 @@ class EditProfileViewController: UIViewController {
                             Variables.userProfile = nil
                             UserManager.shared.userData = nil
                             Messaging.messaging().token { token, error in
-                              if let error = error {
-                                print("Error fetching FCM registration token: \(error)")
-                              } else if let token = token {
-                                self.registerDevice(with: token)
-                              }
+                                if let error = error {
+                                    print("Error fetching FCM registration token: \(error)")
+                                } else if let token = token {
+                                    self.registerDevice(with: token, true)
+                                }
                             }
                         } catch let signOutError as NSError {
                             log.error("Error signing out: \(signOutError)")
@@ -336,7 +337,7 @@ class EditProfileViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-
+        
         nameTextField.rx.text.bind(to: viewModel.nameSubject).disposed(by: disposeBag)
         lastNameTextField.rx.text.bind(to: viewModel.lastnameSubject).disposed(by: disposeBag)
         secondLastNameTextField.rx.text.bind(to: viewModel.secondLastnameSubject).disposed(by: disposeBag)
@@ -346,10 +347,10 @@ class EditProfileViewController: UIViewController {
         mobileTextField.rx.text.bind(to: viewModel.mobileNumberSubject).disposed(by: disposeBag)
         emailTextField.rx.text.bind(to: viewModel.emailSubject).disposed(by: disposeBag)
         addressTextField.rx.text.bind(to: viewModel.addressSubject).disposed(by: disposeBag)
-
+        
         viewModel.isValidForm.bind(to: updateButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.isValidForm.map { $0 ? 1 : 0.4 }.bind(to: updateButton.rx.alpha).disposed(by: disposeBag)
-
+        
         addImageButton
             .rx
             .tap
@@ -357,7 +358,7 @@ class EditProfileViewController: UIViewController {
                 self.changeImage()
             })
             .disposed(by: disposeBag)
-
+        
         editImageButton
             .rx
             .tap
@@ -373,7 +374,7 @@ class EditProfileViewController: UIViewController {
                 self.configureDocumentTypeDropDown()
             })
             .disposed(by: disposeBag)
-
+        
         registerUserButton
             .rx
             .tap
@@ -381,7 +382,7 @@ class EditProfileViewController: UIViewController {
                 self.showData(with: nil)
             })
             .disposed(by: disposeBag)
-
+        
         genderTypeButton
             .rx
             .tap
@@ -389,7 +390,7 @@ class EditProfileViewController: UIViewController {
                 self.configureGenderTypeDropDown()
             })
             .disposed(by: disposeBag)
-
+        
         searchCustomerButton
             .rx
             .tap
@@ -397,7 +398,7 @@ class EditProfileViewController: UIViewController {
                 self.fetchUserData()
             })
             .disposed(by: disposeBag)
-
+        
         documentNumberLabel
             .rx
             .controlEvent([.editingDidBegin,.editingDidEnd])
@@ -410,7 +411,7 @@ class EditProfileViewController: UIViewController {
                     self.unregisteredUserView.alpha = 0
                 }
             }).disposed(by: disposeBag)
-
+        
         updateButton
             .rx
             .tap
@@ -418,23 +419,23 @@ class EditProfileViewController: UIViewController {
                 self.saveUserData()
             })
             .disposed(by: disposeBag)
-
+        
         deleteProfileButton
             .rx
             .tap
             .subscribe(onNext: {
                 let refreshAlert = UIAlertController(title: "", message: "¿Desea eliminar el registro?", preferredStyle: UIAlertController.Style.alert)
-
+                
                 refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
                     refreshAlert.dismiss(animated: true)
                 }))
-
+                
                 refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
                     self.view.activityStarAnimating()
                     self.deleteUserData()
                     refreshAlert.dismiss(animated: true)
                 }))
-
+                
                 self.present(refreshAlert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
@@ -443,7 +444,24 @@ class EditProfileViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: {
-                if let data = self.tempUserData {
+                if let data = self.affiliationProfile {
+                    if self.codeTextField.text != nil && data.pinValidacion == self.codeTextField.text {
+                        self.validationCodeView.isHidden = true
+                        self.deleteUserData(affiliateId: data.idUsuarioActual)
+                        self.fetchUserData()
+                    } else {
+                        self.viewModel.totalIntents += 1
+                        if self.viewModel.totalIntents == 3 {
+                            self.showAlertWithActions(alertText: "GolloApp", alertMessage: "Ha excedido la cantidad de intentos permitidos") {
+                                self.validationCodeView.isHidden = true
+                                self.codeTextField.text = ""
+                                self.viewModel.totalIntents = 0
+                            }
+                        } else {
+                            self.showAlert(alertText: "Error", alertMessage: "Ingresa un código válido.")
+                        }
+                    }
+                } else if let data = self.tempUserData {
                     if self.codeTextField.text != nil && data.pinValidacion == self.codeTextField.text {
                         self.validationCodeView.isHidden = true
                         self.showData(with: data)
@@ -471,7 +489,7 @@ class EditProfileViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-
+    
     func changeImage() {
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
@@ -488,7 +506,7 @@ class EditProfileViewController: UIViewController {
             self.documentTypeLabel.text = item
         }
     }
-
+    
     func configureGenderTypeDropDown() {
         let dropDown = DropDown()
         dropDown.anchorView = genderTypeButton
@@ -500,7 +518,7 @@ class EditProfileViewController: UIViewController {
             viewModel.genderSubject.accept(item)
         }
     }
-
+    
     fileprivate func fetchUserData() {
         if documentType.isEmpty {
             showAlert(alertText: "GolloApp", alertMessage: "Seleccione el tipo de documento de idendidad")
@@ -518,7 +536,11 @@ class EditProfileViewController: UIViewController {
                           let data = data else { return }
                     self.view.activityStopAnimating()
                     if let profile = data.perfil {
-                        self.tempUserData = profile
+                        tempUserData = profile
+                    } else {
+                        if data.perfil == nil && data.indExiste == nil {
+                            showAlert(alertText: "GolloApp", alertMessage: "Datos del cliente no son consistentes. Favor contacta a soporte.")
+                        }
                     }
                     
                     if data.indExiste == "N" {
@@ -526,42 +548,77 @@ class EditProfileViewController: UIViewController {
                         self.searchCustomerButton.isHidden = true
                         self.unregisteredUserView.alpha = 1
                     } else {
-                        if let profile = data.perfil {
-                            if let _ = profile.numeroIdentificacion, let _ = profile.numeroIdentificacion {
-                                if let _ = profile.emailValidacion, let _ = profile.pinValidacion {
-                                    self.tempUserData = profile
-                                    self.informationValidationCodeLabel.text = "Se ha enviado un código de verificación a su correo electrónico \(profile.emailValidacion ?? ""), el cual debe digitar a continuación"
-                                    self.validationCodeView.isHidden = false
+                        if data.indAsociado == 1 {
+                            showDesaffiliateDialog()
+                        } else {
+                            if let profile = data.perfil {
+                                if let _ = profile.numeroIdentificacion, let _ = profile.numeroIdentificacion {
+                                    if let _ = profile.emailValidacion, let _ = profile.pinValidacion {
+                                        self.tempUserData = profile
+                                        self.informationValidationCodeLabel.text = "Se ha enviado un código de verificación a su correo electrónico \(profile.emailValidacion ?? ""), el cual debe digitar a continuación"
+                                        self.validationCodeView.isHidden = false
+                                    } else {
+                                        self.validationCodeView.isHidden = true
+                                        self.showData(with: profile)
+                                    }
+                                    self.searchCustomerView.isHidden = false
+                                    self.searchCustomerButton.isHidden = false
                                 } else {
-                                    self.validationCodeView.isHidden = true
-                                    self.showData(with: profile)
+                                    self.searchCustomerView.isHidden = true
+                                    self.searchCustomerButton.isHidden = true
+                                    self.unregisteredUserView.alpha = 1
                                 }
-                                self.searchCustomerView.isHidden = false
-                                self.searchCustomerButton.isHidden = false
                             } else {
                                 self.searchCustomerView.isHidden = true
                                 self.searchCustomerButton.isHidden = true
                                 self.unregisteredUserView.alpha = 1
                             }
-                        } else {
-                            self.searchCustomerView.isHidden = true
-                            self.searchCustomerButton.isHidden = true
-                            self.unregisteredUserView.alpha = 1
                         }
                     }
                 })
                 .disposed(by: disposeBag)
         }
     }
-
+    
+    fileprivate func showDesaffiliateDialog() {
+        let refreshAlert = UIAlertController(title: "", message: "Este número de documento está asociado a otro usuario. ¿Desea asociarlo eliminar esa asociación?", preferredStyle: UIAlertController.Style.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
+            refreshAlert.dismiss(animated: true)
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
+            self.getDisaffiliationPin()
+            refreshAlert.dismiss(animated: true)
+        }))
+        
+        self.present(refreshAlert, animated: true, completion: nil)
+    }
+    
+    fileprivate func getDisaffiliationPin() {
+        view.activityStartAnimatingFull()
+        viewModel
+            .validateUserExist(number: documentNumberLabel.text ?? "", type: documentType)
+            .asObservable()
+            .subscribe(onNext: {[weak self] data in
+                guard let self = self,
+                      let data = data else { return }
+                self.view.activityStopAnimatingFull()
+                self.affiliationProfile = data.perfil
+                self.informationValidationCodeLabel.text = "Se ha enviado un código de verificación a su correo electrónico \(data.perfil?.emailValidacion ?? ""), el cual debe digitar a continuación"
+                self.validationCodeView.isHidden = false
+            })
+            .disposed(by: disposeBag)
+    }
+    
     fileprivate func isValidCelular(number: String) -> Bool {
         let range = NSRange(location: 0, length: number.utf16.count)
         let regex = try! NSRegularExpression(pattern: "^[1-9]\\d{4}\\d{4}$")
         let valid = regex.firstMatch(in: number, options: [], range: range) != nil
-
+        
         return valid
     }
-
+    
     fileprivate func showData(with data: UserData?) {
         view.activityStopAnimating()
         searchCustomerButton.visibility = .gone
@@ -633,7 +690,7 @@ class EditProfileViewController: UIViewController {
             viewModel.addressSubject.accept(data.direccion)
         }
     }
-
+    
     fileprivate func saveUserData() {
         view.activityStarAnimating()
         var operationType = 1
@@ -681,10 +738,10 @@ class EditProfileViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-
-    fileprivate func deleteUserData() {
+    
+    fileprivate func deleteUserData(affiliateId: String? = nil) {
         viewModel
-            .deleteUserProfile()
+            .deleteUserProfile(affiliateUserId: affiliateId)
             .asObservable()
             .subscribe(onNext: {[weak self] data in
                 guard let self = self,
@@ -696,19 +753,19 @@ class EditProfileViewController: UIViewController {
                 Variables.userProfile = nil
                 UserManager.shared.userData = nil
                 Messaging.messaging().token { token, error in
-                  if let error = error {
-                      self.view.activityStopAnimating()
-                      print("Error fetching FCM registration token: \(error)")
-                  } else if let token = token {
-                      print("FCM registration token: \(token)")
-                      self.registerDevice(with: token)
-                  }
+                    if let error = error {
+                        self.view.activityStopAnimating()
+                        print("Error fetching FCM registration token: \(error)")
+                    } else if let token = token {
+                        print("FCM registration token: \(token)")
+                        self.registerDevice(with: token, affiliateId == nil)
+                    }
                 }
             })
             .disposed(by: disposeBag)
     }
-
-    fileprivate func registerDevice(with token: String) {
+    
+    fileprivate func registerDevice(with token: String, _ exit: Bool) {
         self.viewModel
             .registerDevice(with: token)
             .asObservable()
@@ -733,11 +790,13 @@ class EditProfileViewController: UIViewController {
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
-                self.navigationController?.popViewController(animated: true)
+                if exit {
+                    self.navigationController?.popViewController(animated: true)
+                }
             })
             .disposed(by: disposeBag)
     }
-
+    
 }
 
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

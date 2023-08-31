@@ -10,6 +10,7 @@ import UIKit
 
 protocol PaymentMethodCellDelegate: AnyObject {
     func didSelectPaymentMethod(at indexPath: IndexPath)
+    func redirectURLPage(at indexPath: IndexPath)
 }
 
 class PaymentMethodTableViewCell: UITableViewCell {
@@ -17,6 +18,8 @@ class PaymentMethodTableViewCell: UITableViewCell {
     @IBOutlet weak var paymentNameLabel: UILabel!
     @IBOutlet weak var paymentDescriptionLabel: UILabel!
     @IBOutlet weak var emmaAmountLabel: UILabel!
+    @IBOutlet weak var redirectView: UIView!
+    @IBOutlet weak var redirectLinkButton: UIButton!
     
     weak var delegate: PaymentMethodCellDelegate?
     var indexPath = IndexPath(row: 0, section: 0)
@@ -49,6 +52,12 @@ class PaymentMethodTableViewCell: UITableViewCell {
         } else {
             emmaAmountLabel.isHidden = true
         }
+        if let url = method.linkDescarga, !url.isEmpty {
+//            redirectLinkButton.setTitle(url.replacingOccurrences(of: "\\", with: ""), for: .normal)
+            redirectView.isHidden = false
+        } else {
+            redirectView.isHidden = true
+        }
     }
     
     func configureRx() {
@@ -58,6 +67,15 @@ class PaymentMethodTableViewCell: UITableViewCell {
             .subscribe(onNext: {[weak self] in
                 guard let self = self else { return }
                 self.delegate?.didSelectPaymentMethod(at: self.indexPath)
+            })
+            .disposed(by: bag)
+        
+        redirectLinkButton
+            .rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.delegate?.redirectURLPage(at: self.indexPath)
             })
             .disposed(by: bag)
     }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -49,6 +50,38 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vos-WD-1yU">
+                                <rect key="frame" x="0.0" y="44" width="255" height="24"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivS-hG-L2u">
+                                        <rect key="frame" x="0.0" y="0.0" width="255" height="24"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="15"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" name="colorPrimaryLight"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descarga aquí" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sd-IO-M1q">
+                                        <rect key="frame" x="0.0" y="0.0" width="255" height="24"/>
+                                        <color key="tintColor" name="colorPrimaryLight"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
+                                        <color key="textColor" name="colorPrimaryLight"/>
+                                        <color key="highlightedColor" name="colorPrimaryLight"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="04b-iL-kp2"/>
+                                    <constraint firstAttribute="bottom" secondItem="2Sd-IO-M1q" secondAttribute="bottom" id="BFH-oA-Vwy"/>
+                                    <constraint firstItem="ivS-hG-L2u" firstAttribute="top" secondItem="Vos-WD-1yU" secondAttribute="top" id="E4L-cA-KqM"/>
+                                    <constraint firstAttribute="bottom" secondItem="ivS-hG-L2u" secondAttribute="bottom" id="M2m-dP-Acp"/>
+                                    <constraint firstItem="2Sd-IO-M1q" firstAttribute="leading" secondItem="Vos-WD-1yU" secondAttribute="leading" id="OWE-nZ-Uk7"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Sd-IO-M1q" secondAttribute="trailing" id="f3D-Tq-piy"/>
+                                    <constraint firstItem="ivS-hG-L2u" firstAttribute="leading" secondItem="Vos-WD-1yU" secondAttribute="leading" id="igf-mZ-1hH"/>
+                                    <constraint firstAttribute="trailing" secondItem="ivS-hG-L2u" secondAttribute="trailing" id="vdX-yD-mzh"/>
+                                    <constraint firstItem="2Sd-IO-M1q" firstAttribute="top" secondItem="Vos-WD-1yU" secondAttribute="top" id="wcH-wp-y9d"/>
+                                </constraints>
+                            </view>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -68,6 +101,8 @@
                 <outlet property="paymentDescriptionLabel" destination="5JW-6N-uz1" id="oAA-rP-7pY"/>
                 <outlet property="paymentNameLabel" destination="HOD-w2-F6p" id="spc-X6-ofu"/>
                 <outlet property="paymentRadioButton" destination="dah-wM-hGt" id="5bW-gO-fCh"/>
+                <outlet property="redirectLinkButton" destination="ivS-hG-L2u" id="rSZ-7t-XoR"/>
+                <outlet property="redirectView" destination="Vos-WD-1yU" id="Y0P-Je-DEH"/>
             </connections>
             <point key="canvasLocation" x="64.615384615384613" y="24.170616113744074"/>
         </tableViewCell>
@@ -77,5 +112,11 @@
         <namedColor name="colorPrimary">
             <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="colorPrimaryLight">
+            <color red="0.19607843137254902" green="0.5490196078431373" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

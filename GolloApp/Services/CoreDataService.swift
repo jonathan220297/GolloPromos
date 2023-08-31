@@ -326,7 +326,13 @@ class CoreDataService {
                         tieneDescuento: data.value(forKey: "tieneDescuento") as? String,
                         tipoPromoApp: data.value(forKey: "tipoPromoApp") as? Int,
                         productoDescription: data.value(forKey: "productoDescription") as? String,
-                        muestraDescuento: "false"
+                        muestraDescuento: "false",
+                        tiene2x1: "false",
+                        tieneNuevo: "false",
+                        tieneTopVentas: "false",
+                        tieneExclusivo: "false",
+                        tienetranspGratis: "false",
+                        indMostrarTop: false
                     )
                 )
             }

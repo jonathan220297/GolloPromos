@@ -124,14 +124,6 @@ class PaymentAddressViewModel {
         service.callWebServiceGolloAlternative(BaseRequest<Provincias, StateListRequest>(
             service: BaseServiceRequestParam<StateListRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.STATES_CITIES.rawValue,
-//                        idDevice: getDeviceID(),
-//                        idUsuario: UserManager.shared.userData?.uid ?? "",
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.STATES_CITIES.rawValue),
                     parametros: StateListRequest(
                         idProvincia: state,
@@ -157,19 +149,19 @@ class PaymentAddressViewModel {
         let lastName = lastNameSubject.value
         let email = emailSubject.value
         let phoneNumber = phoneNumberSubject.value
-        let documentType = documentTypeSubject.value
+        _ = documentTypeSubject.value
         let identificationNumber = identificationNumberSubject.value
         let state = stateSubject.value
         let county = countySubject.value
         let district = districtSubject.value
         let address = addressSubject.value
-        let postalCode = postalCodeSubject.value
+        _ = postalCodeSubject.value
         let latitude = latitudeSubject.value
         let longitude = longitudeSubject.value
         let deliveryInfo = DeliveryInfo(
             codigoFlete: carManager.shippingMethod?.cargoCode ?? "-1",
-            coordenadaX: 0.0,
-            coordenadaY: 0.0,
+            coordenadaX: latitude ?? 0.0,
+            coordenadaY: longitude ?? 0.0,
             direccion: address ?? "",
             email: email ?? "",
             fechaEntrega: "",

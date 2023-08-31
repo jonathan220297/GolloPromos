@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -29,6 +29,8 @@
                 <outlet property="firstNameTextField" destination="cWq-Fh-ojd" id="EaE-nq-L4g"/>
                 <outlet property="identificationNumberTextField" destination="uf7-mn-gbd" id="CpG-eh-70W"/>
                 <outlet property="lastNameTextField" destination="z0k-cd-1Lt" id="1kN-iv-OiZ"/>
+                <outlet property="localizationAddressButton" destination="sVR-ZV-fmd" id="A94-xN-zIW"/>
+                <outlet property="localizationAddressView" destination="HMy-Wy-VdZ" id="BaX-F2-NHz"/>
                 <outlet property="locationPickerButton" destination="LCo-g6-f2R" id="X4C-j3-sGM"/>
                 <outlet property="locationPickerView" destination="ztQ-jH-TFP" id="sa3-5E-et4"/>
                 <outlet property="phoneNumberTextField" destination="m6S-cx-hkX" id="niS-Tm-VCU"/>
@@ -52,10 +54,10 @@
                     <rect key="frame" x="0.0" y="47" width="390" height="797"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udK-YK-G8t">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="973"/>
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="1032"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="UNW-Dm-Ees">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="973"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="1032"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jw-TH-ohc">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="75"/>
@@ -406,8 +408,68 @@
                                                 <constraint firstItem="9ki-Az-eie" firstAttribute="top" secondItem="fsP-zM-Yah" secondAttribute="top" constant="8" id="qKI-1B-Vxq"/>
                                             </constraints>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3AI-St-aU1">
+                                            <rect key="frame" x="0.0" y="533" width="390" height="55"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMy-Wy-VdZ">
+                                                    <rect key="frame" x="68.333333333333329" y="8" width="253.33333333333337" height="39"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="86s-m7-NnT">
+                                                            <rect key="frame" x="15.999999999999998" y="8.666666666666627" width="23.333333333333329" height="22"/>
+                                                            <color key="tintColor" name="Minsk"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="86s-m7-NnT" secondAttribute="height" multiplier="1:1" id="qMD-Bj-EZ5"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GEOLOCALIZACIÓN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hW3-4L-GOD">
+                                                            <rect key="frame" x="47.333333333333343" y="8" width="198" height="23"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" name="colorPrimary"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVR-ZV-fmd">
+                                                            <rect key="frame" x="0.0" y="0.0" width="253.33333333333334" height="39"/>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="hW3-4L-GOD" firstAttribute="leading" secondItem="86s-m7-NnT" secondAttribute="trailing" constant="8" id="3Of-TR-ZDH"/>
+                                                        <constraint firstItem="86s-m7-NnT" firstAttribute="leading" secondItem="HMy-Wy-VdZ" secondAttribute="leading" constant="16" id="6UI-3E-oy6"/>
+                                                        <constraint firstItem="86s-m7-NnT" firstAttribute="height" secondItem="HMy-Wy-VdZ" secondAttribute="height" multiplier="0.6" id="Gx4-Cf-hnO"/>
+                                                        <constraint firstItem="sVR-ZV-fmd" firstAttribute="leading" secondItem="HMy-Wy-VdZ" secondAttribute="leading" id="XRp-SI-su9"/>
+                                                        <constraint firstAttribute="trailing" secondItem="sVR-ZV-fmd" secondAttribute="trailing" id="Zh4-zl-jdY"/>
+                                                        <constraint firstItem="hW3-4L-GOD" firstAttribute="top" secondItem="HMy-Wy-VdZ" secondAttribute="top" constant="8" id="cPO-cp-ghB"/>
+                                                        <constraint firstAttribute="trailing" secondItem="hW3-4L-GOD" secondAttribute="trailing" constant="8" id="fcV-HP-On6"/>
+                                                        <constraint firstAttribute="bottom" secondItem="hW3-4L-GOD" secondAttribute="bottom" constant="8" id="kka-D3-zKt"/>
+                                                        <constraint firstItem="sVR-ZV-fmd" firstAttribute="top" secondItem="HMy-Wy-VdZ" secondAttribute="top" id="s8z-OU-xEi"/>
+                                                        <constraint firstItem="86s-m7-NnT" firstAttribute="centerY" secondItem="HMy-Wy-VdZ" secondAttribute="centerY" id="uds-dL-jrx"/>
+                                                        <constraint firstAttribute="bottom" secondItem="sVR-ZV-fmd" secondAttribute="bottom" id="usn-dJ-UJZ"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                            <color key="value" systemColor="secondaryLabelColor"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="HMy-Wy-VdZ" firstAttribute="centerY" secondItem="3AI-St-aU1" secondAttribute="centerY" id="03h-AT-26v"/>
+                                                <constraint firstItem="HMy-Wy-VdZ" firstAttribute="centerX" secondItem="3AI-St-aU1" secondAttribute="centerX" id="ICs-Ou-Oxh"/>
+                                                <constraint firstItem="HMy-Wy-VdZ" firstAttribute="width" secondItem="3AI-St-aU1" secondAttribute="width" multiplier="0.65" id="KxO-uQ-8xs"/>
+                                                <constraint firstAttribute="height" constant="55" id="dUb-K6-B9w"/>
+                                                <constraint firstAttribute="bottom" secondItem="HMy-Wy-VdZ" secondAttribute="bottom" constant="8" id="gUA-To-pql"/>
+                                                <constraint firstItem="HMy-Wy-VdZ" firstAttribute="top" secondItem="3AI-St-aU1" secondAttribute="top" constant="8" id="h5s-uv-Q2I"/>
+                                            </constraints>
+                                        </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D20-EV-ATj">
-                                            <rect key="frame" x="0.0" y="531" width="390" height="55"/>
+                                            <rect key="frame" x="0.0" y="590" width="390" height="55"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztQ-jH-TFP">
                                                     <rect key="frame" x="68.333333333333329" y="8" width="253.33333333333337" height="39"/>
@@ -467,7 +529,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9HQ-Vm-acQ">
-                                            <rect key="frame" x="0.0" y="533" width="390" height="75"/>
+                                            <rect key="frame" x="0.0" y="592" width="390" height="75"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfg-gf-Ang" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
@@ -528,7 +590,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blh-l2-E4o">
-                                            <rect key="frame" x="0.0" y="612" width="390" height="75"/>
+                                            <rect key="frame" x="0.0" y="671" width="390" height="75"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cantón" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8M-8B-VSw">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
@@ -589,7 +651,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIo-VL-jqC">
-                                            <rect key="frame" x="0.0" y="691" width="390" height="75"/>
+                                            <rect key="frame" x="0.0" y="750" width="390" height="75"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distrito" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqb-2H-8Jc">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
@@ -650,7 +712,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFG-H5-yFR">
-                                            <rect key="frame" x="0.0" y="770" width="390" height="75"/>
+                                            <rect key="frame" x="0.0" y="829" width="390" height="75"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFi-at-F1J" customClass="LocalizableLabel" customModule="GolloApp" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
@@ -695,7 +757,7 @@
                                             </constraints>
                                         </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-ZY-47e">
-                                            <rect key="frame" x="0.0" y="847" width="390" height="75"/>
+                                            <rect key="frame" x="0.0" y="906" width="390" height="75"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postal Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sq3-6l-b10">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
@@ -737,13 +799,13 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0SX-bE-HEw">
-                                            <rect key="frame" x="0.0" y="849" width="390" height="55"/>
+                                            <rect key="frame" x="0.0" y="908" width="390" height="55"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6a0-Mw-PkM">
                                                     <rect key="frame" x="68.333333333333329" y="8" width="253.33333333333337" height="39"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tray.and.arrow.down.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="08j-FX-F2F">
-                                                            <rect key="frame" x="15.999999999999998" y="6.3333333333332948" width="23.333333333333329" height="24.666666666666668"/>
+                                                            <rect key="frame" x="15.999999999999998" y="6.3333333333332948" width="23.333333333333329" height="24.666666666666671"/>
                                                             <color key="tintColor" name="Minsk"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="08j-FX-F2F" secondAttribute="height" multiplier="1:1" id="RJy-JT-7hw"/>
@@ -800,7 +862,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcl-eR-C5V">
-                                            <rect key="frame" x="0.0" y="908" width="390" height="65"/>
+                                            <rect key="frame" x="0.0" y="967" width="390" height="65"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nq-bl-uED">
                                                     <rect key="frame" x="19.666666666666657" y="8" width="351" height="49"/>

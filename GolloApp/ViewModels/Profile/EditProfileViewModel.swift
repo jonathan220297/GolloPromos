@@ -163,16 +163,20 @@ class EditProfileViewModel {
         return apiResponse
     }
 
-    func deleteUserProfile() -> BehaviorRelay<LoginData?> {
+    func deleteUserProfile(affiliateUserId: String? = nil) -> BehaviorRelay<LoginData?> {
         let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
         let apiResponse: BehaviorRelay<LoginData?> = BehaviorRelay(value: nil)
+        var deleteClientId = idClient ?? ""
+        if let affiliateUserId = affiliateUserId, !affiliateUserId.isEmpty {
+            deleteClientId = affiliateUserId
+        }
         service.callWebServiceGolloAlternative(BaseRequest<LoginData?, DeleteProfileServiceRequest>(
             service: BaseServiceRequestParam<DeleteProfileServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.REMOVE_USER_PROCESS_ID.rawValue),
                     parametros: DeleteProfileServiceRequest(
                         idEmpresa: 10,
-                        idCliente: idClient ?? ""
+                        idCliente: deleteClientId
                     )
                 )
             )
@@ -230,6 +234,31 @@ class EditProfileViewModel {
                             self.errorMessage.accept(error.localizedDescription)
                         }
                     }
+                }
+            }
+        }
+        return apiResponse
+    }
+    
+    func validateUserExist(number: String, type: String) -> BehaviorRelay<ValidateProfileResponse?> {
+        let apiResponse: BehaviorRelay<ValidateProfileResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<ValidateProfileResponse?, ValidateProfileServiceRequest>(
+            service: BaseServiceRequestParam<ValidateProfileServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.PROFILE_CHANGE_USER_PIN_PROCESS_ID.rawValue),
+                    parametros: ValidateProfileServiceRequest(
+                        numeroIdentificacion: number,
+                        tipoIdentificacion: type
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
                 }
             }
         }

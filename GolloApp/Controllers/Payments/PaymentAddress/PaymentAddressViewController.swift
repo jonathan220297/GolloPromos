@@ -22,6 +22,8 @@ class PaymentAddressViewController: UIViewController {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var selectAddressView: UIView!
     @IBOutlet weak var selectAddressButton: UIButton!
+    @IBOutlet weak var localizationAddressView: UIView!
+    @IBOutlet weak var localizationAddressButton: UIButton!
     @IBOutlet weak var locationPickerView: UIView!
     @IBOutlet weak var locationPickerButton: UIButton!
     @IBOutlet weak var countyLabel: UILabel!
@@ -41,7 +43,7 @@ class PaymentAddressViewController: UIViewController {
     let bag = DisposeBag()
     let userDefaults = UserDefaults.standard
     var firstLoad = true
-
+    
     init(viewModel: PaymentAddressViewModel) {
         self.viewModel = viewModel
         self.viewModel.processDocTypes()
@@ -71,7 +73,7 @@ class PaymentAddressViewController: UIViewController {
         self.tabBarController?.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
@@ -83,12 +85,12 @@ class PaymentAddressViewController: UIViewController {
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-
+        
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 20
         scrollView.contentInset = contentInset
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
@@ -132,6 +134,17 @@ class PaymentAddressViewController: UIViewController {
                 self.showAddressListPage()
             })
             .disposed(by: bag)
+        localizationAddressButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                let geolozalizationViewController = GeolozalizationViewController(
+                    delegate: self
+                )
+                geolozalizationViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(geolozalizationViewController, animated: true)
+            })
+            .disposed(by: bag)
         stateButton.rx
             .tap
             .subscribe(onNext: {[weak self] in
@@ -169,7 +182,7 @@ class PaymentAddressViewController: UIViewController {
             .disposed(by: bag)
         viewModel.isFormValid.bind(to: continueButton.rx.isEnabled).disposed(by: bag)
         viewModel.isFormValid.map { $0 ? 1 : 0.4 }.bind(to: continueButton.rx.alpha).disposed(by: bag)
-
+        
         continueButton.rx
             .tap
             .subscribe(onNext: {[weak self] in
@@ -181,6 +194,7 @@ class PaymentAddressViewController: UIViewController {
     
     fileprivate func configureViews() {
         selectAddressView.layer.borderColor = UIColor.darkGray.cgColor
+        localizationAddressView.layer.borderColor = UIColor.darkGray.cgColor
         locationPickerView.layer.borderColor = UIColor.darkGray.cgColor
         saveAddressView.layer.borderColor = UIColor.darkGray.cgColor
     }
@@ -209,10 +223,10 @@ class PaymentAddressViewController: UIViewController {
     }
     
     fileprivate func showLocationPicker() {
-//        let vc = LocationPickerViewController.instantiate(fromAppStoryboard: .Payment)
-//        vc.modalPresentationStyle = .fullScreen
-//        vc.delegate = self
-//        navigationController?.pushViewController(vc, animated: true)
+        //        let vc = LocationPickerViewController.instantiate(fromAppStoryboard: .Payment)
+        //        vc.modalPresentationStyle = .fullScreen
+        //        vc.delegate = self
+        //        navigationController?.pushViewController(vc, animated: true)
     }
     
     fileprivate func initSpinners() {
@@ -232,7 +246,7 @@ class PaymentAddressViewController: UIViewController {
                 self.viewModel.statesArray.accept(response)
                 self.stateLabel.text = ""
                 self.viewModel.stateSubject.accept(nil)
-
+                
                 do {
                     let previousSelectedProvince = try self.userDefaults.getObject(forKey: "Province", castTo: State?.self)
                     var id = firstItem.idProvincia
@@ -272,19 +286,19 @@ class PaymentAddressViewController: UIViewController {
         self.viewModel.countySubject.accept(nil)
         self.districtLabel.text = ""
         self.viewModel.districtSubject.accept(nil)
-//        self.countyLabel.text = firstCounty.canton
-//        self.viewModel.countySubject.accept(firstCounty)
-//        self.districtLabel.text = firstDistrict.distrito
-//        self.viewModel.districtSubject.accept(firstDistrict)
+        //        self.countyLabel.text = firstCounty.canton
+        //        self.viewModel.countySubject.accept(firstCounty)
+        //        self.districtLabel.text = firstDistrict.distrito
+        //        self.viewModel.districtSubject.accept(firstDistrict)
         self.view.activityStopAnimating()
-
+        
         if firstLoad {
             do {
                 let previousSelectedProvince = try self.userDefaults.getObject(forKey: "Province", castTo: State?.self)
                 let previousSelectedCounty = try self.userDefaults.getObject(forKey: "County", castTo: County?.self)
                 let previousSelectedDistrict = try self.userDefaults.getObject(forKey: "District", castTo: District?.self)
                 let previousSelectedAddress = self.userDefaults.object(forKey: "Address") as? String
-
+                
                 if let state = previousSelectedProvince,
                    let county = previousSelectedCounty,
                    let district = previousSelectedDistrict,
@@ -292,14 +306,14 @@ class PaymentAddressViewController: UIViewController {
                     firstLoad = false
                     self.stateLabel.text = state.provincia
                     self.viewModel.stateSubject.accept(state)
-
+                    
                     self.countyLabel.text = county.canton
                     self.viewModel.countySubject.accept(county)
                     self.fetchDistrictList(with: county.idCanton)
-
+                    
                     self.districtLabel.text = district.distrito
                     self.viewModel.districtSubject.accept(district)
-
+                    
                     self.addressTextField.text = address
                     self.viewModel.addressSubject.accept(address)
                 }
@@ -357,8 +371,8 @@ class PaymentAddressViewController: UIViewController {
             county.idCanton == countyId
         }), let district = county.distritos.first else { return }
         self.viewModel.districtArray.accept(county.distritos)
-//        self.viewModel.districtSubject.accept(district)
-//        self.districtLabel.text = district.distrito
+        //        self.viewModel.districtSubject.accept(district)
+        //        self.districtLabel.text = district.distrito
     }
     
     fileprivate func prepareAddressInfo() {
@@ -372,7 +386,7 @@ class PaymentAddressViewController: UIViewController {
             self.userDefaults.removeObject(forKey: "County")
             self.userDefaults.removeObject(forKey: "District")
             self.userDefaults.set(nil, forKey: "Address")
-
+            
             try self.userDefaults.setObject(viewModel.stateSubject.value, forKey: "Province")
             try self.userDefaults.setObject(viewModel.countySubject.value, forKey: "County")
             try self.userDefaults.setObject(viewModel.districtSubject.value, forKey: "District")
@@ -438,5 +452,12 @@ extension PaymentAddressViewController: AddressListDelegate {
             self.viewModel.addressSubject.accept(address.direccionExacta)
             self.postalCodeTextField.text = address.codigoPostal
         }
+    }
+}
+
+extension PaymentAddressViewController: GeolozalizationCoordinateDelegate {
+    func addingCoordinates(with coordinateX: Double, coordinateY: Double) {
+        viewModel.latitudeSubject.accept(coordinateX)
+        viewModel.longitudeSubject.accept(coordinateY)
     }
 }

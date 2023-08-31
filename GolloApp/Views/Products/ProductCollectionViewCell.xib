@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -96,6 +96,26 @@
                                     <constraint firstAttribute="bottom" secondItem="aNj-Wy-SMS" secondAttribute="bottom" id="rbZ-vE-ycB"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MqO-xz-MSE">
+                                <rect key="frame" x="124" y="134" width="124.5" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YdG-4t-BGP">
+                                        <rect key="frame" x="0.0" y="0.0" width="124.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="YdG-4t-BGP" secondAttribute="trailing" id="7N4-p2-aiA"/>
+                                    <constraint firstAttribute="bottom" secondItem="YdG-4t-BGP" secondAttribute="bottom" id="Jzh-mv-mJ7"/>
+                                    <constraint firstItem="YdG-4t-BGP" firstAttribute="top" secondItem="MqO-xz-MSE" secondAttribute="top" id="KDl-bO-PUR"/>
+                                    <constraint firstAttribute="trailing" secondItem="YdG-4t-BGP" secondAttribute="trailing" id="ba2-XJ-vWU"/>
+                                    <constraint firstAttribute="height" constant="30" id="cQv-G1-Xns"/>
+                                    <constraint firstItem="YdG-4t-BGP" firstAttribute="leading" secondItem="MqO-xz-MSE" secondAttribute="leading" id="zPe-ua-xU5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -107,10 +127,13 @@
                             <constraint firstItem="Zwc-IX-7At" firstAttribute="top" secondItem="34x-gS-LPi" secondAttribute="top" id="HlR-eZ-bfh"/>
                             <constraint firstItem="oxK-7l-XDG" firstAttribute="width" secondItem="34x-gS-LPi" secondAttribute="width" multiplier="0.8" id="LMh-1A-Rph"/>
                             <constraint firstItem="Zwc-IX-7At" firstAttribute="height" secondItem="34x-gS-LPi" secondAttribute="height" multiplier="0.5" id="N0x-ca-2ZE"/>
+                            <constraint firstAttribute="trailing" secondItem="MqO-xz-MSE" secondAttribute="trailing" constant="0.5" id="W19-gU-rQx"/>
+                            <constraint firstItem="MqO-xz-MSE" firstAttribute="width" secondItem="34x-gS-LPi" secondAttribute="width" multiplier="0.5" id="a1v-cy-38m"/>
                             <constraint firstItem="Zwc-IX-7At" firstAttribute="leading" secondItem="34x-gS-LPi" secondAttribute="leading" id="bbA-nX-YF9"/>
                             <constraint firstItem="24y-lP-RAE" firstAttribute="top" secondItem="Zwc-IX-7At" secondAttribute="bottom" constant="8" id="cSa-4e-y9x"/>
                             <constraint firstItem="BbW-ts-gdY" firstAttribute="leading" secondItem="34x-gS-LPi" secondAttribute="leading" id="m8g-Ko-r5j"/>
                             <constraint firstItem="BbW-ts-gdY" firstAttribute="width" secondItem="34x-gS-LPi" secondAttribute="width" multiplier="0.5" id="mEb-60-Dty"/>
+                            <constraint firstItem="24y-lP-RAE" firstAttribute="top" secondItem="MqO-xz-MSE" secondAttribute="bottom" constant="8" id="omT-uh-1Y4"/>
                             <constraint firstItem="oxK-7l-XDG" firstAttribute="centerX" secondItem="34x-gS-LPi" secondAttribute="centerX" id="pdv-MU-912"/>
                             <constraint firstAttribute="trailing" secondItem="24y-lP-RAE" secondAttribute="trailing" constant="6" id="yZT-GL-kdt"/>
                         </constraints>
@@ -128,13 +151,15 @@
             <connections>
                 <outlet property="contentViewCell" destination="34x-gS-LPi" id="L5w-n7-OQN"/>
                 <outlet property="detailButton" destination="oxK-7l-XDG" id="peb-dP-Qgt"/>
-                <outlet property="productDiscountPercentageLabel" destination="aNj-Wy-SMS" id="SGr-Y1-HS3"/>
-                <outlet property="productDiscountPercentageView" destination="BbW-ts-gdY" id="ZXW-NO-Kyc"/>
                 <outlet property="productDiscountPriceLabel" destination="suW-rm-9QG" id="PSH-cM-Yyf"/>
                 <outlet property="productImageView" destination="Zwc-IX-7At" id="yYC-tL-9lX"/>
                 <outlet property="productNameLabel" destination="Awq-kZ-bhT" id="GoB-DT-Rbq"/>
                 <outlet property="productRealPriceLabel" destination="Khd-Ub-2IY" id="rEu-Hv-wrC"/>
                 <outlet property="productTypeLabel" destination="on4-ps-wCH" id="0Pg-rf-jrh"/>
+                <outlet property="ribbonBottomLabel" destination="YdG-4t-BGP" id="jiU-p1-uX7"/>
+                <outlet property="ribbonBottomView" destination="MqO-xz-MSE" id="ZKI-FK-y3i"/>
+                <outlet property="ribbonTopLabel" destination="aNj-Wy-SMS" id="QhA-L9-YEL"/>
+                <outlet property="ribbonTopView" destination="BbW-ts-gdY" id="Cb1-aF-dqf"/>
             </connections>
             <point key="canvasLocation" x="348.55072463768118" y="105.80357142857143"/>
         </collectionViewCell>

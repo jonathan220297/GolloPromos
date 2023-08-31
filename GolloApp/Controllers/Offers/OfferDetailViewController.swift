@@ -205,7 +205,13 @@ class OfferDetailViewController: UIViewController {
                     tieneDescuento: "false",
                     tipoPromoApp: 0,
                     productoDescription: "",
-                    muestraDescuento: "false"
+                    muestraDescuento: "false",
+                    tiene2x1: "false",
+                    tieneNuevo: "false",
+                    tieneTopVentas: "false",
+                    tieneExclusivo: "false",
+                    tienetranspGratis: "false",
+                    indMostrarTop: false
                 )
                 CoreDataService().addProductFavorite(with: product, name: offer?.name)
                 self.favoriteButton.setImage(UIImage(named: "ic_added_heart"), for: .normal)
@@ -493,7 +499,13 @@ class OfferDetailViewController: UIViewController {
                             tieneDescuento: o.tieneDescuento,
                             tipoPromoApp: 0,
                             productoDescription: "",
-                            muestraDescuento: o.muestraDescuento
+                            muestraDescuento: o.muestraDescuento,
+                            tiene2x1: o.tiene2x1,
+                            tieneNuevo: o.tieneNuevo,
+                            tieneTopVentas: o.tieneTopVentas,
+                            tieneExclusivo: o.tieneExclusivo,
+                            tienetranspGratis: o.tienetranspGratis,
+                            indMostrarTop: o.indMostrarTop
                         )
                         products.append(p)
                     }

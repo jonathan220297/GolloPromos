@@ -137,7 +137,13 @@ class OffersFilteredListViewController: UIViewController {
                             tieneDescuento: o.tieneDescuento,
                             tipoPromoApp: 0,
                             productoDescription: "",
-                            muestraDescuento: o.muestraDescuento
+                            muestraDescuento: o.muestraDescuento,
+                            tiene2x1: o.tiene2x1,
+                            tieneNuevo: o.tieneNuevo,
+                            tieneTopVentas: o.tieneTopVentas,
+                            tieneExclusivo: o.tieneExclusivo,
+                            tienetranspGratis: o.tienetranspGratis,
+                            indMostrarTop: o.indMostrarTop
                         )
                         products.append(p)
                     }

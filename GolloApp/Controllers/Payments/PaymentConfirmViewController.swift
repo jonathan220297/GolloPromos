@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import SafariServices
 
 class PaymentConfirmViewController: UIViewController {
 
@@ -241,6 +242,17 @@ extension PaymentConfirmViewController: UITableViewDataSource {
 }
 
 extension PaymentConfirmViewController: PaymentMethodCellDelegate {
+    func redirectURLPage(at indexPath: IndexPath) {
+        let method = viewModel.methods[indexPath.row]
+        if let url = URL(string: method.linkDescarga ?? "") {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
+        }
+    }
+    
     func didSelectPaymentMethod(at indexPath: IndexPath) {
         if let cardIndex = viewModel.methods[indexPath.row].indTarjeta, cardIndex == 1 {
             continuePaymentButton.setTitle("CONTINUAR CON EL PAGO", for: .normal)

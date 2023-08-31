@@ -130,5 +130,7 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Gollo App utilizará la ubicación para brindarte un mejor servicio.</string>
 </dict>
 </plist>
