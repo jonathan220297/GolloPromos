@@ -26,6 +26,8 @@ class PaymentAddressViewController: UIViewController {
     @IBOutlet weak var localizationAddressButton: UIButton!
     @IBOutlet weak var locationPickerView: UIView!
     @IBOutlet weak var locationPickerButton: UIButton!
+    @IBOutlet weak var currentLocationView: UIView!
+    @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var countyLabel: UILabel!
     @IBOutlet weak var countyButton: UIButton!
     @IBOutlet weak var stateLabel: UILabel!
@@ -459,5 +461,7 @@ extension PaymentAddressViewController: GeolozalizationCoordinateDelegate {
     func addingCoordinates(with coordinateX: Double, coordinateY: Double) {
         viewModel.latitudeSubject.accept(coordinateX)
         viewModel.longitudeSubject.accept(coordinateY)
+        currentLocationLabel.text = "\(coordinateX), \(coordinateY)"
+        currentLocationView.isHidden = false
     }
 }

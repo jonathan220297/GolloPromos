@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import RxSwift
 
 protocol GeolozalizationCoordinateDelegate {
     func addingCoordinates(with coordinateX: Double, coordinateY: Double)
@@ -16,6 +17,10 @@ protocol GeolozalizationCoordinateDelegate {
 class GeolozalizationViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Outlets
     @IBOutlet weak var locationMapView: MKMapView!
+    @IBOutlet weak var confirmLocationButton: UIButton!
+    
+    // MARK: - Constants
+    let bag = DisposeBag()
     
     // MARK: - Variables
     let manager = CLLocationManager()
@@ -34,11 +39,11 @@ class GeolozalizationViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         locationMapView.delegate = self
         // For getting location while tapping on map we need to add UITapGestureRecognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         locationMapView.addGestureRecognizer(tapGesture)
+        configureRx()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,9 +56,6 @@ class GeolozalizationViewController: UIViewController, MKMapViewDelegate {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        if let userCoordinate = userCoordinate {
-            delegate.addingCoordinates(with: userCoordinate.latitude, coordinateY: userCoordinate.longitude)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,7 +74,6 @@ class GeolozalizationViewController: UIViewController, MKMapViewDelegate {
         // Add annotation:
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
-        print(" Coordinates: \(coordinate)")
         print(" Coordinates: \(coordinate.latitude.magnitude) ~~ \(coordinate.longitude.magnitude)")
         
         /* to show only one pin while tapping on map by removing the last.
@@ -83,6 +84,18 @@ class GeolozalizationViewController: UIViewController, MKMapViewDelegate {
         locationMapView.addAnnotation(annotation) // add annotaion pin on the map
     }
     
+    fileprivate func configureRx() {
+        confirmLocationButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                if let userCoordinate = self.userCoordinate {
+                    self.delegate.addingCoordinates(with: userCoordinate.latitude, coordinateY: userCoordinate.longitude)
+                }
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
+    }
 }
 
 extension GeolozalizationViewController: CLLocationManagerDelegate {

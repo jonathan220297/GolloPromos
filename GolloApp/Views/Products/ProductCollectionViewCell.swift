@@ -68,10 +68,10 @@ class ProductCollectionViewCell: UICollectionViewCell {
         ribbonBottomView.isHidden = true
         
         if !ribbons.isEmpty {
-            showTopRibbon(with: ProductManager().getRibbonName(ribbon: ribbons.first), ribbonColor: ProductManager().getRibbonColor(ribbon: ribbons.first))
+            showTopRibbon(with: ProductManager().getRibbonName(with: data, ribbon: ribbons.first), ribbonColor: ProductManager().getRibbonColor(ribbon: ribbons.first))
             ribbonTopView.isHidden = false
             if ribbons.count == 2 {
-                showBottomRibbon(with: ProductManager().getRibbonName(ribbon: ribbons[1]), ribbonColor: ProductManager().getRibbonColor(ribbon: ribbons[1]))
+                showBottomRibbon(with: ProductManager().getRibbonName(with: data, ribbon: ribbons[1]), ribbonColor: ProductManager().getRibbonColor(ribbon: ribbons[1]))
                 ribbonBottomView.isHidden = false
             } else {
                 ribbonBottomView.isHidden = true
@@ -142,11 +142,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
     func configureViews() {
         ribbonTopView.clipsToBounds = true
         ribbonTopView.layer.cornerRadius = 10
-        ribbonTopView.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        ribbonTopView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         
         ribbonBottomView.clipsToBounds = true
         ribbonBottomView.layer.cornerRadius = 10
-        ribbonBottomView.layer.maskedCorners = [.layerMinXMinYCorner]
+        ribbonBottomView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
     }
     
     func configureRx() {

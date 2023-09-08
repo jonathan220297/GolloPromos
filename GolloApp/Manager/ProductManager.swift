@@ -32,11 +32,15 @@ class ProductManager {
         if data.tienetranspGratis?.bool == true {
             ribbons.append(ProductRibbon(ribbonType: RibbonType.ENVIO_GRATIS, priority: 7))
         }
-        let sorderRibbons = ribbons.sorted(by: { $0.priority > $1.priority }).prefix(2)
-        return Array(sorderRibbons)
+        let sortedRibbons = ribbons.sorted(by: { $0.priority < $1.priority })
+        if (sortedRibbons.isEmpty || sortedRibbons.count <= 2) {
+            return Array(sortedRibbons)
+        } else {
+            return Array(sortedRibbons.prefix(2))
+        }
     }
     
-    func getRibbonName(ribbon: ProductRibbon?) -> String {
+    func getRibbonName(with data: Product, ribbon: ProductRibbon?) -> String {
         if let ribbon = ribbon {
             switch(ribbon.ribbonType) {
             case RibbonType.REGALIA:
@@ -49,6 +53,11 @@ class ProductManager {
                 return "Top en ventas"
             case RibbonType.ENVIO_GRATIS:
                 return "Envío gratis"
+            case RibbonType.DESCUENTO:
+                let discInt = Int(round(data.porcDescuento ?? 0.0))
+                return String(discInt) + "%"
+            case RibbonType.PRECIO_ESPECIAL:
+                return "Precio especial"
             default:
                 return ""
             }
