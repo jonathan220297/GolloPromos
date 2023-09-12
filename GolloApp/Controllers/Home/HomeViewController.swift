@@ -153,17 +153,17 @@ class HomeViewController: UITabBarController {
         navigationMain.navigationBar.standardAppearance = getNavBarAppareance()
         navigationMain.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
         navigationMain.title = "Inicio"
-        navigationMain.tabBarItem.image = UIImage(named: "ic_new_home")
+        navigationMain.tabBarItem.image = UIImage(named: "ic_bottom_menu_home")
 
-        let offersTab = OffersTabViewController(
-            viewModel: OffersTabViewModel()
+        let categoriesTab = CategoriesViewController(
+            viewModel: CategoriesViewModel()
         )
-        let navigationOffers = UINavigationController(rootViewController: offersTab)
+        let navigationOffers = UINavigationController(rootViewController: categoriesTab)
         UINavigationBar.appearance().tintColor = UIColor.white
         navigationOffers.navigationBar.standardAppearance = getNavBarAppareance()
         navigationOffers.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
-        navigationOffers.title = "Ofertas"
-        navigationOffers.tabBarItem.image = UIImage(named: "ic_offer")
+        navigationOffers.title = "Categorías"
+        navigationOffers.tabBarItem.image = UIImage(named: "ic_bottom_menu_categories")
 
         let ordersTab = OrdersTabViewController(
             viewModel: OrdersTabViewModel()
@@ -173,7 +173,7 @@ class HomeViewController: UITabBarController {
         navigationOrders.navigationBar.standardAppearance = getNavBarAppareance()
         navigationOrders.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
         navigationOrders.title = "Órdenes"
-        navigationOrders.tabBarItem.image = UIImage(named: "ic_bag")
+        navigationOrders.tabBarItem.image = UIImage(named: "ic_bottom_menu_orders")
         
         let productScannerTab = ProductScannerViewController(
             viewModel: GolloStoresViewModel()
@@ -183,7 +183,7 @@ class HomeViewController: UITabBarController {
         navigationProductScanner.navigationBar.standardAppearance = getNavBarAppareance()
         navigationProductScanner.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
         navigationProductScanner.title = "Scan&Go"
-        navigationProductScanner.tabBarItem.image = UIImage(named: "ic_barcode")
+        navigationProductScanner.tabBarItem.image = UIImage(named: "ic_bottom_menu_scan")
 
         let menuTab = MenuTabViewController()
         let navigationMenu = UINavigationController(rootViewController: menuTab)
@@ -191,7 +191,7 @@ class HomeViewController: UITabBarController {
         navigationMenu.navigationBar.standardAppearance = getNavBarAppareance()
         navigationMenu.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
         navigationMenu.title = "Más"
-        navigationMenu.tabBarItem.image = UIImage(named: "ic_menu_home")
+        navigationMenu.tabBarItem.image = UIImage(named: "ic_bottom_menu_payments")
 
         if scanActivated {
             viewControllers = [

@@ -10,27 +10,18 @@ import RxRelay
 
 class OffersFilteredListViewModel {
     private let service = GolloService()
-
+    
     var page = 1
     var fetchingMore = false
-
+    
     var categories: [CategoriesFilterData] = []
     var products: [Product] = []
-
+    
     func fetchFilteredCategories(with categoryId: String?, taxonomy: Int = -1) -> BehaviorRelay<[CategoriesFilterData]?> {
         let apiResponse: BehaviorRelay<[CategoriesFilterData]?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<[CategoriesFilterData], CategoriesFilteredListServiceRequest>(
             service: BaseServiceRequestParam<CategoriesFilteredListServiceRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.CATEGORIES_FILTER_PROCESS_ID.rawValue,
-//                        idDevice: getDeviceID(),
-//                        idUsuario: UserManager.shared.userData?.uid ?? "",
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil
-//                    ),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.CATEGORIES_FILTER_PROCESS_ID.rawValue),
                     parametros: CategoriesFilteredListServiceRequest (
                         idCategoria: categoryId,
@@ -51,21 +42,12 @@ class OffersFilteredListViewModel {
         }
         return apiResponse
     }
-
+    
     func fetchFilteredProducts(with categoryId: String?, taxonomy: Int = -1, order: Int? = nil) -> BehaviorRelay<[Offers]?> {
         let apiResponse: BehaviorRelay<[Offers]?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<[Offers], OfferFilteredListServiceRequest>(
             service: BaseServiceRequestParam<OfferFilteredListServiceRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue,
-//                        idDevice: getDeviceID(),
-//                        idUsuario: UserManager.shared.userData?.uid ?? "",
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil
-//                    ),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue),
                     parametros: OfferFilteredListServiceRequest (
                         idCategoria: categoryId,
@@ -90,5 +72,5 @@ class OffersFilteredListViewModel {
         }
         return apiResponse
     }
-
+    
 }

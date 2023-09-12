@@ -10,9 +10,13 @@ import RxSwift
 import DropDown
 
 class OffersFilteredListViewController: UIViewController {
-
+    
+    @IBOutlet weak var categoriesContentView: UIView!
+    @IBOutlet weak var categoriesView: UIView!
+    @IBOutlet weak var productsView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var productCollectionView: UICollectionView!
+    @IBOutlet weak var optionView: UIView!
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var optionButton: UIButton!
     
@@ -21,12 +25,12 @@ class OffersFilteredListViewController: UIViewController {
     let bag = DisposeBag()
     let category: Int?
     let taxonomy: Int
-
+    
     // MARK: - Variables
     var lastIndexActive: IndexPath = [1, 0]
     var selectedPosition: Int = -1
     var selectedTaxonomy: Int = -1
-
+    
     // MARK: - Lifecycle
     init(viewModel: OffersFilteredListViewModel, category: Int?, taxonomy: Int) {
         self.viewModel = viewModel
@@ -34,30 +38,47 @@ class OffersFilteredListViewController: UIViewController {
         self.taxonomy = taxonomy
         super.init(nibName: "OffersFilteredListViewController", bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViews()
         configureTableView()
         fetchCategories()
         fetchOffers(with: taxonomy)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureAlternativeNavBar()
         configureRx()
     }
-
+    
     // MARK: - Functions
+    func configureViews() {
+        categoriesView.clipsToBounds = true
+        categoriesView.layer.cornerRadius = 10
+        categoriesView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        productsView.clipsToBounds = true
+        productsView.layer.cornerRadius = 10
+        productsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        optionView.clipsToBounds = true
+        optionView.backgroundColor = .white
+        optionView.layer.cornerRadius = 8
+        optionView.layer.borderWidth = 1
+        optionView.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
     func configureTableView() {
         self.collectionView.register(UINib(nibName: "CategoriesFilteredListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoriesFilteredListCell")
         self.productCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
     }
-
+    
     fileprivate func configureRx() {
         optionButton.rx
             .tap
@@ -66,7 +87,7 @@ class OffersFilteredListViewController: UIViewController {
             })
             .disposed(by: bag)
     }
-
+    
     fileprivate func fetchCategories() {
         var filterCategory: String?
         if let category = category {
@@ -84,14 +105,14 @@ class OffersFilteredListViewController: UIViewController {
                 self.view.activityStopAnimating()
                 self.viewModel.categories = data
                 self.collectionView.reloadData()
-
+                
                 if data.isEmpty {
-                    self.collectionView.isHidden = true
+                    self.categoriesContentView.isHidden = true
                 }
             })
             .disposed(by: bag)
     }
-
+    
     fileprivate func fetchOffers(with taxonomy: Int = -1, order: Int? = nil) {
         var filterCategory: String?
         if let category = category {
@@ -157,7 +178,7 @@ class OffersFilteredListViewController: UIViewController {
             })
             .disposed(by: bag)
     }
-
+    
     fileprivate func dropDown() {
         var newTaxonomy = taxonomy
         if selectedTaxonomy != -1 {
@@ -176,7 +197,7 @@ class OffersFilteredListViewController: UIViewController {
             self.fetchOffers(with: newTaxonomy, order: selectedPosition + 1)
         }
     }
-
+    
 }
 
 extension OffersFilteredListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -188,18 +209,27 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
         }
         return 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesFilteredListCell", for: indexPath) as! CategoriesFilteredListCollectionViewCell
-            cell.titleLabel.text = viewModel.categories[indexPath.row].nombre
-            cell.titleLabel.sizeToFit()
+            let item = viewModel.categories[indexPath.row]
+            cell.titleLabel.text = item.nombre
+        
+            if item.selected == true {
+                cell.titleLabel.textColor = .white
+                cell.cellView.backgroundColor = .primary
+            } else {
+                cell.titleLabel.textColor = .primary
+                cell.cellView.backgroundColor = .yellow
+            }
+            
             return cell
         } else {
             return getProductCell(collectionView, cellForItemAt: indexPath)
         }
     }
-
+    
     func getProductCell(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
@@ -207,7 +237,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
         cell.delegate = self
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -215,7 +245,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
             let label = UILabel(frame: CGRect.zero)
             label.text = viewModel.categories[indexPath.row].nombre
             label.sizeToFit()
-            return CGSize(width: label.frame.width + 8, height: 40)
+            return CGSize(width: (label.frame.width + 16), height: 40)
         } else {
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
@@ -223,40 +253,20 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
             return CGSize(width: size, height: 300)
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-            if self.lastIndexActive != indexPath {
-                let selected = collectionView.cellForItem(at: indexPath) as! CategoriesFilteredListCollectionViewCell
-                selected.titleLabel.textColor = .white
-                selected.cellView.backgroundColor = .primaryLight
-                selected.cellView.layer.cornerRadius = 5
-                selected.cellView.layer.masksToBounds = true
-                selected.cellView.layoutSubviews()
-                selected.cellView.layoutIfNeeded()
-
-                self.viewModel.fetchingMore = false
-                self.viewModel.page = 1
-                self.selectedTaxonomy = viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1
-                self.fetchOffers(with: viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1)
-                
-                let previous = collectionView.cellForItem(at: lastIndexActive) as? CategoriesFilteredListCollectionViewCell
-                previous?.titleLabel.textColor = UIColor { tc in
-                    switch tc.userInterfaceStyle {
-                    case .dark:
-                        return UIColor.primary
-                    default:
-                        return UIColor.white
-                    }
-                }
-                previous?.cellView.backgroundColor = .primary
-                selected.cellView.layer.cornerRadius = 5
-                selected.cellView.layer.masksToBounds = true
-                selected.cellView.layoutSubviews()
-                selected.cellView.layoutIfNeeded()
-                
-                self.lastIndexActive = indexPath
+            for i in 0..<viewModel.categories.count {
+                viewModel.categories[i].selected = false
             }
+            
+            viewModel.categories[indexPath.row].selected = true
+            self.collectionView.reloadData()
+            
+            self.viewModel.fetchingMore = false
+            self.viewModel.page = 1
+            self.selectedTaxonomy = viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1
+            self.fetchOffers(with: viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1)
         } else if collectionView == self.productCollectionView {
             let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
             vc.offer = viewModel.products[indexPath.row]
@@ -265,7 +275,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

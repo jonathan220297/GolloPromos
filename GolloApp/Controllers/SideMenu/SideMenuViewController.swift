@@ -20,6 +20,10 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var profileEmailLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var profileChangeImage: UIImageView!
+    @IBOutlet weak var homeButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var carButton: UIButton!
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var termsConditionButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
@@ -44,14 +48,14 @@ class SideMenuViewController: UIViewController {
         if Auth.auth().currentUser != nil {
             logoutView.isHidden = false
             if Variables.isRegisterUser {
-                profileLabel.text = "Mi perfil"
+                profileLabel.text = "Perfil"
             } else {
                 profileLabel.text = "Crea tu perfil"
             }
         } else {
             logoutView.isHidden = true
             profileLabel.text = "Abrir sesión"
-            profileChangeImage.image = UIImage(named: "ic_open_session")
+            profileChangeImage.image = UIImage(named: "ic_side_menu_new_session")
         }
     }
 
@@ -93,6 +97,8 @@ class SideMenuViewController: UIViewController {
             }
             if let email = Variables.userProfile?.correoElectronico1 {
                 profileEmailLabel.text = email
+            } else {
+                profileEmailLabel.text = " "
             }
             if let decodedData = Data(base64Encoded: Variables.userProfile?.image ?? ""),
                let decodedimage = UIImage(data: decodedData) {
@@ -101,14 +107,14 @@ class SideMenuViewController: UIViewController {
                 if let url = URL(string: Variables.userProfile?.image ?? "") {
                     Nuke.loadImage(with: url, into: profileImageView)
                 } else {
-                    profileImageView.image = UIImage(named: "ic_user_profile")
+                    profileImageView.image = UIImage(named: "ic_side_menu_profile")
                     profileImageView.image?.withTintColor(.white)
                 }
             }
         } else {
             profileName.text = nil
-            profileEmailLabel.text = nil
-            profileImageView.image = UIImage(named: "ic_user_profile")
+            profileEmailLabel.text = " "
+            profileImageView.image = UIImage(named: "ic_side_menu_profile")
             profileImageView.image?.withTintColor(.white)
         }
     }
@@ -243,6 +249,40 @@ extension SideMenuViewController {
                         }
                     }
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        searchButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                let searchOffersViewController = SearchOffersViewController(
+                    viewModel: SearchOffersViewModel()
+                )
+                searchOffersViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(searchOffersViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        carButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                let carTab = CarTabViewController(
+                    viewModel: CarTabViewModel()
+                )
+                carTab.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(carTab, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        favoriteButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                let wishesViewController = WishesViewController()
+                wishesViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(wishesViewController, animated: true)
             })
             .disposed(by: disposeBag)
         

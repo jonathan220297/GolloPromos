@@ -14,6 +14,10 @@ extension UIColor {
     static let gift = UIColor.fromAsset(named: "colorGift")
     static let bonus = UIColor.fromAsset(named: "colorBonus")
     static let discount = UIColor.fromAsset(named: "colorDiscount")
+    static let grayPrimary = UIColor.fromAsset(named: "menuGray")
+    static let blueLight = UIColor.fromAsset(named: "blueLight")
+    static let yellow = UIColor.fromAsset(named: "yellow")
+    static let backgroundGray = UIColor.fromAsset(named: "backgroundGray")
 }
 
 fileprivate extension UIColor {

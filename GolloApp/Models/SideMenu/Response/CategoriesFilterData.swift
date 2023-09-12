@@ -10,4 +10,5 @@ import Foundation
 struct CategoriesFilterData: Codable {
     let parent, totalHijos, idTipoCategoriaApp: Int?
     let nombre, descripcion: String?
+    var selected: Bool? = false
 }
