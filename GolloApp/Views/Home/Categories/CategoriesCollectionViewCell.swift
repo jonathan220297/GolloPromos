@@ -26,8 +26,12 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
             failureImage: UIImage(named: "empty_image")
         )
         
-        if let url = URL(string: (data.image ?? "")) {
-            Nuke.loadImage(with: url, options: options, into: categoryImageView)
+        if let categoryImage = data.image, !categoryImage.isEmpty, categoryImage != "NA" {
+            if let url = URL(string: (data.image ?? "")) {
+                Nuke.loadImage(with: url, options: options, into: categoryImageView)
+            } else {
+                categoryImageView.image = UIImage(named: "empty_image")
+            }
         } else {
             categoryImageView.image = UIImage(named: "empty_image")
         }

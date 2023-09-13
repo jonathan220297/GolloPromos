@@ -22,12 +22,12 @@ target 'GolloApp' do
   pod 'GoogleSignIn'
   pod 'ImageSlideshow'
   pod "ImageSlideshow/Alamofire"
-  pod 'Nuke', '~> 9.0'
+  pod 'Nuke', '~> 10.7.1'
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'SideMenu', '~> 6.0'
+  pod 'SideMenu', '~> 6.5.0'
   pod 'DropDown'
-  pod 'NotificationBannerSwift', '~> 3.0.0'
+  pod 'NotificationBannerSwift', '~> 3.2.1'
   
   pod 'XCGLogger'
   

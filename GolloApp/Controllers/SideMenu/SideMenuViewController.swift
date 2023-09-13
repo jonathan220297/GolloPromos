@@ -14,7 +14,7 @@ import FirebaseMessaging
 import SafariServices
 
 class SideMenuViewController: UIViewController {
-
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileEmailLabel: UILabel!
@@ -34,48 +34,50 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var logoutView: UIView!
     
     let disposeBag = DisposeBag()
-
+    
     lazy var viewModel: SideMenuViewModel = {
         return SideMenuViewModel()
     }()
-
+    
     let userDefaults = UserDefaults.standard
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
         configureRx()
         if Auth.auth().currentUser != nil {
-            logoutView.isHidden = false
+            logoutView.backgroundColor = .blueLight
+            logoutButton.isEnabled = true
             if Variables.isRegisterUser {
                 profileLabel.text = "Perfil"
             } else {
                 profileLabel.text = "Crea tu perfil"
             }
         } else {
-            logoutView.isHidden = true
+            logoutView.backgroundColor = .lightGray
+            logoutButton.isEnabled = false
             profileLabel.text = "Abrir sesión"
             profileChangeImage.image = UIImage(named: "ic_side_menu_new_session")
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUserData()
         fetchUnreadNotifications()
     }
-
+    
     // MARK: - Actions
     @IBAction func notificationsButtonTapped(_ sender: Any) {
         let vc = NotificationsViewController.instantiate(fromAppStoryboard: .Notifications)
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
+    
     @IBAction func logoutButtonTapped(_ sender: Any) {
         exit(0)
     }
-
+    
     @IBAction func openCategoriesTapped(_ sender: Any) {
         let categoriesViewController = CategoriesViewController(
             viewModel: CategoriesViewModel()
@@ -83,7 +85,7 @@ class SideMenuViewController: UIViewController {
         categoriesViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(categoriesViewController, animated: true)
     }
-
+    
     // MARK: - Functions
     fileprivate func configureViews() {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
@@ -91,9 +93,8 @@ class SideMenuViewController: UIViewController {
     
     fileprivate func setUserData() {
         if Variables.isRegisterUser {
-            if let user = Variables.userProfile?.nombre,
-               let lastname = Variables.userProfile?.apellido1 {
-                    profileName.text = "\(user) \(lastname) \(Variables.userProfile?.apellido2 ?? "")"
+            if let user = Variables.userProfile?.nombre {
+                profileName.text = "Hola \(user.capitalized)"
             }
             if let email = Variables.userProfile?.correoElectronico1 {
                 profileEmailLabel.text = email
@@ -123,12 +124,12 @@ class SideMenuViewController: UIViewController {
         if let url = URL(string: url) {
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = true
-
+            
             let vc = SFSafariViewController(url: url, configuration: config)
             present(vc, animated: true)
         }
     }
-
+    
     func fetchUnreadNotifications() {
         viewModel
             .fetchUnreadNotifications()
@@ -145,7 +146,7 @@ class SideMenuViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-
+    
     func saveToken(with token: String) -> Bool {
         if let data = token.data(using: .utf8) {
             let status = KeychainManager.save(key: "token", data: data)
@@ -210,7 +211,7 @@ extension SideMenuViewController {
                 }
             }
             .disposed(by: disposeBag)
-
+        
         viewModel
             .errorExpiredToken
             .asObservable()
@@ -238,11 +239,11 @@ extension SideMenuViewController {
                             Variables.userProfile = nil
                             UserManager.shared.userData = nil
                             Messaging.messaging().token { token, error in
-                              if let error = error {
-                                print("Error fetching FCM registration token: \(error)")
-                              } else if let token = token {
-                                self.registerDevice(with: token)
-                              }
+                                if let error = error {
+                                    print("Error fetching FCM registration token: \(error)")
+                                } else if let token = token {
+                                    self.registerDevice(with: token)
+                                }
                             }
                         } catch let signOutError as NSError {
                             log.error("Error signing out: \(signOutError)")
@@ -338,11 +339,11 @@ extension SideMenuViewController {
                     Variables.userProfile = nil
                     UserManager.shared.userData = nil
                     Messaging.messaging().token { token, error in
-                      if let error = error {
-                        print("Error fetching FCM registration token: \(error)")
-                      } else if let token = token {
-                        self.registerDevice(with: token)
-                      }
+                        if let error = error {
+                            print("Error fetching FCM registration token: \(error)")
+                        } else if let token = token {
+                            self.registerDevice(with: token)
+                        }
                     }
                 } catch let signOutError as NSError {
                     log.error("Error signing out: \(signOutError)")
@@ -356,7 +357,6 @@ extension SideMenuViewController: LoginDelegate {
     func loginViewControllerShouldDismiss(_ loginViewController: LoginViewController) { }
     
     func didLoginSucceed() {
-        print("LOGIN SUCCEED")
         self.dismiss(animated: true)
     }
 }
