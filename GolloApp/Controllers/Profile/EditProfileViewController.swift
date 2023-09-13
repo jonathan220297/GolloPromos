@@ -448,7 +448,7 @@ class EditProfileViewController: UIViewController {
                     if self.codeTextField.text != nil && data.pinValidacion == self.codeTextField.text {
                         self.validationCodeView.isHidden = true
                         self.deleteUserData(affiliateId: data.idUsuarioActual)
-                        self.fetchUserData()
+                        self.showData(with: self.tempUserData)
                     } else {
                         self.viewModel.totalIntents += 1
                         if self.viewModel.totalIntents == 3 {
