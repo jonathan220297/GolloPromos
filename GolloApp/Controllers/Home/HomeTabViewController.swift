@@ -196,6 +196,13 @@ class HomeTabViewController: UIViewController {
             ),
             forCellWithReuseIdentifier: "HorizontalSliderCollectionViewCell"
         )
+        homeCollectionView.register(
+            UINib(
+                nibName: "TopCategoriesCollectionViewCell",
+                bundle: nil
+            ),
+            forCellWithReuseIdentifier: "TopCategoriesCollectionViewCell"
+        )
         
     }
     
@@ -311,6 +318,8 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             return CGSize(width: collectionView.bounds.width, height: 0)
         } else if let products = viewModel.sections[section].product, !products.isEmpty {
             return CGSize(width: collectionView.bounds.width, height: 55)
+        } else if let categories = viewModel.sections[section].categories, !categories.isEmpty {
+            return CGSize(width: collectionView.bounds.width, height: 55)
         } else {
             return CGSize(width: collectionView.bounds.width, height: 0)
         }
@@ -335,6 +344,8 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             return viewModel.sections[indexPath.section].vertical ?
             getProductCell(collectionView, cellForItemAt: indexPath) :
             getHorizontalSliderCell(collectionView, cellForItemAt: indexPath)
+        } else if viewModel.sections[indexPath.section].categories != nil {
+            return getCategoriesCell(collectionView, cellForItemAt: indexPath)
         } else {
             return UICollectionViewCell()
         }
@@ -368,6 +379,17 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             withReuseIdentifier: "HorizontalSliderCollectionViewCell",
             for: indexPath
         ) as? HorizontalSliderCollectionViewCell else { return UICollectionViewCell() }
+        cell.section = viewModel.sections[indexPath.section]
+        cell.delegate = self
+        cell.configureCollectionView()
+        return cell
+    }
+    
+    func getCategoriesCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "TopCategoriesCollectionViewCell",
+            for: indexPath
+        ) as? TopCategoriesCollectionViewCell else { return UICollectionViewCell() }
         cell.section = viewModel.sections[indexPath.section]
         cell.delegate = self
         cell.configureCollectionView()
@@ -502,6 +524,16 @@ extension HomeTabViewController: HorizontalSliderDelegate {
     }
     
     func didTapSeeMore(with controller: OffersFilteredListViewController) {
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+extension HomeTabViewController: TopCategoriesDelegate {
+    func didTapSeeMore(with controller: CategoriesViewController) {
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func didTapCategory(with controller: OffersFilteredListViewController) {
         navigationController?.pushViewController(controller, animated: true)
     }
 }

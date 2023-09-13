@@ -248,6 +248,10 @@
 		4FBFF2212AB163AE00540F29 /* HorizontalSliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FBFF21F2AB163AE00540F29 /* HorizontalSliderCollectionViewCell.xib */; };
 		4FBFF2242AB173D700540F29 /* ExtraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBFF2222AB173D700540F29 /* ExtraCollectionViewCell.swift */; };
 		4FBFF2252AB173D700540F29 /* ExtraCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FBFF2232AB173D700540F29 /* ExtraCollectionViewCell.xib */; };
+		4FBFF2282AB21DD500540F29 /* TopCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBFF2262AB21DD500540F29 /* TopCategoriesCollectionViewCell.swift */; };
+		4FBFF2292AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FBFF2272AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib */; };
+		4FBFF22C2AB21F7D00540F29 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBFF22A2AB21F7D00540F29 /* CategoryCollectionViewCell.swift */; };
+		4FBFF22D2AB21F7D00540F29 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FBFF22B2AB21F7D00540F29 /* CategoryCollectionViewCell.xib */; };
 		4FC04C5428AE95A3001EF211 /* GenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5328AE95A3001EF211 /* GenderType.swift */; };
 		4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5628AE9C3E001EF211 /* UserRequest.swift */; };
 		4FC04C5A28AE9C74001EF211 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5928AE9C74001EF211 /* UserResponse.swift */; };
@@ -668,6 +672,10 @@
 		4FBFF21F2AB163AE00540F29 /* HorizontalSliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalSliderCollectionViewCell.xib; sourceTree = "<group>"; };
 		4FBFF2222AB173D700540F29 /* ExtraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FBFF2232AB173D700540F29 /* ExtraCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExtraCollectionViewCell.xib; sourceTree = "<group>"; };
+		4FBFF2262AB21DD500540F29 /* TopCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		4FBFF2272AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopCategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
+		4FBFF22A2AB21F7D00540F29 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		4FBFF22B2AB21F7D00540F29 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		4FC04C5328AE95A3001EF211 /* GenderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderType.swift; sourceTree = "<group>"; };
 		4FC04C5628AE9C3E001EF211 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		4FC04C5928AE9C74001EF211 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -1809,6 +1817,10 @@
 				4FBFF21F2AB163AE00540F29 /* HorizontalSliderCollectionViewCell.xib */,
 				4FBFF2222AB173D700540F29 /* ExtraCollectionViewCell.swift */,
 				4FBFF2232AB173D700540F29 /* ExtraCollectionViewCell.xib */,
+				4FBFF2262AB21DD500540F29 /* TopCategoriesCollectionViewCell.swift */,
+				4FBFF2272AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib */,
+				4FBFF22A2AB21F7D00540F29 /* CategoryCollectionViewCell.swift */,
+				4FBFF22B2AB21F7D00540F29 /* CategoryCollectionViewCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2226,6 +2238,7 @@
 				4F0D967826DDBB810061E89E /* SansSerifBldFLF.otf in Resources */,
 				4F0D967326DDBB810061E89E /* SansSerifExbFLFCond.otf in Resources */,
 				4F0D966E26DDBB810061E89E /* SansSerifFLF-DemiItalic.otf in Resources */,
+				4FBFF22D2AB21F7D00540F29 /* CategoryCollectionViewCell.xib in Resources */,
 				4FE1912626DEFCA000322128 /* VariationView.xib in Resources */,
 				4FDA3AA826D8FE27003B2CB6 /* LaunchScreen.storyboard in Resources */,
 				4FDD105C28D15E910082ADB5 /* CarTabViewController.xib in Resources */,
@@ -2271,6 +2284,7 @@
 				4F68373228DB7A5600462F5E /* OfferServiceProtectionViewController.xib in Resources */,
 				4FBFF2212AB163AE00540F29 /* HorizontalSliderCollectionViewCell.xib in Resources */,
 				4FE86E6928E41092008E58F1 /* ShippingMethodTableViewCell.xib in Resources */,
+				4FBFF2292AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib in Resources */,
 				4FDB6ECB28DD18EA0002DA0B /* PaymentAddressViewController.xib in Resources */,
 				CBA632832A87E54D0094DC23 /* OptionalExpensesTableViewCell.xib in Resources */,
 				4FE1910C26DEF77C00322128 /* SectionTableViewCell.xib in Resources */,
@@ -2621,8 +2635,10 @@
 				4F410E1E28F6174200387871 /* CategoriesFilteredListCollectionViewCell.swift in Sources */,
 				4FE86E6228E40BAC008E58F1 /* CarManager.swift in Sources */,
 				4F660FC1290068920095464B /* PaymentSuccessViewModel.swift in Sources */,
+				4FBFF2282AB21DD500540F29 /* TopCategoriesCollectionViewCell.swift in Sources */,
 				4FA0B87A28E3C8D200395361 /* AddressListRequest.swift in Sources */,
 				4FA2768126D9191300216284 /* LoginViewModel.swift in Sources */,
+				4FBFF22C2AB21F7D00540F29 /* CategoryCollectionViewCell.swift in Sources */,
 				4FFD9CAC272AFDCA004778F1 /* UINavigationController+Extension.swift in Sources */,
 				4FE1913626DF073400322128 /* OfferDetailViewController.swift in Sources */,
 				4FF01FF728BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift in Sources */,
