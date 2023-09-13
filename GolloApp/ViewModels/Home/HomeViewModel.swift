@@ -158,24 +158,40 @@ class HomeViewModel {
         }
         if let configSection = configuration?.sections {
             for section in configSection {
-                var products = section.productos ?? []
-                if !products.isEmpty {
-                    var vertical = section.vertical ?? true
-                    if !vertical {
-                        products.append(Product(extra: true))
-                    }
+                if var categories = section.categorias {
+                    categories.append(Categories(extra: true))
                     sections.append(
                         MasterSection(
-                            vertical: vertical,
+                            vertical: false,
                             position: section.position,
                             name: section.name,
                             height: 0,
                             banner: nil,
                             link: section.linkValue,
                             tax: section.linkTax,
-                            product: products
+                            categories: categories
                         )
                     )
+                } else {
+                    var products = section.productos ?? []
+                    if !products.isEmpty {
+                        let vertical = section.vertical ?? true
+                        if !vertical {
+                            products.append(Product(extra: true))
+                        }
+                        sections.append(
+                            MasterSection(
+                                vertical: vertical,
+                                position: section.position,
+                                name: section.name,
+                                height: 0,
+                                banner: nil,
+                                link: section.linkValue,
+                                tax: section.linkTax,
+                                product: products
+                            )
+                        )
+                    }
                 }
             }
         }

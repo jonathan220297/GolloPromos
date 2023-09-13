@@ -79,7 +79,16 @@ struct Section: Codable {
 }
 
 // MARK: - Categories
-struct Categories: Codable {
+class Categories: Codable {
+    init(extra: Bool? = nil, idCategoria: Int? = nil, imagen: String? = nil, descripcion: String? = nil, logo: String? = nil) {
+        self.extra = extra
+        self.idCategoria = idCategoria
+        self.imagen = imagen
+        self.descripcion = descripcion
+        self.logo = logo
+    }
+    
+    var extra: Bool?
     let idCategoria: Int?
     let imagen: String?
     let descripcion: String?
