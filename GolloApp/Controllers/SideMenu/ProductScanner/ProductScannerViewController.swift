@@ -235,7 +235,7 @@ class ProductScannerViewController: UIViewController {
                         center = code.subString(from: 0, to: 3)
                         let bodega = code.subString(from: 0, to: 4)
                         self.selectedBodega = Int(bodega) ?? 1
-                        getSKU(with: sku, center: center, bodega: bodega)
+                        self.getSKU(with: sku, center: center, bodega: bodega)
                     } else {
                         self.showAlert(alertText: "GolloApp", alertMessage: "Debe ingresar código de artículo con la longitud correcta.")
                     }

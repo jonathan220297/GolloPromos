@@ -138,7 +138,7 @@ class HomeViewController: UITabBarController {
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
                 self.view.activityStopAnimatingFull()
-                configureTabBar(with: data.indScanAndGo ?? false)
+                self.configureTabBar(with: data.indScanAndGo ?? false)
             })
             .disposed(by: disposeBag)
     }

@@ -24,7 +24,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var ribbonTopLabel: UILabel!
     @IBOutlet weak var ribbonBottomView: UIView!
     @IBOutlet weak var ribbonBottomLabel: UILabel!
-    @IBOutlet weak var detailButton: UIButton!
     
     let bag = DisposeBag()
     var delegate: ProductCellDelegate?
@@ -36,6 +35,13 @@ class ProductCollectionViewCell: UICollectionViewCell {
         configureRx()
     }
     
+    // MARK: - Observers
+    @objc func contentTapped(_ gesture: UITapGestureRecognizer) {
+        guard let dataG = self.dataG else { return }
+        self.delegate?.productCell(self, willMoveToDetilWith: dataG)
+    }
+    
+    // MARK: - Functions
     func setProductData(with data: Product?) {
         guard let data = data else { return }
         dataG = data
@@ -140,9 +146,21 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func configureViews() {
+        contentViewCell.layer.cornerRadius = 10.0
+        contentViewCell.backgroundColor = .white
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(contentTapped(_:)))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        contentViewCell.addGestureRecognizer(tapGesture)
+        
+        self.contentView.layer.shadowColor = UIColor.gray.cgColor
+        self.contentView.layer.shadowOpacity = 0.3
+        self.contentView.layer.shadowOffset = CGSize(width: 0.3, height: 0.3)
+        self.contentView.layer.shadowRadius = 3.0
+        
         ribbonTopView.clipsToBounds = true
         ribbonTopView.layer.cornerRadius = 10
-        ribbonTopView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
+        ribbonTopView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         
         ribbonBottomView.clipsToBounds = true
         ribbonBottomView.layer.cornerRadius = 10
@@ -150,14 +168,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func configureRx() {
-        detailButton
-            .rx
-            .tap
-            .subscribe(onNext: {
-                guard let dataG = self.dataG else { return }
-                self.delegate?.productCell(self, willMoveToDetilWith: dataG)
-            })
-            .disposed(by: bag)
+//        detailButton
+//            .rx
+//            .tap
+//            .subscribe(onNext: {
+//                guard let dataG = self.dataG else { return }
+//                self.delegate?.productCell(self, willMoveToDetilWith: dataG)
+//            })
+//            .disposed(by: bag)
     }
     
     func showGift(with data: Product) {

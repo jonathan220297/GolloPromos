@@ -467,7 +467,7 @@ class OfferDetailViewController: UIViewController {
                     self.viewModel.images = firstImage
                 }
                 self.imagePageController.numberOfPages = self.viewModel.images.count
-                self.imagePageController.currentPage = currentPage
+                self.imagePageController.currentPage = self.currentPage
                 
                 if let complements = data.articulo?.complementos {
                     var products: [Product] = []
