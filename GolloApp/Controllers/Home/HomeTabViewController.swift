@@ -189,6 +189,13 @@ class HomeTabViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
             withReuseIdentifier: "ProductFooterCollectionViewCell"
         )
+        homeCollectionView.register(
+            UINib(
+                nibName: "HorizontalSliderCollectionViewCell",
+                bundle: nil
+            ),
+            forCellWithReuseIdentifier: "HorizontalSliderCollectionViewCell"
+        )
         
     }
     
@@ -269,6 +276,8 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if viewModel.sections[section].banner != nil {
             return 1
+        } else if !viewModel.sections[section].vertical {
+            return 1
         } else if let products = viewModel.sections[section].product {
             return products.count
         } else {
@@ -310,6 +319,8 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         if viewModel.sections[section].banner != nil {
             return CGSize(width: collectionView.bounds.width, height: 0)
+        } else if !viewModel.sections[section].vertical {
+            return CGSize(width: 0, height: 0)
         } else if let products = viewModel.sections[section].product, !products.isEmpty {
             return CGSize(width: collectionView.bounds.width, height: 50)
         } else {
@@ -321,7 +332,9 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
         if viewModel.sections[indexPath.section].banner != nil {
             return getBannerCell(collectionView, cellForItemAt: indexPath)
         } else if viewModel.sections[indexPath.section].product != nil {
-            return getProductCell(collectionView, cellForItemAt: indexPath)
+            return viewModel.sections[indexPath.section].vertical ?
+            getProductCell(collectionView, cellForItemAt: indexPath) :
+            getHorizontalSliderCell(collectionView, cellForItemAt: indexPath)
         } else {
             return UICollectionViewCell()
         }
@@ -347,6 +360,17 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
         cell.setProductData(with: viewModel.sections[indexPath.section].product?[indexPath.row])
         cell.delegate = self
+        return cell
+    }
+    
+    func getHorizontalSliderCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "HorizontalSliderCollectionViewCell",
+            for: indexPath
+        ) as? HorizontalSliderCollectionViewCell else { return UICollectionViewCell() }
+        cell.section = viewModel.sections[indexPath.section]
+        cell.delegate = self
+        cell.configureCollectionView()
         return cell
     }
     
@@ -381,10 +405,15 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
                 return CGSize(width: collectionView.frame.size.width, height: Double(height))
             }
         } else {
-            let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
-            let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
-            let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
-            return CGSize(width: size, height: 300)
+            if viewModel.sections[indexPath.section].vertical {
+                let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+                let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+                let size: CGFloat = (collectionView.frame.size.width - space) / 2.0
+                return CGSize(width: size, height: 250)
+            } else {
+                print(String(indexPath.section) + " - " + String(indexPath.row))
+                return CGSize(width: collectionView.frame.size.width, height: 280)
+            }
         }
     }
 }
@@ -464,5 +493,15 @@ extension HomeTabViewController: ProductFooterDelegate {
         )
         offersFilteredListViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
+    }
+}
+
+extension HomeTabViewController: HorizontalSliderDelegate {
+    func didTapProduct(with controller: OfferDetailViewController) {
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func didTapSeeMore(with controller: OffersFilteredListViewController) {
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

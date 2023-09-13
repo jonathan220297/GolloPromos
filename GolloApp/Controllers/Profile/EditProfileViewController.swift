@@ -536,10 +536,10 @@ class EditProfileViewController: UIViewController {
                           let data = data else { return }
                     self.view.activityStopAnimating()
                     if let profile = data.perfil {
-                        tempUserData = profile
+                        self.tempUserData = profile
                     } else {
                         if data.perfil == nil && data.indExiste == nil {
-                            showAlert(alertText: "GolloApp", alertMessage: "Datos del cliente no son consistentes. Favor contacta a soporte.")
+                            self.showAlert(alertText: "GolloApp", alertMessage: "Datos del cliente no son consistentes. Favor contacta a soporte.")
                         }
                     }
                     
@@ -549,7 +549,7 @@ class EditProfileViewController: UIViewController {
                         self.unregisteredUserView.alpha = 1
                     } else {
                         if data.indAsociado == 1 {
-                            showDesaffiliateDialog()
+                            self.showDesaffiliateDialog()
                         } else {
                             if let profile = data.perfil {
                                 if let _ = profile.numeroIdentificacion, let _ = profile.numeroIdentificacion {

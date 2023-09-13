@@ -244,7 +244,7 @@ class PaymentAddressViewController: UIViewController {
                 guard let self = self,
                       let response = response,
                       let firstItem = response.first else { return }
-                view.activityStopAnimating()
+                self.view.activityStopAnimating()
                 self.viewModel.statesArray.accept(response)
                 self.stateLabel.text = ""
                 self.viewModel.stateSubject.accept(nil)

@@ -10,18 +10,18 @@ import RxRelay
 
 class HomeViewModel {
     private let service = GolloService()
-
+    
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     let updatedVersion: BehaviorRelay<String> = BehaviorRelay(value: "")
     let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
     var sectionsArray: [HomeSection] = []
-
+    
     var reloadTableViewData: (()->())?
     var tableViewWidth: CGFloat = 0.0
     
     var sections: [MasterSection] = []
     var configuration: HomeConfiguration?
-
+    
     func getHomeConfiguration() -> BehaviorRelay<HomeConfiguration?> {
         let apiResponse: BehaviorRelay<HomeConfiguration?> = BehaviorRelay(value: nil)
         service.callWebService(HomeConfigurationRequest(
@@ -52,7 +52,7 @@ class HomeViewModel {
         }
         return apiResponse
     }
-
+    
     func registerDevice(with deviceToken: String) -> BehaviorRelay<LoginData?> {
         var token: String? = nil
         let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : nil
@@ -101,7 +101,7 @@ class HomeViewModel {
         }
         return apiResponse
     }
-
+    
     func saveToken(with token: String) -> Bool {
         if let data = token.data(using: .utf8) {
             let status = KeychainManager.save(key: "token", data: data)
@@ -111,7 +111,7 @@ class HomeViewModel {
             return false
         }
     }
-
+    
     func configure(with configuration: HomeConfiguration) {
         sectionsArray.removeAll()
         guard let banners = configuration.banners,
@@ -146,27 +146,37 @@ class HomeViewModel {
             for banner in banners {
                 self.sections.append(
                     MasterSection(
+                        vertical: false,
                         position: banner.position,
                         name: nil,
                         height: Double(banner.height ?? 0) * 0.2,
                         banner: banner,
                         product: nil
                     )
-                )            }
+                )
+            }
         }
         if let configSection = configuration?.sections {
             for section in configSection {
-                sections.append(
-                    MasterSection(
-                        position: section.position,
-                        name: section.name,
-                        height: 0,
-                        banner: nil,
-                        link: section.linkValue,
-                        tax: section.linkTax,
-                        product: section.productos
+                var products = section.productos ?? []
+                if !products.isEmpty {
+                    var vertical = section.vertical ?? true
+                    if !vertical {
+                        products.append(Product(extra: true))
+                    }
+                    sections.append(
+                        MasterSection(
+                            vertical: vertical,
+                            position: section.position,
+                            name: section.name,
+                            height: 0,
+                            banner: nil,
+                            link: section.linkValue,
+                            tax: section.linkTax,
+                            product: products
+                        )
                     )
-                )
+                }
             }
         }
         self.reloadTableViewData?()
@@ -179,7 +189,7 @@ class HomeViewModel {
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 let data = data, error == nil,
                 let image = UIImage(data: data)
-                else {
+            else {
                 completion(nil)
                 return
             }

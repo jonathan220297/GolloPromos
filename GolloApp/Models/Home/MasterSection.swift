@@ -8,7 +8,8 @@
 import Foundation
 
 class MasterSection {
-    init(position: Int? = nil, name: String? = nil, height: Double? = nil, banner: Banner? = nil, link: Int? = nil, tax: Int? = nil, product: [Product]? = nil) {
+    init(vertical: Bool, position: Int? = nil, name: String? = nil, height: Double? = nil, banner: Banner? = nil, link: Int? = nil, tax: Int? = nil, product: [Product]? = nil) {
+        self.vertical = vertical
         self.position = position
         self.name = name
         self.height = height
@@ -18,6 +19,7 @@ class MasterSection {
         self.product = product
     }
     
+    var vertical: Bool
     var position: Int?
     var name: String?
     var height: Double?

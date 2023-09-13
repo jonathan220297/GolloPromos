@@ -29,29 +29,25 @@ struct HomeConfiguration: Codable {
 
 // MARK: - Banner
 struct Banner: Codable {
-//    let name: String?
-//    let position: Int?
-//    let isSlider, autoPlay: Bool?
-//    let height: Int?
-//    let backgroundColor: String?
-//    let columns: Int?
-//    let images: [ImageBanner]?
-    let autoPlay: Bool?
-    let position, height, columns: Int?
-    let images: [ImageBanner]?
+    let borderColor: String?
+    let position: Int?
     let isSlider: Bool?
+    let autoPlayDelay, columns, borderWidth, borderRadio: Int?
+    let autoPlay: Bool?
+    let height: Int?
+    let indFomo: Bool?
+    let endFomo: String?
+    let images: [ImageBanner]?
     let name: String?
-    let autoPlayDelay: Int?
     var uiHeight: CGFloat? = 0.0
 }
 
 // MARK: - Image
 struct ImageBanner: Codable {
-    let padding: Int?
+    let taxonomia: Int?
     let linkValue: String?
     let image: String?
     let linkType: Int?
-    let taxonomia: Int?
 }
 
 // MARK: - Home
@@ -62,21 +58,32 @@ struct Home: Codable {
 
 // MARK: - Section
 struct Section: Codable {
-//    let name: String?
-//    let sectionType, listLayout, itemsToShow, position: Int?
-//    let category: Int?
-//    let linkValue: String?
-//    let linkType: Int?
-    let linkTax, position, itemsToShow, linkType: Int?
-    let sectionType: Int?
-    let linkValue: Int?
-    let name: String?
+    let indCategoria: Bool?
+    let pricipalImage: String?
+    let position, columns: Int?
+    let autoPlayDelay: Int?
+    let borderWidth, borderRadio: Int?
     let productos: [Product]?
+    let endFOMO: String?
+    let linkValue, linkTax: Int?
+    let name: String?
+    let isSlider: Bool?
+    let itemsToShow: Int?
+    let autoPlay, indFOMO: Bool?
+    let sectionType: Int?
+    let height, linkType: Int?
+    let borderColor: String?
+    let secondaryImage: String?
+    let categorias: [Categories]?
+    let vertical: Bool?
 }
 
-enum SectionType: String {
-    case recents = "Recent View"
-    case products = "Productos"
+// MARK: - Categories
+struct Categories: Codable {
+    let idCategoria: Int?
+    let imagen: String?
+    let descripcion: String?
+    let logo: String?
 }
 
 enum LinkType: Int {
@@ -84,7 +91,44 @@ enum LinkType: Int {
 }
 
 // MARK: - Producto
-struct Product: Codable {
+class Product: Codable {
+    init(productCode: String? = nil, descriptionDetailDescuento: String? = nil, descriptionDetailRegalia: String? = nil, originalPrice: Double? = nil, image: String? = nil, montoBono: Double? = nil, porcDescuento: Double? = nil, brand: String? = nil, descriptionDetailBono: String? = nil, tieneBono: String? = nil, name: String? = nil, modelo: String? = nil, endDate: String? = nil, tieneRegalia: String? = nil, simboloMoneda: SimboloMoneda? = nil, id: Int? = nil, montoDescuento: Double? = nil, idUsuario: String? = nil, product: String? = nil, idEmpresa: Int? = nil, startDate: String? = nil, precioFinal: Double? = nil, productName: String? = nil, tieneDescuento: String? = nil, tipoPromoApp: Int? = nil, productoDescription: String? = nil, muestraDescuento: String? = nil, tiene2x1: String? = nil, tieneNuevo: String? = nil, tieneTopVentas: String? = nil, tieneExclusivo: String? = nil, tienetranspGratis: String? = nil, indMostrarTop: Bool? = nil, extra: Bool? = nil) {
+        self.productCode = productCode
+        self.descriptionDetailDescuento = descriptionDetailDescuento
+        self.descriptionDetailRegalia = descriptionDetailRegalia
+        self.originalPrice = originalPrice
+        self.image = image
+        self.montoBono = montoBono
+        self.porcDescuento = porcDescuento
+        self.brand = brand
+        self.descriptionDetailBono = descriptionDetailBono
+        self.tieneBono = tieneBono
+        self.name = name
+        self.modelo = modelo
+        self.endDate = endDate
+        self.tieneRegalia = tieneRegalia
+        self.simboloMoneda = simboloMoneda
+        self.id = id
+        self.montoDescuento = montoDescuento
+        self.idUsuario = idUsuario
+        self.product = product
+        self.idEmpresa = idEmpresa
+        self.startDate = startDate
+        self.precioFinal = precioFinal
+        self.productName = productName
+        self.tieneDescuento = tieneDescuento
+        self.tipoPromoApp = tipoPromoApp
+        self.productoDescription = productoDescription
+        self.muestraDescuento = muestraDescuento
+        self.tiene2x1 = tiene2x1
+        self.tieneNuevo = tieneNuevo
+        self.tieneTopVentas = tieneTopVentas
+        self.tieneExclusivo = tieneExclusivo
+        self.tienetranspGratis = tienetranspGratis
+        self.indMostrarTop = indMostrarTop
+        self.extra = extra
+    }
+    
     let productCode: String?
     let descriptionDetailDescuento, descriptionDetailRegalia: String?
     let originalPrice: Double?
@@ -108,8 +152,8 @@ struct Product: Codable {
     let muestraDescuento: String?
     let tiene2x1, tieneNuevo, tieneTopVentas, tieneExclusivo, tienetranspGratis: String?
     let indMostrarTop: Bool?
+    var extra: Bool?
     
-
     enum CodingKeys: String, CodingKey {
         case productCode, descriptionDetailDescuento, descriptionDetailRegalia, originalPrice, image, montoBono, porcDescuento, brand, descriptionDetailBono, tieneBono, name, modelo, endDate, tieneRegalia, simboloMoneda, id, montoDescuento, idUsuario, product
         case idEmpresa = "IdEmpresa, idempresa"
