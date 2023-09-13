@@ -170,9 +170,11 @@ extension UIViewController {
 
 extension UIViewController {
     @objc func menuButtonTapped() {
-        if let vc = AppStoryboard.Menu.initialViewController() {
-            self.present(vc, animated: true)
-        }
+        let vc = SideMenuViewController.instantiate(fromAppStoryboard: .Menu)
+        let menu = SideMenuNavigationController(rootViewController: vc)
+        menu.menuWidth = UIScreen.main.bounds.size.width * 0.7
+        menu.leftSide = true
+        present(menu, animated: true, completion: nil)
     }
     
     @objc func carButtonTapped() {
