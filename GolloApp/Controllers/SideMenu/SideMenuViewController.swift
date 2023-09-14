@@ -15,6 +15,7 @@ import SafariServices
 
 class SideMenuViewController: UIViewController {
     
+    @IBOutlet weak var hideMenuButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileEmailLabel: UILabel!
@@ -253,6 +254,15 @@ extension SideMenuViewController {
             })
             .disposed(by: disposeBag)
         
+        homeButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.dismiss(animated: true)
+                NotificationCenter.default.post(name: Notification.Name("showHomeAction"), object: nil)
+            })
+            .disposed(by: disposeBag)
+        
         searchButton
             .rx
             .tap
@@ -262,6 +272,14 @@ extension SideMenuViewController {
                 )
                 searchOffersViewController.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(searchOffersViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        hideMenuButton
+            .rx
+            .tap
+            .subscribe(onNext: {
+                self.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
         

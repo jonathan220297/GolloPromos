@@ -75,7 +75,7 @@ class CategoriesViewController: UIViewController {
                     catModel.append(CategoryFilteredList(id: parent.idTipoCategoriaApp ?? 1, count: parent.totalHijos ?? 0, name: parent.nombre ?? "", description: parent.descripcion ?? "", image: "", categories: subsCat))
                 }
                 
-                self.categories = catModel
+                self.categories = catModel.sorted { $0.name < $1.name }
                 self.categoriesCollectionView.reloadData()
             })
             .disposed(by: bag)

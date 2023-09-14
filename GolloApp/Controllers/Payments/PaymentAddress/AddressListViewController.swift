@@ -70,6 +70,11 @@ class AddressListViewController: UIViewController {
                       let response = response else { return }
                 self.viewModel.addressArray = response.direcciones
                 self.addressTableView.reloadData()
+                if response.direcciones.isEmpty {
+                    self.showAlertWithActions(alertText: "GolloApp", alertMessage: "No tienes direcciones guaradas.") {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
             })
             .disposed(by: bag)
     }

@@ -34,14 +34,14 @@ class HomeViewController: UITabBarController {
         configureTabBarAppearance()
         configureObservers()
     }
-
+    
     // MARK: - Observers
     @objc func buttonImageViewProfileTapped() {
         if let vc = AppStoryboard.Menu.initialViewController() {
             self.present(vc, animated: true, completion: nil)
         }
     }
-
+    
     // MARK: - Functions
     fileprivate func configureRx() {
         viewModel
@@ -71,11 +71,11 @@ class HomeViewController: UITabBarController {
                             Variables.userProfile = nil
                             UserManager.shared.userData = nil
                             Messaging.messaging().token { token, error in
-                              if let error = error {
-                                print("Error fetching FCM registration token: \(error)")
-                              } else if let token = token {
-                                self.registerDevice(with: token)
-                              }
+                                if let error = error {
+                                    print("Error fetching FCM registration token: \(error)")
+                                } else if let token = token {
+                                    self.registerDevice(with: token)
+                                }
                             }
                         } catch let signOutError as NSError {
                             log.error("Error signing out: \(signOutError)")
@@ -103,13 +103,13 @@ class HomeViewController: UITabBarController {
     fileprivate func validateVersion() {
         self.view.activityStartAnimatingFull()
         Messaging.messaging().token { token, error in
-          if let error = error {
-              self.view.activityStopAnimatingFull()
-              print("Error fetching FCM registration token: \(error)")
-          } else if let token = token {
-              print("FCM registration token: \(token)")
-              self.registerDevice(with: token)
-          }
+            if let error = error {
+                self.view.activityStopAnimatingFull()
+                print("Error fetching FCM registration token: \(error)")
+            } else if let token = token {
+                print("FCM registration token: \(token)")
+                self.registerDevice(with: token)
+            }
         }
     }
     
@@ -154,7 +154,7 @@ class HomeViewController: UITabBarController {
         navigationMain.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
         navigationMain.title = "Inicio"
         navigationMain.tabBarItem.image = UIImage(named: "ic_bottom_menu_home")
-
+        
         let categoriesTab = CategoriesViewController(
             viewModel: CategoriesViewModel()
         )
@@ -164,7 +164,7 @@ class HomeViewController: UITabBarController {
         navigationOffers.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
         navigationOffers.title = "Categorías"
         navigationOffers.tabBarItem.image = UIImage(named: "ic_bottom_menu_categories")
-
+        
         let ordersTab = OrdersTabViewController(
             viewModel: OrdersTabViewModel()
         )
@@ -184,15 +184,15 @@ class HomeViewController: UITabBarController {
         navigationProductScanner.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
         navigationProductScanner.title = "Scan&Go"
         navigationProductScanner.tabBarItem.image = UIImage(named: "ic_bottom_menu_scan")
-
+        
         let menuTab = MenuTabViewController()
         let navigationMenu = UINavigationController(rootViewController: menuTab)
         UINavigationBar.appearance().tintColor = UIColor.white
         navigationMenu.navigationBar.standardAppearance = getNavBarAppareance()
         navigationMenu.navigationBar.scrollEdgeAppearance = getNavBarAppareance()
-        navigationMenu.title = "Más"
+        navigationMenu.title = "Pagos"
         navigationMenu.tabBarItem.image = UIImage(named: "ic_bottom_menu_payments")
-
+        
         if scanActivated {
             viewControllers = [
                 navigationMain,
@@ -210,13 +210,20 @@ class HomeViewController: UITabBarController {
             ]
         }
     }
-
+    
     func configureObservers() {
-//        NotificationCenter.default.addObserver(forName: Notification.Name("moveToCar"), object: nil, queue: nil) { _ in
-//            if let tabBarController = self.tabBarController {
-//                tabBarController.selectedIndex = 2
-//            }
-//        }
+        //        NotificationCenter.default.addObserver(forName: Notification.Name("moveToCar"), object: nil, queue: nil) { _ in
+        //            if let tabBarController = self.tabBarController {
+        //                tabBarController.selectedIndex = 2
+        //            }
+        //        }
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(homeAction),
+            name: NSNotification.Name(rawValue: "showHomeAction"),
+            object: nil
+        )
         
         NotificationCenter.default.addObserver(
             self,
@@ -230,13 +237,19 @@ class HomeViewController: UITabBarController {
         contactFlow()
     }
     
+    @objc func homeAction(notification: NSNotification) {
+        if let tabBarController = self.tabBarController {
+            tabBarController.selectedIndex = 1
+        }
+    }
+    
     fileprivate func contactFlow() {
         let chatBotViewController = ChatbotViewController()
         chatBotViewController.modalPresentationStyle = .overCurrentContext
         chatBotViewController.modalTransitionStyle = .crossDissolve
         self.present(chatBotViewController, animated: true)
     }
-
+    
     func configureTabBarAppearance() {
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = .white
@@ -249,7 +262,7 @@ class HomeViewController: UITabBarController {
             tabBar.barTintColor = .white
         }
     }
-
+    
     func getNavBarAppareance() -> UINavigationBarAppearance {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
@@ -259,7 +272,7 @@ class HomeViewController: UITabBarController {
         // Create button appearance, with the custom color
         let buttonAppearance = UIBarButtonItemAppearance(style: .plain)
         buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
-
+        
         // Apply button appearance
         navBarAppearance.buttonAppearance = buttonAppearance
         return navBarAppearance

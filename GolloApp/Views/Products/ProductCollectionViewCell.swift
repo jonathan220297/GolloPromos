@@ -160,7 +160,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         ribbonTopView.clipsToBounds = true
         ribbonTopView.layer.cornerRadius = 10
-        ribbonTopView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        ribbonTopView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         
         ribbonBottomView.clipsToBounds = true
         ribbonBottomView.layer.cornerRadius = 10

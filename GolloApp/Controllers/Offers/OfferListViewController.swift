@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  OfferListViewController.swift
 //  PromosGollo
 //
 //  Created by Rodrigo Osegueda on 31/8/21.
