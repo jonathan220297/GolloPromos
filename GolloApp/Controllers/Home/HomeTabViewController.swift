@@ -361,7 +361,7 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             cell.dividerViewHeight.constant = 0
             cell.dividerView.isHidden = true
         } else {
-            cell.dividerViewHeight.constant = 10
+            cell.dividerViewHeight.constant = 0
             cell.dividerView.isHidden = false
         }
         return cell

@@ -28,6 +28,7 @@ class SectionCollectionViewCell: UICollectionReusableView {
 
     // MARK: - Functions
     func setSectionName(with text: String) {
+        upperDividerView.isHidden = true
         sectionNameLabel.text = text
     }
     
