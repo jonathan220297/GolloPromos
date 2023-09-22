@@ -9,7 +9,7 @@ import UIKit
 import Nuke
 
 class CategoriesCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var content: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var categoryImageView: UIImageView!
@@ -17,7 +17,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     func setCategoriesData(with data: CategoryFilteredList) {
         nameLabel.text = data.name
         let options = ImageLoadingOptions(
@@ -27,7 +27,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         )
         
         if let categoryImage = data.image, !categoryImage.isEmpty, categoryImage != "NA" {
-            if let url = URL(string: (data.image ?? "")) {
+            if let url = URL(string: (data.image ?? "").replacingOccurrences(of: " ", with: "%20")) {
                 Nuke.loadImage(with: url, options: options, into: categoryImageView)
             } else {
                 categoryImageView.image = UIImage(named: "empty_image")

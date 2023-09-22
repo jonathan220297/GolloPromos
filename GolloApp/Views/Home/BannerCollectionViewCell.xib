@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -362,6 +362,7 @@
                 <constraint firstItem="yfU-kJ-g8h" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ZGj-Gz-wMU"/>
                 <constraint firstItem="yfU-kJ-g8h" firstAttribute="top" secondItem="l2r-w2-O8L" secondAttribute="bottom" id="bNO-aQ-CQJ"/>
                 <constraint firstItem="w7O-Cc-0l7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cSs-ca-mjo"/>
+                <constraint firstItem="iwu-yM-zFk" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="f1a-tB-y7W"/>
                 <constraint firstAttribute="bottom" secondItem="iwu-yM-zFk" secondAttribute="bottom" id="hhh-Ka-9oe"/>
                 <constraint firstItem="iwu-yM-zFk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="jyE-wp-g22"/>
                 <constraint firstAttribute="trailing" secondItem="iwu-yM-zFk" secondAttribute="trailing" id="lxE-cr-9P6"/>
@@ -384,6 +385,7 @@
                 <outlet property="fomoContainerView" destination="yfU-kJ-g8h" id="RJe-iM-0w7"/>
                 <outlet property="fourthSeparationView" destination="AyA-Ip-IYj" id="92R-SH-fFr"/>
                 <outlet property="imageSlideShowView" destination="iwu-yM-zFk" id="pVF-9i-szf"/>
+                <outlet property="leadingMargin" destination="jyE-wp-g22" id="Sag-cm-9Ud"/>
                 <outlet property="secondHourLabel" destination="Mw5-FM-Pap" id="Q4M-Aw-2vt"/>
                 <outlet property="secondHourView" destination="9eN-SQ-cmG" id="z0t-Yl-96L"/>
                 <outlet property="secondMinuteLabel" destination="SGF-TM-o9O" id="yHr-bK-6HH"/>
@@ -392,6 +394,8 @@
                 <outlet property="secondSecondView" destination="Ukv-AG-IoA" id="tnT-HH-bE1"/>
                 <outlet property="secondSeparationView" destination="pku-SA-CMa" id="ySj-xG-pwO"/>
                 <outlet property="thirdSeparationView" destination="h1r-ui-woh" id="MET-4z-rYV"/>
+                <outlet property="topMarging" destination="1IQ-fu-ixN" id="erd-4e-8bH"/>
+                <outlet property="trailingMargin" destination="lxE-cr-9P6" id="2Du-7t-CZB"/>
             </connections>
             <point key="canvasLocation" x="476.92307692307691" y="63.625592417061611"/>
         </collectionViewCell>

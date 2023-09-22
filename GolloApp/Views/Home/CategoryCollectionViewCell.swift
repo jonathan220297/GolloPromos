@@ -27,7 +27,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.shadowOffset = CGSize(width: 0.3, height: 0.3)
         self.contentView.layer.shadowRadius = 3.0
     }
-
+    
     // MARK: - Functions
     func configureCategory(with category: Categories?) {
         guard let category = category else { return }
@@ -37,12 +37,16 @@ class CategoryCollectionViewCell: UICollectionViewCell {
             failureImage: UIImage(named: "empty_image")
         )
         
-        if let url = URL(string: APDLGT.GIMGURL + (category.imagen ?? "")) {
+        if let url = URL(string: (category.imagen ?? "").replacingOccurrences(of: " ", with: "%20")) {
             Nuke.loadImage(with: url, options: options, into: categoryImageView)
+        } else {
+            categoryImageView.image = UIImage(named: "empty_image")
         }
         
-        if let url = URL(string: APDLGT.GIMGURL + (category.logo ?? "")) {
+        if let url = URL(string: (category.logo ?? "").replacingOccurrences(of: " ", with: "%20")) {
             Nuke.loadImage(with: url, options: options, into: categoryIconImageView)
+        } else {
+            categoryIconImageView.image = UIImage(named: "empty_image")
         }
         
         categoryNameLabel.text = category.descripcion

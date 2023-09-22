@@ -24,6 +24,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var ribbonTopLabel: UILabel!
     @IBOutlet weak var ribbonBottomView: UIView!
     @IBOutlet weak var ribbonBottomLabel: UILabel!
+    @IBOutlet weak var proportionalTopRibbon: NSLayoutConstraint!
+    @IBOutlet weak var proportionalBottomRibbon: NSLayoutConstraint!
     
     let bag = DisposeBag()
     var delegate: ProductCellDelegate?
@@ -212,6 +214,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
         ribbonTopLabel.font = ribbonTopLabel.font.withSize(12)
         ribbonTopView.backgroundColor = ribbonColor
         ribbonTopView.isHidden = false
+        if ribbonText.count > 12 {
+            ribbonTopLabel.font = ribbonTopLabel.font.withSize(10)
+        } else {
+            ribbonTopLabel.font = ribbonTopLabel.font.withSize(12)
+        }
     }
     
     private func showBottomRibbon(with ribbonText: String, ribbonColor: UIColor) {
@@ -219,6 +226,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
         ribbonBottomLabel.font = ribbonBottomLabel.font.withSize(12)
         ribbonBottomView.backgroundColor = ribbonColor
         ribbonBottomView.isHidden = false
+        if ribbonText.count > 12 {
+            ribbonBottomLabel.font = ribbonBottomLabel.font.withSize(10)
+        } else {
+            ribbonBottomLabel.font = ribbonBottomLabel.font.withSize(12)
+        }
     }
 }
 

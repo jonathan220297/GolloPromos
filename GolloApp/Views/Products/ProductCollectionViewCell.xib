@@ -142,6 +142,8 @@
                 <outlet property="productNameLabel" destination="Awq-kZ-bhT" id="GoB-DT-Rbq"/>
                 <outlet property="productRealPriceLabel" destination="Khd-Ub-2IY" id="rEu-Hv-wrC"/>
                 <outlet property="productTypeLabel" destination="on4-ps-wCH" id="0Pg-rf-jrh"/>
+                <outlet property="proportionalBottomRibbon" destination="a1v-cy-38m" id="Sph-HM-06l"/>
+                <outlet property="proportionalTopRibbon" destination="mEb-60-Dty" id="ray-1K-AL6"/>
                 <outlet property="ribbonBottomLabel" destination="YdG-4t-BGP" id="jiU-p1-uX7"/>
                 <outlet property="ribbonBottomView" destination="MqO-xz-MSE" id="ZKI-FK-y3i"/>
                 <outlet property="ribbonTopLabel" destination="aNj-Wy-SMS" id="QhA-L9-YEL"/>

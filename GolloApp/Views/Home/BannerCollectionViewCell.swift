@@ -38,6 +38,9 @@ class BannerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var firstSecondLabel: UILabel!
     @IBOutlet weak var secondSecondView: UIStackView!
     @IBOutlet weak var secondSecondLabel: UILabel!
+    @IBOutlet weak var topMarging: NSLayoutConstraint!
+    @IBOutlet weak var leadingMargin: NSLayoutConstraint!
+    @IBOutlet weak var trailingMargin: NSLayoutConstraint!
     
     var timer: Timer?
     var futureDate: Date = Date()
@@ -118,6 +121,25 @@ class BannerCollectionViewCell: UICollectionViewCell {
         imageSlideShowView.setImageInputs(imageSet)
         imageSlideShowView.slideshowInterval = Double(seconds)
         imageSlideShowView.contentScaleMode = .scaleToFill
+        
+        if let margin = banner?.borderWidth, margin > 0, let radius = banner?.borderRadio, radius > 0 {
+            imageSlideShowView.layer.cornerRadius = CGFloat(radius)
+            topMarging.constant = CGFloat(margin)
+            topMarging.isActive = true
+            leadingMargin.constant = CGFloat(margin)
+            leadingMargin.isActive = true
+            trailingMargin.constant = CGFloat(margin)
+            trailingMargin.isActive = true
+            imageSlideShowView.layoutIfNeeded()
+        } else {
+            topMarging.constant = 0
+            topMarging.isActive = true
+            leadingMargin.constant = 0
+            leadingMargin.isActive = true
+            trailingMargin.constant = 0
+            trailingMargin.isActive = true
+            imageSlideShowView.layoutIfNeeded()
+        }
     }
     
     func configureRx() {

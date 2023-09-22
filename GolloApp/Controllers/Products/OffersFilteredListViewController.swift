@@ -59,9 +59,9 @@ class OffersFilteredListViewController: UIViewController {
     
     // MARK: - Functions
     func configureViews() {
-        categoriesView.clipsToBounds = true
-        categoriesView.layer.cornerRadius = 10
-        categoriesView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//        categoriesView.clipsToBounds = true
+//        categoriesView.layer.cornerRadius = 10
+//        categoriesView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         productsView.clipsToBounds = true
         productsView.layer.cornerRadius = 10
@@ -75,8 +75,11 @@ class OffersFilteredListViewController: UIViewController {
     }
     
     func configureTableView() {
-        self.collectionView.register(UINib(nibName: "CategoriesFilteredListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoriesFilteredListCell")
-        self.productCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
+        collectionView.register(UINib(nibName: "SectionCollectionViewCell", bundle: nil), forSupplementaryViewOfKind:
+                                    UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionCollectionViewCell")
+        collectionView.register(UINib(nibName: "CategoriesFilteredListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoriesFilteredListCell")
+        productCollectionView.register(UINib(nibName: "SectionCollectionViewCell", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionCollectionViewCell")
+        productCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
     }
     
     fileprivate func configureRx() {
@@ -164,7 +167,8 @@ class OffersFilteredListViewController: UIViewController {
                             tieneTopVentas: o.tieneTopVentas,
                             tieneExclusivo: o.tieneExclusivo,
                             tienetranspGratis: o.tienetranspGratis,
-                            indMostrarTop: o.indMostrarTop
+                            indMostrarTop: o.indMostrarTop,
+                            idCategoria2: o.idCategoria2
                         )
                         products.append(p)
                     }
@@ -173,10 +177,18 @@ class OffersFilteredListViewController: UIViewController {
                     } else {
                         self.viewModel.products.append(contentsOf: products)
                     }
+                    self.viewModel.configureSections()
                     self.productCollectionView.reloadData()
                 }
             })
             .disposed(by: bag)
+    }
+    
+    fileprivate func configureViewModel() {
+        viewModel.reloadTableViewData = { [weak self] in
+            guard let self = self else { return }
+            self.productCollectionView.reloadData()
+        }
     }
     
     fileprivate func dropDown() {
@@ -197,17 +209,53 @@ class OffersFilteredListViewController: UIViewController {
             self.fetchOffers(with: newTaxonomy, order: selectedPosition + 1)
         }
     }
-    
 }
 
 extension OffersFilteredListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if collectionView == self.productCollectionView {
+            return viewModel.sections.count
+        } else {
+            return 1
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
             return viewModel.categories.count
         } else if collectionView == self.productCollectionView {
+            if let products = viewModel.sections[section].product {
+                return products.count
+            }
             return viewModel.products.count
         }
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionCollectionViewCell", for: indexPath) as! SectionCollectionViewCell
+            
+            header.indexPath = indexPath
+            header.setSectionName(with: viewModel.sections[indexPath.section].name ?? "")
+            
+            return header
+        default:
+            fatalError("Unexpected element kind")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if collectionView == self.productCollectionView {
+            if let products = viewModel.sections[section].product, !products.isEmpty {
+                return CGSize(width: collectionView.bounds.width, height: 55)
+            } else {
+                return CGSize(width: collectionView.bounds.width, height: 0)
+            }
+        } else {
+            return CGSize(width: 0, height: 0)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -233,7 +281,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
     func getProductCell(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
-        cell.setProductData(with: viewModel.products[indexPath.row])
+        cell.setProductData(with: viewModel.sections[indexPath.section].product?[indexPath.row])
         cell.delegate = self
         return cell
     }
@@ -269,8 +317,8 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
             self.fetchOffers(with: viewModel.categories[indexPath.row].idTipoCategoriaApp ?? -1)
         } else if collectionView == self.productCollectionView {
             let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
-            vc.offer = viewModel.products[indexPath.row]
-            vc.skuProduct = viewModel.products[indexPath.row].productCode
+            vc.offer = viewModel.sections[indexPath.section].product?[indexPath.row]
+            vc.skuProduct = viewModel.sections[indexPath.section].product?[indexPath.row].productCode
             vc.modalPresentationStyle = .fullScreen
             navigationController?.pushViewController(vc, animated: true)
         }

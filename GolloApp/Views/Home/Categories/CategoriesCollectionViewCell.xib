@@ -21,25 +21,25 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCi-fg-dSx">
                         <rect key="frame" x="0.0" y="0.0" width="311" height="145"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VSh-FL-G5R">
+                                <rect key="frame" x="155.66666666666663" y="0.0" width="155.33333333333337" height="145"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymg-bW-3bW">
-                                <rect key="frame" x="8" y="8" width="139.66666666666666" height="129"/>
+                                <rect key="frame" x="8" y="8" width="163.66666666666666" height="129"/>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                 <color key="textColor" name="menuGray"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VSh-FL-G5R">
-                                <rect key="frame" x="155.66666666666663" y="0.0" width="155.33333333333337" height="145"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="VSh-FL-G5R" firstAttribute="leading" secondItem="ymg-bW-3bW" secondAttribute="trailing" constant="8" id="9Rh-z7-e5X"/>
                             <constraint firstItem="VSh-FL-G5R" firstAttribute="top" secondItem="xCi-fg-dSx" secondAttribute="top" id="AkM-Ma-jta"/>
                             <constraint firstItem="ymg-bW-3bW" firstAttribute="top" secondItem="xCi-fg-dSx" secondAttribute="top" constant="8" id="Bic-6m-Ohb"/>
                             <constraint firstAttribute="bottom" secondItem="ymg-bW-3bW" secondAttribute="bottom" constant="8" id="LX2-0s-KgW"/>
                             <constraint firstItem="ymg-bW-3bW" firstAttribute="leading" secondItem="xCi-fg-dSx" secondAttribute="leading" constant="8" id="RQK-Tx-Kp9"/>
                             <constraint firstAttribute="bottom" secondItem="VSh-FL-G5R" secondAttribute="bottom" id="Zor-PI-wsb"/>
                             <constraint firstAttribute="trailing" secondItem="VSh-FL-G5R" secondAttribute="trailing" id="aQd-pB-M8e"/>
+                            <constraint firstItem="VSh-FL-G5R" firstAttribute="leading" secondItem="ymg-bW-3bW" secondAttribute="trailing" constant="-16" id="x9i-Vp-iUS"/>
                             <constraint firstItem="VSh-FL-G5R" firstAttribute="width" secondItem="xCi-fg-dSx" secondAttribute="width" multiplier="0.5" id="xPd-ba-MPr"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

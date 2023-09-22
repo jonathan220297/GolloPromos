@@ -28,6 +28,8 @@
                 <outlet property="productsTableViewHeight" destination="gBJ-Du-Mbp" id="ouf-lr-62B"/>
                 <outlet property="productsView" destination="ulw-zj-8nU" id="KLV-Q2-Zey"/>
                 <outlet property="productsViewHeight" destination="gBJ-Du-Mbp" id="pIk-2p-jee"/>
+                <outlet property="qrImageView" destination="Mll-fx-ZbO" id="27B-Ll-3ua"/>
+                <outlet property="qrView" destination="XZ7-Eu-rfO" id="naQ-gZ-LhR"/>
                 <outlet property="quotaStackView" destination="bMq-L0-n4W" id="nZq-kE-JFn"/>
                 <outlet property="quotaSwitch" destination="p4n-tN-0V2" id="IA9-if-5yL"/>
                 <outlet property="referenceLabel" destination="CN8-OU-Z4i" id="VXW-Ib-gBf"/>
@@ -460,6 +462,39 @@
                                                 <constraint firstAttribute="height" constant="125" id="gBJ-Du-Mbp"/>
                                                 <constraint firstItem="X1u-c4-Yji" firstAttribute="leading" secondItem="ulw-zj-8nU" secondAttribute="leading" constant="4" id="n0J-OZ-Il1"/>
                                                 <constraint firstItem="bhK-Bo-qF9" firstAttribute="top" secondItem="X1u-c4-Yji" secondAttribute="bottom" constant="2" id="qrT-NG-2xD"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XZ7-Eu-rfO">
+                                            <rect key="frame" x="0.0" y="619" width="374" height="175"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mostrar este código a un asesor para la entrega del artículo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euD-Tx-WFF">
+                                                    <rect key="frame" x="4" y="2" width="366" height="39.333333333333336"/>
+                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mll-fx-ZbO">
+                                                    <rect key="frame" x="124.66666666666666" y="49.333333333333371" width="125" height="125"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Mll-fx-ZbO" secondAttribute="height" multiplier="1:1" id="Nc8-VS-gNU"/>
+                                                        <constraint firstAttribute="width" constant="125" id="ddf-Jy-mkM"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="euD-Tx-WFF" firstAttribute="leading" secondItem="XZ7-Eu-rfO" secondAttribute="leading" constant="4" id="4Xc-D6-buO"/>
+                                                <constraint firstItem="euD-Tx-WFF" firstAttribute="top" secondItem="XZ7-Eu-rfO" secondAttribute="top" constant="2" id="7uy-XY-wmP"/>
+                                                <constraint firstItem="Mll-fx-ZbO" firstAttribute="top" secondItem="euD-Tx-WFF" secondAttribute="bottom" constant="8" id="WzJ-nR-yyN"/>
+                                                <constraint firstAttribute="height" constant="175" id="rjB-Ea-C0H"/>
+                                                <constraint firstItem="Mll-fx-ZbO" firstAttribute="centerX" secondItem="XZ7-Eu-rfO" secondAttribute="centerX" id="sEI-Ic-wXj"/>
+                                                <constraint firstAttribute="trailing" secondItem="euD-Tx-WFF" secondAttribute="trailing" constant="4" id="uyY-ZV-x99"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

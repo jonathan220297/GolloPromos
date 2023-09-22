@@ -11,5 +11,6 @@ struct CategoriesFilterData: Codable {
     let parent, totalHijos, idTipoCategoriaApp: Int?
     let nombre, descripcion: String?
     let image: String?
+    let urlImage: String?
     var selected: Bool? = false
 }

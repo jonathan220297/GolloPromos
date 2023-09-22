@@ -72,7 +72,7 @@ class CategoriesViewController: UIViewController {
                     if !subsCat.isEmpty {
                         subsCat.append(SubCategoryItem(id: parent.idTipoCategoriaApp ?? 0, count: parent.totalHijos ?? 0, name: "Todos" , description: "\(parent.nombre ?? "") - Todos", image: ""))
                     }
-                    catModel.append(CategoryFilteredList(id: parent.idTipoCategoriaApp ?? 1, count: parent.totalHijos ?? 0, name: parent.nombre ?? "", description: parent.descripcion ?? "", image: "", categories: subsCat))
+                    catModel.append(CategoryFilteredList(id: parent.idTipoCategoriaApp ?? 1, count: parent.totalHijos ?? 0, name: parent.nombre ?? "", description: parent.descripcion ?? "", image: parent.urlImage, categories: subsCat))
                 }
                 
                 self.categories = catModel.sorted { $0.name < $1.name }

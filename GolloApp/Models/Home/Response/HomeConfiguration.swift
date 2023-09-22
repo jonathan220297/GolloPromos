@@ -101,7 +101,7 @@ enum LinkType: Int {
 
 // MARK: - Producto
 class Product: Codable {
-    init(productCode: String? = nil, descriptionDetailDescuento: String? = nil, descriptionDetailRegalia: String? = nil, originalPrice: Double? = nil, image: String? = nil, montoBono: Double? = nil, porcDescuento: Double? = nil, brand: String? = nil, descriptionDetailBono: String? = nil, tieneBono: String? = nil, name: String? = nil, modelo: String? = nil, endDate: String? = nil, tieneRegalia: String? = nil, simboloMoneda: SimboloMoneda? = nil, id: Int? = nil, montoDescuento: Double? = nil, idUsuario: String? = nil, product: String? = nil, idEmpresa: Int? = nil, startDate: String? = nil, precioFinal: Double? = nil, productName: String? = nil, tieneDescuento: String? = nil, tipoPromoApp: Int? = nil, productoDescription: String? = nil, muestraDescuento: String? = nil, tiene2x1: String? = nil, tieneNuevo: String? = nil, tieneTopVentas: String? = nil, tieneExclusivo: String? = nil, tienetranspGratis: String? = nil, indMostrarTop: Bool? = nil, extra: Bool? = nil) {
+    init(productCode: String? = nil, descriptionDetailDescuento: String? = nil, descriptionDetailRegalia: String? = nil, originalPrice: Double? = nil, image: String? = nil, montoBono: Double? = nil, porcDescuento: Double? = nil, brand: String? = nil, descriptionDetailBono: String? = nil, tieneBono: String? = nil, name: String? = nil, modelo: String? = nil, endDate: String? = nil, tieneRegalia: String? = nil, simboloMoneda: SimboloMoneda? = nil, id: Int? = nil, montoDescuento: Double? = nil, idUsuario: String? = nil, product: String? = nil, idEmpresa: Int? = nil, startDate: String? = nil, precioFinal: Double? = nil, productName: String? = nil, tieneDescuento: String? = nil, tipoPromoApp: Int? = nil, productoDescription: String? = nil, muestraDescuento: String? = nil, tiene2x1: String? = nil, tieneNuevo: String? = nil, tieneTopVentas: String? = nil, tieneExclusivo: String? = nil, tienetranspGratis: String? = nil, indMostrarTop: Bool? = nil, extra: Bool? = nil, idCategoria2: Int? = nil) {
         self.productCode = productCode
         self.descriptionDetailDescuento = descriptionDetailDescuento
         self.descriptionDetailRegalia = descriptionDetailRegalia
@@ -136,6 +136,7 @@ class Product: Codable {
         self.tienetranspGratis = tienetranspGratis
         self.indMostrarTop = indMostrarTop
         self.extra = extra
+        self.idCategoria2 = idCategoria2
     }
     
     let productCode: String?
@@ -162,13 +163,14 @@ class Product: Codable {
     let tiene2x1, tieneNuevo, tieneTopVentas, tieneExclusivo, tienetranspGratis: String?
     let indMostrarTop: Bool?
     var extra: Bool?
+    var idCategoria2: Int?
     
     enum CodingKeys: String, CodingKey {
         case productCode, descriptionDetailDescuento, descriptionDetailRegalia, originalPrice, image, montoBono, porcDescuento, brand, descriptionDetailBono, tieneBono, name, modelo, endDate, tieneRegalia, simboloMoneda, id, montoDescuento, idUsuario, product
         case idEmpresa = "IdEmpresa, idempresa"
         case startDate, precioFinal, productName, tieneDescuento, tipoPromoApp, muestraDescuento
         case productoDescription = "description"
-        case tiene2x1, tieneNuevo, tieneTopVentas, tieneExclusivo, tienetranspGratis, indMostrarTop
+        case tiene2x1, tieneNuevo, tieneTopVentas, tieneExclusivo, tienetranspGratis, indMostrarTop, idCategoria2
     }
 }
 

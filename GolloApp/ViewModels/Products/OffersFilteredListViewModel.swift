@@ -16,6 +16,9 @@ class OffersFilteredListViewModel {
     
     var categories: [CategoriesFilterData] = []
     var products: [Product] = []
+    var sections: [CategoriesSection] = []
+    
+    var reloadTableViewData: (()->())?
     
     func fetchFilteredCategories(with categoryId: String?, taxonomy: Int = -1) -> BehaviorRelay<[CategoriesFilterData]?> {
         let apiResponse: BehaviorRelay<[CategoriesFilterData]?> = BehaviorRelay(value: nil)
@@ -71,6 +74,22 @@ class OffersFilteredListViewModel {
             }
         }
         return apiResponse
+    }
+    
+    func configureSections() {
+        sections.removeAll()
+        for category in self.categories {
+            var categoryProductList: [Product] = []
+            for product in self.products {
+                if let productCategory = product.idCategoria2, category.idTipoCategoriaApp == Int(productCategory) {
+                    categoryProductList.append(product)
+                }
+            }
+            sections.append(
+                CategoriesSection(name: category.nombre, product: categoryProductList)
+            )
+        }
+        self.reloadTableViewData?()
     }
     
 }

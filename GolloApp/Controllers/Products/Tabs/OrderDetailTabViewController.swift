@@ -37,6 +37,8 @@ class OrderDetailTabViewController: UIViewController {
     @IBOutlet weak var productsTableView: UITableView!
     @IBOutlet weak var productsTableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var productsViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var qrView: UIView!
+    @IBOutlet weak var qrImageView: UIImageView!
     
     // MARK: - Constants
     let viewModel: OrderDetailTabViewModel
@@ -246,6 +248,14 @@ class OrderDetailTabViewController: UIViewController {
             productsViewHeight.constant = CGFloat(25 + (100 * viewModel.products.count))
             productsView.layoutIfNeeded()
         }
+        
+        if let transactionNumber = order.orden.noTransaccion, !transactionNumber.isEmpty {
+            qrView.isHidden = false
+            let QRimage = generateQRCode(from: transactionNumber)
+            qrImageView.image = QRimage
+        } else {
+            qrView.isHidden = true
+        }
     }
 
     func getAddress(with data: DeliveryType) -> String {
@@ -260,6 +270,15 @@ class OrderDetailTabViewController: UIViewController {
         return "\(data.direccion ?? ""), \(data.distritoDesc ?? ""), \(data.cantonDesc ?? ""), \(data.provinciaDesc ?? ""), \(phoneNumber)\(postalCode)"
     }
 
+    func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        if let QRFilter = CIFilter(name: "CIQRCodeGenerator") {
+            QRFilter.setValue(data, forKey: "inputMessage")
+            guard let QRImage = QRFilter.outputImage else {return nil}
+            return UIImage(ciImage: QRImage)
+        }
+        return nil
+    }
 }
 
 extension OrderDetailTabViewController: UITableViewDataSource, UITableViewDelegate {

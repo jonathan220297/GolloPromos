@@ -23,7 +23,7 @@ struct OrderInformation: Codable {
     let idEmpresa, idCliente, estadoOrden, fechaOrden, condicionVenta, codigoCupon, descripcionCupon, numOrdenTienda: String?
     let montoProductos, montoEnvio, montoExtragarantia, montoBruto, montoDescuento: Double?
     let montoBono, montoNeto: Double?
-    let origen: String?
+    let origen, noTransaccion: String?
 }
 
 struct PaymentType: Codable {

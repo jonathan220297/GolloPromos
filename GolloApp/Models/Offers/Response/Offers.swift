@@ -22,6 +22,7 @@ struct Offers: Codable {
     let tieneBono, tieneRegalia, tieneDescuento, muestraDescuento: String?
     let tiene2x1, tieneNuevo, tieneTopVentas, tieneExclusivo, tienetranspGratis: String?
     let indMostrarTop: Bool?
+    let idCategoria2: Int?
 }
 
 struct CategoryOffers {

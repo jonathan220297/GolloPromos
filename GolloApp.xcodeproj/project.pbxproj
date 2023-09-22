@@ -251,7 +251,6 @@
 		4FBFF2292AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FBFF2272AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib */; };
 		4FBFF22C2AB21F7D00540F29 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBFF22A2AB21F7D00540F29 /* CategoryCollectionViewCell.swift */; };
 		4FBFF22D2AB21F7D00540F29 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FBFF22B2AB21F7D00540F29 /* CategoryCollectionViewCell.xib */; };
-		4FBFF22F2AB2CE2800540F29 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FBFF22E2AB2CE2800540F29 /* GoogleService-Info.plist */; };
 		4FC04C5428AE95A3001EF211 /* GenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5328AE95A3001EF211 /* GenderType.swift */; };
 		4FC04C5728AE9C3E001EF211 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5628AE9C3E001EF211 /* UserRequest.swift */; };
 		4FC04C5A28AE9C74001EF211 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC04C5928AE9C74001EF211 /* UserResponse.swift */; };
@@ -371,6 +370,7 @@
 		CB46D3B32A1845D800690EB9 /* GolloStoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB46D3B12A1845D800690EB9 /* GolloStoresTableViewCell.swift */; };
 		CB46D3B42A1845D800690EB9 /* GolloStoresTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB46D3B22A1845D800690EB9 /* GolloStoresTableViewCell.xib */; };
 		CB56EEFE29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */; };
+		CB7A260E2AB8C5B900916DB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB7A260D2AB8C5B900916DB0 /* GoogleService-Info.plist */; };
 		CB8264292A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8264272A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift */; };
 		CB82642A2A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8264282A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib */; };
 		CB82642E2A6E3AB100DB7B13 /* OfferProductImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82642C2A6E3AB100DB7B13 /* OfferProductImageViewController.swift */; };
@@ -395,6 +395,7 @@
 		CBDD0E4629B6A4EA0071E063 /* EmmaTermsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD0E4529B6A4EA0071E063 /* EmmaTermsResponse.swift */; };
 		CBDD0E4A29B79C670071E063 /* EmmaTermsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD0E4829B79C670071E063 /* EmmaTermsTableViewCell.swift */; };
 		CBDD0E4B29B79C670071E063 /* EmmaTermsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBDD0E4929B79C670071E063 /* EmmaTermsTableViewCell.xib */; };
+		CBFFBC3A2ABA8E65004CA5BA /* CategoriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFBC392ABA8E65004CA5BA /* CategoriesSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -675,7 +676,6 @@
 		4FBFF2272AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopCategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
 		4FBFF22A2AB21F7D00540F29 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FBFF22B2AB21F7D00540F29 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
-		4FBFF22E2AB2CE2800540F29 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FC04C5328AE95A3001EF211 /* GenderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderType.swift; sourceTree = "<group>"; };
 		4FC04C5628AE9C3E001EF211 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		4FC04C5928AE9C74001EF211 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -805,6 +805,7 @@
 		CB46D3B12A1845D800690EB9 /* GolloStoresTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolloStoresTableViewCell.swift; sourceTree = "<group>"; };
 		CB46D3B22A1845D800690EB9 /* GolloStoresTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GolloStoresTableViewCell.xib; sourceTree = "<group>"; };
 		CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypeTransitionManager.swift; sourceTree = "<group>"; };
+		CB7A260D2AB8C5B900916DB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB8264272A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB8264282A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		CB82642C2A6E3AB100DB7B13 /* OfferProductImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferProductImageViewController.swift; sourceTree = "<group>"; };
@@ -829,6 +830,7 @@
 		CBDD0E4529B6A4EA0071E063 /* EmmaTermsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmmaTermsResponse.swift; sourceTree = "<group>"; };
 		CBDD0E4829B79C670071E063 /* EmmaTermsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmmaTermsTableViewCell.swift; sourceTree = "<group>"; };
 		CBDD0E4929B79C670071E063 /* EmmaTermsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmmaTermsTableViewCell.xib; sourceTree = "<group>"; };
+		CBFFBC392ABA8E65004CA5BA /* CategoriesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSection.swift; sourceTree = "<group>"; };
 		F94ED8A725F45F496BD77659 /* Pods-GolloAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloAppTests.release.xcconfig"; path = "Target Support Files/Pods-GolloAppTests/Pods-GolloAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1710,7 +1712,7 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4FBFF22E2AB2CE2800540F29 /* GoogleService-Info.plist */,
+				CB7A260D2AB8C5B900916DB0 /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* GolloApp.xcdatamodeld */,
 			);
 			path = GolloApp;
@@ -1772,6 +1774,7 @@
 				4FE190FE26DEF60A00322128 /* Request */,
 				4FE190FC26DEF5FB00322128 /* HomeSection.swift */,
 				4F317A9928F77399005BA675 /* MasterSection.swift */,
+				CBFFBC392ABA8E65004CA5BA /* CategoriesSection.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2260,7 +2263,7 @@
 				4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */,
 				4FE573A728C16AEF00BBDEBC /* SignupWaringViewController.xib in Resources */,
 				CB12A7732AAB9943006CD52E /* CategoriesCollectionViewCell.xib in Resources */,
-				4FBFF22F2AB2CE2800540F29 /* GoogleService-Info.plist in Resources */,
+				CB7A260E2AB8C5B900916DB0 /* GoogleService-Info.plist in Resources */,
 				4F0D967526DDBB810061E89E /* SansSerifExbFLF-Italic.otf in Resources */,
 				4F0D968126DDBC740061E89E /* Home.storyboard in Resources */,
 				4F0D96A826DDD6530061E89E /* Profile.storyboard in Resources */,
@@ -2641,6 +2644,7 @@
 				4FBFF22C2AB21F7D00540F29 /* CategoryCollectionViewCell.swift in Sources */,
 				4FFD9CAC272AFDCA004778F1 /* UINavigationController+Extension.swift in Sources */,
 				4FE1913626DF073400322128 /* OfferDetailViewController.swift in Sources */,
+				CBFFBC3A2ABA8E65004CA5BA /* CategoriesSection.swift in Sources */,
 				4FF01FF728BF223400CFD3E8 /* HistoryPaymentTableViewCell.swift in Sources */,
 				4F894A21270A620A0004AAB3 /* StatusRequest.swift in Sources */,
 				4FA2767A26D9189700216284 /* LoginViewController.swift in Sources */,
@@ -2916,9 +2920,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2944,9 +2948,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
-				GOLLO_URL_SERVICE = "http://74.208.150.44/PromosAPI/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
