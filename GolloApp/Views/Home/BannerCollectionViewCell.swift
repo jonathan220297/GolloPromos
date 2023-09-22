@@ -58,16 +58,11 @@ class BannerCollectionViewCell: UICollectionViewCell {
     // MARK: - Observers
     @objc func updateCountdown() {
         let currentDate = Date()
-        
-        // Calcula la diferencia en segundos entre la fecha en el futuro y la fecha actual.
         let timeRemaining = Int(futureDate.timeIntervalSince(currentDate))
-        
-        // Calcula las horas, minutos y segundos restantes.
         let hours = timeRemaining / 3600
         let minutes = (timeRemaining % 3600) / 60
         let seconds = (timeRemaining % 3600) % 60
         
-        // Actualiza la etiqueta de cuenta regresiva en la interfaz de usuario.
         let hoursString = String(format: "%02d", hours)
         firstHourLabel.text = hoursString.first?.uppercased()
         secondHourLabel.text = hoursString.last?.uppercased()
@@ -78,11 +73,17 @@ class BannerCollectionViewCell: UICollectionViewCell {
         firstSecondLabel.text = secondsString.first?.uppercased()
         secondSecondLabel.text = secondsString.last?.uppercased()
         
-        
-        // Si el tiempo restante es igual o menor a cero, detén el temporizador.
         if timeRemaining <= 0 {
             timer?.invalidate()
         }
+    }
+    
+    @objc func swipeLeft() {
+        imageSlideShowView.nextPage(animated: true)
+    }
+    
+    @objc func swipeRight() {
+        imageSlideShowView.previousPage(animated: true)
     }
 
     // MARK: - Functions
@@ -97,6 +98,21 @@ class BannerCollectionViewCell: UICollectionViewCell {
         fourthSeparationView.layer.cornerRadius = fourthSeparationView.frame.size.height / 2
         firstSecondView.layer.cornerRadius = 3.0
         secondSecondView.layer.cornerRadius = 3.0
+        
+        addLeftSwipeDownGesture()
+        addRightSwipeDownGesture()
+    }
+    
+    func addLeftSwipeDownGesture() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeLeft))
+        swipeGesture.direction = .left
+        self.contentView.addGestureRecognizer(swipeGesture)
+    }
+    
+    func addRightSwipeDownGesture() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRight))
+        swipeGesture.direction = .right
+        self.contentView.addGestureRecognizer(swipeGesture)
     }
     
     func setBanner(with banner: Banner?) {
