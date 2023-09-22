@@ -483,24 +483,32 @@ extension HomeTabViewController: OffersCellDelegate {
 }
 
 extension HomeTabViewController: BannerCellDelegate {
-    func bannerCell(_ bannerCollectionViewCell: BannerCollectionViewCell, willMoveToDetilWith data: Banner) {
-        if data.images?.first?.linkType == 1 {
-            if let category = data.images?.first?.linkValue, !category.isEmpty, let taxonomy = data.images?.first?.taxonomia {
-                let offersFilteredListViewController = OffersFilteredListViewController(
-                    viewModel: OffersFilteredListViewModel(),
-                    category: Int(category),
-                    taxonomy: taxonomy
-                )
-                offersFilteredListViewController.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
-            }
-        } else if data.images?.first?.linkType == 3 {
-            if let value = data.images?.first?.linkValue, value.starts(with: "https"), let url = URL(string: value) {
-                let config = SFSafariViewController.Configuration()
-                config.entersReaderIfAvailable = true
+    func bannerCell(_ bannerCollectionViewCell: BannerCollectionViewCell, willMoveToDetilWith data: Banner, position: Int) {
+        if let bannerImages = data.images {
+            let item = bannerImages[position]
+            if item.linkType == 1 {
+                if let category = item.linkValue, !category.isEmpty, let taxonomy = item.taxonomia {
+                    let offersFilteredListViewController = OffersFilteredListViewController(
+                        viewModel: OffersFilteredListViewModel(),
+                        category: Int(category),
+                        taxonomy: taxonomy
+                    )
+                    offersFilteredListViewController.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(offersFilteredListViewController, animated: true)
+                }
+            } else if item.linkType == 2, let sku = item.linkValue {
+                let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+                vc.modalPresentationStyle = .fullScreen
+                vc.skuProduct = sku
+                navigationController?.pushViewController(vc, animated: true)
+            } else if item.linkType == 3 {
+                if let value = item.linkValue, value.starts(with: "https"), let url = URL(string: value) {
+                    let config = SFSafariViewController.Configuration()
+                    config.entersReaderIfAvailable = true
 
-                let vc = SFSafariViewController(url: url, configuration: config)
-                present(vc, animated: true)
+                    let vc = SFSafariViewController(url: url, configuration: config)
+                    present(vc, animated: true)
+                }
             }
         }
     }

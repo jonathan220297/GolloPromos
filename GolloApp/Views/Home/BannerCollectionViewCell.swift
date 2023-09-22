@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 protocol BannerCellDelegate {
-    func bannerCell(_ bannerCollectionViewCell: BannerCollectionViewCell, willMoveToDetilWith data: Banner)
+    func bannerCell(_ bannerCollectionViewCell: BannerCollectionViewCell, willMoveToDetilWith data: Banner, position: Int)
 }
 
 class BannerCollectionViewCell: UICollectionViewCell {
@@ -164,7 +164,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
             .tap
             .subscribe(onNext: {
                 guard let data = self.data else { return }
-                self.delegate?.bannerCell(self, willMoveToDetilWith: data)
+                self.delegate?.bannerCell(self, willMoveToDetilWith: data, position: self.imageSlideShowView.currentPage)
             })
             .disposed(by: bag)
     }
