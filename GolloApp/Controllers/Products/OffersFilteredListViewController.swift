@@ -59,9 +59,9 @@ class OffersFilteredListViewController: UIViewController {
     
     // MARK: - Functions
     func configureViews() {
-//        categoriesView.clipsToBounds = true
-//        categoriesView.layer.cornerRadius = 10
-//        categoriesView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        //        categoriesView.clipsToBounds = true
+        //        categoriesView.layer.cornerRadius = 10
+        //        categoriesView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         productsView.clipsToBounds = true
         productsView.layer.cornerRadius = 10
@@ -196,7 +196,7 @@ class OffersFilteredListViewController: UIViewController {
         if selectedTaxonomy != -1 {
             newTaxonomy = selectedTaxonomy
         }
-        let options = ["A-Z", "Z-A", "Menor precio", "Mayor precio"]
+        let options = ["Nombre A-Z", "Nombre Z-A", "Menor precio", "Mayor precio"]
         let dropDown = DropDown()
         dropDown.anchorView = optionButton
         dropDown.dataSource = options
@@ -263,7 +263,7 @@ extension OffersFilteredListViewController: UICollectionViewDataSource, UICollec
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesFilteredListCell", for: indexPath) as! CategoriesFilteredListCollectionViewCell
             let item = viewModel.categories[indexPath.row]
             cell.titleLabel.text = item.nombre
-        
+            
             if item.selected == true {
                 cell.titleLabel.textColor = .white
                 cell.cellView.backgroundColor = .primary

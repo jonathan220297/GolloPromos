@@ -36,8 +36,8 @@ class OptionalExpensesTableViewCell: UITableViewCell {
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.decimal
         
-        let taxPrice = (numberFormatter.string(from: NSNumber(value: data.monto ?? 0.0)) ?? "").currencyFormatting()
-        let text = formatHTML(header: "\(data.descripcion ?? ""): ", content: "+\(taxPrice)")
+        let taxPrice = numberFormatter.string(from: NSNumber(value: data.monto ?? 0.0)) ?? ""
+        let text = formatHTML(header: "\(data.descripcion ?? ""): ", content: "+\("₡")\(taxPrice)")
         checkBoxButton.setImage(
             UIImage(
                 systemName: data.selected ?? false ? "checkmark.square.fill" : "square"

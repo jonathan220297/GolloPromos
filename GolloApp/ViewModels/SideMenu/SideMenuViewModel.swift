@@ -20,17 +20,9 @@ class SideMenuViewModel {
         let idClient: String? = UserManager.shared.userData?.uid != nil ? UserManager.shared.userData?.uid : Auth.auth().currentUser?.uid
         let apiResponse: BehaviorRelay<UnreadNotificationData?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<UnreadNotificationData, UnreadNotificationServiceRequest>(
+            resource: "Procesos/Notificaciones",
             service: BaseServiceRequestParam<UnreadNotificationServiceRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.UNREAD_NOTIFICATIONS_PROCESS_ID.rawValue,
-//                        idDevice: getDeviceID(),
-//                        idUsuario: idClient,
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil
-//                    ),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.UNREAD_NOTIFICATIONS_PROCESS_ID.rawValue),
                     parametros: UnreadNotificationServiceRequest (
                         idCliente: idClient ?? ""

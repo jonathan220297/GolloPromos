@@ -39,14 +39,14 @@ class ProductScannerViewController: UIViewController {
         case noCameraAvailable
         case videoInputInitFail
     }
-
+    
     // MARK: - Lifecycle
     init(viewModel: GolloStoresViewModel) {
         self.viewModel = viewModel
         self.captureSession = AVCaptureSession()
         super.init(nibName: "ProductScannerViewController", bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -58,8 +58,19 @@ class ProductScannerViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
         
         configureRx()
-        scanQRCode()
         fetchShops()
+        
+        if AVCaptureDevice.authorizationStatus(for: .video) ==  .authorized {
+            scanQRCode()
+        } else {
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+                if granted {
+                    self.scanQRCode()
+                } else {
+                    self.presentCameraSettings()
+                }
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,10 +89,10 @@ class ProductScannerViewController: UIViewController {
             })
         }
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        
         if (self.captureSession.isRunning == true) {
             DispatchQueue.background(delay: 3.0, completion:{
                 self.captureSession.stopRunning()
@@ -243,7 +254,7 @@ class ProductScannerViewController: UIViewController {
             })
             .disposed(by: bag)
     }
-
+    
     fileprivate func displayBodegaList() {
         let dropDown = DropDown()
         dropDown.anchorView = bodegaButton
@@ -274,6 +285,23 @@ class ProductScannerViewController: UIViewController {
         }
     }
     
+    func presentCameraSettings() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            let alertController = UIAlertController(title: "GolloApp",
+                                                    message: "Favor activar los permisos de la cámara desde configuración del dispositivo",
+                                                    preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Cancelar", style: .default))
+            alertController.addAction(UIAlertAction(title: "Configuración", style: .cancel) { _ in
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                        // Handle
+                    })
+                }
+            })
+            
+            self.present(alertController, animated: true)
+        })
+    }
 }
 
 extension ProductScannerViewController: GolloStoresDelegate {
@@ -289,7 +317,7 @@ extension ProductScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             guard let readableObject = first as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                        
+            
             validateBarCode(with: stringValue)
         }
     }

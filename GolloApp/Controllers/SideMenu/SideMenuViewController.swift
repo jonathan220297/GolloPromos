@@ -95,7 +95,7 @@ class SideMenuViewController: UIViewController {
     fileprivate func setUserData() {
         if Variables.isRegisterUser {
             if let user = Variables.userProfile?.nombre {
-                profileName.text = "Hola \(user.capitalized)"
+                profileName.text = "Hola \((user.components(separatedBy: " ").first ?? user).capitalized)"
             }
             if let email = Variables.userProfile?.correoElectronico1 {
                 profileEmailLabel.text = email

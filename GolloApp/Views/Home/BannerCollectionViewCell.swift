@@ -148,6 +148,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
             trailingMargin.isActive = true
             imageSlideShowView.layoutIfNeeded()
         } else {
+            imageSlideShowView.layer.cornerRadius = CGFloat(0)
             topMarging.constant = 0
             topMarging.isActive = true
             leadingMargin.constant = 0

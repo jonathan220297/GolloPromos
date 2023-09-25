@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -28,18 +28,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5V-Rj-BZ7">
                                 <rect key="frame" x="8" y="8" width="50" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="73U-hQ-I1H">
-                                        <rect key="frame" x="8" y="8" width="34" height="34"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="73U-hQ-I1H">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="73U-hQ-I1H" secondAttribute="bottom" constant="8" id="54g-Bp-ACJ"/>
-                                    <constraint firstItem="73U-hQ-I1H" firstAttribute="leading" secondItem="h5V-Rj-BZ7" secondAttribute="leading" constant="8" id="Ai8-fe-RcB"/>
+                                    <constraint firstAttribute="bottom" secondItem="73U-hQ-I1H" secondAttribute="bottom" id="54g-Bp-ACJ"/>
+                                    <constraint firstItem="73U-hQ-I1H" firstAttribute="leading" secondItem="h5V-Rj-BZ7" secondAttribute="leading" id="Ai8-fe-RcB"/>
                                     <constraint firstAttribute="width" constant="50" id="ExB-sK-RFf"/>
-                                    <constraint firstItem="73U-hQ-I1H" firstAttribute="top" secondItem="h5V-Rj-BZ7" secondAttribute="top" constant="8" id="Pnd-LS-Kgf"/>
+                                    <constraint firstItem="73U-hQ-I1H" firstAttribute="top" secondItem="h5V-Rj-BZ7" secondAttribute="top" id="Pnd-LS-Kgf"/>
                                     <constraint firstAttribute="width" secondItem="h5V-Rj-BZ7" secondAttribute="height" multiplier="1:1" id="eGa-Bn-Wek"/>
-                                    <constraint firstAttribute="trailing" secondItem="73U-hQ-I1H" secondAttribute="trailing" constant="8" id="fmv-Cq-tbX"/>
+                                    <constraint firstAttribute="trailing" secondItem="73U-hQ-I1H" secondAttribute="trailing" id="fmv-Cq-tbX"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automotriz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLD-wH-xr9">
@@ -101,9 +102,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
