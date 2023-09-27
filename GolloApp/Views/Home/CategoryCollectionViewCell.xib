@@ -50,18 +50,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-full-arrow-right" translatesAutoresizingMaskIntoConstraints="NO" id="2yh-ce-gso">
-                                <rect key="frame" x="147" y="178" width="25" height="25"/>
+                                <rect key="frame" x="156" y="183" width="16" height="16"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2yh-ce-gso" secondAttribute="height" multiplier="1:1" id="Rvb-4E-BMn"/>
-                                    <constraint firstAttribute="width" constant="25" id="fYo-1S-91I"/>
+                                    <constraint firstAttribute="width" constant="16" id="fYo-1S-91I"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gLD-wH-xr9" secondAttribute="trailing" constant="8" id="0BY-51-hsN"/>
-                            <constraint firstAttribute="bottom" secondItem="2yh-ce-gso" secondAttribute="bottom" constant="8" id="1WM-Nd-FgO"/>
+                            <constraint firstAttribute="bottom" secondItem="2yh-ce-gso" secondAttribute="bottom" constant="12" id="1WM-Nd-FgO"/>
                             <constraint firstItem="h5V-Rj-BZ7" firstAttribute="top" secondItem="Wia-d9-Sys" secondAttribute="top" constant="8" id="L1V-q2-OG9"/>
                             <constraint firstItem="gLD-wH-xr9" firstAttribute="leading" secondItem="Wia-d9-Sys" secondAttribute="leading" constant="8" id="PZT-rL-s8d"/>
                             <constraint firstItem="8xR-8b-Nne" firstAttribute="top" secondItem="Wia-d9-Sys" secondAttribute="top" constant="16" id="Ppr-YW-vXb"/>

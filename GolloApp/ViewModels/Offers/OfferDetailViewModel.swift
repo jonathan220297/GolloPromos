@@ -84,4 +84,12 @@ class OfferDetailViewModel {
         defaults.removeObject(forKey: "carManagetTypeStarted")
     }
     
+    func setCarManagerStoreToUserDefaults(with store: String) {
+        defaults.setValue(store, forKey: "carManagerStoreID")
+    }
+    
+    func deleteCarManagerStore() {
+        defaults.removeObject(forKey: "carManagerStoreID")
+    }
+    
 }

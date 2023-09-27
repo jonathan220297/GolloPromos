@@ -29,10 +29,10 @@
                                 <state key="normal" image="ic_back_arrow"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I85-Yz-qnl">
-                                <rect key="frame" x="0.0" y="24" width="414" height="107.5"/>
+                                <rect key="frame" x="0.0" y="24" width="414" height="98.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5b-Ij-BxD">
-                                        <rect key="frame" x="24" y="32" width="44" height="44"/>
+                                        <rect key="frame" x="24" y="27.5" width="44" height="44"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_side_menu_profile" translatesAutoresizingMaskIntoConstraints="NO" id="iHA-J4-T4n">
                                                 <rect key="frame" x="4" y="4" width="36" height="36"/>
@@ -56,7 +56,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bcB-uO-iDZ">
-                                        <rect key="frame" x="80" y="33" width="322" height="42"/>
+                                        <rect key="frame" x="80" y="28.5" width="322" height="42"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hola Cinthya" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t44-kK-c8o">
                                                 <rect key="frame" x="0.0" y="0.0" width="322" height="28"/>
@@ -73,7 +73,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUE-7T-w32">
-                                        <rect key="frame" x="24" y="102.5" width="366" height="1"/>
+                                        <rect key="frame" x="24" y="93.5" width="366" height="1"/>
                                         <color key="backgroundColor" red="0.80784313725490198" green="0.83137254901960778" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="voQ-Aq-Q8M"/>
@@ -92,7 +92,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="we2-pW-toN">
-                                <rect key="frame" x="0.0" y="131.5" width="414" height="639"/>
+                                <rect key="frame" x="0.0" y="122.5" width="414" height="648"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fs3-XS-jox">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="568"/>
@@ -244,9 +244,9 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eON-bl-OeK">
                                                         <rect key="frame" x="0.0" y="162" width="414" height="50"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_side_menu_favorite" translatesAutoresizingMaskIntoConstraints="NO" id="vzS-Sd-ImB">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_side_menu_favorites" translatesAutoresizingMaskIntoConstraints="NO" id="vzS-Sd-ImB">
                                                                 <rect key="frame" x="24" y="12.5" width="25" height="25"/>
-                                                                <color key="tintColor" name="colorPrimary"/>
+                                                                <color key="tintColor" name="menuGray"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="25" id="Qhg-tp-Lkb"/>
                                                                     <constraint firstAttribute="width" secondItem="vzS-Sd-ImB" secondAttribute="height" multiplier="1:1" id="hkV-n8-itN"/>
@@ -710,7 +710,7 @@
                             <constraint firstItem="we2-pW-toN" firstAttribute="top" secondItem="I85-Yz-qnl" secondAttribute="bottom" id="7iX-AV-UgJ"/>
                             <constraint firstItem="ncC-hZ-bQI" firstAttribute="leading" secondItem="04I-En-Y1M" secondAttribute="leading" constant="12" id="NpV-wn-pbq"/>
                             <constraint firstItem="04I-En-Y1M" firstAttribute="trailing" secondItem="jO2-7b-QDs" secondAttribute="trailing" id="VMK-mw-GRr"/>
-                            <constraint firstItem="I85-Yz-qnl" firstAttribute="height" secondItem="46x-Rh-HQG" secondAttribute="height" multiplier="0.12" id="aBq-Iy-GWb"/>
+                            <constraint firstItem="I85-Yz-qnl" firstAttribute="height" secondItem="46x-Rh-HQG" secondAttribute="height" multiplier="0.11" id="aBq-Iy-GWb"/>
                             <constraint firstAttribute="trailing" secondItem="we2-pW-toN" secondAttribute="trailing" id="blm-aY-NdB"/>
                             <constraint firstItem="jO2-7b-QDs" firstAttribute="leading" secondItem="04I-En-Y1M" secondAttribute="leading" id="dpj-FT-nHZ"/>
                             <constraint firstItem="I85-Yz-qnl" firstAttribute="leading" secondItem="46x-Rh-HQG" secondAttribute="leading" id="gIC-e9-R9n"/>
@@ -843,7 +843,7 @@
         <image name="ic_right_arrow" width="25" height="25"/>
         <image name="ic_side_menu_conditions" width="256" height="256"/>
         <image name="ic_side_menu_customer_service" width="256" height="256"/>
-        <image name="ic_side_menu_favorite" width="256" height="256"/>
+        <image name="ic_side_menu_favorites" width="256" height="256"/>
         <image name="ic_side_menu_help" width="256" height="256"/>
         <image name="ic_side_menu_home" width="256" height="256"/>
         <image name="ic_side_menu_logout" width="256" height="256"/>

@@ -82,6 +82,7 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var suggestedProductsView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var servicesDetailStackView: UIStackView!
     @IBOutlet weak var optionalExpensesView: UIView!
     @IBOutlet weak var optionalTableView: UITableView!
     @IBOutlet weak var otherExpensesHeightConstraint: NSLayoutConstraint!
@@ -311,9 +312,11 @@ class OfferDetailViewController: UIViewController {
                                 refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
                                     if CoreDataService().deleteAllItems() {
                                         self.viewModel.deleteCarManagerTypeState()
+                                        self.viewModel.deleteCarManagerStore()
                                         var type = ""
                                         if self.scannerFlowActivate {
                                             type = CarManagerType.SCAN_AND_GO.rawValue
+                                            self.viewModel.setCarManagerStoreToUserDefaults(with: self.centerProduct)
                                         } else {
                                             type = CarManagerType.PRODUCT_LIST.rawValue
                                         }
@@ -330,6 +333,7 @@ class OfferDetailViewController: UIViewController {
                         var type = ""
                         if self.scannerFlowActivate {
                             type = CarManagerType.SCAN_AND_GO.rawValue
+                            self.viewModel.setCarManagerStoreToUserDefaults(with: self.centerProduct)
                         } else {
                             type = CarManagerType.PRODUCT_LIST.rawValue
                         }
@@ -347,7 +351,7 @@ class OfferDetailViewController: UIViewController {
         buyNowButton
             .rx
             .tap
-            .subscribe(onNext: {
+            .subscribe(onNext: { [self] in
                 if self.validateSelectedWaranty() {
                     if let carManagerType = self.viewModel.verifyCarManagerTypeState() {
                         if CoreDataService().fetchCarItems().isEmpty {
@@ -367,9 +371,11 @@ class OfferDetailViewController: UIViewController {
                                 refreshAlert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action: UIAlertAction!) in
                                     if CoreDataService().deleteAllItems() {
                                         self.viewModel.deleteCarManagerTypeState()
+                                        self.viewModel.deleteCarManagerStore()
                                         var type = ""
                                         if self.scannerFlowActivate {
                                             type = CarManagerType.SCAN_AND_GO.rawValue
+                                            self.viewModel.setCarManagerStoreToUserDefaults(with: self.centerProduct)
                                         } else {
                                             type = CarManagerType.PRODUCT_LIST.rawValue
                                         }
@@ -386,6 +392,7 @@ class OfferDetailViewController: UIViewController {
                         var type = ""
                         if self.scannerFlowActivate {
                             type = CarManagerType.SCAN_AND_GO.rawValue
+                            viewModel.setCarManagerStoreToUserDefaults(with: self.centerProduct)
                         } else {
                             type = CarManagerType.PRODUCT_LIST.rawValue
                         }
@@ -779,12 +786,14 @@ class OfferDetailViewController: UIViewController {
             let filteredTaxes = tax.filter({ tax in tax.obligatorio == 0 })
             self.viewModel.optionalExpenses = filteredTaxes
             if !filteredTaxes.isEmpty {
+                self.servicesDetailStackView.isHidden = false
                 self.optionalExpensesView.isHidden = false
                 self.otherExpensesHeightConstraint.constant = CGFloat(((self.viewModel.optionalExpenses.count) * 45))
                 
                 self.optionalTableView.layoutIfNeeded()
                 self.optionalTableView.reloadData()
             } else {
+                self.servicesDetailStackView.isHidden = true
                 self.optionalExpensesView.isHidden = true
             }
         } else {

@@ -10,6 +10,8 @@ import RxRelay
 
 class ShippingMethodViewModel {
     private let service = GolloService()
+    private let defaults = UserDefaults.standard
+    
     let carManager = CarManager.shared
     
     var methods: [ShippingMethodData] = []
@@ -62,7 +64,7 @@ class ShippingMethodViewModel {
         }
         return apiResponse
     }
-
+    
     func fetchDeliveryMethods(idState: String, idCounty: String, idDistrict: String) -> BehaviorRelay<DeliveryMethodsResponse?> {
         let apiResponse: BehaviorRelay<DeliveryMethodsResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(
@@ -127,5 +129,20 @@ class ShippingMethodViewModel {
         carManager.deliveryInfo?.tipoEntrega = deliveryType
         carManager.deliveryInfo?.codigoFlete = carManager.shippingMethod?.cargoCode ?? "-1"
         carManager.deliveryInfo?.montoFlete = carManager.shippingMethod?.cost ?? 0.0
+    }
+    
+    func findSelectedStore() -> ShopData? {
+        let store = data.filter({ data in
+            data.idTienda == verifyCarManagerStoreID() ?? ""
+        })
+        return store.first
+    }
+    
+    func verifyCarManagerTypeState() -> String? {
+        return defaults.string(forKey: "carManagetTypeStarted")
+    }
+    
+    func verifyCarManagerStoreID() -> String? {
+        return defaults.string(forKey: "carManagerStoreID")
     }
 }

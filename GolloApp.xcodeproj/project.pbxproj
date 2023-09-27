@@ -207,7 +207,6 @@
 		4F90BC842912E2BA006EEABC /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F90BC832912E2BA006EEABC /* Double+Extension.swift */; };
 		4F90BC8729143501006EEABC /* RoyaltyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F90BC8529143501006EEABC /* RoyaltyTableViewCell.swift */; };
 		4F90BC8829143501006EEABC /* RoyaltyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F90BC8629143501006EEABC /* RoyaltyTableViewCell.xib */; };
-		4F96BFFF2AC24D4D0030252E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F96BFFE2AC24D4D0030252E /* GoogleService-Info.plist */; };
 		4F9B100028BDBBCD00B1FD82 /* SaveUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */; };
 		4F9B100228BDBDEA00B1FD82 /* SaveUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */; };
 		4F9DF35E2A7B07A2000ACCAE /* ProductFooterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DF35C2A7B07A2000ACCAE /* ProductFooterCollectionViewCell.swift */; };
@@ -379,6 +378,7 @@
 		CB9E54382A45C28800B53828 /* ChatbotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E54362A45C28800B53828 /* ChatbotViewController.swift */; };
 		CB9E54392A45C28800B53828 /* ChatbotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9E54372A45C28800B53828 /* ChatbotViewController.xib */; };
 		CB9E543D2A45DC9D00B53828 /* DispatchQueue+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */; };
+		CB9F120F2AC3C1B000BBF4F1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB9F120E2AC3C1B000BBF4F1 /* GoogleService-Info.plist */; };
 		CBA55B8A2A96ED5F00971144 /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA55B892A96ED5F00971144 /* ProductManager.swift */; };
 		CBA55B8C2A96EDA500971144 /* ProductRibbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA55B8B2A96EDA500971144 /* ProductRibbon.swift */; };
 		CBA6327A2A870B180094DC23 /* StackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA632792A870B180094DC23 /* StackView+Extension.swift */; };
@@ -631,7 +631,6 @@
 		4F90BC832912E2BA006EEABC /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		4F90BC8529143501006EEABC /* RoyaltyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoyaltyTableViewCell.swift; sourceTree = "<group>"; };
 		4F90BC8629143501006EEABC /* RoyaltyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoyaltyTableViewCell.xib; sourceTree = "<group>"; };
-		4F96BFFE2AC24D4D0030252E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F9B0FFF28BDBBCD00B1FD82 /* SaveUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserRequest.swift; sourceTree = "<group>"; };
 		4F9B100128BDBDEA00B1FD82 /* SaveUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserResponse.swift; sourceTree = "<group>"; };
 		4F9DF35C2A7B07A2000ACCAE /* ProductFooterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFooterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -814,6 +813,7 @@
 		CB9E54362A45C28800B53828 /* ChatbotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotViewController.swift; sourceTree = "<group>"; };
 		CB9E54372A45C28800B53828 /* ChatbotViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatbotViewController.xib; sourceTree = "<group>"; };
 		CB9E543C2A45DC9D00B53828 /* DispatchQueue+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extension.swift"; sourceTree = "<group>"; };
+		CB9F120E2AC3C1B000BBF4F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBA55B892A96ED5F00971144 /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		CBA55B8B2A96EDA500971144 /* ProductRibbon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRibbon.swift; sourceTree = "<group>"; };
 		CBA632792A870B180094DC23 /* StackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView+Extension.swift"; sourceTree = "<group>"; };
@@ -1711,8 +1711,8 @@
 				4FDA3A9D26D8FE26003B2CB6 /* SceneDelegate.swift */,
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
+				CB9F120E2AC3C1B000BBF4F1 /* GoogleService-Info.plist */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
-				4F96BFFE2AC24D4D0030252E /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* GolloApp.xcdatamodeld */,
 			);
 			path = GolloApp;
@@ -2263,7 +2263,7 @@
 				4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */,
 				4FE573A728C16AEF00BBDEBC /* SignupWaringViewController.xib in Resources */,
 				CB12A7732AAB9943006CD52E /* CategoriesCollectionViewCell.xib in Resources */,
-				4F96BFFF2AC24D4D0030252E /* GoogleService-Info.plist in Resources */,
+				CB9F120F2AC3C1B000BBF4F1 /* GoogleService-Info.plist in Resources */,
 				4F0D967526DDBB810061E89E /* SansSerifExbFLF-Italic.otf in Resources */,
 				4F0D968126DDBC740061E89E /* Home.storyboard in Resources */,
 				4F0D96A826DDD6530061E89E /* Profile.storyboard in Resources */,
@@ -2920,7 +2920,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
@@ -2948,7 +2948,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
