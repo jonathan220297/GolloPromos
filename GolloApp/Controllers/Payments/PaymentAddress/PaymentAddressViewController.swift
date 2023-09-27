@@ -14,12 +14,18 @@ class PaymentAddressViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var firstNameBottomView: UIView!
     @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var lastNameBottomView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailBottomView: UIView!
     @IBOutlet weak var documentTypeLabel: UILabel!
     @IBOutlet weak var documentTypeButton: UIButton!
+    @IBOutlet weak var documentBottomView: UIView!
     @IBOutlet weak var identificationNumberTextField: UITextField!
+    @IBOutlet weak var identificationBottomView: UIView!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var phoneNumberBottomView: UIView!
     @IBOutlet weak var selectAddressView: UIView!
     @IBOutlet weak var selectAddressButton: UIButton!
     @IBOutlet weak var localizationAddressView: UIView!
@@ -30,11 +36,15 @@ class PaymentAddressViewController: UIViewController {
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var countyLabel: UILabel!
     @IBOutlet weak var countyButton: UIButton!
+    @IBOutlet weak var countyBottomView: UIView!
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var stateButton: UIButton!
+    @IBOutlet weak var stateBottomView: UIView!
     @IBOutlet weak var districtLabel: UILabel!
     @IBOutlet weak var districtButton: UIButton!
+    @IBOutlet weak var districtBottomView: UIView!
     @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var addressBottomView: UIView!
     @IBOutlet weak var postalCodeTextField: UITextField!
     @IBOutlet weak var saveAddressView: UIView!
     @IBOutlet weak var saveAddressButton: UIButton!
@@ -65,6 +75,7 @@ class PaymentAddressViewController: UIViewController {
         configureViews()
         configureObservers()
         configureRx()
+        configureErrors()
         hideKeyboardWhenTappedAround()
         initSpinners()
         setUserData()
@@ -182,16 +193,100 @@ class PaymentAddressViewController: UIViewController {
                 self.saveAddress()
             })
             .disposed(by: bag)
-        viewModel.isFormValid.bind(to: continueButton.rx.isEnabled).disposed(by: bag)
         viewModel.isFormValid.map { $0 ? 1 : 0.4 }.bind(to: continueButton.rx.alpha).disposed(by: bag)
         
         continueButton.rx
             .tap
             .subscribe(onNext: {[weak self] in
                 guard let self = self else { return }
-                self.prepareAddressInfo()
+                if self.viewModel.validateInputs() {
+                    self.prepareAddressInfo()
+                }
             })
             .disposed(by: bag)
+    }
+    
+    fileprivate func configureErrors() {
+        viewModel.nameError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.firstNameBottomView.backgroundColor = .red
+            } else {
+                self.firstNameBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
+        viewModel.lastNameError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.lastNameBottomView.backgroundColor = .red
+            } else {
+                self.lastNameBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
+        viewModel.emailError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.emailBottomView.backgroundColor = .red
+            } else {
+                self.emailBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
+        viewModel.phoneNumberError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.phoneNumberBottomView.backgroundColor = .red
+            } else {
+                self.phoneNumberBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
+        viewModel.documentTypeError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.documentBottomView.backgroundColor = .red
+            } else {
+                self.documentBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
+        viewModel.identificationNumberError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.identificationBottomView.backgroundColor = .red
+            } else {
+                self.identificationBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
+        viewModel.stateError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.stateBottomView.backgroundColor = .red
+            } else {
+                self.stateBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
+        viewModel.countyError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.countyBottomView.backgroundColor = .red
+            } else {
+                self.countyBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
+        viewModel.districtError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.districtBottomView.backgroundColor = .red
+            } else {
+                self.districtBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
+        viewModel.addressError.asObservable().subscribe(onNext: {[weak self] value in
+            guard let self = self else { return }
+            if value {
+                self.addressBottomView.backgroundColor = .red
+            } else {
+                self.addressBottomView.backgroundColor = .secondaryLabel
+            }
+        }).disposed(by: bag)
     }
     
     fileprivate func configureViews() {
@@ -332,6 +427,7 @@ class PaymentAddressViewController: UIViewController {
         dropDown.selectionAction = {[weak self] (index: Int, item: String) in
             guard let self = self else { return }
             self.stateLabel.text = item
+            self.viewModel.stateError.accept(false)
             self.viewModel.stateSubject.accept(self.viewModel.statesArray.value[index])
             self.fetchCities(state: self.viewModel.statesArray.value[index].idProvincia) {[weak self] response in
                 guard let self = self else { return }
@@ -348,6 +444,7 @@ class PaymentAddressViewController: UIViewController {
         dropDown.selectionAction = {[weak self] (index: Int, item: String) in
             guard let self = self else { return }
             self.countyLabel.text = item
+            self.viewModel.countyError.accept(false)
             self.viewModel.countySubject.accept(self.viewModel.citiesArray.value[index])
             self.viewModel.districtSubject.accept(nil)
             self.districtLabel.text = ""
@@ -363,6 +460,7 @@ class PaymentAddressViewController: UIViewController {
         dropDown.selectionAction = {[weak self] (index: Int, item: String) in
             guard let self = self else { return }
             self.districtLabel.text = item
+            self.viewModel.districtError.accept(false)
             self.viewModel.districtSubject.accept(self.viewModel.districtArray.value[index])
         }
         dropDown.show()

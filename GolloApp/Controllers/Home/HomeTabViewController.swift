@@ -407,24 +407,24 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
                     do {
                         let imageData = try Data(contentsOf: url) //You should not use this in app
                         guard let image = UIImage(data: imageData) else {
-                            return CGSize(width: collectionView.frame.size.width, height: heigth)
+                            return CGSize(width: collectionView.frame.size.width, height: heigth + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
                         }
                         let width = image.size.width
                         let height = image.size.height
                         let ratio = width / height
                         let newHeight = collectionView.frame.size.width / ratio
-                        return CGSize(width: collectionView.frame.size.width, height: newHeight)
+                        return CGSize(width: collectionView.frame.size.width, height: newHeight + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
                     } catch {
                         print(error)
-                        return CGSize(width: collectionView.frame.size.width, height: heigth)
+                        return CGSize(width: collectionView.frame.size.width, height: heigth + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
                     }
                 } else {
                     let height = viewModel.sections[indexPath.section].height ?? 120.0
-                    return CGSize(width: collectionView.frame.size.width, height: Double(height))
+                    return CGSize(width: collectionView.frame.size.width, height: Double(height) + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
                 }
             } else {
                 let height = viewModel.sections[indexPath.section].height ?? 120.0
-                return CGSize(width: collectionView.frame.size.width, height: Double(height))
+                return CGSize(width: collectionView.frame.size.width, height: Double(height) + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
             }
         } else {
             if viewModel.sections[indexPath.section].vertical {

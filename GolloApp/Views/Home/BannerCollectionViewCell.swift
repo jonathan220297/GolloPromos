@@ -38,9 +38,11 @@ class BannerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var firstSecondLabel: UILabel!
     @IBOutlet weak var secondSecondView: UIStackView!
     @IBOutlet weak var secondSecondLabel: UILabel!
+    
     @IBOutlet weak var topMarging: NSLayoutConstraint!
     @IBOutlet weak var leadingMargin: NSLayoutConstraint!
     @IBOutlet weak var trailingMargin: NSLayoutConstraint!
+    @IBOutlet weak var bottomMargin: NSLayoutConstraint!
     
     var timer: Timer?
     var futureDate: Date = Date()
@@ -93,7 +95,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
         firstSeparationView.layer.cornerRadius = firstSeparationView.frame.size.height / 2
         secondSeparationView.layer.cornerRadius = secondSeparationView.frame.size.height / 2
         firstMinuteView.layer.cornerRadius = 3.0
-        secondMinuteLabel.layer.cornerRadius = 3.0
+        secondMinuteView.layer.cornerRadius = 3.0
         thirdSeparationView.layer.cornerRadius = thirdSeparationView.frame.size.height / 2
         fourthSeparationView.layer.cornerRadius = fourthSeparationView.frame.size.height / 2
         firstSecondView.layer.cornerRadius = 3.0
@@ -120,7 +122,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
         if let indFomo = banner?.indFomo, indFomo {
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             futureDate = dateFormatter.date(from: banner?.endFomo ?? "") ?? Date()
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
         }
@@ -138,14 +140,18 @@ class BannerCollectionViewCell: UICollectionViewCell {
         imageSlideShowView.slideshowInterval = Double(seconds)
         imageSlideShowView.contentScaleMode = .scaleToFill
         
-        if let margin = banner?.borderWidth, margin > 0, let radius = banner?.borderRadio, radius > 0 {
+        if let margin = banner?.borderWidth, margin > 0,
+           let radius = banner?.borderRadio, radius > 0 {
             imageSlideShowView.layer.cornerRadius = CGFloat(radius)
+            self.contentView.layer.cornerRadius = CGFloat(radius)
             topMarging.constant = CGFloat(margin)
             topMarging.isActive = true
             leadingMargin.constant = CGFloat(margin)
             leadingMargin.isActive = true
             trailingMargin.constant = CGFloat(margin)
             trailingMargin.isActive = true
+            bottomMargin.constant = CGFloat(margin)
+            bottomMargin.isActive = true
             imageSlideShowView.layoutIfNeeded()
         } else {
             imageSlideShowView.layer.cornerRadius = CGFloat(0)
@@ -156,6 +162,11 @@ class BannerCollectionViewCell: UICollectionViewCell {
             trailingMargin.constant = 0
             trailingMargin.isActive = true
             imageSlideShowView.layoutIfNeeded()
+        }
+        if let borderColor = banner?.borderColor, !borderColor.isEmpty {
+            self.contentView.backgroundColor = hexStringToUIColor(hex: borderColor)
+        } else {
+            self.contentView.backgroundColor = .white
         }
     }
     

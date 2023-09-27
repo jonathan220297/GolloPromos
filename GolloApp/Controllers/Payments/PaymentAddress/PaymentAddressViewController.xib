@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,24 +17,33 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentAddressViewController" customModule="GolloApp" customModuleProvider="target">
             <connections>
+                <outlet property="addressBottomView" destination="9xE-gX-0R0" id="jrB-eC-aXq"/>
                 <outlet property="addressTextField" destination="33Y-ep-cO8" id="QYy-ol-Ceu"/>
                 <outlet property="continueButton" destination="9nq-bl-uED" id="rB1-e4-sPM"/>
+                <outlet property="countyBottomView" destination="wee-Hu-FHq" id="IiX-3K-aJk"/>
                 <outlet property="countyButton" destination="Zfq-Xy-X4j" id="nY0-Aq-jNG"/>
                 <outlet property="countyLabel" destination="j42-X6-Br4" id="7Z2-wD-Ikh"/>
                 <outlet property="currentLocationLabel" destination="B6g-sr-V0n" id="ZoU-QE-X1H"/>
                 <outlet property="currentLocationView" destination="Fdy-0N-h0m" id="3Zs-7C-uma"/>
+                <outlet property="districtBottomView" destination="6OW-Ns-Bab" id="0yd-La-Iwg"/>
                 <outlet property="districtButton" destination="QTO-rc-lOI" id="jZV-3l-fSt"/>
                 <outlet property="districtLabel" destination="1fb-lo-pic" id="qG3-We-OPL"/>
+                <outlet property="documentBottomView" destination="XOd-zL-60N" id="ahn-1M-GMq"/>
                 <outlet property="documentTypeButton" destination="0A4-e5-uhP" id="Pzh-wv-cvn"/>
                 <outlet property="documentTypeLabel" destination="d7E-Zc-70w" id="tjb-di-bYw"/>
+                <outlet property="emailBottomView" destination="q8p-yr-vtF" id="vdH-Ay-JVY"/>
                 <outlet property="emailTextField" destination="e0Q-Iw-fee" id="7iA-ic-eDZ"/>
+                <outlet property="firstNameBottomView" destination="TNH-jm-1g4" id="2Vr-L2-k4F"/>
                 <outlet property="firstNameTextField" destination="cWq-Fh-ojd" id="EaE-nq-L4g"/>
+                <outlet property="identificationBottomView" destination="rcH-YQ-wmR" id="2JG-nD-GZ7"/>
                 <outlet property="identificationNumberTextField" destination="uf7-mn-gbd" id="CpG-eh-70W"/>
+                <outlet property="lastNameBottomView" destination="MB1-Ut-22E" id="sk1-vy-MIo"/>
                 <outlet property="lastNameTextField" destination="z0k-cd-1Lt" id="1kN-iv-OiZ"/>
                 <outlet property="localizationAddressButton" destination="sVR-ZV-fmd" id="A94-xN-zIW"/>
                 <outlet property="localizationAddressView" destination="HMy-Wy-VdZ" id="BaX-F2-NHz"/>
                 <outlet property="locationPickerButton" destination="LCo-g6-f2R" id="X4C-j3-sGM"/>
                 <outlet property="locationPickerView" destination="ztQ-jH-TFP" id="sa3-5E-et4"/>
+                <outlet property="phoneNumberBottomView" destination="ThK-Rg-bZ5" id="1bi-7a-Xc3"/>
                 <outlet property="phoneNumberTextField" destination="m6S-cx-hkX" id="niS-Tm-VCU"/>
                 <outlet property="postalCodeTextField" destination="zEe-XC-PLB" id="SGu-3V-epU"/>
                 <outlet property="saveAddressButton" destination="oUd-oX-awR" id="gle-pe-fts"/>
@@ -42,6 +51,7 @@
                 <outlet property="scrollView" destination="qEq-dT-1Iy" id="ZbY-0c-zTr"/>
                 <outlet property="selectAddressButton" destination="3Yr-DW-Ggv" id="GRN-hG-5vb"/>
                 <outlet property="selectAddressView" destination="9ki-Az-eie" id="yVI-Qu-wSR"/>
+                <outlet property="stateBottomView" destination="Oeu-He-9hZ" id="shz-rO-ynj"/>
                 <outlet property="stateButton" destination="iaC-K4-elJ" id="vPe-0J-qok"/>
                 <outlet property="stateLabel" destination="oR4-0y-DHr" id="R5y-1x-9uA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

@@ -35,6 +35,17 @@ class PaymentAddressViewModel {
     let latitudeSubject: BehaviorRelay<Double?> = BehaviorRelay(value: nil)
     let longitudeSubject: BehaviorRelay<Double?> = BehaviorRelay(value: nil)
     
+    let nameError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let lastNameError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let emailError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let phoneNumberError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let documentTypeError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let identificationNumberError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let stateError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let countyError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let districtError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let addressError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var isValidFirstPartForm: Observable<Bool> {
         return Observable.combineLatest(firstNameSubject, lastNameSubject, emailSubject, phoneNumberSubject, documentTypeSubject) { firstName, lastName, email, phonenumber, document in
             
@@ -56,6 +67,7 @@ class PaymentAddressViewModel {
     }
     
     var isValidSecondPartForm: Observable<Bool> {
+        
         return Observable.combineLatest(identificationNumberSubject, stateSubject, countySubject, districtSubject, addressSubject) { identificationNumber, state, county, district, address in
             
             guard let identificationNumber = identificationNumber,
@@ -76,6 +88,61 @@ class PaymentAddressViewModel {
             return firstPart && secondPart
         }
     }
+    
+    func validateInputs() -> Bool {
+        var result = true
+        nameError.accept(false)
+        lastNameError.accept(false)
+        emailError.accept(false)
+        phoneNumberError.accept(false)
+        documentTypeError.accept(false)
+        identificationNumberError.accept(false)
+        stateError.accept(false)
+        countyError.accept(false)
+        districtError.accept(false)
+        addressError.accept(false)
+        if firstNameSubject.value?.isEmpty ?? true {
+            nameError.accept(true)
+            result = false
+        }
+        if lastNameSubject.value?.isEmpty ?? true {
+            lastNameError.accept(true)
+            result = false
+        }
+        if emailSubject.value?.isEmpty ?? false {
+            emailError.accept(true)
+            result = false
+        }
+        if phoneNumberSubject.value?.isEmpty ?? false {
+            phoneNumberError.accept(true)
+            result = false
+        }
+        if documentTypeSubject.value?.isEmpty ?? false {
+            documentTypeError.accept(true)
+            result = false
+        }
+        if identificationNumberSubject.value?.isEmpty ?? true {
+            identificationNumberError.accept(true)
+            result = false
+        }
+        if stateSubject.value == nil {
+            stateError.accept(true)
+            result = false
+        }
+        if countySubject.value == nil {
+            countyError.accept(true)
+            result = false
+        }
+        if districtSubject.value == nil {
+            districtError.accept(true)
+            result = false
+        }
+        if addressSubject.value?.isEmpty ?? true {
+            addressError.accept(true)
+            result = false
+        }
+        return result
+    }
 
     func processDocTypes() {
         documentTypeArray.append(DocType(code: "C", name: "ProfileViewController_cedula".localized))
@@ -91,14 +158,6 @@ class PaymentAddressViewModel {
         service.callWebServiceGolloAlternative(BaseRequest<[State], StateListRequest>(
             service: BaseServiceRequestParam<StateListRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.STATES_CITIES.rawValue,
-//                        idDevice: getDeviceID(),
-//                        idUsuario: UserManager.shared.userData?.uid ?? "",
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.STATES_CITIES.rawValue),
                     parametros: StateListRequest(
                         idProvincia: "",
@@ -196,14 +255,6 @@ class PaymentAddressViewModel {
         service.callWebServiceGolloAlternative(BaseRequest<Bool?, SaveUserAddressRequest>(
             service: BaseServiceRequestParam<SaveUserAddressRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.SAVE_ADDRESS.rawValue,
-//                        idDevice: getDeviceID(),
-//                        idUsuario: UserManager.shared.userData?.uid ?? "",
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.SAVE_ADDRESS.rawValue),
                     parametros: SaveUserAddressRequest(
                         idCliente: Variables.userProfile?.idCliente ?? "",
