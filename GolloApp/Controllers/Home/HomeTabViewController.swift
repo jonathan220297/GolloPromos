@@ -431,7 +431,7 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
                 let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
                 let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
                 let size: CGFloat = (collectionView.frame.size.width - space) / 2.0
-                return CGSize(width: size, height: 250)
+                return CGSize(width: size, height: 280)
             } else {
                 print(String(indexPath.section) + " - " + String(indexPath.row))
                 return CGSize(width: collectionView.frame.size.width, height: 280)

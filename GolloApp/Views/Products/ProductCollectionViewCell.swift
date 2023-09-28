@@ -71,6 +71,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         }
         
         let ribbons = ProductManager().getTopRibbons(with: data)
+        
         // Hide Ribbons
         ribbonTopView.isHidden = true
         ribbonBottomView.isHidden = true
@@ -94,8 +95,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
                     if discountPercentage == 0.0 {
                         productRealPriceLabel.text = ""
                         productRealPriceLabel.isHidden = true
-                        //                        ribbonTopView.isHidden = true
-                        //                        ribbonTopLabel.text = ""
                     } else {
                         let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
                         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
@@ -104,34 +103,17 @@ class ProductCollectionViewCell: UICollectionViewCell {
                                                      range: NSMakeRange(0, attributeString.length))
                         productRealPriceLabel.attributedText = attributeString
                         productRealPriceLabel.isHidden = false
-                        //                        ribbonTopView.isHidden = false
-                        //                        let discInt = Int(round(discountPercentage))
-                        //                        ribbonTopLabel.text = String(discInt) + "%"
-                        //                        ribbonTopView.clipsToBounds = true
-                        //                        ribbonTopView.layer.cornerRadius = 10
-                        //                        ribbonTopView.layer.maskedCorners = [.layerMaxXMaxYCorner]
-                        //                        ribbonTopView.isHidden = false
-                        //                        ribbonTopView.backgroundColor = UIColor.red
                     }
                 } else {
                     productRealPriceLabel.text = ""
                     productRealPriceLabel.isHidden = true
-                    //                    ribbonTopView.isHidden = true
-                    //                    ribbonTopLabel.text = ""
                 }
             } else {
                 productRealPriceLabel.text = ""
                 productRealPriceLabel.isHidden = true
                 productDiscountPriceLabel.textColor = .black
-                //                ribbonTopView.isHidden = true
-                //                ribbonTopLabel.text = ""
             }
-        } else if data.tieneRegalia?.bool ?? false {
-            //            showGift(with: data)
-            productRealPriceLabel.text = ""
-            productRealPriceLabel.isHidden = true
         } else if data.tieneBono?.bool ?? false {
-            //            showBono(with: data)
             let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
@@ -142,8 +124,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         } else {
             productRealPriceLabel.text = ""
             productRealPriceLabel.isHidden = true
-            //            ribbonTopView.isHidden = true
-            //            ribbonTopLabel.text = ""
         }
     }
     
@@ -181,23 +161,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func showGift(with data: Product) {
-        ribbonTopView.clipsToBounds = true
-        ribbonTopView.layer.cornerRadius = 10
-        ribbonTopView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        ribbonTopView.isHidden = false
-        ribbonTopView.backgroundColor = UIColor.primary
-        ribbonTopLabel.text = "Regalía"
         productRealPriceLabel.text = ""
         productRealPriceLabel.isHidden = true
     }
     
     func showBono(with data: Product) {
-        ribbonTopView.clipsToBounds = true
-        ribbonTopView.layer.cornerRadius = 10
-        ribbonTopView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        ribbonTopView.backgroundColor = UIColor.bonus
-        ribbonTopLabel.text = "Precio especial"
-        ribbonTopLabel.font = ribbonTopLabel.font.withSize(12)
         let originalPrice = "₡\(numberFormatter.string(from: NSNumber(value: data.originalPrice ?? 0.0))!)"
         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: originalPrice)
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
@@ -205,8 +173,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
                                      range: NSMakeRange(0, attributeString.length))
         productRealPriceLabel.attributedText = attributeString
         productRealPriceLabel.isHidden = false
-        ribbonTopView.isHidden = false
-        ribbonTopView.isHidden = false
     }
     
     private func showTopRibbon(with ribbonText: String, ribbonColor: UIColor) {
