@@ -270,13 +270,28 @@ class OrderDetailTabViewController: UIViewController {
         return "\(data.direccion ?? ""), \(data.distritoDesc ?? ""), \(data.cantonDesc ?? ""), \(data.provinciaDesc ?? ""), \(phoneNumber)\(postalCode)"
     }
 
+//    func generateQRCode(from string: String) -> UIImage? {
+//        let data = string.data(using: String.Encoding.ascii)
+//        if let QRFilter = CIFilter(name: "CIQRCodeGenerator") {
+//            QRFilter.setValue(data, forKey: "inputMessage")
+//            guard let QRImage = QRFilter.outputImage else {return nil}
+//            return UIImage(ciImage: QRImage)
+//        }
+//        return nil
+//    }
+    
     func generateQRCode(from string: String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
-        if let QRFilter = CIFilter(name: "CIQRCodeGenerator") {
-            QRFilter.setValue(data, forKey: "inputMessage")
-            guard let QRImage = QRFilter.outputImage else {return nil}
-            return UIImage(ciImage: QRImage)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
         }
+        
         return nil
     }
 }

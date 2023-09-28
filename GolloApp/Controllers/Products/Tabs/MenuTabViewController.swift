@@ -162,14 +162,14 @@ extension MenuTabViewController: UITableViewDataSource, UITableViewDelegate {
             }
         case 2:
             if Auth.auth().currentUser != nil {
-                moveToStatus()
-            } else{
+                moveToThirdParty()
+            } else {
                 moveToLogin()
             }
         case 3:
             if Auth.auth().currentUser != nil {
-                moveToThirdParty()
-            } else {
+                moveToStatus()
+            } else{
                 moveToLogin()
             }
         case 4:
@@ -200,9 +200,9 @@ extension MenuTabViewController: LoginDelegate {
         case 0:
             moveToAccount()
         case 1:
-            moveToStatus()
-        case 2:
             moveToThirdParty()
+        case 2:
+            moveToStatus()
         case 3:
             moveToHistory()
         default: break
