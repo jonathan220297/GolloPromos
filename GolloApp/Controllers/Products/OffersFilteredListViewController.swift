@@ -11,6 +11,7 @@ import DropDown
 
 class OffersFilteredListViewController: UIViewController {
     
+    @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var categoriesContentView: UIView!
     @IBOutlet weak var categoriesView: UIView!
     @IBOutlet weak var productsView: UIView!
@@ -59,10 +60,6 @@ class OffersFilteredListViewController: UIViewController {
     
     // MARK: - Functions
     func configureViews() {
-        //        categoriesView.clipsToBounds = true
-        //        categoriesView.layer.cornerRadius = 10
-        //        categoriesView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
         productsView.clipsToBounds = true
         productsView.layer.cornerRadius = 10
         productsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -174,6 +171,11 @@ class OffersFilteredListViewController: UIViewController {
                     }
                     if self.viewModel.page == 1 {
                         self.viewModel.products = products
+                        if products.isEmpty {
+                            self.emptyView.isHidden = false
+                        } else {
+                            self.emptyView.isHidden = true
+                        }
                     } else {
                         self.viewModel.products.append(contentsOf: products)
                     }

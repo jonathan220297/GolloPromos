@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,6 +15,7 @@
                 <outlet property="categoriesContentView" destination="XZw-9m-sjF" id="LNc-uw-ZBs"/>
                 <outlet property="categoriesView" destination="YWk-WY-q5A" id="IvO-u1-xUw"/>
                 <outlet property="collectionView" destination="uCd-hM-ljK" id="MuS-3L-eQu"/>
+                <outlet property="emptyView" destination="b38-jJ-iHR" id="0cY-FQ-6cZ"/>
                 <outlet property="optionButton" destination="5tc-FA-jjw" id="Pra-Ur-ZfJ"/>
                 <outlet property="optionLabel" destination="gl2-qT-QHi" id="RQm-bW-k7R"/>
                 <outlet property="optionView" destination="6qZ-Mg-Fi6" id="wbB-2F-rV8"/>
@@ -165,16 +166,58 @@
                         <constraint firstItem="orK-JS-mOE" firstAttribute="leading" secondItem="mzc-lV-Bfm" secondAttribute="leading" constant="8" id="qHW-bN-hwu"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b38-jJ-iHR">
+                    <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listado de productos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8C-iS-vad">
+                            <rect key="frame" x="8" y="369.66666666666669" width="374" height="24"/>
+                            <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="17"/>
+                            <color key="textColor" name="colorPrimary"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No se encontraron productos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qy6-Wg-8Bh">
+                            <rect key="frame" x="8" y="393.66666666666669" width="374" height="19.666666666666686"/>
+                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                            <color key="textColor" red="0.42352941179999998" green="0.45882352939999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_products_home" translatesAutoresizingMaskIntoConstraints="NO" id="MXe-yd-8Mh">
+                            <rect key="frame" x="137.66666666666666" y="246.99999999999997" width="114.66666666666666" height="114.66666666666666"/>
+                            <color key="tintColor" name="colorPrimary"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="MXe-yd-8Mh" secondAttribute="height" multiplier="1:1" id="THl-iF-0ar"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="h8C-iS-vad" secondAttribute="trailing" constant="8" id="EVe-Ut-Nxx"/>
+                        <constraint firstItem="Qy6-Wg-8Bh" firstAttribute="top" secondItem="h8C-iS-vad" secondAttribute="bottom" id="Ir5-AR-vCz"/>
+                        <constraint firstItem="h8C-iS-vad" firstAttribute="top" secondItem="MXe-yd-8Mh" secondAttribute="bottom" constant="8" id="JGM-my-IWU"/>
+                        <constraint firstItem="h8C-iS-vad" firstAttribute="centerY" secondItem="b38-jJ-iHR" secondAttribute="centerY" id="Lta-5K-8w8"/>
+                        <constraint firstItem="h8C-iS-vad" firstAttribute="centerX" secondItem="b38-jJ-iHR" secondAttribute="centerX" id="QRo-h4-jSk"/>
+                        <constraint firstAttribute="trailing" secondItem="Qy6-Wg-8Bh" secondAttribute="trailing" constant="8" id="R7U-Ts-jHo"/>
+                        <constraint firstItem="h8C-iS-vad" firstAttribute="leading" secondItem="b38-jJ-iHR" secondAttribute="leading" constant="8" id="SPa-XM-P6j"/>
+                        <constraint firstItem="Qy6-Wg-8Bh" firstAttribute="centerX" secondItem="b38-jJ-iHR" secondAttribute="centerX" id="ghp-i4-aSM"/>
+                        <constraint firstItem="MXe-yd-8Mh" firstAttribute="centerX" secondItem="b38-jJ-iHR" secondAttribute="centerX" id="i4g-xM-Z0Q"/>
+                        <constraint firstItem="Qy6-Wg-8Bh" firstAttribute="leading" secondItem="b38-jJ-iHR" secondAttribute="leading" constant="8" id="kut-zt-OW2"/>
+                        <constraint firstItem="MXe-yd-8Mh" firstAttribute="height" secondItem="b38-jJ-iHR" secondAttribute="height" multiplier="0.15" id="rbi-vK-GHk"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="mzc-lV-Bfm" firstAttribute="top" secondItem="cMU-Vz-lMU" secondAttribute="bottom" constant="12" id="2k9-EK-Pue"/>
                 <constraint firstItem="cMU-Vz-lMU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="A4w-J8-kzd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b38-jJ-iHR" secondAttribute="trailing" id="BiN-n5-dYv"/>
                 <constraint firstItem="mzc-lV-Bfm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EEI-u7-e7i"/>
+                <constraint firstItem="b38-jJ-iHR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="TU3-WE-oKO"/>
+                <constraint firstItem="b38-jJ-iHR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Uc9-mQ-7oK"/>
                 <constraint firstItem="cMU-Vz-lMU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="YWK-yW-Z4W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mzc-lV-Bfm" secondAttribute="bottom" id="ZMj-NX-IaS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mzc-lV-Bfm" secondAttribute="trailing" id="iUl-bY-yOO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="b38-jJ-iHR" secondAttribute="bottom" id="pdb-Bm-CTJ"/>
                 <constraint firstAttribute="trailing" secondItem="cMU-Vz-lMU" secondAttribute="trailing" id="sDL-j6-Tlq"/>
             </constraints>
             <point key="canvasLocation" x="60" y="20.616113744075829"/>
@@ -182,6 +225,7 @@
     </objects>
     <resources>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="ic_products_home" width="19.666666030883789" height="19.666666030883789"/>
         <namedColor name="backgroundGray">
             <color red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

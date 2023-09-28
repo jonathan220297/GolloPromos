@@ -80,12 +80,13 @@ struct Section: Codable {
 
 // MARK: - Categories
 class Categories: Codable {
-    init(extra: Bool? = nil, idCategoria: Int? = nil, imagen: String? = nil, descripcion: String? = nil, logo: String? = nil) {
+    init(extra: Bool? = nil, idCategoria: Int? = nil, imagen: String? = nil, descripcion: String? = nil, logo: String? = nil, idTaxonomia: Int? = nil) {
         self.extra = extra
         self.idCategoria = idCategoria
         self.imagen = imagen
         self.descripcion = descripcion
         self.logo = logo
+        self.idTaxonomia = idTaxonomia
     }
     
     var extra: Bool?
@@ -93,6 +94,7 @@ class Categories: Codable {
     let imagen: String?
     let descripcion: String?
     let logo: String?
+    let idTaxonomia: Int?
 }
 
 enum LinkType: Int {

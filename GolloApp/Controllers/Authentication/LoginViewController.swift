@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appleLoginButton: UIButton!
     @IBOutlet weak var googleLoginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-
+    
     lazy var viewModel: LoginViewModel = {
         return LoginViewModel()
     }()
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     var currentNonce = ""
     var delegate: LoginDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
@@ -50,23 +50,23 @@ class LoginViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         passwordTextField.enablePasswordToggle()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = false
     }
-
+    
     // MARK: - Functions
     fileprivate func configureViews() {
         let text = "¿No tenés una cuenta? REGISTRATE"
         signUpButton.setAttributedTitle(text.withBoldText(text: "REGISTRATE", fontNormalText: UIFont.sansSerifDemiBold(ofSize: 15), fontBoldText: UIFont.sansSerifBold(ofSize: 15), fontColorBold: .primary), for: .normal)
     }
-
+    
     fileprivate func loginRequestInfo(for loginType: LoginType) {
         guard let user = Auth.auth().currentUser else { return }
         user.getIDToken(completion: { (res, err) in
@@ -89,12 +89,12 @@ class LoginViewController: UIViewController {
                             }
                         }
                         Messaging.messaging().token { token, error in
-                          if let error = error {
-                              print("Error fetching FCM registration token: \(error)")
-                          } else if let token = token {
-                              print("FCM registration token: \(token)")
-                              self.registerDeviceToken(with: token)
-                          }
+                            if let error = error {
+                                print("Error fetching FCM registration token: \(error)")
+                            } else if let token = token {
+                                print("FCM registration token: \(token)")
+                                self.registerDeviceToken(with: token)
+                            }
                         }
                         Variables.isRegisterUser = data.estadoRegistro ?? false
                         Variables.isLoginUser = data.estadoLogin ?? false
@@ -107,14 +107,14 @@ class LoginViewController: UIViewController {
             }
         })
     }
-
+    
     fileprivate func configureViewModel() {
         viewModel.hideLoading = {[weak self] in
             guard let self = self else { return }
             self.buttonLogin.hideLoading()
         }
     }
-
+    
     fileprivate func configureRx() {
         let usernameValidation = usernameTextField
             .rx
@@ -122,26 +122,26 @@ class LoginViewController: UIViewController {
             .orEmpty
             .map { $0.count >= minimalUsernameLength }
             .share(replay: 1)
-
+        
         let passwordValidation = passwordTextField
             .rx
             .text
             .orEmpty
             .map { $0.count >= minimalPasswordLength }
             .share(replay: 1)
-
+        
         let everythingValid = Observable.combineLatest(usernameValidation, passwordValidation) { $0 && $1}
             .share(replay: 1)
-
+        
         everythingValid
             .bind(to: buttonLogin.rx.isEnabled)
             .disposed(by: disposeBag)
-
+        
         everythingValid
             .map { $0 ? 1 : 0.4 }
             .bind(to: buttonLogin.rx.alpha)
             .disposed(by: disposeBag)
-
+        
         forgotPasswordButton
             .rx
             .tap
@@ -153,7 +153,7 @@ class LoginViewController: UIViewController {
                 self.present(vc, animated: true)
             })
             .disposed(by: disposeBag)
-
+        
         buttonLogin
             .rx
             .tap
@@ -171,58 +171,56 @@ class LoginViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-
+        
         let signInConfig = GIDConfiguration(clientID: FirebaseApp.app()?.options.clientID ?? "")
         googleLoginButton
             .rx
             .tap
             .subscribe(onNext: { _ in
-                GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) {[weak self] user, error in
-                    guard let self = self else { return }
+                GIDSignIn.sharedInstance.signIn(withPresenting: self) { authentication, error in
                     if let error = error as? NSError {
                         if error.code != -5 {
                             self.showAlert(alertText: "GolloApp", alertMessage: error.localizedDescription)
                         }
                         return
                     }
-
-                    guard let auth = user?.authentication, let idToken = auth.idToken else {
-                        return
-                    }
-
-                    let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: auth.accessToken)
-                    self.authService.signIn(with: credential) { user, error in
+                    
+                    guard let user = authentication?.user, let idToken = user.idToken?.tokenString else { return }
+                    let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+                    
+                    self.authService.signIn(with: credential) { [self] authResult, error in
                         if let error = error {
                             self.showAlert(alertText: "GolloApp", alertMessage: error)
                         }
-                        guard let user = user else { return }
+                        
+                        guard let user = authResult else { return }
                         self.viewModel.setUserData(with: user)
                         self.loginRequestInfo(for: .google)
                     }
                 }
             })
             .disposed(by: disposeBag)
-                
+        
         facebookLoginButton
-                .rx
-                .tap
-                .subscribe(onNext: {[weak self] in
-                    guard let self = self else { return }
-                    self.showAlert(alertText: "GolloApp", alertMessage: "Estimad@ cliente, el ingreso mediante Facebook se encuentra deshabilitado, por lo que puede ingresar por Google, Apple o registrarse mediante usuario y contraseña.")
-//                    self.facebookLoginProcess()
-                })
-                .disposed(by: disposeBag)
-                
+            .rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.showAlert(alertText: "GolloApp", alertMessage: "Estimad@ cliente, el ingreso mediante Facebook se encuentra deshabilitado, por lo que puede ingresar por Google, Apple o registrarse mediante usuario y contraseña.")
+                //                    self.facebookLoginProcess()
+            })
+            .disposed(by: disposeBag)
+        
         appleLoginButton
-                .rx
-                .tap
-                .subscribe(onNext: {[weak self] in
-                    guard let self = self else { return }
-                    self.appleLoginProcess()
-                })
-                .disposed(by: disposeBag)
+            .rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.appleLoginProcess()
+            })
+            .disposed(by: disposeBag)
     }
-
+    
     func doLogin(for loginType: LoginType) {
         buttonLogin.showLoading()
         guard let username = usernameTextField.text,
@@ -233,7 +231,7 @@ class LoginViewController: UIViewController {
                 self.buttonLogin.hideLoading()
                 if error == "Verify your email address" {
                     let refreshAlert = UIAlertController(title: "Verificación de email", message: "Su cuenta de correo aún no ha sido verificada. Para verificarla debe hacer click en el link enviado a su cuenta de correo; el correo puede estar en la bandeja de correos no deseados.", preferredStyle: UIAlertController.Style.alert)
-
+                    
                     refreshAlert.addAction(UIAlertAction(title: "Reenviar correo", style: .default, handler: { (action: UIAlertAction!) in
                         user?.reload()
                         if let user = user {
@@ -247,11 +245,11 @@ class LoginViewController: UIViewController {
                         }
                         refreshAlert.dismiss(animated: true)
                     }))
-
+                    
                     refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction!) in
                         refreshAlert.dismiss(animated: true)
                     }))
-
+                    
                     self.present(refreshAlert, animated: true, completion: nil)
                 } else {
                     var userError = error
@@ -277,7 +275,7 @@ class LoginViewController: UIViewController {
         let readPermissions: [Permission] = [.publicProfile, .email]
         loginManager.logIn(permissions: readPermissions, viewController: self, completion: didReceiveFacebookLoginResult)
     }
-
+    
     private func didReceiveFacebookLoginResult(loginResult: LoginResult) {
         switch loginResult {
         case .success:
@@ -286,7 +284,7 @@ class LoginViewController: UIViewController {
         default: break
         }
     }
-
+    
     fileprivate func didLoginWithFacebook() {
         // Successful log in with Facebook
         if let accessToken = AccessToken.current {
@@ -311,26 +309,26 @@ class LoginViewController: UIViewController {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
-
+        
         // Generate nonce for validation after authentication successful
         self.currentNonce = randomNonceString()
         // Set the SHA256 hashed nonce to ASAuthorizationAppleIDRequest
         request.nonce = sha256(currentNonce)
-
+        
         // Present Apple authorization form
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
-
+    
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         let charset: Array<Character> =
-            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
         var remainingLength = length
-
+        
         while remainingLength > 0 {
             let randoms: [UInt8] = (0 ..< 16).map { _ in
                 var random: UInt8 = 0
@@ -340,32 +338,32 @@ class LoginViewController: UIViewController {
                 }
                 return random
             }
-
+            
             randoms.forEach { random in
                 if remainingLength == 0 {
                     return
                 }
-
+                
                 if random < charset.count {
                     result.append(charset[Int(random)])
                     remainingLength -= 1
                 }
             }
         }
-
+        
         return result
     }
-
+    
     private func sha256(_ input: String) -> String {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
         let hashString = hashedData.compactMap {
             return String(format: "%02x", $0)
         }.joined()
-
+        
         return hashString
     }
-
+    
     fileprivate func registerDeviceToken(with token: String) {
         viewModel
             .registerDeviceToken(with: token)
@@ -382,31 +380,31 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
-
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-
+        
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-
+            
             // Save authorised user ID for future reference
             UserDefaults.standard.set(appleIDCredential.user, forKey: "appleAuthorizedUserIdKey")
-
+            
             // Retrieve Apple identity token
             guard let appleIDToken = appleIDCredential.identityToken else {
                 print("Failed to fetch identity token")
                 return
             }
-
+            
             // Convert Apple identity token to string
             guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
                 print("Failed to decode identity token")
                 return
             }
-
+            
             // Initialize a Firebase credential using secure nonce and Apple identity token
             let firebaseCredential = OAuthProvider.credential(withProviderID: "apple.com",
                                                               idToken: idTokenString,
                                                               rawNonce: self.currentNonce)
-
+            
             // Sign in with Firebase
             authService.signIn(with: firebaseCredential) { user, error in
                 if let error = error {
@@ -423,14 +421,14 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                 })
                 self.viewModel.setUserData(with: user)
                 self.loginRequestInfo(for: .apple)
-//                if let vc = AppStoryboard.Home.initialViewController() {
-//                    vc.modalPresentationStyle = .fullScreen
-//                    self.present(vc, animated: true)
-//                }
+                //                if let vc = AppStoryboard.Home.initialViewController() {
+                //                    vc.modalPresentationStyle = .fullScreen
+                //                    self.present(vc, animated: true)
+                //                }
             }
         }
     }
-
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
         log.debug("Sign in with Apple errored: \(error)")

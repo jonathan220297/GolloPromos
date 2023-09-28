@@ -82,7 +82,7 @@ extension TopCategoriesCollectionViewCell: UICollectionViewDelegate, UICollectio
             let offersFilteredListViewController = OffersFilteredListViewController(
                 viewModel: OffersFilteredListViewModel(),
                 category: self.section?.categories?[indexPath.row].idCategoria ?? 0,
-                taxonomy: -1
+                taxonomy: self.section?.categories?[indexPath.row].idTaxonomia ?? -1
             )
             offersFilteredListViewController.modalPresentationStyle = .fullScreen
             delegate?.didTapCategory(with: offersFilteredListViewController)
