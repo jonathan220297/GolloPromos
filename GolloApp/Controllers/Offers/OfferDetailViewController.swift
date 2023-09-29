@@ -247,7 +247,7 @@ class OfferDetailViewController: UIViewController {
         dropDownSelectionView.layer.borderColor = UIColor.lightGray.cgColor
         
         tooltipVMIView.layer.cornerRadius = 10
-        tooltipVMIView.layer.borderWidth = 1
+        tooltipVMIView.layer.borderWidth = 0
         tooltipVMIView.layer.borderColor = hexStringToUIColor(hex: "#FFD180").cgColor
     }
     

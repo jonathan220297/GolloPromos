@@ -303,12 +303,11 @@ extension ShippingMethodViewController: ShippingMethodCellDelegate {
             self.shopView.isHidden = false
             self.continueButton.isHidden = false
             
-            if let carManagerType = viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, let store = viewModel.findSelectedStore() {
+            if let carManagerType = self.viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, let store = viewModel.findSelectedStore() {
                 stateLabel.text = store.provincia ?? ""
                 viewModel.stateSelected = store.provincia ?? ""
-                viewModel.processShops(with: store.provincia ?? "")
-                shopLabel.text = self.viewModel.shops.first?.nombre ?? ""
-                viewModel.shopSelected = self.viewModel.shops.first
+                shopLabel.text = store.nombre
+                viewModel.shopSelected = store
                 stateButton.isEnabled = false
                 shopButton.isEnabled = false
             } else {

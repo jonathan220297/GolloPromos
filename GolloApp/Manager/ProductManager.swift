@@ -11,7 +11,7 @@ import UIKit
 class ProductManager {
     func getTopRibbons(with data: Product) -> [ProductRibbon] {
         var ribbons: [ProductRibbon] = []
-        if data.tieneDescuento?.bool == true {
+        if data.tieneDescuento?.bool == true && data.muestraDescuento?.bool == true {
             ribbons.append(ProductRibbon(ribbonType: RibbonType.DESCUENTO, priority: 1))
         }
         if data.tieneBono?.bool == true {

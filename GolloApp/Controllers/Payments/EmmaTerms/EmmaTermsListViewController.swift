@@ -35,6 +35,7 @@ class EmmaTermsListViewController: UIViewController {
     weak var delegate: EmmaTermsDelegate?
     
     var keyboardShowing: Bool = false
+    var shippingMethodSelected: String = ""
     
     // MARK: - Lifecycle
     init(viewModel: EmmaTermsListViewModel) {
@@ -55,6 +56,7 @@ class EmmaTermsListViewController: UIViewController {
         configureProductPayment()
         fetchEmmaTermsList()
         hideKeyboardWhenTappedAround()
+        shippingMethodSelected = viewModel.carManager.shippingMethod?.cargoCode ?? ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -220,11 +222,11 @@ class EmmaTermsListViewController: UIViewController {
                       let response = response,
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
-                let _ = self.viewModel.carManager.emptyCar()
                 var showDisclaimer = false
-                if let carManagerType = viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, viewModel.carManager.shippingMethod?.cargoCode == "-1" {
+                if let carManagerType = self.viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, self.shippingMethodSelected == "-1" {
                     showDisclaimer = true
                 }
+                let _ = self.viewModel.carManager.emptyCar()
                 let paymentSuccessViewController = PaymentSuccessViewController(
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,

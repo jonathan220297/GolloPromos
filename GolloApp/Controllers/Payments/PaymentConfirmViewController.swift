@@ -23,7 +23,8 @@ class PaymentConfirmViewController: UIViewController {
     var paymentData: PaymentData?
     var paymentAmmount: Double = 0.0
     var isThirdPayAccount: Bool = false
-
+    var shippingMethodSelected: String = ""
+    
     var bag = DisposeBag()
     
     lazy var viewModel: PaymentConfirmViewModel = {
@@ -43,6 +44,7 @@ class PaymentConfirmViewController: UIViewController {
         configureRx()
         configureTableView()
         fetchPaymentMehtods()
+        shippingMethodSelected = viewModel.carManager.shippingMethod?.cargoCode ?? ""
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -191,11 +193,11 @@ class PaymentConfirmViewController: UIViewController {
                       let response = response,
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
-                let _ = self.viewModel.carManager.emptyCar()
                 var showDisclaimer = false
-                if let carManagerType = viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, viewModel.carManager.shippingMethod?.cargoCode == "-1" {
+                if let carManagerType = self.viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, self.shippingMethodSelected == "-1" {
                     showDisclaimer = true
                 }
+                let _ = self.viewModel.carManager.emptyCar()
                 let paymentSuccessViewController = PaymentSuccessViewController(
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
