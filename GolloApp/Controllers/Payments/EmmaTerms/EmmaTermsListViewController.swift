@@ -221,10 +221,15 @@ class EmmaTermsListViewController: UIViewController {
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
                 let _ = self.viewModel.carManager.emptyCar()
+                var showDisclaimer = false
+                if let carManagerType = viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, viewModel.carManager.shippingMethod?.cargoCode == "-1" {
+                    showDisclaimer = true
+                }
                 let paymentSuccessViewController = PaymentSuccessViewController(
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
-                        productPaymentResponse: response
+                        productPaymentResponse: response,
+                        showScanAndGoDisclaimer: showDisclaimer
                     ),
                     cartPayment: true
                 )

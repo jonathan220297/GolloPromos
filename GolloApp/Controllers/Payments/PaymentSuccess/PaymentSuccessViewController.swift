@@ -18,6 +18,7 @@ class PaymentSuccessViewController: UIViewController {
     @IBOutlet weak var warningImageView: UIImageView!
     @IBOutlet weak var warningDescriptionLabel: UILabel!
     @IBOutlet weak var paymentDescriptionLabel: UILabel!
+    @IBOutlet weak var scanAndGoDisclaimerLabel: UILabel!
     
     // MARK: - Constants
     let viewModel: PaymentSuccessViewModel
@@ -97,6 +98,7 @@ class PaymentSuccessViewController: UIViewController {
                 fontColorBold: .darkGray
             )
             paymentDescriptionLabel.text = "Su orden ha sido enviada satisfactoriamente. Por favor esté pendiente de su correo y de las notificaciones que puede recibir en esta plataforma sobre el estatus de su pedido."
+            scanAndGoDisclaimerLabel.isHidden = !viewModel.showScanAndGoDisclaimer
         }
     }
 }

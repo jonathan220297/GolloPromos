@@ -111,6 +111,7 @@ class OfferDetailViewController: UIViewController {
     var currentPage = 0
     var priceToShow: Double = 0.0
     var newExpensesPrice = 0.0
+    var newDiscountPrice = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -728,28 +729,28 @@ class OfferDetailViewController: UIViewController {
         
         if totalDiscount > 0.0,
            let price = Double(self.article?.articulo?.precio ?? "0.0"), price > 0.0 {
-            self.pricesView.isHidden = false
-            self.uniqueOriginalPriceLabel.isHidden = true
+            pricesView.isHidden = false
+            uniqueOriginalPriceLabel.isHidden = true
             let savingString = numberFormatter.string(from: NSNumber(value: totalDiscount))!
             savingsLabel.text = "\("₡")\(savingString)"
-            
+            newDiscountPrice = Double(self.article?.articulo?.precio ?? "0.0") ?? 0.0
             let discountString = numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0))!
-            self.discountPriceLabel.attributedText = attributeString
-            self.originalPrice.text = "\("₡")\(discountString)"
+            discountPriceLabel.attributedText = attributeString
+            originalPrice.text = "\("₡")\(discountString)"
             priceToShow = Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0
         } else {
-            self.pricesView.isHidden = true
-            self.uniqueOriginalPriceLabel.isHidden = false
-            self.uniqueOriginalPriceLabel.text = "\("₡")\(originalString) IVAi"
-            self.originalPrice.text = "\("₡")\(originalString) IVAi"
-            self.originalPrice.textColor = .black
-            self.originalPrice.font = self.originalPrice.font.withSize(17)
-            self.savingHeader.alpha = 0
-            self.priceDivider.alpha = 0
-            self.savingsLabel.alpha = 0
-            self.savingsLabel.isHidden = true
-            self.discountLabel.alpha = 0
-            self.discountLabel.isHidden = true
+            pricesView.isHidden = true
+            uniqueOriginalPriceLabel.isHidden = false
+            uniqueOriginalPriceLabel.text = "\("₡")\(originalString) IVAi"
+            originalPrice.text = "\("₡")\(originalString) IVAi"
+            originalPrice.textColor = .black
+            originalPrice.font = self.originalPrice.font.withSize(17)
+            savingHeader.alpha = 0
+            priceDivider.alpha = 0
+            savingsLabel.alpha = 0
+            savingsLabel.isHidden = true
+            discountLabel.alpha = 0
+            discountLabel.isHidden = true
             priceToShow = Double(self.article?.articulo?.precio ?? "0.0") ?? 0.0
         }
     }
@@ -1081,30 +1082,38 @@ extension OfferDetailViewController: ProductCellDelegate {
 
 extension OfferDetailViewController: OptionalExpensesCellDelegate {
     func didSelectOptionalExpense(at indexPath: IndexPath) {
-        let expenseSelected = !(self.viewModel.optionalExpenses[indexPath.row].selected ?? false)
+        let expenseSelected = !(viewModel.optionalExpenses[indexPath.row].selected ?? false)
         self.viewModel.optionalExpenses[indexPath.row].selected = expenseSelected
         
         if expenseSelected {
-            self.newExpensesPrice = (self.newExpensesPrice == 0.0 ? self.priceToShow : self.newExpensesPrice) + (self.viewModel.optionalExpenses[indexPath.row].monto ?? 0.0)
+            newExpensesPrice = (newExpensesPrice == 0.0 ? priceToShow : newExpensesPrice) + (viewModel.optionalExpenses[indexPath.row].monto ?? 0.0)
+            newDiscountPrice = (newDiscountPrice == 0.0 ? priceToShow : newDiscountPrice) + (viewModel.optionalExpenses[indexPath.row].monto ?? 0.0)
         } else {
-            self.newExpensesPrice = self.newExpensesPrice - (self.viewModel.optionalExpenses[indexPath.row].monto ?? 0.0)
+            newExpensesPrice = newExpensesPrice - (viewModel.optionalExpenses[indexPath.row].monto ?? 0.0)
+            newDiscountPrice = newDiscountPrice - (viewModel.optionalExpenses[indexPath.row].monto ?? 0.0)
         }
         
         if totalDiscount > 0.0,
            let price = Double(self.article?.articulo?.precio ?? "0.0"), price > 0.0 {
             let discountString = numberFormatter.string(from: NSNumber(value: self.newExpensesPrice))!
-            self.originalPrice.text = "\("₡")\(discountString)"
+            originalPrice.text = "\("₡")\(discountString)"
             priceToShow = Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0
+            
+            
+            let originalString = numberFormatter.string(from: NSNumber(value: newDiscountPrice))!
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            discountPriceLabel.attributedText = attributeString
         } else {
             let originalString = numberFormatter.string(from: NSNumber(value: self.newExpensesPrice))!
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\("₡")\(originalString)")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-            self.uniqueOriginalPriceLabel.text = "\("₡")\(originalString) IVAi"
-            self.originalPrice.text = "\("₡")\(originalString) IVAi"
+            uniqueOriginalPriceLabel.text = "\("₡")\(originalString) IVAi"
+            originalPrice.text = "\("₡")\(originalString) IVAi"
         }
         
-        self.drawMandatoryExpenses(with: priceToShow)
-        self.optionalTableView.reloadData()
+        drawMandatoryExpenses(with: priceToShow)
+        optionalTableView.reloadData()
     }
 }
 

@@ -18,6 +18,8 @@ enum MovementType: String {
 
 class PaymentDataViewModel {
     private let service = GolloService()
+    private let defaults = UserDefaults.standard
+    
     let carManager = CarManager.shared
     
     var isAccountPayment = true
@@ -442,6 +444,10 @@ class PaymentDataViewModel {
             "value": carManager.paymentMethod.first?.montoPago ?? 0.0,
             "payment_type": carManager.paymentMethod.first?.idFormaPago ?? ""
         ])
+    }
+    
+    func verifyCarManagerTypeState() -> String? {
+        return defaults.string(forKey: "carManagetTypeStarted")
     }
     
     //    func setCardData() -> Bool {

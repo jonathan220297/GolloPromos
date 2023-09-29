@@ -11,6 +11,8 @@ import FirebaseAnalytics
 
 class PaymentConfirmViewModel {
     private let service = GolloService()
+    private let defaults = UserDefaults.standard
+    
     let carManager = CarManager.shared
     
     var methods: [PaymentMethodResponse] = []
@@ -254,4 +256,7 @@ class PaymentConfirmViewModel {
         ])
     }
     
+    func verifyCarManagerTypeState() -> String? {
+        return defaults.string(forKey: "carManagetTypeStarted")
+    }
 }

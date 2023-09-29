@@ -25,7 +25,7 @@ class PaymentDataViewController: UIViewController {
     @IBOutlet weak var zeroRateView: UIView!
     @IBOutlet weak var zeroRateLabel: UILabel!
     @IBOutlet weak var zeroRateButton: UIButton!
-
+    
     lazy var viewModel: PaymentDataViewModel = {
         return PaymentDataViewModel()
     }()
@@ -35,29 +35,29 @@ class PaymentDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "PaymentDataViewController_title".localized
-
+        
         cardNumberTextField.delegate = self
         cvvTextField.delegate = self
         configureRx()
         hideKeyboardWhenTappedAround()
-
+        
         if self.viewModel.zeroRatePayment {
             zeroRateView.isHidden = false
-//            if let first = self.viewModel.zeroRateList.first {
-//                self.zeroRateLabel.text = first.descPlazo
-//                self.viewModel.zeroRateSubject.accept(first.idPlazo)
-//            }
+            //            if let first = self.viewModel.zeroRateList.first {
+            //                self.zeroRateLabel.text = first.descPlazo
+            //                self.viewModel.zeroRateSubject.accept(first.idPlazo)
+            //            }
         } else {
             zeroRateView.isHidden = true
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
@@ -144,7 +144,7 @@ class PaymentDataViewController: UIViewController {
         }
         dropDown.show()
     }
-
+    
     fileprivate func displayZeroRate() {
         let dropDown = DropDown()
         dropDown.anchorView = zeroRateButton
@@ -176,7 +176,8 @@ class PaymentDataViewController: UIViewController {
                     let paymentSuccessViewController = PaymentSuccessViewController(
                         viewModel: PaymentSuccessViewModel(
                             paymentMethodSelected: paymentMethodSelected,
-                            accountPaymentResponse: response
+                            accountPaymentResponse: response,
+                            showScanAndGoDisclaimer: false
                         ), cartPayment: false
                     )
                     paymentSuccessViewController.modalPresentationStyle = .fullScreen
@@ -220,10 +221,15 @@ class PaymentDataViewController: UIViewController {
                     self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
                     let _ = self.viewModel.carManager.emptyCar()
                     self.continueButton.hideLoading()
+                    var showDisclaimer = false
+                    if let carManagerType = viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, viewModel.carManager.shippingMethod?.cargoCode == "-1" {
+                        showDisclaimer = true
+                    }
                     let paymentSuccessViewController = PaymentSuccessViewController(
                         viewModel: PaymentSuccessViewModel(
                             paymentMethodSelected: paymentMethodSelected,
-                            productPaymentResponse: response
+                            productPaymentResponse: response,
+                            showScanAndGoDisclaimer: showDisclaimer
                         ), cartPayment: true
                     )
                     paymentSuccessViewController.modalPresentationStyle = .fullScreen
@@ -249,7 +255,7 @@ class PaymentDataViewController: UIViewController {
             })
             .disposed(by: bag)
     }
-
+    
     private func getPaymentResult(with id: String) {
         viewModel
             .getPaymentResponseDetail(with: id)
@@ -263,7 +269,8 @@ class PaymentDataViewController: UIViewController {
                 let paymentSuccessViewController = PaymentSuccessViewController(
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
-                        accountPaymentResponse: response
+                        accountPaymentResponse: response,
+                        showScanAndGoDisclaimer: false
                     ), cartPayment: true
                 )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
@@ -271,7 +278,7 @@ class PaymentDataViewController: UIViewController {
             })
             .disposed(by: bag)
     }
-
+    
     private func getProductPaymentResult(with id: String) {
         viewModel
             .getProductPaymentResponseDetail(with: id)
@@ -283,10 +290,15 @@ class PaymentDataViewController: UIViewController {
                 print(response)
                 let _ = self.viewModel.carManager.emptyCar()
                 self.continueButton.hideLoading()
+                var showDisclaimer = false
+                if let carManagerType = viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, viewModel.carManager.shippingMethod?.cargoCode == "-1" {
+                    showDisclaimer = true
+                }
                 let paymentSuccessViewController = PaymentSuccessViewController(
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
-                        productPaymentResponse: response
+                        productPaymentResponse: response,
+                        showScanAndGoDisclaimer: showDisclaimer
                     ), cartPayment: true
                 )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen
@@ -295,32 +307,32 @@ class PaymentDataViewController: UIViewController {
             .disposed(by: bag)
     }
     
-//    fileprivate func setCardData() {
-//        if viewModel.setCardData() {
-//            viewModel.buildOrderRequest()
-//            createOrder()
-//        }
-//    }
-//
-//    fileprivate func createOrder() {
-//        continueButton.showLoading()
-//        viewModel.createOrder()
-//            .asObservable()
-//            .subscribe(onNext: {[weak self] response in
-//                guard let self = self,
-//                      let response = response else { return }
-//                DispatchQueue.main.async {
-//                    self.continueButton.hideLoading()
-//                }
-//                //Order created
-//                self.viewModel.cleanPaymentData()
-//                let vc = OrderConfirmedViewController.instantiate(fromAppStoryboard: .Payment)
-//                vc.modalPresentationStyle = .fullScreen
-//                vc.viewModel.orderId = response.orderId
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            })
-//            .disposed(by: bag)
-//    }
+    //    fileprivate func setCardData() {
+    //        if viewModel.setCardData() {
+    //            viewModel.buildOrderRequest()
+    //            createOrder()
+    //        }
+    //    }
+    //
+    //    fileprivate func createOrder() {
+    //        continueButton.showLoading()
+    //        viewModel.createOrder()
+    //            .asObservable()
+    //            .subscribe(onNext: {[weak self] response in
+    //                guard let self = self,
+    //                      let response = response else { return }
+    //                DispatchQueue.main.async {
+    //                    self.continueButton.hideLoading()
+    //                }
+    //                //Order created
+    //                self.viewModel.cleanPaymentData()
+    //                let vc = OrderConfirmedViewController.instantiate(fromAppStoryboard: .Payment)
+    //                vc.modalPresentationStyle = .fullScreen
+    //                vc.viewModel.orderId = response.orderId
+    //                self.navigationController?.pushViewController(vc, animated: true)
+    //            })
+    //            .disposed(by: bag)
+    //    }
 }
 
 extension PaymentDataViewController: UITextFieldDelegate {
@@ -329,18 +341,18 @@ extension PaymentDataViewController: UITextFieldDelegate {
             let maxLength = 16
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =
-                currentString.replacingCharacters(in: range, with: string) as NSString
+            currentString.replacingCharacters(in: range, with: string) as NSString
             return newString.length <= maxLength
         } else if textField == cvvTextField {
             let maxLength = 4
             let currentString: NSString = (textField.text ?? "") as NSString
             let newString: NSString =
-                currentString.replacingCharacters(in: range, with: string) as NSString
+            currentString.replacingCharacters(in: range, with: string) as NSString
             return newString.length <= maxLength
         }
         return true
     }
-
+    
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
         self.view.endEditing(true)
         return true

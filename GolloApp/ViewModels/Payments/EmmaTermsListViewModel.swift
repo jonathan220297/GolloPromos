@@ -11,6 +11,8 @@ import FirebaseAnalytics
 
 class EmmaTermsListViewModel {
     private let service = GolloService()
+    private let defaults = UserDefaults.standard
+    
     let carManager = CarManager.shared
     
     var subTotal = 0.0
@@ -261,4 +263,7 @@ class EmmaTermsListViewModel {
         ])
     }
     
+    func verifyCarManagerTypeState() -> String? {
+        return defaults.string(forKey: "carManagetTypeStarted")
+    }
 }

@@ -11,10 +11,12 @@ class PaymentSuccessViewModel {
     let paymentMethodSelected: PaymentMethodResponse
     var accountPaymentResponse: PaymentResponse?
     var productPaymentResponse: PaymentOrderResponse?
+    var showScanAndGoDisclaimer: Bool = false
     
-    init(paymentMethodSelected: PaymentMethodResponse, accountPaymentResponse: PaymentResponse? = nil, productPaymentResponse: PaymentOrderResponse? = nil) {
+    init(paymentMethodSelected: PaymentMethodResponse, accountPaymentResponse: PaymentResponse? = nil, productPaymentResponse: PaymentOrderResponse? = nil, showScanAndGoDisclaimer: Bool) {
         self.paymentMethodSelected = paymentMethodSelected
         self.accountPaymentResponse = accountPaymentResponse
         self.productPaymentResponse = productPaymentResponse
+        self.showScanAndGoDisclaimer = showScanAndGoDisclaimer
     }
 }
