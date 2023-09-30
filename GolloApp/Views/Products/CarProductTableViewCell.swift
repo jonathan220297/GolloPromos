@@ -108,7 +108,7 @@ class CarProductTableViewCell: UITableViewCell {
             productImageView.image = UIImage(named: "empty_image")
         }
         productNameLabel.text = data.descripcion
-        productPriceLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: data.precioUnitario))!
+//        productPriceLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: data.precioUnitario))!
         
         if data.montoDescuento > 0.0 {
             discountLabel.text = "₡\(numberFormatter.string(from: NSNumber(value: data.montoDescuento))!)"
@@ -127,12 +127,11 @@ class CarProductTableViewCell: UITableViewCell {
         quantityTextField.text = String(quantity)
         
         var totalPrice = 0.0
-        var articlePrice = 0.0
+        var articulePrice = data.precioUnitario
+        
         if let bonus = data.montoBonoProveedor {
-            articlePrice = data.precioUnitario - data.montoDescuento - bonus
             totalPrice = data.precioUnitario - data.montoDescuento - bonus
         } else {
-            articlePrice = data.precioUnitario - data.montoDescuento
             totalPrice = data.precioUnitario - data.montoDescuento
         }
         totalPrice = totalPrice * Double(data.cantidad)
@@ -153,7 +152,7 @@ class CarProductTableViewCell: UITableViewCell {
                 let articlePriceExpense = OtherExpenses(
                     skuGasto: "",
                     descripcion: "Artículo",
-                    monto: articlePrice,
+                    monto: data.precioUnitario,
                     obligatorio: -1
                 )
                 expensesStackView.addArrangedSubview(includesLabel)
@@ -161,6 +160,7 @@ class CarProductTableViewCell: UITableViewCell {
                 
                 expenses.forEach { t in
                     self.expensesStackView.addArrangedSubview(taxesLabel(with: t))
+                    articulePrice = articulePrice + (t.monto ?? 0.0)
                     totalPrice = totalPrice + ((t.monto ?? 0.0) * Double(data.cantidad))
                 }
                 
@@ -198,7 +198,7 @@ class CarProductTableViewCell: UITableViewCell {
             totalAmountLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: totalPrice))!
         }
         
-        productPriceLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: totalPrice))!
+        productPriceLabel.text = "₡" + numberFormatter.string(from: NSNumber(value: articulePrice))!
         
         if data.showingInformation {
             self.expensesStackView.isHidden = false
@@ -218,7 +218,7 @@ class CarProductTableViewCell: UITableViewCell {
         expensesLabel.font = UIFont.systemFont(ofSize: 10)
         expensesLabel.backgroundColor = UIColor.clear
         expensesLabel.textColor = .darkGray
-        let taxPrice = (numberFormatter.string(from: NSNumber(value: t.monto ?? 0.0)) ?? "").currencyFormatting()
+        let taxPrice = numberFormatter.string(from: NSNumber(value: t.monto ?? 0.0)) ?? ""
         
         let attributedText = NSMutableAttributedString(attachment: imageAttachment)
         attributedText.append(NSAttributedString(string: " "))

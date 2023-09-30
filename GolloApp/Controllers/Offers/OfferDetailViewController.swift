@@ -246,9 +246,9 @@ class OfferDetailViewController: UIViewController {
         dropDownSelectionView.layer.borderWidth = 1
         dropDownSelectionView.layer.borderColor = UIColor.lightGray.cgColor
         
-        tooltipVMIView.layer.cornerRadius = 10
-        tooltipVMIView.layer.borderWidth = 0
-        tooltipVMIView.layer.borderColor = hexStringToUIColor(hex: "#FFD180").cgColor
+//        tooltipVMIView.layer.cornerRadius = 10
+//        tooltipVMIView.layer.borderWidth = 0
+//        tooltipVMIView.layer.borderColor = hexStringToUIColor(hex: "#FFD180").cgColor
     }
     
     fileprivate func configureRx() {
@@ -789,7 +789,7 @@ class OfferDetailViewController: UIViewController {
             if !filteredTaxes.isEmpty {
                 self.servicesDetailStackView.isHidden = false
                 self.optionalExpensesView.isHidden = false
-                self.otherExpensesHeightConstraint.constant = CGFloat(((self.viewModel.optionalExpenses.count) * 45))
+                self.otherExpensesHeightConstraint.constant = CGFloat(((self.viewModel.optionalExpenses.count) * 48))
                 
                 self.optionalTableView.layoutIfNeeded()
                 self.optionalTableView.reloadData()
@@ -848,11 +848,11 @@ class OfferDetailViewController: UIViewController {
         expensesLabel.font = UIFont.systemFont(ofSize: 12)
         expensesLabel.backgroundColor = UIColor.clear
         expensesLabel.textColor = .darkGray
-        let taxPrice = (numberFormatter.string(from: NSNumber(value: t.monto ?? 0.0)) ?? "").currencyFormatting()
+        let taxPrice = numberFormatter.string(from: NSNumber(value: t.monto ?? 0.0)) ?? ""
         
         let attributedText = NSMutableAttributedString(attachment: imageAttachment)
         attributedText.append(NSAttributedString(string: " "))
-        attributedText.append(NSAttributedString(attributedString: formatHTML(header: "\(t.descripcion ?? ""): ", content: "+\(taxPrice)")))
+        attributedText.append(NSAttributedString(attributedString: formatHTML(header: "\(t.descripcion ?? ""): ", content: "+\("₡")\(taxPrice)")))
         expensesLabel.attributedText = attributedText
         
         return expensesLabel

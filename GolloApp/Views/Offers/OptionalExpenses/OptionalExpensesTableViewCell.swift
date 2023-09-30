@@ -50,7 +50,7 @@ class OptionalExpensesTableViewCell: UITableViewCell {
     func configureViews() {
         content.backgroundColor = .white
         content.layer.cornerRadius = 8
-        content.layer.borderWidth = 1
+        content.layer.borderWidth = 0.5
         content.layer.borderColor = UIColor.gray.cgColor
     }
     
