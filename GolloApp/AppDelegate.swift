@@ -29,23 +29,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
                         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+        window = UIWindow()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
             self?.requestTracking()
         }
         
-        FirebaseApp.configure()
-        
         PushNotificationManager().registerForPushNotifications(application: application)
-
         Messaging.messaging().delegate = self
         
         if let url = launchOptions?[.url] as? URL, let annotation = launchOptions?[.annotation] {
             return self.application(application, open: url, sourceApplication: launchOptions?[.sourceApplication] as? String, annotation: annotation)
         }
         
+        FirebaseApp.configure()
         return true
     }
     
