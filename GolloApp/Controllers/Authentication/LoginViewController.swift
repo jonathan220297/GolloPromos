@@ -8,7 +8,8 @@
 import UIKit
 import RxSwift
 import GoogleSignIn
-import Firebase
+import FirebaseMessaging
+import FirebaseCore
 import FirebaseAuth
 import FacebookCore
 import FacebookLogin

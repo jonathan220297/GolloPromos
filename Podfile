@@ -10,9 +10,9 @@ target 'GolloApp' do
   
   # Pods for PromosGollo
   pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Firestore'
+  pod 'FirebaseAuth'
+  pod 'FirebaseStorage'
+  pod 'FirebaseFirestore'
   pod 'FirebaseAnalytics'
   pod 'FirebaseMessaging'
   pod 'FirebaseCrashlytics'
@@ -31,7 +31,7 @@ target 'GolloApp' do
   
   pod 'XCGLogger'
   
-  pod 'GolloNetWorking', :path => '/Users/rosegueda/Documents/Personales/Proyectos/Merckers/Gollo/GolloApp-Modules/GolloNetWorking'
+  pod 'GolloNetWorking', :path => '/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking'
   
   target 'GolloAppTests' do
     inherit! :search_paths

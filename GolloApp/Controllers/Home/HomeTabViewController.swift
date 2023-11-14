@@ -21,6 +21,9 @@ class HomeTabViewController: UIViewController {
     let disposeBag = DisposeBag()
     let userDefaults = UserDefaults.standard
     
+    // MARK: - Variables
+    var imageDimensions: [IndexPath: CGSize] = [:]
+    
     // MARK: - Lifecycle
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -273,6 +276,20 @@ class HomeTabViewController: UIViewController {
          }
     }
     
+    func downloadImageAsync(from url: URL, completion: @escaping (UIImage?, Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+
+            if let data = data, let image = UIImage(data: data) {
+                completion(image, nil)
+            } else {
+                completion(nil, NSError(domain: "YourApp", code: 1, userInfo: [NSLocalizedDescriptionKey: "Error al convertir los datos en imagen"]))
+            }
+        }.resume()
+    }
 }
 
 extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -364,6 +381,34 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             cell.dividerViewHeight.constant = 0
             cell.dividerView.isHidden = false
         }
+        if imageDimensions[indexPath] == nil {
+            guard let imageURL = URL(string: viewModel.sections[indexPath.section].banner?.images?.first?.image?.replacingOccurrences(of: " ", with: "%20") ?? "") else {
+                return cell
+            }
+            
+            downloadImageAsync(from: imageURL) { [weak self] (image, error) in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print("Error al descargar la imagen: \(error)")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    if let image = image {
+                        let aspectRatio = image.size.width / image.size.height
+                        let newHeight = collectionView.frame.size.width / aspectRatio
+                        
+                        // Almacena las dimensiones de la imagen descargada
+                        self.imageDimensions[indexPath] = CGSize(width: collectionView.frame.size.width, height: newHeight)
+                        
+                        // Recarga la celda para aplicar el nuevo tamaño
+                        collectionView.reloadItems(at: [indexPath])
+                    }
+                }
+            }
+        }
+        
         return cell
     }
     
@@ -400,31 +445,10 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if viewModel.sections[indexPath.section].banner != nil {
-            if let firstImage = viewModel.sections[indexPath.section].banner?.images?.first {
-                let imageSrc = firstImage.image?.replacingOccurrences(of: " ", with: "%20")
-                if let url = URL(string: imageSrc ?? "") {
-                    let heigth = viewModel.sections[indexPath.section].height ?? 120.0
-                    do {
-                        let imageData = try Data(contentsOf: url) //You should not use this in app
-                        guard let image = UIImage(data: imageData) else {
-                            return CGSize(width: collectionView.frame.size.width, height: heigth + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
-                        }
-                        let width = image.size.width
-                        let height = image.size.height
-                        let ratio = width / height
-                        let newHeight = collectionView.frame.size.width / ratio
-                        return CGSize(width: collectionView.frame.size.width, height: newHeight + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
-                    } catch {
-                        print(error)
-                        return CGSize(width: collectionView.frame.size.width, height: heigth + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
-                    }
-                } else {
-                    let height = viewModel.sections[indexPath.section].height ?? 120.0
-                    return CGSize(width: collectionView.frame.size.width, height: Double(height) + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
-                }
+            if let dimensions = imageDimensions[indexPath] {
+                return dimensions
             } else {
-                let height = viewModel.sections[indexPath.section].height ?? 120.0
-                return CGSize(width: collectionView.frame.size.width, height: Double(height) + Double(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0))
+                return CGSize(width: collectionView.frame.size.width, height: 120)
             }
         } else {
             if viewModel.sections[indexPath.section].vertical {
