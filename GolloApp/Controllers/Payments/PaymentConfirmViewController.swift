@@ -241,9 +241,9 @@ extension PaymentConfirmViewController: EmmaTermsDelegate {
 }
 
 extension PaymentConfirmViewController: PresaleDelegate {
-    func sendCrediGolloOrder(with plazo: Int, prima: String) {
+    func sendCrediGolloOrder(with plazo: Int, prima: Double) {
         viewModel.plazo = plazo
-        viewModel.prima = Double(prima)
+        viewModel.prima = prima
         self.sendOrder(with: true)
     }
 }

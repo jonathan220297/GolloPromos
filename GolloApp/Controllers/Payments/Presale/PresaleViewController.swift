@@ -9,13 +9,14 @@ import UIKit
 import RxSwift
 
 protocol PresaleDelegate: AnyObject {
-    func sendCrediGolloOrder(with plazo: Int, prima: String)
+    func sendCrediGolloOrder(with plazo: Int, prima: Double)
 }
 
 class PresaleViewController: UIViewController {
     
     @IBOutlet weak var initialAmountLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var otherAmountErrorLabel: UILabel!
     @IBOutlet weak var currentPlazoLabel: UILabel!
     @IBOutlet weak var plazoSlider: UISlider!
     @IBOutlet weak var minPeriodLabel: UILabel!
@@ -35,6 +36,7 @@ class PresaleViewController: UIViewController {
     let bag = DisposeBag()
     weak var delegate: PresaleDelegate?
     var keyboardShowing: Bool = false
+    var errorAmount: Bool = false
     
     init(viewModel: PresaleViewModel) {
         self.viewModel = viewModel
@@ -87,11 +89,26 @@ class PresaleViewController: UIViewController {
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        showControls(with: true)
-    }
+        if let amountString = textField.text?.digitsOnly(), let amountDouble = Double(amountString), let formmatedAmount = numberFormatter.string(from: NSNumber(value: amountDouble)) {
+            textField.text = "₡" + formmatedAmount
+        }
+        if let otherAmountString = textField.text {
+            let doubleAmount = Double(otherAmountString.digitsOnly()) ?? 0.0
+            let sugestedAmount = round(viewModel.subTotal)
+            viewModel.currentPrima = doubleAmount
 
-    @IBAction func amountValueChanged(_ sender: Any) {
-        viewModel.isEditing = true
+            if doubleAmount > sugestedAmount {
+                otherAmountErrorLabel.text = "La prima no puede ser igual o mayor al monto del crédito"
+                otherAmountErrorLabel.isHidden = false
+                errorAmount = true
+            } else {
+                otherAmountErrorLabel.isHidden = true
+                errorAmount = false
+            }
+        } else {
+            otherAmountErrorLabel.isHidden = true
+            errorAmount = false
+        }
         showControls(with: true)
     }
     
@@ -112,8 +129,6 @@ class PresaleViewController: UIViewController {
     }
     
     fileprivate func configureRx() {
-        amountTextField.rx.text.bind(to: viewModel.primaSubject).disposed(by: bag)
-        
         viewModel
             .errorMessage
             .asObservable()
@@ -132,7 +147,9 @@ class PresaleViewController: UIViewController {
             .tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                fetchCrediGolloTerms()
+                if !errorAmount {
+                    fetchCrediGolloTerms()
+                }
             })
             .disposed(by: bag)
         
@@ -141,11 +158,9 @@ class PresaleViewController: UIViewController {
             .tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                if !viewModel.isEditing {
-                    self.navigationController?.popViewController(animated: true, completion: {
-                        self.delegate?.sendCrediGolloOrder(with: self.viewModel.selectedTerm, prima: self.viewModel.primaSubject.value ?? "0.0")
-                    })
-                }
+                self.navigationController?.popViewController(animated: true, completion: {
+                    self.delegate?.sendCrediGolloOrder(with: self.viewModel.selectedTerm, prima: self.viewModel.currentPrima)
+                })
             })
             .disposed(by: bag)
     }
@@ -159,7 +174,6 @@ class PresaleViewController: UIViewController {
                 guard let self = self,
                       let data = data else { return }
                 self.view.activityStopAnimatingFull()
-                viewModel.isEditing = false
                 viewModel.presaleDetail = data
                 showTerms(with: data.plazos ?? [])
                 showDetails()
@@ -195,7 +209,7 @@ class PresaleViewController: UIViewController {
             }
             let interestAmount = (currentTerm.tasaEfectiva / 12)
                 interestRateAmountLabel.text = String(interestAmount) + "%" 
-            if let finance = numberFormatter.string(from: NSNumber(value: round(viewModel.subTotal - (Double(viewModel.primaSubject.value ?? "0.0") ?? 0.0)))) {
+            if let finance = numberFormatter.string(from: NSNumber(value: round(viewModel.subTotal - viewModel.currentPrima))) {
                 financeAmountLabel.text = "₡" + String(finance)
             }
             if let totalInteres = numberFormatter.string(from: NSNumber(value: round(currentTerm.montoIntereses))) {
@@ -211,6 +225,7 @@ class PresaleViewController: UIViewController {
         updateButton.isHidden = !hiden
         plazoView.isHidden = hiden
         detailView.isHidden = hiden
+        confirmButton.isHidden = hiden
     }
     
     fileprivate func isValidTerm(with term: Int, terms: [CrediGolloTerm]) -> Bool {

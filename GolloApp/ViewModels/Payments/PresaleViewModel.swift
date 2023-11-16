@@ -14,15 +14,14 @@ class PresaleViewModel {
     let userManager = UserManager.shared
     let carManager = CarManager.shared
     
-    var isEditing = false
     var subTotal = 0.0
     var shipping = 0.0
     var bonus = 0.0
     var presaleDetail: PresaleResponse? = nil
     var currentTerm: CrediGolloTerm? = nil
     var selectedTerm: Int = 0
+    var currentPrima: Double = 0.0
     
-    let primaSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let errorMessage = BehaviorRelay<String?>(value: nil)
     
     func fetchCrediGolloTerms() -> BehaviorRelay<PresaleResponse?> {
@@ -40,7 +39,7 @@ class PresaleViewModel {
                         montoBono: getBonoTotalAmount(),
                         montoFlete: getDeliveryAmountFromCart(),
                         montoDescuento: getTotalDescuentos(),
-                        prima: getTotalPrima(with: Double(primaSubject.value ?? "0.0") ?? 0.0),
+                        prima: getTotalPrima(with: currentPrima),
                         articulos: getItems()
                     )
                 )
@@ -106,8 +105,6 @@ class PresaleViewModel {
     }
     
     func getTotalAmountFromCart() -> Double {
-        let products = carManager.carProductsDetail
-        
         let amount = getTotalDescuentos()
         let golloPlus = getTotalCSRAmount()
         let bono = getBonoTotalAmount()
