@@ -100,6 +100,7 @@ class LoginViewController: UIViewController {
                         Variables.isRegisterUser = data.estadoRegistro ?? false
                         Variables.isLoginUser = data.estadoLogin ?? false
                         Variables.isClientUser = data.estadoCliente ?? false
+                        NotificationCenter.default.post(name: NSNotification.Name("ReloadHomeData"), object: nil)
                         self.dismiss(animated: true) {
                             self.delegate?.didLoginSucceed()
                         }

@@ -39,8 +39,8 @@ class HomeTabViewController: UIViewController {
         configureCollectionView()
         configureViewModel()
         configureRx()
-        fetchHomeConfiguration()
         configureTopic()
+        configureObservers()
 //        validateVersion()
         NotificationCenter.default.addObserver(
             self,
@@ -60,6 +60,7 @@ class HomeTabViewController: UIViewController {
         super.viewWillAppear(animated)
         configureNavBar()
         validateNotificationsFlow()
+        fetchHomeConfiguration()
     }
     
     // MARK: - Observers
@@ -71,6 +72,12 @@ class HomeTabViewController: UIViewController {
     }
     
     // MARK: - Functions
+    fileprivate func configureObservers() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("ReloadHomeData"), object: nil, queue: nil) { _ in
+            self.fetchHomeConfiguration()
+        }
+    }
+    
     fileprivate func configureRx() {
         viewModel
             .errorExpiredToken

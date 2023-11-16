@@ -132,7 +132,7 @@ class PresaleViewController: UIViewController {
             .tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                fetchCrediGolloTerms()
+                self.fetchCrediGolloTerms()
             })
             .disposed(by: bag)
         
@@ -141,7 +141,7 @@ class PresaleViewController: UIViewController {
             .tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                if !viewModel.isEditing {
+                if !self.viewModel.isEditing {
                     self.navigationController?.popViewController(animated: true, completion: {
                         self.delegate?.sendCrediGolloOrder(with: self.viewModel.selectedTerm, prima: self.viewModel.primaSubject.value ?? "0.0")
                     })
@@ -159,11 +159,11 @@ class PresaleViewController: UIViewController {
                 guard let self = self,
                       let data = data else { return }
                 self.view.activityStopAnimatingFull()
-                viewModel.isEditing = false
-                viewModel.presaleDetail = data
-                showTerms(with: data.plazos ?? [])
-                showDetails()
-                showControls(with: false)
+                self.viewModel.isEditing = false
+                self.viewModel.presaleDetail = data
+                self.showTerms(with: data.plazos ?? [])
+                self.showDetails()
+                self.showControls(with: false)
                 print(data)
             })
             .disposed(by: bag)

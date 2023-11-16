@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -260,6 +260,11 @@
 		4FCA88B628DAA08B00B1FE46 /* CarProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCA88B428DAA08B00B1FE46 /* CarProductTableViewCell.xib */; };
 		4FCC3F7A28F1D4F00063C9C9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC3F7828F1D4F00063C9C9 /* MainViewController.swift */; };
 		4FCC3F7B28F1D4F00063C9C9 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCC3F7928F1D4F00063C9C9 /* MainViewController.xib */; };
+		4FCE4A632B069A1700E8C91B /* PreapprovedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE4A612B069A1700E8C91B /* PreapprovedViewController.swift */; };
+		4FCE4A642B069A1700E8C91B /* PreapprovedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4A622B069A1700E8C91B /* PreapprovedViewController.xib */; };
+		4FCE4A672B069A2C00E8C91B /* PreapprovedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE4A652B069A2C00E8C91B /* PreapprovedCollectionViewCell.swift */; };
+		4FCE4A682B069A2C00E8C91B /* PreapprovedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4A662B069A2C00E8C91B /* PreapprovedCollectionViewCell.xib */; };
+		4FCE4A6A2B069A9C00E8C91B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4A692B069A9C00E8C91B /* GoogleService-Info.plist */; };
 		4FCEB7E028CFF9A0009B3FDF /* OffersTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEB7DE28CFF9A0009B3FDF /* OffersTabViewController.swift */; };
 		4FCEB7E128CFF9A0009B3FDF /* OffersTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCEB7DF28CFF9A0009B3FDF /* OffersTabViewController.xib */; };
 		4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */; };
@@ -373,7 +378,6 @@
 		CB82642A2A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8264282A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib */; };
 		CB82642E2A6E3AB100DB7B13 /* OfferProductImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82642C2A6E3AB100DB7B13 /* OfferProductImageViewController.swift */; };
 		CB82642F2A6E3AB100DB7B13 /* OfferProductImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB82642D2A6E3AB100DB7B13 /* OfferProductImageViewController.xib */; };
-		CB8863D22B058E9100F34532 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB8863D12B058E9100F34532 /* GoogleService-Info.plist */; };
 		CB8863D82B05DAAB00F34532 /* PresaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8863D62B05DAAB00F34532 /* PresaleViewController.swift */; };
 		CB8863D92B05DAAB00F34532 /* PresaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8863D72B05DAAB00F34532 /* PresaleViewController.xib */; };
 		CB8863DB2B05EB0B00F34532 /* PresaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8863DA2B05EB0B00F34532 /* PresaleViewModel.swift */; };
@@ -693,6 +697,11 @@
 		4FCA88B428DAA08B00B1FE46 /* CarProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarProductTableViewCell.xib; sourceTree = "<group>"; };
 		4FCC3F7828F1D4F00063C9C9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4FCC3F7928F1D4F00063C9C9 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		4FCE4A612B069A1700E8C91B /* PreapprovedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreapprovedViewController.swift; sourceTree = "<group>"; };
+		4FCE4A622B069A1700E8C91B /* PreapprovedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreapprovedViewController.xib; sourceTree = "<group>"; };
+		4FCE4A652B069A2C00E8C91B /* PreapprovedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreapprovedCollectionViewCell.swift; sourceTree = "<group>"; };
+		4FCE4A662B069A2C00E8C91B /* PreapprovedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreapprovedCollectionViewCell.xib; sourceTree = "<group>"; };
+		4FCE4A692B069A9C00E8C91B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FCEB7DE28CFF9A0009B3FDF /* OffersTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTabViewController.swift; sourceTree = "<group>"; };
 		4FCEB7DF28CFF9A0009B3FDF /* OffersTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OffersTabViewController.xib; sourceTree = "<group>"; };
 		4FDA3A9826D8FE26003B2CB6 /* GolloApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolloApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -816,7 +825,6 @@
 		CB8264282A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		CB82642C2A6E3AB100DB7B13 /* OfferProductImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferProductImageViewController.swift; sourceTree = "<group>"; };
 		CB82642D2A6E3AB100DB7B13 /* OfferProductImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferProductImageViewController.xib; sourceTree = "<group>"; };
-		CB8863D12B058E9100F34532 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB8863D62B05DAAB00F34532 /* PresaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresaleViewController.swift; sourceTree = "<group>"; };
 		CB8863D72B05DAAB00F34532 /* PresaleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresaleViewController.xib; sourceTree = "<group>"; };
 		CB8863DA2B05EB0B00F34532 /* PresaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresaleViewModel.swift; sourceTree = "<group>"; };
@@ -1171,6 +1179,8 @@
 				4F317A8E28F76D6F005BA675 /* HomeTabViewController.xib */,
 				4F57B79728F9F19E00CFBD01 /* SearchOffersViewController.swift */,
 				4F57B79828F9F19E00CFBD01 /* SearchOffersViewController.xib */,
+				4FCE4A612B069A1700E8C91B /* PreapprovedViewController.swift */,
+				4FCE4A622B069A1700E8C91B /* PreapprovedViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1730,7 +1740,7 @@
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* GolloApp.xcdatamodeld */,
-				CB8863D12B058E9100F34532 /* GoogleService-Info.plist */,
+				4FCE4A692B069A9C00E8C91B /* GoogleService-Info.plist */,
 			);
 			path = GolloApp;
 			sourceTree = "<group>";
@@ -1841,6 +1851,8 @@
 				4FBFF2272AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib */,
 				4FBFF22A2AB21F7D00540F29 /* CategoryCollectionViewCell.swift */,
 				4FBFF22B2AB21F7D00540F29 /* CategoryCollectionViewCell.xib */,
+				4FCE4A652B069A2C00E8C91B /* PreapprovedCollectionViewCell.swift */,
+				4FCE4A662B069A2C00E8C91B /* PreapprovedCollectionViewCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2283,13 +2295,14 @@
 				4FA0B87128E3C48700395361 /* AddressListViewController.xib in Resources */,
 				CB82642F2A6E3AB100DB7B13 /* OfferProductImageViewController.xib in Resources */,
 				4F317A9C28F9E038005BA675 /* SectionCollectionViewCell.xib in Resources */,
+				4FCE4A642B069A1700E8C91B /* PreapprovedViewController.xib in Resources */,
 				4F69894428BDB625000FFA56 /* PaymentSuccessViewController.xib in Resources */,
 				4FDA3AA326D8FE26003B2CB6 /* Main.storyboard in Resources */,
 				4FADF58B28E4A2A800DF9F29 /* OfferServiceProtectionCollectionViewCell.xib in Resources */,
 				4F74C8D4272C733E00FADA4D /* OffersQueryView.xib in Resources */,
 				4FE573A728C16AEF00BBDEBC /* SignupWaringViewController.xib in Resources */,
 				CB12A7732AAB9943006CD52E /* CategoriesCollectionViewCell.xib in Resources */,
-				CB8863D22B058E9100F34532 /* GoogleService-Info.plist in Resources */,
+				4FCE4A682B069A2C00E8C91B /* PreapprovedCollectionViewCell.xib in Resources */,
 				4F0D967526DDBB810061E89E /* SansSerifExbFLF-Italic.otf in Resources */,
 				4F0D968126DDBC740061E89E /* Home.storyboard in Resources */,
 				4F0D96A826DDD6530061E89E /* Profile.storyboard in Resources */,
@@ -2311,6 +2324,7 @@
 				4F9DF35F2A7B07A2000ACCAE /* ProductFooterCollectionViewCell.xib in Resources */,
 				CB17DEC72A906FC8009DA49E /* GeolozalizationViewController.xib in Resources */,
 				4F68373228DB7A5600462F5E /* OfferServiceProtectionViewController.xib in Resources */,
+				4FCE4A6A2B069A9C00E8C91B /* GoogleService-Info.plist in Resources */,
 				4FBFF2212AB163AE00540F29 /* HorizontalSliderCollectionViewCell.xib in Resources */,
 				4FE86E6928E41092008E58F1 /* ShippingMethodTableViewCell.xib in Resources */,
 				4FBFF2292AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib in Resources */,
@@ -2473,6 +2487,7 @@
 				4F74C8D8272C7DE200FADA4D /* OffersQueryView.swift in Sources */,
 				4F11E041272DB38000E15003 /* AccountItemsViewModel.swift in Sources */,
 				4F0D967F26DDBBB40061E89E /* Common.swift in Sources */,
+				4FCE4A672B069A2C00E8C91B /* PreapprovedCollectionViewCell.swift in Sources */,
 				4F9B100028BDBBCD00B1FD82 /* SaveUserRequest.swift in Sources */,
 				4FE1912826DEFCA000322128 /* ProductCollectionViewCell.swift in Sources */,
 				4F68372728DB666900462F5E /* OfferDetailRequest.swift in Sources */,
@@ -2524,6 +2539,7 @@
 				4FEDF8E328B9921E00719245 /* TransactionHistoryRequest.swift in Sources */,
 				4F90BC842912E2BA006EEABC /* Double+Extension.swift in Sources */,
 				4F317A9328F76FCB005BA675 /* BannerCollectionViewCell.swift in Sources */,
+				4FCE4A632B069A1700E8C91B /* PreapprovedViewController.swift in Sources */,
 				4FA4D6E3271FE56E00C117CD /* StatusViewModel.swift in Sources */,
 				4FCA88B528DAA08B00B1FE46 /* CarProductTableViewCell.swift in Sources */,
 				4FE1910A26DEF77C00322128 /* SliderTableViewCell.swift in Sources */,

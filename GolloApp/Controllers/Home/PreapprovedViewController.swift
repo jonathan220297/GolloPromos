@@ -63,7 +63,7 @@ class PreapprovedViewController: UIViewController {
             failureImage: UIImage(named: "empty_image")
         )
         
-        if let url = URL(string: image ?? "") {
+        if let url = URL(string: image?.replacingOccurrences(of: " ", with: "%20") ?? "") {
             Nuke.loadImage(with: url, options: options, into: mainImageView)
         } else {
             self.mainImageView.image = UIImage(named: "empty_image")

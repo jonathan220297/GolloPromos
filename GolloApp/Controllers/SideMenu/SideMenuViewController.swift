@@ -246,6 +246,7 @@ extension SideMenuViewController {
                                     self.registerDevice(with: token)
                                 }
                             }
+                            NotificationCenter.default.post(name: NSNotification.Name("ReloadHomeData"), object: nil)
                         } catch let signOutError as NSError {
                             log.error("Error signing out: \(signOutError)")
                         }
@@ -363,6 +364,7 @@ extension SideMenuViewController {
                             self.registerDevice(with: token)
                         }
                     }
+                    NotificationCenter.default.post(name: NSNotification.Name("ReloadHomeData"), object: nil)
                 } catch let signOutError as NSError {
                     log.error("Error signing out: \(signOutError)")
                 }

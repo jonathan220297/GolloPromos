@@ -148,10 +148,10 @@ class HomeViewModel {
                     vertical: true,
                     height: 100,
                     isPreapproved: true,
-                    preapprovedDescription: "Estimado \(preapprovedInfo.nombreCliente ?? ""), tenés un crédito preaprobado de \(preapprovedInfo.monto ?? 0.0) colones con vigencia del \(preapprovedInfo.fechaInicio ?? "") al \(preapprovedInfo.fechaFin ?? "")".withBoldText(
+                    preapprovedDescription: "Estimado \(preapprovedInfo.nombreCliente ?? ""), tenés un crédito preaprobado de \(String(preapprovedInfo.monto ?? 0.0).currencyFormatting()) colones con vigencia del \(preapprovedInfo.fechaInicio ?? "") al \(preapprovedInfo.fechaFin ?? "")".withBoldText(
                         texts: [
                             preapprovedInfo.nombreCliente ?? "",
-                            String(preapprovedInfo.monto ?? 0.0),
+                            String(preapprovedInfo.monto ?? 0.0).currencyFormatting(),
                             preapprovedInfo.fechaInicio ?? "",
                             preapprovedInfo.fechaFin ?? ""
                         ],

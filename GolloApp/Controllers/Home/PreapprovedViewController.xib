@@ -28,7 +28,7 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTh-e1-N2A">
-                    <rect key="frame" x="39.333333333333343" y="300.33333333333331" width="314.33333333333326" height="251.66666666666669"/>
+                    <rect key="frame" x="39.333333333333343" y="265" width="314.33333333333326" height="322"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsV-ue-Nv9">
                             <rect key="frame" x="281.33333333333337" y="8" width="25" height="25"/>
@@ -48,10 +48,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VU5-2l-sO5">
-                            <rect key="frame" x="16" y="135.66666666666669" width="282.33333333333331" height="100"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="100" id="WWY-GZ-OPO"/>
-                            </constraints>
+                            <rect key="frame" x="16" y="135.66666666666669" width="282.33333333333331" height="170.33333333333331"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -76,6 +73,7 @@
                 <constraint firstItem="dTh-e1-N2A" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="aNu-fy-EdK"/>
                 <constraint firstItem="dTh-e1-N2A" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="gaO-te-3ka"/>
                 <constraint firstAttribute="bottom" secondItem="K5o-c0-5W6" secondAttribute="bottom" id="pVQ-0h-tVx"/>
+                <constraint firstItem="VU5-2l-sO5" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.2" id="pXj-Wk-anc"/>
                 <constraint firstItem="dTh-e1-N2A" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qOx-BD-fI9"/>
                 <constraint firstItem="K5o-c0-5W6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="scW-FI-eF3"/>
             </constraints>

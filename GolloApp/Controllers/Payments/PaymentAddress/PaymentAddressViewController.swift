@@ -198,7 +198,7 @@ class PaymentAddressViewController: UIViewController {
             .isOn
             .subscribe(onNext: {[weak self] value in
                 guard let self = self else { return }
-                viewModel.preApprovedSubject.accept(value)
+                self.viewModel.preApprovedSubject.accept(value)
             })
             .disposed(by: bag)
         
@@ -207,7 +207,7 @@ class PaymentAddressViewController: UIViewController {
             .isOn
             .subscribe(onNext: {[weak self] value in
                 guard let self = self else { return }
-                viewModel.creditCardSubject.accept(value)
+                self.viewModel.creditCardSubject.accept(value)
             })
             .disposed(by: bag)
         
@@ -390,15 +390,15 @@ class PaymentAddressViewController: UIViewController {
                     if let profile = data.perfil, let _ = profile.numeroIdentificacion, let _ = profile.numeroIdentificacion {
                         Variables.profile = profile
                         if profile.indPreaprobado == 1 {
-                            preApprovedView.isHidden = false
+                            self.preApprovedView.isHidden = false
                         } else {
-                            preApprovedView.isHidden = true
+                            self.preApprovedView.isHidden = true
                         }
                         
                         if profile.indPreaprobado != 1 && profile.indEmma != 1 {
-                            creditCardView.isHidden = false
+                            self.creditCardView.isHidden = false
                         } else {
-                            creditCardView.isHidden = true
+                            self.creditCardView.isHidden = true
                         }
                     }
                 })
