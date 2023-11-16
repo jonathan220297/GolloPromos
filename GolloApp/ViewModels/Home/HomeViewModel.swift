@@ -142,6 +142,26 @@ class HomeViewModel {
     
     func configureSections() {
         self.sections.removeAll()
+        if let preapprovedInfo = configuration?.preaprobado {
+            sections.append(
+                MasterSection(
+                    vertical: true,
+                    height: 100,
+                    isPreapproved: true,
+                    preapprovedDescription: "Estimado \(preapprovedInfo.nombreCliente ?? ""), tenés un crédito preaprobado de \(preapprovedInfo.monto ?? 0.0) colones con vigencia del \(preapprovedInfo.fechaInicio ?? "") al \(preapprovedInfo.fechaFin ?? "")".withBoldText(
+                        texts: [
+                            preapprovedInfo.nombreCliente ?? "",
+                            String(preapprovedInfo.monto ?? 0.0),
+                            preapprovedInfo.fechaInicio ?? "",
+                            preapprovedInfo.fechaFin ?? ""
+                        ],
+                        regularFont: UIFont(name: "KohinoorBangla-Regular", size: 14),
+                        boldFont: UIFont(name: "KohinoorBangla-Semibold", size: 14)
+                    ),
+                    preapprovedImage: preapprovedInfo.image
+                )
+            )
+        }
         if let banners = configuration?.banners {
             for banner in banners {
                 self.sections.append(
@@ -151,7 +171,8 @@ class HomeViewModel {
                         name: nil,
                         height: Double(banner.height ?? 0) * 0.2,
                         banner: banner,
-                        product: nil
+                        product: nil,
+                        isPreapproved: nil
                     )
                 )
             }
@@ -169,7 +190,8 @@ class HomeViewModel {
                             banner: nil,
                             link: section.linkValue,
                             tax: section.linkTax,
-                            categories: categories
+                            categories: categories,
+                            isPreapproved: nil
                         )
                     )
                 } else {
@@ -188,7 +210,8 @@ class HomeViewModel {
                                 banner: nil,
                                 link: section.linkValue,
                                 tax: section.linkTax,
-                                product: products
+                                product: products,
+                                isPreapproved: nil
                             )
                         )
                     }

@@ -40,6 +40,21 @@ extension String {
         fullString.addAttributes(boldFontAttribute, range: range)
         return fullString
     }
+    
+    func withBoldText(texts: [String], regularFont: UIFont?, boldFont: UIFont?) -> NSAttributedString {
+        let regularFontAux = regularFont ?? UIFont.systemFont(ofSize: 12)
+        let boldFontAux = boldFont ?? UIFont.boldSystemFont(ofSize: 12)
+        let fullString = NSMutableAttributedString(string: self,
+                                                   attributes: [NSAttributedString.Key.font: regularFontAux])
+        let boldFontAttribute: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: boldFontAux]
+        for text in texts {
+            let range = (self as NSString).range(of: text)
+            fullString.addAttributes(boldFontAttribute,
+                                     range: range)
+        }
+        
+        return fullString
+    }
 
     func currencyFormatting() -> String {
         if let value = Double(self) {

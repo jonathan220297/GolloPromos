@@ -17,7 +17,10 @@ class MasterSection {
         link: Int? = nil,
         tax: Int? = nil,
         product: [Product]? = nil,
-        categories: [Categories]? = nil
+        categories: [Categories]? = nil,
+        isPreapproved: Bool?,
+        preapprovedDescription: NSAttributedString? = nil,
+        preapprovedImage: String? = nil
     ) {
         self.vertical = vertical
         self.position = position
@@ -28,6 +31,9 @@ class MasterSection {
         self.tax = tax
         self.product = product
         self.categories = categories
+        self.isPreapproved = isPreapproved
+        self.preapprovedDescription = preapprovedDescription
+        self.preapprovedImage = preapprovedImage
     }
     
     var vertical: Bool
@@ -39,4 +45,7 @@ class MasterSection {
     var tax: Int?
     var product: [Product]?
     var categories: [Categories]?
+    var isPreapproved: Bool?
+    var preapprovedDescription: NSAttributedString?
+    var preapprovedImage: String?
 }

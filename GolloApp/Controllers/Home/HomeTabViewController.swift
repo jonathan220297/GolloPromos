@@ -206,7 +206,13 @@ class HomeTabViewController: UIViewController {
             ),
             forCellWithReuseIdentifier: "TopCategoriesCollectionViewCell"
         )
-        
+        homeCollectionView.register(
+            UINib(
+                nibName: "PreapprovedCollectionViewCell",
+                bundle: nil
+            ),
+            forCellWithReuseIdentifier: "PreapprovedCollectionViewCell"
+        )
     }
     
     fileprivate func fetchHomeConfiguration() {
@@ -304,6 +310,8 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             return 1
         } else if let products = viewModel.sections[section].product {
             return products.count
+        } else if let isPreapproved = viewModel.sections[section].isPreapproved, isPreapproved {
+            return 1
         } else {
             return 0
         }
@@ -363,6 +371,8 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             getHorizontalSliderCell(collectionView, cellForItemAt: indexPath)
         } else if viewModel.sections[indexPath.section].categories != nil {
             return getCategoriesCell(collectionView, cellForItemAt: indexPath)
+        } else if viewModel.sections[indexPath.section].isPreapproved ?? false {
+            return getPreapprovedCell(collectionView, cellForItemAt: indexPath)
         } else {
             return UICollectionViewCell()
         }
@@ -441,6 +451,15 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
         return cell
     }
     
+    func getPreapprovedCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "PreapprovedCollectionViewCell",
+            for: indexPath
+        ) as? PreapprovedCollectionViewCell else { return UICollectionViewCell() }
+        cell.configureData(with: viewModel.sections[indexPath.section].preapprovedDescription)
+        return cell
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -448,8 +467,10 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             if let dimensions = imageDimensions[indexPath] {
                 return dimensions
             } else {
-                return CGSize(width: collectionView.frame.size.width, height: 120)
+                return CGSize(width: collectionView.frame.size.width, height: 400)
             }
+        } else if viewModel.sections[indexPath.section].isPreapproved ?? false {
+            return CGSize(width: collectionView.frame.size.width, height: 100)
         } else {
             if viewModel.sections[indexPath.section].vertical {
                 let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
@@ -466,11 +487,21 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
 
 extension HomeTabViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
-        vc.offer = viewModel.sections[indexPath.section].product?[indexPath.row]
-        vc.skuProduct = viewModel.sections[indexPath.section].product?[indexPath.row].productCode
-        vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
+        if let isPreapproved = viewModel.sections[indexPath.section].isPreapproved, isPreapproved {
+            let preapprovedViewController = PreapprovedViewController(
+                description: viewModel.sections[indexPath.section].preapprovedDescription,
+                image: viewModel.sections[indexPath.section].preapprovedImage
+            )
+            preapprovedViewController.modalPresentationStyle = .overCurrentContext
+            preapprovedViewController.modalTransitionStyle = .crossDissolve
+            self.present(preapprovedViewController, animated: true)
+        } else {
+            let vc = OfferDetailViewController.instantiate(fromAppStoryboard: .Offers)
+            vc.offer = viewModel.sections[indexPath.section].product?[indexPath.row]
+            vc.skuProduct = viewModel.sections[indexPath.section].product?[indexPath.row].productCode
+            vc.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

@@ -25,6 +25,7 @@ struct HomeConfiguration: Codable {
     let home: Home?
     let banners: [Banner]?
     let sections: [Section]?
+    let preaprobado: PreapprovedInfo?
 }
 
 // MARK: - Banner
@@ -76,6 +77,18 @@ struct Section: Codable {
     let secondaryImage: String?
     let categorias: [Categories]?
     let vertical: Bool?
+}
+
+// MARK: - PreapprovedInfo
+struct PreapprovedInfo: Codable {
+    let indPopup: Int?
+    let image: String?
+    let nombreCliente: String?
+    let monto: Double?
+    let fechaInicio: String?
+    let fechaFin: String?
+    let texto: String?
+    let popup: String?
 }
 
 // MARK: - Categories
