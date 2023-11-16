@@ -31,7 +31,7 @@ target 'GolloApp' do
   
   pod 'XCGLogger'
   
-  pod 'GolloNetWorking', :path => '/Users/jonathanrodriguez/Documents/Work/Merckers/GolloPromos-iOS-Modules/GolloNetWorking'
+  pod 'GolloNetWorking', :path => '/Users/rosegueda/Documents/Personales/Proyectos/Merckers/Gollo/GolloApp-Modules/GolloNetWorking'
   
   target 'GolloAppTests' do
     inherit! :search_paths

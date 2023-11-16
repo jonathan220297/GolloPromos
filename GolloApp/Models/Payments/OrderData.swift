@@ -39,6 +39,7 @@ struct PaymentMethod: Codable {
     let totalCuotas: Int
     let indTarjeta, indPrincipal, indEmma: Int
     let pinValidacionEmma, plazoCredito: Int?
+    let prima: Double?
 }
 
 // MARK: - DeliveryInfo

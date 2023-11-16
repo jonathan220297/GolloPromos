@@ -18,4 +18,5 @@ struct UserData: Codable {
     let cantidadHijos: String?
     let fechaNacimiento, nacionalidad, carroPropio, ocupacion, image: String?
     let emailValidacion, pinValidacion: String?
+    let indEmma, indPreaprobado: Int?
 }

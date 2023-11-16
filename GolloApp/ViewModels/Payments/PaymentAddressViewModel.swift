@@ -34,6 +34,8 @@ class PaymentAddressViewModel {
     let postalCodeSubject: BehaviorRelay<String?> = BehaviorRelay(value: "")
     let latitudeSubject: BehaviorRelay<Double?> = BehaviorRelay(value: nil)
     let longitudeSubject: BehaviorRelay<Double?> = BehaviorRelay(value: nil)
+    let preApprovedSubject: BehaviorRelay<Bool?> = BehaviorRelay(value: false)
+    let creditCardSubject: BehaviorRelay<Bool?> = BehaviorRelay(value: false)
     
     let nameError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let lastNameError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
@@ -45,6 +47,7 @@ class PaymentAddressViewModel {
     let countyError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let districtError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let addressError: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
     
     var isValidFirstPartForm: Observable<Bool> {
         return Observable.combineLatest(firstNameSubject, lastNameSubject, emailSubject, phoneNumberSubject, documentTypeSubject) { firstName, lastName, email, phonenumber, document in
@@ -153,6 +156,43 @@ class PaymentAddressViewModel {
         documentTypeArray.append(DocType(code: "N", name: "Nite"))
     }
     
+    func fetchUserData(id: String, type: String, pin: Int = 0) -> BehaviorRelay<ProfileResponse?> {
+        let apiResponse: BehaviorRelay<ProfileResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<ProfileResponse, UserServiceRequest>(
+            service: BaseServiceRequestParam<UserServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.IS_GOLLO_CUSTOMER_PROCESS_ID.rawValue),
+                    parametros: UserServiceRequest (
+                        noCia: "10",
+                        numeroIdentificacion: id,
+                        tipoIdentificacion: type,
+                        indPin: pin
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                    switch error {
+                    case .decoding: break;
+                    case .server(code: let code, message: _):
+                        if code == 401 {
+                            self.errorExpiredToken.accept(true)
+                            self.errorMessage.accept("")
+                        } else {
+                            self.errorMessage.accept(error.localizedDescription)
+                        }
+                    }
+                }
+            }
+        }
+        return apiResponse
+    }
+    
     func fetchStates() -> BehaviorRelay<[State]?> {
         let apiResponse: BehaviorRelay<[State]?> = BehaviorRelay(value: nil)
         service.callWebServiceGolloAlternative(BaseRequest<[State], StateListRequest>(
@@ -239,6 +279,8 @@ class PaymentAddressViewModel {
             tipoIDRecep: "C"
         )
         carManager.deliveryInfo = deliveryInfo
+        carManager.payWithPreApproved = true
+        carManager.payWithCreditCard = false
     }
     
     func isValidAddress() -> Bool {

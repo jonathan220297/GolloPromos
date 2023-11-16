@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,6 +23,8 @@
                 <outlet property="countyBottomView" destination="wee-Hu-FHq" id="IiX-3K-aJk"/>
                 <outlet property="countyButton" destination="Zfq-Xy-X4j" id="nY0-Aq-jNG"/>
                 <outlet property="countyLabel" destination="j42-X6-Br4" id="7Z2-wD-Ikh"/>
+                <outlet property="creditCardSwitch" destination="pmp-D1-vaS" id="5mq-YP-OiK"/>
+                <outlet property="creditCardView" destination="wVa-Vp-2I5" id="x3o-ep-IIb"/>
                 <outlet property="currentLocationLabel" destination="B6g-sr-V0n" id="ZoU-QE-X1H"/>
                 <outlet property="currentLocationView" destination="Fdy-0N-h0m" id="3Zs-7C-uma"/>
                 <outlet property="districtBottomView" destination="6OW-Ns-Bab" id="0yd-La-Iwg"/>
@@ -46,6 +48,8 @@
                 <outlet property="phoneNumberBottomView" destination="ThK-Rg-bZ5" id="1bi-7a-Xc3"/>
                 <outlet property="phoneNumberTextField" destination="m6S-cx-hkX" id="niS-Tm-VCU"/>
                 <outlet property="postalCodeTextField" destination="zEe-XC-PLB" id="SGu-3V-epU"/>
+                <outlet property="preApprovedSwitch" destination="rLP-OV-gKn" id="FtQ-NS-Ebp"/>
+                <outlet property="preApprovedView" destination="Jk7-lu-gWQ" id="Svo-Fv-zpp"/>
                 <outlet property="saveAddressButton" destination="oUd-oX-awR" id="gle-pe-fts"/>
                 <outlet property="saveAddressView" destination="6a0-Mw-PkM" id="wfd-G2-1tC"/>
                 <outlet property="scrollView" destination="qEq-dT-1Iy" id="ZbY-0c-zTr"/>
@@ -787,6 +791,92 @@
                                                 <constraint firstItem="cFi-at-F1J" firstAttribute="top" secondItem="sFG-H5-yFR" secondAttribute="top" constant="8" id="x18-gI-PQQ"/>
                                             </constraints>
                                         </view>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jk7-lu-gWQ">
+                                            <rect key="frame" x="0.0" y="847" width="390" height="75"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="¿Deseas utilizar tu crédito pre-aprobado?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dq-xN-ZY5">
+                                                    <rect key="frame" x="8" y="27" width="275.66666666666669" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="P1h-zK-Nq8"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aL5-jI-7GU">
+                                                    <rect key="frame" x="291.66666666666669" y="22" width="90.333333333333314" height="31"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWQ-Mq-WTd">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15.333333333333334" height="31"/>
+                                                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                                            <color key="textColor" name="menuGray"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rLP-OV-gKn">
+                                                            <rect key="frame" x="23.333333333333314" y="0.0" width="51" height="31"/>
+                                                        </switch>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMp-vf-WHe">
+                                                            <rect key="frame" x="80.333333333333314" y="0.0" width="10" height="31"/>
+                                                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                                            <color key="textColor" name="menuGray"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="aL5-jI-7GU" firstAttribute="leading" secondItem="3Dq-xN-ZY5" secondAttribute="trailing" constant="8" id="BXw-cw-eff"/>
+                                                <constraint firstAttribute="height" constant="75" id="HUN-7Q-z0i"/>
+                                                <constraint firstAttribute="trailing" secondItem="aL5-jI-7GU" secondAttribute="trailing" constant="8" id="JL9-dv-Sxa"/>
+                                                <constraint firstItem="3Dq-xN-ZY5" firstAttribute="centerY" secondItem="Jk7-lu-gWQ" secondAttribute="centerY" id="Kmh-If-EAH"/>
+                                                <constraint firstItem="aL5-jI-7GU" firstAttribute="centerY" secondItem="Jk7-lu-gWQ" secondAttribute="centerY" id="gb1-Qh-36h"/>
+                                                <constraint firstItem="3Dq-xN-ZY5" firstAttribute="leading" secondItem="Jk7-lu-gWQ" secondAttribute="leading" constant="8" id="skN-OF-UrY"/>
+                                            </constraints>
+                                        </view>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVa-Vp-2I5">
+                                            <rect key="frame" x="0.0" y="847" width="390" height="75"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Realizaré el pago con tarjeta:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMo-2V-WxB">
+                                                    <rect key="frame" x="8" y="27" width="275.66666666666669" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="th8-yw-GoX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gFG-0n-bEe">
+                                                    <rect key="frame" x="291.66666666666669" y="22" width="90.333333333333314" height="31"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5Y-fv-OBd">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15.333333333333334" height="31"/>
+                                                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                                            <color key="textColor" name="menuGray"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pmp-D1-vaS">
+                                                            <rect key="frame" x="23.333333333333314" y="0.0" width="51" height="31"/>
+                                                        </switch>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwF-9V-0Ue">
+                                                            <rect key="frame" x="80.333333333333314" y="0.0" width="10" height="31"/>
+                                                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                                            <color key="textColor" name="menuGray"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="gFG-0n-bEe" firstAttribute="leading" secondItem="yMo-2V-WxB" secondAttribute="trailing" constant="8" id="4sp-kQ-I6W"/>
+                                                <constraint firstItem="yMo-2V-WxB" firstAttribute="centerY" secondItem="wVa-Vp-2I5" secondAttribute="centerY" id="6jY-Pl-zV7"/>
+                                                <constraint firstAttribute="height" constant="75" id="BRV-o8-vlN"/>
+                                                <constraint firstAttribute="trailing" secondItem="gFG-0n-bEe" secondAttribute="trailing" constant="8" id="QIm-Y5-ith"/>
+                                                <constraint firstItem="gFG-0n-bEe" firstAttribute="centerY" secondItem="wVa-Vp-2I5" secondAttribute="centerY" id="SQr-ao-J9z"/>
+                                                <constraint firstItem="yMo-2V-WxB" firstAttribute="leading" secondItem="wVa-Vp-2I5" secondAttribute="leading" constant="8" id="qMz-0d-oUX"/>
+                                            </constraints>
+                                        </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-ZY-47e">
                                             <rect key="frame" x="0.0" y="847" width="390" height="75"/>
                                             <subviews>
@@ -836,7 +926,7 @@
                                                     <rect key="frame" x="68.333333333333329" y="8" width="253.33333333333337" height="39"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tray.and.arrow.down.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="08j-FX-F2F">
-                                                            <rect key="frame" x="15.999999999999998" y="6.3333333333332948" width="23.333333333333329" height="24.666666666666671"/>
+                                                            <rect key="frame" x="15.999999999999998" y="5.9999999999999627" width="23.333333333333329" height="25"/>
                                                             <color key="tintColor" name="Minsk"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="08j-FX-F2F" secondAttribute="height" multiplier="1:1" id="RJy-JT-7hw"/>
@@ -955,15 +1045,18 @@
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="ic_location" width="256" height="256"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
-        <image name="tray.and.arrow.down.fill" catalog="system" width="128" height="115"/>
+        <image name="tray.and.arrow.down.fill" catalog="system" width="128" height="117"/>
         <namedColor name="Minsk">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colorPrimary">
             <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="menuGray">
+            <color red="0.34509803921568627" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

@@ -27,5 +27,6 @@ struct DeliveryMethodsServiceRequest: Codable {
     var idProvincia: String
     var indVMI: Int
     var monto: Double
+    var formaPago: Int
 }
 

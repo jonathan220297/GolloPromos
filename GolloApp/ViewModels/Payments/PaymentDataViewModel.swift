@@ -195,7 +195,8 @@ class PaymentDataViewModel {
                 indPrincipal: carManager.paymentMethodSelected?.indPrincipal ?? 0,
                 indEmma: 0,
                 pinValidacionEmma: nil,
-                plazoCredito: nil
+                plazoCredito: nil,
+                prima: nil
             )
         )
     }
@@ -222,7 +223,8 @@ class PaymentDataViewModel {
                         indPrincipal: 0,
                         indEmma: 0,
                         pinValidacionEmma: nil,
-                        plazoCredito: nil
+                        plazoCredito: nil,
+                        prima: nil
                     )
                 )
             }

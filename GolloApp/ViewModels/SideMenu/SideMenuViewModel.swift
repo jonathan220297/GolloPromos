@@ -40,7 +40,7 @@ class SideMenuViewModel {
                     case .decoding: break;
                     case .server(code: let code, message: _):
                         if code == 401 {
-                            self.errorExpiredToken.accept(true)
+//                            self.errorExpiredToken.accept(true)
                             self.errorMessage.accept("")
                         } else {
                             self.errorMessage.accept(error.localizedDescription)

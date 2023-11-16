@@ -226,7 +226,9 @@ class EditProfileViewController: UIViewController {
                                     ocupacion: "",
                                     image: Variables.userProfile?.image,
                                     emailValidacion: "",
-                                    pinValidacion: ""
+                                    pinValidacion: "",
+                                    indEmma: -1,
+                                    indPreaprobado: -1
                                 )
                                 self.showData(with: data)
                             }
@@ -268,7 +270,9 @@ class EditProfileViewController: UIViewController {
                     ocupacion: "",
                     image: Variables.userProfile?.image,
                     emailValidacion: "",
-                    pinValidacion: ""
+                    pinValidacion: "",
+                    indEmma: -1,
+                    indPreaprobado: -1
                 )
                 showData(with: data)
             }

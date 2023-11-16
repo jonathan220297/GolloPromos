@@ -21,6 +21,8 @@ class CarManager {
     var kinship: String?
     var fundsSource: String?
     var carProductsDetail: [CartItemDetail] = []
+    var payWithPreApproved = false
+    var payWithCreditCard = false
     
     func emptyCar() -> Bool {
         car.removeAll()
