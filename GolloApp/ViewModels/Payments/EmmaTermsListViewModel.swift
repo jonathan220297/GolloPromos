@@ -80,7 +80,8 @@ class EmmaTermsListViewModel {
                         indPrincipal: 0,
                         indEmma: 1,
                         pinValidacionEmma: Int(validationPin ?? "0"),
-                        plazoCredito: termSelected?.cantidadMeses ?? 0
+                        plazoCredito: termSelected?.cantidadMeses ?? 0,
+                        prima: nil
                     )
                 )
             }
@@ -102,7 +103,8 @@ class EmmaTermsListViewModel {
                 indPrincipal: 1,
                 indEmma: 1,
                 pinValidacionEmma: Int(validationPin ?? "0"),
-                plazoCredito: termSelected?.cantidadMeses ?? 0
+                plazoCredito: termSelected?.cantidadMeses ?? 0,
+                prima: nil
             )
         )
         let orderItemsDetail = orderDetail()

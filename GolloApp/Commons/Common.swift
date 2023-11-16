@@ -150,6 +150,7 @@ enum GOLLOAPP: String {
     case REMOVE_USER_PROCESS_ID = "54"
     case EMMA_TERMS_PROCESS_ID = "57"
     case PROFILE_CHANGE_USER_PIN_PROCESS_ID = "58"
+    case GET_CREDIT_TERMS_PROCESS_ID = "60"
 }
 
 enum Payment: Int {
@@ -202,6 +203,7 @@ struct Variables {
     static var notificationsToken = ""
     static var openPushNotificationFlow = false
     static var notificationFlowPayload: [String: Any]? = nil
+    static var profile: UserData? = nil
 }
 
 enum APP_NOTIFICATIONS: String {

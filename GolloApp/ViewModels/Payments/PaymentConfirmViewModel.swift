@@ -22,6 +22,8 @@ class PaymentConfirmViewModel {
     var shipping = 0.0
     var bonus = 0.0
     var isAccountPayment = true
+    var plazo: Int? = nil
+    var prima: Double? = nil
     
     let errorMessage = BehaviorRelay<String?>(value: nil)
 
@@ -49,10 +51,19 @@ class PaymentConfirmViewModel {
         return apiResponse
     }
 
-    func sendOrder() -> BehaviorRelay<PaymentOrderResponse?> {
+    func sendOrder(with crediGollo: Bool) -> BehaviorRelay<PaymentOrderResponse?> {
         guard let deliveryInfo = carManager.deliveryInfo,
               let clientID = Variables.userProfile?.numeroIdentificacion else {
             return BehaviorRelay<PaymentOrderResponse?>(value: nil)
+        }
+        var selectedPlazo: Int? = nil
+        var selectedPrima: Double? = nil
+        if crediGollo {
+            selectedPlazo = plazo
+            selectedPrima = prima
+        } else {
+            selectedPlazo = nil
+            selectedPrima = nil
         }
         for item in carManager.car {
             if let montoBonoProveedor = item.montoBonoProveedor, montoBonoProveedor > 0.0 {
@@ -73,7 +84,8 @@ class PaymentConfirmViewModel {
                        indPrincipal: 0,
                        indEmma: 0,
                        pinValidacionEmma: nil,
-                       plazoCredito: nil
+                       plazoCredito: selectedPlazo,
+                       prima: selectedPrima
                    )
                 )
             }
@@ -95,7 +107,8 @@ class PaymentConfirmViewModel {
                indPrincipal: methodSelected?.indPrincipal ?? 0,
                indEmma: 0,
                pinValidacionEmma: nil,
-               plazoCredito: nil
+               plazoCredito: selectedPlazo,
+               prima: selectedPrima
            )
         )
         let orderItemsDetail = orderDetail()

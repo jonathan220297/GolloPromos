@@ -102,6 +102,8 @@ class PaymentConfirmViewController: UIViewController {
                         vc.viewModel.zeroRatePayment = self.viewModel.methodSelected?.indTasaCero == 1 && self.viewModel.methodSelected?.indTarjeta == 1
                         vc.delegate = self
                         self.navigationController?.pushViewController(vc, animated: true)
+                    } else if methodSelected.indCrediGollo == 1 {
+                        self.showCrediGolloDetail()
                     } else {
                         if methodSelected.indEmma == 1 {
                             let total = round(self.viewModel.subTotal) + round(self.viewModel.shipping) - round(self.viewModel.bonus)
@@ -170,6 +172,20 @@ class PaymentConfirmViewController: UIViewController {
         }
     }
     
+    private func showCrediGolloDetail() {
+        DispatchQueue.main.async {
+            let presaleViewController = PresaleViewController(
+                viewModel: PresaleViewModel()
+            )
+            presaleViewController.delegate = self
+            presaleViewController.viewModel.subTotal = self.viewModel.subTotal
+            presaleViewController.viewModel.shipping = self.viewModel.shipping
+            presaleViewController.viewModel.bonus = self.viewModel.bonus
+            presaleViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(presaleViewController, animated: true)
+        }
+    }
+    
     private func showEmmaTermsViewController() {
         DispatchQueue.main.async {
             let emmaTermsViewController = EmmaTermsListViewController(
@@ -184,9 +200,9 @@ class PaymentConfirmViewController: UIViewController {
         }
     }
     
-    fileprivate func sendOrder() {
+    fileprivate func sendOrder(with crediGollo: Bool = false) {
         viewModel
-            .sendOrder()
+            .sendOrder(with: crediGollo)
             .asObservable()
             .subscribe(onNext: {[weak self] response in
                 guard let self = self,
@@ -221,6 +237,14 @@ extension PaymentConfirmViewController: PaymentDataDelegate {
 extension PaymentConfirmViewController: EmmaTermsDelegate {
     func errorWhileEmmaPayment(with message: String) {
         showAlert(alertText: "Error", alertMessage: message)
+    }
+}
+
+extension PaymentConfirmViewController: PresaleDelegate {
+    func sendCrediGolloOrder(with plazo: Int, prima: String) {
+        viewModel.plazo = plazo
+        viewModel.prima = Double(prima)
+        self.sendOrder(with: true)
     }
 }
 

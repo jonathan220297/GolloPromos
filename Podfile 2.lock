@@ -905,6 +905,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FirebaseAnalytics
   - FirebaseAuth
+  - FirebaseCore
   - FirebaseCrashlytics
   - FirebaseDynamicLinks
   - FirebaseFirestore
@@ -1035,6 +1036,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: c192a23c32bef78dc9164d304b34cbfcc362ab90
+PODFILE CHECKSUM: 39f04c172be8accdb52c24814753347e85462d25
 
 COCOAPODS: 1.14.2

@@ -66,6 +66,13 @@ class ShippingMethodViewModel {
     }
     
     func fetchDeliveryMethods(idState: String, idCounty: String, idDistrict: String) -> BehaviorRelay<DeliveryMethodsResponse?> {
+        var paymentForm = 0
+        if carManager.payWithPreApproved || carManager.payWithCreditCard && Variables.profile?.indEmma != 1{
+            paymentForm = 1
+        } else {
+            paymentForm = 0
+        }
+        
         let apiResponse: BehaviorRelay<DeliveryMethodsResponse?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(
             BaseRequest<DeliveryMethodsResponse?, DeliveryMethodsServiceRequest>(
@@ -80,7 +87,8 @@ class ShippingMethodViewModel {
                             idDistrito: idDistrict,
                             idProvincia: idState,
                             indVMI: carManager.carHasVMI(),
-                            monto: carManager.total
+                            monto: carManager.total,
+                            formaPago: paymentForm
                         )
                     )
                 )

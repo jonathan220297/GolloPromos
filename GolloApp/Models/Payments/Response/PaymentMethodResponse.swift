@@ -13,6 +13,7 @@ class PaymentMethodResponse: Codable {
     let plazos: [ZeroRate]?
     let montoDisponibleEmma: Double?
     let linkDescarga: String?
+    let indCrediGollo: Int?
     var selected: Bool? = false
 }
 

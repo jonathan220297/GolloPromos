@@ -8,6 +8,7 @@
 import DropDown
 import RxSwift
 import UIKit
+import FirebaseAuth
 
 class PaymentAddressViewController: UIViewController {
     
@@ -46,6 +47,10 @@ class PaymentAddressViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var addressBottomView: UIView!
     @IBOutlet weak var postalCodeTextField: UITextField!
+    @IBOutlet weak var preApprovedView: UIView!
+    @IBOutlet weak var preApprovedSwitch: UISwitch!
+    @IBOutlet weak var creditCardView: UIView!
+    @IBOutlet weak var creditCardSwitch: UISwitch!
     @IBOutlet weak var saveAddressView: UIView!
     @IBOutlet weak var saveAddressButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
@@ -187,6 +192,25 @@ class PaymentAddressViewController: UIViewController {
                 self.showLocationPicker()
             })
             .disposed(by: bag)
+        
+        preApprovedSwitch
+            .rx
+            .isOn
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self else { return }
+                viewModel.preApprovedSubject.accept(value)
+            })
+            .disposed(by: bag)
+        
+        creditCardSwitch
+            .rx
+            .isOn
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self else { return }
+                viewModel.creditCardSubject.accept(value)
+            })
+            .disposed(by: bag)
+        
         saveAddressButton.rx
             .tap
             .subscribe(onNext: {
@@ -287,6 +311,30 @@ class PaymentAddressViewController: UIViewController {
                 self.addressBottomView.backgroundColor = .secondaryLabel
             }
         }).disposed(by: bag)
+        
+        viewModel
+            .errorExpiredToken
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self,
+                      let value = value else { return }
+                if value {
+                    let _ = KeychainManager.delete(key: "token")
+                    let firebaseAuth = Auth.auth()
+                    do {
+                        try firebaseAuth.signOut()
+                        let story = UIStoryboard(name: "Main", bundle:nil)
+                        let vc = story.instantiateViewController(withIdentifier: "navVC") as! UINavigationController
+                        UIApplication.shared.windows.first?.rootViewController = vc
+                        UIApplication.shared.windows.first?.makeKeyAndVisible()
+                        self.userDefaults.removeObject(forKey: "Information")
+                    } catch _ as NSError {
+            //            log.error("Error signing out: \(signOutError)")
+                    }
+                    self.viewModel.errorExpiredToken.accept(nil)
+                }
+            })
+            .disposed(by: bag)
     }
     
     fileprivate func configureViews() {
@@ -327,7 +375,35 @@ class PaymentAddressViewController: UIViewController {
     }
     
     fileprivate func initSpinners() {
+        fetchClient()
         fetchStates()
+    }
+    
+    fileprivate func fetchClient() {
+        if let info = Variables.userProfile {
+            viewModel
+                .fetchUserData(id: info.numeroIdentificacion ?? "", type: info.tipoIdentificacion ?? "")
+                .asObservable()
+                .subscribe(onNext: {[weak self] data in
+                    guard let self = self,
+                          let data = data else { return }
+                    if let profile = data.perfil, let _ = profile.numeroIdentificacion, let _ = profile.numeroIdentificacion {
+                        Variables.profile = profile
+                        if profile.indPreaprobado == 1 {
+                            preApprovedView.isHidden = false
+                        } else {
+                            preApprovedView.isHidden = true
+                        }
+                        
+                        if profile.indPreaprobado != 1 && profile.indEmma != 1 {
+                            creditCardView.isHidden = false
+                        } else {
+                            creditCardView.isHidden = true
+                        }
+                    }
+                })
+                .disposed(by: bag)
+        }
     }
     
     fileprivate func fetchStates() {

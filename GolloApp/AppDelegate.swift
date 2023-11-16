@@ -29,7 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
                         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
-
+        
+        FirebaseApp.configure()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
             self?.requestTracking()
         }
@@ -41,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             return self.application(application, open: url, sourceApplication: launchOptions?[.sourceApplication] as? String, annotation: annotation)
         }
         
-        FirebaseApp.configure()
         return true
     }
     
