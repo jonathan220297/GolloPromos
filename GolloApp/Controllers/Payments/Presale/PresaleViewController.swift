@@ -142,7 +142,7 @@ class PresaleViewController: UIViewController {
                 if !error.isEmpty {
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept(nil)
-                    showControls(with: true)
+                    self.showControls(with: true)
                     self.view.activityStopAnimatingFull()
                 }
             })
@@ -180,10 +180,10 @@ class PresaleViewController: UIViewController {
                 guard let self = self,
                       let data = data else { return }
                 self.view.activityStopAnimatingFull()
-                viewModel.presaleDetail = data
-                showTerms(with: data.plazos ?? [])
-                showDetails()
-                showControls(with: false)
+                self.viewModel.presaleDetail = data
+                self.showTerms(with: data.plazos ?? [])
+                self.showDetails()
+                self.showControls(with: false)
                 if let minPrima = data.montoPrimaMinimo, minPrima > 0, let formmatedAmount = numberFormatter.string(from: NSNumber(value: minPrima)) {
                     self.amountTextField.text = "₡" + formmatedAmount
                 }
