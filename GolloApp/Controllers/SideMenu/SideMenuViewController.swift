@@ -229,6 +229,7 @@ extension SideMenuViewController {
                     Variables.isClientUser = false
                     Variables.userProfile = nil
                     UserManager.shared.userData = nil
+                    NotificationCenter.default.post(name: NSNotification.Name("ReloadHomeData"), object: nil)
                     self.showAlertWithActions(alertText: "Detectamos otra sesión activa", alertMessage: "La aplicación se reiniciará.") {
                         let firebaseAuth = Auth.auth()
                         do {
@@ -246,7 +247,6 @@ extension SideMenuViewController {
                                     self.registerDevice(with: token)
                                 }
                             }
-                            NotificationCenter.default.post(name: NSNotification.Name("ReloadHomeData"), object: nil)
                         } catch let signOutError as NSError {
                             log.error("Error signing out: \(signOutError)")
                         }
@@ -357,6 +357,7 @@ extension SideMenuViewController {
                     Variables.isClientUser = false
                     Variables.userProfile = nil
                     UserManager.shared.userData = nil
+                    NotificationCenter.default.post(name: NSNotification.Name("ReloadHomeData"), object: nil)
                     Messaging.messaging().token { token, error in
                         if let error = error {
                             print("Error fetching FCM registration token: \(error)")
@@ -364,7 +365,6 @@ extension SideMenuViewController {
                             self.registerDevice(with: token)
                         }
                     }
-                    NotificationCenter.default.post(name: NSNotification.Name("ReloadHomeData"), object: nil)
                 } catch let signOutError as NSError {
                     log.error("Error signing out: \(signOutError)")
                 }
