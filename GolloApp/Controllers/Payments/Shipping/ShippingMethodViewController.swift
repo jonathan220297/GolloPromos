@@ -94,7 +94,7 @@ class ShippingMethodViewController: UIViewController {
                 self.viewModel.setShippingMethods(true)
                 self.viewModel.methodSelected = self.viewModel.methods.first
                 self.shippingMethodsTableView.reloadData()
-                self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + 35
+                self.shoppingMethodsTableViewHeightConstraint.constant = self.shippingMethodsTableView.contentSize.height + 50
                 self.shippingMethodsTableView.layoutIfNeeded()
                 self.stateView.isHidden = false
                 self.shopView.isHidden = false

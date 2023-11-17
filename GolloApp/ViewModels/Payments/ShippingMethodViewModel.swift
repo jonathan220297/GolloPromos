@@ -67,7 +67,13 @@ class ShippingMethodViewModel {
     
     func fetchDeliveryMethods(idState: String, idCounty: String, idDistrict: String) -> BehaviorRelay<DeliveryMethodsResponse?> {
         var paymentForm = 0
-        if carManager.payWithPreApproved || carManager.payWithCreditCard && Variables.profile?.indEmma != 1{
+        if carManager.payWithPreApproved {
+            paymentForm = 1
+        } else if Variables.profile?.indPreaprobado == 1 && !carManager.payWithPreApproved {
+            paymentForm = 0
+        } else if carManager.payWithCreditCard {
+            paymentForm = 0
+        } else if Variables.profile?.indEmma != 1 && !carManager.payWithCreditCard {
             paymentForm = 1
         } else {
             paymentForm = 0
