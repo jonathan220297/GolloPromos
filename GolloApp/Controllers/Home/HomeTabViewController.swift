@@ -506,7 +506,10 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if viewModel.sections[indexPath.section].banner != nil {
             if let dimensions = imageDimensions[indexPath] {
-                return dimensions
+                return CGSize(
+                    width: dimensions.width + CGFloat(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0),
+                    height: dimensions.height + CGFloat(viewModel.sections[indexPath.section].banner?.borderWidth ?? 0)
+                )
             } else {
                 return CGSize(width: collectionView.frame.size.width, height: 200)
             }
