@@ -16,6 +16,7 @@
                 <outlet property="mainImageView" destination="VU5-2l-sO5" id="3eT-js-ucL"/>
                 <outlet property="popUpView" destination="dTh-e1-N2A" id="R3c-Ux-ebK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewGlass" destination="K5o-c0-5W6" id="Za4-0v-aji"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

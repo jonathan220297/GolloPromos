@@ -11,6 +11,7 @@ import UIKit
 
 class PreapprovedViewController: UIViewController {
     // MARK: - IBOutlets
+    @IBOutlet weak var viewGlass: UIView!
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var descriptionText: UILabel!
@@ -37,8 +38,19 @@ class PreapprovedViewController: UIViewController {
         configureRx()
     }
     
+    // MARK: - Observers
+    @objc func closePopUp() {
+        dismiss(animated: true)
+    }
+    
     // MARK: - Function
     func configureViews() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(closePopUp))
+        tapRecognizer.numberOfTapsRequired = 1
+        tapRecognizer.delegate = self
+        viewGlass.addGestureRecognizer(tapRecognizer)
+        viewGlass.isUserInteractionEnabled = true
+        
         popUpView.layer.cornerRadius = 15
     }
     
@@ -68,5 +80,15 @@ class PreapprovedViewController: UIViewController {
         } else {
             self.mainImageView.image = UIImage(named: "empty_image")
         }
+    }
+}
+
+// MARK: - UIGestureRecognizer Delegates
+extension PreapprovedViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view!.isDescendant(of: self.viewGlass) {
+            return true
+        }
+        return false
     }
 }

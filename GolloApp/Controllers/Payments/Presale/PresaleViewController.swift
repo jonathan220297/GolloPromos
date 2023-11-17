@@ -147,8 +147,8 @@ class PresaleViewController: UIViewController {
             .tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                if !errorAmount {
-                    fetchCrediGolloTerms()
+                if !self.errorAmount {
+                    self.fetchCrediGolloTerms()
                 }
             })
             .disposed(by: bag)
@@ -174,10 +174,10 @@ class PresaleViewController: UIViewController {
                 guard let self = self,
                       let data = data else { return }
                 self.view.activityStopAnimatingFull()
-                viewModel.presaleDetail = data
-                showTerms(with: data.plazos ?? [])
-                showDetails()
-                showControls(with: false)
+                self.viewModel.presaleDetail = data
+                self.showTerms(with: data.plazos ?? [])
+                self.showDetails()
+                self.showControls(with: false)
                 print(data)
             })
             .disposed(by: bag)

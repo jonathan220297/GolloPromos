@@ -41,26 +41,14 @@ class HomeTabViewController: UIViewController {
         configureRx()
         configureTopic()
         configureObservers()
+        fetchHomeConfiguration()
 //        validateVersion()
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(notificationAction),
-            name: NSNotification.Name(rawValue: NOTIFICATION_NAME.NOTIFICATION_FLOW),
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(navigateProduct),
-            name: NSNotification.Name(rawValue: "showDynamicLinkProduct"),
-            object: nil
-        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavBar()
         validateNotificationsFlow()
-        fetchHomeConfiguration()
     }
     
     // MARK: - Observers
@@ -73,8 +61,32 @@ class HomeTabViewController: UIViewController {
     
     // MARK: - Functions
     fileprivate func configureObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(notificationAction),
+            name: NSNotification.Name(rawValue: NOTIFICATION_NAME.NOTIFICATION_FLOW),
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(navigateProduct),
+            name: NSNotification.Name(rawValue: "showDynamicLinkProduct"),
+            object: nil
+        )
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name("ReloadHomeData"), object: nil, queue: nil) { _ in
-            self.fetchHomeConfiguration()
+            if Variables.isRegisterUser {
+                Messaging.messaging().token { token, error in
+                    if let error = error {
+                        print("Error fetching FCM registration token: \(error)")
+                    } else if let token = token {
+                        self.registerDevice(with: token)
+                        self.fetchHomeConfiguration()
+                    }
+                }
+            } else {
+                self.fetchHomeConfiguration()
+            }
         }
     }
     
@@ -224,6 +236,10 @@ class HomeTabViewController: UIViewController {
     
     fileprivate func fetchHomeConfiguration() {
         view.activityStarAnimating()
+        viewModel.configuration = nil
+        viewModel.sections.removeAll()
+        imageDimensions.removeAll()
+        homeCollectionView.reloadData()
         viewModel
             .getHomeConfiguration()
             .asObservable()
@@ -236,6 +252,24 @@ class HomeTabViewController: UIViewController {
                     self.viewModel.configuration = response
                     self.viewModel.configureSections()
                     self.homeCollectionView.reloadData()
+                    if let isPreapproved = response.preaprobado {
+                        let preapprovedViewController = PreapprovedViewController(
+                            description: "Estimado \(isPreapproved.nombreCliente ?? ""), tenés un crédito preaprobado de \(String(isPreapproved.monto ?? 0.0).currencyFormatting()) colones con vigencia del \(isPreapproved.fechaInicio ?? "") al \(isPreapproved.fechaFin ?? "")".withBoldText(
+                                texts: [
+                                    isPreapproved.nombreCliente ?? "",
+                                    String(isPreapproved.monto ?? 0.0).currencyFormatting(),
+                                    isPreapproved.fechaInicio ?? "",
+                                    isPreapproved.fechaFin ?? ""
+                                ],
+                                regularFont: UIFont(name: "KohinoorBangla-Regular", size: 14),
+                                boldFont: UIFont(name: "KohinoorBangla-Semibold", size: 14)
+                            ),
+                            image: isPreapproved.image
+                        )
+                        preapprovedViewController.modalPresentationStyle = .overCurrentContext
+                        preapprovedViewController.modalTransitionStyle = .crossDissolve
+                        self.present(preapprovedViewController, animated: true)
+                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -474,7 +508,7 @@ extension HomeTabViewController: UICollectionViewDataSource, UICollectionViewDel
             if let dimensions = imageDimensions[indexPath] {
                 return dimensions
             } else {
-                return CGSize(width: collectionView.frame.size.width, height: 400)
+                return CGSize(width: collectionView.frame.size.width, height: 200)
             }
         } else if viewModel.sections[indexPath.section].isPreapproved ?? false {
             return CGSize(width: collectionView.frame.size.width, height: 100)
