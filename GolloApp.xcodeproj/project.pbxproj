@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -264,7 +264,6 @@
 		4FCE4A642B069A1700E8C91B /* PreapprovedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4A622B069A1700E8C91B /* PreapprovedViewController.xib */; };
 		4FCE4A672B069A2C00E8C91B /* PreapprovedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE4A652B069A2C00E8C91B /* PreapprovedCollectionViewCell.swift */; };
 		4FCE4A682B069A2C00E8C91B /* PreapprovedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4A662B069A2C00E8C91B /* PreapprovedCollectionViewCell.xib */; };
-		4FCE4A6A2B069A9C00E8C91B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4A692B069A9C00E8C91B /* GoogleService-Info.plist */; };
 		4FCEB7E028CFF9A0009B3FDF /* OffersTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEB7DE28CFF9A0009B3FDF /* OffersTabViewController.swift */; };
 		4FCEB7E128CFF9A0009B3FDF /* OffersTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCEB7DF28CFF9A0009B3FDF /* OffersTabViewController.xib */; };
 		4FDA3A9C26D8FE26003B2CB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDA3A9B26D8FE26003B2CB6 /* AppDelegate.swift */; };
@@ -366,6 +365,7 @@
 		CB17DEC72A906FC8009DA49E /* GeolozalizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB17DEC52A906FC8009DA49E /* GeolozalizationViewController.xib */; };
 		CB17DEC92A908BD9009DA49E /* ValidateProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB17DEC82A908BD9009DA49E /* ValidateProfileRequest.swift */; };
 		CB17DECB2A908C00009DA49E /* ValidateProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB17DECA2A908C00009DA49E /* ValidateProfileResponse.swift */; };
+		CB314EC52B06AC9C003C90CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB314EC42B06AC9C003C90CB /* GoogleService-Info.plist */; };
 		CB46D3A72A17FBD200690EB9 /* ProductScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB46D3A52A17FBD200690EB9 /* ProductScannerViewController.swift */; };
 		CB46D3A82A17FBD200690EB9 /* ProductScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB46D3A62A17FBD200690EB9 /* ProductScannerViewController.xib */; };
 		CB46D3AC2A18310800690EB9 /* GolloStoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB46D3AA2A18310800690EB9 /* GolloStoresViewController.swift */; };
@@ -701,7 +701,6 @@
 		4FCE4A622B069A1700E8C91B /* PreapprovedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreapprovedViewController.xib; sourceTree = "<group>"; };
 		4FCE4A652B069A2C00E8C91B /* PreapprovedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreapprovedCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FCE4A662B069A2C00E8C91B /* PreapprovedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreapprovedCollectionViewCell.xib; sourceTree = "<group>"; };
-		4FCE4A692B069A9C00E8C91B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FCEB7DE28CFF9A0009B3FDF /* OffersTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTabViewController.swift; sourceTree = "<group>"; };
 		4FCEB7DF28CFF9A0009B3FDF /* OffersTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OffersTabViewController.xib; sourceTree = "<group>"; };
 		4FDA3A9826D8FE26003B2CB6 /* GolloApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolloApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -813,6 +812,7 @@
 		CB17DEC52A906FC8009DA49E /* GeolozalizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeolozalizationViewController.xib; sourceTree = "<group>"; };
 		CB17DEC82A908BD9009DA49E /* ValidateProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateProfileRequest.swift; sourceTree = "<group>"; };
 		CB17DECA2A908C00009DA49E /* ValidateProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateProfileResponse.swift; sourceTree = "<group>"; };
+		CB314EC42B06AC9C003C90CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB46D3A52A17FBD200690EB9 /* ProductScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductScannerViewController.swift; sourceTree = "<group>"; };
 		CB46D3A62A17FBD200690EB9 /* ProductScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductScannerViewController.xib; sourceTree = "<group>"; };
 		CB46D3AA2A18310800690EB9 /* GolloStoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolloStoresViewController.swift; sourceTree = "<group>"; };
@@ -1739,8 +1739,8 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
+				CB314EC42B06AC9C003C90CB /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* GolloApp.xcdatamodeld */,
-				4FCE4A692B069A9C00E8C91B /* GoogleService-Info.plist */,
 			);
 			path = GolloApp;
 			sourceTree = "<group>";
@@ -2324,7 +2324,7 @@
 				4F9DF35F2A7B07A2000ACCAE /* ProductFooterCollectionViewCell.xib in Resources */,
 				CB17DEC72A906FC8009DA49E /* GeolozalizationViewController.xib in Resources */,
 				4F68373228DB7A5600462F5E /* OfferServiceProtectionViewController.xib in Resources */,
-				4FCE4A6A2B069A9C00E8C91B /* GoogleService-Info.plist in Resources */,
+				CB314EC52B06AC9C003C90CB /* GoogleService-Info.plist in Resources */,
 				4FBFF2212AB163AE00540F29 /* HorizontalSliderCollectionViewCell.xib in Resources */,
 				4FE86E6928E41092008E58F1 /* ShippingMethodTableViewCell.xib in Resources */,
 				4FBFF2292AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib in Resources */,
@@ -2971,7 +2971,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				EXCLUDED_ARCHS = arm64;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9196/ClientesApiV5.0/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -3000,7 +3000,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				EXCLUDED_ARCHS = arm64;
-				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
+				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9196/ClientesApiV5.0/";
 				INFOPLIST_FILE = GolloApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gollo;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

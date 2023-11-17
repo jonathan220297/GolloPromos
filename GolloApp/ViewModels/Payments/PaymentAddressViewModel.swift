@@ -279,8 +279,8 @@ class PaymentAddressViewModel {
             tipoIDRecep: "C"
         )
         carManager.deliveryInfo = deliveryInfo
-        carManager.payWithPreApproved = true
-        carManager.payWithCreditCard = false
+        carManager.payWithPreApproved = preApprovedSubject.value ?? false
+        carManager.payWithCreditCard = creditCardSubject.value ?? false
     }
     
     func isValidAddress() -> Bool {
