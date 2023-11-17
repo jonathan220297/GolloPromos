@@ -223,7 +223,9 @@ class HomeTabViewController: UIViewController {
     }
     
     fileprivate func fetchHomeConfiguration() {
-        view.activityStarAnimating()
+        DispatchQueue.main.async {
+            self.view.activityStarAnimating()
+        }
         viewModel
             .getHomeConfiguration()
             .asObservable()
@@ -232,7 +234,6 @@ class HomeTabViewController: UIViewController {
                       let response = response else { return }
                 DispatchQueue.main.async {
                     defer { self.view.activityStopAnimating() }
-                    self.view.activityStopAnimating()
                     self.viewModel.configuration = response
                     self.viewModel.configureSections()
                     self.homeCollectionView.reloadData()

@@ -423,10 +423,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                 })
                 self.viewModel.setUserData(with: user)
                 self.loginRequestInfo(for: .apple)
-                //                if let vc = AppStoryboard.Home.initialViewController() {
-                //                    vc.modalPresentationStyle = .fullScreen
-                //                    self.present(vc, animated: true)
-                //                }
             }
         }
     }

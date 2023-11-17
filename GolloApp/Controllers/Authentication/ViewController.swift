@@ -28,10 +28,6 @@ class ViewController: UIViewController {
         configureRx()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if viewModel.verifyUserLogged() {
@@ -49,13 +45,15 @@ class ViewController: UIViewController {
             if let vc = AppStoryboard.Home.initialViewController() {
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true)
+            } else {
+                debugPrint("Error to show Home.initialViewController")
             }
-        } else {
-            if viewModel.verifyTermsConditionsState() {
-                if let vc = AppStoryboard.Home.initialViewController() {
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
-                }
+        } else if viewModel.verifyTermsConditionsState() {
+            if let vc = AppStoryboard.Home.initialViewController() {
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            } else {
+                debugPrint("Error to show Home.initialViewController")
             }
         }
         Messaging.messaging().token { token, error in
