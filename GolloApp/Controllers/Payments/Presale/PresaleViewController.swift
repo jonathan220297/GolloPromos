@@ -97,8 +97,12 @@ class PresaleViewController: UIViewController {
             let sugestedAmount = round(viewModel.subTotal)
             viewModel.currentPrima = doubleAmount
 
-            if doubleAmount > sugestedAmount {
+            if doubleAmount >= sugestedAmount {
                 otherAmountErrorLabel.text = "La prima no puede ser igual o mayor al monto del crédito"
+                otherAmountErrorLabel.isHidden = false
+                errorAmount = true
+            } else if doubleAmount < (viewModel.presaleDetail?.montoPrimaMinimo ?? 0.0) {
+                otherAmountErrorLabel.text = "El monto de la prima es menor al requerido, monto minimo requerido de prima: ₡\(viewModel.presaleDetail?.montoPrimaMinimo ?? 0.0)"
                 otherAmountErrorLabel.isHidden = false
                 errorAmount = true
             } else {
@@ -138,6 +142,8 @@ class PresaleViewController: UIViewController {
                 if !error.isEmpty {
                     self.showAlert(alertText: "GolloApp", alertMessage: error)
                     self.viewModel.errorMessage.accept(nil)
+                    showControls(with: true)
+                    self.view.activityStopAnimatingFull()
                 }
             })
             .disposed(by: bag)
@@ -174,11 +180,13 @@ class PresaleViewController: UIViewController {
                 guard let self = self,
                       let data = data else { return }
                 self.view.activityStopAnimatingFull()
-                self.viewModel.presaleDetail = data
-                self.showTerms(with: data.plazos ?? [])
-                self.showDetails()
-                self.showControls(with: false)
-                print(data)
+                viewModel.presaleDetail = data
+                showTerms(with: data.plazos ?? [])
+                showDetails()
+                showControls(with: false)
+                if let minPrima = data.montoPrimaMinimo, minPrima > 0, let formmatedAmount = numberFormatter.string(from: NSNumber(value: minPrima)) {
+                    self.amountTextField.text = "₡" + formmatedAmount
+                }
             })
             .disposed(by: bag)
     }

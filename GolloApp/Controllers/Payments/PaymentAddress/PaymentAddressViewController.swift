@@ -391,14 +391,18 @@ class PaymentAddressViewController: UIViewController {
                         Variables.profile = profile
                         if profile.indPreaprobado == 1 {
                             self.preApprovedView.isHidden = false
+                            self.viewModel.preApprovedSubject.accept(true)
                         } else {
                             self.preApprovedView.isHidden = true
+                            self.viewModel.preApprovedSubject.accept(false)
                         }
                         
                         if profile.indPreaprobado != 1 && profile.indEmma != 1 {
                             self.creditCardView.isHidden = false
+                            self.viewModel.creditCardSubject.accept(true)
                         } else {
                             self.creditCardView.isHidden = true
+                            self.viewModel.creditCardSubject.accept(false)
                         }
                     }
                 })

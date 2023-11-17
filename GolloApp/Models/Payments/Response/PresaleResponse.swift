@@ -12,6 +12,7 @@ struct PresaleResponse: Codable {
     let numOperacion: String?
     let requiereAsistencia: Int?
     let montoAsistencia: Double?
+    let montoPrimaMinimo: Double?
     let plazos: [CrediGolloTerm]?
 }
 
