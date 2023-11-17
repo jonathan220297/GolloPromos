@@ -248,7 +248,6 @@ class HomeTabViewController: UIViewController {
                       let response = response else { return }
                 DispatchQueue.main.async {
                     defer { self.view.activityStopAnimating() }
-                    self.view.activityStopAnimating()
                     self.viewModel.configuration = response
                     self.viewModel.configureSections()
                     self.homeCollectionView.reloadData()

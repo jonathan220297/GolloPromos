@@ -51,7 +51,9 @@ class HomeViewController: UITabBarController {
                 guard let self = self,
                       let value = value else { return }
                 if value {
-                    self.view.activityStopAnimating()
+                    DispatchQueue.main.async {
+                        self.view.activityStopAnimating()
+                    }
                     self.viewModel.errorExpiredToken.accept(nil)
                     self.userDefaults.removeObject(forKey: "Information")
                     let _ = KeychainManager.delete(key: "token")
@@ -101,10 +103,14 @@ class HomeViewController: UITabBarController {
     }
     
     fileprivate func validateVersion() {
-        self.view.activityStartAnimatingFull()
+        DispatchQueue.main.async {
+            self.view.activityStartAnimatingFull()
+        }
         Messaging.messaging().token { token, error in
             if let error = error {
-                self.view.activityStopAnimatingFull()
+                DispatchQueue.main.async {
+                    self.view.activityStopAnimatingFull()
+                }
                 print("Error fetching FCM registration token: \(error)")
             } else if let token = token {
                 print("FCM registration token: \(token)")
@@ -137,8 +143,10 @@ class HomeViewController: UITabBarController {
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
-                self.view.activityStopAnimatingFull()
                 self.configureTabBar(with: data.indScanAndGo ?? false)
+                DispatchQueue.main.async {
+                    self.view.activityStopAnimatingFull()
+                }
             })
             .disposed(by: disposeBag)
     }
