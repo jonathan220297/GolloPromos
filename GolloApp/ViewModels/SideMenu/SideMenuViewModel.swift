@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class SideMenuViewModel {
     private let service = GolloService()
+    private let defaults = UserDefaults.standard
+    
     let userManager = UserManager.shared
 
     let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
@@ -107,6 +109,10 @@ class SideMenuViewModel {
         } else {
             return false
         }
+    }
+    
+    func deleteCarManagerTypeState() {
+        defaults.removeObject(forKey: "carManagetTypeStarted")
     }
 }
 

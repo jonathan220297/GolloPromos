@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -94,23 +94,46 @@
                                     <constraint firstAttribute="trailing" secondItem="9vy-yT-4dG" secondAttribute="trailing" constant="8" id="ygM-Ht-qlm"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3b5-wA-2wB">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_golloapp_circle" translatesAutoresizingMaskIntoConstraints="NO" id="Irm-Em-bnx">
+                                        <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="Sgq-Fy-mnL"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="colorPrimary"/>
+                                <constraints>
+                                    <constraint firstItem="Irm-Em-bnx" firstAttribute="width" secondItem="Irm-Em-bnx" secondAttribute="height" multiplier="1:1" id="QvA-br-cD5"/>
+                                    <constraint firstItem="Irm-Em-bnx" firstAttribute="centerY" secondItem="3b5-wA-2wB" secondAttribute="centerY" id="qOn-Fu-60x"/>
+                                    <constraint firstItem="Irm-Em-bnx" firstAttribute="centerX" secondItem="3b5-wA-2wB" secondAttribute="centerX" id="ykk-pR-GiT"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="3b5-wA-2wB" secondAttribute="bottom" id="MSa-Mg-5on"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3b5-wA-2wB" secondAttribute="trailing" id="YfI-Mo-VUi"/>
+                            <constraint firstItem="3b5-wA-2wB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yn9-kb-8tj"/>
                             <constraint firstItem="NkY-zh-4o6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Z3v-3X-0C5"/>
                             <constraint firstItem="NkY-zh-4o6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="l0V-SS-34A"/>
                             <constraint firstItem="NkY-zh-4o6" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="oLA-qc-gd4"/>
+                            <constraint firstItem="3b5-wA-2wB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="sLb-39-FJx"/>
                             <constraint firstItem="NkY-zh-4o6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tpE-Qf-Cfk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="DVK-tJ-mSb" id="Azz-1Y-Q3Z"/>
+                        <outlet property="loadingView" destination="3b5-wA-2wB" id="CUX-dN-X8J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="112" y="79"/>
+            <point key="canvasLocation" x="111.59420289855073" y="78.348214285714278"/>
         </scene>
         <!--Terms Conditions View Controller-->
         <scene sceneID="6nO-mX-2Dr">
@@ -248,7 +271,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qYJ-3U-MXS">
-                                                                <rect key="frame" x="0.0" y="17.5" width="27" height="24.5"/>
+                                                                <rect key="frame" x="0.0" y="17" width="27" height="24.5"/>
                                                                 <color key="tintColor" name="AccentColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="qYJ-3U-MXS" secondAttribute="height" multiplier="1:1" id="F5t-f5-WHk"/>
@@ -844,6 +867,7 @@
         <image name="ic_logo" width="960" height="540"/>
         <image name="ic_unchecked_checkbox" width="96" height="96"/>
         <image name="lock" catalog="system" width="125" height="128"/>
+        <image name="logo_golloapp_circle" width="429.5" height="429.5"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -861,7 +885,7 @@
             <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

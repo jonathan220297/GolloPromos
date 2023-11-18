@@ -53,6 +53,7 @@ class PresaleViewController: UIViewController {
         configureViews()
         configureRx()
         fetchCrediGolloTerms()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {

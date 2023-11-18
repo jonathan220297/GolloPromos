@@ -11,7 +11,9 @@ import FirebaseMessaging
 import RxSwift
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var continueButton: LocalizableButton!
+    @IBOutlet weak var loadingView: UIView!
     
     var viewLoader = UIView()
 
@@ -42,19 +44,21 @@ class ViewController: UIViewController {
             } catch {
                 print(error.localizedDescription)
             }
-            if let vc = AppStoryboard.Home.initialViewController() {
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
-            } else {
-                debugPrint("Error to show Home.initialViewController")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {[weak self] in
+                if let vc = AppStoryboard.Home.initialViewController() {
+                    vc.modalPresentationStyle = .fullScreen
+                    self?.present(vc, animated: true)
+                }
             }
         } else if viewModel.verifyTermsConditionsState() {
-            if let vc = AppStoryboard.Home.initialViewController() {
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
-            } else {
-                debugPrint("Error to show Home.initialViewController")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {[weak self] in
+                if let vc = AppStoryboard.Home.initialViewController() {
+                    vc.modalPresentationStyle = .fullScreen
+                    self?.present(vc, animated: true)
+                }
             }
+        } else {
+            loadingView.isHidden = true
         }
         Messaging.messaging().token { token, error in
           if let error = error {

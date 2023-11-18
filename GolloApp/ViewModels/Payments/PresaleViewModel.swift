@@ -39,7 +39,7 @@ class PresaleViewModel {
                         montoBono: getBonoTotalAmount(),
                         montoFlete: getDeliveryAmountFromCart(),
                         montoDescuento: getTotalDescuentos(),
-                        prima: getTotalPrima(with: currentPrima),
+                        prima: currentPrima,
                         articulos: getItems()
                     )
                 )
@@ -79,10 +79,6 @@ class PresaleViewModel {
     private func getTotalDescuentos() -> Double {
         let products = carManager.carProductsDetail
         return products.map { $0.montoDescuento * Double($0.cantidad) }.reduce(0, +)
-    }
-    
-    private func getTotalPrima(with prima: Double) -> Double {
-        return prima + getBonoTotalAmount()
     }
     
     private func getTotalExpenses() -> Double {

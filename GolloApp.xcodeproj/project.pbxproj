@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -107,7 +107,6 @@
 		4F317A9728F7710A005BA675 /* SectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F317A9528F7710A005BA675 /* SectionCollectionViewCell.swift */; };
 		4F317A9A28F77399005BA675 /* MasterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F317A9928F77399005BA675 /* MasterSection.swift */; };
 		4F317A9C28F9E038005BA675 /* SectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F317A9B28F9E038005BA675 /* SectionCollectionViewCell.xib */; };
-		4F3667072B0731360049E030 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F3667062B0731360049E030 /* GoogleService-Info.plist */; };
 		4F37A7EC27223D1B00FBB46B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */; };
 		4F37A7F027223EE000FBB46B /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37A7EF27223EE000FBB46B /* BaseRequest.swift */; };
 		4F3952B029123D9600BCE270 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3952AF29123D9600BCE270 /* Calendar+Extension.swift */; };
@@ -372,6 +371,7 @@
 		CB46D3AF2A18352B00690EB9 /* GolloStoresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB46D3AE2A18352B00690EB9 /* GolloStoresViewModel.swift */; };
 		CB46D3B32A1845D800690EB9 /* GolloStoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB46D3B12A1845D800690EB9 /* GolloStoresTableViewCell.swift */; };
 		CB46D3B42A1845D800690EB9 /* GolloStoresTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB46D3B22A1845D800690EB9 /* GolloStoresTableViewCell.xib */; };
+		CB51A83A2B086F1A0071F13D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB51A8392B086F1A0071F13D /* GoogleService-Info.plist */; };
 		CB56EEFE29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */; };
 		CB8264292A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8264272A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift */; };
 		CB82642A2A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8264282A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib */; };
@@ -542,7 +542,6 @@
 		4F317A9528F7710A005BA675 /* SectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F317A9928F77399005BA675 /* MasterSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterSection.swift; sourceTree = "<group>"; };
 		4F317A9B28F9E038005BA675 /* SectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionCollectionViewCell.xib; sourceTree = "<group>"; };
-		4F3667062B0731360049E030 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F37A7EB27223D1B00FBB46B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		4F37A7EF27223EE000FBB46B /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		4F3952AF29123D9600BCE270 /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
@@ -818,6 +817,7 @@
 		CB46D3AE2A18352B00690EB9 /* GolloStoresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolloStoresViewModel.swift; sourceTree = "<group>"; };
 		CB46D3B12A1845D800690EB9 /* GolloStoresTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolloStoresTableViewCell.swift; sourceTree = "<group>"; };
 		CB46D3B22A1845D800690EB9 /* GolloStoresTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GolloStoresTableViewCell.xib; sourceTree = "<group>"; };
+		CB51A8392B086F1A0071F13D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB56EEFD29BFF08500ED5F11 /* NotificationTypeTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypeTransitionManager.swift; sourceTree = "<group>"; };
 		CB8264272A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB8264282A6E1C2B00DB7B13 /* ProductImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1739,8 +1739,8 @@
 				4FDA3AA426D8FE27003B2CB6 /* Assets.xcassets */,
 				4F0D968426DDBE690061E89E /* Colors.xcassets */,
 				4FDA3AA926D8FE27003B2CB6 /* Info.plist */,
+				CB51A8392B086F1A0071F13D /* GoogleService-Info.plist */,
 				4FDB6ECE28E364A00002DA0B /* GolloApp.xcdatamodeld */,
-				4F3667062B0731360049E030 /* GoogleService-Info.plist */,
 			);
 			path = GolloApp;
 			sourceTree = "<group>";
@@ -2324,7 +2324,7 @@
 				4F9DF35F2A7B07A2000ACCAE /* ProductFooterCollectionViewCell.xib in Resources */,
 				CB17DEC72A906FC8009DA49E /* GeolozalizationViewController.xib in Resources */,
 				4F68373228DB7A5600462F5E /* OfferServiceProtectionViewController.xib in Resources */,
-				4F3667072B0731360049E030 /* GoogleService-Info.plist in Resources */,
+				CB51A83A2B086F1A0071F13D /* GoogleService-Info.plist in Resources */,
 				4FBFF2212AB163AE00540F29 /* HorizontalSliderCollectionViewCell.xib in Resources */,
 				4FE86E6928E41092008E58F1 /* ShippingMethodTableViewCell.xib in Resources */,
 				4FBFF2292AB21DD500540F29 /* TopCategoriesCollectionViewCell.xib in Resources */,
@@ -2968,7 +2968,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				EXCLUDED_ARCHS = "";
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9196/ClientesApiV5.0/";
@@ -2998,7 +2998,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				EXCLUDED_ARCHS = "";
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9196/ClientesApiV5.0/";

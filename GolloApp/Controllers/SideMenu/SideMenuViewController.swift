@@ -357,6 +357,9 @@ extension SideMenuViewController {
                     Variables.isClientUser = false
                     Variables.userProfile = nil
                     UserManager.shared.userData = nil
+                    if CoreDataService().deleteAllItems() {
+                        self.viewModel.deleteCarManagerTypeState()
+                    }
                     NotificationCenter.default.post(name: NSNotification.Name("ReloadHomeData"), object: nil)
                     Messaging.messaging().token { token, error in
                         if let error = error {
