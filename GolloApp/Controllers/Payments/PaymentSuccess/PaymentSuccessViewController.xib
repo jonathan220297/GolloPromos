@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="backButton" destination="euL-sT-nUp" id="wML-Fq-RyZ"/>
                 <outlet property="closeButton" destination="o8R-7h-3pk" id="5rg-f3-XgB"/>
+                <outlet property="crediGolloView" destination="wSi-sM-2n4" id="fDb-9k-Je8"/>
                 <outlet property="orderNumberLabel" destination="OaA-aA-Wpn" id="Lvw-qr-TkT"/>
                 <outlet property="paymentDescriptionLabel" destination="qsT-sW-wfC" id="3qf-Z7-c6h"/>
                 <outlet property="scanAndGoDisclaimerLabel" destination="gV4-AO-w3s" id="vRw-fS-Y5i"/>
@@ -60,7 +61,7 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="s6k-Wo-E4r">
-                    <rect key="frame" x="8" y="277" width="398" height="273"/>
+                    <rect key="frame" x="8" y="277" width="398" height="389"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsT-sW-wfC">
                             <rect key="frame" x="0.0" y="0.0" width="398" height="67"/>
@@ -81,8 +82,42 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSi-sM-2n4">
+                            <rect key="frame" x="0.0" y="120" width="398" height="100"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wbj-cD-zcS">
+                                    <rect key="frame" x="8" y="34" width="34" height="32"/>
+                                    <color key="tintColor" name="colorPrimary"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="34" id="49Q-hH-YA6"/>
+                                        <constraint firstAttribute="width" secondItem="wbj-cD-zcS" secondAttribute="height" multiplier="1:1" id="KU3-2b-Nql"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knd-KB-EzE">
+                                    <rect key="frame" x="50" y="18.5" width="340" height="62.5"/>
+                                    <string key="text">Crédito sujeto a validación y a la cancelación del monto de la prima al momento de retirar el artículo en la tienda seleccionada. En la formalización le indicamos si se requiere incluir el servicio de asistencia.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.98039215800000001" green="0.95686274770000002" blue="0.85882353779999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstItem="wbj-cD-zcS" firstAttribute="leading" secondItem="wSi-sM-2n4" secondAttribute="leading" constant="8" id="21U-sD-tnu"/>
+                                <constraint firstAttribute="height" constant="100" id="5gh-6C-QZK"/>
+                                <constraint firstItem="Knd-KB-EzE" firstAttribute="leading" secondItem="wbj-cD-zcS" secondAttribute="trailing" constant="8" id="H8u-xm-Xuo"/>
+                                <constraint firstItem="wbj-cD-zcS" firstAttribute="centerY" secondItem="wSi-sM-2n4" secondAttribute="centerY" id="MkK-HE-ewL"/>
+                                <constraint firstItem="Knd-KB-EzE" firstAttribute="centerY" secondItem="wSi-sM-2n4" secondAttribute="centerY" id="bGx-1D-gAi"/>
+                                <constraint firstAttribute="trailing" secondItem="Knd-KB-EzE" secondAttribute="trailing" constant="8" id="dIB-tc-kU2"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHP-TF-8hf">
-                            <rect key="frame" x="0.0" y="120" width="398" height="153"/>
+                            <rect key="frame" x="0.0" y="236" width="398" height="153"/>
                             <subviews>
                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oCl-u1-wzb">
                                     <rect key="frame" x="8" y="75.5" width="0.0" height="2"/>
@@ -130,7 +165,7 @@
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8R-7h-3pk">
-                    <rect key="frame" x="144.5" y="566" width="125" height="40"/>
+                    <rect key="frame" x="144.5" y="682" width="125" height="40"/>
                     <color key="backgroundColor" name="colorPrimary"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="D3u-mm-xez"/>

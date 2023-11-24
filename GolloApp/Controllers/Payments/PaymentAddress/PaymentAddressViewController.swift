@@ -48,6 +48,7 @@ class PaymentAddressViewController: UIViewController {
     @IBOutlet weak var addressBottomView: UIView!
     @IBOutlet weak var postalCodeTextField: UITextField!
     @IBOutlet weak var preApprovedView: UIView!
+    @IBOutlet weak var preApprovedLabel: UILabel!
     @IBOutlet weak var preApprovedSwitch: UISwitch!
     @IBOutlet weak var creditCardView: UIView!
     @IBOutlet weak var creditCardSwitch: UISwitch!
@@ -390,20 +391,15 @@ class PaymentAddressViewController: UIViewController {
                     if let profile = data.perfil, let _ = profile.numeroIdentificacion, let _ = profile.numeroIdentificacion {
                         Variables.profile = profile
                         if profile.indPreaprobado == 1 {
-                            self.preApprovedView.isHidden = false
+                            self.preApprovedLabel.text = "¿Deseas utilizar tu crédito pre-aprobado?"
                             self.viewModel.preApprovedSubject.accept(true)
                         } else {
-                            self.preApprovedView.isHidden = true
-                            self.viewModel.preApprovedSubject.accept(false)
+                            self.preApprovedLabel.text = "¿Deseas comprar con crédito?"
+                            self.viewModel.preApprovedSubject.accept(true)
                         }
-                        
-                        if profile.indPreaprobado != 1 && profile.indEmma != 1 {
-                            self.creditCardView.isHidden = false
-                            self.viewModel.creditCardSubject.accept(true)
-                        } else {
-                            self.creditCardView.isHidden = true
-                            self.viewModel.creditCardSubject.accept(false)
-                        }
+                    } else {
+                        self.preApprovedLabel.text = "¿Deseas comprar con crédito?"
+                        self.viewModel.preApprovedSubject.accept(true)
                     }
                 })
                 .disposed(by: bag)

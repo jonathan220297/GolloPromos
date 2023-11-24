@@ -12,11 +12,13 @@ class PaymentSuccessViewModel {
     var accountPaymentResponse: PaymentResponse?
     var productPaymentResponse: PaymentOrderResponse?
     var showScanAndGoDisclaimer: Bool = false
+    var isCrediGolloPayment: Bool = false
     
-    init(paymentMethodSelected: PaymentMethodResponse, accountPaymentResponse: PaymentResponse? = nil, productPaymentResponse: PaymentOrderResponse? = nil, showScanAndGoDisclaimer: Bool) {
+    init(paymentMethodSelected: PaymentMethodResponse, accountPaymentResponse: PaymentResponse? = nil, productPaymentResponse: PaymentOrderResponse? = nil, showScanAndGoDisclaimer: Bool, isCrediGolloPayment: Bool = false) {
         self.paymentMethodSelected = paymentMethodSelected
         self.accountPaymentResponse = accountPaymentResponse
         self.productPaymentResponse = productPaymentResponse
         self.showScanAndGoDisclaimer = showScanAndGoDisclaimer
+        self.isCrediGolloPayment = isCrediGolloPayment
     }
 }

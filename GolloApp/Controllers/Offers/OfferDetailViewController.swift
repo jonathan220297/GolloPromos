@@ -736,7 +736,7 @@ class OfferDetailViewController: UIViewController {
             newDiscountPrice = Double(self.article?.articulo?.precio ?? "0.0") ?? 0.0
             let discountString = numberFormatter.string(from: NSNumber(value: Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0))!
             discountPriceLabel.attributedText = attributeString
-            originalPrice.text = "\("₡")\(discountString)"
+            originalPrice.text = "\("₡")\(discountString) IVAi"
             priceToShow = Double(self.article?.articulo?.precioDescuento ?? "0.0") ?? 0.0
         } else {
             pricesView.isHidden = true

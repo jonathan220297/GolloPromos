@@ -11,6 +11,7 @@ import RxSwift
 import Nuke
 import ImageSlideshow
 import FirebaseMessaging
+import SafariServices
 
 protocol HomeDelegate: AnyObject {
     func showOfferDetail(_ offerDetail: UIViewController)
@@ -93,7 +94,8 @@ class HomeViewController: UITabBarController {
                 if !errorMessage.isEmpty {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                         self?.showAlertWithActions(alertText: "Actualización", alertMessage: errorMessage) {
-                            exit(0)
+//                            exit(0)
+                            self?.openUrl("https://apps.apple.com/us/app/gollo/id1643795423")
                         }
                     }
                     self.viewModel.updatedVersion.accept("")
@@ -216,6 +218,16 @@ class HomeViewController: UITabBarController {
                 navigationOrders,
                 navigationMenu
             ]
+        }
+    }
+    
+    func openUrl(_ url: String) {
+        if let url = URL(string: url) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
         }
     }
     

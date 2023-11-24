@@ -15,21 +15,13 @@ class SearchOffersViewModel {
     
     var history: [String] = []
     var products: [Product] = []
+    var suggestions: [LocalSuggestions] = []
 
     func fetchFilteredProducts(with searchText: String? = nil) -> BehaviorRelay<[Offers]?> {
         let apiResponse: BehaviorRelay<[Offers]?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<[Offers], OfferFilteredListServiceRequest>(
             service: BaseServiceRequestParam<OfferFilteredListServiceRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue,
-//                        idDevice: getDeviceID(),
-//                        idUsuario: UserManager.shared.userData?.uid ?? "",
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil
-//                    ),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.FILTERED_PRODUCTS_PROCESS_ID.rawValue),
                     parametros: OfferFilteredListServiceRequest (
                         idCategoria: nil,
@@ -40,6 +32,31 @@ class SearchOffersViewModel {
                         idTaxonomia: -1,
                         numPagina: 1,
                         tamanoPagina: 30
+                    )
+                )
+            )
+        )) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let response):
+                    apiResponse.accept(response)
+                case .failure(let error):
+                    self.errorMessage.accept(error.localizedDescription)
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        return apiResponse
+    }
+    
+    func fetchSuggestions(with searchText: String? = nil) -> BehaviorRelay<SearchSuggestionsResponse?> {
+        let apiResponse: BehaviorRelay<SearchSuggestionsResponse?> = BehaviorRelay(value: nil)
+        service.callWebServiceGollo(BaseRequest<SearchSuggestionsResponse, SearchSuggestionsServiceRequest>(
+            service: BaseServiceRequestParam<SearchSuggestionsServiceRequest>(
+                servicio: ServicioParam(
+                    encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.GET_SEARCH_SUGGESTIONS_PROCESS_ID.rawValue),
+                    parametros: SearchSuggestionsServiceRequest (
+                        stringBusqueda: searchText
                     )
                 )
             )

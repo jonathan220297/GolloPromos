@@ -24,4 +24,5 @@ struct PaymentMethodRequets: APIRequest {
 struct PaymentMethodServiceRequest: Codable {
     var idCliente: String? = nil
     var numIdentificacion: String
+    var formaPago: Int
 }

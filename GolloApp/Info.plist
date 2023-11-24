@@ -61,6 +61,8 @@
 	<string>773236293860936</string>
 	<key>FacebookDisplayName</key>
 	<string>GolloApp</string>
+	<key>GIDClientID</key>
+	<string>203295599193-2vk8mqdnkeefb679890onhoccf82jjrt.apps.googleusercontent.com</string>
 	<key>FirebaseDynamicLinksCustomDomains</key>
 	<array>
 		<string>https://gollo.page.link</string>

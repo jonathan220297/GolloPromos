@@ -64,9 +64,11 @@ extension TermsConditionsViewController {
                     self.showAlert(alertText: "GolloApp", alertMessage: "TermsConditionsController_continue_error".localized)
                 } else {
                     self.viewModel.setCheckboxValueToUserDefaults()
-                    if let vc = AppStoryboard.Home.initialViewController() {
-                        vc.modalPresentationStyle = .fullScreen
-                        self.present(vc, animated: true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {[weak self] in
+                        if let vc = AppStoryboard.Home.initialViewController() {
+                            vc.modalPresentationStyle = .fullScreen
+                            self?.present(vc, animated: true)
+                        }
                     }
                 }
             }

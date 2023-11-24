@@ -151,6 +151,7 @@ enum GOLLOAPP: String {
     case EMMA_TERMS_PROCESS_ID = "57"
     case PROFILE_CHANGE_USER_PIN_PROCESS_ID = "58"
     case GET_CREDIT_TERMS_PROCESS_ID = "60"
+    case GET_SEARCH_SUGGESTIONS_PROCESS_ID = "61"
 }
 
 enum Payment: Int {

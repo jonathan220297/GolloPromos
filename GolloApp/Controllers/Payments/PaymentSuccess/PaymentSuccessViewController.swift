@@ -15,6 +15,7 @@ class PaymentSuccessViewController: UIViewController {
     @IBOutlet weak var successImage: UIImageView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var orderNumberLabel: UILabel!
+    @IBOutlet weak var crediGolloView: UIView!
     @IBOutlet weak var warningImageView: UIImageView!
     @IBOutlet weak var warningDescriptionLabel: UILabel!
     @IBOutlet weak var paymentDescriptionLabel: UILabel!
@@ -87,7 +88,13 @@ class PaymentSuccessViewController: UIViewController {
             orderNumberLabel.isHidden = true
             paymentDescriptionLabel.text = "Su pago ha sido procesado satisfactoriamente. Por favor esté pendiente de su correo y de las notificaciones que puede recibir en esta plataforma porque por esos medios le notificaremos sobre su factura electrónica."
         } else if let productPaymentResponse = viewModel.productPaymentResponse {
-            titleLabel.text = "Orden confirmada"
+            if viewModel.isCrediGolloPayment {
+                titleLabel.text = "Solicitud de compra confirmada"
+                crediGolloView.isHidden = false
+            } else {
+                titleLabel.text = "Orden confirmada"
+                crediGolloView.isHidden = true
+            }
             successImage.image = UIImage(named: "ic_order_confirmation")
             orderNumberLabel.isHidden = false
             let orderString = "Número de orden: " + (productPaymentResponse.orderId ?? "")

@@ -138,7 +138,8 @@ class HomeTabViewController: UIViewController {
                 if !errorMessage.isEmpty {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                         self?.showAlertWithActions(alertText: "Actualización", alertMessage: errorMessage) {
-                            exit(0)
+//                            exit(0)
+                            self?.openUrl("https://apps.apple.com/us/app/gollo/id1643795423")
                         }
                     }
                     self.viewModel.updatedVersion.accept("")
@@ -335,6 +336,16 @@ class HomeTabViewController: UIViewController {
                 completion(nil, NSError(domain: "YourApp", code: 1, userInfo: [NSLocalizedDescriptionKey: "Error al convertir los datos en imagen"]))
             }
         }.resume()
+    }
+    
+    func openUrl(_ url: String) {
+        if let url = URL(string: url) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
+        }
     }
 }
 

@@ -28,13 +28,20 @@ class PaymentConfirmViewModel {
     let errorMessage = BehaviorRelay<String?>(value: nil)
 
     func fetchPaymentMethods() -> BehaviorRelay<[PaymentMethodResponse]?> {
+        var paymentForm = 0
+        if carManager.payWithPreApproved {
+            paymentForm = 1
+        } else {
+            paymentForm = 2
+        }
         let apiResponse: BehaviorRelay<[PaymentMethodResponse]?> = BehaviorRelay(value: nil)
         service.callWebServiceGollo(BaseRequest<[PaymentMethodResponse], PaymentMethodServiceRequest>(
             service: BaseServiceRequestParam<PaymentMethodServiceRequest>(
                 servicio: ServicioParam(
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.PAYMENT_METHODS_PROCESS_ID.rawValue),
                     parametros: PaymentMethodServiceRequest (
-                        numIdentificacion: Variables.userProfile?.numeroIdentificacion ?? ""
+                        numIdentificacion: Variables.userProfile?.numeroIdentificacion ?? "",
+                        formaPago: paymentForm
                     )
                 )
             )

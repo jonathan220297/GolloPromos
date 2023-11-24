@@ -218,7 +218,8 @@ class PaymentConfirmViewController: UIViewController {
                     viewModel: PaymentSuccessViewModel(
                         paymentMethodSelected: paymentMethodSelected,
                         productPaymentResponse: response,
-                        showScanAndGoDisclaimer: showDisclaimer
+                        showScanAndGoDisclaimer: showDisclaimer,
+                        isCrediGolloPayment: crediGollo
                     ), cartPayment: self.isThirdPayAccount
                 )
                 paymentSuccessViewController.modalPresentationStyle = .fullScreen

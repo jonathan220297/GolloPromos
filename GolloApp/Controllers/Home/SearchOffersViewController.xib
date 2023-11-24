@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,6 +18,8 @@
                 <outlet property="searchCollectionView" destination="lIb-nC-acV" id="jFZ-KR-VJG"/>
                 <outlet property="searchHistoryView" destination="yDK-1O-fkS" id="FQf-Ac-wEv"/>
                 <outlet property="searchItemLabel" destination="Mb8-im-HuV" id="hq2-FQ-546"/>
+                <outlet property="suggestionsTableView" destination="Z6k-jB-guT" id="Apn-CX-Kj2"/>
+                <outlet property="suggestionsView" destination="bib-rD-mTd" id="gsM-oh-NTq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -120,14 +122,37 @@
                                 </view>
                             </subviews>
                         </stackView>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bib-rD-mTd">
+                            <rect key="frame" x="0.0" y="56.000000000000028" width="390" height="419.66666666666674"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Z6k-jB-guT">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="419.66666666666669"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="2lD-1a-eFn"/>
+                                        <outlet property="delegate" destination="-1" id="6vE-0W-dGk"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Z6k-jB-guT" firstAttribute="leading" secondItem="bib-rD-mTd" secondAttribute="leading" id="Frr-jv-M6e"/>
+                                <constraint firstAttribute="bottom" secondItem="Z6k-jB-guT" secondAttribute="bottom" id="OVD-u3-i7I"/>
+                                <constraint firstAttribute="trailing" secondItem="Z6k-jB-guT" secondAttribute="trailing" id="fqp-lL-SRF"/>
+                                <constraint firstItem="Z6k-jB-guT" firstAttribute="top" secondItem="bib-rD-mTd" secondAttribute="top" id="v1Y-hp-NwB"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="bib-rD-mTd" firstAttribute="top" secondItem="8az-iT-kja" secondAttribute="bottom" id="66Z-L2-NHh"/>
                         <constraint firstAttribute="trailing" secondItem="8az-iT-kja" secondAttribute="trailing" id="6O3-vX-qRF"/>
+                        <constraint firstItem="bib-rD-mTd" firstAttribute="height" secondItem="7Nc-h9-Mho" secondAttribute="height" multiplier="0.55" id="Grh-Mw-292"/>
                         <constraint firstItem="Pij-yK-bct" firstAttribute="leading" secondItem="7Nc-h9-Mho" secondAttribute="leading" id="MTy-da-Uam"/>
                         <constraint firstItem="Pij-yK-bct" firstAttribute="top" secondItem="sLU-pW-lbb" secondAttribute="bottom" constant="8" id="SVU-Wi-zGy"/>
                         <constraint firstAttribute="trailing" secondItem="sLU-pW-lbb" secondAttribute="trailing" id="TYb-6Z-6de"/>
                         <constraint firstAttribute="bottom" secondItem="Pij-yK-bct" secondAttribute="bottom" id="UEx-4K-wdF"/>
+                        <constraint firstAttribute="trailing" secondItem="bib-rD-mTd" secondAttribute="trailing" id="Vxy-U7-dQk"/>
                         <constraint firstItem="8az-iT-kja" firstAttribute="top" secondItem="7Nc-h9-Mho" secondAttribute="top" id="XPg-9F-SOo"/>
                         <constraint firstItem="8az-iT-kja" firstAttribute="leading" secondItem="7Nc-h9-Mho" secondAttribute="leading" id="bO1-9b-ROQ"/>
                         <constraint firstItem="sLU-pW-lbb" firstAttribute="top" secondItem="8az-iT-kja" secondAttribute="bottom" constant="4" id="bwa-Gk-lzw"/>
@@ -135,6 +160,7 @@
                         <constraint firstItem="wNL-Q4-w9J" firstAttribute="leading" secondItem="7Nc-h9-Mho" secondAttribute="leading" constant="8" id="guT-bJ-oAd"/>
                         <constraint firstItem="sLU-pW-lbb" firstAttribute="leading" secondItem="7Nc-h9-Mho" secondAttribute="leading" id="lmc-6E-67Q"/>
                         <constraint firstAttribute="trailing" secondItem="wNL-Q4-w9J" secondAttribute="trailing" constant="8" id="nXC-gV-Lo3"/>
+                        <constraint firstItem="bib-rD-mTd" firstAttribute="leading" secondItem="7Nc-h9-Mho" secondAttribute="leading" id="qvz-z4-jNc"/>
                         <constraint firstItem="wNL-Q4-w9J" firstAttribute="top" secondItem="sLU-pW-lbb" secondAttribute="bottom" constant="8" id="tye-3c-g9i"/>
                         <constraint firstAttribute="bottom" secondItem="wNL-Q4-w9J" secondAttribute="bottom" constant="8" id="xbv-bF-7Pe"/>
                     </constraints>

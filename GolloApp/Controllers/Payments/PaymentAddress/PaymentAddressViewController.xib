@@ -48,6 +48,7 @@
                 <outlet property="phoneNumberBottomView" destination="ThK-Rg-bZ5" id="1bi-7a-Xc3"/>
                 <outlet property="phoneNumberTextField" destination="m6S-cx-hkX" id="niS-Tm-VCU"/>
                 <outlet property="postalCodeTextField" destination="zEe-XC-PLB" id="SGu-3V-epU"/>
+                <outlet property="preApprovedLabel" destination="3Dq-xN-ZY5" id="Ox0-QE-1Hj"/>
                 <outlet property="preApprovedSwitch" destination="rLP-OV-gKn" id="FtQ-NS-Ebp"/>
                 <outlet property="preApprovedView" destination="Jk7-lu-gWQ" id="Svo-Fv-zpp"/>
                 <outlet property="saveAddressButton" destination="oUd-oX-awR" id="gle-pe-fts"/>
@@ -70,10 +71,10 @@
                     <rect key="frame" x="0.0" y="47" width="390" height="797"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udK-YK-G8t">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="973"/>
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="1052"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="UNW-Dm-Ees">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="973"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="1052"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jw-TH-ohc">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="75"/>
@@ -791,8 +792,8 @@
                                                 <constraint firstItem="cFi-at-F1J" firstAttribute="top" secondItem="sFG-H5-yFR" secondAttribute="top" constant="8" id="x18-gI-PQQ"/>
                                             </constraints>
                                         </view>
-                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jk7-lu-gWQ">
-                                            <rect key="frame" x="0.0" y="847" width="390" height="75"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jk7-lu-gWQ">
+                                            <rect key="frame" x="0.0" y="849" width="390" height="75"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="¿Deseas utilizar tu crédito pre-aprobado?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dq-xN-ZY5">
                                                     <rect key="frame" x="8" y="27" width="275.66666666666669" height="21"/>
@@ -835,7 +836,7 @@
                                             </constraints>
                                         </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVa-Vp-2I5">
-                                            <rect key="frame" x="0.0" y="847" width="390" height="75"/>
+                                            <rect key="frame" x="0.0" y="926" width="390" height="75"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Realizaré el pago con tarjeta:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMo-2V-WxB">
                                                     <rect key="frame" x="8" y="27" width="275.66666666666669" height="21"/>
@@ -878,7 +879,7 @@
                                             </constraints>
                                         </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-ZY-47e">
-                                            <rect key="frame" x="0.0" y="847" width="390" height="75"/>
+                                            <rect key="frame" x="0.0" y="926" width="390" height="75"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postal Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sq3-6l-b10">
                                                     <rect key="frame" x="8" y="8" width="374" height="21"/>
@@ -920,7 +921,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0SX-bE-HEw">
-                                            <rect key="frame" x="0.0" y="849" width="390" height="55"/>
+                                            <rect key="frame" x="0.0" y="928" width="390" height="55"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6a0-Mw-PkM">
                                                     <rect key="frame" x="68.333333333333329" y="8" width="253.33333333333337" height="39"/>
@@ -983,7 +984,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcl-eR-C5V">
-                                            <rect key="frame" x="0.0" y="908" width="390" height="65"/>
+                                            <rect key="frame" x="0.0" y="987" width="390" height="65"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nq-bl-uED">
                                                     <rect key="frame" x="19.666666666666657" y="8" width="351" height="49"/>
@@ -1059,7 +1060,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

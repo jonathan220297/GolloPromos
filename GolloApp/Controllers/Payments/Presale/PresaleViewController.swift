@@ -37,6 +37,8 @@ class PresaleViewController: UIViewController {
     weak var delegate: PresaleDelegate?
     var keyboardShowing: Bool = false
     var errorAmount: Bool = false
+    var firstTime: Bool = true
+    var minDownPayment =  0.0
     
     init(viewModel: PresaleViewModel) {
         self.viewModel = viewModel
@@ -61,7 +63,7 @@ class PresaleViewController: UIViewController {
         self.tabBarController?.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
@@ -95,9 +97,9 @@ class PresaleViewController: UIViewController {
         }
         if let otherAmountString = textField.text {
             let doubleAmount = Double(otherAmountString.digitsOnly()) ?? 0.0
-            let sugestedAmount = round(viewModel.subTotal)
+            let sugestedAmount = round(viewModel.subTotal + viewModel.shipping)
             viewModel.currentPrima = doubleAmount
-
+            
             if doubleAmount >= sugestedAmount {
                 otherAmountErrorLabel.text = "La prima no puede ser igual o mayor al monto del crédito"
                 otherAmountErrorLabel.isHidden = false
@@ -125,7 +127,7 @@ class PresaleViewController: UIViewController {
     }
     
     fileprivate func configureViews() {
-        if let initial = numberFormatter.string(from: NSNumber(value: round(viewModel.subTotal))) {
+        if let initial = numberFormatter.string(from: NSNumber(value: round(viewModel.subTotal + viewModel.shipping))) {
             initialAmountLabel.text = "₡" + String(initial)
         } else {
             initialAmountLabel.text = "₡0.00"
@@ -182,12 +184,14 @@ class PresaleViewController: UIViewController {
                       let data = data else { return }
                 self.view.activityStopAnimatingFull()
                 self.viewModel.presaleDetail = data
+                if let minPrima = data.montoPrimaMinimo, minPrima > 0, let formmatedAmount = numberFormatter.string(from: NSNumber(value: minPrima)), firstTime {
+                    self.amountTextField.text = "₡" + formmatedAmount
+                    self.viewModel.currentPrima = minPrima
+                }
                 self.showTerms(with: data.plazos ?? [])
                 self.showDetails()
                 self.showControls(with: false)
-                if let minPrima = data.montoPrimaMinimo, minPrima > 0, let formmatedAmount = numberFormatter.string(from: NSNumber(value: minPrima)) {
-                    self.amountTextField.text = "₡" + formmatedAmount
-                }
+                self.firstTime = false
             })
             .disposed(by: bag)
     }
@@ -200,12 +204,17 @@ class PresaleViewController: UIViewController {
             plazoSlider.maximumValue = Float(maxValue ?? 0)
             minPeriodLabel.text = String(minValue ?? 0)
             maxPeriodLabel.text = String(maxValue ?? 0)
-            currentPlazoLabel.text  = String(maxValue ?? 0)
+            
+            if firstTime {
+                currentPlazoLabel.text  = String(maxValue ?? 0)
+            }
+            
             if viewModel.selectedTerm > 0 && isValidTerm(with: viewModel.selectedTerm, terms: terms) {
                 plazoSlider.value = Float(viewModel.selectedTerm)
             } else {
                 plazoSlider.value = Float(maxValue ?? 0)
             }
+            
             viewModel.selectedTerm = maxValue ?? 0
             viewModel.currentTerm = viewModel.presaleDetail?.plazos?.first { $0.cantidadMeses == viewModel.selectedTerm }
         }
@@ -217,8 +226,8 @@ class PresaleViewController: UIViewController {
                 monthlyAmountLabel.text = "₡" + String(monthly)
             }
             let interestAmount = (currentTerm.tasaEfectiva / 12)
-                interestRateAmountLabel.text = String(interestAmount) + "%" 
-            if let finance = numberFormatter.string(from: NSNumber(value: round(viewModel.subTotal - viewModel.currentPrima))) {
+            interestRateAmountLabel.text = String(interestAmount) + "%"
+            if let finance = numberFormatter.string(from: NSNumber(value: round((viewModel.subTotal + viewModel.shipping) - viewModel.currentPrima))) {
                 financeAmountLabel.text = "₡" + String(finance)
             }
             if let totalInteres = numberFormatter.string(from: NSNumber(value: round(currentTerm.montoIntereses))) {
@@ -240,5 +249,5 @@ class PresaleViewController: UIViewController {
     fileprivate func isValidTerm(with term: Int, terms: [CrediGolloTerm]) -> Bool {
         return terms.filter { $0.cantidadMeses == term }.count > 0
     }
-
+    
 }

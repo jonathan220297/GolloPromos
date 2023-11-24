@@ -13,7 +13,7 @@ protocol VerifyPaymentDelegate: AnyObject {
 }
 
 class VerifyPaymentViewController: UIViewController {
-
+    
     let webView: WKWebView = {
         let prefs = WKWebpagePreferences()
         if #available(iOS 14.0, *) {
@@ -28,29 +28,29 @@ class VerifyPaymentViewController: UIViewController {
     var processId: String = ""
     var closePage: Bool = false
     weak var delegate: VerifyPaymentDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Verificación de pago"
-
+        
         self.view.addSubview(webView)
         self.webView.uiDelegate = self
         self.webView.navigationDelegate = self
         guard let url = URL(string: redirectURL) else { return }
         webView.load(URLRequest(url: url))
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.webView.frame = self.view.bounds
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationController?.navigationBar.isHidden = false
@@ -59,7 +59,7 @@ class VerifyPaymentViewController: UIViewController {
             self.delegate?.transactionValidation(with: false, processId: self.processId)
         }
     }
-
+    
 }
 
 extension VerifyPaymentViewController: WKUIDelegate, WKNavigationDelegate {
@@ -70,11 +70,11 @@ extension VerifyPaymentViewController: WKUIDelegate, WKNavigationDelegate {
             })
         }
         print("Finished loading page new")
-      }
-
+    }
+    
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let urlStr = navigationAction.request.url?.absoluteString {
-            closePage = urlStr.lowercased().starts(with: "https://servicios.grupogollo.com:9199/ClientesApi/Transacciones/RespuestaBAC".lowercased())
+            closePage = urlStr.lowercased().starts(with: "https://servicios.grupogollo.com:9196/ClientesApiV5.0/Transacciones/RespuestaBAC".lowercased())
         }
         decisionHandler(.allow)
     }

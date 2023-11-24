@@ -34,12 +34,12 @@ class PresaleViewModel {
                         centro: "205",
                         numIdentificacion: Variables.userProfile?.numeroIdentificacion ?? "",
                         tipoIdentificacion: Variables.userProfile?.tipoIdentificacion ?? "",
-                        monto: getTotalItemsAmount(),
+                        monto: getTotalItemsAmount() + getTotalExpenses(),
                         montoCSR: getTotalCSRAmount(),
                         montoBono: getBonoTotalAmount(),
                         montoFlete: getDeliveryAmountFromCart(),
                         montoDescuento: getTotalDescuentos(),
-                        prima: currentPrima,
+                        prima: currentPrima + getBonoTotalAmount(),
                         articulos: getItems()
                     )
                 )

@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseMessaging
 import RxSwift
+import SafariServices
 
 class ViewController: UIViewController {
     
@@ -44,14 +45,14 @@ class ViewController: UIViewController {
             } catch {
                 print(error.localizedDescription)
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {[weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {[weak self] in
                 if let vc = AppStoryboard.Home.initialViewController() {
                     vc.modalPresentationStyle = .fullScreen
                     self?.present(vc, animated: true)
                 }
             }
         } else if viewModel.verifyTermsConditionsState() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {[weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {[weak self] in
                 if let vc = AppStoryboard.Home.initialViewController() {
                     vc.modalPresentationStyle = .fullScreen
                     self?.present(vc, animated: true)
@@ -125,20 +126,6 @@ class ViewController: UIViewController {
                 if !errorMessage.isEmpty {
                     self.showAlert(alertText: "GolloApp", alertMessage: errorMessage)
                     self.viewModel.errorMessage.accept("")
-                }
-            }
-            .disposed(by: bag)
-        
-        viewModel.updatedVersion
-            .asObservable()
-            .bind { (errorMessage) in
-                if !errorMessage.isEmpty {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
-                        self?.showAlertWithActions(alertText: "Actualización", alertMessage: errorMessage) {
-                            exit(0)
-                        }
-                    }
-                    self.viewModel.updatedVersion.accept("")
                 }
             }
             .disposed(by: bag)
