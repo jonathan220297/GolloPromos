@@ -146,9 +146,9 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showAlertWithActions(alertText : String, alertMessage : String, action: @escaping () -> Void) {
+    func showAlertWithActions(alertText : String, alertMessage : String, alertButton: String = "Extension_simple_alert_ok_button".localized, action: @escaping () -> Void) {
         let alert = UIAlertController(title: alertText, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Extension_simple_alert_ok_button".localized, style: UIAlertAction.Style.default) { _ in
+        alert.addAction(UIAlertAction(title: alertButton, style: UIAlertAction.Style.default) { _ in
             action()
         })
         self.present(alert, animated: true, completion: nil)

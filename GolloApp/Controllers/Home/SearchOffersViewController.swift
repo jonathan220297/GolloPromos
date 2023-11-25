@@ -60,7 +60,7 @@ class SearchOffersViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
@@ -90,7 +90,7 @@ class SearchOffersViewController: UIViewController {
             suggestionsView.isHidden = false
         }
     }
-
+    
     @objc func keyboardWillDisappear() {
         isShowing = false
         suggestionsView.isHidden = true
@@ -119,6 +119,7 @@ class SearchOffersViewController: UIViewController {
         self.searchCollectionView.register(UINib(nibName: "SearchHistoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SearchHistoryCollectionViewCell")
         self.collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         suggestionsTableView.register(UINib(nibName: "SuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: "SuggestionsTableViewCell")
+        suggestionsTableView.rowHeight = 40
     }
     
     fileprivate func fetchSuggestions(with searchText: String? = nil) {
@@ -132,13 +133,14 @@ class SearchOffersViewController: UIViewController {
                 var suggestions: [LocalSuggestions] = []
                 if let articles = data.articulos {
                     for a in articles {
-                        suggestions.append(LocalSuggestions(id: a.idArticulo, name: a.nombre, image: a.urlImagen))
+                        suggestions.append(LocalSuggestions(id: a.idArticulo, name: a.nombre, image: a.urlImagen, isBrand: false, isHeader: false))
                     }
                 }
                 
                 if let brands = data.marcas {
+                    suggestions.append(LocalSuggestions(id: nil, name: "MARCAS", image: nil, isBrand: false, isHeader: true))
                     for b in brands {
-                        suggestions.append(LocalSuggestions(id: nil, name: b.marca, image: nil))
+                        suggestions.append(LocalSuggestions(id: nil, name: b.marca, image: nil, isBrand: true, isHeader: false))
                     }
                 }
                 

@@ -93,7 +93,7 @@ class HomeViewController: UITabBarController {
             .bind { (errorMessage) in
                 if !errorMessage.isEmpty {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                        self?.showAlertWithActions(alertText: "Actualización", alertMessage: errorMessage) {
+                        self?.showAlertWithActions(alertText: "Actualización", alertMessage: errorMessage, alertButton: "IR A ACTUALIZAR") {
 //                            exit(0)
                             self?.openUrl("https://apps.apple.com/us/app/gollo/id1643795423")
                         }

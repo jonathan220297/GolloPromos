@@ -14,7 +14,7 @@ protocol SuggestionsCellDelegate: AnyObject {
 }
 
 class SuggestionsTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var suggestionImageView: UIImageView!
     @IBOutlet weak var suggestionLabel: UILabel!
     @IBOutlet weak var detailButton: UIButton!
@@ -27,7 +27,7 @@ class SuggestionsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         configureRx()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -39,12 +39,22 @@ class SuggestionsTableViewCell: UITableViewCell {
             failureImage: UIImage(named: "empty_image")
         )
         
-        let imageUrl = item.image?.replacingOccurrences(of: " ", with: "%20")
-        if let url = URL(string: imageUrl ?? "") {
-            suggestionImageView.isHidden = false
-            Nuke.loadImage(with: url, options: options, into: suggestionImageView)
-        } else {
+        if item.isHeader {
             suggestionImageView.isHidden = true
+            suggestionLabel.textColor = .orange
+        } else {
+            suggestionImageView.isHidden = false
+            let imageUrl = item.image?.replacingOccurrences(of: " ", with: "%20")
+            if let url = URL(string: imageUrl ?? ""), !item.isBrand {
+                Nuke.loadImage(with: url, options: options, into: suggestionImageView)
+                suggestionImageView.heightAnchor.constraint(equalToConstant: 34).isActive = true
+                suggestionImageView.widthAnchor.constraint(equalToConstant: 34).isActive = true
+            } else {
+                suggestionImageView.image = UIImage(named: "ic_registered_brand")
+                suggestionImageView.tintColor = .primary
+                suggestionImageView.heightAnchor.constraint(equalToConstant: 16).isActive = true
+                suggestionImageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
+            }
         }
         
         suggestionLabel.text = item.name
