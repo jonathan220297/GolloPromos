@@ -9,19 +9,23 @@ import Foundation
 import RxRelay
 
 class HomeViewModel {
+    // MARK: - Constants
     private let service = GolloService()
     
+    // MARK: - Subjects
     let errorMessage: BehaviorRelay<String> = BehaviorRelay(value: "")
     let updatedVersion: BehaviorRelay<String> = BehaviorRelay(value: "")
     let errorExpiredToken = BehaviorRelay<Bool?>(value: nil)
-    var sectionsArray: [HomeSection] = []
+    let scanNGoActivated = BehaviorRelay<Bool>(value: false)
     
+    // MARK: - Variables
+    var sectionsArray: [HomeSection] = []
     var reloadTableViewData: (()->())?
     var tableViewWidth: CGFloat = 0.0
-    
     var sections: [MasterSection] = []
     var configuration: HomeConfiguration?
     
+    // MARK: - Endpoints
     func getHomeConfiguration() -> BehaviorRelay<HomeConfiguration?> {
         let apiResponse: BehaviorRelay<HomeConfiguration?> = BehaviorRelay(value: nil)
         service.callWebService(HomeConfigurationRequest(
@@ -102,6 +106,7 @@ class HomeViewModel {
         return apiResponse
     }
     
+    // MARK: - Functions
     func saveToken(with token: String) -> Bool {
         if let data = token.data(using: .utf8) {
             let status = KeychainManager.save(key: "token", data: data)

@@ -45,18 +45,14 @@ class ViewController: UIViewController {
             } catch {
                 print(error.localizedDescription)
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {[weak self] in
-                if let vc = AppStoryboard.Home.initialViewController() {
-                    vc.modalPresentationStyle = .fullScreen
-                    self?.present(vc, animated: true)
-                }
+            if let vc = AppStoryboard.Home.initialViewController() {
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
             }
         } else if viewModel.verifyTermsConditionsState() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {[weak self] in
-                if let vc = AppStoryboard.Home.initialViewController() {
-                    vc.modalPresentationStyle = .fullScreen
-                    self?.present(vc, animated: true)
-                }
+            if let vc = AppStoryboard.Home.initialViewController() {
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
             }
         } else {
             loadingView.isHidden = true

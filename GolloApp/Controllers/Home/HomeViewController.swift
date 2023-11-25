@@ -34,6 +34,7 @@ class HomeViewController: UITabBarController {
         configureRx()
         configureTabBarAppearance()
         configureObservers()
+        configureTabBar(scanActivated: false)
     }
     
     // MARK: - Observers
@@ -102,6 +103,15 @@ class HomeViewController: UITabBarController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        viewModel
+            .scanNGoActivated
+            .asObservable()
+            .subscribe(onNext: {[weak self] value in
+                guard let self = self else { return }
+                self.configureTabBar(scanActivated: value)
+            })
+            .disposed(by: disposeBag)
     }
     
     fileprivate func validateVersion() {
@@ -145,7 +155,7 @@ class HomeViewController: UITabBarController {
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
-                self.configureTabBar(with: data.indScanAndGo ?? false)
+                viewModel.scanNGoActivated.accept(data.indScanAndGo ?? false)
                 DispatchQueue.main.async {
                     self.view.activityStopAnimatingFull()
                 }
@@ -153,7 +163,8 @@ class HomeViewController: UITabBarController {
             .disposed(by: disposeBag)
     }
     
-    func configureTabBar(with scanActivated: Bool) {
+    func configureTabBar(scanActivated: Bool) {
+        viewControllers?.removeAll()
         //Offers
         let homeTab = HomeTabViewController(
             viewModel: HomeViewModel()
@@ -219,6 +230,7 @@ class HomeViewController: UITabBarController {
                 navigationMenu
             ]
         }
+        selectedIndex = 0
     }
     
     func openUrl(_ url: String) {
