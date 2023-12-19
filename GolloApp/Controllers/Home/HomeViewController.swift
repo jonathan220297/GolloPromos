@@ -57,6 +57,7 @@ class HomeViewController: UITabBarController {
                         self.view.activityStopAnimating()
                     }
                     self.viewModel.errorExpiredToken.accept(nil)
+                    self.userDefaults.removeObject(forKey: "registerDeviceToken")
                     self.userDefaults.removeObject(forKey: "Information")
                     let _ = KeychainManager.delete(key: "token")
                     Variables.isRegisterUser = false
@@ -123,7 +124,15 @@ class HomeViewController: UITabBarController {
                 DispatchQueue.main.async {
                     self.view.activityStopAnimatingFull()
                 }
-                print("Error fetching FCM registration token: \(error)")
+                print("Error fetching FCM registration token because is register previous: \(error)")
+                guard let data = KeychainManager.load(key: "token") else {
+                    print("Error fetching FCM registration token: \(error)")
+                    return
+                }
+                let stringToken = String(data: data, encoding: .utf8)
+                if let token = stringToken, !token.isEmpty  {
+                    self.registerDevice(with: token)
+                }
             } else if let token = token {
                 print("FCM registration token: \(token)")
                 self.registerDevice(with: token)

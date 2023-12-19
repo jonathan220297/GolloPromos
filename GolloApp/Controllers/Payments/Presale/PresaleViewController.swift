@@ -207,6 +207,7 @@ class PresaleViewController: UIViewController {
             
             if firstTime {
                 currentPlazoLabel.text  = String(maxValue ?? 0)
+                viewModel.selectedTerm = maxValue ?? 0
             }
             
             if viewModel.selectedTerm > 0 && isValidTerm(with: viewModel.selectedTerm, terms: terms) {
@@ -215,7 +216,6 @@ class PresaleViewController: UIViewController {
                 plazoSlider.value = Float(maxValue ?? 0)
             }
             
-            viewModel.selectedTerm = maxValue ?? 0
             viewModel.currentTerm = viewModel.presaleDetail?.plazos?.first { $0.cantidadMeses == viewModel.selectedTerm }
         }
     }
