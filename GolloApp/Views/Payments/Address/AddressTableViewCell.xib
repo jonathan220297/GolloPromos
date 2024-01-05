@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddressTableViewCell" rowHeight="160" id="KGk-i7-Jjw" customClass="AddressTableViewCell" customModule="GolloApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="543" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="543" height="160"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypQ-N5-wN3">
+                        <rect key="frame" x="476" y="62.666666666666657" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="DE7-WQ-akO"/>
+                            <constraint firstAttribute="width" secondItem="ypQ-N5-wN3" secondAttribute="height" multiplier="1:1" id="fmp-Ke-Bym"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="trash.fill" catalog="system"/>
+                        <connections>
+                            <action selector="deleteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DbL-eb-mwo"/>
+                        </connections>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gye-No-0BK">
+                        <rect key="frame" x="16" y="16" width="444" height="128"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dirección" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDJ-wA-X0L">
+                                <rect key="frame" x="0.0" y="0.0" width="444" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Geu-OC-HxN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Provincia: SAN JOSE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGQ-Mm-sbr">
+                                <rect key="frame" x="0.0" y="33" width="444" height="24.666666666666671"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="6yz-Hj-Bt5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cantón: TIBAS, SAN JOSE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODr-JG-qd9">
+                                <rect key="frame" x="0.0" y="65.666666666666671" width="444" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="8hq-MA-nDx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DIstritos: LEON XII, TIBAS, SAN JOSE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfP-oh-fcz">
+                                <rect key="frame" x="0.0" y="98.666666666666671" width="444" height="29.333333333333329"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="P4e-WE-1YP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Codigo postal: 123" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="375-QH-Zfg">
+                                <rect key="frame" x="0.0" y="128" width="444" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="feo-be-3qe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Gye-No-0BK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="6dT-VV-tup"/>
+                    <constraint firstItem="ypQ-N5-wN3" firstAttribute="leading" secondItem="Gye-No-0BK" secondAttribute="trailing" constant="16" id="Gzb-X4-DU7"/>
+                    <constraint firstItem="Gye-No-0BK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="KPw-hB-OoN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ypQ-N5-wN3" secondAttribute="trailing" constant="16" id="c3b-af-S76"/>
+                    <constraint firstItem="ypQ-N5-wN3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mQB-44-eVc"/>
+                    <constraint firstAttribute="bottom" secondItem="Gye-No-0BK" secondAttribute="bottom" constant="16" id="ojP-ub-Fwi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addressLabel" destination="zDJ-wA-X0L" id="bfx-v9-qTI"/>
+                <outlet property="countyLabel" destination="ODr-JG-qd9" id="0VY-dK-7cS"/>
+                <outlet property="districtLabel" destination="GfP-oh-fcz" id="xeT-wN-Rf1"/>
+                <outlet property="postalCodeLabel" destination="375-QH-Zfg" id="1jU-6F-6sm"/>
+                <outlet property="stateLabel" destination="FGQ-Mm-sbr" id="rmu-1X-RRF"/>
+            </connections>
+            <point key="canvasLocation" x="225.38461538461539" y="69.66824644549763"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="trash.fill" catalog="system" width="119" height="128"/>
+    </resources>
+</document>

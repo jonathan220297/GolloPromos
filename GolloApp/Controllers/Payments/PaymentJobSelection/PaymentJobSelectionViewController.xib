@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentJobSelectionViewController" customModule="GolloApp" customModuleProvider="target">
+            <connections>
+                <outlet property="closeButton" destination="ZfQ-Re-iHC" id="TLV-dm-jEu"/>
+                <outlet property="continuePaymentButton" destination="PYa-rR-Wrh" id="dJF-R9-7UQ"/>
+                <outlet property="dateCollectionView" destination="jcf-hV-X1T" id="Xts-zu-lwN"/>
+                <outlet property="hourCollectionView" destination="4HU-Q7-nPV" id="SQM-jp-VIV"/>
+                <outlet property="hourLabel" destination="E6R-Hu-MIc" id="20r-H8-msK"/>
+                <outlet property="popUpView" destination="Jov-X5-9kb" id="tY6-kM-8SA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewGlass" destination="YWC-ob-BD4" id="v35-n2-vGQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.40000000596046448" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWC-ob-BD4">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jov-X5-9kb">
+                    <rect key="frame" x="39.333333333333343" y="251" width="314.33333333333326" height="350"/>
+                    <subviews>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZfQ-Re-iHC">
+                            <rect key="frame" x="281.33333333333337" y="8" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="AZw-XP-waH"/>
+                                <constraint firstAttribute="width" secondItem="ZfQ-Re-iHC" secondAttribute="height" id="yBr-Mj-9Gz"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="systemGray3Color"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="xmark.circle.fill" catalog="system"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debe seleccionar otra fecha" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIZ-iQ-XUY">
+                            <rect key="frame" x="8" y="16" width="298.33333333333331" height="19.666666666666671"/>
+                            <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6YQ-pM-B5H">
+                            <rect key="frame" x="12" y="51.666666666666686" width="290.33333333333331" height="151.66666666666663"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRw-dy-due">
+                                    <rect key="frame" x="0.0" y="0.0" width="290.33333333333331" height="4"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="4" id="z9O-nE-hj1"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecciona la fecha de entrega:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0Q-Vl-747">
+                                    <rect key="frame" x="0.0" y="12.000000000000002" width="290.33333333333331" height="19.666666666666671"/>
+                                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jcf-hV-X1T">
+                                    <rect key="frame" x="0.0" y="39.666666666666629" width="290.33333333333331" height="100"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="jrd-xp-bFe"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5bH-1b-69c">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escoge el período para recibir tu pedido:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6R-Hu-MIc">
+                                    <rect key="frame" x="0.0" y="143.66666666666663" width="290.33333333333331" height="0.0"/>
+                                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4HU-Q7-nPV">
+                                    <rect key="frame" x="0.0" y="143.66666666666663" width="290.33333333333331" height="70"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="70" id="Qct-pH-6gv"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vtv-Ne-RLQ">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ym-DY-48N">
+                                    <rect key="frame" x="0.0" y="147.66666666666663" width="290.33333333333331" height="4"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="4" id="p9l-fn-Xq7"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYa-rR-Wrh">
+                            <rect key="frame" x="39.333333333333329" y="302" width="235.66666666666669" height="40"/>
+                            <color key="backgroundColor" name="colorPrimary"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="RAY-VH-IOa"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="CONTINUAR CON EL PAGO">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="PYa-rR-Wrh" firstAttribute="width" secondItem="Jov-X5-9kb" secondAttribute="width" multiplier="0.75" id="1HJ-JA-ZwM"/>
+                        <constraint firstItem="6YQ-pM-B5H" firstAttribute="top" secondItem="fIZ-iQ-XUY" secondAttribute="bottom" constant="16" id="5jx-v5-mah"/>
+                        <constraint firstItem="PYa-rR-Wrh" firstAttribute="centerX" secondItem="Jov-X5-9kb" secondAttribute="centerX" id="6UN-Ah-yYE"/>
+                        <constraint firstItem="ZfQ-Re-iHC" firstAttribute="top" secondItem="Jov-X5-9kb" secondAttribute="top" constant="8" id="CPb-Ze-qGY"/>
+                        <constraint firstAttribute="trailing" secondItem="6YQ-pM-B5H" secondAttribute="trailing" constant="12" id="Czl-Tt-w2e"/>
+                        <constraint firstAttribute="height" constant="350" id="FAv-lL-yJM"/>
+                        <constraint firstAttribute="trailing" secondItem="ZfQ-Re-iHC" secondAttribute="trailing" constant="8" id="IX7-5t-wzR"/>
+                        <constraint firstAttribute="bottom" secondItem="PYa-rR-Wrh" secondAttribute="bottom" constant="8" id="Ijp-Ws-hPx"/>
+                        <constraint firstItem="fIZ-iQ-XUY" firstAttribute="leading" secondItem="Jov-X5-9kb" secondAttribute="leading" constant="8" id="JC9-eK-hs2"/>
+                        <constraint firstAttribute="trailing" secondItem="fIZ-iQ-XUY" secondAttribute="trailing" constant="8" id="a0L-om-J9W"/>
+                        <constraint firstItem="fIZ-iQ-XUY" firstAttribute="top" secondItem="Jov-X5-9kb" secondAttribute="top" constant="16" id="hDY-xU-XUf"/>
+                        <constraint firstItem="6YQ-pM-B5H" firstAttribute="leading" secondItem="Jov-X5-9kb" secondAttribute="leading" constant="12" id="uy8-we-rvu"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="Layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="Layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Jov-X5-9kb" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="2ed-dM-Vr9"/>
+                <constraint firstItem="Jov-X5-9kb" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="MAo-Qn-fq8"/>
+                <constraint firstAttribute="bottom" secondItem="YWC-ob-BD4" secondAttribute="bottom" id="OXC-e8-HVO"/>
+                <constraint firstItem="YWC-ob-BD4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fyq-oc-qXA"/>
+                <constraint firstItem="YWC-ob-BD4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hQF-N7-e1P"/>
+                <constraint firstItem="Jov-X5-9kb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="p28-ju-jdu"/>
+                <constraint firstAttribute="trailing" secondItem="YWC-ob-BD4" secondAttribute="trailing" id="xNf-4w-gnV"/>
+            </constraints>
+            <point key="canvasLocation" x="82" y="21"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="colorPrimary">
+            <color red="0.0" green="0.40000000000000002" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

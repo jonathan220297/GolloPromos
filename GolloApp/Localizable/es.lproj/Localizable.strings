@@ -1,0 +1,205 @@
+/* 
+  Localizable.strings
+  Shoppi
+
+  Created by Jonathan  Rodriguez on 14/6/21.
+  
+*/
+
+// MainViewController
+"MainViewController_title_label" = "¡Bienvenidos a la app de Gollo!";
+"MainViewController_description_label" = "Ingresá para aprovechar nuestras promociones, hacer pagos e incluso pagar cuotas de terceros.";
+"MainViewController_continue_button" = "Continuar";
+
+// LoginViewController
+"LoginViewController_loggin_button" = "INGRESAR";
+
+// TermsConditionsController
+"TermsConditionsController_terms" = "Términos y condiciones
+Bienvenidos, por favor, lea los términos y condiciones que se describen a continuación y que aplican para el App de Gollo.
+
+Políticas Generales
+Objetivo
+Establecer los términos y condiciones que se publicarán en el App de Gollo para mantener el estándar de transparencia frente al cliente.
+Alcance
+El presente documento es aplicable a las operaciones de Unión Comercial de Costa Rica Unicomer S.A en Costa Rica, perteneciente al Grupo Unicomer y en sus plataformas de comercio electrónico.
+Privacidad
+Toda información que provee el cliente al momento de registrarse o realizar una compra será tratada con absoluta confidencialidad y privacidad.
+En la App se resguarda la siguiente información del cliente:
+•    Información Personal: nombre, cédula, dirección física, número de teléfono y dirección de email.
+•    Información no personalizada identificable: dirección IP, tipo de navegador, nombre de dominio y paginaciones específicas del App que se recopilan para ganar una comprensión mejor de las necesidades del sitio.
+
+Toda información que brinde por este medio tiene que ser real y actualizada y es de su entera responsabilidad mantener el resguardo de ésta y la seguridad de su cuenta.
+Moneda
+Los precios en el App serán desplegados en colones.
+
+Precio y Promociones
+Los precios son exclusivamente para compras en el App, están sujetos a cambios sin previo aviso e incluyen todos los impuestos de venta según normativa vigente en Costa Rica. En el precio no se incluyen los gastos de envío los cuales pueden variar según el cantón, distrito y dirección exacta del cliente seleccionado en la dirección de entrega. Las promociones presentadas serán exclusivamente para compras efectuadas por estos dos medios.
+El cliente al utilizar el App consiente que autoriza a Unión Comercial de Costa Rica, Unicomer S.A, a enviarle mensajes promocionales por cualquier medio físico y electrónico a los números de teléfono y correos electrónicos que proporciona en estos medios y que de ser necesario actualizará por cualquier canal  de comunicación, además exime de responsabilidad  a la empresa por el envío de dichos mensajes. Cuando el cliente no desee recibir dicha información podrá notificar vía correo electrónico para que sea borrado de la lista de clientes preferentes.
+Disponibilidad de Productos
+En los casos que no se cuente con existencia de productos se le notificará al cliente mediante un correo electrónico. Si las opciones no satisfacen las expectativas del cliente, este deberá de comunicarlo contestando el correo electrónico enviado.
+El color y las imágenes de los productos son con fines ilustrativos y  pueden variar dependiendo del móvil o el equipo de cómputo en que se esté consultando el App y de los accesorios de cada uno de ellos.
+
+Láminas protectoras para celulares
+Al adquirir o comprar la lámina protectora para la pantalla del celular, el cliente acepta la apertura del empaque original del celular en nuestro Centro de Distribución para la correcta instalación de esta.
+
+Pedidos
+El App de Gollo puede recibir todo tipo de pedido de cualquier parte del mundo, pero solo se realizarán entregas en Costa Rica. Cualquier persona puede realizar la compra, siempre y cuando esté registrada y sea mayor de dieciocho (18) años.
+Dentro del App el cliente podrá comprar todos los productos y servicios que se encuentren disponibles y el comprobante de compra será enviado al cliente vía correo electrónico.
+Las compras realizadas serán entregadas al cliente en el lugar de destino que solicite, siempre y cuando esté dentro del área de cobertura.
+El propietario de la tarjeta de crédito o débito será el único autorizado para recibir el producto y firmar el comprobante de recibido. Sin embargo, este puede autorizar a un tercero e incluirlo como destinatario de las mercaderías, siempre bajo la entera responsabilidad de El Cliente. Para que un tercero pueda recoger o recibir un pedido debe presentar:
+•    Copia o foto de la cedula del cliente quien ejecutó la compra.
+•    La autorización expresa de la persona quien realizó la compra. Si la autorización es física deberá contar con la firma del comprador. Si la autorización es vía telefónica el comprador deberá indicar a alguno de nuestros funcionarios o transportistas responsables de la entrega del producto.
+•    Foto o copia de la tarjeta de crédito o débito donde se pueda verificar los últimos 4 dígitos de ésta.
+•    Cedula de la persona responsable de recibir o retirar el artículo.
+Ante cualquier duda de estafa o fraude, Unicomer se reserva el derecho de no entregar el artículo, y rescindir la compra.
+En caso de no poder realizar la entrega por ausencia del destinatario, funcionarios de Unicomer intentaran contactar por teléfono al cliente, tras tres intentos fallidos, el cliente deberá contactarse posteriormente con servicio al cliente de Unicomer para coordinar una segunda entrega.
+Unicomer se reserva la entrega de mercadería cuando las condiciones climáticas, emergencia nacional, huelga, cierre de vías o de infraestructura vial no permitan el libre tránsito de unidades transportadoras. Ante esta situación, el Contact Center llamará a cada uno de los clientes para coordinar la entrega o bien realizar los reintegros de dinero correspondientes.
+
+Cancelación de pedidos
+Cualquier persona puede cancelar su compra antes de que le sea entregado el producto por medio de un correo electrónico a gollo_cr@unicomer.com o llamando al número de teléfono de atención al cliente: 800-00-45665 manifestando su intención de cancelar la orden de compra y solicitando la devolución del dinero o el contracargo.
+
+Una vez autorizado el proceso de reintegro de la tarjeta de crédito o débito, se solicitará al banco la devolución del dinero al tarjetahabiente. El tiempo de reintegro puede variar según el banco emisor de la tarjeta y puede oscilar entre 8 a 45 días.
+
+En caso de que el articulo comprado no esté disponible por falta de existencias en el mercado, el cliente será notificado explicando el motivo del porqué su orden no podrá ser entregada y el cliente podrá decidir si desea cambiar su compra o bien cancelarla para que sea reintegrado el dinero en su totalidad.
+
+
+
+Estados del pedido
+Se cuenta con 6 estados del pedido y son los siguientes:
+Orden confirmada: Cuando el pedido que ha sido verificado por funcionarios de Unicomer.
+Preparación: El pedido está preparándose para ser despachado o entregado al cliente.
+Transporte: El pedido va de camino para ser entregado en el domicilio del cliente.
+Listo para retirar: Aplica para el pedido en donde el cliente ha solicitado retirar en alguna de nuestras tiendas y ya se encuentra listo para ser entregado.
+Entregado: Cuando el pedido ha sido enviado a la dirección indicada por el cliente o haya sido retirado por el mismo o un tercero autorizado en alguna de nuestras tiendas.
+Anulada: Ocurre cuando:
+•    El cliente solicita cancelar el pedido.
+•    El cliente no retira el producto en la tienda o no se localiza en un lapso de 15 días después de confirmada la orden.
+•    El pedido se considera una posible estafa o fraude.
+•    Cliente no califica para adquirir  un crédito.
+Cada cambio de estado del pedido se le notificará al cliente mediante un correo electrónico y una notificación push en el App de Gollo.
+
+Método de pago
+Todas las formas de pago están sujetas a verificación y autorización.  Las formas de pago autorizadas desde el App de Gollo son las siguientes:
+
+Tarjeta
+Aplican las tarjetas de las marcas Visa, Mastercard, American Express, JCB, Diners Club y Discover. Union Comercial de Costa Rica, Unicomer S.A se desliga del manejo y uso de tarjetas de crédito robadas, con fines fraudulentos, debido a que nuestro portal no puede negar la venta cuando el banco emisor ha autorizado la transacción y los datos registrados en nuestro sistema de venta coincidan con los del registro.
+
+
+Pago en Sucursal
+Todo cliente que desee efectuar su pago en efectivo deberá realizar su compra por medio del App y hacer la cancelación en la tienda en donde haya solicitado el retiro del pedido.
+
+CrediGollo
+El cliente podrá solicitar y así ahorrar tiempo y esfuerzo. Se realizará una investigación de rutina y la persona encargada se comunicará con el interesado para culminar el proceso de aprobación de crédito.
+
+Las órdenes de Pago en Sucursal y CrediGollo tienen un tiempo máximo para formalizarse de 4 días, después de ese tiempo se procede a cancelar el pedido de forma automática.
+
+Envío o retiro de productos
+Retiro en tienda
+Los artículos pueden ser retirados en cualquiera de nuestras tiendas alrededor del país bajo la debida coordinación y en ese caso no habrá cargos por envío. Para optar por esta oportunidad el cliente debe seleccionar la opción de “Retiro en Tienda” en la forma de envío y luego podrá realizar el retiro.
+Los artículos enviados a las tiendas físicas estarán disponibles por un plazo de 15 días naturales, posterior a esa fecha si el cliente o la persona autorizada no ha realizado el retiro del producto Unicomer se reserva el derecho de disponerlo de la forma que estime conveniente, y rescindir la compra.
+
+Envío a Domicilio
+Los tiempos de entrega es de 1 a 3 días en el GAM y en zona rural de 1 a 8 días.
+Las entregas a domicilio pueden variar de acuerdo con:
+•    La disponibilidad de inventario.
+•    Si no se logra contactar al cliente en el tiempo establecido el envío será reprogramado.
+
+Si el cliente desea que la compra sea enviada a un domicilio autorizado, ésta puede ser entregada en todo el territorio nacional con acceso adecuado vía terrestre. Los precios varían dependiendo del área donde se realice la entrega y será especificado en la factura de cobro.
+Cuando por razones fuera del alcance y control de Unicomer, no se encontró a ninguna persona que reciba el artículo en la dirección de entrega, se procederá a comunicarse con el cliente con el fin de coordinar la entrega del producto.
+Cuando por razones fuera de nuestro alcance no se pudo acceder al lugar de entrega se procederá comunicarse con el cliente vía telefónica o por correo electrónico, con el fin de coordinar la entrega del producto en la tienda más cercana.
+En ningún caso al transportista deberá realizar la labor de colocación o instalación de productos, por cuanto no es un personal capacitado para realizar esta labor. El movimiento y colocación de los artículos  queda bajo responsabilidad del cliente.
+
+Envío Rápido o Express
+Son entregas al domicilio del cliente en 24 horas de lunes a sábado.
+Las entregas a domicilio pueden variar de acuerdo con:
+•    La disponibilidad de inventario.
+•    Si no se logra contactar al cliente en el tiempo establecido el envío será reprogramado.
+
+Si el cliente desea que la compra sea enviada a un domicilio autorizado, ésta puede ser entregada en todo el territorio nacional con acceso adecuado vía terrestre. Los precios varían dependiendo del área donde se realice la entrega y será especificado en la factura de cobro.
+Cuando por razones fuera del alcance y control de Unicomer, no se encontró a ninguna persona que reciba el artículo en la dirección de entrega, se procederá a comunicarse con el cliente con el fin de coordinar la entrega del producto.
+Cuando por razones fuera de nuestro alcance no se pudo acceder al lugar de entrega se procederá comunicarse con el cliente vía telefónica o por correo electrónico, con el fin de coordinar la entrega del producto en la tienda más cercana.
+En ningún caso al transportista deberá realizar la labor de colocación o instalación de productos, por cuanto no es un personal capacitado para realizar esta labor. El movimiento y colocación de los artículos  queda bajo responsabilidad del cliente.
+
+Devoluciones y cambios
+El cliente a partir de la entrega del producto ya sea en el domicilio o en la tienda, tiene 8 días naturales para coordinar con el Contact Center la solicitud de la devolución del dinero o cambio del producto escribiendo al correo: gollo_cr@unicomer.com o llamando a la línea gratuita 800-0046556 y presentarse a la tienda más cercana, siempre y cuando el producto esté sin uso y en excelentes condiciones tal y como fue entregado (empaque y accesorios), no procederá si el cliente alteró el empaque, utilizó o manipulo de alguna forma el artículo, el artículo tiene que estar en las mismas condiciones en que lo recibió, esta condición no aplica para compras en puntos de ventas.
+Si aplica el cambio del producto, el cliente deberá presentarse en la tienda más cercana con la factura. Se tomará como referencia el monto invertido con base en la factura inicial y el precio del producto solicitado en el momento de la facturación. Si el producto nuevo tiene un valor comercial mayor, el cliente deberá pagar la diferencia.
+Si se espera una devolución de dinero por la compra, el cliente deberá presentarse en la tienda más cercana con la factura y el producto en perfecto estado, según lo indicado en el primer párrafo.
+En ninguna situación se realizarán devoluciones de dinero en efectivo por compras con tarjeta en el App. El reintegro del dinero a la cuenta bancaria del cliente se procesará en el mismo día de ejecutada la compra siempre y cuando el cliente así lo haya solicitado y corresponda a tarjetas de débito y crédito. Los reintegros tramitados posterior al día de la compra quedaran sujetos a la duración del trámite de la entidad bancaria correspondiente.
+Todo reintegro se hará vía solicitud de transferencia bancaria, por medio de las respectivas entidades financieras.
+No se tramitarán devoluciones de dinero por concepto de flete o transporte, ni de ningún otro costo asociado solamente se devolverá el precio pagado por el artículo indicado en la factura.
+
+
+Garantía del producto
+Cada artículo tiene asignado por defecto un tiempo por garantía de fábrica el cual se indica en el certificado de garantía, el cliente tiene derecho a hacer uso de dicha garantía en la tienda más cercana durante ese tiempo especificado.
+Los procesos de garantía quedarán sin efecto en caso de que se determine un daño causado por:
+•    El mal uso del producto por parte del cliente o terceros ajenos a Unicomer
+•    Que el producto evidencie daño o alteraciones físicas como ralladuras, raspones, rupturas, golpes, etc.
+•    Cualquier otra modificación, alteración o daño imputable al consumidor.
+El procedimiento por seguir será el  establecido por las políticas de la compañía, siendo evaluado el producto por un taller autorizado para constatar el estado del artículo con el fin de determinar si se puede hacer valer la garantía de fábrica para luego aprobar el trámite por los encargados.
+
+Pago de Cuota
+Unicomer notifica que puede realizar el pago de sus cuotas y de terceras personas por medio del App de clientes. No se procesarán pagos de cuentas con tasa cero, pago extraordinario o cuentas en estado incobrable.
+
+Servicio al cliente
+Para cualquier duda, comentario o consulta nos puede contactar en la dirección de correo electrónico: gollo_cr@unicomer.com, o bien por medio de nuestro chat en línea disponible en www.gollo.com, también está a disposición el número de teléfono de atención al cliente: 800-00-45665 a nivel nacional y en el horario de: Lunes a Domingo de 8:00am a 8:30 pm.
+
+Otros
+Recomendaciones a los clientes:
+•    Nunca solicitaremos información personal mediante correo electrónico, por lo que se recomienda al cliente no proporcionar ningún tipo de información que le sea solicitada por este medio.
+•    En caso de duda, el cliente podrá verificar la autenticidad del vínculo, dirección o correo electrónico en la que le soliciten información personal al correo gollo_cr@unicomer.com.
+•    La empresa no se hace responsable de errores del cliente, o usuario, o negligencia al usar los servicios que se ofrecen y no cubre pérdidas ocasionadas por: errores de captura o el uso indebido del servicio, negligencia en el manejo o compartir su información que ocasione accesos no autorizados a cuentas, dejar dispositivo móvil o equipo de cómputo sin atención durante una sesión en línea, compartir claves con terceros etc.
+
+Protección de información y gráfica.
+Todos los nombres comerciales, encabezados de páginas, gráficos, textos, logos, botones, iconos, imágenes, audio, código y software usado o incorporado en el App y su uso, disposición o integración, están protegidos por la legislación y/ó se encuentra bajo licencia de Union Comercial de Costa Rica UNICOMER S.A. para uso únicamente de los servicios disponibles en el App.
+Se prohíbe cualquier otro uso, incluyendo la reproducción, modificación, distribución, transmisión, exhibición o impresión, de los distintivos comerciales registrados a nombre de las sociedades del Grupo UNICOMER, los cuales están exhibidos en el App, salvo que se cuente con permiso escrito de la sociedad titular de los derechos. Cualquier uso, distribución, circulación o publicación de cualquiera de los distintivos comerciales o de las imágenes contenidas en esta App, por cualquier medio, será sancionada por las leyes aplicables.
+Cumplimiento regulatorio
+La inscripción de UNION COMERCIAL DE COSTA RICA UNICOMER S.A, Cédula jurídica 3-101-074154, ante la Superintendencia General de Entidades Financieras(SUGEF) no es una autorización para operar, y la supervisión que ejerce esa Superintendencia es sólo en materia de prevención de legitimación de capitales, financiamiento al terrorismo y financiamiento de la proliferación de armas de destrucción masiva, según lo dispuesto en la Ley N° 7786, “Ley sobre estupefacientes, sustancias psicotrópicas, drogas de uso no autorizado, actividades conexas, legitimación de capitales y financiamiento al terrorismo”. Por lo tanto, la SUGEF no supervisa los negocios que ofrece y realiza la empresa, ni su seguridad, estabilidad o solvencia. Las personas que contraten sus productos y servicios lo hacen bajo su cuenta y riesgo.
+
+Se constituye un acuerdo legal entre cualquier usuario y el App de Gollo dándose por entendido que el cliente, antes de solicitar algún servicio a través de ésta, ha revisado, entendido y acordado los términos expuestos. En caso de alguna inconformidad, el usuario deberá abstenerse de proporcionar información personal, así como de levantar algún requerimiento comercial.
+
+";
+"TermsConditionsController_continue_error" = "Debes de aceptar los términos y condiciones para continuar.";
+
+// SignUpViewController
+"SignUpViewController_button_title" = "CREAR NUEVA CUENTA";
+
+// Extensions
+"Extension_simple_alert_ok_button" = "Aceptar";
+
+// ProfileViewController
+"ProfileViewController_title" = "Perfil de usuario";
+"ProfileViewController_document_type" = "Tipo de documento de identidad";
+"ProfileViewController_document_number" = "Número de documento (cédula o pasaporte)";
+"ProfileViewController_search_customer" = "BUSCAR";
+"ProfileViewController_cedula" = "Cédula";
+"ProfileViewController_cedula_juridica" = "Cédula jurídica";
+"ProfileViewController_passport" = "Pasaporte";
+"ProfileViewController_update" = "ACTUALIZAR";
+
+// PaymentDataViewController
+"PaymentDataViewController_title" = "Tarjeta crédito";
+"PaymentDataViewController_card_number" = "Tarjeta de crédito";
+"PaymentDataViewController_expiration" = "Mes de vencimiento";
+"PaymentDataViewController_expiration_year" = "Año de vencimiento";
+"PaymentDataViewController_card_name" = "Titular de la tarjeta";
+"PaymentDataViewController_continue_payment" = "FINALIZAR PAGO";
+
+// PersonalInfoViewController
+"PersonalInfoViewController_title" = "Datos de envío";
+"PersonalInfoViewController_first_name" = "Nombres";
+"PersonalInfoViewController_last_name" = "Primer apellido";
+"PersonalInfoViewController_email" = "Correo electrónico";
+"PersonalInfoViewController_phone_number" = "Número de teléfono";
+"PersonalInfoViewController_document_type" = "Tipo de documento de identidad";
+"PersonalInfoViewController_identification_number" = "Número de documento (cédula o pasaporte)";
+"PersonalInfoViewController_select_address" = "SELECCIONAR DIRECCIÓN";
+"PersonalInfoViewController_country" = "País";
+"PersonalInfoViewController_state" = "Provincia";
+"PersonalInfoViewController_city" = "Ciudad";
+"PersonalInfoViewController_address" = "Dirección";
+"PersonalInfoViewController_save_address" = "GUARDAR DIRECCIÓN";
+"PersonalInfoViewController_continue" = "CONTINUAR CON EL ENVÍO";
+"PersonalInfoViewController_address_saved" = "Dirección guardada";
+"PersonalInfoViewController_address_incomplete" = "Dirección incompleta";
+"PersonalInfoViewController_login_to_save_address" = "Inicia sesión para guardar la dirección";
