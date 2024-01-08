@@ -20,6 +20,7 @@ class PaymentTypeViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var creditButton: UIButton!
     @IBOutlet weak var cashButton: UIButton!
+    @IBOutlet weak var emmaButton: UIButton!
     @IBOutlet weak var continuePaymentButton: UIButton!
     
     let bag = DisposeBag()
@@ -79,6 +80,7 @@ class PaymentTypeViewController: UIViewController {
                 self.isCreditSelected = true
                 self.creditButton.setImage(UIImage(named: "ic_radio-button-checked"), for: .normal)
                 self.cashButton.setImage(UIImage(named: "ic_radio-button-unchecked"), for: .normal)
+                self.emmaButton.setImage(UIImage(named: "ic_radio-button-unchecked"), for: .normal)
             })
             .disposed(by: bag)
         
@@ -90,6 +92,19 @@ class PaymentTypeViewController: UIViewController {
                 self.isCreditSelected = false
                 self.creditButton.setImage(UIImage(named: "ic_radio-button-unchecked"), for: .normal)
                 self.cashButton.setImage(UIImage(named: "ic_radio-button-checked"), for: .normal)
+                self.emmaButton.setImage(UIImage(named: "ic_radio-button-unchecked"), for: .normal)
+            })
+            .disposed(by: bag)
+        
+        emmaButton
+            .rx
+            .tap
+            .subscribe(onNext: {[weak self] in
+                guard let self = self else { return }
+                self.isCreditSelected = false
+                self.creditButton.setImage(UIImage(named: "ic_radio-button-unchecked"), for: .normal)
+                self.cashButton.setImage(UIImage(named: "ic_radio-button-unchecked"), for: .normal)
+                self.emmaButton.setImage(UIImage(named: "ic_radio-button-checked"), for: .normal)
             })
             .disposed(by: bag)
         

@@ -172,7 +172,9 @@ class PaymentDataViewController: UIViewController {
                       let response = response,
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 if let redirect = response.indRedirect, redirect == 0 {
-                    self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
+                    if !self.viewModel.carManager.payWithPreApproved {
+                        self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
+                    }
                     let _ = self.viewModel.carManager.emptyCar()
                     self.continueButton.hideLoading()
                     
@@ -221,7 +223,9 @@ class PaymentDataViewController: UIViewController {
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
                 print(response)
                 if let redirect = response.indRedirect, redirect == 0 {
-                    self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
+                    if !self.viewModel.carManager.payWithPreApproved {
+                        self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
+                    }
                     self.continueButton.hideLoading()
                     var showDisclaimer = false
                     if let carManagerType = self.viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, self.shippingMethodSelected == "-1" {

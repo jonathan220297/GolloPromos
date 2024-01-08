@@ -10,6 +10,7 @@ import UIKit
 
 protocol PaymentJobSelectionDelegate: AnyObject {
     func continuePayment(with date: ResponseDate, hour: ResponseHours)
+    func instaleapSlotError()
 }
 
 class PaymentJobSelectionViewController: UIViewController {
@@ -17,6 +18,7 @@ class PaymentJobSelectionViewController: UIViewController {
     @IBOutlet weak var viewGlass: UIView!
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var genericMessageLabel: UILabel!
     @IBOutlet weak var dateCollectionView: UICollectionView!
     @IBOutlet weak var hourLabel: UILabel!
     @IBOutlet weak var hourCollectionView: UICollectionView!
@@ -41,6 +43,7 @@ class PaymentJobSelectionViewController: UIViewController {
         super.viewDidLoad()
         configureViews()
         configureRx()
+        fetchAvailableSlots()
     }
     
     // MARK: - Observers
@@ -56,20 +59,39 @@ class PaymentJobSelectionViewController: UIViewController {
         continuePaymentButton.layer.masksToBounds = true
         continuePaymentButton.layer.cornerRadius = 10
         continuePaymentButton.layoutIfNeeded()
+        
+        dateCollectionView.register(UINib(nibName: "DatePickingCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DatePickingCollectionViewCell")
+        hourCollectionView.register(UINib(nibName: "HourPickingCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HourPickingCollectionViewCell")
     }
 
     func configureRx() {
+        viewModel
+            .errorMessage
+            .asObservable()
+            .subscribe(onNext: {[weak self] error in
+                guard let self = self,
+                let error = error, !error.isEmpty else { return }
+                self.viewModel.slotError = true
+                self.genericMessageLabel.text = error
+                self.viewModel.errorMessage.accept(nil)
+            })
+            .disposed(by: bag)
+        
         continuePaymentButton
             .rx
             .tap
             .subscribe(onNext: {[weak self] in
                 guard let self = self else { return }
-                if let date = self.viewModel.dateSelected, let hour = self.viewModel.hourSelected {
-                    self.dismiss(animated: true) {
-                        self.delegate.continuePayment(with: date, hour: hour)
-                    }
+                if self.viewModel.slotError {
+                    self.delegate.instaleapSlotError()
                 } else {
-                    self.showAlert(alertText: "GolloApp", alertMessage: "Debes seleccionar fecha y hora")
+                    if let date = self.viewModel.dateSelected, let hour = self.viewModel.hourSelected {
+                        self.dismiss(animated: true) {
+                            self.delegate.continuePayment(with: date, hour: hour)
+                        }
+                    } else {
+                        self.showAlert(alertText: "GolloApp", alertMessage: "Debes seleccionar fecha y hora")
+                    }
                 }
             })
             .disposed(by: bag)

@@ -20,6 +20,7 @@ class PaymentJobSelectionViewModel {
     var hoursAvailabilities: [ResponseHours] = []
     var dateSelected: ResponseDate? = nil
     var hourSelected: ResponseHours? = nil
+    var slotError = false
     
     let errorMessage = BehaviorRelay<String?>(value: nil)
     
@@ -43,7 +44,7 @@ class PaymentJobSelectionViewModel {
                 case .success(let response):
                     apiResponse.accept(response)
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    self.errorMessage.accept(error.localizedDescription)
                 }
             }
         }
@@ -121,7 +122,7 @@ class PaymentJobSelectionViewModel {
             end: formatDate.string(from: endDate),
             slot_size: 60,
             minimum_slot_size: 60,
-            operational_models_priority: ["PICK_AND_DELIVERY_WITH_STORAGE_NO_TRANSFER"],
+            operational_models_priority: ["PICK_AND_COLLECT_NO_TRANSFER"],
             fallback: false,
             store_reference: getStoreCode(data: carManager.shopSelected?.nombre ?? ""),
             job_items: products

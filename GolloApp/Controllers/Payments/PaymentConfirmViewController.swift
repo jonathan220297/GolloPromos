@@ -89,7 +89,7 @@ class PaymentConfirmViewController: UIViewController {
             .asObservable()
             .subscribe(onNext: {[weak self] error in
                 guard let self = self,
-                      let error = error else { return }
+                      let _ = error else { return }
                 countSlot += 1
                 if countSlot == 1 {
                     let paymentJobSelectionViewController = PaymentJobSelectionViewController(
@@ -201,7 +201,9 @@ class PaymentConfirmViewController: UIViewController {
                 guard let self = self,
                       let response = response,
                       let paymentMethodSelected = self.viewModel.carManager.paymentMethodSelected else { return }
-                self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
+                if !self.viewModel.carManager.payWithPreApproved {
+                    self.viewModel.addPurchaseEvent(orderNumber: response.orderId ?? "")
+                }
                 var showDisclaimer = false
                 if let carManagerType = self.viewModel.verifyCarManagerTypeState(), carManagerType == CarManagerType.SCAN_AND_GO.rawValue, self.shippingMethodSelected == "-1" {
                     showDisclaimer = true
@@ -389,6 +391,13 @@ extension PaymentConfirmViewController: PaymentJobSelectionDelegate {
     func continuePayment(with date: ResponseDate, hour: ResponseHours) {
         self.viewModel.carManager.dateSelected = date
         self.viewModel.carManager.hourSelected = hour
+        self.managePaymentValidation()
+    }
+    
+    func instaleapSlotError() {
+        self.viewModel.carManager.dateSelected = nil
+        self.viewModel.carManager.hourSelected = nil
+        self.viewModel.carManager.indInstaleap = 0
         self.managePaymentValidation()
     }
 }

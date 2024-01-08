@@ -59,7 +59,7 @@ class WebViewOrderStatusViewController: UIViewController {
         self.view.activityStartAnimatingFull()
         containerView.addSubview(webView)
         
-        let stringURL = "https://xandar-lsw-v3.instaleap.io/?job=\(self.idJob ?? "")&token=hkv6MpWZw6DwIPfuTlq0k3qNSX2JQkOxmYnOsPrO&language=es-ES&hideHelpCenter=true&hideProducts=true&hidePaymentMethod=true&hideOrderDetail=true&hideComments=true&primaryColor=%23005da4&hideOrderId=true&hideCancelOrder=true"
+        let stringURL = "https://xandar-lsw-v3.instaleap.io/?job=\(self.idJob ?? "")&token=hkv6MpWZw6DwIPfuTlq0k3qNSX2JQkOxmYnOsPrO&language=es-ES&hideHelpCenter=true&hideProducts=true&hidePaymentMethod=true&hideOrderDetail=true&hideComments=true&primaryColor=%23005da4&hideCancelOrder=true"
         
         guard let url = URL(string: stringURL) else {
             return

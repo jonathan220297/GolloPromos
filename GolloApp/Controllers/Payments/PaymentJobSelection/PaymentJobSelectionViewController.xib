@@ -15,6 +15,7 @@
                 <outlet property="closeButton" destination="ZfQ-Re-iHC" id="TLV-dm-jEu"/>
                 <outlet property="continuePaymentButton" destination="PYa-rR-Wrh" id="dJF-R9-7UQ"/>
                 <outlet property="dateCollectionView" destination="jcf-hV-X1T" id="Xts-zu-lwN"/>
+                <outlet property="genericMessageLabel" destination="e0Q-Vl-747" id="ycf-xc-Ape"/>
                 <outlet property="hourCollectionView" destination="4HU-Q7-nPV" id="SQM-jp-VIV"/>
                 <outlet property="hourLabel" destination="E6R-Hu-MIc" id="20r-H8-msK"/>
                 <outlet property="popUpView" destination="Jov-X5-9kb" id="tY6-kM-8SA"/>
@@ -44,30 +45,23 @@
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="xmark.circle.fill" catalog="system"/>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debe seleccionar otra fecha" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIZ-iQ-XUY">
-                            <rect key="frame" x="8" y="16" width="298.33333333333331" height="19.666666666666671"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lo siento, la fecha seleccionada no está disponible. Por favor, elije otra." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIZ-iQ-XUY">
+                            <rect key="frame" x="8" y="8" width="298.33333333333331" height="39.333333333333336"/>
                             <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6YQ-pM-B5H">
-                            <rect key="frame" x="12" y="51.666666666666686" width="290.33333333333331" height="151.66666666666663"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6YQ-pM-B5H">
+                            <rect key="frame" x="12" y="63.3333333333333" width="290.33333333333331" height="139.66666666666663"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRw-dy-due">
-                                    <rect key="frame" x="0.0" y="0.0" width="290.33333333333331" height="4"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="4" id="z9O-nE-hj1"/>
-                                    </constraints>
-                                </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecciona la fecha de entrega:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0Q-Vl-747">
-                                    <rect key="frame" x="0.0" y="12.000000000000002" width="290.33333333333331" height="19.666666666666671"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecciona la fecha de entrega:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0Q-Vl-747">
+                                    <rect key="frame" x="0.0" y="0.0" width="290.33333333333331" height="19.666666666666668"/>
                                     <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jcf-hV-X1T">
-                                    <rect key="frame" x="0.0" y="39.666666666666629" width="290.33333333333331" height="100"/>
+                                    <rect key="frame" x="0.0" y="27.666666666666686" width="290.33333333333331" height="100"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="jrd-xp-bFe"/>
@@ -78,15 +72,19 @@
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="x83-yX-0Y3"/>
+                                        <outlet property="delegate" destination="-1" id="b5u-CS-2Ji"/>
+                                    </connections>
                                 </collectionView>
                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escoge el período para recibir tu pedido:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6R-Hu-MIc">
-                                    <rect key="frame" x="0.0" y="143.66666666666663" width="290.33333333333331" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="131.66666666666669" width="290.33333333333331" height="0.0"/>
                                     <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4HU-Q7-nPV">
-                                    <rect key="frame" x="0.0" y="143.66666666666663" width="290.33333333333331" height="70"/>
+                                    <rect key="frame" x="0.0" y="131.66666666666669" width="290.33333333333331" height="70"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="70" id="Qct-pH-6gv"/>
@@ -97,9 +95,13 @@
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="T39-iX-pCc"/>
+                                        <outlet property="delegate" destination="-1" id="Koz-N9-sLJ"/>
+                                    </connections>
                                 </collectionView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ym-DY-48N">
-                                    <rect key="frame" x="0.0" y="147.66666666666663" width="290.33333333333331" height="4"/>
+                                    <rect key="frame" x="0.0" y="135.66666666666669" width="290.33333333333331" height="4"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="4" id="p9l-fn-Xq7"/>
@@ -132,7 +134,7 @@
                         <constraint firstAttribute="bottom" secondItem="PYa-rR-Wrh" secondAttribute="bottom" constant="8" id="Ijp-Ws-hPx"/>
                         <constraint firstItem="fIZ-iQ-XUY" firstAttribute="leading" secondItem="Jov-X5-9kb" secondAttribute="leading" constant="8" id="JC9-eK-hs2"/>
                         <constraint firstAttribute="trailing" secondItem="fIZ-iQ-XUY" secondAttribute="trailing" constant="8" id="a0L-om-J9W"/>
-                        <constraint firstItem="fIZ-iQ-XUY" firstAttribute="top" secondItem="Jov-X5-9kb" secondAttribute="top" constant="16" id="hDY-xU-XUf"/>
+                        <constraint firstItem="fIZ-iQ-XUY" firstAttribute="top" secondItem="Jov-X5-9kb" secondAttribute="top" constant="8" id="hDY-xU-XUf"/>
                         <constraint firstItem="6YQ-pM-B5H" firstAttribute="leading" secondItem="Jov-X5-9kb" secondAttribute="leading" constant="12" id="uy8-we-rvu"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
