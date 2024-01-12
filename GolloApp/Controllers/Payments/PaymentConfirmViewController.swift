@@ -90,8 +90,8 @@ class PaymentConfirmViewController: UIViewController {
             .subscribe(onNext: {[weak self] error in
                 guard let self = self,
                       let _ = error else { return }
-                countSlot += 1
-                if countSlot == 1 {
+                self.countSlot += 1
+                if self.countSlot == 1 {
                     let paymentJobSelectionViewController = PaymentJobSelectionViewController(
                         viewModel: PaymentJobSelectionViewModel(),
                         delegate: self
@@ -112,7 +112,7 @@ class PaymentConfirmViewController: UIViewController {
             .tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                managePaymentValidation()
+                self.managePaymentValidation()
             })
             .disposed(by: bag)
     }

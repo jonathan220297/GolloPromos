@@ -164,7 +164,7 @@ class HomeViewController: UITabBarController {
                 Variables.isRegisterUser = data.estadoRegistro ?? false
                 Variables.isLoginUser = data.estadoLogin ?? false
                 Variables.isClientUser = data.estadoCliente ?? false
-                viewModel.scanNGoActivated.accept(data.indScanAndGo ?? false)
+                self.viewModel.scanNGoActivated.accept(data.indScanAndGo ?? false)
                 DispatchQueue.main.async {
                     self.view.activityStopAnimatingFull()
                 }

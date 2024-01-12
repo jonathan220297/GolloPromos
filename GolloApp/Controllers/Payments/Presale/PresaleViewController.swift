@@ -35,6 +35,7 @@ class PresaleViewController: UIViewController {
     let viewModel: PresaleViewModel
     let bag = DisposeBag()
     weak var delegate: PresaleDelegate?
+    
     var keyboardShowing: Bool = false
     var errorAmount: Bool = false
     var firstTime: Bool = true
@@ -184,7 +185,7 @@ class PresaleViewController: UIViewController {
                       let data = data else { return }
                 self.view.activityStopAnimatingFull()
                 self.viewModel.presaleDetail = data
-                if let minPrima = data.montoPrimaMinimo, minPrima > 0, let formmatedAmount = numberFormatter.string(from: NSNumber(value: minPrima)), firstTime {
+                if let minPrima = data.montoPrimaMinimo, minPrima > 0, let formmatedAmount = numberFormatter.string(from: NSNumber(value: minPrima)), self.firstTime {
                     self.amountTextField.text = "₡" + formmatedAmount
                     self.viewModel.currentPrima = minPrima
                 }

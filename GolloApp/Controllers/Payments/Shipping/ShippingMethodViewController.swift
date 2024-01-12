@@ -213,7 +213,7 @@ class ShippingMethodViewController: UIViewController {
                 self.viewModel.processStates(with: responseData)
                 self.viewModel.processShops(with: self.viewModel.states.first ?? "")
                 self.stateLabel.text = self.viewModel.states.first ?? ""
-                if let nearStore = viewModel.findUserNearStore() {
+                if let nearStore = self.viewModel.findUserNearStore() {
                     self.stateLabel.text = nearStore.provincia ?? ""
                     self.viewModel.stateSelected = nearStore.provincia ?? ""
                     self.viewModel.processShops(with: nearStore.provincia ?? "")
@@ -351,7 +351,7 @@ class ShippingMethodViewController: UIViewController {
             self.viewModel.shopSelected = self.viewModel.shops[index]
             self.scheduleView.isHidden = true
             self.viewModel.carManager.hasIntaleap = (self.viewModel.shopSelected?.aplicaInstaleap == 1)
-            validateInstaleap()
+            self.validateInstaleap()
         }
         dropDown.show()
     }

@@ -147,7 +147,7 @@ class SearchOffersViewController: UIViewController {
                 self.viewModel.suggestions = suggestions
                 self.suggestionsTableView.reloadData()
                 
-                if isShowing && !suggestions.isEmpty {
+                if self.isShowing && !suggestions.isEmpty {
                     self.suggestionsView.isHidden = false
                 }
             })
