@@ -19,7 +19,8 @@ struct OrderDetail: Codable {
 }
 
 struct OrderInformation: Codable {
-    let idOrden, idMovimiento, totalLineas: Int?
+    let totalLineas: Int?
+    let idOrden, idMovimiento: String?
     let idEmpresa, idCliente, estadoOrden, fechaOrden, condicionVenta, codigoCupon, descripcionCupon, numOrdenTienda: String?
     let montoProductos, montoEnvio, montoExtragarantia, montoBruto, montoDescuento: Double?
     let montoBono, montoNeto: Double?
@@ -37,6 +38,7 @@ struct DeliveryType: Codable {
     let tipoEntrega, lugarDespacho, horaEntrega, fechaEntrega, instruccionesEspeciales, descEntrega: String?
     let direccion, tipoDireccion, idProvincia, provinciaDesc, idCanton, cantonDesc, idDistrito, distritoDesc: String?
     let tipoIdReceptor, idReceptor, parentescoReceptor, codigoPostal, receptorProducto, telefonoReceptor: String?
+    let CoordenadaX, CoordenadaY: Double?
 }
 
 struct OrderDetailInformation: Codable {

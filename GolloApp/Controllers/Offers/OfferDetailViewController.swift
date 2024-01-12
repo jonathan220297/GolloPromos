@@ -435,7 +435,7 @@ class OfferDetailViewController: UIViewController {
     }
     
     private func validateSelectedWaranty() -> Bool {
-        if let waranty = self.article?.articulo?.extraGarantia, !waranty.isEmpty {
+        if let waranty = self.article?.articulo?.extragarantia, !waranty.isEmpty {
             if let _ = self.warrantyMonth, let _ = self.warrantyAmount {
                 return true
             } else {
@@ -759,7 +759,7 @@ class OfferDetailViewController: UIViewController {
         var documents: [Warranty] = []
         let lovN = Warranty(plazoMeses: 0, porcentaje: 0.0, montoExtragarantia: 0.0, impuestoExtragarantia: 0.0, titulo: "Sin gollo plus")
         documents.append(lovN)
-        if let warranty = data.articulo?.extraGarantia, !warranty.isEmpty {
+        if let warranty = data.articulo?.extragarantia, !warranty.isEmpty {
             for w in warranty {
                 let amount = String(w.montoExtragarantia ?? 0.0).currencyFormatting()
                 let lov = Warranty(

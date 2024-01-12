@@ -175,7 +175,7 @@ class OrderDetailTabViewController: UIViewController {
         if let date = order.orden.fechaOrden {
             createLabel.attributedText = formatHTML(header: "Fecha pedido: ", content: convertDate(date: date) ?? date)
         }
-        referenceLabel.attributedText = formatHTML(header: "Número de referencia: ", content: "\(order.orden.idOrden ?? 0)")
+        referenceLabel.attributedText = formatHTML(header: "Número de referencia: ", content: "\(order.orden.idOrden ?? "")")
         statusLabel.attributedText = formatHTML(header: "Estado: ", content: order.orden.descripcionCupon ?? "")
         originLabel.attributedText = formatHTML(header: "Origen: ", content: order.orden.origen ?? "")
 

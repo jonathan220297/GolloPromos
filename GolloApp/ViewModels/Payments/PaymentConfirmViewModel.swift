@@ -216,7 +216,7 @@ class PaymentConfirmViewModel {
                     shipping_fee: Int(shipping),
                     discounts: Int(getTotalDiscounts()),
                     taxes: 0.0,
-                    order_value: getSubtotalAmount() + shipping
+                    order_value: getTotalJobAmount() //getSubtotalAmount() + shipping
                 ),
                 payment: PaymentJob(
                     method: methodString,
@@ -252,6 +252,42 @@ class PaymentConfirmViewModel {
     }
     
     func getTotalDiscounts() -> Double {
+        let products = carManager.carProductsDetail
+        let amount = products.map { $0.precioUnitario * Double($0.cantidad) }.reduce(0, +)
+        return amount
+    }
+    
+    private func getTotalExpenses() -> Double {
+        let products = carManager.carProductsDetail
+        return products.map { ($0.totalExpenses ?? 0.0) * Double($0.cantidad) }.reduce(0, +)
+    }
+    
+    private func getTotalCSRAmount() -> Double {
+        let products = carManager.carProductsDetail
+        return products.map { $0.montoExtragar * Double($0.cantidad) }.reduce(0, +)
+    }
+    
+    private func getBonoTotalAmount() -> Double {
+        let products = carManager.carProductsDetail
+        return products.map { ($0.montoBonoProveedor ?? 0.0) * Double($0.cantidad) }.reduce(0, +)
+    }
+    
+    private func getTotalDescuentos() -> Double {
+        let products = carManager.carProductsDetail
+        return products.map { $0.montoDescuento * Double($0.cantidad) }.reduce(0, +)
+    }
+    
+    private func getDeliveryAmountFromCart() -> Double {
+        return carManager.shippingMethod?.cost ?? 0.0
+    }
+    
+    private func getTotalJobAmount() -> Double {
+        let subtotal = getTotalItemsAmount() + getTotalExpenses() + getTotalCSRAmount()
+        let discount = getBonoTotalAmount() + getTotalDescuentos() + getDeliveryAmountFromCart()
+        return subtotal - discount
+    }
+    
+    private func getTotalItemsAmount() -> Double {
         let products = carManager.carProductsDetail
         let amount = products.map { $0.montoDescuento * Double($0.cantidad) }.reduce(0, +)
         return amount

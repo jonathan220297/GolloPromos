@@ -24,14 +24,6 @@ class OrdersTabViewModel {
         service.callWebServiceGollo(BaseRequest<OrdersData, OrderServiceRequest>(
             service: BaseServiceRequestParam<OrderServiceRequest>(
                 servicio: ServicioParam(
-//                    encabezado: Encabezado(
-//                        idProceso: GOLLOAPP.ORDERS_PROCESS_ID.rawValue,
-//                        idDevice: UIDevice.current.identifierForVendor?.uuidString ?? "",
-//                        idUsuario: idClient ?? idDevice,
-//                        timeStamp: String(Date().timeIntervalSince1970),
-//                        idCia: 10,
-//                        token: getToken(),
-//                        integrationId: nil),
                     encabezado: getDefaultBaseHeaderRequest(with: GOLLOAPP.ORDERS_PROCESS_ID.rawValue),
                     parametros: OrderServiceRequest (
                         idCliente: idClient ?? idDevice

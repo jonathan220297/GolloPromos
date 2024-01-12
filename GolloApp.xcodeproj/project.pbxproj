@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A76F56EB4C7A69216C4CB2B /* Pods_GolloAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5705634A9C23597E35B31598 /* Pods_GolloAppTests.framework */; };
-		1C4C1DF105C5BC02C9B5FF9B /* Pods_GolloApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2967FACF67CD4BFDEBD197DC /* Pods_GolloApp.framework */; };
-		3E8AC300149AA979C5272412 /* Pods_GolloApp_GolloAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBE10FE5191F69D0CEA2F7F /* Pods_GolloApp_GolloAppUITests.framework */; };
 		4F0D962B26D91B4D0061E89E /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D962A26D91B4D0061E89E /* AuthenticationService.swift */; };
 		4F0D962E26D91BE80061E89E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D962D26D91BE80061E89E /* UserManager.swift */; };
 		4F0D963026D91BF50061E89E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D962F26D91BF50061E89E /* User.swift */; };
@@ -360,6 +357,7 @@
 		4FFD9CBC272B211B004778F1 /* OffersTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9CBB272B211B004778F1 /* OffersTableViewModel.swift */; };
 		4FFD9CC7272B69CD004778F1 /* EmptyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFD9CC6272B69CD004778F1 /* EmptyTableView.xib */; };
 		4FFD9CCB272B6C1E004778F1 /* EmptyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD9CCA272B6C1E004778F1 /* EmptyTableView.swift */; };
+		775864A66F7E19D867932ED2 /* Pods_GolloApp_GolloAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB72E1DB06D6BB7D0884718 /* Pods_GolloApp_GolloAppUITests.framework */; };
 		CB0E586A2B42109200522175 /* PaymentTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E58682B42109200522175 /* PaymentTypeViewController.swift */; };
 		CB0E586B2B42109200522175 /* PaymentTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0E58692B42109200522175 /* PaymentTypeViewController.xib */; };
 		CB12A7722AAB9943006CD52E /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB12A7702AAB9943006CD52E /* CategoriesCollectionViewCell.swift */; };
@@ -427,6 +425,8 @@
 		CBDD0E4A29B79C670071E063 /* EmmaTermsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD0E4829B79C670071E063 /* EmmaTermsTableViewCell.swift */; };
 		CBDD0E4B29B79C670071E063 /* EmmaTermsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBDD0E4929B79C670071E063 /* EmmaTermsTableViewCell.xib */; };
 		CBFFBC3A2ABA8E65004CA5BA /* CategoriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFFBC392ABA8E65004CA5BA /* CategoriesSection.swift */; };
+		D1ED7866EC04899F50DAC02A /* Pods_GolloAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4422F333667EAB3CFE376BC0 /* Pods_GolloAppTests.framework */; };
+		F7096414E372274A103A3BDE /* Pods_GolloApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C64D6739F63947DD40CF95DD /* Pods_GolloApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -460,11 +460,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		17C0E4D3DFADA45EEECD739D /* Pods-GolloAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloAppTests.release.xcconfig"; path = "Target Support Files/Pods-GolloAppTests/Pods-GolloAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		253824F789D322096B18F737 /* Pods-GolloApp-GolloAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp-GolloAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		2967FACF67CD4BFDEBD197DC /* Pods_GolloApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GolloApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D915C8466CDFB638B5DCA33 /* Pods-GolloApp-GolloAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp-GolloAppUITests.release.xcconfig"; path = "Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		4510729D958CD2D6700C44F7 /* Pods-GolloAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloAppTests.debug.xcconfig"; path = "Target Support Files/Pods-GolloAppTests/Pods-GolloAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		030A9F4DE16CB8B2B2D4911D /* Pods-GolloApp-GolloAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp-GolloAppUITests.release.xcconfig"; path = "Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4422F333667EAB3CFE376BC0 /* Pods_GolloAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GolloAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EEA0F5800EA992B11377EA0 /* Pods-GolloAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloAppTests.debug.xcconfig"; path = "Target Support Files/Pods-GolloAppTests/Pods-GolloAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F0D962A26D91B4D0061E89E /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		4F0D962D26D91BE80061E89E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		4F0D962F26D91BF50061E89E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -823,8 +821,11 @@
 		4FFD9CBB272B211B004778F1 /* OffersTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTableViewModel.swift; sourceTree = "<group>"; };
 		4FFD9CC6272B69CD004778F1 /* EmptyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableView.xib; sourceTree = "<group>"; };
 		4FFD9CCA272B6C1E004778F1 /* EmptyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableView.swift; sourceTree = "<group>"; };
-		5705634A9C23597E35B31598 /* Pods_GolloAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GolloAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABEF64B877F9D540FD76D85A /* Pods-GolloApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp.debug.xcconfig"; path = "Target Support Files/Pods-GolloApp/Pods-GolloApp.debug.xcconfig"; sourceTree = "<group>"; };
+		7A474A2615210920673BC805 /* Pods-GolloApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp.debug.xcconfig"; path = "Target Support Files/Pods-GolloApp/Pods-GolloApp.debug.xcconfig"; sourceTree = "<group>"; };
+		8AB72E1DB06D6BB7D0884718 /* Pods_GolloApp_GolloAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GolloApp_GolloAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFBE82CA25D7FC0F382EE9A2 /* Pods-GolloApp-GolloAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp-GolloAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C59FC8C389EC4FED20953496 /* Pods-GolloApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp.release.xcconfig"; path = "Target Support Files/Pods-GolloApp/Pods-GolloApp.release.xcconfig"; sourceTree = "<group>"; };
+		C64D6739F63947DD40CF95DD /* Pods_GolloApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GolloApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0E58682B42109200522175 /* PaymentTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTypeViewController.swift; sourceTree = "<group>"; };
 		CB0E58692B42109200522175 /* PaymentTypeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentTypeViewController.xib; sourceTree = "<group>"; };
 		CB12A7702AAB9943006CD52E /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -892,8 +893,7 @@
 		CBDD0E4829B79C670071E063 /* EmmaTermsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmmaTermsTableViewCell.swift; sourceTree = "<group>"; };
 		CBDD0E4929B79C670071E063 /* EmmaTermsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmmaTermsTableViewCell.xib; sourceTree = "<group>"; };
 		CBFFBC392ABA8E65004CA5BA /* CategoriesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSection.swift; sourceTree = "<group>"; };
-		DE9D60AB07A5057882C4A69E /* Pods-GolloApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloApp.release.xcconfig"; path = "Target Support Files/Pods-GolloApp/Pods-GolloApp.release.xcconfig"; sourceTree = "<group>"; };
-		EBBE10FE5191F69D0CEA2F7F /* Pods_GolloApp_GolloAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GolloApp_GolloAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1A70DB663F5F7B50C4AC718 /* Pods-GolloAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolloAppTests.release.xcconfig"; path = "Target Support Files/Pods-GolloAppTests/Pods-GolloAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -901,7 +901,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C4C1DF105C5BC02C9B5FF9B /* Pods_GolloApp.framework in Frameworks */,
+				F7096414E372274A103A3BDE /* Pods_GolloApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,7 +909,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A76F56EB4C7A69216C4CB2B /* Pods_GolloAppTests.framework in Frameworks */,
+				D1ED7866EC04899F50DAC02A /* Pods_GolloAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,7 +917,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E8AC300149AA979C5272412 /* Pods_GolloApp_GolloAppUITests.framework in Frameworks */,
+				775864A66F7E19D867932ED2 /* Pods_GolloApp_GolloAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1759,7 +1759,7 @@
 				4FDA3ABC26D8FE28003B2CB6 /* GolloAppUITests */,
 				4FDA3A9926D8FE26003B2CB6 /* Products */,
 				B3D3BFB800D6166E756F8215 /* Pods */,
-				A8CC507D1D4583A85F734BDF /* Frameworks */,
+				55679D64E55FCA2EAC2550EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2069,12 +2069,12 @@
 			path = Extras;
 			sourceTree = "<group>";
 		};
-		A8CC507D1D4583A85F734BDF /* Frameworks */ = {
+		55679D64E55FCA2EAC2550EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2967FACF67CD4BFDEBD197DC /* Pods_GolloApp.framework */,
-				EBBE10FE5191F69D0CEA2F7F /* Pods_GolloApp_GolloAppUITests.framework */,
-				5705634A9C23597E35B31598 /* Pods_GolloAppTests.framework */,
+				C64D6739F63947DD40CF95DD /* Pods_GolloApp.framework */,
+				8AB72E1DB06D6BB7D0884718 /* Pods_GolloApp_GolloAppUITests.framework */,
+				4422F333667EAB3CFE376BC0 /* Pods_GolloAppTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2082,12 +2082,12 @@
 		B3D3BFB800D6166E756F8215 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ABEF64B877F9D540FD76D85A /* Pods-GolloApp.debug.xcconfig */,
-				DE9D60AB07A5057882C4A69E /* Pods-GolloApp.release.xcconfig */,
-				253824F789D322096B18F737 /* Pods-GolloApp-GolloAppUITests.debug.xcconfig */,
-				3D915C8466CDFB638B5DCA33 /* Pods-GolloApp-GolloAppUITests.release.xcconfig */,
-				4510729D958CD2D6700C44F7 /* Pods-GolloAppTests.debug.xcconfig */,
-				17C0E4D3DFADA45EEECD739D /* Pods-GolloAppTests.release.xcconfig */,
+				7A474A2615210920673BC805 /* Pods-GolloApp.debug.xcconfig */,
+				C59FC8C389EC4FED20953496 /* Pods-GolloApp.release.xcconfig */,
+				AFBE82CA25D7FC0F382EE9A2 /* Pods-GolloApp-GolloAppUITests.debug.xcconfig */,
+				030A9F4DE16CB8B2B2D4911D /* Pods-GolloApp-GolloAppUITests.release.xcconfig */,
+				4EEA0F5800EA992B11377EA0 /* Pods-GolloAppTests.debug.xcconfig */,
+				E1A70DB663F5F7B50C4AC718 /* Pods-GolloAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2234,12 +2234,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FDA3AC226D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "GolloApp" */;
 			buildPhases = (
-				3FC656B31CADC76A8917FE90 /* [CP] Check Pods Manifest.lock */,
+				C3B0116F0ED076995A054609 /* [CP] Check Pods Manifest.lock */,
 				4FDA3A9426D8FE26003B2CB6 /* Sources */,
 				4FDA3A9526D8FE26003B2CB6 /* Frameworks */,
 				4FDA3A9626D8FE26003B2CB6 /* Resources */,
 				4F593480271FD6AD00C63A6F /* Embed Frameworks */,
-				98FFE52B850DCA87274C1A87 /* [CP] Embed Pods Frameworks */,
+				31D5188A570E53A0CAE12854 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2254,7 +2254,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FDA3AC526D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "GolloAppTests" */;
 			buildPhases = (
-				C839EF8E801D1E75780B8691 /* [CP] Check Pods Manifest.lock */,
+				36412BDE3987783F5D8835B1 /* [CP] Check Pods Manifest.lock */,
 				4FDA3AAA26D8FE28003B2CB6 /* Sources */,
 				4FDA3AAB26D8FE28003B2CB6 /* Frameworks */,
 				4FDA3AAC26D8FE28003B2CB6 /* Resources */,
@@ -2273,11 +2273,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FDA3AC826D8FE28003B2CB6 /* Build configuration list for PBXNativeTarget "GolloAppUITests" */;
 			buildPhases = (
-				D89B22FED690DAE95DC30B5A /* [CP] Check Pods Manifest.lock */,
+				123F8CE6B61FF05E80548A8D /* [CP] Check Pods Manifest.lock */,
 				4FDA3AB526D8FE28003B2CB6 /* Sources */,
 				4FDA3AB626D8FE28003B2CB6 /* Frameworks */,
 				4FDA3AB726D8FE28003B2CB6 /* Resources */,
-				2B1F0F18329F50ED2BEEAA73 /* [CP] Embed Pods Frameworks */,
+				E349CA086866FE77D83F5D5A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2456,24 +2456,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B1F0F18329F50ED2BEEAA73 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3FC656B31CADC76A8917FE90 /* [CP] Check Pods Manifest.lock */ = {
+		123F8CE6B61FF05E80548A8D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2488,14 +2471,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GolloApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-GolloApp-GolloAppUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		98FFE52B850DCA87274C1A87 /* [CP] Embed Pods Frameworks */ = {
+		31D5188A570E53A0CAE12854 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2512,7 +2495,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GolloApp/Pods-GolloApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C839EF8E801D1E75780B8691 /* [CP] Check Pods Manifest.lock */ = {
+		36412BDE3987783F5D8835B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2534,7 +2517,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D89B22FED690DAE95DC30B5A /* [CP] Check Pods Manifest.lock */ = {
+		C3B0116F0ED076995A054609 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2549,11 +2532,28 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GolloApp-GolloAppUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-GolloApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E349CA086866FE77D83F5D5A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GolloApp-GolloAppUITests/Pods-GolloApp-GolloAppUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3061,14 +3061,14 @@
 		};
 		4FDA3AC326D8FE28003B2CB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABEF64B877F9D540FD76D85A /* Pods-GolloApp.debug.xcconfig */;
+			baseConfigurationReference = 7A474A2615210920673BC805 /* Pods-GolloApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				EXCLUDED_ARCHS = "";
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
@@ -3091,14 +3091,14 @@
 		};
 		4FDA3AC426D8FE28003B2CB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE9D60AB07A5057882C4A69E /* Pods-GolloApp.release.xcconfig */;
+			baseConfigurationReference = C59FC8C389EC4FED20953496 /* Pods-GolloApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GolloApp/GolloApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = UD3ND4U79U;
 				EXCLUDED_ARCHS = "";
 				GOLLO_URL_SERVICE = "https://servicios.grupogollo.com:9199/ClientesApi/";
@@ -3119,7 +3119,7 @@
 		};
 		4FDA3AC626D8FE28003B2CB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4510729D958CD2D6700C44F7 /* Pods-GolloAppTests.debug.xcconfig */;
+			baseConfigurationReference = 4EEA0F5800EA992B11377EA0 /* Pods-GolloAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -3142,7 +3142,7 @@
 		};
 		4FDA3AC726D8FE28003B2CB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17C0E4D3DFADA45EEECD739D /* Pods-GolloAppTests.release.xcconfig */;
+			baseConfigurationReference = E1A70DB663F5F7B50C4AC718 /* Pods-GolloAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -3165,7 +3165,7 @@
 		};
 		4FDA3AC926D8FE28003B2CB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 253824F789D322096B18F737 /* Pods-GolloApp-GolloAppUITests.debug.xcconfig */;
+			baseConfigurationReference = AFBE82CA25D7FC0F382EE9A2 /* Pods-GolloApp-GolloAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -3186,7 +3186,7 @@
 		};
 		4FDA3ACA26D8FE28003B2CB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D915C8466CDFB638B5DCA33 /* Pods-GolloApp-GolloAppUITests.release.xcconfig */;
+			baseConfigurationReference = 030A9F4DE16CB8B2B2D4911D /* Pods-GolloApp-GolloAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

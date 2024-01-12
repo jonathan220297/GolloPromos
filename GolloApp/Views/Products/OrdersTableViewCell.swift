@@ -31,6 +31,6 @@ class OrdersTableViewCell: UITableViewCell {
         if let date = data.fechaOrden {
             dateLabel.attributedText = formatHTML(header: "Fecha pedido: ", content: date.formatStringDateGollo())
         }
-        referenceLabel.attributedText = formatHTML(header: "Referencia: ", content: "\(data.idOrden ?? 0)")
+        referenceLabel.attributedText = formatHTML(header: "Referencia: ", content: "\(data.idOrden ?? "")")
     }
 }
