@@ -92,4 +92,20 @@ class OfferDetailViewModel {
         defaults.removeObject(forKey: "carManagerStoreID")
     }
     
+    public func StringJSON(from object: Any) -> String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+            return nil
+        }
+        
+        return String(data: data, encoding: String.Encoding.utf8)
+    }
+    
+    public func objectArray(with jsonString: String) -> [TypeBarcode]? {
+        let data = Data(jsonString.utf8)
+        guard let array = try? JSONSerialization.jsonObject(with: data) as? [TypeBarcode] else {
+            return []
+        }
+        
+        return array
+    }
 }

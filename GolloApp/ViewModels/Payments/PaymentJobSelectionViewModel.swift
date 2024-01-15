@@ -62,18 +62,36 @@ class PaymentJobSelectionViewModel {
             longitude: carManager.shopSelected?.longitud
         )
         
-        for item in carManager.car {
+        for item in carManager.carProductsDetail {
+            var barcodesList: [String] = []
+            var attributes: AttributesGollo? = nil
+            barcodesList.append(item.sku)
+            
+            if let id = item.idCarItem {
+                let barcodes = CoreDataService().fetchCarBarcode(with: id)
+                for b in barcodes {
+                    if let code = b.codigo, !code.isEmpty {
+                        barcodesList.append(code)
+                        if b.tipo?.uppercased() == "EAN" {
+                            attributes = AttributesGollo(ean: b.codigo)
+                        }
+                    }
+                }
+            }
+            
             products.append(
                 JobItems(
                     quantity_found_limits: QuantityFoundLimits(max: item.cantidad, min: item.cantidad),
                     id: item.sku,
-                    name: item.descripcion,
-                    photo_url: "",
+                    name: "\(item.descripcion) - \(item.brand ?? "") - \(item.model ?? "")",
+                    photo_url: item.urlImage,
                     unit: "PZ",
                     sub_unit: "PZ",
                     quantity: item.cantidad,
                     sub_quantity: item.cantidad,
-                    price: item.precioUnitario
+                    price: item.precioUnitario,
+                    barcodes: barcodesList,
+                    attributes: attributes
                 )
             )
         }

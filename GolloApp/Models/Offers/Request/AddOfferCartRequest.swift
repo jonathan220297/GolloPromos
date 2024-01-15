@@ -29,7 +29,7 @@ struct AddOfferCartServiceRequest: Codable {
 }
 
 class CartItemDetail: Codable {
-    init(idCarItem: UUID? = nil, urlImage: String? = nil, cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double, montoBonoProveedor: Double?, codRegalia: String?, descRegalia: String?, warranty: [Warranty] = [], expenses: [OtherExpenses] = [], totalExpenses: Double?, indVMI: Int) {
+    init(idCarItem: UUID? = nil, urlImage: String? = nil, cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double, montoBonoProveedor: Double?, codRegalia: String?, descRegalia: String?, warranty: [Warranty] = [], expenses: [OtherExpenses] = [], totalExpenses: Double?, indVMI: Int, barcodes: [TypeBarcode] = [], brand: String?, model: String?) {
         self.idCarItem = idCarItem
         self.urlImage = urlImage
         self.cantidad = cantidad
@@ -50,9 +50,12 @@ class CartItemDetail: Codable {
         self.expenses = expenses
         self.totalExpenses = totalExpenses
         self.indVMI = indVMI
+        self.barcodes = barcodes
+        self.brand = brand
+        self.model = model
     }
     
-    init(cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double, montoBonoProveedor: Double?, codRegalia: String?, descRegalia: String?, totalExpenses: Double?, indVMI: Int) {
+    init(cantidad: Int, idLinea: Int, mesesExtragar: Int, descripcion: String, sku: String, descuento: Double, montoDescuento: Double, montoExtragar: Double, porcDescuento: Double, precioExtendido: Double, precioUnitario: Double, montoBonoProveedor: Double?, codRegalia: String?, descRegalia: String?, totalExpenses: Double?, indVMI: Int, brand: String?, model: String?) {
         self.cantidad = cantidad
         self.idLinea = idLinea
         self.mesesExtragar = mesesExtragar
@@ -69,6 +72,8 @@ class CartItemDetail: Codable {
         self.descRegalia = descRegalia
         self.totalExpenses = totalExpenses
         self.indVMI = indVMI
+        self.brand = brand
+        self.model = model
     }
     
     var idCarItem: UUID?
@@ -83,6 +88,9 @@ class CartItemDetail: Codable {
     var expenses: [OtherExpenses]?
     var totalExpenses: Double?
     var indVMI: Int
+    var barcodes: [TypeBarcode]?
+    var brand: String?
+    var model: String?
     var showingInformation: Bool = false
 }
 

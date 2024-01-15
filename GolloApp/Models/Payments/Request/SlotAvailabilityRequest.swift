@@ -43,8 +43,14 @@ struct JobItems: Codable {
     let id, name, photo_url, unit, sub_unit: String?
     let quantity, sub_quantity: Int?
     let price: Double?
+    let barcodes: [String]?
+    let attributes: AttributesGollo?
 }
 
 struct QuantityFoundLimits: Codable {
     let max, min: Int?
+}
+
+struct AttributesGollo: Codable {
+    let ean: String?
 }

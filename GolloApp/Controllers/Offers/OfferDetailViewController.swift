@@ -551,7 +551,9 @@ class OfferDetailViewController: UIViewController {
                 codRegalia: article.regalias?.codigo,
                 descRegalia: article.regalias?.descripcion,
                 totalExpenses: totalExpenses,
-                indVMI: article.existeVMI ?? 0
+                indVMI: article.existeVMI ?? 0,
+                brand: article.marca,
+                model: article.modelo
             )
             param.append(item)
             viewModel.addCart(parameters: param)
@@ -569,7 +571,7 @@ class OfferDetailViewController: UIViewController {
                         }
                         let userSelectedTaxes = self.viewModel.optionalExpenses.filter({ tax in tax.obligatorio == 0 && tax.selected == true })
                         let expenses = self.viewModel.mandatoryExpenses + userSelectedTaxes
-                        _ = CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents, expenses: expenses)
+                        _ = CoreDataService().addCarItems(with: param, warranty: self.viewModel.documents, expenses: expenses, barcodes: article.codigosBarras ?? [])
                         self.carItemLabel.text = "El artículo ha sido agregado al carrito!"
                         self.configureAlternativeNavBar()
                         if automaticRedirect {

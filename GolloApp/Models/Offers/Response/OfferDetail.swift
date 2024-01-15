@@ -25,6 +25,7 @@ struct Article : Codable {
     let otrosGastos: [OtherExpenses]?
     let existeVMI: Int?
     let texto_vmi: String?
+    let codigosBarras: [TypeBarcode]?
 }
 
 struct Royalties: Codable {
@@ -52,4 +53,8 @@ struct OtherExpenses: Codable {
     let monto: Double?
     let obligatorio: Int
     var selected: Bool? = false
+}
+
+struct TypeBarcode: Codable {
+    let tipo, codigo: String?
 }

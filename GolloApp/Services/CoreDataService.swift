@@ -9,12 +9,13 @@ import CoreData
 import UIKit
 
 class CoreDataService {
-    func addCarItems(with items: [CartItemDetail], warranty: [Warranty], expenses: [OtherExpenses]) -> UUID? {
+    func addCarItems(with items: [CartItemDetail], warranty: [Warranty], expenses: [OtherExpenses], barcodes: [TypeBarcode]) -> UUID? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "CarProduct", in: context)
         let warrantyEntity = NSEntityDescription.entity(forEntityName: "ProductWarranty", in: context)
         let expenseEntity = NSEntityDescription.entity(forEntityName: "ProductExpense", in: context)
+        let barcodeEntity = NSEntityDescription.entity(forEntityName: "ProductBarcode", in: context)
         var idCarProduct: UUID?
         for item in items {
             let carItem = NSManagedObject(entity: entity!, insertInto: context)
@@ -59,6 +60,15 @@ class CoreDataService {
             }
             carItem.setValue(totalExpenses, forKey: "totalExpenses")
             carItem.setValue(item.indVMI, forKey: "indVMI")
+            for b in barcodes {
+                let carBarcode = NSManagedObject(entity: barcodeEntity!, insertInto: context)
+                carBarcode.setValue(b.tipo ?? "", forKey: "type")
+                carBarcode.setValue(b.codigo ?? "", forKey: "code")
+                carBarcode.setValue(id, forKey: "idCarProduct")
+                carItem.setValue(NSSet(object: carBarcode), forKey: "productBarcode")
+            }
+            carItem.setValue(item.brand, forKey: "brand")
+            carItem.setValue(item.model, forKey: "model")
         }
         do {
             try context.save()
@@ -98,7 +108,10 @@ class CoreDataService {
                         warranty: data.value(forKey: "productWarranty") as? [Warranty] ?? [],
                         expenses: data.value(forKey: "productExpense") as? [OtherExpenses] ?? [],
                         totalExpenses: data.value(forKey: "totalExpenses") as? Double ?? 0.0,
-                        indVMI: data.value(forKey: "indVMI") as? Int ?? 0
+                        indVMI: data.value(forKey: "indVMI") as? Int ?? 0,
+                        barcodes: data.value(forKey: "productBarcode") as? [TypeBarcode] ?? [],
+                        brand: data.value(forKey: "brand") as? String ?? "",
+                        model: data.value(forKey: "model") as? String ?? ""
                     )
                 )
             }
@@ -154,6 +167,29 @@ class CoreDataService {
                 )
             }
             return expense
+        } catch let error as NSError {
+            print("Error fetchWarranties: " + error.localizedDescription)
+            return []
+        }
+    }
+    
+    func fetchCarBarcode(with id: UUID) -> [TypeBarcode] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ProductBarcode")
+        request.predicate = NSPredicate(format: "idCarProduct == %@", id as CVarArg)
+        do {
+            let result = try context.fetch(request)
+            var barcode: [TypeBarcode] = []
+            for data in result as! [NSManagedObject] {
+                barcode.append(
+                    TypeBarcode(
+                        tipo: data.value(forKey: "type") as? String ?? "",
+                        codigo: data.value(forKey: "code") as? String ?? ""
+                    )
+                )
+            }
+            return barcode
         } catch let error as NSError {
             print("Error fetchWarranties: " + error.localizedDescription)
             return []
